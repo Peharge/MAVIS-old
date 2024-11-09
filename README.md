@@ -1,6 +1,7 @@
 <p align="center">
-    <img src="./readme-img/Mavis-logo.png" width="500"/>
+    <img src="./readme-img/Mavis-logo.png" width="350"/>
 </p>
+<br>
 <div align="center">
 <img alt="mavis" src="https://img.shields.io/badge/MAVIS-F7DF1E">
 <img alt="tg-loerrach" src="https://img.shields.io/badge/TG Lörrach-red">
