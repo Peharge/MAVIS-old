@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./img-readme/mavis-logo.png" width="500"/>
+    <img src="./readme-img/mavis-logo.png" width="500"/>
 </p>
 <div align="center">
 <img alt="mavis" src="https://img.shields.io/badge/MAVIS-F7DF1E">
