@@ -1475,12 +1475,13 @@
             inset -1px -1px 6px rgba(255, 255, 255, 0.4);
         }
 
-        img {
+        .img-out {
             max-width: 100%;
-            max-height: 100px;
+            max-height: 150px;
             margin: 0 auto;
             border-radius: 15px;
-            margin-top: 10%;
+            margin-top: 20%;
+            box-shadow: 3px 8px 5px 0px rgba(0, 0, 0, 0.2);
         }
 
     </style>
@@ -2215,7 +2216,7 @@
                     <span class="yellow"></span>
                     <span class="green"></span>
                 </div>
-                <img id="preview" src="" alt="Bild Vorschau" style="max-width: 100%; max-height: 350px; margin: 0 auto; margin-top: 0%; border-radius: 15px;">
+                <img class="img-out" id="preview" src="" alt="Bild Vorschau" style="max-width: 100%; max-height: 350px; margin: 0 auto; margin-top: 0%; border-radius: 15px; box-shadow: 3px 8px 5px 0px rgba(0, 0, 0, 0.2);">
             </div>
     </form>
 
@@ -2247,9 +2248,8 @@
             if (data.response) {
                 chatContent.innerHTML += `
                     <div class="user-box">
-                        <p>${message}</p>
-                        <p></p>
-                        <img src="${data.image_url}" alt="Hochgeladenes Bild">
+                        <p>${message}</p><br>
+                        <br><img class="img-out" src="${data.image_url}" alt="Hochgeladenes Bild">
                     </div>`;
 
                 chatContent.innerHTML += `
