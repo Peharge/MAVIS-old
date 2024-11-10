@@ -1495,7 +1495,7 @@
             border-radius: 15px;
             border-bottom: 3px solid rgba(0, 0, 0, 0.440);
             border-left: 2px rgba(0, 0, 0, 0.545) outset;
-            box-shadow: 40px 50px 30px rgba(0, 0, 0, 0.280);
+            box-shadow: 3px 8px 5px 0px rgba(0, 0, 0, 0.2);
         }
 
     </style>
@@ -2234,6 +2234,19 @@
             </div>
     </form>
 
+    <script type="text/javascript">
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+    };
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
     <script>
 
         document.getElementById("send-form").onsubmit = async function(event) {
@@ -2264,17 +2277,20 @@
                     <div class="user-box">
                           <p>${message}</p>
                     </div>
-                     <div>
-                         <img class="img-out-out" src="${data.image_url}" alt="Hochgeladenes Bild">
-                     </div>`;
+                    <div>
+                        <img class="img-out-out" src="${data.image_url}" alt="Hochgeladenes Bild">
+                    </div>`;
 
                 chatContent.innerHTML += `
                     <div class="chatbot-box">
                         <p>${data.response}</p>
                     </div>`;
+
+                MathJax.typesetPromise();  // Verwende typesetPromise für verbesserte Zuverlässigkeit.
             } else {
                 chatContent.innerHTML += `<p><strong>Fehler:</strong> ${data.error}</p>`;
             }
+
         };
 
 
