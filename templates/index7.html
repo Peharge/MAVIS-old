@@ -2235,11 +2235,21 @@
     </form>
 
     <script type="text/javascript">
-    window.MathJax = {
-        tex: {
-            inlineMath: [['$', '$'], ['\\(', '\\)']]
-        }
-    };
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                macros: {
+
+                    UND: '\\textbf{UND}',
+
+                    bullet: '\\textbullet'
+                }
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -2286,13 +2296,12 @@
                         <p>${data.response}</p>
                     </div>`;
 
-                MathJax.typesetPromise();  // Verwende typesetPromise für verbesserte Zuverlässigkeit.
+                MathJax.typeset();
             } else {
                 chatContent.innerHTML += `<p><strong>Fehler:</strong> ${data.error}</p>`;
             }
 
         };
-
 
         const taskBox = document.getElementById('button-containerid');
 
