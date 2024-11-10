@@ -50,9 +50,13 @@ def send_message():
 
             response_content = response['message']['content']
 
-            html_content = markdown.markdown(response_content)
+            # Markdown in HTML umwandeln und Block-Formatierung aktivieren
+            html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
 
-            return jsonify({'response': html_content, 'image_url': app.config['UPLOAD_URL'] + filename})
+            # Response als HTML-String in ein Div einbetten, um Blockdarstellung sicherzustellen
+            wrapped_html_content = f"<div style='display:block;'>{html_content}</div>"
+
+            return jsonify({'response': wrapped_html_content, 'image_url': app.config['UPLOAD_URL'] + filename})
         except Exception as e:
             return jsonify({'error': str(e)}), 500
     else:
