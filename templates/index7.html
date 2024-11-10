@@ -962,7 +962,7 @@
         .card {
             display: none;
             width: 600px;
-            height: 100px;
+            height: 150px;
             padding: 0.5rem;
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(8px);
@@ -980,7 +980,7 @@
         }
 
         .card:hover {
-            height: 400px;
+            height: 430px;
             transform: skew(0deg);
         }
 
@@ -1333,7 +1333,7 @@
         }
 
         .cardddd:hover {
-            height: 430px;
+            height: 460px;
             transform: skew(0deg);
         }
 
@@ -1444,7 +1444,7 @@
 
         .ask-input {
             width: 200px;
-            height: 30px;
+            height: 50px;
             border: none;
             outline: none;
             padding: 0px 7px;
@@ -1485,8 +1485,17 @@
             max-height: 150px;
             margin: 0 auto;
             border-radius: 15px;
-            margin-top: 20%;
             box-shadow: 3px 8px 5px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        .img-out-out {
+            max-width: 100%;
+            max-height: 150px;
+            margin: 0 auto;
+            border-radius: 15px;
+            border-bottom: 3px solid rgba(0, 0, 0, 0.440);
+            border-left: 2px rgba(0, 0, 0, 0.545) outset;
+            box-shadow: 40px 50px 30px rgba(0, 0, 0, 0.280);
         }
 
     </style>
@@ -2253,9 +2262,11 @@
             if (data.response) {
                 chatContent.innerHTML += `
                     <div class="user-box">
-                        <p>${message}</p><br>
-                        <br><img class="img-out" src="${data.image_url}" alt="Hochgeladenes Bild">
-                    </div>`;
+                          <p>${message}</p>
+                    </div>
+                     <div>
+                         <img class="img-out-out" src="${data.image_url}" alt="Hochgeladenes Bild">
+                     </div>`;
 
                 chatContent.innerHTML += `
                     <div class="chatbot-box">
