@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./readme-img/Mavis-logo.png" width="350"/>
+    <img src="./readme-img/mavis-logo-new2.png" width="350"/>
 </p>
 <br>
 <div align="center">
