@@ -36,4 +36,4 @@
 </div>
 
 # MAVIS
-Mechatronic and Visual Intelligent System
+Math Visual Intelligent System
