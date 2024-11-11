@@ -40,7 +40,7 @@
 > Math Visual Intelligent System
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/walpaper.webp" alt="woyzy" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis-banner2.png" alt="woyzy" width="1400" style="margin: 10px;">
 </div>
 
 ## News
@@ -66,7 +66,7 @@
 ## Versionen
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/wp13574237.png" alt="woyzy" width="1400" style="margin: 10px;">
+  <img src="./readme-img/walpaper.webp" alt="woyzy" width="1400" style="margin: 10px;">
 </div>
 <br>
 
@@ -79,6 +79,11 @@
 
 
 ## Installation
+
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/wp13574237.png" alt="woyzy" width="1400" style="margin: 10px;">
+</div>
 
 soon ...
 
