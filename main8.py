@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory
 import ollama
 import os
-import markdown2  # Für Markdown-zu-HTML-Konvertierung
 from werkzeug.utils import secure_filename
+import markdown
 
 app = Flask(__name__)
 
@@ -11,17 +11,15 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['UPLOAD_URL'] = '/uploads/'
 
-# Erstelle Upload-Ordner, falls er noch nicht existiert
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
-# Erlaubte Dateitypen überprüfen
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 def index():
-    return render_template('index8.html')
+    return render_template('index7.html')
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
@@ -41,19 +39,17 @@ def send_message():
         file.save(filepath)
 
         try:
-            # Beispielantwort (mit LaTeX und Python-Code)
-            response_content = """
-            <p>Die Kurve des Lichtstreifens ist eine Parabel. Die Formel der Parabel lautet:</p>
-            <p><strong>Formel:</strong> \\[ y = \\frac{1}{x} \\cdot a x^2 + b \\cdot x + c \\quad \\text{mit} \\quad a < 0 \\]</p>
-            <p>Hier ist ein Beispiel für einen Python-Code:</p>
-            <pre><code class="language-python">
-def parabel(x, a, b, c):
-    return (1 / x) * a * x**2 + b * x + c
-            </code></pre>
-            """
 
-            # Rückgabe der HTML-Antwort
-            return jsonify({'response': response_content, 'image_url': app.config['UPLOAD_URL'] + filename})
+
+            response_content = """   **Beispiel für Markdown**  Die Formel lautet:  $$ y = \\frac{1}{x} \\cdot a x^2 + b \\cdot x + c $$    \`\`\`python    def example_function():        return "Hello, World!" \`\`\`"""
+
+            # Markdown in HTML umwandeln und Block-Formatierung aktivieren
+            html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
+
+            # Response als HTML-String in ein Div einbetten, um Blockdarstellung sicherzustellen
+            wrapped_html_content = f"<div style='display:block;'>{html_content}</div>"
+
+            return jsonify({'response': wrapped_html_content, 'image_url': app.config['UPLOAD_URL'] + filename})
         except Exception as e:
             return jsonify({'error': str(e)}), 500
     else:
