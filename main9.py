@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory
 import ollama
 import os
-import markdown2  # Für Markdown-zu-HTML-Konvertierung
 from werkzeug.utils import secure_filename
+import markdown
 
 app = Flask(__name__)
 
@@ -11,11 +11,9 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['UPLOAD_URL'] = '/uploads/'
 
-# Erstelle Upload-Ordner, falls er noch nicht existiert
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
-# Erlaubte Dateitypen überprüfen
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -41,7 +39,7 @@ def send_message():
         file.save(filepath)
 
         try:
-            # Kommunikation mit dem ollama-Modell
+
             response = ollama.chat(
                 model='llama3.2-vision',
                 messages=[{
@@ -50,10 +48,16 @@ def send_message():
                     'images': [filepath]
                 }]
             )
+
             response_content = response['message']['content']
 
-            # Rückgabe der HTML-Antwort
-            return jsonify({'response': response_content, 'image_url': app.config['UPLOAD_URL'] + filename})
+            # Markdown in HTML umwandeln und Block-Formatierung aktivieren
+            html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
+
+            # Response als HTML-String in ein Div einbetten, um Blockdarstellung sicherzustellen
+            wrapped_html_content = f"<div style='display:block;'>{html_content}</div>"
+
+            return jsonify({'response': wrapped_html_content, 'image_url': app.config['UPLOAD_URL'] + filename})
         except Exception as e:
             return jsonify({'error': str(e)}), 500
     else:
