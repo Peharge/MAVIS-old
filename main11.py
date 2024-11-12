@@ -19,7 +19,7 @@ def allowed_file(filename):
 
 @app.route('/')
 def index():
-    return render_template('index8.html')
+    return render_template('index9.html')
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):

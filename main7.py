@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory
 import ollama
 import os
-import markdown2  # Für Markdown-zu-HTML-Konvertierung
+import markdown2
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -11,11 +11,9 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['UPLOAD_URL'] = '/uploads/'
 
-# Erstelle Upload-Ordner, falls er noch nicht existiert
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
-# Erlaubte Dateitypen überprüfen
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -41,7 +39,7 @@ def send_message():
         file.save(filepath)
 
         try:
-            # Kommunikation mit dem ollama-Modell
+
             response = ollama.chat(
                 model='llama3.2-vision',
                 messages=[{
@@ -52,10 +50,8 @@ def send_message():
             )
             response_content = response['message']['content']
 
-            # Konvertiere das Markdown (response_content) zu HTML
             html_content = markdown2.markdown(response_content, extras=["fenced-code-blocks", "tables", "strike", "footnotes"])
 
-            # Rückgabe der HTML-Antwort
             return jsonify({'response': html_content, 'image_url': app.config['UPLOAD_URL'] + filename})
         except Exception as e:
             return jsonify({'error': str(e)}), 500

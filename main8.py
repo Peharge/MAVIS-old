@@ -40,13 +40,10 @@ def send_message():
 
         try:
 
+            response_content = """   **Beispiel für Markdown**  1. Die Formel lautet:  $$ y = \\frac{1}{x} \\cdot a x^2 + b \\cdot x + c $$    \`\`\`python    def example_function():        return "Hello, World!" \`\`\` hallo"""
 
-            response_content = """   **Beispiel für Markdown**  1. Die Formel lautet:  $$ y = \\frac{1}{x} \\cdot a x^2 + b \\cdot x + c $$    \`\`\`python    def example_function():        return "Hello, World!" \`\`\`"""
-
-            # Markdown in HTML umwandeln und Block-Formatierung aktivieren
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
 
-            # Response als HTML-String in ein Div einbetten, um Blockdarstellung sicherzustellen
             wrapped_html_content = f"<div style='display:block;'>{html_content}</div>"
 
             return jsonify({'response': wrapped_html_content, 'image_url': app.config['UPLOAD_URL'] + filename})
