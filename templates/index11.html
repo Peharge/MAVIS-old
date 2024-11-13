@@ -2355,7 +2355,6 @@
             const formData = new FormData();
             formData.append('message', message);
 
-            // Only append the image if it exists
             if (image) {
                 formData.append('image', image);
             }
@@ -2375,13 +2374,11 @@
 
                 const data = await response.json();
                 if (data.response) {
-                    // Add user message
                     chatContent.innerHTML += `
                         <div class="user-box">
                             <p>${message}</p>
                         </div>`;
 
-                    // If an image URL is provided, add the image preview
                     if (data.image_url) {
                         chatContent.innerHTML += `
                             <div>
@@ -2389,13 +2386,11 @@
                             </div>`;
                     }
 
-                    // Add chatbot response
                     chatContent.innerHTML += `
                         <div class="chatbot-box">
                             <p>${data.response}</p>
                         </div>`;
 
-                    // Render MathJax if needed
                     MathJax.typeset();
                 } else {
                     chatContent.innerHTML += `<p><strong>Fehler:</strong> ${data.error}</p>`;
