@@ -106,7 +106,12 @@ soon ...
 
 ## Demo
 
-soon ...
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/demo-1-1.png" alt="woyzy" width="1400" style="margin: 10px;">
+</div>
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/demo-1-2.png" alt="woyzy" width="1400" style="margin: 10px;">
+</div>
 
 ## Demo-text
 
