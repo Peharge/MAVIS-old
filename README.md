@@ -48,7 +48,10 @@
 
 - **[2024.11.09]** Start ;-)
 - **[2024.11.10]** Erhältlich mit Llama3.2 + [Demo](#demo-text) mit Xc++ 2
-- **[2024.11.13]** [Demo](#demo)
+- **[2024.11.13]** [Demo](#demo) UI
+
+SOON
+- **[2024.12.01]** MAVIS EAP release
 
 ## Inhaltsverzeichnis
 - [Versionen](#versionen)
@@ -104,6 +107,8 @@ soon ...
 soon ...
 
 ### Llama
+
+soon ...
 
 ## Demo
 
