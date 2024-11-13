@@ -40,7 +40,7 @@
 > Math Visual Intelligent System
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner2.png" alt="woyzy" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis-banner2.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 
@@ -68,13 +68,13 @@
 # _Peharge Program 2024-2025_
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/peharge.png" alt="woyzy" width="1400" style="margin: 10px;">
+  <img src="./readme-img/peharge.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 ## Versionen
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/walpaper.webp" alt="woyzy" width="1400" style="margin: 10px;">
+  <img src="./readme-img/walpaper.webp" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 <br>
 
@@ -108,22 +108,22 @@ soon ...
 ## Demo
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/demo-1-1.png" alt="woyzy" width="1400" style="margin: 10px;">
+  <img src="./readme-img/demo-1-1.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/demo-1-2.png" alt="woyzy" width="1400" style="margin: 10px;">
+  <img src="./readme-img/demo-1-2.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/demo2-1.png" alt="woyzy" width="1400" style="margin: 10px;">
+  <img src="./readme-img/demo2-1.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/demo2-2.png" alt="woyzy" width="1400" style="margin: 10px;">
+  <img src="./readme-img/demo2-2.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/demo2-3.png" alt="woyzy" width="1400" style="margin: 10px;">
+  <img src="./readme-img/demo2-3.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/demo2-4.png.png" alt="woyzy" width="1400" style="margin: 10px;">
+  <img src="./readme-img/demo2-4.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 ## Demo-text
