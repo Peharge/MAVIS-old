@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory
-import ollama
+#import ollama
 import os
 from werkzeug.utils import secure_filename
 import markdown
