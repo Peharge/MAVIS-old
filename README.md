@@ -64,7 +64,7 @@
 
 ---
 
-# _Peharge Program_
+# _Peharge Program 2024-2025_
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/peharge.png" alt="woyzy" width="1400" style="margin: 10px;">
