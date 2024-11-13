@@ -113,11 +113,9 @@ soon ...
 
 ## Demo
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/demo-1-1.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/demo-1-2.png" alt="mavis" width="1400" style="margin: 10px;">
+<div>
+  <img src="./readme-img/demo-1-1.png" alt="mavis" width="1400">
+  <img src="./readme-img/demo-1-2.png" alt="mavis" width="1400">
 </div>
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/demo2-1.png" alt="mavis" width="1400" style="margin: 10px;">
