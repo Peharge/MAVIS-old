@@ -2354,40 +2354,56 @@
 
             const formData = new FormData();
             formData.append('message', message);
-            formData.append('image', image);
+
+            // Only append the image if it exists
+            if (image) {
+                formData.append('image', image);
+            }
 
             const chatContent = document.getElementById("chat-content");
             const loadingIndicator = document.getElementById("loading");
 
             loadingIndicator.style.display = 'block';
 
-            const response = await fetch("/send_message", {
-                method: "POST",
-                body: formData
-            });
+            try {
+                const response = await fetch("/send_message", {
+                    method: "POST",
+                    body: formData
+                });
 
-            loadingIndicator.style.display = 'none';
+                loadingIndicator.style.display = 'none';
 
-            const data = await response.json();
-            if (data.response) {
-                chatContent.innerHTML += `
-                    <div class="user-box">
-                          <p>${message}</p>
-                    </div>
-                    <div>
-                        <img class="img-out-out" src="${data.image_url}" alt="Hochgeladenes Bild">
-                    </div>`;
+                const data = await response.json();
+                if (data.response) {
+                    // Add user message
+                    chatContent.innerHTML += `
+                        <div class="user-box">
+                            <p>${message}</p>
+                        </div>`;
 
-                chatContent.innerHTML += `
-                    <div class="chatbot-box">
-                        <p>${data.response}</p>
-                    </div>`;
+                    // If an image URL is provided, add the image preview
+                    if (data.image_url) {
+                        chatContent.innerHTML += `
+                            <div>
+                                <img class="img-out-out" src="${data.image_url}" alt="Hochgeladenes Bild">
+                            </div>`;
+                    }
 
-                MathJax.typeset();
-            } else {
-                chatContent.innerHTML += `<p><strong>Fehler:</strong> ${data.error}</p>`;
+                    // Add chatbot response
+                    chatContent.innerHTML += `
+                        <div class="chatbot-box">
+                            <p>${data.response}</p>
+                        </div>`;
+
+                    // Render MathJax if needed
+                    MathJax.typeset();
+                } else {
+                    chatContent.innerHTML += `<p><strong>Fehler:</strong> ${data.error}</p>`;
+                }
+            } catch (error) {
+                loadingIndicator.style.display = 'none';
+                chatContent.innerHTML += `<p><strong>Fehler:</strong> Serverfehler. Bitte versuchen Sie es später erneut.</p>`;
             }
-
         };
 
         const taskBox = document.getElementById('button-containerid');
