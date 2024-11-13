@@ -48,6 +48,7 @@
 
 - **[2024.11.09]** Start ;-)
 - **[2024.11.10]** Erhältlich mit Llama3.2 + [Demo](#demo-text) mit Xc++ 2
+- **[2024.11.13]** [Demo](#demo)
 
 ## Inhaltsverzeichnis
 - [Versionen](#versionen)
