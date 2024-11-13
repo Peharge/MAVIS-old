@@ -50,7 +50,8 @@
 - **[2024.11.10]** Erhältlich mit Llama3.2 + [Demo](#demo-text) mit Xc++ 2
 - **[2024.11.13]** [Demo](#demo) UI
 
-SOON
+### SOON
+
 - **[2024.12.01]** MAVIS EAP release
 
 ## Inhaltsverzeichnis
