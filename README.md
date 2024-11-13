@@ -43,6 +43,7 @@
   <img src="./readme-img/mavis-banner2.png" alt="woyzy" width="1400" style="margin: 10px;">
 </div>
 
+
 ## News
 
 - **[2024.11.09]** Start ;-)
@@ -63,6 +64,12 @@
 
 ---
 
+# _Peharge Program_
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/peharge.png" alt="woyzy" width="1400" style="margin: 10px;">
+</div>
+
 ## Versionen
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
@@ -70,12 +77,12 @@
 </div>
 <br>
 
-| **Model**   | **Beschreibung**                                                                                  | **Parameter** |
-|-------------|---------------------------------------------------------------------------------------------------|---------------|
-| Mavis 1 1B  | Mit Llama 3.2 1B <br> +6GB RAM +1.5GB storage (Funktioniert mit einer CPU)                        | 1B            |
-| Mavis 1 3B  | Mit Llama 3.2 2B <br> +6GB +8GB RAM +2GB storage (Funktioniert mit einer CPU)                     | 3B            |
-| Mavis 1 11B | Mit **Xc++ 2 11B** oder Llama 3.2 11B <br> +16GB RAM +6GB storage (Funktioniert mit einer CPU)    | 11B           |
-| Mavis 1 90B | Mit **Xc++ 2 90B** oder Llama 3.2 90B <br> +128GB RAM +229GB storage (Funktioniert mit einer CPU) | 90B           |
+| **Model**   | **Beschreibung**                                                                                 | **Parameter** |
+|-------------|--------------------------------------------------------------------------------------------------|---------------|
+| Mavis 1 1B  | Mit Llama 3.2 1B <br> +6GB RAM +1.5GB storage (Funktioniert mit einer CPU)                       | 1B            |
+| Mavis 1 3B  | Mit Llama 3.2 2B <br> +6GB +8GB RAM +2GB storage (Funktioniert mit einer CPU)                    | 3B            |
+| Mavis 1 11B | Mit **Xc++ 2 11B** oder Llama 3.2 11B <br> +16GB RAM +9GB storage (Funktioniert mit einer CPU)   | 11B           |
+| Mavis 1 90B | Mit **Xc++ 2 90B** oder Llama 3.2 90B <br> +128GB RAM +60GB storage (Funktioniert mit einer CPU) | 90B           |
 
 
 ## Installation
