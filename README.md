@@ -112,6 +112,18 @@ soon ...
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/demo-1-2.png" alt="woyzy" width="1400" style="margin: 10px;">
 </div>
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/demo2-1.png" alt="woyzy" width="1400" style="margin: 10px;">
+</div>
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/demo2-2.png" alt="woyzy" width="1400" style="margin: 10px;">
+</div>
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/demo2-3.png" alt="woyzy" width="1400" style="margin: 10px;">
+</div>
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/demo2-4.png.png" alt="woyzy" width="1400" style="margin: 10px;">
+</div>
 
 ## Demo-text
 
