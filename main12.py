@@ -21,7 +21,7 @@ def allowed_file(filename):
 
 @app.route('/')
 def index():
-    return render_template('index10.html')
+    return render_template('index11.html')
 
 
 @app.route('/uploads/<filename>')
@@ -33,17 +33,14 @@ def uploaded_file(filename):
 def send_message():
     user_message = request.form.get('message', '')
 
-    # Check if an image file is provided in the request
     if 'image' in request.files and request.files['image'].filename != '':
         file = request.files['image']
 
-        # Validate and save the image file
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(filepath)
 
-            # Use the model with both text and image input
             try:
                 response = ollama.chat(
                     model='llama3.2-vision',
@@ -64,17 +61,15 @@ def send_message():
         else:
             return jsonify({'error': 'Invalid file type'}), 400
 
-    # If no image is provided, process text-only input
     else:
         try:
-            # Use only text with the llama3.2-vision model
-            response = ollama.chat(
-                model='llama3.2-vision',
-                messages=[{
+
+            response = ollama.chat(model='llama3.2-vision', messages=[
+                {
                     'role': 'user',
-                    'content': user_message
-                }]
-            )
+                    'content': user_message,
+                },
+            ])
 
             response_content = response['message']['content']
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
