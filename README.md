@@ -5,6 +5,7 @@
 <div align="center">
 <img alt="mavis" src="https://img.shields.io/badge/MAVIS-F7DF1E">
 <img alt="tg-loerrach" src="https://img.shields.io/badge/TG Lörrach-red">
+<img alt="peharge" src="https://img.shields.io/badge/Peharge-black">
 <br>
 <br>
 
