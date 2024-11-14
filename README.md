@@ -56,7 +56,7 @@
 - **[2024.12.01]** MAVIS EAP release
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner2.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis-banner6.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 ## Inhaltsverzeichnis
