@@ -30,16 +30,53 @@ def send_message():
     user_message = request.form.get('message', '')
     if 'image' not in request.files:
         try:
-            # Use only text with the llama3.2-vision model
-            response = ollama.chat(
-                model='llama3.2-vision',
-                messages=[{
-                    'role': 'user',
-                    'content': user_message
-                }]
-            )
+            response_content = """Welchen Code möchtest du gerne haben? Eine einfache Aufgabe, ein Spiel oder etwas komplexeres?
 
-            response_content = response['message']['content']
+            Hier sind einige Ideen:
+
+            1. **Zahlenraten-Spiel**: Ein einfaches Spiel, bei dem der Benutzer eine Zahl erraten muss.
+            2. **Wetter-App**: Ein kleines Programm, das den aktuellen Wetterbericht liefert.
+            3. **To-Do-Liste**: Ein einfacher To-Do-Listen-Manager.
+            4. **Fibonacci-Zahlen**: Eine Funktion, die Fibonacci-Zahlen generiert.
+
+            $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
+
+            Welche von diesen Ideen gefällt dir oder hast du etwas anderes im Sinn?
+
+            Ich kann auch einen grundlegenden Code schreiben, wie zum Beispiel:
+
+            **Einfaches Python-Programm**
+            ```python
+            # Ein einfaches Python-Programm
+
+            print("Hallo, Welt!")
+
+            name = input("Wie heißt du? ")
+
+            print(f"Hallo, {name}!")
+            ```
+            Oder ein kleines Spiel:
+            ```python
+            # Zahlenraten-Spiel
+
+            import random
+
+            zahl = random.randint(1, 100)
+            versuche = 0
+
+            while True:
+                user_input = int(input("Bitte eine Zahl zwischen 1 und 100 eingeben: "))
+                versuche += 1
+
+                if user_input < zahl:
+                    print("Die Zahl ist höher!")
+                elif user_input > zahl:
+                    print("Die Zahl ist niedriger!")
+                else:
+                    print(f"Herzlichen Glückwunsch! Du hast die Zahl erraten. Es gab {versuche} Versuche.")
+                    break
+            ```
+            Sag mir, was du möchtest!"""
 
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
 

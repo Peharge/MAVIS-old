@@ -2312,10 +2312,10 @@
                               <path d="M12 4l0 12"></path>
                             </svg>
                     </label>
-                    <input type="file" id="image" name="image" accept="image/*" required onchange="previewImage(event)" style="display:none;">
+                    <input type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)" style="display:none;">
 
                     <br>
-                    <button otype="submit" class="button2">Senden</button>
+                    <button type="submit" class="button2">Senden</button>
             </div>
 
             <div id="image-preview" class="card-image-preview" style="display:none; text-align: center;" onclick="closePreview()">
@@ -2353,51 +2353,40 @@
 
             const formData = new FormData();
             formData.append('message', message);
-
-            if (image) {
-                formData.append('image', image);
-            }
+            formData.append('image', image);
 
             const chatContent = document.getElementById("chat-content");
             const loadingIndicator = document.getElementById("loading");
 
             loadingIndicator.style.display = 'block';
 
-            try {
-                const response = await fetch("/send_message", {
-                    method: "POST",
-                    body: formData
-                });
+            const response = await fetch("/send_message", {
+                method: "POST",
+                body: formData
+            });
 
-                loadingIndicator.style.display = 'none';
+            loadingIndicator.style.display = 'none';
 
-                const data = await response.json();
-                if (data.response) {
-                    chatContent.innerHTML += `
-                        <div class="user-box">
-                            <p>${message}</p>
-                        </div>`;
+            const data = await response.json();
+            if (data.response) {
+                chatContent.innerHTML += `
+                    <div class="user-box">
+                          <p>${message}</p>
+                    </div>
+                    <div>
+                        <img class="img-out-out" src="${data.image_url}" alt="Hochgeladenes Bild">
+                    </div>`;
 
-                    if (data.image_url) {
-                        chatContent.innerHTML += `
-                            <div>
-                                <img class="img-out-out" src="${data.image_url}" alt="Hochgeladenes Bild">
-                            </div>`;
-                    }
+                chatContent.innerHTML += `
+                    <div class="chatbot-box">
+                        <p>${data.response}</p>
+                    </div>`;
 
-                    chatContent.innerHTML += `
-                        <div class="chatbot-box">
-                            <p>${data.response}</p>
-                        </div>`;
-
-                    MathJax.typeset();
-                } else {
-                    chatContent.innerHTML += `<p><strong>Fehler:</strong> ${data.error}</p>`;
-                }
-            } catch (error) {
-                loadingIndicator.style.display = 'none';
-                chatContent.innerHTML += `<p><strong>Fehler:</strong> Serverfehler. Bitte versuchen Sie es später erneut.</p>`;
+                MathJax.typeset();
+            } else {
+                chatContent.innerHTML += `<p><strong>Fehler:</strong> ${data.error}</p>`;
             }
+
         };
 
         const taskBox = document.getElementById('button-containerid');
