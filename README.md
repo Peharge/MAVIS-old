@@ -36,7 +36,7 @@
 <br>
 </div>
 
-# MAVIS
+# _MAVIS_
 
 > Math Visual Intelligent System
 
@@ -45,13 +45,13 @@
 </div>
 
 
-## News
+## _News_
 
 - **[2024.11.09]** Start ;-)
-- **[2024.11.10]** Erhältlich mit Llama3.2 + [Demo](#demo-text) mit Xc++ 2
+- **[2024.11.10]** Available with Llama3.2 + [Demo](#demo-text) with Xc++ 2
 - **[2024.11.13]** [Demo](#demo) UI
 
-### SOON
+### _SOON_
 
 - **[2024.12.01]** MAVIS EAP release
 
@@ -60,17 +60,17 @@
 </div>
 
 ## Inhaltsverzeichnis
-- [Versionen](#versionen)
+- [Versions](#versionen)
 - [Installation](#installation)
-- [Benutzung](#benutzung)
+- [Usage](#benutzung)
 - [Xc++](#Xcpp)
 - [Demo](#demo)
 - [Demo Text](#demo-text)
-- [Geschichte](#geschichte)
-- [Checkliste](#checkliste)
+- [History](#geschichte)
+- [Checklist](#checkliste)
 - [Design](#design)
 - [Transformer](#transformer)
-- [Lizenz](#lizenz)
+- [License](#lizenz)
 
 ---
 
@@ -80,22 +80,22 @@
   <img src="./readme-img/peharge.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
-## Versionen
+## _Versions_
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/walpaper.webp" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 <br>
 
-| **Model**   | **Beschreibung**                                                                                 | **Parameter** |
+| **Model** | **Description** | **Parameters** |
 |-------------|--------------------------------------------------------------------------------------------------|---------------|
-| Mavis 1 1B  | Mit Llama 3.2 1B <br> +6GB RAM +1.5GB storage (Funktioniert mit einer CPU)                       | 1B            |
-| Mavis 1 3B  | Mit Llama 3.2 2B <br> +6GB +8GB RAM +2GB storage (Funktioniert mit einer CPU)                    | 3B            |
-| Mavis 1 11B | Mit **Xc++ 2 11B** oder Llama 3.2 11B <br> +16GB RAM +9GB storage (Funktioniert mit einer CPU)   | 11B           |
-| Mavis 1 90B | Mit **Xc++ 2 90B** oder Llama 3.2 90B <br> +128GB RAM +60GB storage (Funktioniert mit einer CPU) | 90B           |
+| Mavis 1 1B | With Llama 3.2 1B <br> +6GB RAM +1.5GB storage (Works with one CPU) | 1B |
+| Mavis 1 3B | With Llama 3.2 2B <br> +6GB +8GB RAM +2GB storage (Works with one CPU) | 3B |
+| Mavis 1 11B | With **Xc++ 2 11B** or Llama 3.2 11B <br> +16GB RAM +9GB storage (Works with one CPU) | 11B |
+| Mavis 1 90B | With **Xc++ 2 90B** or Llama 3.2 90B <br> +128GB RAM +60GB storage (Works with one CPU) | 90B |
 
 
-## Installation
+## _Installation_
 
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
@@ -104,7 +104,7 @@
 
 soon ...
 
-## Benutzung
+## _Using_
 
 soon ...
 
@@ -139,15 +139,15 @@ soon ...
 
 soon ...
 
-## Geschichte
+## History
 
 soon ...
 
-## Checkliste
+## Checklist
 
 soon ...
 
-## Aufgaben
+## Tasks
 
 soon ...
 
@@ -161,4 +161,4 @@ soon ...
 
 ## Lizenz
 
-Dieses Projekt ist unter der MIT-Lizenz lizenziert – siehe die [LICENSE](LICENSE) Datei für Details.
+This project is licensed under the MIT license – see the [LICENSE](LICENSE) file for details.
