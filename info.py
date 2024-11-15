@@ -16,6 +16,7 @@ white = "\033[97m"
 black = "\033[30m"
 orange = "\033[38;5;214m"
 reset = "\033[0m"
+bold = "\033[1m"
 
 print ("""
                                                      
@@ -26,7 +27,7 @@ print ("""
  _|      _|  _|    _|      _|      _|_|_|  _|_|_|    
                   """)
 
-print(f"{blue}A warm welcome from Peharge\n{reset}")
+print(f"A warm welcome from Peharge\n")
 
 def check_cuda():
     try:
@@ -108,7 +109,9 @@ def main():
     print("\nCompatibility and Execution Mode:")
     print("-----------------------------------")
     print(compatibility)
-    print(f"Execution Mode: {blue}{gpu_or_cpu}{reset}")
+    print(f"Execution Mode: {blue}{gpu_or_cpu}{reset}\n")
+    print("Flask information:")
+    print("-----------------------------------")
 
 if __name__ == "__main__":
     main()
