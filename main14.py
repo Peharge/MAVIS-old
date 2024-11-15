@@ -10,7 +10,6 @@ UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['UPLOAD_URL'] = '/uploads/'
-DEFAULT_IMAGE_PATH = r"C:\Users\julia\OneDrive - Gewerbeschule Lörrach\Pictures\3ds max.png"
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
@@ -22,7 +21,7 @@ def allowed_file(filename):
 
 @app.route('/')
 def index():
-    return render_template('index10.html')
+    return render_template('index11.html')
 
 
 @app.route('/uploads/<filename>')
@@ -81,7 +80,6 @@ def send_message():
 
             return jsonify({
                 'response': wrapped_html_content,
-                'image_url': DEFAULT_IMAGE_PATH
             })
         except Exception as e:
             return jsonify({'error': str(e)}), 500

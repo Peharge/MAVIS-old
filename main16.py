@@ -22,7 +22,7 @@ def allowed_file(filename):
 
 @app.route('/')
 def index():
-    return render_template('index11.html')
+    return render_template('index10.html')
 
 
 @app.route('/uploads/<filename>')
@@ -39,7 +39,7 @@ def send_message():
         return jsonify({'error': 'Message cannot be empty'}), 400
 
     if file and file.filename and allowed_file(file.filename):
-
+        # Process message with uploaded image
         filename = secure_filename(file.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
@@ -65,10 +65,10 @@ def send_message():
         except Exception as e:
             return jsonify({'error': str(e)}), 500
     else:
-
+        # Process message without image, using the default image path
         try:
             response = ollama.chat(
-                model='qwen2.5-coder:14b',
+                model='llama3.2-vision',
                 messages=[{
                     'role': 'user',
                     'content': user_message

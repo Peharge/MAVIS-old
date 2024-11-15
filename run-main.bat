@@ -1,7 +1,6 @@
 @echo off
 
 set PYTHON_PATH=C:\Users\julia\PycharmProjects\MAVIS\.venv\Scripts\python.exe
-
 set SCRIPT_PATH_1=C:\Users\julia\PycharmProjects\MAVIS\info.py
 set SCRIPT_PATH_2=C:\Users\julia\PycharmProjects\MAVIS\main16.py
 
@@ -15,7 +14,6 @@ if not exist "%SCRIPT_PATH_1%" (
     exit /B 1
 )
 
-echo Starte Skript: %SCRIPT_PATH_1%
 "%PYTHON_PATH%" "%SCRIPT_PATH_1%"
 
 if not exist "%SCRIPT_PATH_2%" (
@@ -23,7 +21,6 @@ if not exist "%SCRIPT_PATH_2%" (
     exit /B 1
 )
 
-echo Starte Skript: %SCRIPT_PATH_2%
 "%PYTHON_PATH%" "%SCRIPT_PATH_2%"
 
 echo.

@@ -18,8 +18,7 @@ orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
-print ("""
-                                                     
+print ("""                                            
  _|      _|    _|_|    _|      _|  _|_|_|    _|_|_|  
  _|_|  _|_|  _|    _|  _|      _|    _|    _|        
  _|  _|  _|  _|_|_|_|  _|      _|    _|      _|_|    
@@ -27,7 +26,7 @@ print ("""
  _|      _|  _|    _|      _|      _|_|_|  _|_|_|    
                   """)
 
-print(f"A warm welcome from Peharge\n")
+print(f"🎉 A warm welcome from Peharge 🎉\n")
 
 def check_cuda():
     try:
