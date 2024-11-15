@@ -43,7 +43,7 @@
 > ⚠️**Still in progress**⚠️
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner5.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis-banner7.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 
@@ -85,7 +85,7 @@
 ## _Versions_
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/walpaper.webp" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/walpaper.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 <br>
 
