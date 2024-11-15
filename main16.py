@@ -68,7 +68,7 @@ def send_message():
 
         try:
             response = ollama.chat(
-                model='ollama run qwen2.5-coder:14b',
+                model='qwen2.5-coder:14b',
                 messages=[{
                     'role': 'user',
                     'content': user_message
