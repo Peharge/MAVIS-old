@@ -145,6 +145,10 @@ You can then install the models in Shell, CMD, Bash, etc. using the following co
     <img src="./readme-img/demo3-1.png" alt="mavis" width="1400">
 </div>
 <div>
+    <img src="./readme-img/demo3-5.png" alt="mavis" width="1400">
+    <img src="./readme-img/demo3-4.png" alt="mavis" width="1400">
+</div>
+<div>
   <img src="./readme-img/demo-1-1.png" alt="mavis" width="1400">
   <img src="./readme-img/demo-1-2.png" alt="mavis" width="1400">
 </div>
