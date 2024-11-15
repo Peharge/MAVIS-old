@@ -28,9 +28,13 @@ def uploaded_file(filename):
 @app.route('/send_message', methods=['POST'])
 def send_message():
     user_message = request.form.get('message', '')
+
+    file = request.files['image']
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
     if 'image' not in request.files:
         try:
-            # Use only text with the llama3.2-vision model
+
             response = ollama.chat(
                 model='llama3.2-vision',
                 messages=[{
@@ -48,10 +52,6 @@ def send_message():
             return jsonify({'response': wrapped_html_content, 'image_url': app.config['UPLOAD_URL']})
         except Exception as e:
             return jsonify({'error': str(e)}), 500
-
-    file = request.files['image']
-    if file.filename == '':
-        return jsonify({'error': 'No selected file'}), 400
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)

@@ -22,7 +22,7 @@ def allowed_file(filename):
 
 @app.route('/')
 def index():
-    return render_template('index10.html')
+    return render_template('index11.html')
 
 
 @app.route('/uploads/<filename>')
@@ -68,7 +68,7 @@ def send_message():
 
         try:
             response = ollama.chat(
-                model='llama3.2-vision',
+                model='ollama run qwen2.5-coder',
                 messages=[{
                     'role': 'user',
                     'content': user_message
