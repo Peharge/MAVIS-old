@@ -17,6 +17,17 @@ black = "\033[30m"
 orange = "\033[38;5;214m"
 reset = "\033[0m"
 
+print ("""
+                                                     
+ _|      _|    _|_|    _|      _|  _|_|_|    _|_|_|  
+ _|_|  _|_|  _|    _|  _|      _|    _|    _|        
+ _|  _|  _|  _|_|_|_|  _|      _|    _|      _|_|    
+ _|      _|  _|    _|    _|  _|      _|          _|  
+ _|      _|  _|    _|      _|      _|_|_|  _|_|_|    
+                  """)
+
+print(f"{blue}A warm welcome from Peharge\n{reset}")
+
 def check_cuda():
     try:
         output = subprocess.check_output(["nvidia-smi"], stderr=subprocess.STDOUT, universal_newlines=True)
