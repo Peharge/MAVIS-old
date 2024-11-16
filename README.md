@@ -91,13 +91,16 @@
 
 > ⚠️**Still in progress**⚠️
 
-| **Model** | **Description** | **Parameters** |
-|-------------|--------------------------------------------------------------------------------------------------|---------------|
-| Mavis 1 1B | With Llama 3.2 1B <br> +6GB RAM +1.5GB storage (Works with one CPU) | 1B |
-| Mavis 1 3B | With Llama 3.2 2B <br> +6GB +8GB RAM +2GB storage (Works with one CPU) | 3B |
-| Mavis 1 11B | With **Xc++ 2 11B** or Llama 3.2 11B <br> +16GB RAM +9GB storage (Works with one CPU) | 11B |
-| Mavis 1 90B | With **Xc++ 2 90B** or Llama 3.2 90B <br> +128GB RAM +60GB storage (Works with one CPU) | 90B |
+| **Model** | **Description**                                                                                              | **Parameters** |
+|-------------|--------------------------------------------------------------------------------------------------------------|---------------|
+| Mavis 1 1B | With Llama 3.2 1B <br> +6GB RAM +1.5GB storage (Works with one CPU)                                          | 1B |
+| Mavis 1 3B | With Llama 3.2 2B <br> +6GB +8GB RAM +2GB storage (Works with one CPU)                                       | 3B |
+| Mavis 1 11B | With **Xc++ 2 11B** + Qwen 2.5 Coder 14B or Llama 3.2 11B <br> +16GB RAM +9GB storage (Works with one CPU)   | 11B |
+| Mavis 1 90B | With **Xc++ 2 90B** + Qwen 2.5 Coder 32B or Llama 3.2 90B <br> +128GB RAM +60GB storage (Works with one CPU) | 90B |
 
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/qwen_2.5_coder.png" alt="woyzy" width="1400" style="margin: 10px;">
+</div>
 
 ## _Installation_
 
