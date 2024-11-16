@@ -27,7 +27,7 @@ print ("""
 ╚═╝     ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚══════╝
                   """)
 
-print(f"🎉 A warm welcome from Peharge 🎉\n")
+print(f"""🎉 A warm welcome from Peharge 🎉\n""")
 
 def check_cuda():
     try:
