@@ -68,7 +68,7 @@ def send_message():
         # Process message without image, using the default image path
         try:
             response = ollama.chat(
-                model='qwen2.5-coder',
+                model='qwen2.5-coder:14b',
                 messages=[{
                     'role': 'user',
                     'content': user_message
