@@ -57,6 +57,8 @@
 
 - **[2024.12.01]** MAVIS EAP release
 
+<br>
+
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-banner6.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
@@ -76,7 +78,7 @@
 
 ---
 
-# _Peharge Program 2024-2025_
+## _Peharge Program 2024-2025_
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/peharge3.png" alt="peharge" width="1400" style="margin: 10px;">
@@ -87,6 +89,7 @@
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/walpaper.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
+
 <br>
 
 > ⚠️**Still in progress**⚠️
@@ -110,6 +113,127 @@
 </div>
 
 > ⚠️**Still in progress**⚠️
+
+### Deutsch:
+
+**MAVIS (alias Xc++ 2)** befindet sich derzeit in der Entwicklung und ist in diesem Repository nicht vollständig verfügbar. Durch das Klonen des Repositories erhalten Sie lediglich die README-Datei, einige Bilder und bereits veröffentlichte Codes, einschließlich der Benutzeroberfläche (UI), die mit **Qwen 2.5 Code** und **Llama 3.2 Vision** kompatibel ist.
+
+### Voraussetzungen
+
+Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
+
+1. **Git**  
+   Laden Sie Git von der offiziellen Website herunter:  
+   [https://git-scm.com](https://git-scm.com)
+
+2. **Python**  
+   - Empfohlen: **Python 3.13** (auch 3.12 oder 3.11 werden unterstützt).  
+   - Laden Sie Python von der [https://www.python.org](https://www.python.org) oder über den Microsoft Store herunter.
+
+3. **Python-Entwicklungsumgebung (IDE) (Muss aber nicht sein)**  
+   Eine geeignete IDE erleichtert die Entwicklung und Arbeit mit Python. Empfehlenswerte Optionen:  
+   - **Visual Studio Code (kostenlos)**: [https://code.visualstudio.com](https://code.visualstudio.com)  
+   - **PyCharm (kostenpflichtig)**: [https://www.jetbrains.com/de-de/pycharm/](https://www.jetbrains.com/de-de/pycharm/)  
+     *Hinweis:* PyCharm bietet erweiterte Funktionen für die Python-Entwicklung und ist besonders für fortgeschrittene Nutzer geeignet.
+
+---
+
+### Installation
+
+1. **Repository klonen**  
+   Klonen Sie das Repository in ein lokales Verzeichnis:
+   ```bash
+   git clone https://github.com/Peharge/Woyzy
+   ```
+2. **In das Verzeichnis wechseln**  
+   Navigieren Sie in das Projektverzeichnis:
+   ```bash
+   cd Woyzy
+   ```
+3. **Virtuelle Python-Umgebung erstellen**  
+   Richten Sie eine virtuelle Umgebung ein, um Abhängigkeiten isoliert zu installieren:
+   ```bash
+   python -m venv env
+   ```
+   *(Sie können `env` durch einen anderen Namen ersetzen.)*
+
+4. **Virtuelle Umgebung aktivieren**  
+   Aktivieren Sie die virtuelle Umgebung:
+   - **Für CMD**:
+     ```bash
+     env\Scripts\activate
+     ```
+   - **Für PowerShell**:
+     ```bash
+     .\env\Scripts\Activate
+     ```
+     
+5. **Abhängigkeiten installieren**  
+   Installieren Sie die benötigten Bibliotheken:
+   ```bash
+   pip install flask ollama markdown psutil gputil
+   ```
+
+---
+
+### Benutzeroberfläche starten
+
+1. **Starten der UI**  
+   Sie können die Benutzeroberfläche auf zwei Arten starten:  
+   - Mit einer Batch-Datei:  
+     - `run-main.bat` (für Tests)  
+     - `run-main2.bat` (empfohlen für MAVIS 11B)  
+     - `run-main3.bat` (empfohlen für MAVIS 90B)  
+   - Alternativ über das Python-Skript:  
+     ```bash
+     python main17.py
+     ```
+     *Hinweis:* Prüfen Sie, welches Skript (`main[1-18].py`) für Ihre Anforderungen am besten geeignet ist.
+
+2. **Zugriff auf die Benutzeroberfläche**  
+   Nach dem Start der UI gibt Flask eine URL im Terminal aus.  
+   - Öffnen Sie diese URL in Ihrem Browser (unter PowerShell mit `Strg + Klick` direkt anklickbar).  
+   - Die MAVIS-Benutzeroberfläche sollte im Browser angezeigt werden.
+
+3. **Virtuelle Umgebung deaktivieren**  
+   Nach Abschluss können Sie die virtuelle Umgebung mit dem folgenden Befehl deaktivieren:
+   ```bash
+   deactivate
+   ```
+
+---
+
+### **Alternative Modelle für MAVIS**
+
+Da **Xc++ 2** noch nicht veröffentlicht wurde, können Sie stattdessen folgende Modelle verwenden:
+
+> Um die Modelle von Ollama zu installieren, benötigen Sie die Ollama-App: [https://ollama.com/download](https://ollama.com/download).
+> Nach der Installation müssen Sie die App immer starten, um die Modelle verwenden zu können.
+
+1. **Llama 3.2 Vision**  
+   Installieren Sie dieses Modell über Ollama:
+   - **Für MAVIS 11B**:
+     ```bash
+     ollama run llama3.2-vision
+     ```
+   - **Für MAVIS 90B**:
+     ```bash
+     ollama run llama3.2-vision:90b
+     ```
+
+2. **Qwen 2.5 Coder** (ohne Vision)  
+   Dieses Modell ist für reinen Code-Betrieb optimiert:
+   - **Für MAVIS 11B**:
+     ```bash
+     ollama run qwen2.5-coder:14b
+     ```
+   - **Für MAVIS 90B**:
+     ```bash
+     ollama run qwen2.5-coder:32b
+     ```
+
+### Viel Spaß mit MAVIS 🚀
+
 
 ## _Using_
 
