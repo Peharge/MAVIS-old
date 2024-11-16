@@ -2369,30 +2369,25 @@
 
             const data = await response.json();
             if (data.response) {
-                // Benutzer-Nachricht hinzufügen
                 chatContent.innerHTML += `
                     <div class="user-box">
-                        <p>${message}</p>
+                          <p>${message}</p>
                     </div>
                     <div>
                         <img class="img-out-out" src="${data.image_url}" alt="Hochgeladenes Bild">
                     </div>`;
 
-                // Antwort des Chatbots (HTML-Inhalt einfügen)
-                const chatbotResponseDiv = document.createElement('div');
-                chatbotResponseDiv.classList.add('chatbot-box');
-                chatbotResponseDiv.innerHTML = data.response;  // Hier setzen wir innerHTML direkt, damit der HTML-Code gerendert wird.
+                chatContent.innerHTML += `
+                    <div class="chatbot-box">
+                        <p>${data.response}</p>
+                    </div>`;
 
-                chatContent.appendChild(chatbotResponseDiv);
-
-                // Optional: MathJax für mathematische Formeln aktualisieren
                 MathJax.typeset();
             } else {
-                // Fehler anzeigen, wenn keine Antwort vorliegt
                 chatContent.innerHTML += `<p><strong>Fehler:</strong> ${data.error}</p>`;
             }
-        };
 
+        };
 
         const taskBox = document.getElementById('button-containerid');
 
