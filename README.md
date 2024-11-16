@@ -136,8 +136,6 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
    - **PyCharm (kostenpflichtig)**: [https://www.jetbrains.com/de-de/pycharm/](https://www.jetbrains.com/de-de/pycharm/)  
      *Hinweis:* PyCharm bietet erweiterte Funktionen für die Python-Entwicklung und ist besonders für fortgeschrittene Nutzer geeignet.
 
----
-
 ### Installation
 
 1. **Repository klonen**  
@@ -174,8 +172,6 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
    pip install flask ollama markdown psutil gputil
    ```
 
----
-
 ### Benutzeroberfläche starten
 
 1. **Starten der UI**  
@@ -200,8 +196,6 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
    ```bash
    deactivate
    ```
-
----
 
 ### **Alternative Modelle für MAVIS**
 
@@ -234,7 +228,6 @@ Da **Xc++ 2** noch nicht veröffentlicht wurde, können Sie stattdessen folgende
 
 ### Viel Spaß mit MAVIS 🚀
 
-
 ## _Using_
 
 > ⚠️**Still in progress**⚠️
@@ -242,27 +235,6 @@ Da **Xc++ 2** noch nicht veröffentlicht wurde, können Sie stattdessen folgende
 ## Xcpp
 
 > ⚠️**Still in progress**⚠️
-
-### Llama
-
-> ⚠️**Still in progress**⚠️
-
-> **Code:**  
-> [GitHub - Llama](https://github.com/meta-llama/llama3/tree/main/llama)
-
-> **Website:**  
-> [llama.com](https://www.llama.com/)
-
-> **Download Llama 3.2 (1B, 3B; soon also 11B and 90B):**  
-> [Download Llama 3.2](https://ollama.com/library/llama3.2)
-
-> **Download Llama 3.1 (8B, 70B, 405B):**  
-> [Download Llama 3.1](https://ollama.com/library/llama3.1)
-
-To install Ollama's models, you will need the Ollama app: [Ollama Download](https://ollama.com/download).
-
-You can then install the models in Shell, CMD, Bash, etc. using the following commands, so you can include them in 'main.py', 'main1.py', 'main2.py', etc.:
-
 
 ## Demo
 
