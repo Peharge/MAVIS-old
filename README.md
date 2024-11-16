@@ -201,10 +201,10 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 
 Da **Xc++ 2** noch nicht veröffentlicht wurde, können Sie stattdessen folgende Modelle verwenden:
 
-*Um die Modelle von Ollama zu installieren, benötigen Sie die Ollama-App: [https://ollama.com/download](https://ollama.com/download).
+*Um die Modelle von Ollama zu installieren, benötigen Sie die Ollama-App: [https://ollama.com/download](https://ollama.com/download).<br>
 Nach der Installation müssen Sie die App immer starten, um die Modelle verwenden zu können.*
 
-1. **Llama 3.2 Vision**  
+1. **Llama 3.2 Vision**
    Installieren Sie dieses Modell über Ollama:
    - **Für MAVIS 11B**:
      ```bash
