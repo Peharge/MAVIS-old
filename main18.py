@@ -46,7 +46,7 @@ def send_message():
 
         try:
             response = ollama.chat(
-                model='llama3.2-vision',
+                model='llama3.2-vision:90b',
                 messages=[{
                     'role': 'user',
                     'content': user_message,
@@ -68,7 +68,7 @@ def send_message():
         # Process message without image, using the default image path
         try:
             response = ollama.chat(
-                model='llama3.2-vision',
+                model='qwen2.5-coder:32b',
                 messages=[{
                     'role': 'user',
                     'content': user_message
