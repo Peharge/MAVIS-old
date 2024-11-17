@@ -10,6 +10,7 @@ import base64
 import matplotlib.pyplot as plt
 import datetime
 import numpy as np
+import math
 app = Flask(__name__)
 # Setze einen geheimen Schlüssel für die Session
 app.secret_key = os.urandom(24)  # Generiert einen zufälligen Schlüssel mit 24 Bytes

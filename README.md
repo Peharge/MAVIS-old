@@ -37,8 +37,21 @@
 </div>
 
 # _MAVIS_
+_Math Visual Intelligent System (Best calculator in the world)_
 
-> Math Visual Intelligent System
+> MAVIS ist eine KI-gesteuerte Anwendung, die Ihnen ermöglicht, visuelle Daten wie Bilder (Formate: PNG, JPG, JPEG und GIF) zu analysieren und darauf basierend interaktive Antworten zu generieren. Mit MAVIS können Sie komplexe mathematische Berechnungen durchführen, programmiertechnische Aufgaben lösen und professionelle Grafiken erstellen.
+> 
+> Um optimale Ergebnisse zu erzielen, beachten Sie folgende Hinweise:
+> 
+> - Lassen Sie Formeln stets in LaTeX darstellen, um eine präzise und ansprechende Formatierung zu gewährleisten.
+> 
+> 
+> - Fordern Sie MAVIS dazu auf, Code immer in Python zu schreiben, da nur dieser von der Benutzeroberfläche unterstützt wird.
+> 
+> 
+> - Bitten Sie MAVIS, Grafiken mithilfe von Matplotlib zu erstellen, da die Benutzeroberfläche ausschließlich HTML, LaTeX und Python (Version 3.13 mit den Frameworks Matplotlib, NumPy und Math) unterstützt.
+> 
+> Nutzen Sie die leistungsstarken Funktionen von MAVIS, um Ihre Projekte effizienter und professioneller zu gestalten.
 
 > ⚠️**Still in progress**⚠️
 
@@ -114,7 +127,7 @@
 
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/wp13574237.png" alt="woyzy" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis-banner32.png" alt="woyzy" width="1400" style="margin: 10px;">
 </div>
 
 <br>
@@ -176,7 +189,7 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 5. **Abhängigkeiten installieren**  
    Installieren Sie die benötigten Bibliotheken:
    ```bash
-   pip install flask ollama markdown psutil gputil numpy matplotlib 
+   pip install flask ollama markdown psutil gputil numpy matplotlib math
    ```
 
 ### Benutzeroberfläche starten
