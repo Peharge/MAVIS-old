@@ -80,15 +80,15 @@ def execute_python_code(md_content):
                 image_url = f"/static/image/{image_filename}"
 
                 # Füge das Bild in den HTML-Output ein
-                img_html = f'<img src="{image_url}" alt="Generated Plot" />'
+                img_html = f'<img class="img-out" src="{image_url}" alt="Generated Plot" />'
 
             # Ersetze den Codeblock im Markdown durch den Ausgabeblock (Text oder Bild)
-            result = f"<div class=''>{output_text}{img_html}</div>"
+            result = f"<div class='code-output-box'>{output_text}{img_html}</div>"
 
         except Exception as e:
             # Fehler beim Ausführen des Codes
             error_msg = f"Fehler beim Ausführen des Codes: {e}"
-            error_html = f"<div class=''>Execution Error: {error_msg}</div>"
+            error_html = f"<div class='code-output-box error'>Execution Error: {error_msg}</div>"
             result = error_html
 
     session['result'] = result

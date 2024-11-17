@@ -107,16 +107,27 @@
             box-shadow: 3px 8px 5px 0px rgba(0, 0, 0, 0.2);
         }
 
-        .input-area {
-            display: flex;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0);
-        }
-        select, input[type="text"] {
-            padding: 10px;
-            border-radius: 5px;
+        .chatbot-box-code {
+            padding: 15px;
+            border-radius: 15px;
             font-size: 16px;
-            margin-right: 5%;
+            max-width: 90%;
+            word-wrap: break-word;
+            display: flex;
+            justify-content: flex-end;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            color: #E879F9;
+            border-bottom: 3px solid rgba(0, 0, 0, 0.440);
+            border-left: 2px  rgba(0, 0, 0, 0.545) outset;
+            box-shadow: 3px 8px 5px 0px rgba(0, 0, 0, 0.2);
+        }
+        .chatbot-box-code .img-out {
+            max-width: 100%;
+            max-height: 300px;
+            margin: 0 auto;
+            border-radius: 15px;
+            box-shadow: 3px 8px 5px 0px rgba(0, 0, 0, 0.2);
         }
 
         .custom-select {
@@ -2383,7 +2394,7 @@
                     </div>`;
 
                 chatContent.innerHTML += `
-                    <div class="chatbot-box">
+                    <div class="chatbot-box-code">
                         <p>${data.code}</p>
                     </div>`;
 
