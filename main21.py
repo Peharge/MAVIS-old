@@ -9,6 +9,7 @@ import sys
 import base64
 import matplotlib.pyplot as plt
 import datetime
+import numpy as np
 app = Flask(__name__)
 # Setze einen geheimen Schlüssel für die Session
 app.secret_key = os.urandom(24)  # Generiert einen zufälligen Schlüssel mit 24 Bytes
@@ -34,7 +35,7 @@ def execute_python_code(md_content):
     matches = code_pattern.findall(md_content)
 
     # Falls kein Code gefunden wird, gib einen leeren String zurück
-    if not code_pattern:
+    if not matches:
         return "---"
 
     # Verzeichnis für gespeicherte Bilder
