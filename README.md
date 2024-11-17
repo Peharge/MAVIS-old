@@ -176,7 +176,7 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 5. **Abhängigkeiten installieren**  
    Installieren Sie die benötigten Bibliotheken:
    ```bash
-   pip install flask ollama markdown psutil gputil
+   pip install flask ollama markdown psutil gputil numpy matplotlib 
    ```
 
 ### Benutzeroberfläche starten
