@@ -246,6 +246,12 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 ## Demo
 
 <div>
+    <img src="./readme-img/demo5-1.png" alt="mavis" width="1400">
+    <img src="./readme-img/demo5-2.png" alt="mavis" width="1400">
+    <img src="./readme-img/demo5-3.png" alt="mavis" width="1400">
+</div>
+
+<div>
     <img src="./readme-img/demo3-3.png" alt="mavis" width="1400">
     <img src="./readme-img/demo3-2.png" alt="mavis" width="1400">
     <img src="./readme-img/demo3-1.png" alt="mavis" width="1400">
