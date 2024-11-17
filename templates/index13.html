@@ -2382,6 +2382,11 @@
                         <p>${data.response}</p>
                     </div>`;
 
+                chatContent.innerHTML += `
+                    <div class="chatbot-box">
+                        <p>${data.code}</p>
+                    </div>`;
+
                 MathJax.typeset();
             } else {
                 chatContent.innerHTML += `<p><strong>Fehler:</strong> ${data.error}</p>`;
