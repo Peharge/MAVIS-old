@@ -148,12 +148,12 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 1. **Repository klonen**  
    Klonen Sie das Repository in ein lokales Verzeichnis:
    ```bash
-   git clone https://github.com/Peharge/Woyzy
+   git clone https://github.com/Peharge/MAVIS
    ```
 2. **In das Verzeichnis wechseln**  
    Navigieren Sie in das Projektverzeichnis:
    ```bash
-   cd Woyzy
+   cd MAVIS
    ```
 3. **Virtuelle Python-Umgebung erstellen**  
    Richten Sie eine virtuelle Umgebung ein, um Abhängigkeiten isoliert zu installieren:
