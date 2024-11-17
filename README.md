@@ -66,7 +66,7 @@
 
 <br>
 
-## Inhaltsverzeichnis
+## Table of contents
 - [Versions](#versionen)
 - [Installation](#installation)
 - [Usage](#benutzung)
