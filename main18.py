@@ -10,7 +10,7 @@ UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['UPLOAD_URL'] = '/uploads/'
-DEFAULT_IMAGE_PATH = r"C:\Users\julia\OneDrive - Gewerbeschule Lörrach\Pictures\3ds max.png"
+DEFAULT_IMAGE_PATH = r""
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
