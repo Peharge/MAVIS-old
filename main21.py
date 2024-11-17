@@ -83,7 +83,7 @@ def execute_python_code(md_content):
                 img_html = f'<img class="img-out" src="{image_url}" alt="Generated Plot" />'
 
             # Ersetze den Codeblock im Markdown durch den Ausgabeblock (Text oder Bild)
-            result = f"<div class='code-output-box'>{output_text}{img_html}</div>"
+            result = f"<div class='chatbot-box-code'> <div class='code-output-box'>{output_text}{img_html}</div> </div>"
 
         except Exception as e:
             # Fehler beim Ausführen des Codes
