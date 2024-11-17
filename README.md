@@ -245,11 +245,22 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 
 ## Demo
 
+### Demo 5
+
 <div>
     <img src="./readme-img/demo5-1.png" alt="mavis" width="1400">
     <img src="./readme-img/demo5-2.png" alt="mavis" width="1400">
     <img src="./readme-img/demo5-3.png" alt="mavis" width="1400">
 </div>
+
+### Demo 4
+
+<div>
+  <img src="./readme-img/demo4-2.png" alt="mavis" width="1400">
+  <img src="./readme-img/demo4-1.png" alt="mavis" width="1400">
+</div>
+
+### Demo 3
 
 <div>
     <img src="./readme-img/demo3-3.png" alt="mavis" width="1400">
@@ -263,14 +274,9 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 <div>
     <img src="./readme-img/demo3-6.png" alt="mavis" width="1400">
 </div>
-<div>
-  <img src="./readme-img/demo4-2.png" alt="mavis" width="1400">
-  <img src="./readme-img/demo4-1.png" alt="mavis" width="1400">
-</div>
-<div>
-  <img src="./readme-img/demo-1-1.png" alt="mavis" width="1400">
-  <img src="./readme-img/demo-1-2.png" alt="mavis" width="1400">
-</div>
+
+### Demo 2
+
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/demo2-1.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
@@ -282,6 +288,13 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 </div>
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/demo2-4.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+### Demo 1
+
+<div>
+  <img src="./readme-img/demo-1-1.png" alt="mavis" width="1400">
+  <img src="./readme-img/demo-1-2.png" alt="mavis" width="1400">
 </div>
 
 ## Demo-text
