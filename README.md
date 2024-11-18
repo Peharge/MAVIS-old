@@ -427,3 +427,9 @@ BERT is conceptually simple and empirically powerful. It obtains new state-of-th
 ## Lizenz
 
 This project is licensed under the MIT license – see the [LICENSE](LICENSE) file for details.
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis-banner34.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+<br>
