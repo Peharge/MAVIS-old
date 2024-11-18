@@ -225,6 +225,11 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
    ```bash
    deactivate
    ```
+   
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis-banner33-2.png" alt="woyzy" width="1400" style="margin: 10px;">
+</div>
+
 
 ### **Alternative Modelle für MAVIS**
 
@@ -260,7 +265,7 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 ## _Using_
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner33-2.png" alt="woyzy" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis-banner35.png" alt="woyzy" width="1400" style="margin: 10px;">
 </div>
 
 <br>
@@ -278,9 +283,8 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 ## Demo
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner35.png" alt="woyzy" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis-banner37.png" alt="woyzy" width="1400" style="margin: 10px;">
 </div>
-
 
 ### Demo 6
 
