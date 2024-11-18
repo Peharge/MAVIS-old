@@ -39,6 +39,12 @@
 # _MAVIS_
 _Math Visual Intelligent System (Best calculator in the world)_
 
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis-banner31.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+<br>
+
 > MAVIS ist eine KI-gesteuerte Anwendung, die Ihnen ermöglicht, visuelle Daten wie Bilder (Formate: PNG, JPG, JPEG und GIF) zu analysieren und darauf basierend interaktive Antworten zu generieren. Mit MAVIS können Sie komplexe mathematische Berechnungen durchführen, programmiertechnische Aufgaben lösen und professionelle Grafiken erstellen.
 > 
 > Um optimale Ergebnisse zu erzielen, beachten Sie folgende Hinweise:
@@ -54,12 +60,6 @@ _Math Visual Intelligent System (Best calculator in the world)_
 > Nutzen Sie die leistungsstarken Funktionen von MAVIS, um Ihre Projekte effizienter und professioneller zu gestalten.
 
 > ⚠️**Still in progress**⚠️
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner31.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-
-<br>
 
 ## _News_
 
