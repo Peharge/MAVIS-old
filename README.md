@@ -123,7 +123,6 @@ _Math Visual Intelligent System (Best calculator in the world)_
 
 ## _Installation_
 
-
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-banner32-2.png" alt="woyzy" width="1400" style="margin: 10px;">
 </div>
@@ -261,6 +260,11 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 > ⚠️**Still in progress**⚠️
 
 ## Demo
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis-banner35.png" alt="woyzy" width="1400" style="margin: 10px;">
+</div>
+
 
 ### Demo 6
 
