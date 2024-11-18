@@ -5,6 +5,12 @@ import shutil
 import subprocess
 import GPUtil
 import re
+import sys
+import pip
+import flask
+import matplotlib
+import numpy
+from importlib.metadata import version
 
 red = "\033[91m"
 green = "\033[92m"
@@ -70,21 +76,39 @@ def get_system_info():
         "ROCm Support": f"{blue}{rocm_support}{reset}"
     }
 
+def get_versions():
+    python_version = sys.version.split()[0]
+    pip_version = version("pip")
+    flask_version = version("flask")
+    matplotlib_version = matplotlib.__version__
+    numpy_version = numpy.__version__
+    math_version = "Built-in (no versioning)"
+
+    return {
+        "Python": python_version,
+        "Pip": pip_version,
+        "Flask": flask_version,
+        "Matplotlib": matplotlib_version,
+        "Numpy": numpy_version,
+        "Math": math_version
+    }
+
 def mavis_compatibility(ram, cuda_support, rocm_support):
     if ram < 8:
-        return f"{red}MAVIS is not supported on this system.{reset}"
+        return f"{red}MAVIS is not supported on this system{reset}"
     elif 8 <= ram < 15:
-        return f"{red}MAVIS in limited mode is supported.{reset}"
+        return f"{red}MAVIS in limited mode is supported{reset}"
     elif 15 < ram < 63:
-        return f"{green}MAVIS 11B is supported.{reset}"
+        return f"{green}MAVIS 11B is supported{reset}"
     elif ram > 64:
-        return f"{green}MAVIS 90B is supported.{reset}"
+        return f"{green}MAVIS 90B is supported{reset}"
 
 def remove_color_codes(text):
     return re.sub(r'\033\[[0-9;]*m', '', text)
 
 def main():
     system_info = get_system_info()
+    versions = get_versions()
 
     print("System Information:")
     print("-------------------")
@@ -106,11 +130,17 @@ def main():
     compatibility = mavis_compatibility(ram, cuda_support, rocm_support)
     gpu_or_cpu = "GPU" if cuda_support or rocm_support else "CPU"
 
+    print("\nPackage Versions:")
+    print("-------------------")
+    for key, value in versions.items():
+        print(f"{key}: {blue}{value}{reset}")
+
     print("\nCompatibility and Execution Mode:")
     print("-----------------------------------")
     print(compatibility)
-    print(f"Execution Mode: {blue}{gpu_or_cpu}{reset}\n")
-    print("Flask information:")
+    print(f"Execution Mode: {blue}{gpu_or_cpu}{reset}")
+
+    print("\nFlask information:")
     print("-----------------------------------")
 
 if __name__ == "__main__":
