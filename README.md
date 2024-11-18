@@ -92,18 +92,10 @@ _Math Visual Intelligent System (Best calculator in the world)_
 
 ---
 
-## _Peharge Program 2024-2025_
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/peharge3.png" alt="peharge" width="1400" style="margin: 10px;">
-</div>
-
-<br>
-
 ## _Versions_
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/Peharge-banner4.jpg" alt="peharge" width="1400" style="margin: 10px;">
+  <img src=".\readme-img\mavis-banner10.jpg" alt="peharge" width="1400" style="margin: 10px;">
 </div>
 
 <br>
@@ -120,6 +112,24 @@ _Math Visual Intelligent System (Best calculator in the world)_
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/qwen_2.5_coder.png" alt="woyzy" width="1400" style="margin: 10px;">
 </div>
+
+## _Peharge_
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/Peharge-banner4.jpg" alt="peharge" width="1400" style="margin: 10px;">
+</div>
+
+> ⚠️**Still in progress**⚠️
+
+## _Peharge Program 2024-2025_
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/peharge3.png" alt="peharge" width="1400" style="margin: 10px;">
+</div>
+
+<br>
+
+> ⚠️**Still in progress**⚠️
 
 ## _Installation_
 
