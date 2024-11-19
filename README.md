@@ -80,7 +80,7 @@ _Math Visual Intelligent System (Strongest calculator in the world)_
 ## Table of contents
 - [Versions](#versions)
 - [Installation](#installation)
-- [Usage](#benutzung)
+- [Usage](#using)
 - [Xc++](#Xcpp)
 - [Demo](#demo)
 - [Demo Text](#demo-text)
