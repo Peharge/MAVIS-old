@@ -372,6 +372,12 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 
 ## Checklist
 
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis-banner12.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+<br>
+
 > ⚠️**Still in progress**⚠️
 
 Here is the to-do list for the most important tools and tasks in the project:
