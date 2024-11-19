@@ -37,7 +37,7 @@
 </div>
 
 # _MAVIS_
-_Math Visual Intelligent System (Best calculator in the world)_
+_Math Visual Intelligent System (Strongest calculator in the world)_
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-banner31.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -45,7 +45,9 @@ _Math Visual Intelligent System (Best calculator in the world)_
 
 <br>
 
-> MAVIS ist eine KI-gesteuerte Anwendung, die Ihnen ermöglicht, visuelle Daten wie Bilder (Formate: PNG, JPG, JPEG und GIF) zu analysieren und darauf basierend interaktive Antworten zu generieren. Mit MAVIS können Sie komplexe mathematische Berechnungen durchführen, programmiertechnische Aufgaben lösen und professionelle Grafiken erstellen.
+> ⚠️**Still in progress**⚠️
+
+> **Deutsch**: MAVIS ist eine KI-gesteuerte Anwendung, die Ihnen ermöglicht, visuelle Daten wie Bilder (Formate: PNG, JPG, JPEG und GIF) zu analysieren und darauf basierend interaktive Antworten zu generieren. Mit MAVIS können Sie komplexe mathematische Berechnungen durchführen, programmiertechnische Aufgaben lösen und professionelle Grafiken erstellen.
 > 
 > Um optimale Ergebnisse zu erzielen, beachten Sie folgende Hinweise:
 > 
@@ -58,8 +60,6 @@ _Math Visual Intelligent System (Best calculator in the world)_
 > - Bitten Sie MAVIS, Grafiken mithilfe von Matplotlib zu erstellen, da die Benutzeroberfläche ausschließlich HTML, LaTeX und Python (Version 3.13 mit den Frameworks Matplotlib, NumPy und Math) unterstützt.
 > 
 > Nutzen Sie die leistungsstarken Funktionen von MAVIS, um Ihre Projekte effizienter und professioneller zu gestalten.
-
-> ⚠️**Still in progress**⚠️
 
 ## _News_
 
@@ -206,14 +206,14 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 1. **Starten der UI**  
    Sie können die Benutzeroberfläche auf zwei Arten starten:  
    - Mit einer Batch-Datei:  
-     - `run-main.bat` (für Tests)  
-     - `run-main2.bat` (empfohlen für MAVIS 11B)  
-     - `run-main3.bat` (empfohlen für MAVIS 90B)  
+     - `run-main.bat` (empfohlen)  
+     - `run-main2.bat` (für Tests)  
+     - `run-main3.bat` (für Tests)  
    - Alternativ über das Python-Skript:  
      ```bash
-     python main17.py
+     python main21.py
      ```
-     *Hinweis:* Prüfen Sie, welches Skript (`main[1-18].py`) für Ihre Anforderungen am besten geeignet ist.
+     *Hinweis:* Prüfen Sie, welches Skript (`main[1-21].py`) für Ihre Anforderungen am besten geeignet ist.
 
 2. **Zugriff auf die Benutzeroberfläche**  
    Nach dem Start der UI gibt Flask eine URL im Terminal aus.  
@@ -226,12 +226,16 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
    deactivate
    ```
    
+
+## **Alternative Modelle für MAVIS**
+
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-banner33-2.png" alt="woyzy" width="1400" style="margin: 10px;">
 </div>
 
+<br>
 
-### **Alternative Modelle für MAVIS**
+> ⚠️**Still in progress**⚠️
 
 Da **Xc++ 2** noch nicht veröffentlicht wurde, können Sie stattdessen folgende Modelle verwenden:
 
@@ -277,6 +281,8 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-banner36.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
+
+<br>
 
 > ⚠️**Still in progress**⚠️
 
@@ -355,6 +361,12 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 > ⚠️**Still in progress**⚠️
 
 ## History
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis-banner11.png" alt="woyzy" width="1400" style="margin: 10px;">
+</div>
+
+<br>
 
 > ⚠️**Still in progress**⚠️
 
