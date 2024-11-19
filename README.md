@@ -57,7 +57,7 @@ _Math Visual Intelligent System (Strongest calculator in the world)_
 > - Fordern Sie MAVIS dazu auf, Code immer in Python zu schreiben, da nur dieser von der Benutzeroberfläche unterstützt wird.
 > 
 > 
-> - Bitten Sie MAVIS, Grafiken mithilfe von Matplotlib zu erstellen, da die Benutzeroberfläche ausschließlich HTML, LaTeX und Python (Version 3.13 mit den Frameworks Matplotlib, NumPy und Math) unterstützt.
+> - Bitten Sie MAVIS, Grafiken mithilfe von Matplotlib zu erstellen, da die Benutzeroberfläche ausschließlich HTML, LaTeX und Python (Version 3.13 mit den Frameworks Matplotlib, NumPy, Math, SymPy und Pandas) unterstützt.
 > 
 > Nutzen Sie die leistungsstarken Funktionen von MAVIS, um Ihre Projekte effizienter und professioneller zu gestalten.
 
@@ -198,7 +198,7 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 5. **Abhängigkeiten installieren**  
    Installieren Sie die benötigten Bibliotheken:
    ```bash
-   pip install flask ollama markdown psutil gputil numpy matplotlib math
+   pip install flask ollama markdown psutil gputil numpy matplotlib math sympy pandas
    ```
 
 ### Benutzeroberfläche starten
