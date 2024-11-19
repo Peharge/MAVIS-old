@@ -78,7 +78,7 @@ _Math Visual Intelligent System (Strongest calculator in the world)_
 </div>
 
 ## Table of contents
-- [Versions](#versionen)
+- [Versions](#versions)
 - [Installation](#installation)
 - [Usage](#benutzung)
 - [Xc++](#Xcpp)
