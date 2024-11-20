@@ -35,6 +35,8 @@ import pandas as pd
 
 # import sklearn as skl
 
+# from transformers import pipeline
+
 app = Flask(__name__)
 # Setze einen geheimen Schlüssel für die Session
 app.secret_key = os.urandom(24)  # Generiert einen zufälligen Schlüssel mit 24 Bytes
