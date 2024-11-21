@@ -78,7 +78,7 @@ _Math Visual Intelligent System (Strongest calculator in the world)_
 <br>
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner20.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/Mavis-banner20.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 ## _Updates_
