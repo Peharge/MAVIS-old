@@ -62,7 +62,7 @@ _Math Visual Intelligent System (Strongest calculator in the world)_
 > Nutzen Sie die leistungsstarken Funktionen von MAVIS, um Ihre Projekte effizienter und professioneller zu gestalten.
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/Mavis-banner18.png" alt="mavis" width="800" style="margin: 10px;">
+  <img src="./readme-img/Mavis-banner18.png" alt="mavis" width="600" style="margin: 10px;">
 </div>
 
 ## _News_
@@ -83,11 +83,13 @@ _Math Visual Intelligent System (Strongest calculator in the world)_
 
 ## _Updates_
 
-| **Name** | **Description**                                                                                              | **Date** |
-|----------|--------------------------------------------------------------------------------------------------------------|----------|
-|          |                                          |          |
-|          |                                          |          |
-|          |                                          |          |
+| **Name**                                  | **Description**                                                                                                                                                                    | **Date**   |
+|-------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
+| MAVIS EAP release                         | <img src="./readme-img/Mavis-banner22.png" alt="mavis" width="200" style="margin: 10px;">                                                                                          | 01.12.2024 |
+| MAVIS release on MAC OS / Windows / Linux | <img src="./readme-img/Mavis-banner23.png" alt="mavis" width="200" style="margin: 10px;"><img src="./readme-img/Mavis-banner25.png" alt="mavis" width="200" style="margin: 10px;"> | 01.01.2025 |
+| MAVIS on Apple Vision Pro                 | <img src="./readme-img/Mavis-banner24.png" alt="mavis" width="200" style="margin: 10px;"><img src="./readme-img/Mavis-banner26.png" alt="mavis" width="200" style="margin: 10px;"> | soon       |
+
+
 
 <br>
 
