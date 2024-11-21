@@ -61,6 +61,10 @@ _Math Visual Intelligent System (Strongest calculator in the world)_
 > 
 > Nutzen Sie die leistungsstarken Funktionen von MAVIS, um Ihre Projekte effizienter und professioneller zu gestalten.
 
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/Mavis-banner16.png" alt="mavis" width="800" style="margin: 10px;">
+</div>
+
 ## _News_
 
 - **[2024.11.09]** Start ;-)
@@ -72,6 +76,18 @@ _Math Visual Intelligent System (Strongest calculator in the world)_
 - **[2024.12.01]** MAVIS EAP release
 
 <br>
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis-banner17.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+## _Updates_
+
+| **Name** | **Description**                                                                                              | **Date** |
+|----------|--------------------------------------------------------------------------------------------------------------|----------|
+|          |                                          |          |
+|          |                                          |          |
+|          |                                          |          |
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-banner8.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -363,7 +379,7 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 ## History
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner11.png" alt="woyzy" width="1400" style="margin: 10px;">
+  <img src="./readme-img/Mavis-banner15.png" alt="woyzy" width="1400" style="margin: 10px;">
 </div>
 
 <br>
@@ -393,7 +409,7 @@ Not done ❌ | Done (min. 1 month) ✔️ | Improvements needed 🔧 | In progre
 ## Design
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner13.jpg" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis-banner14.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 <br>
