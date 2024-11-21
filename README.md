@@ -62,7 +62,7 @@ _Math Visual Intelligent System (Strongest calculator in the world)_
 > Nutzen Sie die leistungsstarken Funktionen von MAVIS, um Ihre Projekte effizienter und professioneller zu gestalten.
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/Mavis-banner16.png" alt="mavis" width="800" style="margin: 10px;">
+  <img src="./readme-img/Mavis-banner18.png" alt="mavis" width="800" style="margin: 10px;">
 </div>
 
 ## _News_
@@ -88,6 +88,8 @@ _Math Visual Intelligent System (Strongest calculator in the world)_
 |          |                                          |          |
 |          |                                          |          |
 |          |                                          |          |
+
+<br>
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-banner8.png" alt="mavis" width="1400" style="margin: 10px;">
