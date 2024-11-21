@@ -86,7 +86,7 @@ _Math Visual Intelligent System (Strongest calculator in the world)_
 | **Name**                                     | **Description**                                                                                                                                                                    | **Date**   |
 |----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
 | MAVIS EAP release                            | <img src="./readme-img/mavis-banner22.png" alt="mavis" width="200" style="margin: 10px;">                                                                                          | 01.12.2024 |
-| MAVIS releaseon <br>MAC OS / Windows / Linux | <img src="./readme-img/mavis-banner23.png" alt="mavis" width="170" style="margin: 10px;"><img src="./readme-img/mavis-banner25.png" alt="mavis" width="200" style="margin: 10px;"> | 01.01.2025 |
+| MAVIS releaseon <br>MAC OS / Windows / Linux | <img src="./readme-img/mavis-banner23.png" alt="mavis" width="200" style="margin: 10px;"><img src="./readme-img/mavis-banner25.png" alt="mavis" width="170" style="margin: 10px;"> | 01.01.2025 |
 | MAVIS on Apple Vision Pro                    | <img src="./readme-img/mavis-banner24.png" alt="mavis" width="200" style="margin: 10px;"><img src="./readme-img/mavis-banner26.png" alt="mavis" width="200" style="margin: 10px;"> | soon       |
 
 
