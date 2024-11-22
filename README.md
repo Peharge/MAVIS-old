@@ -41,8 +41,8 @@
 **MA**_th_ **V**_isual_ **I**_ntelligent_ **S**_ystem (Strongest calculator in the world)_
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner31.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
+  <img src="./readme-img/mavis-banner27.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>  
 
 <br>
 
@@ -92,7 +92,7 @@
 
 ### 2. MAVIS releaseon MAC OS / Windows / Linux  
 
-<img src="./readme-img/mavis-banner23.png" alt="mavis" width="450" style="margin: 10px;"><img src="./readme-img/mavis-banner25.png" alt="mavis" width="380" style="margin: 10px;"> 
+<img src="./readme-img/mavis-banner23.png" alt="mavis" width="450" style="margin: 10px;"><img src="./readme-img/mavis-banner25.png" alt="mavis" width="360" style="margin: 10px;"> 
 
 > 01.06.2025
  
