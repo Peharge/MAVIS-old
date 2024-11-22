@@ -44,6 +44,8 @@
   <img src="./readme-img/mavis-banner27.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
+<br>
+
 > ⚠️**Still in progress**⚠️
 
 > **Deutsch**: MAVIS ist eine KI-gesteuerte Anwendung, die Ihnen ermöglicht, visuelle Daten wie Bilder (Formate: PNG, JPG, JPEG und GIF) zu analysieren und darauf basierend interaktive Antworten zu generieren. Mit MAVIS können Sie komplexe mathematische Berechnungen durchführen, programmiertechnische Aufgaben lösen und professionelle Grafiken erstellen.
