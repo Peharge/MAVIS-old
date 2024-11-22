@@ -92,13 +92,13 @@
 
 ### 2. MAVIS releaseon MAC OS / Windows / Linux  
 
-<img src="./readme-img/mavis-banner23.png" alt="mavis" width="300" style="margin: 10px;"><img src="./readme-img/mavis-banner25.png" alt="mavis" width="250" style="margin: 10px;"> 
+<img src="./readme-img/mavis-banner23.png" alt="mavis" width="450" style="margin: 10px;"><img src="./readme-img/mavis-banner25.png" alt="mavis" width="380" style="margin: 10px;"> 
 
 > 01.06.2025
  
 ### 3. MAVIS on <br>Apple Vision Pro                     
 
-<img src="./readme-img/mavis-banner24.png" alt="mavis" width="300" style="margin: 10px;"><img src="./readme-img/mavis-banner26.png" alt="mavis" width="300" style="margin: 10px;"> 
+<img src="./readme-img/mavis-banner24.png" alt="mavis" width="430" style="margin: 10px;"><img src="./readme-img/mavis-banner26.png" alt="mavis" width="430" style="margin: 10px;"> 
 
 > soon
 
