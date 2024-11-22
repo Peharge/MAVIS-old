@@ -98,7 +98,7 @@
  
 ### 3. MAVIS on <br>Apple Vision Pro                     
 
-<img src="./readme-img/mavis-banner24.png" alt="mavis" width="430" style="margin: 10px;"><img src="./readme-img/mavis-banner26.png" alt="mavis" width="430" style="margin: 10px;"> 
+<img src="./readme-img/mavis-banner24.png" alt="mavis" width="400" style="margin: 10px;"><img src="./readme-img/mavis-banner26.png" alt="mavis" width="400" style="margin: 10px;"> 
 
 > soon
 
