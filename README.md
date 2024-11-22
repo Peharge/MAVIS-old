@@ -26,9 +26,10 @@
 <br>
 <br>
 
-<img alt="" src="https://img.shields.io/badge/-Hugging Face-FDEE21?logo=HuggingFace&logoColor=black">
-<img alt="" src="https://img.shields.io/badge/Jupyter notebook-orange">
-<img alt="" src="https://img.shields.io/badge/Google Colab-red">
+<img alt="" src="https://img.shields.io/badge/-Matplotlib-000000?style=flat&logo=python">
+<img alt="" src="https://img.shields.io/badge/-LaTeX-008080?style=flat&logo=latex&logoColor=white">
+<img alt="" src="https://img.shields.io/badge/-Numpy-013243?&logo=NumPy">
+<img alt="" src="https://img.shields.io/badge/-Pandas-333333?style=flat&logo=pandas">
 <br>
 <br>
 
