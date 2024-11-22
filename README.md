@@ -66,13 +66,13 @@
 
 ## _News_
 
-- **[2024.11.09]** Start ;-)
-- **[2024.11.10]** Available with Llama3.2 + [Demo](#demo-text) with Xc++ 2
-- **[2024.11.13]** [Demo](#demo) UI
+- **[09.11.2024]** Start ;-)
+- **[10.11.2024]** Available with Llama3.2 + [Demo](#demo-text) with Xc++ 2
+- **[13.11.2024]** [Demo](#demo) UI
 
 ### _SOON_
 
-- **[2024.12.01]** MAVIS EAP release
+- **[01.12.2024]** MAVIS EAP release
 
 <br>
 
