@@ -96,7 +96,7 @@
 
 > 01.06.2025
  
-### 3. MAVIS on <br>Apple Vision Pro                     
+### 3. MAVIS on Apple Vision Pro                     
 
 <img src="./readme-img/mavis-banner24.png" alt="mavis" width="400" style="margin: 10px;"><img src="./readme-img/mavis-banner26.png" alt="mavis" width="400" style="margin: 10px;"> 
 
