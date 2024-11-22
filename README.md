@@ -86,7 +86,7 @@
 
 ### 1. MAVIS EAP release (with Llama 3.2)
 
-<img src="./readme-img/mavis-banner22.png" alt="mavis" width="200" style="margin: 10px;">
+<img src="./readme-img/mavis-banner22.png" alt="mavis" width="400" style="margin: 10px;">
 
 > 01.12.2024 
 
