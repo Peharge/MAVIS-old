@@ -245,9 +245,9 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
      - `run-main3.bat` (für Tests)  
    - Alternativ über das Python-Skript:  
      ```bash
-     python main21.py
+     python main-main.py
      ```
-     *Hinweis:* Prüfen Sie, welches Skript (`main[1-21].py`) für Ihre Anforderungen am besten geeignet ist.
+     *Hinweis:* Prüfen Sie, welches Skript (`main[1-24].py`) für Ihre Anforderungen am besten geeignet ist.
 
 2. **Zugriff auf die Benutzeroberfläche**  
    Nach dem Start der UI gibt Flask eine URL im Terminal aus.  
