@@ -2,6 +2,8 @@
 
 (c)Peharge
 
+!!! Dont run !!!
+
 """
 
 import logging
