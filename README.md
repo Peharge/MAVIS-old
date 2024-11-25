@@ -9,27 +9,27 @@
 <br>
 <br>
 
-<img alt="" src="https://img.shields.io/badge/Python-3.11 / 3.12 / 3.13-blue?&logo=Python&logoColor=white%5BPython">
-<img alt="" src="https://img.shields.io/badge/-C++-blue?logo=cplusplus">
-<img alt="" src="https://img.shields.io/badge/-C-blue?logo=c">
+<img alt="python" src="https://img.shields.io/badge/Python-3.11 / 3.12 / 3.13-blue?&logo=Python&logoColor=white%5BPython">
+<img alt="c++" src="https://img.shields.io/badge/-C++-blue?logo=cplusplus">
+<img alt="c" src="https://img.shields.io/badge/-C-blue?logo=c">
 <br>
 <br>
 
-<img alt="" src="https://img.shields.io/badge/PyTorch-EE4C2C?logo=PyTorch&logoColor=white">
-<img alt="" src="https://img.shields.io/badge/FLask-F7DF1E?style=flat&logo=flask&logoColor=black">
-<img alt="" src="https://img.shields.io/badge/PyCharm-black?logo=PyCharm&logoColor=white">
-<img alt="" src="https://img.shields.io/badge/GitHub-black?logo=github">
+<img alt="pytorch" src="https://img.shields.io/badge/PyTorch-EE4C2C?logo=PyTorch&logoColor=white">
+<img alt="flask" src="https://img.shields.io/badge/FLask-F7DF1E?style=flat&logo=flask&logoColor=black">
+<img alt="pycharm" src="https://img.shields.io/badge/PyCharm-black?logo=PyCharm&logoColor=white">
+<img alt="github" src="https://img.shields.io/badge/GitHub-black?logo=github">
 <br>
 <br>
 
-<img alt="" src="https://img.shields.io/badge/os-linux%20%7C%20macOS%20%7C%20windows-blue">
+<img alt="os" src="https://img.shields.io/badge/os-linux%20%7C%20macOS%20%7C%20windows-blue">
 <br>
 <br>
 
-<img alt="" src="https://img.shields.io/badge/-Matplotlib-000000?style=flat&logo=python">
-<img alt="" src="https://img.shields.io/badge/-LaTeX-008080?style=flat&logo=latex&logoColor=white">
-<img alt="" src="https://img.shields.io/badge/-Numpy-013243?&logo=NumPy">
-<img alt="" src="https://img.shields.io/badge/-Pandas-333333?style=flat&logo=pandas">
+<img alt="matplotlib" src="https://img.shields.io/badge/-Matplotlib-000000?style=flat&logo=python">
+<img alt="latex" src="https://img.shields.io/badge/-LaTeX-008080?style=flat&logo=latex&logoColor=white">
+<img alt="numpy" src="https://img.shields.io/badge/-Numpy-013243?&logo=NumPy">
+<img alt="pandas" src="https://img.shields.io/badge/-Pandas-333333?style=flat&logo=pandas">
 <br>
 <br>
 
