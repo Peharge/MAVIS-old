@@ -65,7 +65,7 @@
 > Nutzen Sie die leistungsstarken Funktionen von MAVIS, um Ihre Projekte effizienter und professioneller zu gestalten.
 
 <p align="center">
-  <img src="./readme-img/mavis-banner42.png" alt="mavis" width="600" style="margin: 10px;">
+  <img src="./readme-img/mavis-banner42.png" alt="mavis" width="1400" style="margin: 10px;">
 <p>
 
 ## _News_
