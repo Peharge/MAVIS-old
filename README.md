@@ -150,6 +150,8 @@
 | Mavis 1 11B | With **Xc++ 2 11B** + Qwen 2.5 Coder 14B or Llama 3.2 11B +16GB RAM +9GB storage (Works with one CPU) | 11B |
 | Mavis 1 90B | With **Xc++ 2 90B** + Qwen 2.5 Coder 32B or Llama 3.2 90B +128GB RAM +60GB storage (Works with one CPU) | 90B |
 
+<br>
+
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/qwen_2.5_coder.png" alt="woyzy" width="1400" style="margin: 10px;">
 </div>
