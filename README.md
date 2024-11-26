@@ -439,6 +439,10 @@ Not done ❌ | Done (min. 1 month) ✔️ | Improvements needed 🔧 | In progre
   <img src="./readme-img/Mavis-banner18.png" alt="mavis" width="600" style="margin: 10px;">
 <p>
 
+### New UI 
+
+> Usable from anywhere in the world 42/7
+
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-banner14.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
