@@ -1,7 +1,9 @@
 <p align="center">
     <img src="./readme-img/mavis-logo-new-3d-2.png" width="350"/>
 </p>
+
 <br>
+
 <div align="center">
 <img alt="mavis" src="https://img.shields.io/badge/MAVIS-F7DF1E">
 <img alt="tg-loerrach" src="https://img.shields.io/badge/TG Lörrach-red">
@@ -62,9 +64,9 @@
 > 
 > Nutzen Sie die leistungsstarken Funktionen von MAVIS, um Ihre Projekte effizienter und professioneller zu gestalten.
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+<p align="center">
   <img src="./readme-img/Mavis-banner18.png" alt="mavis" width="600" style="margin: 10px;">
-</div>
+<p>
 
 ## _News_
 
@@ -87,19 +89,24 @@
 
 ### 1. MAVIS EAP release (with Llama 3.2)
 
-<img src="./readme-img/mavis-banner22.png" alt="mavis" width="400" style="margin: 10px;">
+<p align="center">
+    <img src="./readme-img/mavis-banner22.png" alt="mavis" width="400" style="margin: 10px;">
+</p>
 
 > 01.12.2024 
 
 ### 2. MAVIS releaseon MAC OS / Windows / Linux  
 
-<img src="./readme-img/mavis-banner23.png" alt="mavis" width="450" style="margin: 10px;"><img src="./readme-img/mavis-banner25.png" alt="mavis" width="360" style="margin: 10px;"> 
+<p align="center">
+    <img src="./readme-img/mavis-banner23.png" alt="mavis" width="450" style="margin: 10px;"><img src="./readme-img/mavis-banner25.png" alt="mavis" width="360" style="margin: 10px;"> 
+</p>
 
 > 01.06.2025
  
 ### 3. MAVIS on Apple Vision Pro                     
-
-<img src="./readme-img/mavis-banner24.png" alt="mavis" width="400" style="margin: 10px;"><img src="./readme-img/mavis-banner26.png" alt="mavis" width="400" style="margin: 10px;"> 
+<p align="center">
+    <img src="./readme-img/mavis-banner24.png" alt="mavis" width="400" style="margin: 10px;"><img src="./readme-img/mavis-banner26.png" alt="mavis" width="400" style="margin: 10px;"> 
+</p>
 
 > soon
 
@@ -396,9 +403,9 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 
 ## History
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+<p align="center">
   <img src="./readme-img/Mavis-banner15.png" alt="woyzy" width="1400" style="margin: 10px;">
-</div>
+</p>
 
 <br>
 
