@@ -82,7 +82,7 @@
 <br>
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner43.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis-banner28.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 ## _Updates_
@@ -136,7 +136,7 @@
 ## _Versions_
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner28.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis-banner43.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 <br>
