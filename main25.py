@@ -9,6 +9,7 @@ import sys
 import base64
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
+from dash import Dash, dcc, html #pip install dash
 
 # pip install -U kaleido
 

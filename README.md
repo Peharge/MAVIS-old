@@ -335,6 +335,12 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
   <img src="./readme-img/mavis-banner37.png" alt="woyzy" width="1400" style="margin: 10px;">
 </div>
 
+### Demo 7
+
+<div>
+    <img src="./readme-img/mavis-demo50.png" alt="mavis" width="1400">
+</div>
+
 ### Demo 6
 
 <div>
