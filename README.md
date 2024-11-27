@@ -60,7 +60,7 @@
 > - Fordern Sie MAVIS dazu auf, Code immer in Python zu schreiben, da nur dieser von der Benutzeroberfläche unterstützt wird.
 > 
 > 
-> - Bitten Sie MAVIS, Grafiken mithilfe von Matplotlib zu erstellen, da die Benutzeroberfläche ausschließlich HTML, LaTeX und Python (Version 3.13 mit den Frameworks Matplotlib, NumPy, Math, SymPy und Pandas (bei Bedarf soon: PyTorch, TensorFlow, Keras, Scikit-Learn und Hugging Face Transformers (vielleicht noch JAX)) unterstützt.
+> - Bitten Sie MAVIS, Grafiken mithilfe von Matplotlib zu erstellen, da die Benutzeroberfläche ausschließlich HTML, LaTeX und Python (Version 3.13 mit den Frameworks Matplotlib, Plotly, NumPy, Math, SymPy und Pandas (bei Bedarf soon: PyTorch, TensorFlow, Keras, Scikit-Learn und Hugging Face Transformers (vielleicht noch JAX)) unterstützt.
 > 
 > Nutzen Sie die leistungsstarken Funktionen von MAVIS, um Ihre Projekte effizienter und professioneller zu gestalten.
 
