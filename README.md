@@ -259,6 +259,15 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
      ```bash
      python main-main.py
      ```
+     ```bash
+      python main-math.py
+      ```
+      ```bash
+      python main-math-pro.py
+      ```
+      ```bash
+      python main-code.py
+      ```
      *Hinweis:* Prüfen Sie, welches Skript (`main[1-24].py`) für Ihre Anforderungen am besten geeignet ist.
 
 2. **Zugriff auf die Benutzeroberfläche**  
