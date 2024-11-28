@@ -152,9 +152,16 @@
 
 <br>
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/qwen_2.5_coder.png" alt="woyzy" width="1400" style="margin: 10px;">
-</div>
+|               | Xc++ 2 (01.06.2025) | Qwq<br/>32B-preview | Open AI<br/>o1-preview | Open AI<br/>o1-preview | GPT-4o | Claude3.5<br/>Sonnet |
+|---------------|---------------------|---------------------|------------------------|------------------------|--------|----------------------|
+| GPQA          | 49.5 (goal 75.0)    | 65.2                | 72.3                   | 60.0                   | 53.6   | 49.0                 |
+| AIME          | 46.0 (goal 59.0)    | 50.0                | 44.6                   | 56.7                   | 9.3    | 23.3                 |
+| MATH-500      | 93.0                | 90.6                | 85.5                   | 90.0                   | 76.6   | 82.6                 |
+| LiveCodeBench | 53.0 (goal 61.0)    | 50                  | 53.6                   | 58.0                   | 33.4   | 30.4                 |
+
+
+
+
 
 ## _Peharge_
 
