@@ -978,8 +978,12 @@
 
         .card {
             display: none;
-            width: 600px;
-            height: 130px;
+            width: 40%;
+            max-width: 1200px;
+            max-height: 200px;
+            min-width: 300px;
+            min-height: 100px;
+            height: 10%;
             padding: 0.5rem;
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(8px);
@@ -993,11 +997,14 @@
             color: white;
             position: fixed;
             top: 15%;
-            left: 34%;
+            left: 30%;
+            right: 30%;
         }
 
         .card:hover {
-            height: 460px;
+            height: 40%;
+            max-height: 800px;
+            min-height: 300px;
             transform: skew(0deg);
         }
 
@@ -1034,7 +1041,6 @@
         }
 
         .card h1 {
-            font-size: 35px;
             text-align: center;
             margin: 1.3rem;
             color: rgb(255, 255, 255);
@@ -1043,8 +1049,12 @@
 
         .card-image-preview {
             display: none;
-            width: 600px;
-            height: 150px;
+            width: 40%;
+            max-width: 1200px;
+            max-height: 200px;
+            min-width: 300px;
+            min-height: 100px;
+            height: 10%;
             padding: 0.5rem;
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(8px);
@@ -1058,11 +1068,14 @@
             color: white;
             position: fixed;
             top: 15%;
-            left: 34%;
+            left: 30%;
+            right: 30%;
         }
 
         .card-image-preview:hover {
-            height: 50%;
+            height: 40%;
+            max-height: 800px;
+            min-height: 300px;
             transform: skew(0deg);
         }
 
@@ -1100,8 +1113,12 @@
 
         .cardd {
             display: none;
-            width: 600px;
-            height: 150px;
+            width: 40%;
+            max-width: 1200px;
+            max-height: 200px;
+            min-width: 300px;
+            min-height: 100px;
+            height: 10%;
             padding: 0.5rem;
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(8px);
@@ -1115,11 +1132,14 @@
             color: white;
             position: fixed;
             top: 15%;
-            left: 34%;
+            left: 30%;
+            right: 30%;
         }
 
         .cardd:hover {
-            height: 400px;
+            height: 40%;
+            max-height: 800px;
+            min-height: 300px;
             transform: skew(0deg);
         }
 
@@ -1224,8 +1244,12 @@
 
         .carddd {
             display: none;
-            width: 600px;
-            height: 200px;
+            width: 40%;
+            max-width: 1200px;
+            max-height: 200px;
+            min-width: 300px;
+            min-height: 100px;
+            height: 10%;
             padding: 0.5rem;
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(8px);
@@ -1239,11 +1263,14 @@
             color: white;
             position: fixed;
             top: 15%;
-            left: 34%;
+            left: 30%;
+            right: 30%;
         }
 
         .carddd:hover {
-            height: 420px;
+            height: 40%;
+            max-height: 800px;
+            min-height: 300px;
             transform: skew(0deg);
         }
 
@@ -1385,12 +1412,15 @@
 
         .cardddd {
             display: none;
-            flex-direction: column;
+            width: 40%;
             justify-content: center;
             align-items: center;
             text-align: center;
-            width: 600px;
-            height: 130px;
+            max-width: 1200px;
+            max-height: 200px;
+            min-width: 300px;
+            min-height: 100px;
+            height: 10%;
             padding: 0.5rem;
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(8px);
@@ -1404,11 +1434,14 @@
             color: white;
             position: fixed;
             top: 15%;
-            left: 34%;
+            left: 30%;
+            right: 30%;
         }
 
         .cardddd:hover {
-            height: 460px;
+            height: 40%;
+            max-height: 800px;
+            min-height: 300px;
             transform: skew(0deg);
         }
 
@@ -1496,7 +1529,7 @@
         }
 
         .buttongit a svg {
-            width: 3em;
+            width: clamp(1rem, 5vw, 3rem);
         }
 
         .buttonedge {
@@ -1507,9 +1540,9 @@
         }
 
         .buttonedge a {
-            width: 65px;
-            height: 65px;
-            border-radius: 10px;
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -1538,22 +1571,23 @@
             transform: skewX(45deg) translateX(150px);
             transition: 0.5s ease;
         }
-
+x
         .buttonedge a:hover::before {
             transform: skewX(45deg) translateX(-150px);
         }
 
         .buttonedge a svg {
-            width: 2em;
+            width: clamp(1rem, 5vw, 3rem);
         }
 
         .container-ask {
             display: flex;
             flex-direction: column;
             gap: 7px;
-            position: relative;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
             color: white;
-            transform: translateX(200px);
         }
 
         .container-ask .label-ask {
@@ -1642,14 +1676,14 @@
                 <span class="green"></span>
             </div>
 
-            <h1>MAVIS</h1>
+            <h1 style="font-size: clamp(1rem, 3vw, 3rem);">MAVIS</h1>
 
-            <p style="font-size: 12px;">MAVIS ist eine KI-gesteuerte Anwendung, die Ihnen ermöglicht, visuelle Daten wie Bilder (Formate: PNG, JPG, JPEG und GIF) zu analysieren und darauf basierend interaktive Antworten zu generieren.
+            <p style="font-size: clamp(0.3rem, 1vw, 1rem);">MAVIS ist eine KI-gesteuerte Anwendung, die Ihnen ermöglicht, visuelle Daten wie Bilder - Formate: PNG, JPG, JPEG und GIF - zu analysieren und darauf basierend interaktive Antworten zu generieren.
                 Mit MAVIS können Sie komplexe mathematische Berechnungen durchführen, programmiertechnische Aufgaben lösen und professionelle Grafiken erstellen.</p>
-                       <p style="font-size: 12px;"><strong>Wichtig:</strong> Lassen Sie Formeln stets in LaTeX darstellen, um eine präzise und ansprechende Formatierung zu gewährleisten.
+                       <p style="font-size: clamp(0.3rem, 1vw, 1rem);"><strong>Wichtig:</strong> Lassen Sie Formeln stets in LaTeX darstellen, um eine präzise und ansprechende Formatierung zu gewährleisten.
                         Fordern Sie MAVIS dazu auf, Code immer in Python zu schreiben, da nur dieser von der Benutzeroberfläche unterstützt wird.
-                           Bitten Sie MAVIS, Grafiken mithilfe von Matplotlib zu erstellen, da die Benutzeroberfläche ausschließlich HTML, LaTeX und Python (Version 3.13 mit den Frameworks Matplotlib, NumPy, Math, SymPy und Pandas) unterstützt.</p>
-                        <p style="font-size: 12px;"><strong>Wichtig:</strong>Diese Software funktioniert nur mit Microsoft Edge!</p>
+                           Bitten Sie MAVIS, Grafiken mithilfe von Matplotlib zu erstellen, da die Benutzeroberfläche ausschließlich HTML, LaTeX und Python - Version 3.13 mit den Frameworks Matplotlib, NumPy, Math, SymPy und Pandas - unterstützt.</p>
+                        <p style="font-size: clamp(0.3rem, 1vw, 1rem);"><strong>Wichtig:</strong>Diese Software funktioniert nur mit Microsoft Edge!</p>
 
             <div class="info" style="display: flex; justify-content: center; align-items: center;">
                 <button class="buttonedge">
@@ -1676,8 +1710,8 @@
                 <span class="yellowddd"></span>
                 <span class="greenddd"></span>
             </div>
-            <h1>MAVIS Infos</h1>
-            <p>
+            <h1 style="font-size: clamp(1rem, 3vw, 3rem);">MAVIS Infos</h1>
+            <p style="font-size: clamp(0.3rem, 1vw, 1rem);">
                 Mehr Infos unter: <br><br>
 
                 <button class="buttongit">
@@ -1690,7 +1724,7 @@
                     </a>
                 </button>
             </p>
-            <p>
+            <p style="font-size: clamp(0.3rem, 1vw, 1rem);">
                 Hir kannst du dir die Szenen anzeigen lassen:<br><br>
 
                 <div class="container-ask">
