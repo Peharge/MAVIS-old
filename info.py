@@ -11,6 +11,9 @@ import flask
 import matplotlib
 import numpy
 from importlib.metadata import version
+import plotly
+import sympy
+import torch
 
 red = "\033[91m"
 green = "\033[92m"
@@ -80,16 +83,22 @@ def get_versions():
     python_version = sys.version.split()[0]
     pip_version = version("pip")
     flask_version = version("flask")
-    matplotlib_version = matplotlib.__version__
     numpy_version = numpy.__version__
+    matplotlib_version = matplotlib.__version__
+    plotly_version = plotly.__version__
+    sympy_version = sympy.__version__
     math_version = "Built-in (no versioning)"
+    torch_version = torch.__version__
 
     return {
         "Python": python_version,
         "Pip": pip_version,
         "Flask": flask_version,
-        "Matplotlib": matplotlib_version,
         "Numpy": numpy_version,
+        "Matplotlib": matplotlib_version,
+        "Plotly": plotly_version,
+        "sympy": sympy_version,
+        "torch": torch_version,
         "Math": math_version
     }
 
