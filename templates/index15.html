@@ -1002,7 +1002,7 @@
         }
 
         .card:hover {
-            height: 40%;
+            height: 45%;
             max-height: 800px;
             min-height: 300px;
             transform: skew(0deg);
@@ -1042,7 +1042,7 @@
 
         .card h1 {
             text-align: center;
-            margin: 1.3rem;
+            margin: 1%;
             color: rgb(255, 255, 255);
             text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.573);
         }
@@ -1177,7 +1177,7 @@
 
         .cardd h1 {
             text-align: center;
-            margin: 1.3rem;
+            margin: 1%;
             color: rgb(255, 255, 255);
             text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.573);
         }
@@ -1308,7 +1308,7 @@
 
         .carddd h1 {
             text-align: center;
-            margin: 1.3rem;
+            margin: 1%;
             color: rgb(255, 255, 255);
             text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.573);
         }
@@ -1443,7 +1443,7 @@
         }
 
         .cardddd:hover {
-            height: 40%;
+            height: 45%;
             max-height: 800px;
             min-height: 300px;
             transform: skew(0deg);
@@ -1483,7 +1483,7 @@
 
         .cardddd h1 {
             text-align: center;
-            margin: 1.3rem;
+            margin: 1%;
             color: rgb(255, 255, 255);
             text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.573);
         }
@@ -1673,21 +1673,21 @@
 <body>
 
     <div class="chat-container">
-        <div class="card">
+        <div class="card" style="z-index: 10;">
             <div class="align">
                 <span class="red"></span>
                 <span class="yellow"></span>
                 <span class="green"></span>
             </div>
 
-            <h1 style="font-size: clamp(1rem, 3vw, 3rem);">MAVIS</h1>
+            <h1 style="font-size: clamp(0.5rem, 3vw, 3rem);">MAVIS</h1>
 
-            <p style="font-size: clamp(0.3rem, 1vw, 1rem);">MAVIS ist eine KI-gesteuerte Anwendung, die Ihnen ermöglicht, visuelle Daten wie Bilder - Formate: PNG, JPG, JPEG und GIF - zu analysieren und darauf basierend interaktive Antworten zu generieren.
-                Mit MAVIS können Sie komplexe mathematische Berechnungen durchführen, programmiertechnische Aufgaben lösen und professionelle Grafiken erstellen.</p>
-                       <p style="font-size: clamp(0.3rem, 1vw, 1rem);"><strong>Wichtig:</strong> Lassen Sie Formeln stets in LaTeX darstellen, um eine präzise und ansprechende Formatierung zu gewährleisten.
+            <p style="font-size: clamp(0.1rem, 0.8vw, 2rem);">MAVIS ist eine KI-gesteuerte Anwendung, die Ihnen ermöglicht, visuelle Daten wie Bilder - Formate: PNG, JPG, JPEG und GIF - zu analysieren und darauf basierend interaktive Antworten zu generieren.
+                Mit MAVIS können Sie komplexe mathematische Berechnungen durchführen, programmiertechnische Aufgaben lösen und professionelle Grafiken erstellen.
+                       <strong>Wichtig:</strong> Lassen Sie Formeln stets in LaTeX darstellen, um eine präzise und ansprechende Formatierung zu gewährleisten.
                         Fordern Sie MAVIS dazu auf, Code immer in Python zu schreiben, da nur dieser von der Benutzeroberfläche unterstützt wird.
-                           Bitten Sie MAVIS, Grafiken mithilfe von Matplotlib zu erstellen, da die Benutzeroberfläche ausschließlich HTML, LaTeX und Python - Version 3.13 mit den Frameworks Matplotlib, NumPy, Math, SymPy und Pandas - unterstützt.</p>
-                        <p style="font-size: clamp(0.3rem, 1vw, 1rem);"><strong>Wichtig:</strong>Diese Software funktioniert nur mit Microsoft Edge!</p>
+                           Bitten Sie MAVIS, Grafiken mithilfe von Matplotlib zu erstellen, da die Benutzeroberfläche ausschließlich HTML, LaTeX und Python - Version 3.13 mit den Frameworks Matplotlib, NumPy, Math, SymPy und Pandas - unterstützt.
+                        <strong>Wichtig:</strong>Diese Software funktioniert nur mit Microsoft Edge!</p>
 
             <div class="info" style="display: flex; justify-content: center; align-items: center;">
                 <button class="buttonedge">
@@ -1708,7 +1708,7 @@
                 </script>
 
         </div>
-        <div class="cardddd">
+        <div class="cardddd" style="z-index: 10;">
             <div class="alignddd">
                 <span class="redddd"></span>
                 <span class="yellowddd"></span>
@@ -1738,7 +1738,7 @@
                 </div>
             </p>
         </div>
-        <div class="cardd">
+        <div class="cardd" style="z-index: 10;">
             <div class="alignd">
                 <span class="redd"></span>
                 <span class="yellowd"></span>
@@ -1755,7 +1755,7 @@
                 </div>
             </div>
         </div>
-        <div class="carddd">
+        <div class="carddd" style="z-index: 10;">
             <div class="aligdd">
                 <span class="reddd"></span>
                 <span class="yellowdd"></span>
@@ -2415,7 +2415,7 @@
                     <button type="submit" class="button2">Senden</button>
             </div>
 
-            <div id="image-preview" class="card-image-preview" style="display:none; text-align: center;" onclick="closePreview()">
+            <div id="image-preview" class="card-image-preview" style="display:none; text-align: center; z-index: 10;" onclick="closePreview()">
                 <div class="align-image-preview">
                     <span class="red-image-preview"></span>
                     <span class="yellow-image-preview"></span>
