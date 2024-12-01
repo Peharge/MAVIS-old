@@ -346,7 +346,7 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 ### Demo 8
 
 <div>
-    <img src="./readme-img/demo61.png" alt="mavis" width="1400">
+    <img src="./readme-img/Demo61.png" alt="mavis" width="1400">
 </div>
 
 ### Demo 7
