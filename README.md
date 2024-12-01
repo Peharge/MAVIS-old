@@ -74,9 +74,6 @@
 - **[10.11.2024]** Available with Llama3.2 + [Demo](#demo-text) with Xc++ 2
 - **[13.11.2024]** [Demo](#demo) UI
 - **[21.11.2024]** MAVIS with Python (Version 3.13 with the frameworks Matplotlib, NumPy, Math, SymPy and Pandas) [Demo](#demo)
-
-### _SOON_
-
 - **[01.12.2024]** MAVIS EAP release
 
 <br>
@@ -87,7 +84,7 @@
 
 ## _Updates_
 
-### 1. MAVIS EAP release (with Llama 3.2)
+### 1. MAVIS EAP release (with Llama 3.2) [NEW]
 
 <p align="center">
     <img src="./static/images/mavis-walpaper-c4.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -344,6 +341,12 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-banner37.png" alt="woyzy" width="1400" style="margin: 10px;">
+</div>
+
+### Demo 8
+
+<div>
+    <img src="./readme-img/Demo61.png" alt="mavis" width="1400">
 </div>
 
 ### Demo 7
