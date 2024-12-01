@@ -84,7 +84,7 @@
 
 ## _Updates_
 
-### 1. MAVIS EAP release (with Llama 3.2)
+### 1. MAVIS EAP release (with Llama 3.2) [NEW]
 
 <p align="center">
     <img src="./static/images/mavis-walpaper-c4.png" alt="mavis" width="1400" style="margin: 10px;">
