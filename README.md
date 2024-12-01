@@ -74,9 +74,6 @@
 - **[10.11.2024]** Available with Llama3.2 + [Demo](#demo-text) with Xc++ 2
 - **[13.11.2024]** [Demo](#demo) UI
 - **[21.11.2024]** MAVIS with Python (Version 3.13 with the frameworks Matplotlib, NumPy, Math, SymPy and Pandas) [Demo](#demo)
-
-### _SOON_
-
 - **[01.12.2024]** MAVIS EAP release
 
 <br>
