@@ -36,7 +36,6 @@
 <br>
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-<br>
 </div>
 
 # _MAVIS_
@@ -91,10 +90,12 @@
 > - Demander à MAVIS de créer des graphiques en utilisant Matplotlib car l'interface est exclusivement HTML, LaTeX et Python (version 3.13 avec les frameworks Matplotlib, Plotly, NumPy, Math, SymPy et Pandas (si besoin prochainement : PyTorch, TensorFlow, Keras, Scikit-Learn et Hugging Face Transformers (peut-être JAX)) pris en charge.
 > 
 > Utilisez les puissantes fonctions de MAVIS pour rendre vos projets plus efficaces et professionnels.
-> 
-<p align="center">
-  <img src="./readme-img/mavis-banner42.png" alt="mavis" width="1400" style="margin: 10px;">
-<p>
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis-ads10.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+<br>
 
 ## _News_
 
@@ -117,7 +118,7 @@
 ### 1. MAVIS EAP release (with Llama 3.2) [NEW]
 
 <p align="center">
-    <img src="./readme-img/mavis-ads4.png" alt="mavis" width="1400" style="margin: 10px;">
+    <img src="./static/images/mavis-walpaper-c4.png" alt="mavis" width="1400" style="margin: 10px;">
 </p>
 
 > 01.12.2024 
@@ -161,7 +162,7 @@
 ## _Versions_
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner43.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis-banner42.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 <br>
@@ -176,6 +177,10 @@
 | Mavis 1 90B | With **Xc++ 2 90B** + QwQ 32B or Qwen 2.5 Coder 32B or Llama 3.2 90B +128GB RAM +90GB storage (Works with one CPU) | 90B |
 
 <br>
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis-banner43.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
 
 |               | Xc++ 2<br/>(01.12.2024 - goal: 01.06.2025) | Qwq<br/>32B-preview | Open AI<br/>o1-preview | Open AI<br/>mini o1 | Open AI<br/>o1<br/>(not out) | GPT-4o | Claude3.5<br/>Sonnet |
 |---------------|--------------------------------------------|---------------------|------------------------|---------------------|------------------------------|--------|----------------------|
@@ -639,9 +644,9 @@ Après l'installation, vous devez toujours démarrer l'application pour utiliser
 
 ## Demo
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner37.png" alt="woyzy" width="1400" style="margin: 10px;">
-</div>
+<p align="center">
+  <img src="./readme-img/mavis-ads4.png" alt="mavis" width="1400" style="margin: 10px;">
+<p>
 
 ### Demo 8
 
