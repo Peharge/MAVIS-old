@@ -331,10 +331,10 @@ Install this model via Ollama:
        ```bash
        ollama run llama3.2-vision
        ```
-     - **For MAVIS 90B**:
-         ```bash
-         ollama run llama3.2-vision:90b
-         ```
+   - **For MAVIS 90B**:
+       ```bash
+       ollama run llama3.2-vision:90b
+       ```
 
 2. **Qwen 2.5 Coder** (without vision)
 This model is optimized for pure code operation:
