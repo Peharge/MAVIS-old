@@ -92,7 +92,7 @@
 > Utilisez les puissantes fonctions de MAVIS pour rendre vos projets plus efficaces et professionnels.
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-ads10.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/MAVIS-ads10.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 <br>
