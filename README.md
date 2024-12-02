@@ -502,7 +502,7 @@ Pour réussir l'installation de MAVIS, vous avez besoin des programmes suivants:
 3. **Environnement de développement Python (IDE) (mais ce n'est pas obligatoire)**
  Un IDE approprié facilite le développement et l’utilisation de Python. Options recommandées:
    - **Visual Studio Code (gratuit)**: [https://code.visualstudio.com](https://code.visualstudio.com)
-   - **PyCharm (payant)**: [https://www.jetbrains.com/de-de/pycharm/](https://www.jetbrains.com/de-de/pycharm/)
+   - **PyCharm (payant)**: [https://www.jetbrains.com/de-de/pycharm/](https://www.jetbrains.com/de-de/pycharm/)<br>
    *Remarque:* PyCharm offre des fonctionnalités avancées pour le développement Python et est particulièrement adapté aux utilisateurs avancés.
 
 ### Installation
