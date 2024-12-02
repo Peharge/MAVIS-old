@@ -50,6 +50,20 @@
 
 > ⚠️**Still in progress**⚠️
 
+> **English**: MAVIS is an AI-driven application that allows you to analyze visual data such as images (formats: PNG, JPG, JPEG and GIF) and generate interactive answers based on them. With MAVIS you can perform complex mathematical calculations, solve programming tasks and create professional graphics.
+> 
+> To achieve optimal results, please note the following:
+> 
+> - Always display formulas in LaTeX to ensure precise and attractive formatting.
+> 
+> 
+> - Ask MAVIS to always write code in Python, as this is the only language supported by the user interface.
+> 
+> 
+> - Ask MAVIS to create graphics using Matplotlib, as the user interface only supports HTML, LaTeX and Python (version 3.13 with the frameworks Matplotlib, Plotly, NumPy, Math, SymPy and Pandas (if needed soon: PyTorch, TensorFlow, Keras, Scikit-Learn and Hugging Face Transformers (maybe JAX)).
+> 
+> Use the powerful features of MAVIS to make your projects more efficient and professional.
+
 > **Deutsch**: MAVIS ist eine KI-gesteuerte Anwendung, die Ihnen ermöglicht, visuelle Daten wie Bilder (Formate: PNG, JPG, JPEG und GIF) zu analysieren und darauf basierend interaktive Antworten zu generieren. Mit MAVIS können Sie komplexe mathematische Berechnungen durchführen, programmiertechnische Aufgaben lösen und professionelle Grafiken erstellen.
 > 
 > Um optimale Ergebnisse zu erzielen, beachten Sie folgende Hinweise:
@@ -64,6 +78,20 @@
 > 
 > Nutzen Sie die leistungsstarken Funktionen von MAVIS, um Ihre Projekte effizienter und professioneller zu gestalten.
 
+> **Français**: MAVIS est une application basée sur l'IA qui vous permet d'analyser des données visuelles telles que des images (formats : PNG, JPG, JPEG et GIF) et de générer des réponses interactives basées sur celles-ci. Avec MAVIS, vous pouvez effectuer des calculs mathématiques complexes, résoudre des tâches de programmation et créer des graphiques professionnels.
+> 
+> Pour obtenir des résultats optimaux, veuillez respecter les instructions suivantes :
+> 
+> - Affichez toujours les formules en LaTeX pour garantir une mise en forme précise et attrayante.
+> 
+> 
+> - Exiger que MAVIS écrive toujours du code en Python, car c'est le seul pris en charge par l'interface utilisateur.
+> 
+> 
+> - Demander à MAVIS de créer des graphiques en utilisant Matplotlib car l'interface est exclusivement HTML, LaTeX et Python (version 3.13 avec les frameworks Matplotlib, Plotly, NumPy, Math, SymPy et Pandas (si besoin prochainement : PyTorch, TensorFlow, Keras, Scikit-Learn et Hugging Face Transformers (peut-être JAX)) pris en charge.
+> 
+> Utilisez les puissantes fonctions de MAVIS pour rendre vos projets plus efficaces et professionnels.
+> 
 <p align="center">
   <img src="./readme-img/mavis-banner42.png" alt="mavis" width="1400" style="margin: 10px;">
 <p>
@@ -73,7 +101,9 @@
 - **[09.11.2024]** Start ;-)
 - **[10.11.2024]** Available with Llama3.2 + [Demo](#demo-text) with Xc++ 2
 - **[13.11.2024]** [Demo](#demo) UI
-- **[21.11.2024]** MAVIS with Python (Version 3.13 with the frameworks Matplotlib, NumPy, Math, SymPy and Pandas) [Demo](#demo)
+- **[21.11.2024]** MAVIS with Python (Version 3.11/**12**/13 with the frameworks Matplotlib, NumPy, Math, SymPy and Pandas) [Demo](#demo)
+- **[28.11.2024]** Available with **Plotly** but still bugs that need to be resolved
+- **[30.11.2024]** MAVIS can write **PyTorch, TensorFlow, Keras, Scikit-Learn and Hugging Face Transformers (maybe JAX) code** and run it side-by-side without the need for an IDE. But it is only intended for experimentation.
 - **[01.12.2024]** MAVIS EAP release
 
 <br>
@@ -87,7 +117,7 @@
 ### 1. MAVIS EAP release (with Llama 3.2) [NEW]
 
 <p align="center">
-    <img src="./static/images/mavis-walpaper-c4.png" alt="mavis" width="1400" style="margin: 10px;">
+    <img src="./readme-img/mavis-ads4.png" alt="mavis" width="1400" style="margin: 10px;">
 </p>
 
 > 01.12.2024 
@@ -185,6 +215,145 @@
 
 > ⚠️**Still in progress**⚠️
 
+### English:
+
+**MAVIS (aka Xc++ 2)** is currently under development and is not fully available in this repository. Cloning the repository will only give you the README file, some images and already released codes, including the user interface (UI) compatible with **Qwen 2.5 Code** and **Llama 3.2 Vision**.
+
+### Prerequisites
+
+To successfully install MAVIS, you need the following programs:
+
+1. **Git**
+Download Git from the official website:
+[https://git-scm.com](https://git-scm.com)
+
+2. **Python**
+- Recommended: **Python 3.13** (3.12 or 3.11 are also supported).
+- Download Python from the [https://www.python.org](https://www.python.org) or via the Microsoft Store.
+
+3. **Python development environment (IDE) (but not required)**
+A suitable IDE makes developing and working with Python easier. Recommended options:
+- **Visual Studio Code (free)**: [https://code.visualstudio.com](https://code.visualstudio.com)
+- **PyCharm (paid)**: [https://www.jetbrains.com/de-de/pycharm/](https://www.jetbrains.com/de-de/pycharm/)
+*Note:* PyCharm offers advanced features for Python development and is particularly suitable for advanced users.
+
+### Installation
+
+1. **Clone repository**
+Clone the repository to a local directory:
+    ```bash
+    git clone https://github.com/Peharge/MAVIS
+    ```
+2. **Change directory**
+Navigate to the project directory:
+    ```bash
+    cd MAVIS
+    ```
+3. **Create Python virtual environment**
+Set up a virtual environment to install dependencies in isolation:
+    ```bash
+    python -m venv env
+    ```
+*(You can replace `env` with any other name.)*
+
+4. **Activate virtual environment**
+Activate the virtual environment:
+- **For CMD**:
+    ```bash
+    env\Scripts\activate
+    ```
+- **For PowerShell**:
+    ```bash
+    .\env\Scripts\Activate
+    ```
+
+5. **Install dependencies**
+Install the required libraries:
+    ```bash
+    pip install flask ollama markdown psutil gputil numpy matplotlib math sympy pandas
+    ```
+
+### Start the UI
+
+1. **Start the UI**
+You can start the UI in two ways:
+- With a batch file:
+- `run-main.bat` (recommended)
+- `run-main2.bat` (for tests)
+- `run-main3.bat` (for tests)
+- Alternatively via the Python script:
+    ```bash
+    python main-main.py
+    ```
+    ```bash
+    python main-math.py
+    ```
+    ```bash
+    python main-math-pro.py
+    ```
+    ```bash
+    python main-code.py
+    ```
+*Note:* Check which script (`main[1-24].py`) is best suited for your needs.
+
+2. **Accessing the UI**
+
+After starting the UI, Flask will output a URL in the terminal.
+
+- Open this URL in your browser (directly clickable in PowerShell with `Ctrl + Click`).
+
+- The MAVIS UI should appear in the browser.
+
+3. **Deactivate virtual environment**
+Once completed, you can deactivate the virtual environment using the following command:
+    ```bash
+    deactivate
+    ```
+
+## **Alternative models for MAVIS**
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+    <img src="./readme-img/mavis-banner33-2.png" alt="woyzy" width="1400" style="margin: 10px;">
+</div>
+
+<br>
+
+> ⚠️**Still in progress**⚠️
+
+Since **Xc++ 2** has not been released yet, you can use the following models instead:
+
+*To install Ollama's models, you need the Ollama app: [https://ollama.com/download](https://ollama.com/download).<br>
+After installation, you always have to start the app to use the models.*
+
+1. **Llama 3.2 Vision**
+Install this model via Ollama:
+   - **For MAVIS 11B**:
+       ```bash
+       ollama run llama3.2-vision
+       ```
+     - **For MAVIS 90B**:
+         ```bash
+         ollama run llama3.2-vision:90b
+         ```
+
+2. **Qwen 2.5 Coder** (without vision)
+This model is optimized for pure code operation:
+   - **For MAVIS 11B**:
+       ```bash
+       ollama run qwen2.5-coder:14b
+       ```
+   - **For MAVIS 90B**:
+       ```bash
+       ollama run qwen2.5-coder:32b
+       ```
+3. **QwQ** (without vision)
+This model is optimized for pure math operation:
+    ```bash
+    ollama run qwq
+    ```
+
+### Have fun with MAVIS 🚀
+
 ### Deutsch:
 
 **MAVIS (alias Xc++ 2)** befindet sich derzeit in der Entwicklung und ist in diesem Repository nicht vollständig verfügbar. Durch das Klonen des Repositories erhalten Sie lediglich die README-Datei, einige Bilder und bereits veröffentlichte Codes, einschließlich der Benutzeroberfläche (UI), die mit **Qwen 2.5 Code** und **Llama 3.2 Vision** kompatibel ist.
@@ -280,14 +449,6 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 
 ## **Alternative Modelle für MAVIS**
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner33-2.png" alt="woyzy" width="1400" style="margin: 10px;">
-</div>
-
-<br>
-
-> ⚠️**Still in progress**⚠️
-
 Da **Xc++ 2** noch nicht veröffentlicht wurde, können Sie stattdessen folgende Modelle verwenden:
 
 *Um die Modelle von Ollama zu installieren, benötigen Sie die Ollama-App: [https://ollama.com/download](https://ollama.com/download).<br>
@@ -314,8 +475,147 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
      ```bash
      ollama run qwen2.5-coder:32b
      ```
+3. **QwQ** (ohne Vision)  
+   Dieses Modell ist für reinen Mathe-Betrieb optimiert:
+     ```bash
+     ollama run qwq
+     ```
 
 ### Viel Spaß mit MAVIS 🚀
+
+### Français:
+
+**MAVIS (alias Xc++ 2)** est actuellement en cours de développement et n'est pas entièrement disponible dans ce référentiel. En clonant le référentiel, vous obtenez uniquement le fichier README, quelques images et codes déjà publiés, y compris l'interface utilisateur (UI) compatible avec **Qwen 2.5 Code** et **Llama 3.2 Vision**.
+
+### Exigences
+
+Pour réussir l'installation de MAVIS, vous avez besoin des programmes suivants:
+
+1. **Git**
+ Téléchargez Git depuis le site officiel:
+ [https://git-scm.com](https://git-scm.com)
+
+2. **Python**
+   - Recommandé: **Python 3.13** (3.12 ou 3.11 sont également pris en charge).
+   - Téléchargez Python depuis [https://www.python.org](https://www.python.org) ou depuis le Microsoft Store.
+
+3. **Environnement de développement Python (IDE) (mais ce n'est pas obligatoire)**
+ Un IDE approprié facilite le développement et l’utilisation de Python. Options recommandées:
+   - **Visual Studio Code (gratuit)**: [https://code.visualstudio.com](https://code.visualstudio.com)
+   - **PyCharm (payant)**: [https://www.jetbrains.com/de-de/pycharm/](https://www.jetbrains.com/de-de/pycharm/)
+   *Remarque:* PyCharm offre des fonctionnalités avancées pour le développement Python et est particulièrement adapté aux utilisateurs avancés.
+
+### Installation
+
+1. **Cloner le dépôt**
+    Clonez le dépôt dans un répertoire local:
+    ```bash
+    clone git https://github.com/Peharge/MAVIS
+    ```
+   
+2. **Changer de répertoire**
+    Accédez au répertoire du projet:
+    ```bash
+    CD MAVIS
+    ```
+   
+3. **Créer un environnement virtuel Python**
+    Configurez un environnement virtuel pour installer les dépendances de manière isolée:
+    ```bash
+    python -m venv env
+    ```
+    *(Vous pouvez remplacer `env` par un autre nom.)*
+
+
+4. **Activer l'environnement virtuel**
+    Activez l'environnement virtuel:
+    - **Pour CMD**:
+    ```bash
+    env\Scripts\activer
+    ```
+    - **Pour PowerShell**:
+    ```bash
+    .\env\Scripts\Activer
+    ```
+
+5. **Installer les dépendances**
+    Installez les bibliothèques requises:
+    ```bash
+    pip installer flacon ollama markdown psutil gputil numpy matplotlib math sympy pandas
+    ```
+
+### Démarrer l'interface utilisateur
+
+1. **Démarrage de l'interface utilisateur**
+    Vous pouvez lancer l'interface utilisateur de deux manières:
+    - Avec un fichier batch :
+    - `run-main.bat` (recommandé)
+    - `run-main2.bat` (pour les tests)
+    - `run-main3.bat` (pour les tests)
+   <br><br>
+   - Alternativement via le script Python :
+     ```bash
+     python main-main.py
+     ```
+     ```bash
+     python main-math.py
+     ```
+     ```bash
+     python main-math-pro.py
+     ```
+     ```bash
+     python main-code.py
+     ```
+     *Remarque:* Vérifiez quel script (`main[1-24].py`) correspond le mieux à vos besoins.
+<br><br>
+2. **Accédez à l'interface utilisateur**
+    Après avoir démarré l'interface utilisateur, Flask imprime une URL dans le terminal.
+    - Ouvrez cette URL dans votre navigateur (peut être cliquée directement sous PowerShell avec `Ctrl + Clic`).
+    - L'interface utilisateur MAVIS devrait apparaître dans le navigateur.
+<br><br>
+3. **Désactiver l'environnement virtuel**
+    Une fois terminé, vous pouvez désactiver l'environnement virtuel à l'aide de la commande suivante:
+    ```bash
+    désactiver
+    ```
+
+## **Modèles alternatifs pour MAVIS**
+
+> ⚠️**Toujours en cours**⚠️
+
+Étant donné que **Xc++ 2** n'est pas encore sorti, vous pouvez utiliser les modèles suivants à la place:
+
+*Pour installer les modèles Ollama, vous avez besoin de l'application Ollama: [https://ollama.com/download](https://ollama.com/download).<br>
+Après l'installation, vous devez toujours démarrer l'application pour utiliser les modèles.*
+
+1. **Vision Lama 3.2**
+    Installez ce modèle via Ollama:
+    - **Pour MAVIS 11B**:
+    ```bash
+    ollama exécute lama3.2-vision
+    ```
+    - **Pour MAVIS 90B**:
+    ```bash
+    ollama exécute lama3.2-vision:90b
+    ```
+
+2. **Qwen 2.5 Coder** (sans vision)
+    Ce modèle est optimisé pour un fonctionnement en code pur:
+    - **Pour MAVIS 11B**:
+    ```bash
+    ollama exécute qwen2.5-coder:14b
+    ```
+    - **Pour MAVIS 90B**:
+    ```bash
+    ollama exécute qwen2.5-coder:32b
+    ```
+3. **QwQ** (sans vision)
+    Ce modèle est optimisé pour les opérations mathématiques pures:
+    ```bash
+    ollama cours qwq
+    ```
+
+### Amusez-vous avec MAVIS 🚀
 
 ## _Using_
 
