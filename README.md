@@ -819,7 +819,50 @@ Après l'installation, vous devez toujours démarrer l'application pour utiliser
 
 ### Demo 9
 
+Task 1:
+
+#### "Task: Phase diagram of a binary mixed system
+
+In this task, students are to create a phase diagram for a binary mixed system that shows the phase transitions between the liquid and vapor phases. They use thermodynamic models and learn how to visualize complex phase diagrams using Python and the **Matplotlib** and **Seaborn** libraries.
+
+Use the Antoine equation to calculate the vapor pressure for each of the two components at a given temperature. The vapor pressure formula is:
+
+$$
+P_A = P_A^0 \cdot x_A \quad \text{and} \quad P_B = P_B^0 \cdot x_B
+$$
+
+Where $P_A^0$ and $P_B^0$ are the vapor pressures of the pure components at a given temperature $T$, and $x_A$ and $x_B$ are the mole fractions of the two components in the liquid phase.
+
+##### Given data:
+The vapor pressure parameters for the two components A and B at different temperatures are described by the **Antoine equation**. The corresponding constants for each component are:
+
+- **For component A**:
+
+- $A_A = 8.07131$
+
+- $B_A = 1730.63$
+
+- $C_A = 233.426$
+
+- **For component B**:
+
+- $A_B = 8.14019$
+
+- $B_B = 1810.94$
+
+- $C_B = 244.485 $
+
+Good luck!
+"
+
 <div>
+    <img src="./readme-img/mavis-demo73.png" alt="mavis" width="1400">
+    <img src="./readme-img/mavis-demo74.png" alt="mavis" width="1400">
+    <img src="./readme-img/mavis-demo75.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-demo72.png" alt="mavis" width="1400">
     <img src="./readme-img/mavis-demo71.png" alt="mavis" width="1400">
 </div>
 

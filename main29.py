@@ -156,7 +156,7 @@ def execute_python_code(md_content):
 
 @app.route('/')
 def index():
-    return render_template('index16.html')
+    return render_template('index15.html')
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
@@ -205,7 +205,7 @@ def send_message():
         # Verarbeite die Nachricht ohne Bild, benutze das Standardbild
         try:
             response = ollama.chat(
-                model='llama3.2-vision',
+                model='qwen2.5-coder:14b',
                 messages=[{
                     'role': 'user',
                     'content': user_message
