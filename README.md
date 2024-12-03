@@ -322,6 +322,9 @@
     ```bash
     pip install dash
     ```
+   
+   not absolutely necessary
+
     ```bash
     pip install torch
     ```
@@ -512,6 +515,9 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
     ```bash
     pip install dash
     ```
+   
+   nicht unbedingt notwendig
+
     ```bash
     pip install torch
     ```
@@ -698,6 +704,9 @@ Pour réussir l'installation de MAVIS, vous avez besoin des programmes suivants:
     ```bash
     pip install dash
     ```
+   
+   pas absolument nécessaire
+
     ```bash
     pip install torch
     ```
