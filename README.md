@@ -110,10 +110,6 @@
 
 <br>
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner28.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-
 ## _Updates_
 
 ### 1. MAVIS EAP release (with Llama 3.2) [NEW]
@@ -142,11 +138,12 @@
 <br>
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner8.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./static/images/mavis-walpaper-c4.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 ## Table of contents
 - [Versions](#versions)
+- [Benchmark](#benchmark)
 - [Peharge](#peharge)
 - [Installation](#installation)
 - [Usage](#using)
@@ -161,7 +158,7 @@
 
 ---
 
-## _Versions_
+## Versions
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-banner42.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -178,7 +175,15 @@
 | Mavis 1 11B | With **Xc++ 2 11B** + QwQ 32B or Qwen 2.5 Coder 14B or Llama 3.2 11B +32GB RAM +40GB storage (Works with one CPU)  | 11B |
 | Mavis 1 90B | With **Xc++ 2 90B** + QwQ 32B or Qwen 2.5 Coder 32B or Llama 3.2 90B +128GB RAM +90GB storage (Works with one CPU) | 90B |
 
+## Benchmark
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis-banner28.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
 <br>
+
+> ⚠️**Still in progress**⚠️
 
 |               | Xc++ 2<br/>(01.12.2024 - goal: 01.06.2025) | Qwq<br/>32B-preview | Open AI<br/>o1-preview | Open AI<br/>mini o1 | Open AI<br/>o1<br/>(not out) | GPT-4o | Claude3.5<br/>Sonnet |
 |---------------|--------------------------------------------|---------------------|------------------------|---------------------|------------------------------|--------|----------------------|
@@ -188,7 +193,7 @@
 | LiveCodeBench | 50.0 (goal 61.0)                           | 50.0                | 53.6                   | 58.0                | ...                          | 33.4   | 30.4                 |
 | HumanEval     | 92.7 (goal 95)                             | ...                 | 92.4                   | 92.4                | ...                          | 90.2   | 92.0                 |
 
-## _Peharge_
+## Peharge
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/Peharge-banner4.jpg" alt="peharge" width="1400" style="margin: 10px;">
@@ -198,7 +203,7 @@
 
 > ⚠️**Still in progress**⚠️
 
-## _Peharge Program 2024-2025_
+## Peharge Program 2024-2025
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/peharge3.png" alt="peharge" width="1400" style="margin: 10px;">
@@ -208,7 +213,7 @@
 
 > ⚠️**Still in progress**⚠️
 
-## _Installation_
+## Installation
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-banner32-2.png" alt="woyzy" width="1400" style="margin: 10px;">
@@ -313,7 +318,7 @@ Once completed, you can deactivate the virtual environment using the following c
     deactivate
     ```
 
-## **Alternative models for MAVIS**
+## Alternative models for MAVIS
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
     <img src="./readme-img/mavis-banner33-2.png" alt="woyzy" width="1400" style="margin: 10px;">
@@ -450,7 +455,7 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
    ```
    
 
-## **Alternative Modelle für MAVIS**
+## Alternative Modelle für MAVIS
 
 Da **Xc++ 2** noch nicht veröffentlicht wurde, können Sie stattdessen folgende Modelle verwenden:
 
@@ -582,7 +587,7 @@ Pour réussir l'installation de MAVIS, vous avez besoin des programmes suivants:
     désactiver
     ```
 
-## **Modèles alternatifs pour MAVIS**
+## Modèles alternatifs pour MAVIS
 
 > ⚠️**Toujours en cours**⚠️
 
@@ -620,7 +625,7 @@ Après l'installation, vous devez toujours démarrer l'application pour utiliser
 
 ### Amusez-vous avec MAVIS 🚀
 
-## _Using_
+## Using
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-banner35.png" alt="woyzy" width="1400" style="margin: 10px;">
