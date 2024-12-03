@@ -33,6 +33,7 @@
 <img alt="pandas" src="https://img.shields.io/badge/-Pandas-333333?style=flat&logo=pandas">
 <img alt="matplotlib" src="https://img.shields.io/badge/-Matplotlib-013243?style=flat&logo=matplotlib">
 <img alt="plotly" src="https://img.shields.io/badge/-Plotly-3CA9E7?style=flat&logo=plotly">
+<img alt="seaborn" src="https://img.shields.io/badge/-Seaborn-000000?style=flat&logo=seaborn">
 <br>
 <br>
 
@@ -815,6 +816,12 @@ Après l'installation, vous devez toujours démarrer l'application pour utiliser
 <p align="center">
   <img src="./readme-img/mavis-banner37.png" alt="mavis" width="1400" style="margin: 10px;">
 <p>
+
+### Demo 9
+
+<div>
+    <img src="./readme-img/mavis-demo71.png" alt="mavis" width="1400">
+</div>
 
 ### Demo 8
 
