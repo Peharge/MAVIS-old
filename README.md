@@ -93,7 +93,7 @@
 > Utilisez les puissantes fonctions de MAVIS pour rendre vos projets plus efficaces et professionnels.
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/MAVIS-ads10.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/MAVIS-ads11.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 <br>
@@ -115,7 +115,7 @@
 ### 1. MAVIS EAP release (with Llama 3.2) [NEW]
 
 <p align="center">
-    <img src="./readme-img/MAVIS-ads5.png" alt="mavis" width="1400" style="margin: 10px;">
+    <img src="./readme-img/MAVIS-ads13.png" alt="mavis" width="1400" style="margin: 10px;">
 </p>
 
 > 01.12.2024 
