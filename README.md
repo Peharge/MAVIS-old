@@ -586,8 +586,6 @@ Pour réussir l'installation de MAVIS, vous avez besoin des programmes suivants:
 
 ## **Modèles alternatifs pour MAVIS**
 
-> ⚠️**Toujours en cours**⚠️
-
 Étant donné que **Xc++ 2** n'est pas encore sorti, vous pouvez utiliser les modèles suivants à la place:
 
 *Pour installer les modèles Ollama, vous avez besoin de l'application Ollama: [https://ollama.com/download](https://ollama.com/download).<br>
