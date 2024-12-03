@@ -115,7 +115,7 @@
 ### 1. MAVIS EAP release (with Llama 3.2) [NEW]
 
 <p align="center">
-    <img src="./readme-img/mavis-ads5.png" alt="mavis" width="1400" style="margin: 10px;">
+    <img src="./readme-img/MAVIS-ads5.png" alt="mavis" width="1400" style="margin: 10px;">
 </p>
 
 > 01.12.2024 
@@ -712,12 +712,6 @@ Après l'installation, vous devez toujours démarrer l'application pour utiliser
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/demo2-1.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/demo2-2.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/demo2-3.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/demo2-4.png" alt="mavis" width="1400" style="margin: 10px;">
