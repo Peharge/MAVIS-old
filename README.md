@@ -284,6 +284,12 @@
     pip install ollama
     ```
     ```bash
+    pip install Werkzeug
+    ```
+    ```bash
+    pip install scipy
+    ```
+    ```bash
     pip install markdown
     ```
     ```bash
@@ -315,6 +321,18 @@
     ```
     ```bash
     pip install dash
+    ```
+    ```bash
+    pip install torch
+    ```
+    ```bash
+    pip install tensorflow
+    ```
+    ```bash
+    pip install scikit-learn
+    ```
+    ```bash
+    pip install transformers
     ```
 
 ### Start the UI
@@ -456,6 +474,12 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
     pip install ollama
     ```
     ```bash
+    pip install Werkzeug
+    ```
+    ```bash
+    pip install scipy
+    ```
+    ```bash
     pip install markdown
     ```
     ```bash
@@ -487,6 +511,18 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
     ```
     ```bash
     pip install dash
+    ```
+    ```bash
+    pip install torch
+    ```
+    ```bash
+    pip install tensorflow
+    ```
+    ```bash
+    pip install scikit-learn
+    ```
+    ```bash
+    pip install transformers
     ```
 
 ### Benutzeroberfläche starten
@@ -624,6 +660,12 @@ Pour réussir l'installation de MAVIS, vous avez besoin des programmes suivants:
     pip install ollama
     ```
     ```bash
+    pip install Werkzeug
+    ```
+    ```bash
+    pip install scipy
+    ```
+    ```bash
     pip install markdown
     ```
     ```bash
@@ -655,6 +697,18 @@ Pour réussir l'installation de MAVIS, vous avez besoin des programmes suivants:
     ```
     ```bash
     pip install dash
+    ```
+    ```bash
+    pip install torch
+    ```
+    ```bash
+    pip install tensorflow
+    ```
+    ```bash
+    pip install scikit-learn
+    ```
+    ```bash
+    pip install transformers
     ```
 
 ### Démarrer l'interface utilisateur
