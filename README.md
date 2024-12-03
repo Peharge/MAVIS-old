@@ -28,10 +28,11 @@
 <br>
 <br>
 
-<img alt="matplotlib" src="https://img.shields.io/badge/-Matplotlib-000000?style=flat&logo=python">
 <img alt="latex" src="https://img.shields.io/badge/-LaTeX-008080?style=flat&logo=latex&logoColor=white">
 <img alt="numpy" src="https://img.shields.io/badge/-Numpy-013243?&logo=NumPy">
 <img alt="pandas" src="https://img.shields.io/badge/-Pandas-333333?style=flat&logo=pandas">
+<img alt="matplotlib" src="https://img.shields.io/badge/-Matplotlib-013243?style=flat&logo=matplotlib">
+<img alt="plotly" src="https://img.shields.io/badge/-Plotly-3CA9E7?style=flat&logo=plotly">
 <br>
 <br>
 
@@ -118,7 +119,7 @@
 ### 1. MAVIS EAP release (with Llama 3.2) [NEW]
 
 <p align="center">
-    <img src="./static/images/mavis-walpaper-c4.png" alt="mavis" width="1400" style="margin: 10px;">
+    <img src="./readme-img/mavis-ads5.png" alt="mavis" width="1400" style="margin: 10px;">
 </p>
 
 > 01.12.2024 
@@ -146,6 +147,7 @@
 
 ## Table of contents
 - [Versions](#versions)
+- [Peharge](#peharge)
 - [Installation](#installation)
 - [Usage](#using)
 - [Xc++](#Xcpp)
@@ -177,10 +179,6 @@
 | Mavis 1 90B | With **Xc++ 2 90B** + QwQ 32B or Qwen 2.5 Coder 32B or Llama 3.2 90B +128GB RAM +90GB storage (Works with one CPU) | 90B |
 
 <br>
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner43.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
 
 |               | Xc++ 2<br/>(01.12.2024 - goal: 01.06.2025) | Qwq<br/>32B-preview | Open AI<br/>o1-preview | Open AI<br/>mini o1 | Open AI<br/>o1<br/>(not out) | GPT-4o | Claude3.5<br/>Sonnet |
 |---------------|--------------------------------------------|---------------------|------------------------|---------------------|------------------------------|--------|----------------------|
@@ -645,7 +643,7 @@ Après l'installation, vous devez toujours démarrer l'application pour utiliser
 ## Demo
 
 <p align="center">
-  <img src="./readme-img/mavis-ads4.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis-banner37.png" alt="mavis" width="1400" style="margin: 10px;">
 <p>
 
 ### Demo 8
