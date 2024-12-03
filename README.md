@@ -225,22 +225,22 @@
 
 ### English:
 
-**MAVIS (aka Xc++ 2)** is currently under development and is not fully available in this repository. Cloning the repository will only give you the README file, some images and already released codes, including the user interface (UI) compatible with **Qwen 2.5 Code** and **Llama 3.2 Vision**.
+  **MAVIS (aka Xc++ 2)** is currently under development and is not fully available in this repository. Cloning the repository will only give you the README file, some images and already released codes, including the user interface (UI) compatible with **Qwen 2.5 Code** and **Llama 3.2 Vision**.
 
 ### Prerequisites
 
-To successfully install MAVIS, you need the following programs:
+   To successfully install MAVIS, you need the following programs:
 
 1. **Git**
-Download Git from the official website:
-[https://git-scm.com](https://git-scm.com)
+   Download Git from the official website:
+   [https://git-scm.com](https://git-scm.com)
 
 2. **Python**
    - Recommended: **Python 3.13** (3.12 or 3.11 are also supported).
    - Download Python from the [https://www.python.org](https://www.python.org) or via the Microsoft Store.
 
 3. **Python development environment (IDE) (but not required)**
-A suitable IDE makes developing and working with Python easier. Recommended options:
+   A suitable IDE makes developing and working with Python easier. Recommended options:
    - **Visual Studio Code (free)**: [https://code.visualstudio.com](https://code.visualstudio.com)
    - **PyCharm (paid)**: [https://www.jetbrains.com/de-de/pycharm/](https://www.jetbrains.com/de-de/pycharm/)
    *Note:* PyCharm offers advanced features for Python development and is particularly suitable for advanced users.
@@ -248,24 +248,24 @@ A suitable IDE makes developing and working with Python easier. Recommended opti
 ### Installation
 
 1. **Clone repository**
-Clone the repository to a local directory:
+   Clone the repository to a local directory:
     ```bash
     git clone https://github.com/Peharge/MAVIS
     ```
 2. **Change directory**
-Navigate to the project directory:
+   Navigate to the project directory:
     ```bash
     cd MAVIS
     ```
 3. **Create Python virtual environment**
-Set up a virtual environment to install dependencies in isolation:
+   Set up a virtual environment to install dependencies in isolation:
     ```bash
     python -m venv env
     ```
-*(You can replace `env` with any other name.)*
+   *(You can replace `env` with any other name.)*
 
 4. **Activate virtual environment**
-Activate the virtual environment:
+   Activate the virtual environment:
    - **For CMD**:
        ```bash
        env\Scripts\activate
@@ -276,15 +276,51 @@ Activate the virtual environment:
        ```
 
 5. **Install dependencies**
-Install the required libraries:
+   Install the required libraries:
     ```bash
-    pip install flask ollama markdown psutil gputil numpy matplotlib math sympy pandas
+    pip install flask
+    ```
+    ```bash
+    pip install ollama
+    ```
+    ```bash
+    pip install markdown
+    ```
+    ```bash
+    pip install psutil
+    ```
+    ```bash
+    pip install gputil
+    ```
+    ```bash
+    pip install matplotlib
+    ```
+    ```bash
+    pip install math
+    ```
+    ```bash
+    pip install sympy
+    ```
+    ```bash
+    pip install pandas
+    ```
+    ```bash
+    pip install seaborn
+    ```
+    ```bash
+    pip install numpy
+    ```
+    ```bash
+    pip install -U kaleido
+    ```
+    ```bash
+    pip install dash
     ```
 
 ### Start the UI
 
 1. **Start the UI**
-You can start the UI in two ways:
+   You can start the UI in two ways:
    - With a batch file:
    - `run-main.bat` (recommended)
    - `run-main2.bat` (for tests)
@@ -302,15 +338,15 @@ You can start the UI in two ways:
        ```bash
        python main-code.py
        ```
-*Note:* Check which script (`main[1-24].py`) is best suited for your needs.
+   *Note:* Check which script (`main[1-24].py`) is best suited for your needs.
 
 2. **Accessing the UI**
-After starting the UI, Flask will output a URL in the terminal.
+   After starting the UI, Flask will output a URL in the terminal.
    - Open this URL in your browser (directly clickable in PowerShell with `Ctrl + Click`).
    - The MAVIS UI should appear in the browser.
 
 3. **Deactivate virtual environment**
-Once completed, you can deactivate the virtual environment using the following command:
+   Once completed, you can deactivate the virtual environment using the following command:
     ```bash
     deactivate
     ```
@@ -331,7 +367,7 @@ Since **Xc++ 2** has not been released yet, you can use the following models ins
 After installation, you always have to start the app to use the models.*
 
 1. **Llama 3.2 Vision**
-Install this model via Ollama:
+   Install this model via Ollama:
    - **For MAVIS 11B**:
        ```bash
        ollama run llama3.2-vision
@@ -342,7 +378,7 @@ Install this model via Ollama:
        ```
 
 2. **Qwen 2.5 Coder** (without vision)
-This model is optimized for pure code operation:
+   This model is optimized for pure code operation:
    - **For MAVIS 11B**:
        ```bash
        ollama run qwen2.5-coder:14b
@@ -352,7 +388,7 @@ This model is optimized for pure code operation:
        ollama run qwen2.5-coder:32b
        ```
 3. **QwQ** (without vision)
-This model is optimized for pure math operation:
+   This model is optimized for pure math operation:
     ```bash
     ollama run qwq
     ```
@@ -413,9 +449,45 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
      
 5. **Abhängigkeiten installieren**  
    Installieren Sie die benötigten Bibliotheken:
-   ```bash
-   pip install flask ollama markdown psutil gputil numpy matplotlib math sympy pandas
-   ```
+    ```bash
+    pip install flask
+    ```
+    ```bash
+    pip install ollama
+    ```
+    ```bash
+    pip install markdown
+    ```
+    ```bash
+    pip install psutil
+    ```
+    ```bash
+    pip install gputil
+    ```
+    ```bash
+    pip install matplotlib
+    ```
+    ```bash
+    pip install math
+    ```
+    ```bash
+    pip install sympy
+    ```
+    ```bash
+    pip install pandas
+    ```
+    ```bash
+    pip install seaborn
+    ```
+    ```bash
+    pip install numpy
+    ```
+    ```bash
+    pip install -U kaleido
+    ```
+    ```bash
+    pip install dash
+    ```
 
 ### Benutzeroberfläche starten
 
@@ -497,15 +569,15 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 Pour réussir l'installation de MAVIS, vous avez besoin des programmes suivants:
 
 1. **Git**
- Téléchargez Git depuis le site officiel:
- [https://git-scm.com](https://git-scm.com)
+   Téléchargez Git depuis le site officiel:
+   [https://git-scm.com](https://git-scm.com)
 
 2. **Python**
    - Recommandé: **Python 3.13** (3.12 ou 3.11 sont également pris en charge).
    - Téléchargez Python depuis [https://www.python.org](https://www.python.org) ou depuis le Microsoft Store.
 
 3. **Environnement de développement Python (IDE) (mais ce n'est pas obligatoire)**
- Un IDE approprié facilite le développement et l’utilisation de Python. Options recommandées:
+   Un IDE approprié facilite le développement et l’utilisation de Python. Options recommandées:
    - **Visual Studio Code (gratuit)**: [https://code.visualstudio.com](https://code.visualstudio.com)
    - **PyCharm (payant)**: [https://www.jetbrains.com/de-de/pycharm/](https://www.jetbrains.com/de-de/pycharm/)<br>
    *Remarque:* PyCharm offre des fonctionnalités avancées pour le développement Python et est particulièrement adapté aux utilisateurs avancés.
@@ -546,7 +618,43 @@ Pour réussir l'installation de MAVIS, vous avez besoin des programmes suivants:
 5. **Installer les dépendances**
     Installez les bibliothèques requises:
     ```bash
-    pip installer flacon ollama markdown psutil gputil numpy matplotlib math sympy pandas
+    pip install flask
+    ```
+    ```bash
+    pip install ollama
+    ```
+    ```bash
+    pip install markdown
+    ```
+    ```bash
+    pip install psutil
+    ```
+    ```bash
+    pip install gputil
+    ```
+    ```bash
+    pip install matplotlib
+    ```
+    ```bash
+    pip install math
+    ```
+    ```bash
+    pip install sympy
+    ```
+    ```bash
+    pip install pandas
+    ```
+    ```bash
+    pip install seaborn
+    ```
+    ```bash
+    pip install numpy
+    ```
+    ```bash
+    pip install -U kaleido
+    ```
+    ```bash
+    pip install dash
     ```
 
 ### Démarrer l'interface utilisateur
@@ -557,7 +665,6 @@ Pour réussir l'installation de MAVIS, vous avez besoin des programmes suivants:
     - `run-main.bat` (recommandé)
     - `run-main2.bat` (pour les tests)
     - `run-main3.bat` (pour les tests)
-   <br><br>
    - Alternativement via le script Python :
      ```bash
      python main-main.py
