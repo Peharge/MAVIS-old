@@ -236,14 +236,14 @@ Download Git from the official website:
 [https://git-scm.com](https://git-scm.com)
 
 2. **Python**
-- Recommended: **Python 3.13** (3.12 or 3.11 are also supported).
-- Download Python from the [https://www.python.org](https://www.python.org) or via the Microsoft Store.
+   - Recommended: **Python 3.13** (3.12 or 3.11 are also supported).
+   - Download Python from the [https://www.python.org](https://www.python.org) or via the Microsoft Store.
 
 3. **Python development environment (IDE) (but not required)**
 A suitable IDE makes developing and working with Python easier. Recommended options:
-- **Visual Studio Code (free)**: [https://code.visualstudio.com](https://code.visualstudio.com)
-- **PyCharm (paid)**: [https://www.jetbrains.com/de-de/pycharm/](https://www.jetbrains.com/de-de/pycharm/)
-*Note:* PyCharm offers advanced features for Python development and is particularly suitable for advanced users.
+   - **Visual Studio Code (free)**: [https://code.visualstudio.com](https://code.visualstudio.com)
+   - **PyCharm (paid)**: [https://www.jetbrains.com/de-de/pycharm/](https://www.jetbrains.com/de-de/pycharm/)
+   *Note:* PyCharm offers advanced features for Python development and is particularly suitable for advanced users.
 
 ### Installation
 
@@ -266,14 +266,14 @@ Set up a virtual environment to install dependencies in isolation:
 
 4. **Activate virtual environment**
 Activate the virtual environment:
-- **For CMD**:
-    ```bash
-    env\Scripts\activate
-    ```
-- **For PowerShell**:
-    ```bash
-    .\env\Scripts\Activate
-    ```
+   - **For CMD**:
+       ```bash
+       env\Scripts\activate
+       ```
+   - **For PowerShell**:
+       ```bash
+       .\env\Scripts\Activate
+       ```
 
 5. **Install dependencies**
 Install the required libraries:
@@ -285,32 +285,29 @@ Install the required libraries:
 
 1. **Start the UI**
 You can start the UI in two ways:
-- With a batch file:
-- `run-main.bat` (recommended)
-- `run-main2.bat` (for tests)
-- `run-main3.bat` (for tests)
-- Alternatively via the Python script:
-    ```bash
-    python main-main.py
-    ```
-    ```bash
-    python main-math.py
-    ```
-    ```bash
-    python main-math-pro.py
-    ```
-    ```bash
-    python main-code.py
-    ```
+   - With a batch file:
+   - `run-main.bat` (recommended)
+   - `run-main2.bat` (for tests)
+   - `run-main3.bat` (for tests)
+   - Alternatively via the Python script:
+       ```bash
+       python main-main.py
+       ```
+       ```bash
+       python main-math.py
+       ```
+       ```bash
+       python main-math-pro.py
+       ```
+       ```bash
+       python main-code.py
+       ```
 *Note:* Check which script (`main[1-24].py`) is best suited for your needs.
 
 2. **Accessing the UI**
-
 After starting the UI, Flask will output a URL in the terminal.
-
-- Open this URL in your browser (directly clickable in PowerShell with `Ctrl + Click`).
-
-- The MAVIS UI should appear in the browser.
+   - Open this URL in your browser (directly clickable in PowerShell with `Ctrl + Click`).
+   - The MAVIS UI should appear in the browser.
 
 3. **Deactivate virtual environment**
 Once completed, you can deactivate the virtual environment using the following command:
