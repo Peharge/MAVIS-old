@@ -20,6 +20,12 @@ import math
 import sympy as sp
 import pandas as pd
 
+#---soon für Maschinenbau---
+
+# import seaborn, FEniCS, PyDy, PyCalculix, SolidPython, Pyomo, GEKKO, CasADi, Control Systems Library, ROS, PyBullet, H2O.ai, Pint, CoolProp, PyThermo
+
+#---ultimate für Deep Learning---
+
 # import scipy as sp
 
 # Importiere die wichtigsten Komponenten von PyTorch für Deep Learning (sehr mächtig) (Install: https://pytorch.org/)
