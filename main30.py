@@ -10,19 +10,18 @@ import base64
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objects as go
-from dash import Dash, dcc, html #pip install dash
-
-# pip install -U kaleido
-
-import math
-import sympy as sp
-import datetime
-import altair as alt
 import plotly.io as pio
 import seaborn as sns
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+import math
+import sympy as sp
+from dash import Dash, dcc, html #pip install dash
+
+# pip install -U kaleido
+
+import datetime
+import altair as alt
 from IPython.display import display  # Zum Anzeigen von HTML
 
 #---soon für Maschinenbau---
