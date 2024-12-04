@@ -821,6 +821,8 @@ Après l'installation, vous devez toujours démarrer l'application pour utiliser
 
 <div>
     <img src="./readme-img/mavis-demo81.gif" alt="mavis" width="1400">
+    <img src="./readme-img/mavis-demo83.gif" alt="mavis" width="1400">
+    <img src="./readme-img/mavis-demo82.gif" alt="mavis" width="1400">
 </div>
 
 ### Demo 10
