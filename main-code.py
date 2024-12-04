@@ -10,19 +10,22 @@ import base64
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objects as go
-from dash import Dash, dcc, html #pip install dash
-
-# pip install -U kaleido
-
-import datetime
-import numpy as np
-import math
-import sympy as sp
+import altair as alt
+import plotly.io as pio
+import seaborn as sns
 import pandas as pd
+import numpy as np
+import sympy as sp
+import datetime
+from dash import Dash, dcc, html
+import math
+from IPython.display import display  # Zum Anzeigen von HTML
+
+# Optional: pip install -U kaleido für Plotly Export
 
 #---soon für Maschinenbau---
 
-# import seaborn, FEniCS, PyDy, PyCalculix, SolidPython, Pyomo, GEKKO, CasADi, Control Systems Library, ROS, PyBullet, H2O.ai, Pint, CoolProp, PyThermo
+# FEniCS, PyDy, PyCalculix, SolidPython, Pyomo, GEKKO, CasADi, Control Systems Library, ROS, PyBullet, H2O.ai, Pint, CoolProp, PyThermo
 
 #---ultimate für Deep Learning---
 
@@ -66,14 +69,11 @@ if not os.path.exists(UPLOAD_FOLDER):
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-
 def execute_python_code(md_content):
     """
     Sucht nach Python-Code im Markdown-Inhalt, führt ihn aus und fügt die Ausgaben (Text oder Bild) zum Markdown hinzu.
-    Falls kein Code vorhanden ist, wird "" als Ergebnis zurückgegeben.
+    Unterstützt Matplotlib, Seaborn, Plotly und Altair.
     """
-    import plotly.io as pio  # Import notwendig für das Speichern von Plotly-Bildern
-
     code_pattern = re.compile(r"```python(.*?)```", re.DOTALL)
     matches = code_pattern.findall(md_content)
 
@@ -93,7 +93,7 @@ def execute_python_code(md_content):
             old_stdout = sys.stdout
             sys.stdout = io.StringIO()
 
-            # `plt.show()` durch Speichern ersetzen
+            # Ersetze plt.show() durch Speichern der Grafik
             code = code.replace("plt.show()", "# plt.show() ersetzt durch Speichern der Grafik")
 
             # Kontext für die Code-Ausführung erstellen
@@ -107,8 +107,9 @@ def execute_python_code(md_content):
             sys.stdout = old_stdout
 
             img_html = ""
-            # Verarbeitung von Matplotlib-Grafiken
-            fig = plt.gcf()
+
+            # Verarbeitung von Matplotlib- oder Seaborn-Grafiken
+            fig = plt.gcf()  # Seaborn nutzt Matplotlib für die Visualisierung
             if fig and fig.get_axes():  # Überprüfen, ob eine Grafik vorhanden ist
                 # Generiere einen eindeutigen Dateinamen
                 timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
@@ -125,19 +126,36 @@ def execute_python_code(md_content):
 
             # Verarbeitung von Plotly-Grafiken
             for var_name, var_value in exec_locals.items():
-                if hasattr(var_value, "write_image") and callable(var_value.write_image):
+                if hasattr(var_value, "write_html") and callable(var_value.write_html):
                     # Prüfen, ob die Variable eine Plotly-Figur ist
                     timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-                    image_filename = f"fig_plotly_{timestamp}.png"
+                    html_filename = f"fig_altair_{timestamp}.html"  # HTML-Datei
+                    html_path = os.path.join(image_dir, html_filename)
+
+                    # Diagramm als interaktive HTML-Datei speichern
+                    var_value.write_html(html_path)
+
+                    # Relativer Pfad für HTML (basierend auf Flask-Static-Serving)
+                    image_url = f"/static/image/{html_filename}"
+
+                    # Füge das HTML-Dokument in den HTML-Output ein
+                    img_html += f'<iframe class="img-out" src="{image_url}" width="100%" height="600px" frameborder="0"></iframe>'
+                    break  # Nur das erste Plotly-Diagramm verarbeiten
+
+            # Verarbeitung von Altair-Grafiken
+            for var_name, var_value in exec_locals.items():
+                if isinstance(var_value, alt.Chart):  # Prüfen, ob die Variable ein Altair-Diagramm ist
+                    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+                    image_filename = f"fig_altair_{timestamp}.html"
                     image_path = os.path.join(image_dir, image_filename)
-                    # Diagramm als Bild speichern
-                    var_value.write_image(image_path)
+                    # Altair-Diagramm als HTML speichern
+                    var_value.save(image_path)
                     # Relativer Pfad für HTML (basierend auf Flask-Static-Serving)
                     image_url = f"/static/image/{image_filename}"
 
-                    # Füge das Bild in den HTML-Output ein
-                    img_html += f'<img class="img-out" src="{image_url}" alt="Generated Plotly Plot" />'
-                    break  # Nur das erste Plotly-Diagramm verarbeiten
+                    # Füge das Altair-Diagramm in den HTML-Output ein
+                    img_html += f'<iframe class="img-out" src="{image_url}" width="600" height="400"></iframe>'
+                    break  # Nur das erste Altair-Diagramm verarbeiten
 
             # Ersetze den Codeblock im Markdown durch den Ausgabeblock (Text oder Bild)
             result = f"<div class='code-output-box'>{output_text}{img_html}</div>"
