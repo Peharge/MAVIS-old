@@ -34,6 +34,7 @@
 <img alt="matplotlib" src="https://img.shields.io/badge/-Matplotlib-013243?style=flat&logo=matplotlib">
 <img alt="plotly" src="https://img.shields.io/badge/-Plotly-3CA9E7?style=flat&logo=plotly">
 <img alt="seaborn" src="https://img.shields.io/badge/-Seaborn-000000?style=flat&logo=seaborn">
+<img alt="altair" src="https://img.shields.io/badge/-Altair-000000?style=flat&logo=altair">
 <br>
 <br>
 
