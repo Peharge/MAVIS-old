@@ -14,17 +14,9 @@ from dash import Dash, dcc, html #pip install dash
 
 # pip install -U kaleido
 
-import datetime
-import numpy as np
 import math
 import sympy as sp
-import pandas as pd
-
-import os
-import sys
-import re
 import datetime
-import io
 import altair as alt
 import plotly.io as pio
 import seaborn as sns
@@ -35,9 +27,7 @@ from IPython.display import display  # Zum Anzeigen von HTML
 
 #---soon für Maschinenbau---
 
-# seaborn, FEniCS, PyDy, PyCalculix, SolidPython, Pyomo, GEKKO, CasADi, Control Systems Library, ROS, PyBullet, H2O.ai, Pint, CoolProp, PyThermo
-
-import seaborn as sns
+# FEniCS, PyDy, PyCalculix, SolidPython, Pyomo, GEKKO, CasADi, Control Systems Library, ROS, PyBullet, H2O.ai, Pint, CoolProp, PyThermo
 
 #---ultimate für Deep Learning---
 
