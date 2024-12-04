@@ -817,6 +817,12 @@ Après l'installation, vous devez toujours démarrer l'application pour utiliser
   <img src="./readme-img/mavis-banner37.png" alt="mavis" width="1400" style="margin: 10px;">
 <p>
 
+### Demo 11
+
+<div>
+    <img src="./readme-img/mavis-demo81.gif" alt="mavis" width="1400">
+</div>
+
 ### Demo 10
 
 Task 1:
