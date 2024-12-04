@@ -752,7 +752,7 @@ Pour réussir l'installation de MAVIS, vous avez besoin des programmes suivants:
 3. **Désactiver l'environnement virtuel**
     Une fois terminé, vous pouvez désactiver l'environnement virtuel à l'aide de la commande suivante:
     ```bash
-    désactiver
+    deactivate
     ```
 
 ## Modèles alternatifs pour MAVIS
@@ -766,27 +766,27 @@ Après l'installation, vous devez toujours démarrer l'application pour utiliser
     Installez ce modèle via Ollama:
     - **Pour MAVIS 11B**:
     ```bash
-    ollama exécute lama3.2-vision
+    ollama run lama3.2-vision
     ```
     - **Pour MAVIS 90B**:
     ```bash
-    ollama exécute lama3.2-vision:90b
+    ollama run lama3.2-vision:90b
     ```
 
 2. **Qwen 2.5 Coder** (sans vision)
     Ce modèle est optimisé pour un fonctionnement en code pur:
     - **Pour MAVIS 11B**:
     ```bash
-    ollama exécute qwen2.5-coder:14b
+    ollama run qwen2.5-coder:14b
     ```
     - **Pour MAVIS 90B**:
     ```bash
-    ollama exécute qwen2.5-coder:32b
+    ollama run qwen2.5-coder:32b
     ```
 3. **QwQ** (sans vision)
     Ce modèle est optimisé pour les opérations mathématiques pures:
     ```bash
-    ollama cours qwq
+    ollama run qwq
     ```
 
 ### Amusez-vous avec MAVIS 🚀
