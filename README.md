@@ -195,7 +195,7 @@
 
 > ⚠️**Still in progress**⚠️
 
-|               | Xc++ 2<br/>(01.12.2024 - goal: 01.06.2025) | Qwq<br/>32B-preview | Open AI<br/>o1-preview | Open AI<br/>mini o1 | Open AI<br/>o1<br/>(not out) | GPT-4o | Claude3.5<br/>Sonnet |
+|               | Xc++ 2<br/>(01.12.2024 - goal: 01.06.2025) | Qwq<br/>32B-preview | Open AI<br/>o1-preview | Open AI<br/>o1 mini | Open AI<br/>o1<br/>(not out) | GPT-4o | Claude3.5<br/>Sonnet |
 |---------------|--------------------------------------------|---------------------|------------------------|---------------------|------------------------------|--------|----------------------|
 | GPQA          | 65.2 (goal 80.0)                           | 65.2                | 72.3                   | 60.0                | 77.3                         | 53.6   | 49.0                 |
 | AIME          | 50.0 (goal 59.0)                           | 50.0                | 44.6                   | 56.7                | ...                          | 59.4   | 53.6                 |
