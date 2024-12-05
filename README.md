@@ -319,10 +319,16 @@
     pip install numpy
     ```
     ```bash
+    pip install altair
+    ```
+    ```bash
     pip install -U kaleido
     ```
     ```bash
     pip install dash
+    ```
+    ```bash
+    pip install ipython
     ```
    
    not absolutely necessary
