@@ -150,7 +150,7 @@
     <img src="./readme-img/mavis-ads-31.gif" alt="mavis" width="1400" style="margin: 10px;">
 </p>
 
-> soon
+> 2025/2026
 
 <br>
 
