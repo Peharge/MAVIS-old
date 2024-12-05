@@ -145,6 +145,13 @@
 
 > soon
 
+### 4. MAVIS 2                     
+<p align="center">
+    <img src="./readme-img/mavis-ads-31.gif" alt="mavis" width="1400" style="margin: 10px;">
+</p>
+
+> soon
+
 <br>
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
