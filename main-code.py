@@ -20,6 +20,7 @@ import datetime
 from dash import Dash, dcc, html
 import math
 from IPython.display import display  # Zum Anzeigen von HTML
+import geopandas as gpd
 
 # Optional: pip install -U kaleido für Plotly Export
 

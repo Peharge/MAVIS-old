@@ -1,0 +1,23 @@
+pip install Flask
+pip install ollama
+pip install Werkzeug
+pip install markdown
+pip install matplotlib
+pip install plotly
+pip install dash
+pip install seaborn
+pip install numpy
+pip install sympy
+pip install pandas
+pip install scipy
+pip install tensorflow
+pip install torch
+pip install scikit-learn
+pip install transformers
+pip install geopandas
+pip install -U altair
+pip install -U vega_datasets
+pip install -U altair_viewer
+pip install ipython
+pip install altair-saver
+pip install -U kaleido
