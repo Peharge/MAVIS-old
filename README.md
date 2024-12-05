@@ -126,6 +126,8 @@
     <img src="./readme-img/mavis-demo91.gif" alt="mavis" width="1400">
 </div>
 
+<br>
+
 > 01.12.2024 
 
 ### 2. MAVIS releaseon MAC OS / Windows / Linux  
