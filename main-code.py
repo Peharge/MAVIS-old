@@ -139,7 +139,7 @@ def execute_python_code(md_content):
                     image_url = f"/static/image/{html_filename}"
 
                     # Füge das HTML-Dokument in den HTML-Output ein
-                    img_html += f'<iframe class="img-out" src="{image_url}" width="100%" height="600px" frameborder="0"></iframe>'
+                    img_html += f'<iframe src="{image_url}" width="600px" height="500px" frameborder="0"></iframe>'
                     break  # Nur das erste Plotly-Diagramm verarbeiten
 
             # Verarbeitung von Altair-Grafiken
@@ -154,7 +154,7 @@ def execute_python_code(md_content):
                     image_url = f"/static/image/{image_filename}"
 
                     # Füge das Altair-Diagramm in den HTML-Output ein
-                    img_html += f'<iframe src="{image_url}" width="600px" height="500px" frameborder="0"></iframe>'
+                    img_html += f'<iframe class="img-out" src="{image_url}" width="600" height="400"></iframe>'
                     break  # Nur das erste Altair-Diagramm verarbeiten
 
             # Ersetze den Codeblock im Markdown durch den Ausgabeblock (Text oder Bild)
