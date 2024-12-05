@@ -120,6 +120,12 @@
     <img src="./readme-img/MAVIS-ads13.png" alt="mavis" width="1400" style="margin: 10px;">
 </p>
 
+### Demo
+
+<div>
+    <img src="./readme-img/mavis-demo91.gif" alt="mavis" width="1400">
+</div>
+
 > 01.12.2024 
 
 ### 2. MAVIS releaseon MAC OS / Windows / Linux  
@@ -280,70 +286,29 @@
 5. **Install dependencies**
    Install the required libraries:
     ```bash
-    pip install flask
-    ```
-    ```bash
+    pip install Flask
     pip install ollama
-    ```
-    ```bash
     pip install Werkzeug
-    ```
-    ```bash
-    pip install scipy
-    ```
-    ```bash
     pip install markdown
-    ```
-    ```bash
-    pip install psutil
-    ```
-    ```bash
-    pip install gputil
-    ```
-    ```bash
     pip install matplotlib
-    ```
-    ```bash
-    pip install math
-    ```
-    ```bash
-    pip install sympy
-    ```
-    ```bash
-    pip install pandas
-    ```
-    ```bash
-    pip install seaborn
-    ```
-    ```bash
-    pip install numpy
-    ```
-    ```bash
-    pip install altair
-    ```
-    ```bash
-    pip install -U kaleido
-    ```
-    ```bash
+    pip install plotly
     pip install dash
-    ```
-    ```bash
-    pip install ipython
-    ```
-   
-   not absolutely necessary
-
-    ```bash
-    pip install torch
-    ```
-    ```bash
+    pip install seaborn
+    pip install numpy
+    pip install sympy
+    pip install pandas
+    pip install scipy
     pip install tensorflow
-    ```
-    ```bash
+    pip install torch
     pip install scikit-learn
-    ```
-    ```bash
     pip install transformers
+    pip install geopandas
+    pip install -U altair
+    pip install -U vega_datasets
+    pip install -U altair_viewer
+    pip install ipython
+    pip install altair-saver
+    pip install -U kaleido
     ```
 
 ### Start the UI
@@ -479,64 +444,29 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 5. **Abhängigkeiten installieren**  
    Installieren Sie die benötigten Bibliotheken:
     ```bash
-    pip install flask
-    ```
-    ```bash
+    pip install Flask
     pip install ollama
-    ```
-    ```bash
     pip install Werkzeug
-    ```
-    ```bash
-    pip install scipy
-    ```
-    ```bash
     pip install markdown
-    ```
-    ```bash
-    pip install psutil
-    ```
-    ```bash
-    pip install gputil
-    ```
-    ```bash
     pip install matplotlib
-    ```
-    ```bash
-    pip install math
-    ```
-    ```bash
-    pip install sympy
-    ```
-    ```bash
-    pip install pandas
-    ```
-    ```bash
-    pip install seaborn
-    ```
-    ```bash
-    pip install numpy
-    ```
-    ```bash
-    pip install -U kaleido
-    ```
-    ```bash
+    pip install plotly
     pip install dash
-    ```
-   
-   nicht unbedingt notwendig
-
-    ```bash
-    pip install torch
-    ```
-    ```bash
+    pip install seaborn
+    pip install numpy
+    pip install sympy
+    pip install pandas
+    pip install scipy
     pip install tensorflow
-    ```
-    ```bash
+    pip install torch
     pip install scikit-learn
-    ```
-    ```bash
     pip install transformers
+    pip install geopandas
+    pip install -U altair
+    pip install -U vega_datasets
+    pip install -U altair_viewer
+    pip install ipython
+    pip install altair-saver
+    pip install -U kaleido
     ```
 
 ### Benutzeroberfläche starten
@@ -668,64 +598,29 @@ Pour réussir l'installation de MAVIS, vous avez besoin des programmes suivants:
 5. **Installer les dépendances**
     Installez les bibliothèques requises:
     ```bash
-    pip install flask
-    ```
-    ```bash
+    pip install Flask
     pip install ollama
-    ```
-    ```bash
     pip install Werkzeug
-    ```
-    ```bash
-    pip install scipy
-    ```
-    ```bash
     pip install markdown
-    ```
-    ```bash
-    pip install psutil
-    ```
-    ```bash
-    pip install gputil
-    ```
-    ```bash
     pip install matplotlib
-    ```
-    ```bash
-    pip install math
-    ```
-    ```bash
-    pip install sympy
-    ```
-    ```bash
-    pip install pandas
-    ```
-    ```bash
-    pip install seaborn
-    ```
-    ```bash
-    pip install numpy
-    ```
-    ```bash
-    pip install -U kaleido
-    ```
-    ```bash
+    pip install plotly
     pip install dash
-    ```
-   
-   pas absolument nécessaire
-
-    ```bash
-    pip install torch
-    ```
-    ```bash
+    pip install seaborn
+    pip install numpy
+    pip install sympy
+    pip install pandas
+    pip install scipy
     pip install tensorflow
-    ```
-    ```bash
+    pip install torch
     pip install scikit-learn
-    ```
-    ```bash
     pip install transformers
+    pip install geopandas
+    pip install -U altair
+    pip install -U vega_datasets
+    pip install -U altair_viewer
+    pip install ipython
+    pip install altair-saver
+    pip install -U kaleido
     ```
 
 ### Démarrer l'interface utilisateur
