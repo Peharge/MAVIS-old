@@ -931,6 +931,18 @@ Not done ❌ | Done (min. 1 month) ✔️ | Improvements needed 🔧 | In progre
 
 <br>
 
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/old-mavis-ui.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/arrow.svg" alt="mavis" width="100" style="margin: 10px;">
+</div>
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/new-mavis-ui.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
 > ⚠️**Still in progress**⚠️
 
 ## Transformer
