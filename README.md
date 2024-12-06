@@ -943,6 +943,8 @@ Not done ❌ | Done (min. 1 month) ✔️ | Improvements needed 🔧 | In progre
   <img src="./readme-img/new-mavis-ui.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
+<br>
+
 > ⚠️**Still in progress**⚠️
 
 ## Transformer
