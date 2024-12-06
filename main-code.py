@@ -143,20 +143,32 @@ def execute_python_code(md_content):
                     img_html += f'<iframe src="{image_url}" width="600px" height="500px" frameborder="0"></iframe>'
                     break  # Nur das erste Plotly-Diagramm verarbeiten
 
-            # Verarbeitung von Altair-Grafiken
             for var_name, var_value in exec_locals.items():
-                if isinstance(var_value, alt.Chart):  # Prüfen, ob die Variable ein Altair-Diagramm ist
-                    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-                    image_filename = f"fig_altair_{timestamp}.html"
-                    image_path = os.path.join(image_dir, image_filename)
-                    # Altair-Diagramm als HTML speichern
-                    var_value.save(image_path)
-                    # Relativer Pfad für HTML (basierend auf Flask-Static-Serving)
-                    image_url = f"/static/image/{image_filename}"
+                if isinstance(var_value, alt.Chart):  # Prüfen, ob es sich um ein Altair-Diagramm handelt
+                    try:
+                        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+                        image_filename = f"fig_altair_{timestamp}.svg"
+                        image_path = os.path.join(image_dir, image_filename)
 
-                    # Füge das Altair-Diagramm in den HTML-Output ein
-                    img_html += f'<iframe class="img-out" src="{image_url}" width="600" height="400"></iframe>'
-                    break  # Nur das erste Altair-Diagramm verarbeiten
+                        # Versuchen, die SVG-Datei zu speichern
+                        var_value.save(image_path, format="svg")
+
+                        # Relativer Pfad für die HTML-Ausgabe
+                        image_url = f"/static/image/{image_filename}"
+                        img_html += f'<img class="img-out" src="{image_url}" width="600px" height="400px" />'
+
+                    except Exception as e:
+                        print(f"Fehler beim Speichern des Altair-Diagramms: {e}")
+                        # Alternativ: Als PNG speichern
+                        try:
+                            png_filename = f"fig_altair_{timestamp}.png"
+                            png_path = os.path.join(image_dir, png_filename)
+                            var_value.save(png_path, format="png")
+                            png_url = f"/static/image/{png_filename}"
+                            img_html += f'<img class="img-out" src="{png_url}" width="600px" height="400px" />'
+                        except Exception as png_error:
+                            print(f"Fehler beim Fallback auf PNG: {png_error}")
+                            img_html += f"<div class='error'>Fehler: Altair-Diagramm konnte weder als SVG noch als PNG gespeichert werden.</div>"
 
             # Ersetze den Codeblock im Markdown durch den Ausgabeblock (Text oder Bild)
             result = f"<div class='code-output-box'>{output_text}{img_html}</div>"
