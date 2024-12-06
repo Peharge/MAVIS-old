@@ -21,3 +21,4 @@ pip install -U altair_viewer
 pip install ipython
 pip install altair-saver
 pip install -U kaleido
+pip install vl-convert-python
