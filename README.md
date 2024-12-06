@@ -935,7 +935,7 @@ Not done ❌ | Done (min. 1 month) ✔️ | Improvements needed 🔧 | In progre
   <img src="./readme-img/old-mavis-ui.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+<div align="center">
   <img src="./readme-img/arrow.svg" alt="mavis" width="100" style="margin: 10px;">
 </div>
 
