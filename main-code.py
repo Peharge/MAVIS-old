@@ -27,9 +27,10 @@ from IPython.display import display  # Zum Anzeigen von HTML
 
 # FEniCS, PyDy, PyCalculix, SolidPython, Pyomo, GEKKO, CasADi, Control Systems Library, ROS, PyBullet, H2O.ai, Pint, CoolProp, PyThermo
 
-#---ultimate für Deep Learning---
+#---ultimate für Deep Learning etc.---
 
 # import scipy as sp
+# import geopandas as gpd
 
 # Importiere die wichtigsten Komponenten von PyTorch für Deep Learning (sehr mächtig) (Install: https://pytorch.org/)
 
