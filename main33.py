@@ -154,7 +154,7 @@ def execute_python_code(md_content):
                     image_url = f"/static/image/{image_filename}"
 
                     # Füge das Altair-Diagramm in den HTML-Output ein
-                    img_html += f'<iframe class="img-out" src="{image_url}" width="600" height="400"></iframe>'
+                    img_html += f'<iframe class="img-out" src="{image_url}" width="600px" height="400px"></iframe>'
                     break  # Nur das erste Altair-Diagramm verarbeiten
 
             # Ersetze den Codeblock im Markdown durch den Ausgabeblock (Text oder Bild)
