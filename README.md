@@ -318,6 +318,7 @@
     pip install ipython
     pip install altair-saver
     pip install -U kaleido
+    pip install vl-convert-python
     ```
 
 ### Start the UI
@@ -326,6 +327,9 @@
    You can start the UI in two ways:
    - With a batch file:
    - `run-main.bat` (recommended)
+   - `run-code.bat` (recommended)
+   - `run-math.bat` (recommended)
+   - `run-math-pro.bat` (recommended)
    - `run-main2.bat` (for tests)
    - `run-main3.bat` (for tests)
    - Alternatively via the Python script:
@@ -333,13 +337,13 @@
        python main-main.py
        ```
        ```bash
+       python main-code.py
+       ```
+       ```bash
        python main-math.py
        ```
        ```bash
        python main-math-pro.py
-       ```
-       ```bash
-       python main-code.py
        ```
    *Note:* Check which script (`main[1-24].py`) is best suited for your needs.
 
@@ -476,6 +480,7 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
     pip install ipython
     pip install altair-saver
     pip install -U kaleido
+    pip install vl-convert-python
     ```
 
 ### Benutzeroberfläche starten
@@ -484,6 +489,9 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
    Sie können die Benutzeroberfläche auf zwei Arten starten:  
    - Mit einer Batch-Datei:  
      - `run-main.bat` (empfohlen)  
+     - `run-code.bat` (recommended)
+     - `run-math.bat` (recommended)
+     - `run-math-pro.bat` (recommended)
      - `run-main2.bat` (für Tests)  
      - `run-main3.bat` (für Tests)  
    - Alternativ über das Python-Skript:  
@@ -491,13 +499,13 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
      python main-main.py
      ```
      ```bash
+      python main-code.py
+     ```
+     ```bash
       python main-math.py
       ```
       ```bash
       python main-math-pro.py
-      ```
-      ```bash
-      python main-code.py
       ```
      *Hinweis:* Prüfen Sie, welches Skript (`main[1-24].py`) für Ihre Anforderungen am besten geeignet ist.
 
@@ -630,6 +638,7 @@ Pour réussir l'installation de MAVIS, vous avez besoin des programmes suivants:
     pip install ipython
     pip install altair-saver
     pip install -U kaleido
+    pip install vl-convert-python
     ```
 
 ### Démarrer l'interface utilisateur
@@ -638,6 +647,9 @@ Pour réussir l'installation de MAVIS, vous avez besoin des programmes suivants:
     Vous pouvez lancer l'interface utilisateur de deux manières:
     - Avec un fichier batch :
     - `run-main.bat` (recommandé)
+    - `run-code.bat` (recommended)
+    - `run-math.bat` (recommended)
+    - `run-math-pro.bat` (recommended)
     - `run-main2.bat` (pour les tests)
     - `run-main3.bat` (pour les tests)
    - Alternativement via le script Python :
@@ -645,13 +657,13 @@ Pour réussir l'installation de MAVIS, vous avez besoin des programmes suivants:
      python main-main.py
      ```
      ```bash
+     python main-code.py
+     ```
+     ```bash
      python main-math.py
      ```
      ```bash
      python main-math-pro.py
-     ```
-     ```bash
-     python main-code.py
      ```
      *Remarque:* Vérifiez quel script (`main[1-24].py`) correspond le mieux à vos besoins.
 <br><br>
