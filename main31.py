@@ -211,7 +211,7 @@ def send_message():
             return jsonify({
                 'response': wrapped_html_content,
                 'image_url': app.config['UPLOAD_URL'] + filename,
-                'code': response_content_code  # Weitergabe des Markdown-Codes
+                'code': response_content_code
             })
         except Exception as e:
             return jsonify({'error': str(e)}), 500
@@ -247,7 +247,7 @@ mir geht es gut"""
             return jsonify({
                 'response': wrapped_html_content,
                 'image_url': DEFAULT_IMAGE_PATH,
-                'code': response_content_code  # Weitergabe des Markdown-Codes
+                'code': response_content_code
             })
         except Exception as e:
             return jsonify({'error': str(e)}), 500
