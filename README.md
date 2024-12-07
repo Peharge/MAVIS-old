@@ -109,6 +109,7 @@
 - **[28.11.2024]** Available with **Plotly** but still bugs that need to be resolved
 - **[30.11.2024]** MAVIS can write **PyTorch, TensorFlow, Keras, Scikit-Learn and Hugging Face Transformers (maybe JAX) code** and run it side-by-side without the need for an IDE. But it is only intended for experimentation.
 - **[01.12.2024]** MAVIS EAP release
+- **[03.12.2024]** Available with **Altair**
 
 <br>
 
