@@ -17,6 +17,7 @@ import pandas as pd
 import numpy as np
 import sympy as sp
 import datetime
+import dash
 from dash import Dash, dcc, html
 import math
 from IPython.display import display  # Zum Anzeigen von HTML
