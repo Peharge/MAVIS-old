@@ -772,7 +772,7 @@ $$
 P_A = P_A^0 \cdot x_A \quad \text{and} \quad P_B = P_B^0 \cdot x_B
 $$
 
-_Where $P_A^0$ and $P_B^0$ are the vapor pressures of the pure components at a given temperature $T$, and $x_A$ and $x_B$ are the mole fractions of the two components in the liquid phase._
+_Where_ $P_A^0$ _and_ $P_B^0$ _are the vapor pressures of the pure components at a given temperature_ $T$, _and_ $x_A$ _and_ $x_B$ _are the mole fractions of the two components in the liquid phase._
 
 _**Given data:**_
 _The vapor pressure parameters for the two components A and B at different temperatures are described by the **Antoine equation**. The corresponding constants for each component are:_
