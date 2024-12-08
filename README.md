@@ -818,11 +818,9 @@ _Good luck!_
 ### Demo 7
 
 <div>
-    <img src="./readme-img/mavis-demo50.png" alt="mavis" width="1400">
     <img src="./readme-img/mavis-demo51.png" alt="mavis" width="1400">
     <img src="./readme-img/mavis-demo52.png" alt="mavis" width="1400">
     <img src="./readme-img/mavis-demo53.png" alt="mavis" width="1400">
-    <img src="./readme-img/mavis-demo54.png" alt="mavis" width="1400">
     <img src="./readme-img/mavis-demo55.png" alt="mavis" width="1400">
 </div>
 
@@ -918,11 +916,9 @@ Not done ❌ | Done (min. 1 month) ✔️ | Improvements needed 🔧 | In progre
   <img src="./readme-img/new-mavis-ui.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
-<br>
+## Transformer
 
 > ⚠️**Still in progress**⚠️
-
-## Transformer
 
 ### 1. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2018)
 **Authors:** Jacob Devlin, Ming-Wei Chang, Kenton Lee ...<br>
