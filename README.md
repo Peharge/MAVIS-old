@@ -741,13 +741,13 @@ Après l'installation, vous devez toujours démarrer l'application pour utiliser
   <img src="./readme-img/mavis-banner37.png" alt="mavis" width="1400" style="margin: 10px;">
 <p>
 
-### Demo 12
+### Demo 13
 
 <div>
     <img src="./readme-img/mavis-demo91.gif" alt="mavis" width="1400">
 </div>
 
-### Demo 11
+### Demo 12
 
 <div>
     <img src="./readme-img/mavis-demo81.gif" alt="mavis" width="1400">
@@ -755,26 +755,36 @@ Après l'installation, vous devez toujours démarrer l'application pour utiliser
     <img src="./readme-img/mavis-demo82.gif" alt="mavis" width="1400">
 </div>
 
+### Demo 11
+
+**Aufgabe:** _Du bist ein Professioneller Thermodynamik Lehrer. Fasse mir die Übersicht zusammen in einer Tabelle (Formelsammlung) und lege dich ins Zeug!_
+
+<div>
+    <img src="./readme-img/mavis-demo93.png" alt="mavis" width="1400">
+    <img src="./readme-img/mavis-demo92.png" alt="mavis" width="1400">
+    <img src="./readme-img/mavis-demo91.png" alt="mavis" width="1400">
+</div>
+
+Grafik: https://www.ulrich-rapp.de/stoff/thermodynamik/Gasgesetz_AB.pdf
+
 ### Demo 10
 
-Task 1:
+**Task:**
 
-#### "Task: Phase diagram of a binary mixed system
+_In this task, students are to create a phase diagram for a binary mixed system that shows the phase transitions between the liquid and vapor phases. They use thermodynamic models and learn how to visualize complex phase diagrams using Python and the **Matplotlib** and **Seaborn** libraries._
 
-In this task, students are to create a phase diagram for a binary mixed system that shows the phase transitions between the liquid and vapor phases. They use thermodynamic models and learn how to visualize complex phase diagrams using Python and the **Matplotlib** and **Seaborn** libraries.
-
-Use the Antoine equation to calculate the vapor pressure for each of the two components at a given temperature. The vapor pressure formula is:
+_Use the Antoine equation to calculate the vapor pressure for each of the two components at a given temperature. The vapor pressure formula is:_
 
 $$
 P_A = P_A^0 \cdot x_A \quad \text{and} \quad P_B = P_B^0 \cdot x_B
 $$
 
-Where $P_A^0$ and $P_B^0$ are the vapor pressures of the pure components at a given temperature $T$, and $x_A$ and $x_B$ are the mole fractions of the two components in the liquid phase.
+_Where $P_A^0$ and $P_B^0$ are the vapor pressures of the pure components at a given temperature $T$, and $x_A$ and $x_B$ are the mole fractions of the two components in the liquid phase._
 
-##### Given data:
-The vapor pressure parameters for the two components A and B at different temperatures are described by the **Antoine equation**. The corresponding constants for each component are:
+_**Given data:**_
+_The vapor pressure parameters for the two components A and B at different temperatures are described by the **Antoine equation**. The corresponding constants for each component are:_
 
-- **For component A**:
+_**For component A**:_
 
 - $A_A = 8.07131$
 
@@ -782,7 +792,7 @@ The vapor pressure parameters for the two components A and B at different temper
 
 - $C_A = 233.426$
 
-- **For component B**:
+_**For component B**:_
 
 - $A_B = 8.14019$
 
@@ -790,8 +800,7 @@ The vapor pressure parameters for the two components A and B at different temper
 
 - $C_B = 244.485 $
 
-Good luck!
-"
+_Good luck!_
 
 <div>
     <img src="./readme-img/mavis-demo73.png" alt="mavis" width="1400">
