@@ -762,9 +762,7 @@ Grafik: https://www.ulrich-rapp.de/stoff/thermodynamik/Gasgesetz_AB.pdf
 
 ### Demo 10
 
-**Task:**
-
-_In this task, students are to create a phase diagram for a binary mixed system that shows the phase transitions between the liquid and vapor phases. They use thermodynamic models and learn how to visualize complex phase diagrams using Python and the **Matplotlib** and **Seaborn** libraries._
+**Task:** _In this task, students are to create a phase diagram for a binary mixed system that shows the phase transitions between the liquid and vapor phases. They use thermodynamic models and learn how to visualize complex phase diagrams using Python and the **Matplotlib** and **Seaborn** libraries._
 
 _Use the Antoine equation to calculate the vapor pressure for each of the two components at a given temperature. The vapor pressure formula is:_
 
