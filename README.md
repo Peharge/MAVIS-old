@@ -361,12 +361,6 @@
 
 ## Alternative models for MAVIS
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-    <img src="./readme-img/mavis-banner33-2.png" alt="woyzy" width="1400" style="margin: 10px;">
-</div>
-
-<br>
-
 > ⚠️**Still in progress**⚠️
 
 Since **Xc++ 2** has not been released yet, you can use the following models instead:
@@ -752,7 +746,6 @@ Après l'installation, vous devez toujours démarrer l'application pour utiliser
 <div>
     <img src="./readme-img/mavis-demo81.gif" alt="mavis" width="1400">
     <img src="./readme-img/mavis-demo83.gif" alt="mavis" width="1400">
-    <img src="./readme-img/mavis-demo82.gif" alt="mavis" width="1400">
 </div>
 
 ### Demo 11
@@ -836,13 +829,9 @@ _Good luck!_
 ### Demo 6
 
 <div>
-    <img src="./readme-img/demo6-1.png" alt="mavis" width="1400">
-    <img src="./readme-img/demo6-2.png" alt="mavis" width="1400">
-    <img src="./readme-img/demo6-3.png" alt="mavis" width="1400">
     <img src="./readme-img/demo6-4.png" alt="mavis" width="1400">
     <img src="./readme-img/demo6-5.png" alt="mavis" width="1400">
     <img src="./readme-img/demo6-6.png" alt="mavis" width="1400">
-    <img src="./readme-img/demo6-7.png" alt="mavis" width="1400">
 </div>
 
 ### Demo 5
@@ -867,21 +856,15 @@ _Good luck!_
     <img src="./readme-img/demo3-2.png" alt="mavis" width="1400">
     <img src="./readme-img/demo3-1.png" alt="mavis" width="1400">
 </div>
+
+### Demo 2
+
 <div>
     <img src="./readme-img/demo3-5.png" alt="mavis" width="1400">
     <img src="./readme-img/demo3-4.png" alt="mavis" width="1400">
 </div>
 <div>
     <img src="./readme-img/demo3-6.png" alt="mavis" width="1400">
-</div>
-
-### Demo 2
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/demo2-1.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/demo2-4.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 ### Demo 1
@@ -897,21 +880,9 @@ _Good luck!_
 
 ## History
 
-<p align="center">
-  <img src="./readme-img/Mavis-banner15.png" alt="woyzy" width="1400" style="margin: 10px;">
-</p>
-
-<br>
-
 > ⚠️**Still in progress**⚠️
 
 ## Checklist
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner12.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-
-<br>
 
 > ⚠️**Still in progress**⚠️
 
@@ -934,12 +905,6 @@ Not done ❌ | Done (min. 1 month) ✔️ | Improvements needed 🔧 | In progre
 ### New UI 
 
 > Usable from anywhere in the world 24/7
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner14.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-
-<br>
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/old-mavis-ui.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -1030,9 +995,3 @@ BERT is conceptually simple and empirically powerful. It obtains new state-of-th
 ## Lizenz
 
 This project is licensed under the MIT license – see the [LICENSE](LICENSE) file for details.
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner34.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-
-<br>
