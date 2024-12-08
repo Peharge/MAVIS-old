@@ -227,7 +227,7 @@ def execute_python_code(md_content):
 
 @app.route('/')
 def index():
-    return render_template('index19.html')
+    return render_template('index18.html')
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
