@@ -198,7 +198,7 @@ def execute_python_code(md_content):
 
                         # Relativer Pfad für die HTML-Ausgabe
                         image_url = f"/static/image/{image_filename}"
-                        img_html += f'<img class="img-out" src="{image_url}" width="600px" height="400px" />'
+                        img_html += f'<img class="img-out" src="{image_url}" width="800px" height="400px" />'
 
                     except Exception as e:
                         print(f"Fehler beim Speichern des Altair-Diagramms: {e}")
