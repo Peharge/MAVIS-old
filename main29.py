@@ -40,6 +40,27 @@
 #
 # Bitte lesen Sie die vollständigen Lizenzbedingungen der MIT-Lizenz, um sich mit Ihren Rechten und Pflichten vertraut zu machen.
 
+# Allemand | Peharge : Ce code source est publié sous la licence MIT.
+#
+# Droits d'utilisation :
+# Le code source peut être copié, édité et adapté aux besoins individuels.
+# Les utilisateurs sont autorisés à utiliser ce code dans leurs propres projets, à des fins privées et commerciales.
+# Il est cependant recommandé d'adapter le code uniquement si vous avez des connaissances suffisantes en programmation,
+# car les modifications pourraient provoquer des erreurs involontaires ou des risques de sécurité.
+#
+# Dépendances et frameworks supplémentaires :
+# Le code est basé sur l'utilisation de différents frameworks et exécute des fichiers supplémentaires.
+# Certains de ces fichiers peuvent installer automatiquement des dépendances supplémentaires requises pour la fonctionnalité.
+# Il est fortement recommandé d'effectuer l'installation et la configuration dans un environnement isolé (par exemple un environnement virtuel),
+# pour éviter d'éventuels conflits avec les installations de logiciels existantes.
+#
+# Clause de non-responsabilité:
+# L'utilisation du code est entièrement à vos propres risques.
+# Peharge n'assume aucune responsabilité pour tout dommage, perte de données, erreurs système ou autres problèmes,
+# pouvant découler directement ou indirectement de l'utilisation, de la modification ou de la diffusion du code.
+#
+# Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
+
 from flask import Flask, render_template, request, jsonify, send_from_directory, session
 import ollama
 import os
