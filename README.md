@@ -746,7 +746,7 @@ _Bitte ignorieren Sie die Peak-Hour-Leiste auf der rechten Seite; sie gehört zu
 ⚠️
 - Make sure Mavis is always told to use **fig.update_layout(mapbox_style="open-street-map")** in Python code!
 - Stellen Sie sicher, dass Mavis stets darauf hingewiesen wird, im Python-Code **fig.update_layout(mapbox_style="open-street-map")** zu verwenden!
-- Assurez-vous qu’on dise toujours à Mavis d’utiliser **fig.update_layout(mapbox_style="open-street-map")** dans le code Python !
+- Assurez-vous qu’on dise toujours à Mavis d’utiliser **fig.update_layout(mapbox_style="open-street-map")** dans le code Python!
 
 ### Demo 14
 
