@@ -183,7 +183,7 @@ def execute_python_code(md_content):
                     image_url = f"/static/image/{html_filename}"
 
                     # Füge das HTML-Dokument in den HTML-Output ein
-                    img_html += f'<iframe src="{image_url}" width="600px" height="500px" frameborder="0"></iframe>'
+                    img_html += f'<iframe src="{image_url}" width="800px" height="500px" frameborder="0"></iframe>'
                     break  # Nur das erste Plotly-Diagramm verarbeiten
 
             for var_name, var_value in exec_locals.items():
@@ -198,7 +198,7 @@ def execute_python_code(md_content):
 
                         # Relativer Pfad für die HTML-Ausgabe
                         image_url = f"/static/image/{image_filename}"
-                        img_html += f'<img class="img-out" src="{image_url}" width="800px" height="400px" />'
+                        img_html += f'<img class="img-out" src="{image_url}" width="600px" height="400px" />'
 
                     except Exception as e:
                         print(f"Fehler beim Speichern des Altair-Diagramms: {e}")
@@ -227,7 +227,7 @@ def execute_python_code(md_content):
 
 @app.route('/')
 def index():
-    return render_template('index18.html')
+    return render_template('index19.html')
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
