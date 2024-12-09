@@ -484,9 +484,9 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
    Sie können die Benutzeroberfläche auf zwei Arten starten:  
    - Mit einer Batch-Datei:  
      - `run-main.bat` (empfohlen)  
-     - `run-code.bat` (recommended)
-     - `run-math.bat` (recommended)
-     - `run-math-pro.bat` (recommended)
+     - `run-code.bat` (empfohlen)
+     - `run-math.bat` (empfohlen)
+     - `run-math-pro.bat` (empfohlen)
      - `run-main2.bat` (für Tests)  
      - `run-main3.bat` (für Tests)  
    - Alternativ über das Python-Skript:  
