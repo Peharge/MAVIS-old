@@ -715,7 +715,7 @@ Après l'installation, vous devez toujours démarrer l'application pour utiliser
 
 <br>
 
-> ⚠️**Still in progress**⚠️
+> ⚠️**Still in progress (24.12.2024)**⚠️
 
 ## Xcpp
 
