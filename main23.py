@@ -40,7 +40,7 @@
 #
 # Bitte lesen Sie die vollständigen Lizenzbedingungen der MIT-Lizenz, um sich mit Ihren Rechten und Pflichten vertraut zu machen.
 
-# Allemand | Peharge: Ce code source est publié sous la licence MIT.
+# Français | Peharge: Ce code source est publié sous la licence MIT.
 #
 # Droits d'utilisation:
 # Le code source peut être copié, édité et adapté aux besoins individuels.

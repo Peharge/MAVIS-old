@@ -361,8 +361,6 @@
 
 ## Alternative models for MAVIS
 
-> ⚠️**Still in progress**⚠️
-
 Since **Xc++ 2** has not been released yet, you can use the following models instead:
 
 *To install Ollama's models, you need the Ollama app: [https://ollama.com/download](https://ollama.com/download).<br>
