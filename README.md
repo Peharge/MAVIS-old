@@ -135,7 +135,29 @@
   <img src="./readme-img/mavis-ads-new1.3.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
+<br>
+
 > 12.12.2024 
+
+### MAVIS 1.4 EAP release
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis-ads-new1.4.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+<br>
+
+> 01.01.2025
+
+### MAVIS 1.5 EAP release
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis-ads-new1.4.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+<br>
+
+> 01.02.2025
 
 ### MAVIS releaseon MAC OS / Windows / Linux  
 
@@ -143,12 +165,16 @@
     <img src="./readme-img/mavis-banner23.png" alt="mavis" width="450" style="margin: 10px;"><img src="./readme-img/mavis-banner25.png" alt="mavis" width="360" style="margin: 10px;"> 
 </p>
 
+<br>
+
 > 01.06.2025
  
-### MAVIS on Apple Vision Pro                     
+### MAVIS 1.10 on Apple Vision Pro                     
 <p align="center">
     <img src="./readme-img/mavis-banner24.png" alt="mavis" width="400" style="margin: 10px;"><img src="./readme-img/mavis-banner26.png" alt="mavis" width="400" style="margin: 10px;"> 
 </p>
+
+<br>
 
 > soon
 
@@ -156,6 +182,8 @@
 <p align="center">
     <img src="./readme-img/mavis-ads-31.gif" alt="mavis" width="1400" style="margin: 10px;">
 </p>
+
+<br>
 
 > 2026
 
