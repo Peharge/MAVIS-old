@@ -94,8 +94,10 @@
 > 
 > Utilisez les puissantes fonctions de MAVIS pour rendre vos projets plus efficaces et professionnels.
 
+<br>
+
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-ads-new1.3.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/MAVIS-ads11.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 ## _News_
@@ -109,15 +111,9 @@
 - **[01.12.2024]** MAVIS EAP release
 - **[03.12.2024]** Available with **Altair**
 
-<br>
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/MAVIS-ads11.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-
 ## _Updates_
 
-### 1. MAVIS EAP release (with Llama 3.2) [NEW]
+### MAVIS 1.2 EAP release (with Llama 3.2)
 
 <p align="center">
     <img src="./readme-img/MAVIS-ads13.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -133,7 +129,15 @@
 
 > 01.12.2024 
 
-### 2. MAVIS releaseon MAC OS / Windows / Linux  
+### MAVIS 1.3 EAP release [NEW]
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis-ads-new1.3.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+> 12.12.2024 
+
+### MAVIS releaseon MAC OS / Windows / Linux  
 
 <p align="center">
     <img src="./readme-img/mavis-banner23.png" alt="mavis" width="450" style="margin: 10px;"><img src="./readme-img/mavis-banner25.png" alt="mavis" width="360" style="margin: 10px;"> 
@@ -141,14 +145,14 @@
 
 > 01.06.2025
  
-### 3. MAVIS on Apple Vision Pro                     
+### MAVIS on Apple Vision Pro                     
 <p align="center">
     <img src="./readme-img/mavis-banner24.png" alt="mavis" width="400" style="margin: 10px;"><img src="./readme-img/mavis-banner26.png" alt="mavis" width="400" style="margin: 10px;"> 
 </p>
 
 > soon
 
-### 4. MAVIS 2                     
+### MAVIS 2                     
 <p align="center">
     <img src="./readme-img/mavis-ads-31.gif" alt="mavis" width="1400" style="margin: 10px;">
 </p>
