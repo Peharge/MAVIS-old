@@ -111,7 +111,7 @@ from IPython.display import display
 # from tensorflow.keras import layers, models, optimizers
 # from tensorflow.data import Dataset
 
-# Importiere die wichtigsten Komponenten von Scikit-Learn für Deep Learning (sehr mächtig) (Install: pip install scikit-learn)
+# Importiere die wichtigsten Komponenten von Scikit-Learn für   Deep Learning (sehr mächtig) (Install: pip install scikit-learn)
 
 # import sklearn as skl
 
@@ -147,7 +147,7 @@ def execute_python_code(md_content):
         return "---"
 
     # Verzeichnis für gespeicherte Bilder
-    image_dir = r"C:\Users\julia\PycharmProjects\MAVIS\static\image"
+    image_dir = r"C:\Users\julian\PycharmProjects\MAVIS\static\image"
     if not os.path.exists(image_dir):
         os.makedirs(image_dir)
 

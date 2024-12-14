@@ -883,6 +883,22 @@
             cursor: pointer;
         }
 
+        .button-input-plus {
+            outline: 0 !important;
+            border: 0 !important;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: all ease-in-out 0.3s;
+            cursor: pointer;
+        }
+
+
         .button-home:hover {
             transform: translateY(-3px);
         }
@@ -896,6 +912,10 @@
         }
 
         .button-shop:hover {
+            transform: translateY(-3px);
+        }
+
+        .button-input-plus:hover {
             transform: translateY(-3px);
         }
 
@@ -1690,21 +1710,21 @@
 
         .input-container textarea {
             width: 100%;
-            height: 25rem;
-            min-height: 25rem;
-            max-height: 25rem;
-            background: rgba(35, 39, 47, 0.4);
-            box-shadow:
-                inset 5px 5px 10px #0e1013,
-                inset -5px -5px 10px #383e4b,
-                0px 0px 100px rgba(255, 212, 59, 0),
-                0px 0px 100px rgba(255, 102, 0, 0);
+            max-width: 1200px;
+            min-width: 300px;
+            height: 200%;
+            max-height: 900px;
+            min-height: 300px;
+            box-shadow: 3px 3px 10px rgba(0,0,0,1),
+                -1px -1px 6px rgba(255, 255, 255, 0.4),
+                inset 3px 3px 10px rgba(0,0,0,1),
+                inset -1px -1px 6px rgba(255, 255, 255, 0.4);
             padding: 1rem;
             padding-top: 1rem;
             padding-left: 1rem;
             border-radius: 0.8rem;
             color: white;
-            font-size: 1rem;
+            font-size: clamp(0.3rem, 1vw, 1rem);
             line-height: 1.5;
             text-align: left;
             border: none;
@@ -1724,9 +1744,6 @@
                 inset 0px 0px 10px rgba(255, 212, 59, 0.5),
                 0px 0px 100px rgba(255, 212, 59, 0.5),
                 0px 0px 100px rgba(255, 102, 0, 0.5);
-            height: 25rem;
-            min-height: 25rem;
-            max-height: 25rem;
         }
 
         .carddddd {
@@ -2579,11 +2596,9 @@
               </svg>
             </button>
             <button class="button-input-plus" onclick="toggleCarddddd()">
-              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon2">
-                <circle r="1" cy="21" cx="9"></circle>
-                <circle r="1" cy="21" cx="20"></circle>
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-              </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon2">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M3 22H15M9 2H21M9 22L15 2" stroke="#ffffff" stroke-width="1.848" stroke-linecap="round" stroke-linejoin="round"></path> </g>
+                </svg>
             </button>
         </div>
 
