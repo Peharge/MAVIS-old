@@ -772,7 +772,7 @@ Après l'installation, vous devez toujours démarrer l'application pour utiliser
 ### Demo 15
 
 <div>
-    <img src="./readme-img/mavis-demo111.gif" alt="mavis" width="1400">
+    <img src="./readme-img/mavis-demo121.gif" alt="mavis" width="1400">
 </div>
 
 _Bitte ignorieren Sie die Peak-Hour-Leiste auf der rechten Seite; sie gehört zu einer früheren Aufgabe._
