@@ -1712,9 +1712,7 @@
             width: 100%;
             max-width: 1200px;
             min-width: 300px;
-            height: 200%;
-            max-height: 900px;
-            min-height: 300px;
+            height: 100%;
             box-shadow: 3px 3px 10px rgba(0,0,0,1),
                 -1px -1px 6px rgba(255, 255, 255, 0.4),
                 inset 3px 3px 10px rgba(0,0,0,1),
@@ -1753,7 +1751,7 @@
             max-height: 200px;
             min-width: 300px;
             min-height: 100px;
-            height: 10%;
+            height: 13%;
             padding: 0.5rem;
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(8px);
@@ -2009,10 +2007,9 @@
 
             <form id="send-form" enctype="multipart/form-data">
                 <div class="input-container">
-                    <textarea required="" type="text" id="message" class="input" required></textarea>
+                    <textarea required="" type="text" id="message-text" class="input" required></textarea>
                 </div>
             </form>
-
 
         </div>
         <div class="chat-output" id="chat-content"></div>
@@ -2816,5 +2813,15 @@
         }
 
     </script>
+
+    <script>
+        const textarea = document.getElementById('message-text');
+        const input = document.getElementById('message');
+
+        textarea.addEventListener('input', () => {
+            input.value = textarea.value;
+        });
+    </script>
+
 </body>
 </html>
