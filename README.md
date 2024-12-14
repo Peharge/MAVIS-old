@@ -137,6 +137,12 @@
   <img src="./readme-img/mavis-ads-new1.3.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
+### Demo
+
+<div>
+    <img src="./readme-img/MAVIS-demo122.png" alt="mavis" width="1400">
+</div>
+
 <br>
 
 > 12.12.2024 
@@ -772,7 +778,7 @@ Après l'installation, vous devez toujours démarrer l'application pour utiliser
 ### Demo 15
 
 <div>
-    <img src="./readme-img/mavis-demo121.gif" alt="mavis" width="1400">
+    <img src="./readme-img/MAVIS-demo121.gif" alt="mavis" width="1400">
 </div>
 
 _Bitte ignorieren Sie die Peak-Hour-Leiste auf der rechten Seite; sie gehört zu einer früheren Aufgabe._
@@ -781,6 +787,10 @@ _Bitte ignorieren Sie die Peak-Hour-Leiste auf der rechten Seite; sie gehört zu
 - Make sure Mavis is always told to use **fig.update_layout(mapbox_style="open-street-map")** in Python code!
 - Stellen Sie sicher, dass Mavis stets darauf hingewiesen wird, im Python-Code **fig.update_layout(mapbox_style="open-street-map")** zu verwenden!
 - Assurez-vous qu’on dise toujours à Mavis d’utiliser **fig.update_layout(mapbox_style="open-street-map")** dans le code Python!
+
+<div>
+    <img src="./readme-img/MAVIS-demo122.png" alt="mavis" width="1400">
+</div>
 
 ### Demo 14
 
