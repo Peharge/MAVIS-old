@@ -44,6 +44,8 @@
 # _MAVIS_
 **MA**_th_ **V**_isual_ **I**_ntelligent_ **S**_ystem (Strongest calculator in the world)_
 
+_**MAVIS**: In the darkest times lies the power to create something great – a work only you can understand. It is your light, your strength, your vision. (In den dunkelsten Zeiten liegt die Kraft, etwas Großes zu erschaffen – ein Werk, das nur du verstehen kannst. Es ist dein Licht, deine Stärke, deine Vision.)_
+
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-banner27.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
