@@ -169,7 +169,47 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 
 > 01.02.2025
 
-### MAVIS releaseon MAC OS / Windows / Linux  
+### MAVIS 1.6 EAP release
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis1.6-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+<br>
+
+> 01.03.2025
+
+### MAVIS 1.7 EAP release
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis1.7-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+<br>
+
+> 01.04.2025
+
+### MAVIS 1.8 EAP release
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis1.8-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+<br>
+
+> 01.05.2025
+
+### MAVIS 1.9 EAP release
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis1.9-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+<br>
+
+> 01.02.2025
+
+### MAVIS big release on Windows / Linux / MAC OS (no EAP)
 
 <p align="center">
     <img src="./readme-img/mavis-banner23.png" alt="mavis" width="450" style="margin: 10px;"><img src="./readme-img/mavis-banner25.png" alt="mavis" width="360" style="margin: 10px;"> 
