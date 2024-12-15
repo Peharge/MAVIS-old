@@ -194,7 +194,7 @@ def execute_python_code(md_content):
                 if hasattr(var_value, "write_html") and callable(var_value.write_html):
                     # Prüfen, ob die Variable eine Plotly-Figur ist
                     timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-                    html_filename = f"fig_altair_{timestamp}.html"  # HTML-Datei
+                    html_filename = f"fig_plotly_{timestamp}.html"  # HTML-Datei
                     html_path = os.path.join(image_dir, html_filename)
 
                     # Diagramm als interaktive HTML-Datei speichern
