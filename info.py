@@ -40,6 +40,27 @@
 #
 # Bitte lesen Sie die vollständigen Lizenzbedingungen der MIT-Lizenz, um sich mit Ihren Rechten und Pflichten vertraut zu machen.
 
+# Français | Peharge: Ce code source est publié sous la licence MIT.
+#
+# Droits d'utilisation:
+# Le code source peut être copié, édité et adapté aux besoins individuels.
+# Les utilisateurs sont autorisés à utiliser ce code dans leurs propres projets, à des fins privées et commerciales.
+# Il est cependant recommandé d'adapter le code uniquement si vous avez des connaissances suffisantes en programmation,
+# car les modifications pourraient provoquer des erreurs involontaires ou des risques de sécurité.
+#
+# Dépendances et frameworks supplémentaires:
+# Le code est basé sur l'utilisation de différents frameworks et exécute des fichiers supplémentaires.
+# Certains de ces fichiers peuvent installer automatiquement des dépendances supplémentaires requises pour la fonctionnalité.
+# Il est fortement recommandé d'effectuer l'installation et la configuration dans un environnement isolé (par exemple un environnement virtuel),
+# pour éviter d'éventuels conflits avec les installations de logiciels existantes.
+#
+# Clause de non-responsabilité:
+# L'utilisation du code est entièrement à vos propres risques.
+# Peharge n'assume aucune responsabilité pour tout dommage, perte de données, erreurs système ou autres problèmes,
+# pouvant découler directement ou indirectement de l'utilisation, de la modification ou de la diffusion du code.
+#
+# Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
+
 import platform
 import psutil
 import os
@@ -50,12 +71,20 @@ import re
 import sys
 import pip
 import flask
-import matplotlib
+import markdown
 import numpy
+import pandas
+import matplotlib
 from importlib.metadata import version
 import plotly
+import seaborn
+import altair
 import sympy
-import torch
+import dash
+# import torch
+# import tensorflow
+# import sklearn
+# import transformers
 
 red = "\033[91m"
 green = "\033[92m"
@@ -125,23 +154,37 @@ def get_versions():
     python_version = sys.version.split()[0]
     pip_version = version("pip")
     flask_version = version("flask")
+    markdown_version = version("markdown")
     numpy_version = numpy.__version__
+    pandas_version = numpy.__version__
     matplotlib_version = matplotlib.__version__
     plotly_version = plotly.__version__
+    seaborn_version = seaborn.__version__
+    altair_version = altair.__version__
     sympy_version = sympy.__version__
-    math_version = "Built-in (no versioning)"
-    torch_version = torch.__version__
+    dash_version = dash.__version__
+    # torch_version = torch.__version__
+    # tensorflow_version = tensorflow.__version__
+    # sklearn_version = sklearn.__version__
+    # transformers_version = transformers.__version__
 
     return {
         "Python": python_version,
         "Pip": pip_version,
         "Flask": flask_version,
+        "Markdown": markdown_version,
         "Numpy": numpy_version,
+        "Pandas": pandas_version,
         "Matplotlib": matplotlib_version,
         "Plotly": plotly_version,
-        "sympy": sympy_version,
-        "torch": torch_version,
-        "Math": math_version
+        "Seaborn": seaborn_version,
+        "Altair": altair_version,
+        "SymPy": sympy_version,
+        "Dash": dash_version,
+        # "Torch": torch_version,
+        # "TensorFlow": tensorflow_version,
+        # "Sklearn": sklearn_version,
+        # "Tansformers": transformers_version,
     }
 
 def mavis_compatibility(ram, cuda_support, rocm_support):
