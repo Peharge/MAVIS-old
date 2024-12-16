@@ -117,7 +117,7 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 
 ## _Updates_
 
-### MAVIS 1.2 EAP release (with Llama 3.2)
+### MAVIS 1.1 EAP release (with Llama 3.2)
 
 <p align="center">
     <img src="./readme-img/MAVIS-ads13.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -133,7 +133,7 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 
 > 01.12.2024 
 
-### MAVIS 1.3 EAP release [NEW]
+### MAVIS 1.2 EAP release [NEW]
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-ads-new1.3.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -149,6 +149,16 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 
 > 12.12.2024 
 
+### MAVIS 1.3 EAP release
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis1.3-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+<br>
+
+> 24.12.2024
+
 ### MAVIS 1.4 EAP release
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
@@ -157,7 +167,7 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 
 <br>
 
-> 01.01.2025
+> 15.01.2025
 
 ### MAVIS 1.5 EAP release
 
