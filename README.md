@@ -207,7 +207,7 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 
 <br>
 
-> 01.02.2025
+> 01.06.2025
 
 ### MAVIS big release on Windows / Linux / MAC OS (no EAP)
 
@@ -217,7 +217,7 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 
 <br>
 
-> 01.06.2025
+> 01.07.2025
  
 ### MAVIS 1.10 on Apple Vision Pro                     
 <p align="center">
