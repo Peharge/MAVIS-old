@@ -172,7 +172,7 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 ### MAVIS 1.6 EAP release
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis1.6-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis1.6-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 <br>
@@ -192,7 +192,7 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 ### MAVIS 1.8 EAP release
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis1.8-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis1.8-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 <br>
@@ -240,7 +240,7 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 <br>
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner-ultimate.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./static/images/mavis-banner134-6.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 ## Table of contents
