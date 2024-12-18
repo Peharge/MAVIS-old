@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./readme-img/mavis-logo-new-3d-2.png" width="350"/>
+    <img src="./readme-img/mavis-logo7.png" width="500"/>
 </p>
 
 <br>
@@ -240,7 +240,7 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 
 ### MAVIS 2                     
 <p align="center">
-    <img src="./readme-img/mavis-ads-31.gif" alt="mavis" width="1400" style="margin: 10px;">
+    <img src="./readme-img/img.png" alt="mavis" width="1400" style="margin: 10px;">
 </p>
 
 <br>
