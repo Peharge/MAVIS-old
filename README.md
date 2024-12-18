@@ -151,9 +151,9 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 
 ### MAVIS 1.3 EAP release
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+<p align="center">
   <img src="./readme-img/mavis1.3-banner-ads2.png" alt="mavis" width="600" style="margin: 10px;">
-</div>
+</p>
 
 <br>
 
