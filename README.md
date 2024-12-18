@@ -229,7 +229,7 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 
 > 01.07.2025
  
-### MAVIS 1.10 on Apple Vision Pro                     
+### MAVIS on Apple Vision Pro                     
 <p align="center">
     <img src="./readme-img/mavis-banner24.png" alt="mavis" width="400" style="margin: 10px;"><img src="./readme-img/mavis-banner26.png" alt="mavis" width="400" style="margin: 10px;"> 
 </p>
