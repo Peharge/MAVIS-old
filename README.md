@@ -249,7 +249,7 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 
 ### MAVIS 2.1                     
 <p align="center">
-    <img src="./readme-img/mavis2.1-banner-ads.png" alt="mavis" width="650" style="margin: 10px;">
+    <img src="./readme-img/mavis2.1-banner-ads.png" alt="mavis" width="800" style="margin: 10px;">
 </p>
 
 <br>
