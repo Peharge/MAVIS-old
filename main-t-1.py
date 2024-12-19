@@ -284,6 +284,7 @@ def send_message():
 
             # Ausgabe dekodieren und extrahieren
             response_content = processor.decode(outputs[0], skip_special_tokens=True)
+            response_content_code = execute_python_code(response_content)
 
             # Rückgabe der Antwort als JSON
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
@@ -292,6 +293,7 @@ def send_message():
             return jsonify({
                 'response': wrapped_html_content,
                 'image_url': app.config['UPLOAD_URL'] + filename,
+                'code': response_content_code
             })
         except Exception as e:
             return jsonify({'error': str(e)}), 500
@@ -309,6 +311,7 @@ def send_message():
 
             # Antwort dekodieren
             response_content = processor.decode(outputs[0], skip_special_tokens=True)
+            response_content_code = execute_python_code(response_content)
 
             # Rückgabe der Antwort als JSON
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
@@ -317,6 +320,7 @@ def send_message():
             return jsonify({
                 'response': wrapped_html_content,
                 'image_url': DEFAULT_IMAGE_PATH,
+                'code': response_content_code
             })
         except Exception as e:
             return jsonify({'error': str(e)}), 500
