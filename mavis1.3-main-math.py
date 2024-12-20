@@ -358,10 +358,9 @@ def send_message():
             )
             tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-            prompt = "Give me a short introduction to large language model."
             messages = [
-                {"role": "system", "content": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant."},
-                {"role": "user", "content": prompt}
+                {"role": "system", "content": "You are a helpful and harmless assistant. You should think step-by-step."},
+                {"role": "user", "content": user_message}
             ]
             text = tokenizer.apply_chat_template(
                 messages,

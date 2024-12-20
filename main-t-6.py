@@ -278,16 +278,11 @@ def send_message():
         try:
             # Standard: Laden Sie das Modell auf die verfügbaren Geräte.
             model = Qwen2VLForConditionalGeneration.from_pretrained(
-                "Qwen/Qwen2-VL-2B-Instruct", torch_dtype="auto", device_map="auto"
+                "Qwen/Qwen2-VL-2B-Instruct",
+                torch_dtype=torch.bfloat16,
+                attn_implementation="flash_attention_2",
+                device_map="auto",
             )
-
-            # Wir empfehlen die Aktivierung von flash_attention_2 für eine bessere Beschleunigung und Speichereinsparung, insbesondere in Szenarien mit mehreren Bildern und Videos.
-            # model = Qwen2VLForConditionalGeneration.from_pretrained(
-            #     "Qwen/Qwen2-VL-2B-Instruct",
-            #     torch_dtype=torch.bfloat16,
-            #     attn_implementation="flash_attention_2",
-            #     device_map="auto",
-            # )
 
             # Standardprozessor
             processor = AutoProcessor.from_pretrained("Qwen/Qwen2-VL-2B-Instruct")
@@ -349,7 +344,7 @@ def send_message():
     else:
         # Verarbeite die Nachricht ohne Bild, benutze das Standardbild
         try:
-            model_name = "Qwen/Qwen2.5-14B-Instruct"
+            model_name = "Qwen/QwQ-32B-Preview"
 
             model = AutoModelForCausalLM.from_pretrained(
                 model_name,
@@ -359,7 +354,8 @@ def send_message():
             tokenizer = AutoTokenizer.from_pretrained(model_name)
 
             messages = [
-                {"role": "system", "content": "You are a helpful and harmless assistant. You should think step-by-step."},
+                {"role": "system",
+                 "content": "You are a helpful and harmless assistant. You should think step-by-step."},
                 {"role": "user", "content": user_message}
             ]
             text = tokenizer.apply_chat_template(

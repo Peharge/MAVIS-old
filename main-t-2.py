@@ -261,6 +261,7 @@ def index():
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
+# Route zur Verarbeitung der Anfrage
 @app.route('/send_message', methods=['POST'])
 def send_message():
     user_message = request.form.get('message', '').strip()
@@ -276,76 +277,31 @@ def send_message():
         file.save(filepath)
 
         try:
-            # Standard: Laden Sie das Modell auf die verfügbaren Geräte.
-            model = Qwen2VLForConditionalGeneration.from_pretrained(
-                "Qwen/Qwen2-VL-2B-Instruct", torch_dtype="auto", device_map="auto"
+            # Die Nachricht in einer für Ollama verständlichen Form formatieren
+            message_text = f"Text: {user_message} | Image path: {filepath}"
+
+            # Ollama-API-Aufruf zum Ausführen des Modells
+            response = ollama.chat(
+                model="Qwen2-VL-2B-Instruct",  # Modellname in Ollama
+                messages=message_text  # Übergeben Sie die Nachricht als einfache Zeichenkette
             )
 
-            # Wir empfehlen die Aktivierung von flash_attention_2 für eine bessere Beschleunigung und Speichereinsparung, insbesondere in Szenarien mit mehreren Bildern und Videos.
-            # model = Qwen2VLForConditionalGeneration.from_pretrained(
-            #     "Qwen/Qwen2-VL-2B-Instruct",
-            #     torch_dtype=torch.bfloat16,
-            #     attn_implementation="flash_attention_2",
-            #     device_map="auto",
-            # )
-
-            # Standardprozessor
-            processor = AutoProcessor.from_pretrained("Qwen/Qwen2-VL-2B-Instruct")
-
-            # Der Standardbereich für die Anzahl der visuellen Token pro Bild im Modell liegt zwischen 4 und 16384. Sie können min_pixels und max_pixels entsprechend Ihren Anforderungen festlegen, z. B. einen Token-Zählungsbereich von 256–1280, um Geschwindigkeit und Speichernutzung auszugleichen.
-            # min_pixels = 256*28*28
-            # max_pixels = 1280*28*28
-            # processor = AutoProcessor.from_pretrained("Qwen/Qwen2-VL-7B-Instruct", min_pixels=min_pixels, max_pixels=max_pixels)
-
-            messages = [
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "image", "image": filepath},
-                        {"type": "text", "text": user_message},
-                    ],
-                }
-            ]
-
-            text = processor.apply_chat_template(
-                messages, tokenize=False, add_generation_prompt=True
-            )
-
-            if isinstance(text, list):
-                text = text[0]
-
-            image_inputs, video_inputs = process_vision_info(messages)
-            inputs = processor(
-                text=[text],
-                images=image_inputs,
-                videos=video_inputs,
-                padding=True,
-                return_tensors="pt",
-            )
-            device = "cuda" if torch.cuda.is_available() else "cpu"
-            inputs = inputs.to(device)
-
-            # Inferenz: Generierung der Ausgabe
-            generated_ids = model.generate(**inputs, max_new_tokens=128)
-            generated_ids_trimmed = [
-                out_ids[len(in_ids):] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
-            ]
-            response_content = processor.batch_decode(
-                generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
-            )[0]
+            # Extrahieren der Antwort
+            response_content = response['text']
             response_content_code = execute_python_code(response_content)
 
-            # Rückgabe der Antwort als JSON
+            # Rückgabe der Antwort als HTML
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
 
             return jsonify({
                 'response': wrapped_html_content,
                 'image_url': app.config['UPLOAD_URL'] + filename,
-                'code': response_content_code
+                'code': response_content_code  # Hier könnte auch zusätzlicher Code ausgeführt werden, falls benötigt
             })
         except Exception as e:
             return jsonify({'error': str(e)}), 500
+
     else:
         # Verarbeite die Nachricht ohne Bild, benutze das Standardbild
         try:

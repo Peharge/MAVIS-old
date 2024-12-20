@@ -278,16 +278,11 @@ def send_message():
         try:
             # Standard: Laden Sie das Modell auf die verfügbaren Geräte.
             model = Qwen2VLForConditionalGeneration.from_pretrained(
-                "Qwen/Qwen2-VL-2B-Instruct", torch_dtype="auto", device_map="auto"
+                "Qwen/Qwen2-VL-2B-Instruct",
+                torch_dtype=torch.bfloat16,
+                attn_implementation="flash_attention_2",
+                device_map="auto",
             )
-
-            # Wir empfehlen die Aktivierung von flash_attention_2 für eine bessere Beschleunigung und Speichereinsparung, insbesondere in Szenarien mit mehreren Bildern und Videos.
-            # model = Qwen2VLForConditionalGeneration.from_pretrained(
-            #     "Qwen/Qwen2-VL-2B-Instruct",
-            #     torch_dtype=torch.bfloat16,
-            #     attn_implementation="flash_attention_2",
-            #     device_map="auto",
-            # )
 
             # Standardprozessor
             processor = AutoProcessor.from_pretrained("Qwen/Qwen2-VL-2B-Instruct")
