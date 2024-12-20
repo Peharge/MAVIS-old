@@ -123,7 +123,7 @@ app = Flask(__name__)
 # Setze einen geheimen Schlüssel für die Session
 app.secret_key = os.urandom(24)  # Generiert einen zufälligen Schlüssel mit 24 Bytes
 UPLOAD_FOLDER = 'uploads'
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'mp4'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['UPLOAD_URL'] = '/uploads/'
 DEFAULT_IMAGE_PATH = r""
@@ -297,7 +297,7 @@ def send_message():
         # Verarbeite die Nachricht ohne Bild, benutze das Standardbild
         try:
             response = ollama.chat(
-                model='qwen2.5:14b',
+                model='minicpm-v',
                 messages=[{
                     'role': 'user',
                     'content': user_message
