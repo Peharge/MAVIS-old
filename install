@@ -22,3 +22,9 @@ pip install ipython
 pip install altair-saver
 pip install -U kaleido
 pip install vl-convert-python
+
+---
+
+pip install qwen-vl-utils
+pip install 'accelerate>=0.26.0'
+pip install accelerate

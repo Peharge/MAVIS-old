@@ -66,7 +66,9 @@
 
 from flask import Flask, render_template, request, jsonify, send_from_directory, session
 import ollama
-from transformers import AutoProcessor, AutoModelForImageTextToText
+from transformers import Qwen2VLForConditionalGeneration, AutoModelForCausalLM, AutoTokenizer, AutoProcessor
+from qwen_vl_utils import process_vision_info
+from accelerate import infer_auto_device_map
 import torch
 import os
 from werkzeug.utils import secure_filename
@@ -274,19 +276,63 @@ def send_message():
         file.save(filepath)
 
         try:
-            # Model und Prozessor laden
-            processor = AutoProcessor.from_pretrained("Qwen/Qwen2-VL-7B-Instruct")
-            model = AutoModelForImageTextToText.from_pretrained("Qwen/Qwen2-VL-7B-Instruct")
+            # Standard: Laden Sie das Modell auf die verfügbaren Geräte.
+            model = Qwen2VLForConditionalGeneration.from_pretrained(
+                "Qwen/Qwen2-VL-2B-Instruct", torch_dtype="auto", device_map="auto"
+            )
 
-            # Bild laden und vorbereiten
-            inputs = processor(text=user_message, images=filepath, return_tensors="pt")
+            # Wir empfehlen die Aktivierung von flash_attention_2 für eine bessere Beschleunigung und Speichereinsparung, insbesondere in Szenarien mit mehreren Bildern und Videos.
+            # model = Qwen2VLForConditionalGeneration.from_pretrained(
+            #     "Qwen/Qwen2-VL-2B-Instruct",
+            #     torch_dtype=torch.bfloat16,
+            #     attn_implementation="flash_attention_2",
+            #     device_map="auto",
+            # )
 
-            # Modell-Ausgabe generieren
-            with torch.no_grad():
-                outputs = model.generate(input_ids=inputs['input_ids'], pixel_values=inputs['pixel_values'])
+            # Standardprozessor
+            processor = AutoProcessor.from_pretrained("Qwen/Qwen2-VL-2B-Instruct")
 
-            # Ausgabe dekodieren und extrahieren
-            response_content = processor.decode(outputs[0], skip_special_tokens=True)
+            # Der Standardbereich für die Anzahl der visuellen Token pro Bild im Modell liegt zwischen 4 und 16384. Sie können min_pixels und max_pixels entsprechend Ihren Anforderungen festlegen, z. B. einen Token-Zählungsbereich von 256–1280, um Geschwindigkeit und Speichernutzung auszugleichen.
+            # min_pixels = 256*28*28
+            # max_pixels = 1280*28*28
+            # processor = AutoProcessor.from_pretrained("Qwen/Qwen2-VL-7B-Instruct", min_pixels=min_pixels, max_pixels=max_pixels)
+
+            messages = [
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "image", "image": filepath},
+                        {"type": "text", "text": user_message},
+                    ],
+                }
+            ]
+
+            text = processor.apply_chat_template(
+                messages, tokenize=False, add_generation_prompt=True
+            )
+
+            if isinstance(text, list):
+                text = text[0]
+
+            image_inputs, video_inputs = process_vision_info(messages)
+            inputs = processor(
+                text=[text],
+                images=image_inputs,
+                videos=video_inputs,
+                padding=True,
+                return_tensors="pt",
+            )
+            device = "cuda" if torch.cuda.is_available() else "cpu"
+            inputs = inputs.to(device)
+
+            # Inferenz: Generierung der Ausgabe
+            generated_ids = model.generate(**inputs, max_new_tokens=128)
+            generated_ids_trimmed = [
+                out_ids[len(in_ids):] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
+            ]
+            response_content = processor.batch_decode(
+                generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
+            )[0]
             response_content_code = execute_python_code(response_content)
 
             # Rückgabe der Antwort als JSON
@@ -303,17 +349,37 @@ def send_message():
     else:
         # Verarbeite die Nachricht ohne Bild, benutze das Standardbild
         try:
-            # Wenn kein Bild hochgeladen wurde, verarbeite den Text alleine
-            processor = AutoProcessor.from_pretrained("Qwen/Qwen2-VL-7B-Instruct")
-            model = AutoModelForImageTextToText.from_pretrained("Qwen/Qwen2-VL-7B-Instruct")
+            model_name = "Qwen/Qwen2.5-14B-Instruct"
 
-            inputs = processor(text=user_message, return_tensors="pt")
+            model = AutoModelForCausalLM.from_pretrained(
+                model_name,
+                torch_dtype="auto",
+                device_map="auto"
+            )
+            tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-            with torch.no_grad():
-                outputs = model.generate(input_ids=inputs['input_ids'])
+            prompt = "Give me a short introduction to large language model."
+            messages = [
+                {"role": "system", "content": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant."},
+                {"role": "user", "content": prompt}
+            ]
+            text = tokenizer.apply_chat_template(
+                messages,
+                tokenize=False,
+                add_generation_prompt=True
+            )
+            model_inputs = tokenizer([text], return_tensors="pt").to(model.device)
 
-            # Antwort dekodieren
-            response_content = processor.decode(outputs[0], skip_special_tokens=True)
+            generated_ids = model.generate(
+                **model_inputs,
+                max_new_tokens=512
+            )
+            generated_ids = [
+                output_ids[len(input_ids):] for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
+            ]
+
+            response_content = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
+
             response_content_code = execute_python_code(response_content)
 
             # Rückgabe der Antwort als JSON
