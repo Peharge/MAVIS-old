@@ -112,8 +112,7 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 - **[30.11.2024]** MAVIS can write **PyTorch, TensorFlow, Keras, Scikit-Learn and Hugging Face Transformers (maybe JAX) code** and run it side-by-side without the need for an IDE. But it is only intended for experimentation.
 - **[01.12.2024]** MAVIS EAP release
 - **[03.12.2024]** Available with **Altair**
-- **[12.12.2024]** MAVIS 1.3 EAP reales: new Plotly function [Demo](#demo)
-- **[14.12.2024]** Bigger Input Box
+- **[24.12.2024]** MAVIS 1.3 EAP reales: new Plotly function [Demo](#demo) + Stronger adaptability through Transformer (Huggingface) + Bigger Input Box
 
 ## _Updates_
 
@@ -433,7 +432,7 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
      - `run-main.bat` (recommended)
      - `run-code.bat` (recommended)
      - `run-math.bat` (recommended)
-     - `run-math-pro.bat` (recommended)
+     - `run-math-pro.bat` (recommended)<br>
      for MAVIS 1.3 (NEW):
      - `run-mavis1.3-main.bat` (recommended)  
      - `run-mavis1.3_code.bat` (recommended)
@@ -591,7 +590,7 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
      - `run-main.bat` (empfohlen)  
      - `run-code.bat` (empfohlen)
      - `run-math.bat` (empfohlen)
-     - `run-math-pro.bat` (empfohlen)
+     - `run-math-pro.bat` (empfohlen)<br>
      für MAVIS 1.3 (NEW):
      - `run-mavis1.3-main.bat` (empfohlen)  
      - `run-mavis1.3_code.bat` (empfohlen)
