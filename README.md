@@ -430,12 +430,16 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 1. **Start the UI**
    You can start the UI in two ways:
    - With a batch file:
-   - `run-main.bat` (recommended)
-   - `run-code.bat` (recommended)
-   - `run-math.bat` (recommended)
-   - `run-math-pro.bat` (recommended)
-   - `run-main2.bat` (for tests)
-   - `run-main3.bat` (for tests)
+     - `run-main.bat` (recommended)
+     - `run-code.bat` (recommended)
+     - `run-math.bat` (recommended)
+     - `run-math-pro.bat` (recommended)
+     for MAVIS 1.3 (NEW):
+     - `run-mavis1.3-main.bat` (recommended)  
+     - `run-mavis1.3_code.bat` (recommended)
+     - `run-mavis1.3-math.bat` (recommended)
+     - `run-mavis1.3-math-pro.bat` (recommended)
+   
    - Alternatively via the Python script:
        ```bash
        python main-main.py
@@ -588,8 +592,12 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
      - `run-code.bat` (empfohlen)
      - `run-math.bat` (empfohlen)
      - `run-math-pro.bat` (empfohlen)
-     - `run-main2.bat` (für Tests)  
-     - `run-main3.bat` (für Tests)  
+     für MAVIS 1.3 (NEW):
+     - `run-mavis1.3-main.bat` (empfohlen)  
+     - `run-mavis1.3_code.bat` (empfohlen)
+     - `run-mavis1.3-math.bat` (empfohlen)
+     - `run-mavis1.3-math-pro.bat` (empfohlen)
+
    - Alternativ über das Python-Skript:  
      ```bash
      python main-main.py
@@ -652,163 +660,6 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
      ```
 
 ### Viel Spaß mit MAVIS 🚀
-
-### Français:
-
-**MAVIS (alias Xc++ 2)** est actuellement en cours de développement et n'est pas entièrement disponible dans ce référentiel. En clonant le référentiel, vous obtenez uniquement le fichier README, quelques images et codes déjà publiés, y compris l'interface utilisateur (UI) compatible avec **Qwen 2.5 Code** et **Llama 3.2 Vision**.
-
-### Exigences
-
-Pour réussir l'installation de MAVIS, vous avez besoin des programmes suivants:
-
-1. **Git**
-   Téléchargez Git depuis le site officiel:
-   [https://git-scm.com](https://git-scm.com)
-
-2. **Python**
-   - Recommandé: **Python 3.13** (3.12 ou 3.11 sont également pris en charge).
-   - Téléchargez Python depuis [https://www.python.org](https://www.python.org) ou depuis le Microsoft Store.
-
-3. **Environnement de développement Python (IDE) (mais ce n'est pas obligatoire)**
-   Un IDE approprié facilite le développement et l’utilisation de Python. Options recommandées:
-   - **Visual Studio Code (gratuit)**: [https://code.visualstudio.com](https://code.visualstudio.com)
-   - **PyCharm (payant)**: [https://www.jetbrains.com/de-de/pycharm/](https://www.jetbrains.com/de-de/pycharm/)<br>
-   *Remarque:* PyCharm offre des fonctionnalités avancées pour le développement Python et est particulièrement adapté aux utilisateurs avancés.
-
-### Installation
-
-1. **Cloner le dépôt**
-    Clonez le dépôt dans un répertoire local:
-    ```bash
-    clone git https://github.com/Peharge/MAVIS
-    ```
-   
-2. **Changer de répertoire**
-    Accédez au répertoire du projet:
-    ```bash
-    CD MAVIS
-    ```
-   
-3. **Créer un environnement virtuel Python**
-    Configurez un environnement virtuel pour installer les dépendances de manière isolée:
-    ```bash
-    python -m venv env
-    ```
-    *(Vous pouvez remplacer `env` par un autre nom.)*
-
-
-4. **Activer l'environnement virtuel**
-    Activez l'environnement virtuel:
-    - **Pour CMD**:
-    ```bash
-    env\Scripts\activer
-    ```
-    - **Pour PowerShell**:
-    ```bash
-    .\env\Scripts\Activer
-    ```
-
-5. **Installer les dépendances**
-    Installez les bibliothèques requises:
-    ```bash
-    pip install Flask
-    pip install ollama
-    pip install Werkzeug
-    pip install markdown
-    pip install matplotlib
-    pip install plotly
-    pip install dash
-    pip install seaborn
-    pip install numpy
-    pip install sympy
-    pip install pandas
-    pip install scipy
-    pip install tensorflow
-    pip install torch
-    pip install scikit-learn
-    pip install transformers
-    pip install geopandas
-    pip install -U altair
-    pip install -U vega_datasets
-    pip install -U altair_viewer
-    pip install ipython
-    pip install altair-saver
-    pip install -U kaleido
-    pip install vl-convert-python
-    ```
-
-### Démarrer l'interface utilisateur
-
-1. **Démarrage de l'interface utilisateur**
-    Vous pouvez lancer l'interface utilisateur de deux manières:
-    - Avec un fichier batch :
-    - `run-main.bat` (recommandé)
-    - `run-code.bat` (recommandé)
-    - `run-math.bat` (recommandé)
-    - `run-math-pro.bat` (recommandé)
-    - `run-main2.bat` (pour les tests)
-    - `run-main3.bat` (pour les tests)
-   - Alternativement via le script Python :
-     ```bash
-     python main-main.py
-     ```
-     ```bash
-     python main-code.py
-     ```
-     ```bash
-     python main-math.py
-     ```
-     ```bash
-     python main-math-pro.py
-     ```
-     *Remarque:* Vérifiez quel script (`main[1-24].py`) correspond le mieux à vos besoins.
-<br><br>
-2. **Accédez à l'interface utilisateur**
-    Après avoir démarré l'interface utilisateur, Flask imprime une URL dans le terminal.
-    - Ouvrez cette URL dans votre navigateur (peut être cliquée directement sous PowerShell avec `Ctrl + Clic`).
-    - L'interface utilisateur MAVIS devrait apparaître dans le navigateur.
-<br><br>
-3. **Désactiver l'environnement virtuel**
-    Une fois terminé, vous pouvez désactiver l'environnement virtuel à l'aide de la commande suivante:
-    ```bash
-    deactivate
-    ```
-
-## Modèles alternatifs pour MAVIS
-
-Étant donné que **Xc++ 2** n'est pas encore sorti, vous pouvez utiliser les modèles suivants à la place:
-
-*Pour installer les modèles Ollama, vous avez besoin de l'application Ollama: [https://ollama.com/download](https://ollama.com/download).<br>
-Après l'installation, vous devez toujours démarrer l'application pour utiliser les modèles.*
-
-1. **Vision Lama 3.2**
-    Installez ce modèle via Ollama:
-    - **Pour MAVIS 11B**:
-    ```bash
-    ollama run lama3.2-vision
-    ```
-    - **Pour MAVIS 90B**:
-    ```bash
-    ollama run lama3.2-vision:90b
-    ```
-
-2. **Qwen 2.5 Coder** (sans vision)
-    Ce modèle est optimisé pour un fonctionnement en code pur:
-    - **Pour MAVIS 11B**:
-    ```bash
-    ollama run qwen2.5-coder:14b
-    ```
-    - **Pour MAVIS 90B**:
-    ```bash
-    ollama run qwen2.5-coder:32b
-    ```
-3. **QwQ** (sans vision)
-    Ce modèle est optimisé pour les opérations mathématiques pures:
-    ```bash
-    ollama run qwq
-    ```
-
-### Amusez-vous avec MAVIS 🚀
 
 ## Using
 
