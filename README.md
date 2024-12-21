@@ -470,6 +470,19 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
        ```bash
        python main-math-pro.py
        ```
+     for MAVIS 1.3 (NEW):
+       ```bash
+       python mavis-1-3-main-main.py
+       ```
+       ```bash
+       python mavis-1-3-main-code.py
+       ```
+       ```bash
+       python mavis-1-3-main-math.py
+       ```
+       ```bash
+       python mavis-1-3-main-math-pro.py
+       ```
    *Note:* Check which script (`main[1-24].py`) is best suited for your needs.
 
 2. **Accessing the UI**
@@ -615,19 +628,33 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
      - `run-mavis1.3-math.bat` (empfohlen)
      - `run-mavis1.3-math-pro.bat` (empfohlen)
 
-   - Alternativ über das Python-Skript:  
-     ```bash
-     python main-main.py
-     ```
-     ```bash
-      python main-code.py
-     ```
-     ```bash
-      python main-math.py
-      ```
-      ```bash
-      python main-math-pro.py
-      ```
+   
+   - Alternatively via the Python script:
+       ```bash
+       python main-main.py
+       ```
+       ```bash
+       python main-code.py
+       ```
+       ```bash
+       python main-math.py
+       ```
+       ```bash
+       python main-math-pro.py
+       ```
+     for MAVIS 1.3 (NEW):
+       ```bash
+       python mavis-1-3-main-main.py
+       ```
+       ```bash
+       python mavis-1-3-main-code.py
+       ```
+       ```bash
+       python mavis-1-3-main-math.py
+       ```
+       ```bash
+       python mavis-1-3-main-math-pro.py
+       ```
      *Hinweis:* Prüfen Sie, welches Skript (`main[1-24].py`) für Ihre Anforderungen am besten geeignet ist.
 
 2. **Zugriff auf die Benutzeroberfläche**  
