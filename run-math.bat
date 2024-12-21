@@ -2,7 +2,7 @@
 
 set PYTHON_PATH=C:\Users\julia\PycharmProjects\MAVIS\.env\Scripts\python.exe
 set SCRIPT_PATH_1=C:\Users\julia\PycharmProjects\MAVIS\info.py
-set SCRIPT_PATH_2=C:\Users\julia\PycharmProjects\MAVIS\main-math.py
+set SCRIPT_PATH_2=C:\Users\julia\PycharmProjects\MAVIS\mavis-1-2-main-math.py
 
 if not exist "%PYTHON_PATH%" (
     echo Fehler: Python-Interpreter nicht gefunden: %PYTHON_PATH%
