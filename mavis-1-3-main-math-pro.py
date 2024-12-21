@@ -65,7 +65,7 @@
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
 from flask import Flask, render_template, request, jsonify, send_from_directory, session
-import ollama
+# import ollama
 from transformers import Qwen2VLForConditionalGeneration, AutoModelForCausalLM, AutoTokenizer, AutoProcessor
 from qwen_vl_utils import process_vision_info
 from accelerate import infer_auto_device_map
