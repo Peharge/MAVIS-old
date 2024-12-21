@@ -237,11 +237,10 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 
 > soon
 
-### MAVIS 2                     
-<p align="center">
-    <img src="./readme-img/mavis2-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
-</p>
-
+### MAVIS 2.0                     
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis2-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
 <br>
 
 > 01.01.2026
@@ -254,6 +253,26 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 <br>
 
 > 01.03.2026
+
+### MAVIS 2.2                     
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis2.2-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+<br>
+
+> 01.05.2026
+
+<br>
+
+### MAVIS 2.3                     
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis2.3-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+<br>
+
+> 01.07.2026
 
 <br>
 
