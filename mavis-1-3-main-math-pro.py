@@ -1,6 +1,3 @@
-# Dont runn!!!
-
-
 # Englisch | Peharge: This source code is released under the MIT License.
 #
 # Usage Rights:
