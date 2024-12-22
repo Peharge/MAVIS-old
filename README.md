@@ -130,8 +130,6 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 
 And more...
 
-<br>
-
 > 01.12.2024 
 
 ### MAVIS 1.2 EAP release [NEW]
@@ -148,8 +146,6 @@ And more...
 
 And more...
 
-<br>
-
 > 12.12.2024 
 
 ### MAVIS 1.3 EAP release
@@ -165,8 +161,6 @@ And more...
 </div>
 
 And more...
-
-<br>
 
 > 24.12.2024
 
