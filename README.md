@@ -128,6 +128,8 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
     <img src="./readme-img/mavis-demo91.gif" alt="mavis" width="1400">
 </div>
 
+And more...
+
 <br>
 
 > 01.12.2024 
