@@ -157,7 +157,7 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 ### Demo
 
 <div>
-    <img src="./readme-img/mavis1.3-demo-ads.gif" alt="mavis" width="1400">
+    <img src="./readme-img/Mavis1.3-demo-ads.gif" alt="mavis" width="1400">
 </div>
 
 <br>
