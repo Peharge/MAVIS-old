@@ -144,6 +144,8 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
     <img src="./readme-img/mavis-demo123.png" alt="mavis" width="1400">
 </div>
 
+And more...
+
 <br>
 
 > 12.12.2024 
@@ -159,6 +161,8 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 <div>
     <img src="./readme-img/Mavis1.3-demo-ads.gif" alt="mavis" width="1400">
 </div>
+
+And more...
 
 <br>
 
