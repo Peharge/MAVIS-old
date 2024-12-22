@@ -154,6 +154,12 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
   <img src="./readme-img/mavis1.3-banner-ads2.png" alt="mavis" width="650" style="margin: 10px;">
 </p>
 
+### Demo
+
+<div>
+    <img src="./readme-img/mavis1.3-demo-ads.gif" alt="mavis" width="1400">
+</div>
+
 <br>
 
 > 24.12.2024
@@ -755,7 +761,6 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 ### Demo 13
 
 <div>
-    <img src="./readme-img/mavis-demo91.gif" alt="mavis" width="1400">
     <img src="./readme-img/mavis-demo81.gif" alt="mavis" width="1400">
     <img src="./readme-img/mavis-demo83.gif" alt="mavis" width="1400">
 </div>
