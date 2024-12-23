@@ -2812,22 +2812,18 @@
     </script>
 
     <script>
-        // Get references to the textarea, input elements, and send button
         const textarea = document.getElementById('message-text');
         const input = document.getElementById('message');
         const sendButton = document.getElementById('send-button');
 
-        // Sync the text in real-time
         textarea.addEventListener('input', () => {
             input.value = textarea.value;
         });
 
-        // Simulate user input on send button click
         sendButton.addEventListener('click', () => {
-            textarea.value = input.value; // Ensure the input reflects the textarea
-            // This line simulates the input being "submitted" as if by a user
+            textarea.value = input.value;
             input.value = textarea.value;
-            alert(`Message sent: ${input.value}`); // Optional alert to confirm the action
+            alert(`Message sent: ${input.value}`);
         });
     </script>
 
