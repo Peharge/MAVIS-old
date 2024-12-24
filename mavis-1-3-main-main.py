@@ -347,35 +347,19 @@ def send_message():
     else:
         # Verarbeite die Nachricht ohne Bild, benutze das Standardbild
         try:
-            model_id = "meta-llama/Llama-3.3-70B-Instruct" # ore meta-llama/Llama-3.2-11B-Instruct
+            model_id = "meta-llama/Llama-3.3-70B-Instruct"
+            quantization_config = BitsAndBytesConfig(load_in_8bit=True)
 
-            pipeline = transformers.pipeline(
-                "text-generation",
-                model=model_id,
-                model_kwargs={"torch_dtype": torch.bfloat16},
-                device_map="auto",
-            )
+            quantized_model = AutoModelForCausalLM.from_pretrained(
+                model_id, device_map="auto", torch_dtype=torch.bfloat16, quantization_config=quantization_config)
 
-            messages = [
-                {"role": "system", "content": "You are a helpful and harmless assistant. You should think step-by-step."},
-                {"role": "user", "content": user_message}
-            ]
-            text = tokenizer.apply_chat_template(
-                messages,
-                tokenize=False,
-                add_generation_prompt=True
-            )
-            model_inputs = tokenizer([text], return_tensors="pt").to(model.device)
+            tokenizer = AutoTokenizer.from_pretrained(model_id)
+            input_text = user_message
+            input_ids = tokenizer(input_text, return_tensors="pt").to("cuda")
 
-            generated_ids = model.generate(
-                **model_inputs,
-                max_new_tokens=512
-            )
-            generated_ids = [
-                output_ids[len(input_ids):] for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
-            ]
+            output = quantized_model.generate(**input_ids, max_new_tokens=10)
 
-            response_content = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
+            response_content = tokenizer.decode(output[0], skip_special_tokens=True)
 
             response_content_code = execute_python_code(response_content)
 
