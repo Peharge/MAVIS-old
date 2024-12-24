@@ -347,7 +347,7 @@ def send_message():
     else:
         # Verarbeite die Nachricht ohne Bild, benutze das Standardbild
         try:
-            model_id = "meta-llama/Llama-3.3-70B-Instruct"
+            model_id = "meta-llama/Llama-3.3-70B-Instruct" # ore meta-llama/Llama-3.2-11B-Instruct
 
             pipeline = transformers.pipeline(
                 "text-generation",
