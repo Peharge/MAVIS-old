@@ -148,7 +148,7 @@ And more...
 
 > 12.12.2024 
 
-### MAVIS 1.3 EAP release
+### MAVIS 1.3 EAP release [NEW]
 
 <p align="center">
   <img src="./readme-img/mavis1.3-banner-ads2.png" alt="mavis" width="650" style="margin: 10px;">
