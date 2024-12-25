@@ -70,6 +70,7 @@ import GPUtil
 import re
 import sys
 import pip
+import ollama
 import flask
 import markdown
 import numpy
@@ -81,10 +82,11 @@ import seaborn
 import altair
 import sympy
 import dash
-# import torch
-# import tensorflow
-# import sklearn
-# import transformers
+import torch
+import tensorflow
+import sklearn
+import transformers
+import IPython
 
 red = "\033[91m"
 green = "\033[92m"
@@ -153,24 +155,27 @@ def get_system_info():
 def get_versions():
     python_version = sys.version.split()[0]
     pip_version = version("pip")
+    ollama_version = version("ollama")
     flask_version = version("flask")
     markdown_version = version("markdown")
     numpy_version = numpy.__version__
     pandas_version = numpy.__version__
     matplotlib_version = matplotlib.__version__
     plotly_version = plotly.__version__
-    seaborn_version = seaborn.__version__
+    seaborn_version = version("seaborn")
     altair_version = altair.__version__
     sympy_version = sympy.__version__
     dash_version = dash.__version__
-    # torch_version = torch.__version__
-    # tensorflow_version = tensorflow.__version__
-    # sklearn_version = sklearn.__version__
-    # transformers_version = transformers.__version__
+    torch_version = torch.__version__
+    tensorflow_version = tensorflow.__version__
+    sklearn_version = sklearn.__version__
+    transformers_version = transformers.__version__
+    ipython_version = IPython.__version__
 
     return {
         "Python": python_version,
         "Pip": pip_version,
+        "Ollama": ollama_version,
         "Flask": flask_version,
         "Markdown": markdown_version,
         "Numpy": numpy_version,
@@ -181,10 +186,11 @@ def get_versions():
         "Altair": altair_version,
         "SymPy": sympy_version,
         "Dash": dash_version,
-        # "Torch": torch_version,
-        # "TensorFlow": tensorflow_version,
-        # "Sklearn": sklearn_version,
-        # "Tansformers": transformers_version,
+        "Torch": torch_version,
+        "TensorFlow": tensorflow_version,
+        "Sklearn": sklearn_version,
+        "Tansformers": transformers_version,
+        "IPython" : ipython_version
     }
 
 def mavis_compatibility(ram, cuda_support, rocm_support):
