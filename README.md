@@ -164,7 +164,7 @@ And more...
 
 > 24.12.2024
 
-### MAVIS 1.4 EAP release
+### MAVIS 1.4 EAP release [soon]
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis1.4-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
