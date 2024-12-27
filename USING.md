@@ -41,4 +41,6 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 </div>
 
-# _USING MAVIS_
+# _USING MAVIS 1.3 EAP_
+
+01.01.2025 !!!
