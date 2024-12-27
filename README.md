@@ -718,7 +718,6 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 ⚠️
 - Make sure Mavis is always told to use **fig.update_layout(mapbox_style="open-street-map")** in Python code!
 - Stellen Sie sicher, dass Mavis stets darauf hingewiesen wird, im Python-Code **fig.update_layout(mapbox_style="open-street-map")** zu verwenden!
-- Assurez-vous qu’on dise toujours à Mavis d’utiliser **fig.update_layout(mapbox_style="open-street-map")** dans le code Python!
 
 <div>
     <img src="./readme-img/mavis-demo123.png" alt="mavis" width="1400">
