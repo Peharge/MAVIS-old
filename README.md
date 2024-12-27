@@ -390,6 +390,8 @@ And more...
 5. **Install dependencies**
    Install the required libraries:
     ```bash
+    # --- 1.1
+    
     pip install Flask
     pip install ollama
     pip install Werkzeug
@@ -414,6 +416,22 @@ And more...
     pip install altair-saver
     pip install -U kaleido
     pip install vl-convert-python
+    
+    # --- 1.2
+    
+    pip install qwen-vl-utils
+    pip install 'accelerate>=0.26.0'
+    pip install accelerate
+    
+    # --- 1.3
+    
+    pip install vllm
+    pip install uvloop
+    vllm serve "Qwen/Qwen2-VL-7B-Instruct"
+    
+    # or
+    
+    vllm serve "Qwen/Qwen2-VL-7B-Instruct" --no-uvloop
     ```
 
 ### Start the UI
@@ -561,6 +579,8 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 5. **Abhängigkeiten installieren**  
    Installieren Sie die benötigten Bibliotheken:
     ```bash
+    # --- 1.1
+    
     pip install Flask
     pip install ollama
     pip install Werkzeug
@@ -585,6 +605,22 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
     pip install altair-saver
     pip install -U kaleido
     pip install vl-convert-python
+    
+    # --- 1.2
+    
+    pip install qwen-vl-utils
+    pip install 'accelerate>=0.26.0'
+    pip install accelerate
+    
+    # --- 1.3
+    
+    pip install vllm
+    pip install uvloop
+    vllm serve "Qwen/Qwen2-VL-7B-Instruct"
+    
+    # or
+    
+    vllm serve "Qwen/Qwen2-VL-7B-Instruct" --no-uvloop
     ```
 
 ### Benutzeroberfläche starten
