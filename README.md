@@ -114,7 +114,30 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 - **[03.12.2024]** Available with **Altair**
 - **[24.12.2024]** MAVIS 1.3 EAP reales: new Plotly function [Demo](#demo) + Stronger adaptability through Transformer (Huggingface) + Bigger Input Box
 
-## _Updates_
+<br>
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./static/images/mavis-banner133-5.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+## Table of contents
+- [Updates](#updates)
+- [Versions](#versions)
+- [Benchmark](#benchmark)
+- [Installation](#installation)
+- [Usage](#using)
+- [Xc++](#Xcpp)
+- [Demo](#demo)
+- [Demo Text](#demo-text)
+- [History](#history)
+- [Checklist](#checklist)
+- [Design](#design)
+- [Transformer](#transformer)
+- [License](#lizenz)
+
+---
+
+## Updates
 
 ### MAVIS 1.1 EAP release (with Llama 3.2)
 
@@ -280,26 +303,6 @@ And more...
 > 01.07.2026
 
 <br>
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./static/images/mavis-banner133-5.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-
-## Table of contents
-- [Versions](#versions)
-- [Benchmark](#benchmark)
-- [Installation](#installation)
-- [Usage](#using)
-- [Xc++](#Xcpp)
-- [Demo](#demo)
-- [Demo Text](#demo-text)
-- [History](#history)
-- [Checklist](#checklist)
-- [Design](#design)
-- [Transformer](#transformer)
-- [License](#lizenz)
-
----
 
 ## Versions
 
