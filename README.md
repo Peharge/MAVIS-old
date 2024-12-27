@@ -721,6 +721,8 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 
 > ⚠️ **Still in progress (24.12.2024)** ⚠️
 
+> got to: [USING.md](https://github.com/Peharge/MAVIS/blob/main/USING.md)
+
 ## Xcpp
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
@@ -730,6 +732,8 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 <br>
 
 > ⚠️**Still in progress**⚠️
+
+> got to: [Github/Xc++-II](https://github.com/Peharge/Xcpp-II)
 
 ## Demo
 
