@@ -133,10 +133,10 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def execute_python_code(md_content):
-    """
-    Sucht nach Python-Code im Markdown-Inhalt, führt ihn aus und fügt die Ausgaben (Text oder Bild) zum Markdown hinzu.
-    Unterstützt Matplotlib, Seaborn, Plotly und Altair.
-    """
+
+    # Sucht nach Python-Code im Markdown-Inhalt, führt ihn aus und fügt die Ausgaben (Text oder Bild) zum Markdown hinzu.
+    # Unterstützt Matplotlib, Seaborn, Plotly und Altair.
+
     code_pattern = re.compile(r"```python(.*?)```", re.DOTALL)
     matches = code_pattern.findall(md_content)
 
