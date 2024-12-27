@@ -288,7 +288,6 @@ And more...
 ## Table of contents
 - [Versions](#versions)
 - [Benchmark](#benchmark)
-- [Peharge](#peharge)
 - [Installation](#installation)
 - [Usage](#using)
 - [Xc++](#Xcpp)
@@ -336,26 +335,6 @@ And more...
 | MATH-500      | 90.6 (goal 96.0)                           | 90.6                | 85.5                   | 90.0                | 94.8                         | 76.6   | 82.6                 |
 | LiveCodeBench | 50.0 (goal 61.0)                           | 50.0                | 53.6                   | 58.0                | ...                          | 33.4   | 30.4                 |
 | HumanEval     | 92.7 (goal 95)                             | ...                 | 92.4                   | 92.4                | ...                          | 90.2   | 92.0                 |
-
-## Peharge
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/Peharge-banner4.jpg" alt="peharge" width="1400" style="margin: 10px;">
-</div>
-
-<br>
-
-> ⚠️**Still in progress**⚠️
-
-## Peharge Program 2024-2025
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/peharge3.png" alt="peharge" width="1400" style="margin: 10px;">
-</div>
-
-<br>
-
-> ⚠️**Still in progress**⚠️
 
 ## Installation
 
