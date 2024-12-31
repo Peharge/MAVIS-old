@@ -181,7 +181,7 @@ And more...
 
 <br>
 
-> 15.01.2025
+> 01.02.2025
 
 ### MAVIS 1.5 EAP release
 
@@ -191,7 +191,7 @@ And more...
 
 <br>
 
-> 01.02.2025
+> 01.03.2025
 
 ### MAVIS 1.6 EAP release
 
@@ -201,7 +201,7 @@ And more...
 
 <br>
 
-> 01.03.2025
+> 01.04.2025
 
 ### MAVIS 1.7 EAP release
 
@@ -211,7 +211,7 @@ And more...
 
 <br>
 
-> 01.04.2025
+> 01.05.2025
 
 ### MAVIS 1.8 EAP release
 
@@ -221,7 +221,7 @@ And more...
 
 <br>
 
-> 01.05.2025
+> 01.06.2025
 
 ### MAVIS 1.9 EAP release
 
@@ -231,7 +231,7 @@ And more...
 
 <br>
 
-> 01.06.2025
+> 01.07.2025
 
 ### MAVIS big release on Windows / Linux / MAC OS (no EAP)
 
@@ -241,7 +241,7 @@ And more...
 
 <br>
 
-> 01.07.2025
+> 01.08.2025
  
 ### MAVIS on Apple Vision Pro                     
 <p align="center">
