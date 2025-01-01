@@ -54,6 +54,9 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 
 > ⚠️**Still in progress**⚠️
 
+> ⚠️ Important warning: Beware of fake accounts! ⚠️
+There is evidence that fake accounts may attempt to misrepresent this project. Please do not share personal information with anyone you do not know and only rely on content coming directly from this repository. Immediately report large activities or accounts to GitHub or the project team.
+
 > **English**: MAVIS is an AI-driven application that allows you to analyze visual data such as images (formats: PNG, JPG, JPEG and GIF) and generate interactive answers based on them. With MAVIS you can perform complex mathematical calculations, solve programming tasks and create professional graphics.
 > 
 > To achieve optimal results, please note the following:
