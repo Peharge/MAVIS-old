@@ -182,7 +182,13 @@ And more...
   <img src="./readme-img/mavis1.4-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
-<br>
+### Demo
+
+<div>
+    <img src="./readme-img/mavis1.4-demo1.png" alt="mavis" width="1400">
+</div>
+
+And more...
 
 > 01.02.2025
 
