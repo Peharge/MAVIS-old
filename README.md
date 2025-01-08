@@ -912,7 +912,7 @@ _Good luck!_
 
 ## Demo-text
 
-> ⚠️**Still in progress**⚠️
+> soon...
 
 ## History
 
