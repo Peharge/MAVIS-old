@@ -184,9 +184,7 @@ And more...
 
 ### Demo
 
-<div>
-    <img src="./readme-img/mavis1.4-demo1.png" alt="mavis" width="1400">
-</div>
+soon...
 
 And more...
 
