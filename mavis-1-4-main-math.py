@@ -62,7 +62,11 @@
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
 from flask import Flask, render_template, request, jsonify, send_from_directory, session
-import ollama
+# import ollama
+from transformers import Qwen2VLForConditionalGeneration, AutoModelForCausalLM, AutoTokenizer, AutoProcessor
+from qwen_vl_utils import process_vision_info
+from accelerate import infer_auto_device_map
+import torch
 import os
 from werkzeug.utils import secure_filename
 import markdown
@@ -257,7 +261,6 @@ def uploaded_file(filename):
 @app.route('/send_message', methods=['POST'])
 def send_message():
     user_message = request.form.get('message', '').strip()
-    result = session.get('result', '')
     file = request.files.get('image', None)
 
     if not user_message:
@@ -270,21 +273,74 @@ def send_message():
         file.save(filepath)
 
         try:
-            response = ollama.chat(
-                model='llama3.2-vision',
-                messages=[{
-                    'role': 'user',
-                    'content': user_message,
-                    'images': [filepath]
-                }]
+            # Standard: Laden Sie das Modell auf die verfügbaren Geräte.
+            model = Qwen2VLForConditionalGeneration.from_pretrained(
+                "Qwen/Qwen2-VL-2B-Instruct",
+                torch_dtype=torch.bfloat16,
+                attn_implementation="flash_attention_2",
+                device_map="auto",
             )
 
-            response_content = response['message']['content']
+            # Standardprozessor
+            processor = AutoProcessor.from_pretrained("Qwen/QVQ-72B-Preview")
+
+            # Der Standardbereich für die Anzahl der visuellen Token pro Bild im Modell liegt zwischen 4 und 16384. Sie können min_pixels und max_pixels entsprechend Ihren Anforderungen festlegen, z. B. einen Token-Zählungsbereich von 256–1280, um Geschwindigkeit und Speichernutzung auszugleichen.
+            # min_pixels = 256*28*28
+            # max_pixels = 1280*28*28
+            # processor = AutoProcessor.from_pretrained("Qwen/Qwen2-VL-7B-Instruct", min_pixels=min_pixels, max_pixels=max_pixels)
+
+            messages = [
+                {
+                    "role": "system",
+                    "content": [
+                        {"type": "text",
+                         "text": "You are a helpful and harmless assistant. You are Qwen developed by Alibaba. You should think step-by-step."}
+                    ],
+                },
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "image",
+                            "image": "https://qianwen-res.oss-cn-beijing.aliyuncs.com/QVQ/demo.png",
+                        },
+                        {"type": "text", "text": "What value should be filled in the blank space?"},
+                    ],
+                }
+            ]
+
+            text = processor.apply_chat_template(
+                messages, tokenize=False, add_generation_prompt=True
+            )
+
+            if isinstance(text, list):
+                text = text[0]
+
+            image_inputs, video_inputs = process_vision_info(messages)
+            inputs = processor(
+                text=[text],
+                images=image_inputs,
+                videos=video_inputs,
+                padding=True,
+                return_tensors="pt",
+            )
+            device = "cuda" if torch.cuda.is_available() else "cpu"
+            inputs = inputs.to(device)
+
+            # Inferenz: Generierung der Ausgabe
+            generated_ids = model.generate(**inputs, max_new_tokens=128)
+            generated_ids_trimmed = [
+                out_ids[len(in_ids):] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
+            ]
+            response_content = processor.batch_decode(
+                generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
+            )[0]
             response_content_code = execute_python_code(response_content)
+
+            # Rückgabe der Antwort als JSON
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
 
-            # Hier wird das 'md_content' mit der Antwort und dem Code (als 'code') gesendet
             return jsonify({
                 'response': wrapped_html_content,
                 'image_url': app.config['UPLOAD_URL'] + filename,
@@ -292,20 +348,43 @@ def send_message():
             })
         except Exception as e:
             return jsonify({'error': str(e)}), 500
-
     else:
         # Verarbeite die Nachricht ohne Bild, benutze das Standardbild
         try:
-            response = ollama.chat(
-                model='phi4',
-                messages=[{
-                    'role': 'user',
-                    'content': user_message
-                }]
-            )
+            model_name = "Qwen/QwQ-32B-Preview"
 
-            response_content = response['message']['content']
+            model = AutoModelForCausalLM.from_pretrained(
+                model_name,
+                torch_dtype="auto",
+                device_map="auto"
+            )
+            tokenizer = AutoTokenizer.from_pretrained(model_name)
+
+            messages = [
+                {"role": "system",
+                 "content": "You are a helpful and harmless assistant. You should think step-by-step."},
+                {"role": "user", "content": user_message}
+            ]
+            text = tokenizer.apply_chat_template(
+                messages,
+                tokenize=False,
+                add_generation_prompt=True
+            )
+            model_inputs = tokenizer([text], return_tensors="pt").to(model.device)
+
+            generated_ids = model.generate(
+                **model_inputs,
+                max_new_tokens=512
+            )
+            generated_ids = [
+                output_ids[len(input_ids):] for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
+            ]
+
+            response_content = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
+
             response_content_code = execute_python_code(response_content)
+
+            # Rückgabe der Antwort als JSON
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
 
