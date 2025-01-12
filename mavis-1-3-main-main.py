@@ -276,7 +276,7 @@ def send_message():
         try:
             # Standard: Laden Sie das Modell auf die verfügbaren Geräte.
             model = Qwen2VLForConditionalGeneration.from_pretrained(
-                "Qwen/Qwen2-VL-2B-Instruct", torch_dtype="auto", device_map="auto"
+                "Qwen/Qwen2-VL-7B-Instruct", torch_dtype="auto", device_map="auto"
             )
 
             # Wir empfehlen die Aktivierung von flash_attention_2 für eine bessere Beschleunigung und Speichereinsparung, insbesondere in Szenarien mit mehreren Bildern und Videos.
@@ -288,7 +288,7 @@ def send_message():
             # )
 
             # Standardprozessor
-            processor = AutoProcessor.from_pretrained("Qwen/Qwen2-VL-72B-Instruct")
+            processor = AutoProcessor.from_pretrained("Qwen/Qwen2-VL-7B-Instruct")
 
             # Der Standardbereich für die Anzahl der visuellen Token pro Bild im Modell liegt zwischen 4 und 16384. Sie können min_pixels und max_pixels entsprechend Ihren Anforderungen festlegen, z. B. einen Token-Zählungsbereich von 256–1280, um Geschwindigkeit und Speichernutzung auszugleichen.
             # min_pixels = 256*28*28
