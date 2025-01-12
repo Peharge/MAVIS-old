@@ -271,7 +271,7 @@ def send_message():
 
         try:
             response = ollama.chat(
-                model='llama3.2-vision',
+                model='llama3.2-vision:90b',
                 messages=[{
                     'role': 'user',
                     'content': user_message,
