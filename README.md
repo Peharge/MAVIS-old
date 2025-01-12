@@ -308,11 +308,20 @@ And more...
 > ⚠️**Still in progress**⚠️
 
 | **Model** | **Description**                                                                                                    | **Parameters** |
-|-------------|--------------------------------------------------------------------------------------------------------------------|---------------|
-| Mavis 1 1B | With Llama 3.2 1B +6GB RAM +1.5GB storage (Works with one CPU)                                                     | 1B |
-| Mavis 1 3B | With Llama 3.2 2B +6GB +8GB RAM +2GB storage (Works with one CPU)                                                  | 3B |
-| Mavis 1 11B | With **Xc++ 2 11B** + QwQ 32B or Qwen 2.5 Coder 14B or Llama 3.2 11B +32GB RAM +40GB storage (Works with one CPU)  | 11B |
-| Mavis 1 90B | With **Xc++ 2 90B** + QwQ 32B or Qwen 2.5 Coder 32B or Llama 3.2 90B +128GB RAM +90GB storage (Works with one CPU) | 90B |
+|-------------|--------------------------------------------------------------------------------------------------------------------|---------------|            
+| Mavis 1.2 main| With **Xc++ 2 11B** or Llama3.2 11B +16GB RAM +23GB storage (Works with one CPU)  | 22B |
+| Mavis 1.2 math| With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 14B +16GB RAM +23GB storage (Works with one CPU)  | 27B |
+| Mavis 1.2 code| With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 Coder 14B +16GB RAM +23GB storage (Works with one CPU)  | 27B |
+| Mavis 1.2 math pro| With **Xc++ 2 90B** or Llama3.2 90B + QwQ +64GB RAM +53GB storage (Works with one CPU)  | 122B |
+| Mavis 1.2 code pro| With **Xc++ 2 90B** or Llama3.2 90B + Qwen 2.5 Coder 32B +64GB RAM +53GB storage (Works with one CPU)  | 122B |
+| Mavis 1.2 mini| With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 0.5B +16GB RAM +13GB storage (Works with one CPU)  | 11.5B |
+| Mavis 1.2 mini mini| With **Xc++ 2 11B** or Llama3.2 11B + smollm:135m +16GB RAM +33GB storage (Works with one CPU)  | 11.0135B |
+| Mavis 1.2.2 main| With **Xc++ 2 11B** or Llama3.2 11B + Phi4 +16GB RAM +23GB storage (Works with one CPU)  | 27B |
+| Mavis 1.3 main| With **Xc++ 2 11B** or Qwen2 VL 7B + Llama 3.3 +64GB RAM +53GB storage (Works with one CPU)  | 77B |
+| Mavis 1.3 math| With **Xc++ 2 11B** or Qwen2 VL 7B + Qwen 2.5 14B +16GB RAM +33GB storage (Works with one CPU)  | 21B |
+| Mavis 1.3 code| With **Xc++ 2 11B** or Qwen2 VL 7B + Qwen 2.5 Coder 14B +16B RAM +33GB storage (Works with one CPU)  | 21B |
+| Mavis 1.3 math pro| With **Xc++ 2 11B** or Qwen2 VL 7B + QwQ +32GB RAM +43GB storage (Works with one CPU)  | 39B |
+| Mavis 1.4 math| With **Xc++ 2 90B** or QvQ + QwQ +64GB RAM +53GB storage (Works with one CPU)  | 104B |
 
 ## Benchmark
 
