@@ -3,7 +3,7 @@
 set USERNAME=%USERNAME%
 set PYTHON_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe
 set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info.py
-set SCRIPT_PATH_2=C:\Users\%USERNAME%\PycharmProjects\MAVIS\mavis-1-3-main-main.py
+set SCRIPT_PATH_2=C:\Users\%USERNAME%\PycharmProjects\MAVIS\mavis-1-2-main-code-pro.py
 set OLLAMA_PATH=C:\Users\%USERNAME%\AppData\Local\Programs\Ollama\ollama app.exe
 
 if not exist "%PYTHON_PATH%" (

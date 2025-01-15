@@ -150,7 +150,7 @@ def execute_python_code(md_content):
         return "---"
 
     # Verzeichnis für gespeicherte Bilder
-    image_dir = r"C:\Users\julia\PycharmProjects\MAVIS\static\image"
+    image_dir = r"C:\Users\{user_name}\PycharmProjects\MAVIS\static\image"
     if not os.path.exists(image_dir):
         os.makedirs(image_dir)
 
@@ -251,7 +251,7 @@ def execute_python_code(md_content):
 
 @app.route('/')
 def index():
-    return render_template('index20.html')
+    return render_template('index21.html')
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
