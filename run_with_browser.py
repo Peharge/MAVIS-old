@@ -2,6 +2,7 @@ import subprocess
 import webbrowser
 import time
 import os
+import platform
 
 # ANSI color codes
 red = "\033[91m"
@@ -44,8 +45,21 @@ time.sleep(5)
 # Open the browser
 try:
     webbrowser.open(url)
-    print(f"{blue}The browser has been opened and the URL {yellow}{url}{blue} has been called.{reset}")
-    print("\nClient information:")
+    print(f"The browser has been opened and the URL {yellow}{url}{reset} has been called.")
+
+    # Get browser information
+    browser_name = webbrowser._tryorder[0] if webbrowser._tryorder else 'Unknown browser'
+
+    # Check if the browser is Edge
+    if "windows-default" not in browser_name.lower():
+        print(f"{yellow}Warning: You are not using Microsoft Edge.{reset}")
+        print(f"{yellow}There may be issues. It is recommended to use Edge for optimal performance.{reset}")
+    else:
+        print(f"{green}You are using Microsoft Edge. No issues expected.{reset}")
+
+    print(f"Browser: {browser_name}")
+    print("\nFlask information:")
     print("-----------------------------------")
+
 except Exception as e:
     print(f"{red}Error opening browser: {e}{reset}")

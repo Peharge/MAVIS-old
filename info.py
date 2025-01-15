@@ -189,7 +189,7 @@ def get_system_info():
         f"{blue}Disk Partitions{reset}": [f"{part.device} - {part.fstype}" for part in partitions],
         f"{blue}System Load Average{reset}": load_avg,
         f"{blue}Uptime{reset}": f"{uptime_str}",
-        f"{blue}Network Interfaces{reset}": network_interfaces,
+        f"{blue}Network Interfaces{reset}": "\n".join([f"- {interface}" for interface in network_interfaces]),
         f"{blue}User Information{reset}": user_info,
     }
 
@@ -200,7 +200,7 @@ def check_python_interpreter():
     python_path = r'C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe'
     python_path = os.path.expandvars(python_path)  # Variablen im Pfad expandieren
 
-    print(f"Checking for Python interpreter at: {python_path}")
+    print(f"\nPython information:\n-----------------------------------\nChecking for Python interpreter at: {python_path}")
 
     # Definiere, wie oft der Versuch wiederholt werden soll
     attempts = 5
@@ -296,7 +296,7 @@ def display_venv_details(python_path):
         print(f"Python executable: {python_path}")
 
         # Zusätzliche Systemdetails
-        print(f"{green}System Python paths:{reset}")
+        print(f"\nSystem Python paths:\n-----------------------------------")
         for path in sys.path:
             print(path)
     except Exception as e:
@@ -318,7 +318,7 @@ def display_system_info():
             "Python Config (sysconfig)": sysconfig.get_config_vars()
         }
 
-        print(f"{green}System Information:{reset}")
+        print(f"\nSystem Information from Python:\n-----------------------------------")
         print(json.dumps(system_info, indent=4))
     except Exception as e:
         print(f"{red}Error displaying system information: {e}{reset}")
