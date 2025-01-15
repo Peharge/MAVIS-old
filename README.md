@@ -964,8 +964,6 @@ Not done ❌ | Done (min. 1 month) ✔️ | Improvements needed 🔧 | In progre
 
 ## Transformer
 
-> ⚠️**Still in progress**⚠️
-
 ### 1. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2018)
 **Authors:** Jacob Devlin, Ming-Wei Chang, Kenton Lee ...<br>
 **Link:** [arXiv:1810.04805v2](https://arxiv.org/abs/1810.04805v2)  <br>
