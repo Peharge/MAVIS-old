@@ -178,19 +178,19 @@ def get_system_info():
 
     # Formatierte Ausgabe ohne GPU-Daten
     system_info = {
-        "OS": f"{os_name} {os_release} (Version: {os_version}), Architecture: {os_arch}",
-        "Hostname": f"{hostname}",
-        "IP Address": f"{ip_address}",
-        "CPU": f"{cpu_model}, Architecture: {cpu_arch}, Cores: {cpu_cores}, Threads: {cpu_threads}, Max Frequency: {cpu_freq} MHz",
-        "CPU Usage": f"{cpu_usage}%",
-        "RAM": f"Total: {ram_total} GB, Used: {ram_used} GB, Free: {ram_free} GB, Usage: {ram_usage}%",
-        "Swap": f"Total: {swap_total} GB, Used: {swap_used} GB, Free: {swap_free} GB",
-        "Storage": f"Total: {total_storage} GB, Used: {used_storage} GB, Free: {free_storage} GB",
-        "Disk Partitions": [f"{part.device} - {part.fstype}" for part in partitions],
-        "System Load Average": load_avg,
-        "Uptime": f"{uptime_str}",
-        "Network Interfaces": network_interfaces,
-        "User Information": user_info,
+        f"{blue}OS{reset}": f"{os_name} {os_release} (Version: {os_version}), Architecture: {os_arch}",
+        f"{blue}Hostname{reset}": f"{hostname}",
+        f"{blue}IP Address{reset}": f"{ip_address}",
+        f"{blue}CPU{reset}": f"{cpu_model}, Architecture: {cpu_arch}, Cores: {cpu_cores}, Threads: {cpu_threads}, Max Frequency: {cpu_freq} MHz",
+        f"{blue}CPU Usage{reset}": f"{cpu_usage}%",
+        f"{blue}RAM{reset}": f"Total: {ram_total} GB, Used: {ram_used} GB, Free: {ram_free} GB, Usage: {ram_usage}%",
+        f"{blue}Swap{reset}": f"Total: {swap_total} GB, Used: {swap_used} GB, Free: {swap_free} GB",
+        f"{blue}Storage{reset}": f"Total: {total_storage} GB, Used: {used_storage} GB, Free: {free_storage} GB",
+        f"{blue}Disk Partitions{reset}": [f"{part.device} - {part.fstype}" for part in partitions],
+        f"{blue}System Load Average{reset}": load_avg,
+        f"{blue}Uptime{reset}": f"{uptime_str}",
+        f"{blue}Network Interfaces{reset}": network_interfaces,
+        f"{blue}User Information{reset}": user_info,
     }
 
     return system_info
@@ -249,7 +249,7 @@ def check_pip_version(python_path):
     try:
         result = subprocess.run([python_path, '-m', 'pip', '--version'], capture_output=True, text=True)
         if result.returncode == 0:
-            print(f"pip version: {result.stdout.strip()}")
+            print(f"{green}pip version: {result.stdout.strip()}{reset}")
         else:
             print(f"{red}Error checking pip version: {result.stderr.strip()}{reset}")
     except Exception as e:
