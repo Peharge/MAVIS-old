@@ -323,7 +323,7 @@ def display_system_info():
     except Exception as e:
         print(f"{red}Error displaying system information: {e}{reset}")
 
-def mavis_compatibility(ram, cuda_support, rocm_support):
+def mavis_compatibility(ram):
     if ram < 8:
         return f"{red}MAVIS is not supported on this system{reset}"
     elif 8 <= ram < 15:
@@ -346,6 +346,13 @@ def main():
 
     check_python_interpreter()
 
+    ram_str = remove_color_codes(system_info["RAM"])
+    ram = float(ram_str.split()[0])
+    compatibility = mavis_compatibility(ram)
+
+    print("\nCompatibility and Execution Mode:")
+    print("-----------------------------------")
+    print(compatibility)
 
     print("\nFlask information:")
     print("-----------------------------------")
