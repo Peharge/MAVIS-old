@@ -190,8 +190,7 @@ def get_system_info():
         f"{blue}Uptime{reset}": f"{uptime_str}",
         f"{blue}Network Interfaces{reset}": "\n".join([f"- {interface}" for interface in network_interfaces]),
         f"{blue}Disk Partitions{reset}": "\n".join([f"- {part[0]} - {part[1]}" for part in partitions]),
-        # Verwende Indizes
-        f"{blue}User Information{reset}": "\n".join([f"{key}: {value}" for key, value in user_info.items()]),
+        f"{blue}User Information{reset}": "\n".join([f"User Data: {data}" for data in user_info]),  # Liste formatieren
     }
 
     return system_info
