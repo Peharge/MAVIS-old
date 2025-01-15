@@ -188,7 +188,7 @@ def get_system_info():
         f"{blue}Storage{reset}": f"Total: {total_storage} GB, Used: {used_storage} GB, Free: {free_storage} GB",
         f"{blue}System Load Average{reset}": load_avg,
         f"{blue}Uptime{reset}": f"{uptime_str}",
-        f"{blue}Network Interfaces{reset}": "\n".join([f"- {interface}" for interface in network_interfaces]),
+        f"{blue}Network Interfaces{reset}\n": "\n".join([f"- {interface}" for interface in network_interfaces]),
         f"{blue}Disk Partitions{reset}": "\n".join([f"- {part[0]} - {part[1]}" for part in partitions]),
         f"{blue}User Information{reset}": "\n".join([f"User Data: {data}" for data in user_info]),  # Liste formatieren
     }
