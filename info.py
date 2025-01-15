@@ -186,11 +186,11 @@ def get_system_info():
         f"{blue}RAM{reset}": f"Total: {ram_total} GB, Used: {ram_used} GB, Free: {ram_free} GB, Usage: {ram_usage}%",
         f"{blue}Swap{reset}": f"Total: {swap_total} GB, Used: {swap_used} GB, Free: {swap_free} GB",
         f"{blue}Storage{reset}": f"Total: {total_storage} GB, Used: {used_storage} GB, Free: {free_storage} GB",
-        f"{blue}Disk Partitions{reset}": [f"{part.device} - {part.fstype}" for part in partitions],
+        f"{blue}Disk Partitions{reset}": "\n".join([f"- {part['device']} - {part['fstype']}" for part in partitions]),
         f"{blue}System Load Average{reset}": load_avg,
         f"{blue}Uptime{reset}": f"{uptime_str}",
         f"{blue}Network Interfaces{reset}": "\n".join([f"- {interface}" for interface in network_interfaces]),
-        f"{blue}User Information{reset}": user_info,
+        f"{blue}User Information{reset}": "\n".join([f"{key}: {value}" for key, value in user_info.items()]),
     }
 
     return system_info
