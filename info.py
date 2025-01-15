@@ -324,40 +324,41 @@ def display_system_info():
         print(f"{red}Error displaying system information: {e}{reset}")
 
 def mavis_compatibility(ram):
-    if ram < 8:
+    # Konvertiere den Gesamt-RAM in GB
+    ram_gb = ram.total / (1024 ** 3)  # ram.total gibt den Gesamt-RAM in Bytes
+
+    if ram_gb < 8:
         return f"{red}MAVIS is not supported on this system{reset}"
-    elif 8 <= ram < 15:
+    elif 8 <= ram_gb <= 14:
         return f"{red}MAVIS in limited mode is supported{reset}"
-    elif 15 < ram < 63:
+    elif 15 <= ram_gb <= 64:
         return f"{green}MAVIS 11B is supported{reset}"
-    elif ram > 64:
+    elif ram_gb > 64:
         return f"{green}MAVIS 90B is supported{reset}"
 
 def remove_color_codes(text):
     return re.sub(r'\033\[[0-9;]*m', '', text)
 
-def main():
-    system_info = get_system_info()
+import psutil
 
+def main():
+    # Holen der Systeminfos (inkl. RAM)
+    ram = psutil.virtual_memory()  # Das ganze psutil-Objekt, nicht nur der float-Wert
     print("System Information:")
     print("-------------------")
-    for key, value in system_info.items():
+    for key, value in get_system_info().items():
         print(f"{key}: {value}")
 
     check_python_interpreter()
 
-    ram_str = remove_color_codes(system_info["RAM"])
-
-    ram_value = ram_str.split()[1]  # Wenn der RAM-Wert nach "Total:" kommt
-    ram = float(ram_value)
-
+    # Kompatibilität basierend auf dem RAM-Objekt prüfen
     compatibility = mavis_compatibility(ram)
 
     print("\nCompatibility and Execution Mode:")
     print("-----------------------------------")
     print(compatibility)
 
-    print("\nFlask information:")
+    print("\nClient information:")
     print("-----------------------------------")
 
 if __name__ == "__main__":

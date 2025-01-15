@@ -45,5 +45,7 @@ time.sleep(5)
 try:
     webbrowser.open(url)
     print(f"{blue}The browser has been opened and the URL {yellow}{url}{blue} has been called.{reset}")
+    print("\nClient information:")
+    print("-----------------------------------")
 except Exception as e:
     print(f"{red}Error opening browser: {e}{reset}")
