@@ -453,7 +453,7 @@ And more...
 
 ### Start the UI
 
-1. **Start the UI**
+1. **Start the UI** not jet 16.01.2025 (problem) fixed max until 20.01.2025
    You can start the UI in two ways:
    - With a batch file:
      - `run-main.bat` (recommended)
