@@ -307,9 +307,9 @@ def display_system_info():
     """Display detailed system information."""
     try:
         system_info = {
-            "OS": platform.system(),
-            "OS Version": platform.version(),
-            "OS Architecture": platform.architecture(),
+            # "OS": platform.system(),
+            # "OS Version": platform.version(),
+            # "OS Architecture": platform.architecture(),
             "Python Implementation": platform.python_implementation(),
             "Python Version": platform.python_version(),
             "Processor": platform.processor(),
