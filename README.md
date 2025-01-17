@@ -54,8 +54,16 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 
 > ⚠️ **Still in progress**
 
-> ⚠️ Important warning: Beware of fake accounts! ⚠️
+> ⚠️ Important warning: Beware of fake accounts! ⚠️<br>
 There is evidence that fake accounts may attempt to misrepresent this project. Please do not share personal information with anyone you do not know and only rely on content coming directly from this repository. Immediately report large activities or accounts to GitHub or the project team.
+
+<details>
+  <summary>Deutsch</summary>
+
+> ⚠️ Wichtiger Hinweis: Vorsicht vor Fake-Accounts! ⚠️>br>
+> Es gibt Hinweise darauf, dass Fake-Accounts versuchen könnten, dieses Projekt falsch darzustellen. Bitte geben Sie keine persönlichen Daten an Unbekannte weiter und verlassen Sie sich nur auf Inhalte, die direkt aus diesem Repository stammen. Melden Sie umfangreiche Aktivitäten oder Accounts umgehend an GitHub oder das Projektteam.
+
+</details>
 
 > **English**: MAVIS is an AI-driven application that allows you to analyze visual data such as images (formats: PNG, JPG, JPEG and GIF) and generate interactive answers based on them. With MAVIS you can perform complex mathematical calculations, solve programming tasks and create professional graphics.
 > 
@@ -71,6 +79,9 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 > 
 > Use the powerful features of MAVIS to make your projects more efficient and professional.
 
+<details>
+  <summary>Deutsch</summary>
+
 > **Deutsch**: MAVIS ist eine KI-gesteuerte Anwendung, die Ihnen ermöglicht, visuelle Daten wie Bilder (Formate: PNG, JPG, JPEG und GIF) zu analysieren und darauf basierend interaktive Antworten zu generieren. Mit MAVIS können Sie komplexe mathematische Berechnungen durchführen, programmiertechnische Aufgaben lösen und professionelle Grafiken erstellen.
 > 
 > Um optimale Ergebnisse zu erzielen, beachten Sie folgende Hinweise:
@@ -84,6 +95,8 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 > - Bitten Sie MAVIS, Grafiken mithilfe von Matplotlib zu erstellen, da die Benutzeroberfläche ausschließlich HTML, LaTeX und Python (Version 3.13 mit den Frameworks Matplotlib, Plotly, Seaborn, Altair,NumPy, Math, SymPy und Pandas (bei Bedarf soon: PyTorch, TensorFlow, Keras, Scikit-Learn und Hugging Face Transformers (vielleicht noch JAX)) unterstützt.
 > 
 > Nutzen Sie die leistungsstarken Funktionen von MAVIS, um Ihre Projekte effizienter und professioneller zu gestalten.
+
+</details>
 
 <br>
 
@@ -102,8 +115,6 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 - **[01.12.2024]** MAVIS EAP release
 - **[03.12.2024]** Available with **Altair**
 - **[24.12.2024]** MAVIS 1.3 EAP reales: new Plotly function [Demo](#demo) + Stronger adaptability through Transformer (Huggingface) + Bigger Input Box
-
-<br>
 
 ## Table of contents
 - [Updates](#updates)
