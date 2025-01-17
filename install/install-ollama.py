@@ -1,19 +1,6 @@
 import os
 import subprocess
 
-# Define color codes
-red = "\033[91m"
-green = "\033[92m"
-yellow = "\033[93m"
-blue = "\033[94m"
-magenta = "\033[95m"
-cyan = "\033[96m"
-white = "\033[97m"
-black = "\033[30m"
-orange = "\033[38;5;214m"
-reset = "\033[0m"
-bold = "\033[1m"
-
 def check_command_installed(command):
     """
     Checks if a command-line tool is installed (e.g., ollama).
@@ -26,7 +13,7 @@ def check_command_installed(command):
                                 stderr=subprocess.PIPE)
         return result.returncode == 0
     except Exception as e:
-        print(f"{red}Error checking command {command}: {e}{reset}")
+        print(f"Error checking command {command}: {e}")
         return False
 
 def check_model_with_ollama(model_name):
@@ -44,10 +31,10 @@ def check_model_with_ollama(model_name):
             print(f"Model information for {model_name}:\n{result.stdout}")
             return True
         else:
-            print(f"{yellow}Model {model_name} is not available: {result.stderr}{reset}")
+            print(f"Model {model_name} is not available: {result.stderr}")
             return False
     except Exception as e:
-        print(f"{red}Error checking model {model_name} with ollama: {e}{reset}")
+        print(f"Error checking model {model_name} with ollama: {e}")
         return False
 
 def install_model_with_ollama(model_name):
@@ -56,31 +43,31 @@ def install_model_with_ollama(model_name):
     :param model_name: The name of the model to install.
     """
     try:
-        print(f"{cyan}Attempting to install model {model_name} with ollama...{reset}")
+        print(f"Attempting to install model {model_name} with ollama...")
         result = subprocess.run(["ollama", "run", model_name],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.PIPE,
                                 text=True)
         if result.returncode == 0:
-            print(f"{green}Model {model_name} installed successfully.{reset}")
+            print(f"Model {model_name} installed successfully.")
         else:
-            print(f"{red}Failed to install model {model_name}: {result.stderr}{reset}")
+            print(f"Failed to install model {model_name}: {result.stderr}")
     except Exception as e:
-        print(f"{red}Error installing model {model_name}: {e}{reset}")
+        print(f"Error installing model {model_name}: {e}")
 
 if __name__ == "__main__":
     # Check if ollama is installed
     ollama_installed = check_command_installed("ollama")
     if ollama_installed:
-        print(f"{green}Ollama is installed.{reset}")
+        print("Ollama is installed.")
     else:
-        print(f"{red}Ollama is not installed. Please install it to proceed.{reset}")
+        print("Ollama is not installed. Please install it to proceed.")
 
     # Check if llama3.2-vision is installed
     llama_installed = check_model_with_ollama("llama3.2-vision")
     if llama_installed:
-        print(f"{green}llama3.2-vision is installed.{reset}")
+        print("llama3.2-vision is installed.")
     else:
-        print(f"{yellow}llama3.2-vision is not installed.{reset}")
+        print("llama3.2-vision is not installed.")
         if ollama_installed:
             install_model_with_ollama("llama3.2-vision")
