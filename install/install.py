@@ -102,4 +102,4 @@ else:
 print("\nTo serve vllm, use the following commands:")
 print("vllm serve 'Qwen/Qwen2-VL-7B-Instruct'")
 print("or")
-print("vllm serve 'Qwen/Qwen2-VL-7B-Instruct' --no-uvloop")
+print("vllm serve 'Qwen/Qwen2-VL-7B-Instruct' --no-uvloop\n")
