@@ -2,9 +2,9 @@
 
 set USERNAME=%USERNAME%
 set PYTHON_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe
-set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info.py
-set SCRIPT_PATH_2=C:\Users\%USERNAME%\PycharmProjects\MAVIS\mavis-1-2-3-main-main.py
-set PYTHON_SCRIPT_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run_with_browser.py
+set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info\info.py
+set SCRIPT_PATH_2=C:\Users\%USERNAME%\PycharmProjects\MAVIS\main\mavis-1-2-3-main-main.py
+set PYTHON_SCRIPT_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run_with_browser\run_with_browser.py
 
 :: Check if the Python interpreter exists
 if not exist "%PYTHON_PATH%" (
