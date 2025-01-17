@@ -188,7 +188,7 @@ And more...
 > 24.12.2024
 
 <details>
-  <summary>more</summary>
+  <summary>more MAVIS versions</summary>
 
 ### MAVIS 1.4 EAP release [soon]
 
@@ -794,15 +794,23 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 - Make sure Mavis is always told to use **fig.update_layout(mapbox_style="open-street-map")** in Python code!
 - Stellen Sie sicher, dass Mavis stets darauf hingewiesen wird, im Python-Code **fig.update_layout(mapbox_style="open-street-map")** zu verwenden!
 
+<details>
+  <summary>more</summary>
+
 <div>
     <img src="./readme-img/mavis-demo123.png" alt="mavis" width="1400">
 </div>
+
+</details>
 
 ### Demo 14
 
 <div>
     <img src="./readme-img/mavis-demo101.gif" alt="mavis" width="1400">
 </div>
+
+<details>
+  <summary>more Demo</summary>
 
 ### Demo 13
 
@@ -934,6 +942,8 @@ _Good luck!_
   <img src="./readme-img/demo-1-2.png" alt="mavis" width="1400">
 </div>
 
+</details>
+
 ## Demo-text
 
 > soon...
@@ -996,6 +1006,9 @@ BERT is conceptually simple and empirically powerful. It obtains new state-of-th
 **Link:** [arXiv:2203.02155](https://arxiv.org/abs/2203.02155)  <br>
 **Abstract:** Making language models bigger does not inherently make them better at following a user's intent. For example, large language models can generate outputs that are untruthful, toxic, or simply not helpful to the user. In other words, these models are not aligned with their users. In this paper, we show an avenue for aligning language models with user intent on a wide range of tasks by fine-tuning with human feedback. Starting with a set of labeler-written prompts and prompts submitted through the OpenAI API, we collect a dataset of labeler demonstrations of the desired model behavior, which we use to fine-tune GPT-3 using supervised learning. We then collect a dataset of rankings of model outputs, which we use to further fine-tune this supervised model using reinforcement learning from human feedback. We call the resulting models InstructGPT. In human evaluations on our prompt distribution, outputs from the 1.3B parameter InstructGPT model are preferred to outputs from the 175B GPT-3, despite having 100x fewer parameters. Moreover, InstructGPT models show improvements in truthfulness and reductions in toxic output generation while having minimal performance regressions on public NLP datasets. Even though InstructGPT still makes simple mistakes, our results show that fine-tuning with human feedback is a promising direction for aligning language models with human intent.
 
+<details>
+  <summary>more Paper</summary>
+
 ### 4. Aligning Books and Movies: Towards Story-like Visual Explanations by Watching Movies and Reading Books (2015)
 **Authors:** Yukun Zhu, Ryan Kiros, Richard Zemel ...<br>
 **Link:** [arXiv:1506.06724](https://arxiv.org/abs/1506.06724)  <br>
@@ -1047,6 +1060,8 @@ BERT is conceptually simple and empirically powerful. It obtains new state-of-th
 **Abstract:** Artificial intelligence (AI) researchers have been developing and refining large language models (LLMs) that exhibit remarkable capabilities across a variety of domains and tasks, challenging our understanding of learning and cognition. The latest model developed by OpenAI, GPT-4, was trained using an unprecedented scale of compute and data. In this paper, we report on our investigation of an early version of GPT-4, when it was still in active development by OpenAI. We contend that (this early version of) GPT-4 is part of a new cohort of LLMs (along with ChatGPT and Google's PaLM for example) that exhibit more general intelligence than previous AI models. We discuss the rising capabilities and implications of these models. We demonstrate that, beyond its mastery of language, GPT-4 can solve novel and difficult tasks that span mathematics, coding, vision, medicine, law, psychology and more, without needing any special prompting. Moreover, in all of these tasks, GPT-4's performance is strikingly close to human-level performance, and often vastly surpasses prior models such as ChatGPT. Given the breadth and depth of GPT-4's capabilities, we believe that it could reasonably be viewed as an early (yet still incomplete) version of an artificial general intelligence (AGI) system. In our exploration of GPT-4, we put special emphasis on discovering its limitations, and we discuss the challenges ahead for advancing towards deeper and more comprehensive versions of AGI, including the possible need for pursuing a new paradigm that moves beyond next-word prediction. We conclude with reflections on societal influences of the recent technological leap and future research directions.<br>
 
 > soon more...
+
+</details>
 
 ## Lizenz
 
