@@ -41,13 +41,13 @@ def check_model_with_ollama(model_name):
                                 stderr=subprocess.PIPE,
                                 text=True)
         if result.returncode == 0:
-            print(f"{green}Model information for {model_name}:\n{result.stdout}{reset}")
+            print(f"Model information for {model_name}:\n-----------------------------------\n{result.stdout}\n")
             return True
         else:
-            print(f"{yellow}Model {model_name} is not available: {result.stderr}{reset}")
+            print(f"{yellow}Model {model_name} is not available:\n-----------------------------------\n{result.stderr}{reset}\n")
             return False
     except Exception as e:
-        print(f"{red}Error checking model {model_name} with ollama: {e}{reset}")
+        print(f"{red}Error checking model {model_name} with ollama:\n-----------------------------------\n{e}{reset}\n")
         return False
 
 def install_model_with_ollama(model_name):
@@ -64,9 +64,9 @@ def install_model_with_ollama(model_name):
         if result.returncode == 0:
             print(f"{green}Model {model_name} installed successfully.{reset}")
         else:
-            print(f"{red}Failed to install model {model_name}: {result.stderr}{reset}")
+            print(f"{red}Failed to install model {model_name}:\n-----------------------------------\n{result.stderr}{reset}\n")
     except Exception as e:
-        print(f"{red}Error installing model {model_name}: {e}{reset}")
+        print(f"{red}Error installing model {model_name}:\n-----------------------------------\n{e}{reset}\n")
 
 if __name__ == "__main__":
     # Check if ollama is installed
@@ -79,8 +79,17 @@ if __name__ == "__main__":
     # Check if llama3.2-vision is installed
     llama_installed = check_model_with_ollama("llama3.2-vision")
     if llama_installed:
-        print(f"{green}llama3.2-vision is installed.{reset}")
+        print(f"{green}llama3.2-vision is installed.{reset}\n")
     else:
         print(f"{yellow}llama3.2-vision is not installed.{reset}")
         if ollama_installed:
             install_model_with_ollama("llama3.2-vision")
+
+    # Check if phi4 is installed
+    phi_installed = check_model_with_ollama("phi4")
+    if phi_installed:
+        print(f"{green}phi4 is installed.{reset}")
+    else:
+        print(f"{yellow}phi4 is not installed.{reset}")
+        if ollama_installed:
+            install_model_with_ollama("phi4")
