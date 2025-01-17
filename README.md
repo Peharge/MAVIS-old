@@ -116,7 +116,6 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 - [Demo Text](#demo-text)
 - [History](#history)
 - [Checklist](#checklist)
-- [Design](#design)
 - [Transformer](#transformer)
 - [License](#lizenz)
 
@@ -370,6 +369,9 @@ And more...
 
 ### English:
 
+<details>
+  <summary>Installation</summary>
+
   **MAVIS (aka Xc++ 2)** is currently under development and is not fully available in this repository. Cloning the repository will only give you the README file, some images and already released codes, including the user interface (UI) compatible with **Qwen 2.5 Code** and **Llama 3.2 Vision**.
 
 ### Prerequisites
@@ -557,7 +559,12 @@ After installation, you always have to start the app to use the models.*
 
 ### Have fun with MAVIS 🚀
 
+</details>
+
 ### Deutsch:
+
+<details>
+  <summary>Installation</summary>
 
 **MAVIS (alias Xc++ 2)** befindet sich derzeit in der Entwicklung und ist in diesem Repository nicht vollständig verfügbar. Durch das Klonen des Repositories erhalten Sie lediglich die README-Datei, einige Bilder und bereits veröffentlichte Codes, einschließlich der Benutzeroberfläche (UI), die mit **Qwen 2.5 Code** und **Llama 3.2 Vision** kompatibel ist.
 
@@ -747,6 +754,8 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
      ```
 
 ### Viel Spaß mit MAVIS 🚀
+
+</details>
 
 ## Using
 
@@ -965,28 +974,6 @@ Here is the to-do list for the most important tools and tasks in the project:
 | Task 1 |                  | ❌          |
 
 Not done ❌ | Done (min. 1 month) ✔️ | Improvements needed 🔧 | In progress 🔄 | Improvements needed ⚠️
-
-## Design
-
-<p align="center">
-  <img src="./readme-img/Mavis-banner18.png" alt="mavis" width="600" style="margin: 10px;">
-<p>
-
-### New UI 
-
-> Usable from anywhere in the world 24/7
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/old-mavis-ui.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-
-<div align="center">
-  <img src="./readme-img/arrow.svg" alt="mavis" width="100" style="margin: 10px;">
-</div>
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/new-mavis-ui.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
 
 ## Transformer
 
