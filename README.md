@@ -87,6 +87,10 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 
 <br>
 
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/MAVIS-ads11.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
 ## _News_
 
 - **[09.11.2024]** Start ;-)
@@ -100,10 +104,6 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 - **[24.12.2024]** MAVIS 1.3 EAP reales: new Plotly function [Demo](#demo) + Stronger adaptability through Transformer (Huggingface) + Bigger Input Box
 
 <br>
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/MAVIS-ads11.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
 
 ## Table of contents
 - [Updates](#updates)
