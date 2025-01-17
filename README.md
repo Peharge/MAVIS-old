@@ -869,30 +869,20 @@ _Good luck!_
 
 <div>
     <img src="./readme-img/mavis-demo76.png" alt="mavis" width="1400">
-    <img src="./readme-img/mavis-demo72.png" alt="mavis" width="1400">
     <img src="./readme-img/mavis-demo71.png" alt="mavis" width="1400">
-</div>
-
-### Demo 9
-
-<div>
-    <img src="./readme-img/Demo61.png" alt="mavis" width="1400">
 </div>
 
 ### Demo 8
 
 <div>
-    <img src="./readme-img/mavis-demo51.png" alt="mavis" width="1400">
-    <img src="./readme-img/mavis-demo52.png" alt="mavis" width="1400">
     <img src="./readme-img/mavis-demo55.png" alt="mavis" width="1400">
 </div>
 
 ### Demo 7
 
 <div>
-    <img src="./readme-img/demo6-4.png" alt="mavis" width="1400">
+    <img src="./readme-img/demo6-1.png" alt="mavis" width="1400">
     <img src="./readme-img/demo6-5.png" alt="mavis" width="1400">
-    <img src="./readme-img/demo6-6.png" alt="mavis" width="1400">
 </div>
 
 ### Demo 6
@@ -928,13 +918,6 @@ _Good luck!_
 
 <div>
     <img src="./readme-img/demo3-6.png" alt="mavis" width="1400">
-</div>
-
-### Demo 1
-
-<div>
-  <img src="./readme-img/demo-1-1.png" alt="mavis" width="1400">
-  <img src="./readme-img/demo-1-2.png" alt="mavis" width="1400">
 </div>
 
 </details>
