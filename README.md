@@ -113,9 +113,6 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 - [Usage](#using)
 - [Xc++](#Xcpp)
 - [Demo](#demo)
-- [Demo Text](#demo-text)
-- [History](#history)
-- [Checklist](#checklist)
 - [Transformer](#transformer)
 - [License](#lizenz)
 
@@ -940,28 +937,6 @@ _Good luck!_
 </div>
 
 </details>
-
-## Demo-text
-
-> soon...
-
-## History
-
-> ⚠️**Still in progress**⚠️
-
-## Checklist
-
-> ⚠️**Still in progress**⚠️
-
-Here is the to-do list for the most important tools and tasks in the project:
-
-## Tasks
-
-| **Task** | **Description** | **Status** |
-|----------|------------------|------------|
-| Task 1 |                  | ❌          |
-
-Not done ❌ | Done (min. 1 month) ✔️ | Improvements needed 🔧 | In progress 🔄 | Improvements needed ⚠️
 
 ## Transformer
 
