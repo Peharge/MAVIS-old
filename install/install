@@ -34,7 +34,7 @@ pip install accelerate
 # --- 1.3
 
 pip install vllm
-pip install uvloop
+pip install uvloop # noch nicht wichtig
 vllm serve "Qwen/Qwen2-VL-7B-Instruct"
 
 # or

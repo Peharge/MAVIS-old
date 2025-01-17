@@ -76,6 +76,7 @@ import socket
 import GPUtil
 import tensorflow as tf
 
+# Farbcodes definieren
 red = "\033[91m"
 green = "\033[92m"
 yellow = "\033[93m"
@@ -107,7 +108,7 @@ def check_rocm():
 
 
 def get_system_info():
-    # OS Informationen
+    # OS-Informationen
     os_name = platform.system()
     os_version = platform.version()
     os_release = platform.release()
@@ -233,7 +234,7 @@ def check_python_interpreter():
 
 
 def check_pip_version(python_path):
-    """Check the pip version in the virtual environment."""
+    """Überprüfen Sie die Pip-Version in der virtuellen Umgebung."""
     try:
         result = subprocess.run([python_path, '-m', 'pip', '--version'], capture_output=True, text=True)
         if result.returncode == 0:
@@ -245,7 +246,7 @@ def check_pip_version(python_path):
 
 
 def list_installed_packages(python_path):
-    """List all installed packages in the virtual environment."""
+    """Listet alle installierten Pakete in der virtuellen Umgebung auf."""
     try:
         result = subprocess.run([python_path, '-m', 'pip', 'list'], capture_output=True, text=True)
         if result.returncode == 0:
@@ -257,7 +258,7 @@ def list_installed_packages(python_path):
 
 
 def display_venv_environment_variables(python_path):
-    """Display environment variables for the virtual environment."""
+    """Umgebungsvariablen für die virtuelle Umgebung anzeigen."""
     venv_path = os.path.dirname(os.path.dirname(python_path))  # Der Pfad zur venv
     print(f"Virtual environment path: {venv_path}")
 
@@ -273,7 +274,7 @@ def display_venv_environment_variables(python_path):
 
 
 def display_venv_details(python_path):
-    """Display additional venv details like location of executables and libraries."""
+    """Zeigen Sie zusätzliche Venv-Details an, wie den Speicherort von ausführbaren Dateien und Bibliotheken."""
     try:
         venv_path = os.path.dirname(os.path.dirname(python_path))  # Der Pfad zur venv
         executables_path = os.path.join(venv_path, 'Scripts')
@@ -292,7 +293,7 @@ def display_venv_details(python_path):
 
 
 def display_system_info():
-    """Display detailed system information."""
+    """Detaillierte Systeminformationen anzeigen."""
     try:
         system_info = {
             # "OS": platform.system(),
@@ -332,7 +333,7 @@ import psutil
 def main():
     # Holen der Systeminfos (inkl. RAM)
     ram = psutil.virtual_memory()  # Das ganze psutil-Objekt, nicht nur der float-Wert
-    print("System Information:")
+    print("\nSystem Information:")
     print("-------------------")
     for key, value in get_system_info().items():
         print(f"{key}: {value}")
