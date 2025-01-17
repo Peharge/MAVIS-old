@@ -152,7 +152,7 @@ def execute_python_code(md_content):
         return "---"
 
     # Verzeichnis für gespeicherte Bilder
-    image_dir = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "static", "image")
+    image_dir = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "main", "static", "image")
     if not os.path.exists(image_dir):
         os.makedirs(image_dir)
 
