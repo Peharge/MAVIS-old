@@ -367,12 +367,6 @@ And more...
 
 ## Installation
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner32-2.png" alt="woyzy" width="1400" style="margin: 10px;">
-</div>
-
-<br>
-
 > ⚠️**Still in progress**⚠️
 
 ### English:
@@ -778,10 +772,6 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 > got to: [Github/Xc++-II](https://github.com/Peharge/Xcpp-II)
 
 ## Demo
-
-<p align="center">
-  <img src="./readme-img/mavis-banner37.png" alt="mavis" width="1400" style="margin: 10px;">
-<p>
 
 ### Demo 16
 
