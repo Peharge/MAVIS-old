@@ -759,23 +759,11 @@ Nach der Installation müssen Sie die App immer starten, um die Modelle verwende
 
 ## Using
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner35.png" alt="woyzy" width="1400" style="margin: 10px;">
-</div>
-
-<br>
-
 > ⚠️ **Still in progress (24.12.2024)** ⚠️
 
 > got to: [USING.md](https://github.com/Peharge/MAVIS/blob/main/USING.md)
 
 ## Xcpp
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner36.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-
-<br>
 
 > ⚠️**Still in progress**⚠️
 
