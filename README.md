@@ -136,11 +136,16 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 
 ### Demo
 
+<details>
+  <summary>more</summary>
+
 <div>
     <img src="./readme-img/mavis-demo91.gif" alt="mavis" width="1400">
 </div>
 
 And more...
+
+</details>
 
 > 01.12.2024 
 
@@ -152,11 +157,16 @@ And more...
 
 ### Demo
 
+<details>
+  <summary>more</summary>
+
 <div>
     <img src="./readme-img/mavis-demo123.png" alt="mavis" width="1400">
 </div>
 
 And more...
+
+</details>
 
 > 12.12.2024 
 
@@ -168,13 +178,21 @@ And more...
 
 ### Demo
 
+<details>
+  <summary>more</summary>
+
 <div>
     <img src="./readme-img/Mavis1.3-demo-ads.gif" alt="mavis" width="1400">
 </div>
 
 And more...
 
+</details>
+
 > 24.12.2024
+
+<details>
+  <summary>more</summary>
 
 ### MAVIS 1.4 EAP release [soon]
 
@@ -294,6 +312,8 @@ And more...
 <br>
 
 > 01.07.2026
+
+</details>
 
 <br>
 
