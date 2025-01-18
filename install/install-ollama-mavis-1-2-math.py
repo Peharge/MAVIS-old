@@ -69,14 +69,8 @@ import time
 red = "\033[91m"
 green = "\033[92m"
 yellow = "\033[93m"
-blue = "\033[94m"
-magenta = "\033[95m"
 cyan = "\033[96m"
-white = "\033[97m"
-black = "\033[30m"
-orange = "\033[38;5;214m"
 reset = "\033[0m"
-bold = "\033[1m"
 
 def start_ollama():
     """
@@ -88,7 +82,7 @@ def start_ollama():
         if "ollama" not in result.stdout.lower():
             print(f"{cyan}Ollama is not running. Starting Ollama...{reset}")
             # Ollama starten
-            ollama_path = r"C:\Users\julia\AppData\Local\Programs\Ollama\ollama app.exe"
+            ollama_path = r"C:\\Users\\julia\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
             subprocess.Popen([ollama_path])
             time.sleep(5)  # Warten, bis Ollama gestartet ist
             print(f"{green}Ollama started successfully.{reset}\n")
@@ -124,7 +118,7 @@ def check_model_with_ollama(model_name):
                                 stderr=subprocess.PIPE,
                                 text=True)
         if result.returncode == 0:
-            print(f"Model information for {blue}{model_name}{reset}:\n-----------------------------------\n{result.stdout}\n")
+            print(f"Model information for {cyan}{model_name}{reset}:\n-----------------------------------\n{result.stdout}\n")
             return True
         else:
             print(f"{yellow}Model {model_name} is not available:\n-----------------------------------\n{result.stderr}{reset}\n")
@@ -151,9 +145,22 @@ def install_model_with_ollama(model_name):
     except Exception as e:
         print(f"{red}Error installing model {model_name}:\n-----------------------------------\n{e}{reset}\n")
 
-if __name__ == "__main__":
-    # start_ollama()
+def prompt_user_for_installation(model_name):
+    """
+    Fragt den Benutzer, ob das Modell installiert werden soll.
+    :param model_name: Der Name des Modells.
+    :return: True, wenn der Benutzer zustimmt, False ansonsten.
+    """
+    while True:
+        user_input = input(f"Do you want to install the model {model_name}? (y/n): ").strip().lower()
+        if user_input == 'y':
+            return True
+        elif user_input == 'n':
+            return False
+        else:
+            print(f"{yellow}Invalid input. Please enter 'y' for yes or 'n' for no.{reset}")
 
+if __name__ == "__main__":
     ollama_installed = check_command_installed("ollama")
     if ollama_installed:
         print(f"{green}Ollama is installed.{reset}")
@@ -162,10 +169,15 @@ if __name__ == "__main__":
 
     start_ollama()
 
-    qwen_installed = check_model_with_ollama("qwen2.5:14b")
-    if qwen_installed:
-        print(f"{green}Qwen2.5 is installed.{reset}\n")
-    else:
-        print(f"{yellow}Qwen2.5 is not installed.{reset}\n")
-        if ollama_installed:
-            install_model_with_ollama("qwen2.5:14b")
+    models_to_check = ["llama3.2-vision", "qwen2.5:14b"]
+
+    for model in models_to_check:
+        model_installed = check_model_with_ollama(model)
+        if model_installed:
+            print(f"{green}{model} is installed.{reset}\n")
+        else:
+            print(f"{yellow}{model} is not installed.{reset}\n")
+            if ollama_installed and prompt_user_for_installation(model):
+                install_model_with_ollama(model)
+            else:
+                print(f"{yellow}Skipping installation of {model}.{reset}\n")
