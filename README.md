@@ -667,7 +667,7 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 
 ### Benutzeroberfläche starten
 
-1. **Starten der UI**  
+1. **Starten der UI** (Problem) Behoben bis zum 20.01.2025
    Sie können die Benutzeroberfläche auf zwei Arten starten:  
    - Mit einer Batch-Datei:  
      - `run-main.bat` (empfohlen)  
