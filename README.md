@@ -446,8 +446,8 @@ And more...
      - `run-mavis-1-2-3-main.bat` (recommended)<br>
    - for MAVIS 1.3 EAP:
      - `run-mavis-1-3-main.bat` (experimental)  
-     - `run-mavis-1-3_code.bat` (experimental)
-     - `run-mavis-1-3_code-pro.bat` (experimental)
+     - `run-mavis-1-3-code.bat` (experimental)
+     - `run-mavis-1-3-code-pro.bat` (experimental)
      - `run-mavis-1-3-math.bat` (experimental)
      - `run-mavis-1-3-math-pro.bat` (experimental)<br>
    - for MAVIS 1.4 EAP:
@@ -534,8 +534,8 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
      - `run-mavis-1-2-3-main.bat` (empfohlen)  <br>
      für MAVIS 1.3 EAP:
      - `run-mavis-1-3-main.bat` (experimentell)  
-     - `run-mavis-1-3_code.bat` (experimentell)
-     - `run-mavis-1-3_code-pro.bat` (experimentell)
+     - `run-mavis-1-3-code.bat` (experimentell)
+     - `run-mavis-1-3-code-pro.bat` (experimentell)
      - `run-mavis-1-3-math.bat` (experimentell)
      - `run-mavis-1-3-math-pro.bat` (experimentell)<br>
      für MAVIS 1.4 EAP:
