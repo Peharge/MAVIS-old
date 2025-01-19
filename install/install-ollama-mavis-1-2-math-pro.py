@@ -124,7 +124,7 @@ def check_model_with_ollama(model_name):
                                 stderr=subprocess.PIPE,
                                 text=True)
         if result.returncode == 0:
-            print(f"Model information for {cyan}{model_name}{reset}:\n-----------------------------------\n{result.stdout}\n")
+            print(f"Model information for {blue}{model_name}{reset}:\n-----------------------------------\n{result.stdout}\n")
             return True
         else:
             print(f"{yellow}Model {model_name} is not available:\n-----------------------------------\n{result.stderr}{reset}\n")
@@ -139,7 +139,7 @@ def install_model_with_ollama(model_name):
     :param model_name: Der Name des zu installierenden Modells.
     """
     try:
-        print(f"{cyan}Attempting to install model {model_name} with ollama...{reset}")
+        print(f"{blue}Attempting to install model {model_name} with ollama...{reset}")
         result = subprocess.run(["ollama", "run", model_name],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.PIPE,
