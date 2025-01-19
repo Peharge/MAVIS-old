@@ -388,11 +388,10 @@ And more...
    - Recommended: **Python 3.13** (3.12 or 3.11 are also supported).
    - Download Python from the [https://www.python.org](https://www.python.org) or via the Microsoft Store.
 
-3. **Python development environment (IDE) (but not required)**
-   A suitable IDE makes developing and working with Python easier. Recommended options:
-   - **Visual Studio Code (free)**: [https://code.visualstudio.com](https://code.visualstudio.com)
-   - **PyCharm (paid)**: [https://www.jetbrains.com/de-de/pycharm/](https://www.jetbrains.com/de-de/pycharm/)
-   *Note:* PyCharm offers advanced features for Python development and is particularly suitable for advanced users.
+3. **Ollama**  
+   Ollama is a tool required for MAVIS.  
+   - Install Ollama from the official website:  
+     [https://ollama.com](https://ollama.com)
 
 ### Installation
 
@@ -475,11 +474,10 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
    - Empfohlen: **Python 3.13** (auch 3.12 oder 3.11 werden unterstützt).  
    - Laden Sie Python von der [https://www.python.org](https://www.python.org) oder über den Microsoft Store herunter.
 
-3. **Python-Entwicklungsumgebung (IDE) (Muss aber nicht sein)**  
-   Eine geeignete IDE erleichtert die Entwicklung und Arbeit mit Python. Empfehlenswerte Optionen:  
-   - **Visual Studio Code (kostenlos)**: [https://code.visualstudio.com](https://code.visualstudio.com)  
-   - **PyCharm (kostenpflichtig)**: [https://www.jetbrains.com/de-de/pycharm/](https://www.jetbrains.com/de-de/pycharm/)  
-     *Hinweis:* PyCharm bietet erweiterte Funktionen für die Python-Entwicklung und ist besonders für fortgeschrittene Nutzer geeignet.
+3. **Ollama**  
+   Ollama ist ein Tool, das für MAVIS erforderlich ist.  
+   - Installieren Sie Ollama von der offiziellen Website:  
+     [https://ollama.com](https://ollama.com)
 
 ### Installation
 
