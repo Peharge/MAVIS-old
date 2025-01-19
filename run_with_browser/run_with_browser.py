@@ -107,7 +107,7 @@ try:
 
     print(f"{blue}Browser{reset}: {browser_name}")
     print("\nFlask Information:")
-    print("-----------------------------------")
+    print("------------------")
 
 except Exception as e:
     print(f"{red}Error opening browser: {e}{reset}")
