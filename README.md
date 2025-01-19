@@ -54,13 +54,13 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 
 > ⚠️ **Still in progress**
 
-> ⚠️ Important warning: Beware of fake accounts! ⚠️<br>
+> ⚠️ Important warning: Beware of fake accounts!<br>
 There is evidence that fake accounts may attempt to misrepresent this project. Please do not share personal information with anyone you do not know and only rely on content coming directly from this repository. Immediately report large activities or accounts to GitHub or the project team.
 
 <details>
   <summary>Deutsch</summary>
 
-> ⚠️ Wichtiger Hinweis: Vorsicht vor Fake-Accounts! ⚠️<br>
+> ⚠️ Wichtiger Hinweis: Vorsicht vor Fake-Accounts!<br>
 > Es gibt Hinweise darauf, dass Fake-Accounts versuchen könnten, dieses Projekt falsch darzustellen. Bitte geben Sie keine persönlichen Daten an Unbekannte weiter und verlassen Sie sich nur auf Inhalte, die direkt aus diesem Repository stammen. Melden Sie umfangreiche Aktivitäten oder Accounts umgehend an GitHub oder das Projektteam.
 
 </details>
@@ -328,7 +328,7 @@ And more...
 
 <br>
 
-> ⚠️**Still in progress**⚠️
+> ⚠️**Still in progress**
 
 | **Model** | **Description**                                                                                                    | **Parameters** |
 |-------------|--------------------------------------------------------------------------------------------------------------------|---------------|            
@@ -355,7 +355,7 @@ And more...
 
 <br>
 
-> ⚠️**Still in progress**⚠️
+> ⚠️**Still in progress**
 
 |               | Xc++ 2<br/>(01.12.2024 - goal: 01.06.2025) | QwQ<br/>32B-preview | Open AI<br/>o1-preview | Open AI<br/>o1 mini | Open AI<br/>o1 | GPT-4o | Claude3.5<br/>Sonnet |
 |---------------|--------------------------------------------|---------------------|------------------------|---------------------|----------------|--------|----------------------|
@@ -367,7 +367,7 @@ And more...
 
 ## Installation
 
-> ⚠️**Still in progress**⚠️
+> ⚠️**Still in progress**
 
 ### English:
 
@@ -543,13 +543,13 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 
 ## Using
 
-> ⚠️ **Still in progress (24.12.2024)** ⚠️
+> ⚠️ **Still in progress (01.02.2024)**
 
 > got to: [USING.md](https://github.com/Peharge/MAVIS/blob/main/USING.md)
 
 ## Xcpp
 
-> ⚠️**Still in progress**⚠️
+> ⚠️**Still in progress**
 
 > got to: [Github/Xc++-II](https://github.com/Peharge/Xcpp-II)
 
