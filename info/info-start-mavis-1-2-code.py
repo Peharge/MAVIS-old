@@ -76,4 +76,5 @@ print ("""
 
 print(f"""🎉 A warm welcome from Peharge 🎉\n""")
 
-print("Framework Information:\n-----------------------------------")
+print("Framework Information:")
+print("----------------------")
