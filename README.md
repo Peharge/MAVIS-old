@@ -555,13 +555,13 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 
 ## Demo
 
-### Demo 16
+### Demo 14
 
 <div>
     <img src="./readme-img/mavis1.4-demo3.gif" alt="mavis" width="1400">
 </div>
 
-### Demo 15
+### Demo 13
 
 <div>
     <img src="./readme-img/MAVIS-demo121.gif" alt="mavis" width="1400">
@@ -580,7 +580,7 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 
 </details>
 
-### Demo 14
+### Demo 12
 
 <div>
     <img src="./readme-img/mavis-demo101.gif" alt="mavis" width="1400">
@@ -589,14 +589,14 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 <details>
   <summary>more Demo</summary>
 
-### Demo 13
+### Demo 11
 
 <div>
     <img src="./readme-img/mavis-demo81.gif" alt="mavis" width="1400">
     <img src="./readme-img/mavis-demo83.gif" alt="mavis" width="1400">
 </div>
 
-### Demo 12
+### Demo 10
 
 **Aufgabe:** _Du bist ein Professioneller Thermodynamik Lehrer. Fasse mir die Übersicht zusammen in einer Tabelle (Formelsammlung) und lege dich ins Zeug!_
 
@@ -608,7 +608,7 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 
 Grafik: https://www.ulrich-rapp.de/stoff/thermodynamik/Gasgesetz_AB.pdf
 
-### Demo 11
+### Demo 9
 
 **Task:** _In this task, students are to create a phase diagram for a binary mixed system that shows the phase transitions between the liquid and vapor phases. They use thermodynamic models and learn how to visualize complex phase diagrams using Python and the **Matplotlib** and **Seaborn** libraries._
 
@@ -647,27 +647,27 @@ _Good luck!_
     <img src="./readme-img/mavis-demo75.png" alt="mavis" width="1400">
 </div>
 
-### Demo 10
+### Demo 8
 
 <div>
     <img src="./readme-img/mavis-demo76.png" alt="mavis" width="1400">
     <img src="./readme-img/mavis-demo71.png" alt="mavis" width="1400">
 </div>
 
-### Demo 8
+### Demo 7
 
 <div>
     <img src="./readme-img/mavis-demo55.png" alt="mavis" width="1400">
 </div>
 
-### Demo 7
+### Demo 6
 
 <div>
     <img src="./readme-img/demo6-1.png" alt="mavis" width="1400">
     <img src="./readme-img/demo6-5.png" alt="mavis" width="1400">
 </div>
 
-### Demo 6
+### Demo 5
 
 <div>
     <img src="./readme-img/demo5-1.png" alt="mavis" width="1400">
@@ -675,28 +675,28 @@ _Good luck!_
     <img src="./readme-img/demo5-3.png" alt="mavis" width="1400">
 </div>
 
-### Demo 5
+### Demo 4
 
 <div>
   <img src="./readme-img/demo4-2.png" alt="mavis" width="1400">
   <img src="./readme-img/demo4-1.png" alt="mavis" width="1400">
 </div>
 
-### Demo 4
+### Demo 3
 
 <div>
     <img src="./readme-img/demo3-2.png" alt="mavis" width="1400">
     <img src="./readme-img/demo3-1.png" alt="mavis" width="1400">
 </div>
 
-### Demo 3
+### Demo 2
 
 <div>
     <img src="./readme-img/demo3-5.png" alt="mavis" width="1400">
     <img src="./readme-img/demo3-4.png" alt="mavis" width="1400">
 </div>
 
-### Demo 2
+### Demo 1
 
 <div>
     <img src="./readme-img/demo3-6.png" alt="mavis" width="1400">
