@@ -149,7 +149,8 @@ packages = [
     "ipython",
     "altair-saver",
     "kaleido",
-    "vl-convert-python"
+    "vl-convert-python",
+    "py-cpuinfo"
 ]
 
 process_packages(packages, upgrade=False)

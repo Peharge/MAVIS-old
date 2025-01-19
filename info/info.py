@@ -106,7 +106,6 @@ def check_rocm():
     except ImportError:
         return False
 
-
 def get_system_info():
     # OS-Informationen
     os_name = platform.system()
@@ -115,13 +114,12 @@ def get_system_info():
     os_arch = platform.architecture()[0]  # 32-bit oder 64-bit
 
     # CPU Informationen
-    cpu = platform.processor()
     cpu_info = cpuinfo.get_cpu_info()
-    cpu_model = cpu_info.get("processor", "N/A")  # CPU-Modell
+    cpu_model = cpu_info.get("brand_raw", "N/A")  # CPU-Modell
     cpu_arch = cpu_info.get("arch", "N/A")  # Architektur
     cpu_cores = psutil.cpu_count(logical=False)  # Physische Kerne
     cpu_threads = psutil.cpu_count(logical=True)  # Logische Kerne
-    cpu_freq = psutil.cpu_freq().max  # Max Taktfrequenz in MHz
+    cpu_freq = psutil.cpu_freq().max if psutil.cpu_freq() else "N/A"  # Max Taktfrequenz in MHz
 
     # RAM Informationen
     ram = psutil.virtual_memory()
@@ -145,41 +143,61 @@ def get_system_info():
 
     # Netzwerkinformationen
     hostname = socket.gethostname()
-    ip_address = socket.gethostbyname(hostname)
-    network_interfaces = psutil.net_if_addrs()
+    try:
+        ip_address = socket.gethostbyname(hostname)
+    except socket.gaierror:
+        ip_address = "Unbekannt"
 
-    # Load Average (nur auf Unix-basierten Systemen verfügbar, daher Alternativen für Windows)
+    # Netzwerk-Interfaces
+    network_interfaces = psutil.net_if_addrs()
+    interfaces_info = []
+    for interface, addresses in network_interfaces.items():
+        interface_details = f"- {interface}:\n"
+        for address in addresses:
+            if address.family == socket.AF_INET:
+                interface_details += f"  - IPv4: {address.address}\n"
+            elif address.family == socket.AF_INET6:
+                interface_details += f"  - IPv6: {address.address}\n"
+            elif address.family == psutil.AF_LINK:
+                interface_details += f"  - MAC: {address.address}\n"
+        interfaces_info.append(interface_details)
+    interfaces_formatted = "\n".join(interfaces_info)
+
+    # Load Average
     if os_name == "Windows":
-        # CPU-Auslastung als Alternative zu "Load Average"
         load_avg = f"CPU Usage: {psutil.cpu_percent(interval=1)}%"
     else:
-        load_avg = os.getloadavg()  # 1, 5 und 15 Minuten Load Average
+        try:
+            load_avg_values = os.getloadavg()
+            load_avg = f"1m: {load_avg_values[0]}, 5m: {load_avg_values[1]}, 15m: {load_avg_values[2]}"
+        except OSError:
+            load_avg = "Nicht verfügbar"
 
     # Uptime des Systems
-    uptime = time.time() - psutil.boot_time()
-    uptime_str = time.strftime("%H:%M:%S", time.gmtime(uptime))
-
-    # Prozessorauslastung und RAM-Auslastung
-    cpu_usage = psutil.cpu_percent(interval=1)
+    uptime_seconds = time.time() - psutil.boot_time()
+    uptime_str = time.strftime("%H:%M:%S", time.gmtime(uptime_seconds))
 
     # Benutzerinformationen
     user_info = psutil.users()
+    user_data_formatted = "\n".join([
+        f"  - User: {user.name}, Terminal: {user.terminal or 'N/A'}, Started: {time.ctime(user.started)}"
+        for user in user_info
+    ])
 
-    # Formatierte Ausgabe ohne GPU-Daten
+    # Formatierte Ausgabe
     system_info = {
         f"{blue}OS{reset}": f"{os_name} {os_release} (Version: {os_version}), Architecture: {os_arch}",
         f"{blue}Hostname{reset}": f"{hostname}",
         f"{blue}IP Address{reset}": f"{ip_address}",
         f"{blue}CPU{reset}": f"{cpu_model}, Architecture: {cpu_arch}, Cores: {cpu_cores}, Threads: {cpu_threads}, Max Frequency: {cpu_freq} MHz",
-        f"{blue}CPU Usage{reset}": f"{cpu_usage}%",
         f"{blue}RAM{reset}": f"Total: {ram_total} GB, Used: {ram_used} GB, Free: {ram_free} GB, Usage: {ram_usage}%",
         f"{blue}Swap{reset}": f"Total: {swap_total} GB, Used: {swap_used} GB, Free: {swap_free} GB",
         f"{blue}Storage{reset}": f"Total: {total_storage} GB, Used: {used_storage} GB, Free: {free_storage} GB",
         f"{blue}System Load Average{reset}": load_avg,
-        f"{blue}Uptime{reset}": f"{uptime_str}",
-        f"{blue}Network Interfaces{reset}\n": "\n".join([f"- {interface}" for interface in network_interfaces]), # Muss noch verbessert werden
-        f"{blue}Disk Partitions{reset}": "\n".join([f"- {part[0]} - {part[1]}" for part in partitions]),
-        f"{blue}User Information{reset}": "\n".join([f"User Data: {data}" for data in user_info]),  # Liste formatieren
+        f"{blue}Uptime{reset}": uptime_str,
+        f"{blue}Network Interfaces{reset}": interfaces_formatted,
+        f"{blue}Disk Partitions{reset}": "\n".join([f"- {part.device} ({part.mountpoint})" for part in partitions]),
+        f"{blue}User Information{reset}": user_data_formatted,
     }
 
     return system_info
