@@ -497,8 +497,8 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 1. **Ordner erstellen**<br>
    Erstelle zunächst einen Ordner unter C:\Users\user\... mit dem Namen PycharmProjects (falls dieser noch nicht existiert). Dies kann über die Befehlszeile oder den Datei-Explorer erfolgen. Mit der Befehlszeile kannst du beispielsweise Folgendes ausführen:
    ```bash
-   mkdir -p ~/user/PycharmProjects
-   cd ~/user/PycharmProjects
+   mkdir -p ~/PycharmProjects
+   cd ~/PycharmProjects
    ```
 
 1. **Repository klonen**  
