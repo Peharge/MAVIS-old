@@ -396,7 +396,7 @@ And more...
 ### Installation
 
 1. **Create Folder**<br>
-   First, create a folder under C:\Users\user\... called PycharmProjects (if it doesn't already exist). This can be done from the command line or File Explorer. For example, you can use the command line to:
+   First, create a folder under C:\Users\user\ called PycharmProjects (if it doesn't already exist). This can be done from the command line or File Explorer. For example, you can use the command line to:
    ```bash
    mkdir -p ~/PycharmProjects
    cd ~/PycharmProjects
@@ -482,7 +482,7 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 ### Installation
 
 1. **Ordner erstellen**<br>
-   Erstelle zunächst einen Ordner unter C:\Users\user\... mit dem Namen PycharmProjects (falls dieser noch nicht existiert). Dies kann über die Befehlszeile oder den Datei-Explorer erfolgen. Mit der Befehlszeile kannst du beispielsweise Folgendes ausführen:
+   Erstelle zunächst einen Ordner unter C:\Users\user\ mit dem Namen PycharmProjects (falls dieser noch nicht existiert). Dies kann über die Befehlszeile oder den Datei-Explorer erfolgen. Mit der Befehlszeile kannst du beispielsweise Folgendes ausführen:
    ```bash
    mkdir -p ~/PycharmProjects
    cd ~/PycharmProjects
