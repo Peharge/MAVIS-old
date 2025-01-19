@@ -106,7 +106,7 @@ try:
         print(f"{green}You are using Microsoft Edge. No issues expected.{reset}")
 
     print(f"Browser: {browser_name}")
-    print("\nFlask information:")
+    print("\nFlask Information:")
     print("-----------------------------------")
 
 except Exception as e:
