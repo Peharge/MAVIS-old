@@ -206,7 +206,7 @@ def check_python_interpreter():
     python_path = r'C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe'
     python_path = os.path.expandvars(python_path)  # Variablen im Pfad expandieren
 
-    print(f"\nPython information:\n-----------------------------------\nChecking for Python interpreter at: {python_path}")
+    print(f"\nPython Information:\n-----------------------------------\nChecking for Python interpreter at: {python_path}")
 
     # Definiere, wie oft der Versuch wiederholt werden soll
     attempts = 5
@@ -327,7 +327,7 @@ def display_system_info():
         print(f"\nSystem Information from Python:\n-----------------------------------")
         print(json.dumps(system_info, indent=4))
     except Exception as e:
-        print(f"{red}Error displaying system information: {e}{reset}")
+        print(f"{red}Error displaying system Information: {e}{reset}")
 
 def mavis_compatibility(ram):
     # Konvertiere den Gesamt-RAM in GB
@@ -364,7 +364,7 @@ def main():
     print("-----------------------------------")
     print(compatibility)
 
-    print("\nClient information:")
+    print("\nClient Information:")
     print("-----------------------------------")
 
 if __name__ == "__main__":

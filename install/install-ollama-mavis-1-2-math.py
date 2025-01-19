@@ -167,6 +167,7 @@ def prompt_user_for_installation(model_name):
             print(f"{yellow}Invalid input. Please enter 'y' for yes or 'n' for no.{reset}")
 
 if __name__ == "__main__":
+    print("Ollama Information:\n-----------------------------------")
     ollama_installed = check_command_installed("ollama")
     if ollama_installed:
         print(f"{green}Ollama is installed.{reset}")

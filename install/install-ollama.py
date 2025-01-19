@@ -124,7 +124,7 @@ def check_model_with_ollama(model_name):
                                 stderr=subprocess.PIPE,
                                 text=True)
         if result.returncode == 0:
-            print(f"Model information for {blue}{model_name}{reset}:\n-----------------------------------\n{result.stdout}\n")
+            print(f"Model Information for {blue}{model_name}{reset}:\n-----------------------------------\n{result.stdout}\n")
             return True
         else:
             print(f"{yellow}Model {model_name} is not available:\n-----------------------------------\n{result.stderr}{reset}\n")
@@ -167,6 +167,7 @@ def prompt_user_for_installation(model_name):
             print(f"{yellow}Invalid input. Please enter 'y' for yes or 'n' for no.{reset}")
 
 if __name__ == "__main__":
+    print("Ollama Information:\n-----------------------------------")
     ollama_installed = check_command_installed("ollama")
     if ollama_installed:
         print(f"{green}Ollama is installed.{reset}")
