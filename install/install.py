@@ -71,13 +71,7 @@ red = "\033[91m"
 green = "\033[92m"
 yellow = "\033[93m"
 blue = "\033[94m"
-magenta = "\033[95m"
-cyan = "\033[96m"
-white = "\033[97m"
-black = "\033[30m"
-orange = "\033[38;5;214m"
 reset = "\033[0m"
-bold = "\033[1m"
 
 def confirm_action(message: str) -> bool:
     """Fordert den Benutzer zur Bestätigung auf."""
@@ -90,75 +84,57 @@ def confirm_action(message: str) -> bool:
         else:
             print("Invalid input. Please enter 'y' or 'n'.")
 
-def check_and_install(package: str, upgrade: bool = False):
-    """Prüft, ob ein Paket installiert ist und installiert/aktualisiert es bei Bedarf mit Benutzerbestätigung."""
+def is_package_installed(package: str) -> bool:
+    """Prüft, ob ein Paket installiert ist."""
     try:
-        import pkg_resources
-        pkg_resources.require(package)
-        if upgrade:
-            print(f"{package} is installed, but an upgrade is available.")
-            if confirm_action(f"Do you want to upgrade {package}?"):
-                subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", package])
-                print(f"{package} has been upgraded.")
-            else:
-                print(f"Skipping upgrade for {package}.")
-        else:
-            print(f"{green}{package} is already installed and up-to-date.{reset}")
-    except pkg_resources.DistributionNotFound:
-        print(f"{package} is not installed.")
-        if confirm_action(f"Do you want to install {package}?"):
-            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-            print(f"{green}{package} has been installed.{reset}")
-        else:
-            print(f"Skipping installation for {package}.")
-    except pkg_resources.VersionConflict as e:
-        print(f"Version conflict for {package}: {e}.")
-        if confirm_action(f"Do you want to resolve the conflict by upgrading {package}?"):
-            subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", package])
+        subprocess.check_output([sys.executable, "-m", "pip", "show", package], stderr=subprocess.DEVNULL)
+        return True
+    except subprocess.CalledProcessError:
+        return False
+
+def install_or_update_package(package: str, upgrade: bool = False):
+    """Installiert oder aktualisiert ein Paket basierend auf Benutzerbestätigung."""
+    if upgrade:
+        print(f"{package} is installed, checking for updates.")
+        if confirm_action(f"Do you want to upgrade {package}?"):
+            subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", package], check=True)
             print(f"{green}{package} has been upgraded.{reset}")
         else:
-            print(f"Skipping upgrade for {package}.")
+            print(f"{yellow}Skipping upgrade for {package}.{reset}")
+    else:
+        print(f"{green}{package} is already installed and up-to-date.{reset}")
+
+def install_package(package: str):
+    """Installiert ein Paket basierend auf Benutzerbestätigung."""
+    print(f"{red}{package} is not installed.{reset}")
+    if confirm_action(f"Do you want to install {package}?"):
+        subprocess.run([sys.executable, "-m", "pip", "install", package], check=True)
+        print(f"{green}{package} has been installed.{reset}")
+    else:
+        print(f"{yellow}Skipping installation for {package}.{reset}")
 
 def process_packages(packages: List[str], upgrade: bool = False):
-    """Processes a list of packages to check, install, or upgrade them."""
-    for package in packages:
-        print(f"\nChecking package: {blue}{package}{reset}\n-----------------------------------")
-        check_and_install(package, upgrade=upgrade)
+    """Überprüft, installiert oder aktualisiert eine Liste von Paketen."""
+    for idx, package in enumerate(packages, start=1):
+        print(f"\n[{idx}/{len(packages)}] Checking package: {blue}{package}{reset}")
+        if is_package_installed(package):
+            install_or_update_package(package, upgrade=upgrade)
+        else:
+            install_package(package)
 
+# Paketlisten
 packages = [
-    "Flask",
-    "ollama",
-    "Werkzeug",
-    "markdown",
-    "matplotlib",
-    "plotly",
-    "dash",
-    "seaborn",
-    "numpy",
-    "sympy",
-    "pandas",
-    "scipy",
-    "tensorflow",
-    "torch",
-    "scikit-learn",
-    "transformers",
-    "geopandas",
-    "altair",
-    "vega_datasets",
-    "altair_viewer",
-    "ipython",
-    "altair-saver",
-    "kaleido",
-    "vl-convert-python",
-    "py-cpuinfo"
+    "Flask", "ollama", "Werkzeug", "markdown", "matplotlib", "plotly",
+    "dash", "seaborn", "numpy", "sympy", "pandas", "torch", "torchvision",
+    "torchaudio", "scipy", "tensorflow", "scikit-learn", "transformers", "geopandas",
+    "altair", "vega_datasets", "altair_viewer", "ipython", "altair-saver", "kaleido",
+    "vl-convert-python", "py-cpuinfo", "GPUtil"
 ]
 
 process_packages(packages, upgrade=False)
 
 specific_packages = [
-    "qwen-vl-utils",
-    "accelerate>=0.26.0",
-    "accelerate"
+    "qwen-vl-utils", "accelerate"
 ]
 
 process_packages(specific_packages, upgrade=False)

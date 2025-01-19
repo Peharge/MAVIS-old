@@ -434,22 +434,23 @@ And more...
 
 1. **Start the UI** not jet 16.01.2025 (problem) fixed max until 20.01.2025
    You can start the UI in two ways:
+     - `run-mavis-all.bat` (recommended)
    - With a batch file for MAVIS 1.2:
-     - `run-main.bat` (recommended)  
-     - `run-code.bat` (recommended)
-     - `run-code-pro.bat` (recommended)
-     - `run-math.bat` (recommended)
-     - `run-math-pro.bat` (recommended)
-     - `run-mini.bat` (recommended)
-     - `run-mini-mini.bat` (recommended)<br>
-     for MAVIS 1.3 EAP:
-     - `run-mavis1.3-main.bat` (experimental)  
-     - `run-mavis1.3_code.bat` (experimental)
-     - `run-mavis1.3_code-pro.bat` (experimental)
-     - `run-mavis1.3-math.bat` (experimental)
-     - `run-mavis1.3-math-pro.bat` (experimental)<br>
-     for MAVIS 1.4 EAP:
-     - `run-mavis1.4-math.bat` (experimental)
+     - `run-mavis-1-2-main.bat` (recommended)  
+     - `run-mavis-1-2-code.bat` (recommended)
+     - `run-mavis-1-2-code-pro.bat` (recommended)
+     - `run-mavis-1-2-math.bat` (recommended)
+     - `run-mavis-1-2-math-pro.bat` (recommended)
+     - `run-mavis-1-2-mini.bat` (recommended)
+     - `run-mavis-1-2-mini-mini.bat` (recommended)<br>
+   - for MAVIS 1.3 EAP:
+     - `run-mavis-1-3-main.bat` (experimental)  
+     - `run-mavis-1-3_code.bat` (experimental)
+     - `run-mavis-1-3_code-pro.bat` (experimental)
+     - `run-mavis-1-3-math.bat` (experimental)
+     - `run-mavis-1-3-math-pro.bat` (experimental)<br>
+   - for MAVIS 1.4 EAP:
+     - `run-mavis-1-4-math.bat` (experimental)
 
 ### Have fun with MAVIS 🚀
 
@@ -520,22 +521,23 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 
 1. **Starten der UI** (Problem) Behoben bis zum 20.01.2025
    Sie können die Benutzeroberfläche auf zwei Arten starten:  
+     - `run-mavis-all.bat` (empfohlen)  
    - Mit einer Batch-Datei für MAVIS 1.2:  
-     - `run-main.bat` (empfohlen)  
-     - `run-code.bat` (empfohlen)
-     - `run-code-pro.bat` (empfohlen)
-     - `run-math.bat` (empfohlen)
-     - `run-math-pro.bat` (empfohlen)
-     - `run-mini.bat` (empfohlen)
-     - `run-mini-mini.bat` (empfohlen)<br>
+     - `run-mavis-1-2-main.bat` (empfohlen)  
+     - `run-mavis-1-2-code.bat` (empfohlen)
+     - `run-mavis-1-2-code-pro.bat` (empfohlen)
+     - `run-mavis-1-2-math.bat` (empfohlen)
+     - `run-mavis-1-2-math-pro.bat` (empfohlen)
+     - `run-mavis-1-2-mini.bat` (empfohlen)
+     - `run-mavis-1-2-mini-mini.bat` (empfohlen)<br>
      für MAVIS 1.3 EAP:
-     - `run-mavis1.3-main.bat` (experimentell)  
-     - `run-mavis1.3_code.bat` (experimentell)
-     - `run-mavis1.3_code-pro.bat` (experimentell)
-     - `run-mavis1.3-math.bat` (experimentell)
-     - `run-mavis1.3-math-pro.bat` (experimentell)<br>
+     - `run-mavis-1-3-main.bat` (experimentell)  
+     - `run-mavis-1-3_code.bat` (experimentell)
+     - `run-mavis-1-3_code-pro.bat` (experimentell)
+     - `run-mavis-1-3-math.bat` (experimentell)
+     - `run-mavis-1-3-math-pro.bat` (experimentell)<br>
      für MAVIS 1.4 EAP:
-     - `run-mavis1.4-math.bat` (experimentell)
+     - `run-mavis-1-4-math.bat` (experimentell)
 
 ### Viel Spaß mit MAVIS 🚀
 

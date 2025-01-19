@@ -105,7 +105,7 @@ try:
     else:
         print(f"{green}You are using Microsoft Edge. No issues expected.{reset}")
 
-    print(f"Browser: {browser_name}")
+    print(f"{blue}Browser{reset}: {browser_name}")
     print("\nFlask Information:")
     print("-----------------------------------")
 
