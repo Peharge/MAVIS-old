@@ -2,7 +2,7 @@
 
 set USERNAME=%USERNAME%
 set PYTHON_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe
-set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info\info-start.py
+set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info\info-start-mavis-1-3-code-pro.py
 set SCRIPT_PATH_2=C:\Users\%USERNAME%\PycharmProjects\MAVIS\install\install.py
 set SCRIPT_PATH_3=C:\Users\%USERNAME%\PycharmProjects\MAVIS\install\install-mavis-1-3-code-pro.py
 set SCRIPT_PATH_4=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info\info.py
