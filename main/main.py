@@ -73,28 +73,29 @@ def run_batch_file(batch_name):
     )
     try:
         os.system(file_name)
-        print(f"Die Batch-Datei '{file_name}' wurde erfolgreich ausgeführt.\n")
+        print(f"The batch file '{file_name}' was executed successfully.\n")
     except Exception as e:
-        print(f"Fehler beim Ausführen der Datei '{file_name}': {e}\n")
+        print(f"Error executing file'{file_name}': {e}\n")
 
 def display_versions():
     """Zeigt alle Versionen und zugehörigen Batch-Dateien ohne 'run-' und '.bat'."""
-    print("Verfügbare MAVIS-Versionen und Batch-Dateien (ohne 'run-' und '.bat'):\n")
+    print("Available MAVIS versions and batch files (without 'run-' and '.bat'):\n")
 
     versions = {
-        "mavis1.2-main": "MAVIS 1.2",
-        "mavis1.2-code": "MAVIS 1.2",
-        "mavis1.2-code-pro": "MAVIS 1.2",
-        "mavis1.2-math": "MAVIS 1.2",
-        "mavis1.2-math-pro": "MAVIS 1.2",
-        "mavis1.2-mini": "MAVIS 1.2",
-        "mavis1.2-mini-mini": "MAVIS 1.2",
-        "mavis1.3-main": "MAVIS 1.3 EAP",
-        "mavis1.3_code": "MAVIS 1.3 EAP",
-        "mavis1.3_code-pro": "MAVIS 1.3 EAP",
-        "mavis1.3-math": "MAVIS 1.3 EAP",
-        "mavis1.3-math-pro": "MAVIS 1.3 EAP",
-        "mavis1.4-math": "MAVIS 1.4 EAP"
+        "mavis-1-2-main": "MAVIS 1.2",
+        "mavis-1-2-code": "MAVIS 1.2",
+        "mavis-1-2-code-pro": "MAVIS 1.2",
+        "mavis-1-2-math": "MAVIS 1.2",
+        "mavis-1-2-math-pro": "MAVIS 1.2",
+        "mavis-1-2-mini": "MAVIS 1.2",
+        "mavis-1-2-mini-mini": "MAVIS 1.2",
+        "mavis-1-2-3-main": "MAVIS 1.2-3",
+        "mavis-1-3-main": "MAVIS 1.3 EAP",
+        "mavis-1-3_code": "MAVIS 1.3 EAP",
+        "mavis-1-3_code-pro": "MAVIS 1.3 EAP",
+        "mavis-1-3-math": "MAVIS 1.3 EAP",
+        "mavis-1-3-math-pro": "MAVIS 1.3 EAP",
+        "mavis-1-4-math": "MAVIS 1.4 EAP"
     }
 
     # Gruppieren der Versionen für eine saubere Anzeige
@@ -115,12 +116,12 @@ def display_versions():
 
 def get_user_input(versions):
     """Fragt den Benutzer nach der gewünschten MAVIS-Batch-Datei (direkte Eingabe)."""
-    user_input = input("Geben Sie eine MAVIS-Batch-Datei ein (z. B. 'mavis1.3-main'): ").strip()
+    user_input = input("Enter a MAVIS batch file (e.g. 'mavis-1-3-main'):").strip()
 
     if user_input in versions:
         run_batch_file(user_input)
     else:
-        print(f"Fehler: '{user_input}' ist keine gültige Option. Bitte versuchen Sie es erneut.\n")
+        print(f"Error: '{user_input}' is not a valid option. Please try again.\n")
 
 if __name__ == "__main__":
     versions = display_versions()
