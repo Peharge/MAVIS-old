@@ -435,16 +435,22 @@ And more...
 
 1. **Start the UI** not jet 16.01.2025 (problem) fixed max until 20.01.2025
    You can start the UI in two ways:
-   - With a batch file:
-     - `run-main.bat` (recommended)
+   - With a batch file for MAVIS 1.2:
+     - `run-main.bat` (recommended)  
      - `run-code.bat` (recommended)
+     - `run-code-pro.bat` (recommended)
      - `run-math.bat` (recommended)
-     - `run-math-pro.bat` (recommended)<br>
-     for MAVIS 1.3 (NEW):
-     - `run-mavis1.3-main.bat` (recommended)  
-     - `run-mavis1.3_code.bat` (recommended)
-     - `run-mavis1.3-math.bat` (recommended)
-     - `run-mavis1.3-math-pro.bat` (recommended)
+     - `run-math-pro.bat` (recommended)
+     - `run-mini.bat` (recommended)
+     - `run-mini-mini.bat` (recommended)<br>
+     for MAVIS 1.3 EAP:
+     - `run-mavis1.3-main.bat` (experimental)  
+     - `run-mavis1.3_code.bat` (experimental)
+     - `run-mavis1.3_code-pro.bat` (experimental)
+     - `run-mavis1.3-math.bat` (experimental)
+     - `run-mavis1.3-math-pro.bat` (experimental)<br>
+     for MAVIS 1.4 EAP:
+     - `run-mavis1.4-math.bat` (experimental)
 
 2. **Accessing the UI**
    After starting the UI, Flask will output a URL in the terminal.
@@ -527,16 +533,22 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 
 1. **Starten der UI** (Problem) Behoben bis zum 20.01.2025
    Sie können die Benutzeroberfläche auf zwei Arten starten:  
-   - Mit einer Batch-Datei:  
+   - Mit einer Batch-Datei für MAVIS 1.2:  
      - `run-main.bat` (empfohlen)  
      - `run-code.bat` (empfohlen)
+     - `run-code-pro.bat` (empfohlen)
      - `run-math.bat` (empfohlen)
-     - `run-math-pro.bat` (empfohlen)<br>
-     für MAVIS 1.3 (NEW):
-     - `run-mavis1.3-main.bat` (empfohlen)  
-     - `run-mavis1.3_code.bat` (empfohlen)
-     - `run-mavis1.3-math.bat` (empfohlen)
-     - `run-mavis1.3-math-pro.bat` (empfohlen)
+     - `run-math-pro.bat` (empfohlen)
+     - `run-mini.bat` (empfohlen)
+     - `run-mini-mini.bat` (empfohlen)<br>
+     für MAVIS 1.3 EAP:
+     - `run-mavis1.3-main.bat` (experimentell)  
+     - `run-mavis1.3_code.bat` (experimentell)
+     - `run-mavis1.3_code-pro.bat` (experimentell)
+     - `run-mavis1.3-math.bat` (experimentell)
+     - `run-mavis1.3-math-pro.bat` (experimentell)<br>
+     für MAVIS 1.4 EAP:
+     - `run-mavis1.4-math.bat` (experimentell)
 
 2. **Zugriff auf die Benutzeroberfläche**  
    Nach dem Start der UI gibt Flask eine URL im Terminal aus.  
