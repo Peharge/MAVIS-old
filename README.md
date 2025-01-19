@@ -60,7 +60,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 <details>
   <summary>Deutsch</summary>
 
-> ⚠️ Wichtiger Hinweis: Vorsicht vor Fake-Accounts! ⚠️>br>
+> ⚠️ Wichtiger Hinweis: Vorsicht vor Fake-Accounts! ⚠️<br>
 > Es gibt Hinweise darauf, dass Fake-Accounts versuchen könnten, dieses Projekt falsch darzustellen. Bitte geben Sie keine persönlichen Daten an Unbekannte weiter und verlassen Sie sich nur auf Inhalte, die direkt aus diesem Repository stammen. Melden Sie umfangreiche Aktivitäten oder Accounts umgehend an GitHub oder das Projektteam.
 
 </details>
@@ -396,24 +396,31 @@ And more...
 
 ### Installation
 
-1. **Clone repository**
+1. **Create Folder**<br>
+   First, create a folder under C:\Users\user\... called PycharmProjects (if it doesn't already exist). This can be done from the command line or File Explorer. For example, you can use the command line to:
+   ```bash
+   mkdir -p ~/PycharmProjects
+   cd ~/PycharmProjects
+   ```
+
+2. **Clone repository**<br>
    Clone the repository to a local directory:
     ```bash
     git clone https://github.com/Peharge/MAVIS
     ```
-2. **Change directory**
+3. **Change directory**<br>
    Navigate to the project directory:
     ```bash
     cd MAVIS
     ```
-3. **Create Python virtual environment**
+4. **Create Python virtual environment**<br>
    Set up a virtual environment to install dependencies in isolation:
     ```bash
     python -m venv env
     ```
    *(You can replace `env` with any other name.)*
 
-4. **Activate virtual environment**
+5. **Activate virtual environment**<br>
    Activate the virtual environment:
    - **For CMD**:
        ```bash
@@ -423,53 +430,6 @@ And more...
        ```bash
        .\env\Scripts\Activate
        ```
-
-5. **Install dependencies**
-   Install the required libraries:
-    ```bash
-    # --- 1.1
-    
-    pip install Flask
-    pip install ollama
-    pip install Werkzeug
-    pip install markdown
-    pip install matplotlib
-    pip install plotly
-    pip install dash
-    pip install seaborn
-    pip install numpy
-    pip install sympy
-    pip install pandas
-    pip install scipy
-    pip install tensorflow
-    pip install torch
-    pip install scikit-learn
-    pip install transformers
-    pip install geopandas
-    pip install -U altair
-    pip install -U vega_datasets
-    pip install -U altair_viewer
-    pip install ipython
-    pip install altair-saver
-    pip install -U kaleido
-    pip install vl-convert-python
-    
-    # --- 1.2
-    
-    pip install qwen-vl-utils
-    pip install 'accelerate>=0.26.0'
-    pip install accelerate
-    
-    # --- 1.3
-    
-    pip install vllm
-    pip install uvloop
-    vllm serve "Qwen/Qwen2-VL-7B-Instruct"
-    
-    # or
-    
-    vllm serve "Qwen/Qwen2-VL-7B-Instruct" --no-uvloop
-    ```
 
 ### Start the UI
 
@@ -527,6 +487,13 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
      *Hinweis:* PyCharm bietet erweiterte Funktionen für die Python-Entwicklung und ist besonders für fortgeschrittene Nutzer geeignet.
 
 ### Installation
+
+1. **Ordner erstellen**<br>
+   Erstelle zunächst einen Ordner unter C:\Users\user\... mit dem Namen PycharmProjects (falls dieser noch nicht existiert). Dies kann über die Befehlszeile oder den Datei-Explorer erfolgen. Mit der Befehlszeile kannst du beispielsweise Folgendes ausführen:
+   ```bash
+   mkdir -p ~/user/PycharmProjects
+   cd ~/user/PycharmProjects
+   ```
 
 1. **Repository klonen**  
    Klonen Sie das Repository in ein lokales Verzeichnis:
