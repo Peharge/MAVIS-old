@@ -185,7 +185,9 @@ And more...
   <summary>more</summary>
 
 <div>
-    <img src="./readme-img/Mavis1.3-demo-ads.gif" alt="mavis" width="1400">
+    <img src="./readme-img/mavis-demo93.png" alt="mavis" width="1400">
+    <img src="./readme-img/mavis-demo92.png" alt="mavis" width="1400">
+    <img src="./readme-img/mavis-demo91.png" alt="mavis" width="1400">
 </div>
 
 And more...
