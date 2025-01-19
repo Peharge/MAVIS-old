@@ -74,7 +74,6 @@ import shutil
 import time
 import socket
 import GPUtil
-import tensorflow as tf
 
 # Farbcodes definieren
 red = "\033[91m"
@@ -146,7 +145,7 @@ def get_system_info():
     try:
         ip_address = socket.gethostbyname(hostname)
     except socket.gaierror:
-        ip_address = "Unbekannt"
+        ip_address = "Unknown"
 
     # Netzwerk-Interfaces
     network_interfaces = psutil.net_if_addrs()
@@ -171,7 +170,7 @@ def get_system_info():
             load_avg_values = os.getloadavg()
             load_avg = f"1m: {load_avg_values[0]}, 5m: {load_avg_values[1]}, 15m: {load_avg_values[2]}"
         except OSError:
-            load_avg = "Nicht verfügbar"
+            load_avg = "Not available"
 
     # Uptime des Systems
     uptime_seconds = time.time() - psutil.boot_time()
@@ -195,8 +194,8 @@ def get_system_info():
         f"{blue}Storage{reset}": f"Total: {total_storage} GB, Used: {used_storage} GB, Free: {free_storage} GB",
         f"{blue}System Load Average{reset}": load_avg,
         f"{blue}Uptime{reset}": uptime_str,
-        f"{blue}Network Interfaces{reset}": interfaces_formatted,
-        f"{blue}Disk Partitions{reset}": "\n".join([f"- {part.device} ({part.mountpoint})" for part in partitions]),
+        f"{blue}Network Interfaces{reset}": f"\n{interfaces_formatted}",
+        f"{blue}Disk Partitions{reset}": "\n".join([f"- Part Device: {part.device} Part Mountpoint: {part.mountpoint}" for part in partitions]),
         f"{blue}User Information{reset}": user_data_formatted,
     }
 

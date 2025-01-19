@@ -24,6 +24,7 @@ pip install ipython
 pip install altair-saver
 pip install -U kaleido
 pip install vl-convert-python
+pip install py-cpuinfo
 
 # --- 1.2
 

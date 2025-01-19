@@ -103,19 +103,19 @@ def check_and_install(package: str, upgrade: bool = False):
             else:
                 print(f"Skipping upgrade for {package}.")
         else:
-            print(f"{package} is already installed and up-to-date.")
+            print(f"{green}{package} is already installed and up-to-date.{reset}")
     except pkg_resources.DistributionNotFound:
         print(f"{package} is not installed.")
         if confirm_action(f"Do you want to install {package}?"):
             subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-            print(f"{package} has been installed.")
+            print(f"{green}{package} has been installed.{reset}")
         else:
             print(f"Skipping installation for {package}.")
     except pkg_resources.VersionConflict as e:
         print(f"Version conflict for {package}: {e}.")
         if confirm_action(f"Do you want to resolve the conflict by upgrading {package}?"):
             subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", package])
-            print(f"{package} has been upgraded.")
+            print(f"{green}{package} has been upgraded.{reset}")
         else:
             print(f"Skipping upgrade for {package}.")
 

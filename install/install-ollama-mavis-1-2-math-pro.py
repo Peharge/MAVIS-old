@@ -69,8 +69,14 @@ import time
 red = "\033[91m"
 green = "\033[92m"
 yellow = "\033[93m"
+blue = "\033[94m"
+magenta = "\033[95m"
 cyan = "\033[96m"
+white = "\033[97m"
+black = "\033[30m"
+orange = "\033[38;5;214m"
 reset = "\033[0m"
+bold = "\033[1m"
 
 def start_ollama():
     """
@@ -80,7 +86,7 @@ def start_ollama():
         # Überprüfen, ob Ollama bereits läuft
         result = subprocess.run("tasklist", stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         if "ollama" not in result.stdout.lower():
-            print(f"{cyan}Ollama is not running. Starting Ollama...{reset}")
+            print(f"{blue}Ollama is not running. Starting Ollama...{reset}")
             # Ollama starten
             ollama_path = r"C:\\Users\\julia\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
             subprocess.Popen([ollama_path])
