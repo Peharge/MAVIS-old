@@ -485,34 +485,6 @@ And more...
      - `run-mavis1.3_code.bat` (recommended)
      - `run-mavis1.3-math.bat` (recommended)
      - `run-mavis1.3-math-pro.bat` (recommended)
-   
-   - Alternatively via the Python script:
-       ```bash
-       python main-main.py
-       ```
-       ```bash
-       python main-code.py
-       ```
-       ```bash
-       python main-math.py
-       ```
-       ```bash
-       python main-math-pro.py
-       ```
-     for MAVIS 1.3 (NEW):
-       ```bash
-       python mavis-1-3-main-main.py
-       ```
-       ```bash
-       python mavis-1-3-main-code.py
-       ```
-       ```bash
-       python mavis-1-3-main-math.py
-       ```
-       ```bash
-       python mavis-1-3-main-math-pro.py
-       ```
-   *Note:* Check which script (`main[1-24].py`) is best suited for your needs.
 
 2. **Accessing the UI**
    After starting the UI, Flask will output a URL in the terminal.
@@ -523,40 +495,6 @@ And more...
    Once completed, you can deactivate the virtual environment using the following command:
     ```bash
     deactivate
-    ```
-
-## Alternative models for MAVIS
-
-Since **Xc++ 2** has not been released yet, you can use the following models instead:
-
-*To install Ollama's models, you need the Ollama app: [https://ollama.com/download](https://ollama.com/download).<br>
-After installation, you always have to start the app to use the models.*
-
-1. **Llama 3.2 Vision**
-   Install this model via Ollama:
-   - **For MAVIS 11B**:
-       ```bash
-       ollama run llama3.2-vision
-       ```
-   - **For MAVIS 90B**:
-       ```bash
-       ollama run llama3.2-vision:90b
-       ```
-
-2. **Qwen 2.5 Coder** (without vision)
-   This model is optimized for pure code operation:
-   - **For MAVIS 11B**:
-       ```bash
-       ollama run qwen2.5-coder:14b
-       ```
-   - **For MAVIS 90B**:
-       ```bash
-       ollama run qwen2.5-coder:32b
-       ```
-3. **QwQ** (without vision)
-   This model is optimized for pure math operation:
-    ```bash
-    ollama run qwq
     ```
 
 ### Have fun with MAVIS 🚀
@@ -617,53 +555,6 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
      ```bash
      .\env\Scripts\Activate
      ```
-     
-5. **Abhängigkeiten installieren**  
-   Installieren Sie die benötigten Bibliotheken:
-    ```bash
-    # --- 1.1
-    
-    pip install Flask
-    pip install ollama
-    pip install Werkzeug
-    pip install markdown
-    pip install matplotlib
-    pip install plotly
-    pip install dash
-    pip install seaborn
-    pip install numpy
-    pip install sympy
-    pip install pandas
-    pip install scipy
-    pip install tensorflow
-    pip install torch
-    pip install scikit-learn
-    pip install transformers
-    pip install geopandas
-    pip install -U altair
-    pip install -U vega_datasets
-    pip install -U altair_viewer
-    pip install ipython
-    pip install altair-saver
-    pip install -U kaleido
-    pip install vl-convert-python
-    
-    # --- 1.2
-    
-    pip install qwen-vl-utils
-    pip install 'accelerate>=0.26.0'
-    pip install accelerate
-    
-    # --- 1.3
-    
-    pip install vllm
-    pip install uvloop
-    vllm serve "Qwen/Qwen2-VL-7B-Instruct"
-    
-    # or
-    
-    vllm serve "Qwen/Qwen2-VL-7B-Instruct" --no-uvloop
-    ```
 
 ### Benutzeroberfläche starten
 
@@ -680,35 +571,6 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
      - `run-mavis1.3-math.bat` (empfohlen)
      - `run-mavis1.3-math-pro.bat` (empfohlen)
 
-   
-   - Alternatively via the Python script:
-       ```bash
-       python main-main.py
-       ```
-       ```bash
-       python main-code.py
-       ```
-       ```bash
-       python main-math.py
-       ```
-       ```bash
-       python main-math-pro.py
-       ```
-     for MAVIS 1.3 (NEW):
-       ```bash
-       python mavis-1-3-main-main.py
-       ```
-       ```bash
-       python mavis-1-3-main-code.py
-       ```
-       ```bash
-       python mavis-1-3-main-math.py
-       ```
-       ```bash
-       python mavis-1-3-main-math-pro.py
-       ```
-     *Hinweis:* Prüfen Sie, welches Skript (`main[1-24].py`) für Ihre Anforderungen am besten geeignet ist.
-
 2. **Zugriff auf die Benutzeroberfläche**  
    Nach dem Start der UI gibt Flask eine URL im Terminal aus.  
    - Öffnen Sie diese URL in Ihrem Browser (unter PowerShell mit `Strg + Klick` direkt anklickbar).  
@@ -719,41 +581,6 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
    ```bash
    deactivate
    ```
-   
-
-## Alternative Modelle für MAVIS
-
-Da **Xc++ 2** noch nicht veröffentlicht wurde, können Sie stattdessen folgende Modelle verwenden:
-
-*Um die Modelle von Ollama zu installieren, benötigen Sie die Ollama-App: [https://ollama.com/download](https://ollama.com/download).<br>
-Nach der Installation müssen Sie die App immer starten, um die Modelle verwenden zu können.*
-
-1. **Llama 3.2 Vision**
-   Installieren Sie dieses Modell über Ollama:
-   - **Für MAVIS 11B**:
-     ```bash
-     ollama run llama3.2-vision
-     ```
-   - **Für MAVIS 90B**:
-     ```bash
-     ollama run llama3.2-vision:90b
-     ```
-
-2. **Qwen 2.5 Coder** (ohne Vision)  
-   Dieses Modell ist für reinen Code-Betrieb optimiert:
-   - **Für MAVIS 11B**:
-     ```bash
-     ollama run qwen2.5-coder:14b
-     ```
-   - **Für MAVIS 90B**:
-     ```bash
-     ollama run qwen2.5-coder:32b
-     ```
-3. **QwQ** (ohne Vision)  
-   Dieses Modell ist für reinen Mathe-Betrieb optimiert:
-     ```bash
-     ollama run qwq
-     ```
 
 ### Viel Spaß mit MAVIS 🚀
 
