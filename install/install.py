@@ -125,8 +125,8 @@ def process_packages(packages: List[str], upgrade: bool = False):
 # Paketlisten
 packages = [
     "Flask", "ollama", "Werkzeug", "markdown", "matplotlib", "plotly",
-    "dash", "seaborn", "numpy", "sympy", "pandas", "torch", "torchvision",
-    "torchaudio", "scipy", "tensorflow", "scikit-learn", "transformers", "geopandas",
+    "dash", "seaborn", "numpy", "sympy", "pandas", "scipy", "torch", "torchvision",
+    "torchaudio", "tensorflow", "scikit-learn", "transformers", "geopandas",
     "altair", "vega_datasets", "altair_viewer", "ipython", "altair-saver", "kaleido",
     "vl-convert-python", "py-cpuinfo", "GPUtil"
 ]

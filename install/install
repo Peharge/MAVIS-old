@@ -25,6 +25,7 @@ pip install altair-saver
 pip install -U kaleido
 pip install vl-convert-python
 pip install py-cpuinfo
+pip install GPUtil
 
 # --- 1.2
 
