@@ -452,17 +452,6 @@ And more...
      for MAVIS 1.4 EAP:
      - `run-mavis1.4-math.bat` (experimental)
 
-2. **Accessing the UI**
-   After starting the UI, Flask will output a URL in the terminal.
-   - Open this URL in your browser (directly clickable in PowerShell with `Ctrl + Click`).
-   - The MAVIS UI should appear in the browser.
-
-3. **Deactivate virtual environment**
-   Once completed, you can deactivate the virtual environment using the following command:
-    ```bash
-    deactivate
-    ```
-
 ### Have fun with MAVIS 🚀
 
 </details>
@@ -549,17 +538,6 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
      - `run-mavis1.3-math-pro.bat` (experimentell)<br>
      für MAVIS 1.4 EAP:
      - `run-mavis1.4-math.bat` (experimentell)
-
-2. **Zugriff auf die Benutzeroberfläche**  
-   Nach dem Start der UI gibt Flask eine URL im Terminal aus.  
-   - Öffnen Sie diese URL in Ihrem Browser (unter PowerShell mit `Strg + Klick` direkt anklickbar).  
-   - Die MAVIS-Benutzeroberfläche sollte im Browser angezeigt werden.
-
-3. **Virtuelle Umgebung deaktivieren**  
-   Nach Abschluss können Sie die virtuelle Umgebung mit dem folgenden Befehl deaktivieren:
-   ```bash
-   deactivate
-   ```
 
 ### Viel Spaß mit MAVIS 🚀
 
