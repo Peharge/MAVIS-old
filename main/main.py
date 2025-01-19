@@ -116,7 +116,7 @@ def display_versions():
 
 def get_user_input(versions):
     """Fragt den Benutzer nach der gewünschten MAVIS-Batch-Datei (direkte Eingabe)."""
-    user_input = input("Enter a MAVIS batch file (e.g. 'mavis-1-3-main'):").strip()
+    user_input = input("Enter a MAVIS batch file (e.g. 'mavis-1-2-main'):").strip()
 
     if user_input in versions:
         run_batch_file(user_input)
