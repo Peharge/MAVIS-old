@@ -434,9 +434,9 @@ And more...
 
 ### Start the UI
 
-1. **Start the UI** not jet 16.01.2025 (problem) fixed max until 20.01.2025
+1. **Start the UI**
    You can start the UI in two ways:
-     - `run-mavis-all.bat` (recommended)
+     - `run-mavis-all.bat` (experimental)
    - With a batch file for MAVIS 1.2:
      - `run-mavis-1-2-main.bat` (recommended)  
      - `run-mavis-1-2-code.bat` (recommended)
@@ -509,7 +509,7 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
    ```
    *(Sie können `env` durch einen anderen Namen ersetzen.)*
 
-4. **Virtuelle Umgebung aktivieren**  
+4. **Virtuelle Umgebung aktivieren**
    Aktivieren Sie die virtuelle Umgebung:
    - **Für CMD**:
      ```bash
@@ -522,9 +522,9 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 
 ### Benutzeroberfläche starten
 
-1. **Starten der UI** (Problem) Behoben bis zum 20.01.2025
+1. **Starten der UI**
    Sie können die Benutzeroberfläche auf zwei Arten starten:  
-     - `run-mavis-all.bat` (empfohlen)  
+     - `run-mavis-all.bat` (experimentell)  
    - Mit einer Batch-Datei für MAVIS 1.2:  
      - `run-mavis-1-2-main.bat` (empfohlen)  
      - `run-mavis-1-2-code.bat` (empfohlen)
@@ -533,7 +533,7 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
      - `run-mavis-1-2-math-pro.bat` (empfohlen)
      - `run-mavis-1-2-mini.bat` (empfohlen)
      - `run-mavis-1-2-mini-mini.bat` (empfohlen)
-     - `run-mavis-1-2-3-main.bat` (empfohlen)  <br>
+     - `run-mavis-1-2-3-main.bat` (empfohlen)<br>
    - für MAVIS 1.3 EAP:
      - `run-mavis-1-3-main.bat` (experimentell)  
      - `run-mavis-1-3-code.bat` (experimentell)
