@@ -621,10 +621,10 @@ Solltest du dennoch die automatische Installation bevorzugen, folge bitte den un
      ```bash
      mavis_installer.exe
      ```
+     
+---
 
 </details>
-
----
 
 <details>
   <summary>Automatische Installation auf macOS/Linux</summary>
