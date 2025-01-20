@@ -502,7 +502,7 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
 1. **Start the UI**
     You can start the UI in two ways:
      - `run-mavis-all.sh` (experimental)<br>
-   - With a batch file for MAVIS 1.2:
+   - With a shell file for MAVIS 1.2:
      - `run-mavis-1-2-main.sh` (recommended)
      - `run-mavis-1-2-code.sh` (recommended)
      - `run-mavis-1-2-code-pro.sh` (recommended)
@@ -654,7 +654,7 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 
    Sie können die Benutzeroberfläche auf zwei Arten starten:
      - `run-mavis-all.sh` (experimentell)<br>
-   - Mit einer Batch-Datei für MAVIS 1.2:
+   - Mit einer shell-Datei für MAVIS 1.2:
      - `run-mavis-1-2-main.sh` (empfohlen)  
      - `run-mavis-1-2-code.sh` (empfohlen)
      - `run-mavis-1-2-code-pro.sh` (empfohlen)
