@@ -152,7 +152,7 @@ And more...
 
 > 01.12.2024 
 
-### MAVIS 1.2 EAP release
+### MAVIS 1.2 release
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-ads-new1.3.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -173,7 +173,7 @@ And more...
 
 > 12.12.2024 
 
-### MAVIS 1.3 EAP release [NEW]
+### MAVIS 1.3 release [soon]
 
 <p align="center">
   <img src="./readme-img/mavis1.3-banner-ads2.png" alt="mavis" width="650" style="margin: 10px;">
@@ -390,7 +390,7 @@ And more...
    - Recommended: **Python 3.13** (3.12 or 3.11 are also supported).
    - Download Python from the [https://www.python.org](https://www.python.org) or via the Microsoft Store.
 
-3. **Ollama**  
+3. **Ollama**
    Ollama is a tool required for MAVIS.  
    - Install Ollama from the official website:  
      [https://ollama.com](https://ollama.com)
@@ -419,7 +419,7 @@ And more...
     ```bash
     python -m venv env
     ```
-   *(You can replace `env` with any other name.)*
+   *(You can **not** replace `env` with any other name!)*
 
 5. **Activate virtual environment**<br>
    Activate the virtual environment:
@@ -470,15 +470,15 @@ And more...
 
 Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 
-1. **Git**  
+1. **Git**
    Laden Sie Git von der offiziellen Website herunter:  
    [https://git-scm.com](https://git-scm.com)
 
-2. **Python**  
+2. **Python**
    - Empfohlen: **Python 3.13** (auch 3.12 oder 3.11 werden unterstützt).  
    - Laden Sie Python von der [https://www.python.org](https://www.python.org) oder über den Microsoft Store herunter.
 
-3. **Ollama**  
+3. **Ollama**
    Ollama ist ein Tool, das für MAVIS erforderlich ist.  
    - Installieren Sie Ollama von der offiziellen Website:  
      [https://ollama.com](https://ollama.com)
@@ -492,22 +492,22 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
    cd ~/PycharmProjects
    ```
 
-1. **Repository klonen**  
+1. **Repository klonen**
    Klonen Sie das Repository in ein lokales Verzeichnis:
    ```bash
    git clone https://github.com/Peharge/MAVIS
    ```
-2. **In das Verzeichnis wechseln**  
+2. **In das Verzeichnis wechseln**
    Navigieren Sie in das Projektverzeichnis:
    ```bash
    cd MAVIS
    ```
-3. **Virtuelle Python-Umgebung erstellen**  
+3. **Virtuelle Python-Umgebung erstellen**
    Richten Sie eine virtuelle Umgebung ein, um Abhängigkeiten isoliert zu installieren:
    ```bash
    python -m venv env
    ```
-   *(Sie können `env` durch einen anderen Namen ersetzen.)*
+   *(Sie können `env` **nicht** durch einen anderen Namen ersetzen!)*
 
 4. **Virtuelle Umgebung aktivieren**
    Aktivieren Sie die virtuelle Umgebung:
@@ -523,9 +523,9 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 ### Benutzeroberfläche starten
 
 1. **Starten der UI**
-   Sie können die Benutzeroberfläche auf zwei Arten starten:  
+   Sie können die Benutzeroberfläche auf zwei Arten starten:
      - `run-mavis-all.bat` (experimentell)  
-   - Mit einer Batch-Datei für MAVIS 1.2:  
+   - Mit einer Batch-Datei für MAVIS 1.2:
      - `run-mavis-1-2-main.bat` (empfohlen)  
      - `run-mavis-1-2-code.bat` (empfohlen)
      - `run-mavis-1-2-code-pro.bat` (empfohlen)
