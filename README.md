@@ -376,6 +376,57 @@ And more...
 <details>
 <summary>Installation</summary>
 
+<details>
+  <summary>Automatic Installation</summary>
+
+**Note:** While the manual installation is not significantly more complicated, it is much more stable and secure. Therefore, we recommend preferring this method!
+
+During the automatic installation, Git, Python, and Ollama are installed, a folder is created, and a virtual Python environment is set up. Additionally, the required Python frameworks and AI models are automatically installed as part of the manual installation as well.
+
+If you still prefer the automatic installation, please follow the instructions below:
+
+1. Download the C++ file [mavis_installer.cpp](https://github.com/Peharge/MAVIS/blob/main/mavis_installer.cpp).
+2. Follow the installation instructions for your operating system.
+3. If issues occur, uninstall all changes made by the automatic installation and try the manual installation instead.
+
+### Installation
+
+<details>
+  <summary>Automatic Installation on Windows</summary>
+
+  1. Install a C++ compiler (e.g., Visual Studio or MinGW).
+  2. Compile the code with the following command:
+     ```bash
+     g++ -std=c++17 -o mavis_installer mavis_installer.cpp
+     ```
+  3. Run the `.exe` file:
+     ```bash
+     mavis_installer.exe
+     ```
+
+</details>
+
+<details>
+  <summary>Automatic Installation on macOS/Linux</summary>
+
+  1. Make sure a C++ compiler like `g++` is installed (on macOS, this is typically part of the Xcode Command Line Tools).
+  2. Compile the code with the following command:
+     ```bash
+     g++ -std=c++17 -o mavis_installer mavis_installer.cpp
+     ```
+  3. Make the script executable (if needed) and run it:
+     ```bash
+     chmod +x mavis_installer
+     ./mavis_installer
+     ```
+
+</details>
+
+</details>
+
+<details>
+  <summary>Manual Installation</summary>
+
 **MAVIS (aka Xc++ 2)** is currently under development and is not fully available in this repository. Cloning the repository will only give you the README file, some images and already released code, including the user interface (UI) compatible with **Qwen 2.5 Code** and **Llama 3.2 Vision**.
 
 ### Prerequisites
@@ -396,6 +447,8 @@ To successfully install MAVIS, you need the following programs:
    [https://ollama.com/download](https://ollama.com/download)
 
 ### Installation
+
+The necessary Python frameworks and AI models are automatically installed during manual installation.
 
 <details>
 <summary>Windows</summary>
@@ -525,10 +578,63 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
 
 </details>
 
+</details>
+
 ### Deutsch:
 
 <details>
   <summary>Installation</summary>
+
+<details>
+  <summary>Automatische Installation</summary>
+
+**Hinweis:** Die manuelle Installation ist zwar nicht wesentlich komplizierter, jedoch deutlich stabiler und sicherer. Daher empfehlen wir, diese Methode zu bevorzugen!
+
+Bei der automatischen Installation werden Git, Python und Ollama installiert, ein Ordner erstellt und eine virtuelle Python-Umgebung eingerichtet. Zudem werden die erforderlichen Python-Frameworks und KI-Modelle auch bei der manuellen Installation automatisch installiert.
+
+Solltest du dennoch die automatische Installation bevorzugen, folge bitte den untenstehenden Anweisungen:
+
+1. Lade die C++-Datei [mavis_installer.cpp](https://github.com/Peharge/MAVIS/blob/main/mavis_installer.cpp) herunter.
+2. Folge den Installationsanweisungen für dein Betriebssystem.
+3. Falls es zu Problemen kommt, deinstalliere alle Änderungen, die durch die automatische Installation vorgenommen wurden, und versuche es mit der manuellen Installation.
+
+### Installation
+
+<details>
+  <summary>Automatische Installation auf Windows</summary>
+
+  1. Installiere einen C++-Compiler (z. B. Visual Studio oder MinGW).
+  2. Kompiliere den Code mit folgendem Befehl:
+     ```bash
+     g++ -std=c++17 -o mavis_installer mavis_installer.cpp
+     ```
+  3. Führe die `.exe`-Datei aus:
+     ```bash
+     mavis_installer.exe
+     ```
+
+</details>
+
+<details>
+  <summary>Automatische Installation auf macOS/Linux</summary>
+
+  1. Stelle sicher, dass ein C++-Compiler wie `g++` installiert ist (auf macOS ist dies in der Regel Teil der Xcode Command Line Tools).
+  2. Kompiliere den Code mit folgendem Befehl:
+     ```bash
+     g++ -std=c++17 -o mavis_installer mavis_installer.cpp
+     ```
+  3. Mache das Skript ausführbar (falls erforderlich) und führe es aus:
+     ```bash
+     chmod +x mavis_installer
+     ./mavis_installer
+     ```
+
+</details>
+
+</details>
+
+<details>
+  <summary>Manuelle Installation</summary>
 
 **MAVIS (alias Xc++ 2)** befindet sich derzeit in der Entwicklung und ist in diesem Repository nicht vollständig verfügbar. Durch das Klonen des Repositories erhalten Sie lediglich die README-Datei, einige Bilder und bereits veröffentlichte Codes, einschließlich der Benutzeroberfläche (UI), die mit **Qwen 2.5 Code** und **Llama 3.2 Vision** kompatibel ist.
 
@@ -550,6 +656,8 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
    [https://ollama.com/download](https://ollama.com/download)
 
 ### Installation
+
+Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Installation automatisch mitinstalliert.
 
 <details>
   <summary>Windows</summary>
@@ -673,6 +781,8 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
      - `run-mavis-1-4-math.sh` (experimentell)
 
 ### Viel Spaß mit MAVIS 🚀
+</details>
+
 </details>
 
 </details>
