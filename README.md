@@ -556,14 +556,14 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 <details>
   <summary>using</summary>
     01.02.2025
-<details>
+</details>
 
 ### Deutsch:
 
 <details>
   <summary>benutzen</summary>
     01.02.2025
-<details>
+</details>
 
 ## Xcpp
 
