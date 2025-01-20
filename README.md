@@ -374,71 +374,73 @@ And more...
 ### English:
 
 <details>
-  <summary>Installation</summary>
+<summary>Installation</summary>
 
-  **MAVIS (aka Xc++ 2)** is currently under development and is not fully available in this repository. Cloning the repository will only give you the README file, some images and already released codes, including the user interface (UI) compatible with **Qwen 2.5 Code** and **Llama 3.2 Vision**.
+**MAVIS (aka Xc++ 2)** is currently under development and is not fully available in this repository. Cloning the repository will only give you the README file, some images and already released code, including the user interface (UI) compatible with **Qwen 2.5 Code** and **Llama 3.2 Vision**.
 
 ### Prerequisites
 
-   To successfully install MAVIS, you need the following programs:
+To successfully install MAVIS, you need the following programs:
 
-1. **Git**
-   Download Git from the official website:
-   [https://git-scm.com](https://git-scm.com)
+1. **Git**<br>
+   Download [Git](https://git-scm.com) from the official website:
+   [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
-2. **Python**
-   - Recommended: **Python 3.13** (3.12 or 3.11 are also supported).
-   - Download Python from the [https://www.python.org](https://www.python.org) or via the Microsoft Store.
+2. **Python**<br>
+   Recommended: **Python 3.12** (3.11 is also supported - not Python 3.13 yet).
+   Download [Python](https://www.python.org/) from the [https://www.python.org/downloads/](https://www.python.org/downloads/) or from the Microsoft Store.
 
-3. **Ollama**
-   Ollama is a tool required for MAVIS.  
-   - Install Ollama from the official website:  
-     [https://ollama.com](https://ollama.com)
+3. **Ollama**<br>
+   [Ollama](https://ollama.com) is a tool required for MAVIS.
+   Install Ollama from the official website:
+   [https://ollama.com/download](https://ollama.com/download)
 
 ### Installation
 
-1. **Create Folder**<br>
-   First, create a folder under C:\Users\user\ called PycharmProjects (if it doesn't already exist). This can be done from the command line or File Explorer. For example, you can use the command line to:
-   ```bash
-   mkdir -p ~/PycharmProjects
-   cd ~/PycharmProjects
-   ```
+<details>
+<summary>Windows</summary>
 
-2. **Clone repository**<br>
-   Clone the repository to a local directory:
+1. **Create folder**<br>
+Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProjects`) if it doesn't already exist. The location and method vary depending on your operating system:
+
+   - **Option 1: Via File Explorer**<br>
+     1. Open File Explorer.
+     2. Navigate to `C:\Users\YourUsername\`.
+     3. Create a folder there called `PycharmProjects`.<br>
+
+   - **Option 2: Using the Command Prompt**<br>
+       Open the command prompt and run the following commands:
+       ```cmd
+       mkdir C:\Users\%USERNAME%\PycharmProjects
+       cd C:\Users\%USERNAME%\PycharmProjects
+       ```
+
+1. **Clone repository**<br>
+    Clone the repository to a local directory:
     ```bash
     git clone https://github.com/Peharge/MAVIS
     ```
-3. **Change directory**<br>
-   Navigate to the project directory:
+
+2. **Change directory**<br>
+    Navigate to the project directory:
     ```bash
     cd MAVIS
     ```
-4. **Create Python virtual environment**<br>
-   Set up a virtual environment to install dependencies in isolation:
+
+3. **Create Python virtual environment**<br>
+    Set up a virtual environment to install dependencies in isolation:
     ```bash
     python -m venv env
     ```
-   *(You can **not** replace `env` with any other name!)*
+    *(You can **Do not** replace `env` with another name!)*
 
-5. **Activate virtual environment**<br>
-   Activate the virtual environment:
-   - **For CMD**:
-       ```bash
-       env\Scripts\activate
-       ```
-   - **For PowerShell**:
-       ```bash
-       .\env\Scripts\Activate
-       ```
-
-### Start the UI
+### Starting the UI
 
 1. **Start the UI**
-   You can start the UI in two ways:
-     - `run-mavis-all.bat` (experimental)
+    You can start the UI in two ways:
+     - `run-mavis-all.bat` (experimental)<br>
    - With a batch file for MAVIS 1.2:
-     - `run-mavis-1-2-main.bat` (recommended)  
+     - `run-mavis-1-2-main.bat` (recommended)
      - `run-mavis-1-2-code.bat` (recommended)
      - `run-mavis-1-2-code-pro.bat` (recommended)
      - `run-mavis-1-2-math.bat` (recommended)
@@ -447,7 +449,7 @@ And more...
      - `run-mavis-1-2-mini-mini.bat` (recommended)
      - `run-mavis-1-2-3-main.bat` (recommended)<br>
    - for MAVIS 1.3 EAP:
-     - `run-mavis-1-3-main.bat` (experimental)  
+     - `run-mavis-1-3-main.bat` (experimental)
      - `run-mavis-1-3-code.bat` (experimental)
      - `run-mavis-1-3-code-pro.bat` (experimental)
      - `run-mavis-1-3-math.bat` (experimental)
@@ -456,6 +458,70 @@ And more...
      - `run-mavis-1-4-math.bat` (experimental)
 
 ### Have fun with MAVIS 🚀
+</details>
+
+<details>
+<summary>macOS/Linux</summary>
+
+1. **Create a folder**<br>
+   Create a folder called `PycharmProjects` (`~/PycharmProjects`) if it doesn't already exist. The location and method vary depending on your operating system:
+
+   - **Option 1: Via the File Manager**<br>
+     1. Open the File Manager.
+     2. Navigate to your home directory (`~/`).
+     3. Create a folder called `PycharmProjects` there.
+
+   - **Option 2: Via Terminal**<br>
+       Open Terminal and run the following commands:
+       ```bash
+       mkdir -p ~/PycharmProjects
+       cd ~/PycharmProjects
+       ```
+
+1. **Clone repository**<br>
+    Clone the repository to a local directory:
+    ```bash
+    git clone https://github.com/Peharge/MAVIS
+    ```
+   
+2. **Change directory**<br>
+    Navigate to the project directory:
+    ```bash
+    cd MAVIS
+    ```
+   
+3. **Create Python virtual environment**<br>
+    Set up a virtual environment to install dependencies in isolation:
+    ```bash
+    python -m venv env
+    ```
+    *(You **cannot** replace `env` with any other name!)*
+
+### Start UI
+
+1. **Start the UI**
+    You can start the UI in two ways:
+     - `run-mavis-all.sh` (experimental)<br>
+   - With a batch file for MAVIS 1.2:
+     - `run-mavis-1-2-main.sh` (recommended)
+     - `run-mavis-1-2-code.sh` (recommended)
+     - `run-mavis-1-2-code-pro.sh` (recommended)
+     - `run-mavis-1-2-math.sh` (recommended)
+     - `run-mavis-1-2-math-pro.sh` (recommended)
+     - `run-mavis-1-2-mini.sh` (recommended)
+     - `run-mavis-1-2-mini-mini.sh` (recommended)
+     - `run-mavis-1-2-3-main.sh` (recommended)<br>
+   - for MAVIS 1.3 EAP:
+     - `run-mavis-1-3-main.sh` (experimental)
+     - `run-mavis-1-3-code.sh` (experimental)
+     - `run-mavis-1-3-code-pro.sh` (experimental)
+     - `run-mavis-1-3-math.sh` (experimental)
+     - `run-mavis-1-3-math-pro.sh` (experimental)<br>
+   - for MAVIS 1.4 EAP:
+     - `run-mavis-1-4-math.sh` (experimental)
+
+### Have fun with MAVIS 🚀
+</details>
 
 </details>
 
@@ -470,27 +536,38 @@ And more...
 
 Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 
-1. **Git**
-   Laden Sie Git von der offiziellen Website herunter:  
-   [https://git-scm.com](https://git-scm.com)
+1. **Git**<br>
+   Laden Sie [Git](https://git-scm.com) von der offiziellen Website herunter:  
+   [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
-2. **Python**
-   - Empfohlen: **Python 3.13** (auch 3.12 oder 3.11 werden unterstützt).  
-   - Laden Sie Python von der [https://www.python.org](https://www.python.org) oder über den Microsoft Store herunter.
+2. **Python**<br>
+   Empfohlen: **Python 3.12** (auch 3.11 wird unterstützt - noch nicht Python 3.13).  
+   Laden Sie [Python](https://www.python.org/) von der [https://www.python.org/downloads/](https://www.python.org/downloads/) oder über den Microsoft Store herunter.
 
-3. **Ollama**
-   Ollama ist ein Tool, das für MAVIS erforderlich ist.  
-   - Installieren Sie Ollama von der offiziellen Website:  
-     [https://ollama.com](https://ollama.com)
+3. **Ollama**<br>
+   [Ollama](https://ollama.com) ist ein Tool, das für MAVIS erforderlich ist.  
+   Installieren Sie Ollama von der offiziellen Website:  
+   [https://ollama.com/download](https://ollama.com/download)
 
 ### Installation
 
+<details>
+  <summary>Windows</summary>
+
 1. **Ordner erstellen**<br>
-   Erstelle zunächst einen Ordner unter C:\Users\user\ mit dem Namen PycharmProjects (falls dieser noch nicht existiert). Dies kann über die Befehlszeile oder den Datei-Explorer erfolgen. Mit der Befehlszeile kannst du beispielsweise Folgendes ausführen:
-   ```bash
-   mkdir -p ~/PycharmProjects
-   cd ~/PycharmProjects
-   ```
+    Erstelle einen Ordner mit dem Namen `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProjects`), falls dieser noch nicht existiert. Der Speicherort und die Methode variieren je nach Betriebssystem:  
+
+    - **Option 1: Über den Datei-Explorer**  
+      1. Öffne den Datei-Explorer.  
+      2. Navigiere zu `C:\Users\DeinBenutzername\`.  
+      3. Erstelle dort einen Ordner namens `PycharmProjects`.  
+
+    - **Option 2: Über die Eingabeaufforderung (Command Prompt)**  
+       Öffne die Eingabeaufforderung und führe die folgenden Befehle aus:  
+       ```cmd
+       mkdir C:\Users\%USERNAME%\PycharmProjects
+       cd C:\Users\%USERNAME%\PycharmProjects
+       ```
 
 1. **Repository klonen**
    Klonen Sie das Repository in ein lokales Verzeichnis:
@@ -509,22 +586,12 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
    ```
    *(Sie können `env` **nicht** durch einen anderen Namen ersetzen!)*
 
-4. **Virtuelle Umgebung aktivieren**
-   Aktivieren Sie die virtuelle Umgebung:
-   - **Für CMD**:
-     ```bash
-     env\Scripts\activate
-     ```
-   - **Für PowerShell**:
-     ```bash
-     .\env\Scripts\Activate
-     ```
-
 ### Benutzeroberfläche starten
 
 1. **Starten der UI**
+
    Sie können die Benutzeroberfläche auf zwei Arten starten:
-     - `run-mavis-all.bat` (experimentell)  
+     - `run-mavis-all.bat` (experimentell)<br>
    - Mit einer Batch-Datei für MAVIS 1.2:
      - `run-mavis-1-2-main.bat` (empfohlen)  
      - `run-mavis-1-2-code.bat` (empfohlen)
@@ -544,6 +611,69 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
      - `run-mavis-1-4-math.bat` (experimentell)
 
 ### Viel Spaß mit MAVIS 🚀
+</details>
+
+<details>
+  <summary>macOS/Linux</summary>
+
+1. **Ordner erstellen**<br>
+    Erstelle einen Ordner mit dem Namen `PycharmProjects` (`~/PycharmProjects`), falls dieser noch nicht existiert. Der Speicherort und die Methode variieren je nach Betriebssystem:  
+
+    - **Option 1: Über den Datei-Manager**  
+        1. Öffne den Datei-Manager.  
+        2. Navigiere zu deinem Home-Verzeichnis (`~/`).  
+        3. Erstelle dort einen Ordner namens `PycharmProjects`.  
+
+    - **Option 2: Über das Terminal**  
+       Öffne das Terminal und führe die folgenden Befehle aus:  
+       ```bash
+       mkdir -p ~/PycharmProjects
+       cd ~/PycharmProjects
+       ```
+
+1. **Repository klonen**
+   Klonen Sie das Repository in ein lokales Verzeichnis:
+   ```bash
+   git clone https://github.com/Peharge/MAVIS
+   ```
+2. **In das Verzeichnis wechseln**
+   Navigieren Sie in das Projektverzeichnis:
+   ```bash
+   cd MAVIS
+   ```
+3. **Virtuelle Python-Umgebung erstellen**
+   Richten Sie eine virtuelle Umgebung ein, um Abhängigkeiten isoliert zu installieren:
+   ```bash
+   python -m venv env
+   ```
+   *(Sie können `env` **nicht** durch einen anderen Namen ersetzen!)*
+
+### Benutzeroberfläche starten
+
+1. **Starten der UI**
+
+   Sie können die Benutzeroberfläche auf zwei Arten starten:
+     - `run-mavis-all.sh` (experimentell)<br>
+   - Mit einer Batch-Datei für MAVIS 1.2:
+     - `run-mavis-1-2-main.sh` (empfohlen)  
+     - `run-mavis-1-2-code.sh` (empfohlen)
+     - `run-mavis-1-2-code-pro.sh` (empfohlen)
+     - `run-mavis-1-2-math.sh` (empfohlen)
+     - `run-mavis-1-2-math-pro.sh` (empfohlen)
+     - `run-mavis-1-2-mini.sh` (empfohlen)
+     - `run-mavis-1-2-mini-mini.sh` (empfohlen)
+     - `run-mavis-1-2-3-main.sh` (empfohlen)<br>
+   - für MAVIS 1.3 EAP:
+     - `run-mavis-1-3-main.sh` (experimentell)  
+     - `run-mavis-1-3-code.sh` (experimentell)
+     - `run-mavis-1-3-code-pro.sh` (experimentell)
+     - `run-mavis-1-3-math.sh` (experimentell)
+     - `run-mavis-1-3-math-pro.sh` (experimentell)<br>
+   - für MAVIS 1.4 EAP:
+     - `run-mavis-1-4-math.sh` (experimentell)
+
+### Viel Spaß mit MAVIS 🚀
+</details>
 
 </details>
 

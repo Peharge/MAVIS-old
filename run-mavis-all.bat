@@ -2,7 +2,7 @@
 
 set USERNAME=%USERNAME%
 set PYTHON_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe
-set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\main\main.py
+set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\main\main-windows.py
 
 if not exist "%PYTHON_PATH%" (
     echo Error: Python interpreter not found: %PYTHON_PATH%
