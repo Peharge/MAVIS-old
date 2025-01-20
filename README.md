@@ -404,6 +404,8 @@ If you still prefer the automatic installation, please follow the instructions b
      mavis_installer.exe
      ```
 
+---
+
 </details>
 
 <details>
@@ -421,6 +423,8 @@ If you still prefer the automatic installation, please follow the instructions b
      ```
 
 </details>
+
+---
 
 </details>
 
@@ -511,6 +515,9 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
      - `run-mavis-1-4-math.bat` (experimental)
 
 ### Have fun with MAVIS 🚀
+
+---
+
 </details>
 
 <details>
@@ -578,6 +585,8 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
 
 </details>
 
+---
+
 </details>
 
 ### Deutsch:
@@ -615,6 +624,8 @@ Solltest du dennoch die automatische Installation bevorzugen, folge bitte den un
 
 </details>
 
+---
+
 <details>
   <summary>Automatische Installation auf macOS/Linux</summary>
 
@@ -630,6 +641,8 @@ Solltest du dennoch die automatische Installation bevorzugen, folge bitte den un
      ```
 
 </details>
+
+---
 
 </details>
 
@@ -719,6 +732,9 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
      - `run-mavis-1-4-math.bat` (experimentell)
 
 ### Viel Spaß mit MAVIS 🚀
+
+---
+
 </details>
 
 <details>
@@ -784,6 +800,8 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 </details>
 
 </details>
+
+---
 
 </details>
 
