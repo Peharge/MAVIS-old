@@ -551,7 +551,19 @@ Um MAVIS erfolgreich zu installieren, benötigen Sie die folgenden Programme:
 
 > ⚠️ **Still in progress (01.02.2024)**
 
-> got to: [USING.md](https://github.com/Peharge/MAVIS/blob/main/USING.md)
+### English:
+
+<details>
+  <summary>using</summary>
+    01.02.2025
+<details>
+
+### Deutsch:
+
+<details>
+  <summary>benutzen</summary>
+    01.02.2025
+<details>
 
 ## Xcpp
 
