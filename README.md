@@ -376,8 +376,11 @@ And more...
 <details>
 <summary>Installation</summary>
 
+**MAVIS (aka Xc++ 2)** is currently under development and is not fully available in this repository. Cloning the repository will only give you the README file, some images and already released code, including the user interface (UI) compatible with **Qwen 2.5 Code** and **Llama 3.2 Vision**.
+
+
 <details>
-  <summary>Automatic Installation</summary>
+  <summary>Automatic Installation (experimental)</summary>
 
 **Note:** While the manual installation is not significantly more complicated, it is much more stable and secure. Therefore, we recommend preferring this method!
 
@@ -386,8 +389,7 @@ During the automatic installation, Git, Python, and Ollama are installed, a fold
 If you still prefer the automatic installation, please follow the instructions below:
 
 1. Download the C++ file [mavis_installer.cpp](https://github.com/Peharge/MAVIS/blob/main/mavis_installer.cpp).
-2. Follow the installation instructions for your operating system.
-3. If issues occur, uninstall all changes made by the automatic installation and try the manual installation instead.
+2. If issues occur, uninstall all changes made by the automatic installation and try the manual installation instead.
 
 ### Installation
 
@@ -403,6 +405,32 @@ If you still prefer the automatic installation, please follow the instructions b
      ```bash
      mavis_installer.exe
      ```
+  4. Follow the installation instructions for your operating system.
+     
+### Starting the UI
+
+**Start the UI**
+    You can start the UI in two ways:
+     - `run-mavis-all.bat` (experimental)<br>
+   - With a batch file for MAVIS 1.2:
+     - `run-mavis-1-2-main.bat` (recommended)
+     - `run-mavis-1-2-code.bat` (recommended)
+     - `run-mavis-1-2-code-pro.bat` (recommended)
+     - `run-mavis-1-2-math.bat` (recommended)
+     - `run-mavis-1-2-math-pro.bat` (recommended)
+     - `run-mavis-1-2-mini.bat` (recommended)
+     - `run-mavis-1-2-mini-mini.bat` (recommended)
+     - `run-mavis-1-2-3-main.bat` (recommended)<br>
+   - for MAVIS 1.3 EAP:
+     - `run-mavis-1-3-main.bat` (experimental)
+     - `run-mavis-1-3-code.bat` (experimental)
+     - `run-mavis-1-3-code-pro.bat` (experimental)
+     - `run-mavis-1-3-math.bat` (experimental)
+     - `run-mavis-1-3-math-pro.bat` (experimental)<br>
+   - for MAVIS 1.4 EAP:
+     - `run-mavis-1-4-math.bat` (experimental)
+
+### Have fun with MAVIS 🚀
 
 ---
 
@@ -421,6 +449,32 @@ If you still prefer the automatic installation, please follow the instructions b
      chmod +x mavis_installer
      ./mavis_installer
      ```
+  4. Follow the installation instructions for your operating system.
+
+### Start UI
+
+**Start the UI**
+    You can start the UI in two ways:
+     - `run-mavis-all.sh` (experimental)<br>
+   - With a shell file for MAVIS 1.2:
+     - `run-mavis-1-2-main.sh` (recommended)
+     - `run-mavis-1-2-code.sh` (recommended)
+     - `run-mavis-1-2-code-pro.sh` (recommended)
+     - `run-mavis-1-2-math.sh` (recommended)
+     - `run-mavis-1-2-math-pro.sh` (recommended)
+     - `run-mavis-1-2-mini.sh` (recommended)
+     - `run-mavis-1-2-mini-mini.sh` (recommended)
+     - `run-mavis-1-2-3-main.sh` (recommended)<br>
+   - for MAVIS 1.3 EAP:
+     - `run-mavis-1-3-main.sh` (experimental)
+     - `run-mavis-1-3-code.sh` (experimental)
+     - `run-mavis-1-3-code-pro.sh` (experimental)
+     - `run-mavis-1-3-math.sh` (experimental)
+     - `run-mavis-1-3-math-pro.sh` (experimental)<br>
+   - for MAVIS 1.4 EAP:
+     - `run-mavis-1-4-math.sh` (experimental)
+
+### Have fun with MAVIS 🚀
 
 </details>
 
@@ -429,9 +483,7 @@ If you still prefer the automatic installation, please follow the instructions b
 </details>
 
 <details>
-  <summary>Manual Installation</summary>
-
-**MAVIS (aka Xc++ 2)** is currently under development and is not fully available in this repository. Cloning the repository will only give you the README file, some images and already released code, including the user interface (UI) compatible with **Qwen 2.5 Code** and **Llama 3.2 Vision**.
+  <summary>Manual Installation (recommended)</summary>
 
 ### Prerequisites
 
@@ -493,7 +545,7 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
 
 ### Starting the UI
 
-1. **Start the UI**
+**Start the UI**
     You can start the UI in two ways:
      - `run-mavis-all.bat` (experimental)<br>
    - With a batch file for MAVIS 1.2:
@@ -559,7 +611,7 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
 
 ### Start UI
 
-1. **Start the UI**
+**Start the UI**
     You can start the UI in two ways:
      - `run-mavis-all.sh` (experimental)<br>
    - With a shell file for MAVIS 1.2:
@@ -594,6 +646,8 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
 <details>
   <summary>Installation</summary>
 
+**MAVIS (alias Xc++ 2)** befindet sich derzeit in der Entwicklung und ist in diesem Repository nicht vollständig verfügbar. Durch das Klonen des Repositories erhalten Sie lediglich die README-Datei, einige Bilder und bereits veröffentlichte Codes, einschließlich der Benutzeroberfläche (UI), die mit **Qwen 2.5 Code** und **Llama 3.2 Vision** kompatibel ist.
+
 <details>
   <summary>Automatische Installation</summary>
 
@@ -604,7 +658,6 @@ Bei der automatischen Installation werden Git, Python und Ollama installiert, ei
 Solltest du dennoch die automatische Installation bevorzugen, folge bitte den untenstehenden Anweisungen:
 
 1. Lade die C++-Datei [mavis_installer.cpp](https://github.com/Peharge/MAVIS/blob/main/mavis_installer.cpp) herunter.
-2. Folge den Installationsanweisungen für dein Betriebssystem.
 3. Falls es zu Problemen kommt, deinstalliere alle Änderungen, die durch die automatische Installation vorgenommen wurden, und versuche es mit der manuellen Installation.
 
 ### Installation
@@ -621,6 +674,33 @@ Solltest du dennoch die automatische Installation bevorzugen, folge bitte den un
      ```bash
      mavis_installer.exe
      ```
+  4. Folge den Installationsanweisungen für dein Betriebssystem.
+
+### Benutzeroberfläche starten
+
+**Starten der UI**
+
+   Sie können die Benutzeroberfläche auf zwei Arten starten:
+     - `run-mavis-all.bat` (experimentell)<br>
+   - Mit einer Batch-Datei für MAVIS 1.2:
+     - `run-mavis-1-2-main.bat` (empfohlen)  
+     - `run-mavis-1-2-code.bat` (empfohlen)
+     - `run-mavis-1-2-code-pro.bat` (empfohlen)
+     - `run-mavis-1-2-math.bat` (empfohlen)
+     - `run-mavis-1-2-math-pro.bat` (empfohlen)
+     - `run-mavis-1-2-mini.bat` (empfohlen)
+     - `run-mavis-1-2-mini-mini.bat` (empfohlen)
+     - `run-mavis-1-2-3-main.bat` (empfohlen)<br>
+   - für MAVIS 1.3 EAP:
+     - `run-mavis-1-3-main.bat` (experimentell)  
+     - `run-mavis-1-3-code.bat` (experimentell)
+     - `run-mavis-1-3-code-pro.bat` (experimentell)
+     - `run-mavis-1-3-math.bat` (experimentell)
+     - `run-mavis-1-3-math-pro.bat` (experimentell)<br>
+   - für MAVIS 1.4 EAP:
+     - `run-mavis-1-4-math.bat` (experimentell)
+
+### Viel Spaß mit MAVIS 🚀
      
 ---
 
@@ -639,6 +719,33 @@ Solltest du dennoch die automatische Installation bevorzugen, folge bitte den un
      chmod +x mavis_installer
      ./mavis_installer
      ```
+  4. Folge den Installationsanweisungen für dein Betriebssystem.
+
+### Benutzeroberfläche starten
+
+**Starten der UI**
+
+   Sie können die Benutzeroberfläche auf zwei Arten starten:
+     - `run-mavis-all.sh` (experimentell)<br>
+   - Mit einer shell-Datei für MAVIS 1.2:
+     - `run-mavis-1-2-main.sh` (empfohlen)  
+     - `run-mavis-1-2-code.sh` (empfohlen)
+     - `run-mavis-1-2-code-pro.sh` (empfohlen)
+     - `run-mavis-1-2-math.sh` (empfohlen)
+     - `run-mavis-1-2-math-pro.sh` (empfohlen)
+     - `run-mavis-1-2-mini.sh` (empfohlen)
+     - `run-mavis-1-2-mini-mini.sh` (empfohlen)
+     - `run-mavis-1-2-3-main.sh` (empfohlen)<br>
+   - für MAVIS 1.3 EAP:
+     - `run-mavis-1-3-main.sh` (experimentell)  
+     - `run-mavis-1-3-code.sh` (experimentell)
+     - `run-mavis-1-3-code-pro.sh` (experimentell)
+     - `run-mavis-1-3-math.sh` (experimentell)
+     - `run-mavis-1-3-math-pro.sh` (experimentell)<br>
+   - für MAVIS 1.4 EAP:
+     - `run-mavis-1-4-math.sh` (experimentell)
+
+### Viel Spaß mit MAVIS 🚀
 
 </details>
 
@@ -648,8 +755,6 @@ Solltest du dennoch die automatische Installation bevorzugen, folge bitte den un
 
 <details>
   <summary>Manuelle Installation</summary>
-
-**MAVIS (alias Xc++ 2)** befindet sich derzeit in der Entwicklung und ist in diesem Repository nicht vollständig verfügbar. Durch das Klonen des Repositories erhalten Sie lediglich die README-Datei, einige Bilder und bereits veröffentlichte Codes, einschließlich der Benutzeroberfläche (UI), die mit **Qwen 2.5 Code** und **Llama 3.2 Vision** kompatibel ist.
 
 ### Voraussetzungen
 
@@ -709,7 +814,7 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 
 ### Benutzeroberfläche starten
 
-1. **Starten der UI**
+**Starten der UI**
 
    Sie können die Benutzeroberfläche auf zwei Arten starten:
      - `run-mavis-all.bat` (experimentell)<br>
@@ -774,7 +879,7 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 
 ### Benutzeroberfläche starten
 
-1. **Starten der UI**
+**Starten der UI**
 
    Sie können die Benutzeroberfläche auf zwei Arten starten:
      - `run-mavis-all.sh` (experimentell)<br>
