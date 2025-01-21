@@ -62,9 +62,9 @@
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
 import os
-import subprocess
+import sys
 
-# Farbcodes definieren
+# Farbcodes definieren (kleingeschrieben)
 red = "\033[91m"
 green = "\033[92m"
 yellow = "\033[93m"
@@ -77,103 +77,96 @@ orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
-# Version-Details
-version_details = {
-    "mavis-1-2-main": f"With {red}Xc++ 2 11B{reset} or {green}Llama3.2 11B{reset} +16GB RAM +23GB storage (Works with one CPU) {blue}22B{reset}",
-    "mavis-1-2-math": f"With {red}Xc++ 2 11B{reset} or {green}Llama3.2 11B{reset} + {green}Qwen 2.5 14B{reset} +16GB RAM +23GB storage (Works with one CPU) {blue}27B{reset}",
-    "mavis-1-2-code": f"With {red}Xc++ 2 11B{reset} or {green}Llama3.2 11B{reset} + {green}Qwen 2.5 Coder 14B{reset} +16GB RAM +23GB storage (Works with one CPU) {blue}27B{reset}",
-    "mavis-1-2-math-pro": f"With {red}Xc++ 2 90B{reset} or {green}Llama3.2 90B{reset} + {green}QwQ{reset} +64GB RAM +53GB storage (Works with one CPU) {blue}122B{reset}",
-    "mavis-1-2-code-pro": f"With {red}Xc++ 2 90B{reset} or {green}Llama3.2 90B{reset} + {green}Qwen 2.5 Coder 32B{reset} +64GB RAM +53GB storage (Works with one CPU) {blue}122B{reset}",
-    "mavis-1-2-mini": f"With {red}Xc++ 2 11B{reset} or {green}Llama3.2 11B{reset} + {green}Qwen 2.5 0.5B{reset} +16GB RAM +13GB storage (Works with one CPU) {blue}11.5B{reset}",
-    "mavis-1-2-mini-mini": f"With {red}Xc++ 2 11B{reset} or {green}Llama3.2 11B{reset} + {green}smollm:135m{reset} +16GB RAM +33GB storage (Works with one CPU) {blue}11.0135B{reset}",
-    "mavis-1-2-3-main": f"With {red}Xc++ 2 11B{reset} or {green}Llama3.2 11B{reset} + {green}Phi4{reset} +16GB RAM +23GB storage (Works with one CPU) {blue}27B{reset}",
-    "mavis-1-3-main": f"With {red}Xc++ 2 11B{reset} or {green}Qwen2 VL 7B{reset} + {green}Llama 3.3{reset} +64GB RAM +53GB storage (Works with one CPU) {blue}77B{reset}",
-    "mavis-1-3-math": f"With {red}Xc++ 2 11B{reset} or {green}Qwen2 VL 7B{reset} + {green}Qwen 2.5 14B{reset} +16GB RAM +33GB storage (Works with one CPU) {blue}21B{reset}",
-    "mavis-1-3-code": f"With {red}Xc++ 2 11B{reset} or {green}Qwen2 VL 7B{reset} + {green}Qwen 2.5 Coder{reset} 14B +16B RAM +33GB storage (Works with one CPU) {blue}21B{reset}",
-    "mavis-1-3-math-pro": f"With {red}Xc++ 2 90B{reset} or {green}Qwen2 VL 72B{reset} + {green}Qwen 2.5 Coder{reset} 32B +64GB RAM +53GB storage (Works with one CPU) {blue}104B{reset}",
-    "mavis-1-4-math": f"With {red}Xc++ 2 90B{reset} or {green}QvQ{reset} + {green}QwQ{reset} +64GB RAM +53GB storage (Works with one CPU) {blue}104B{reset}",
-}
+# Logging-Funktion für Fehler
+def log_error(message):
+    """Protokolliert Fehler in eine Datei."""
+    try:
+        with open("error_log.txt", "a") as log_file:
+            log_file.write(message + "\n")
+    except Exception as e:
+        print(f"{red}Error while writing to log file: {e}{reset}")
 
-def run_batch_file(batch_name: str) -> None:
-    """
-    Führt die Batch-Datei aus, indem der vollständige Dateiname zusammengebaut wird.
-    """
+def run_shell_file(shell_name):
+    """Führt die Shell-Datei aus, überprüft, ob sie existiert, und gibt eine passende Fehlermeldung aus."""
     file_name = os.path.join(
         os.path.expanduser("~"),
         "PycharmProjects",
         "MAVIS",
-        f"run-{batch_name}.bat"
+        f"run-{shell_name}.bat"
     )
-    try:
-        result = subprocess.run(file_name, shell=True, check=True, text=True, capture_output=True)
-        print(f"{green}The batch file '{file_name}' was executed successfully.{reset}\n")
-        print(f"Output:\n{result.stdout}")
-    except subprocess.CalledProcessError as e:
-        print(f"{red}Error executing file '{file_name}':{reset}\n{e.stderr}")
-    except Exception as e:
-        print(f"{red}Unexpected error occurred:{reset} {e}\n")
 
-def display_versions() -> dict:
-    """
-    Zeigt alle Versionen und zugehörigen Batch-Dateien ohne 'run-' und '.bat'.
-    """
+    # Prüft, ob die Datei existiert
+    if not os.path.exists(file_name):
+        error_message = f"{red}Error: The file '{file_name}' does not exist.{reset}"
+        print(error_message)
+        log_error(f"File not found: {file_name}")
+        return
+
+    # Versucht, die Shell-Datei auszuführen
+    try:
+        print(f"Executing file: {file_name}")
+        os.system(file_name)
+        print(f"{green}The shell file '{file_name}' was executed successfully.{reset}")
+    except Exception as e:
+        error_message = f"{red}Error executing file '{file_name}': {e}{reset}"
+        print(error_message)
+        log_error(f"Execution failed for {file_name}: {e}")
+
+def display_versions():
+    """Zeigt alle Versionen und zugehörigen Shell-Dateien ohne 'run-' und '.bat'."""
     print(f"All MAVIS versions are available here:\n")
 
+    versions = {
+        "mavis-1-2-main": "MAVIS 1.2",
+        "mavis-1-2-code": "MAVIS 1.2",
+        "mavis-1-2-code-pro": "MAVIS 1.2",
+        "mavis-1-2-math": "MAVIS 1.2",
+        "mavis-1-2-math-pro": "MAVIS 1.2",
+        "mavis-1-2-mini": "MAVIS 1.2",
+        "mavis-1-2-mini-mini": "MAVIS 1.2",
+        "mavis-1-2-3-main": "MAVIS 1.2-3",
+        "mavis-1-3-main": "MAVIS 1.3 EAP",
+        "mavis-1-3_code": "MAVIS 1.3 EAP",
+        "mavis-1-3_code-pro": "MAVIS 1.3 EAP",
+        "mavis-1-3-math": "MAVIS 1.3 EAP",
+        "mavis-1-3-math-pro": "MAVIS 1.3 EAP",
+        "mavis-1-4-math": "MAVIS 1.4 EAP"
+    }
+
+    # Gruppieren der Versionen für eine saubere Anzeige
     grouped_versions = {}
-    for batch_name, details in version_details.items():
-        version = details.split("With")[0].strip()  # Gruppiere nach Hauptversion
+    for shell_name, version in versions.items():
         if version not in grouped_versions:
             grouped_versions[version] = []
-        grouped_versions[version].append(batch_name)
+        grouped_versions[version].append(shell_name)
 
-    for i, (version, batch_files) in enumerate(grouped_versions.items(), 1):
-        print(f"{i}. {version}")
-        for j, batch_file in enumerate(batch_files, 1):
-            print(f"   {j}. {batch_file}")
+    # Ausgabe der gruppierten Versionen
+    for i, (version, shell_files) in enumerate(grouped_versions.items(), 1):
+        print(f"{i}. {version}:")
+        for j, shell_file in enumerate(shell_files, 1):
+            print(f"   {j}. {shell_file}")
         print()
 
-    return version_details
+    return versions
 
-def show_version_details(batch_name: str) -> None:
-    """
-    Zeigt Details zu einer bestimmten Version an.
-    """
-    if batch_name in version_details:
-        print(f"Details for {blue}{batch_name}:{reset}\n")
-        print(f"{version_details[batch_name]}\n")
-    else:
-        print(f"{red}No details found for {reset}{blue}{batch_name}{reset}{red}.{reset}\n")
-
-def get_user_input(versions: dict) -> None:
-    """
-    Fragt den Benutzer nach der gewünschten Aktion.
-    """
+def get_user_input(versions):
+    """Fragt den Benutzer nach der gewünschten MAVIS-Shell-Datei und validiert die Eingabe."""
     while True:
-        print("\nOptions:")
-        print("1. Run a MAVIS batch file")
-        print("2. Show details of a MAVIS version")
-        print("3. Exit")
+        user_input = input(f"Enter a MAVIS shell file (e.g. 'mavis-1-2-main'): ").strip()
 
-        choice = input(f"Enter your choice (1/2/3): ").strip()
-
-        if choice == "1":
-            user_input = input(f"Enter a MAVIS batch file name: ").strip()
-            if user_input in versions:
-                run_batch_file(user_input)
-            else:
-                print(f"{red}Invalid batch file name. Please try again.{reset}\n")
-
-        elif choice == "2":
-            user_input = input(f"Enter a MAVIS batch file name to view details: ").strip()
-            show_version_details(user_input)
-
-        elif choice == "3":
-            print(f"{green}Goodbye!{reset}")
+        # Validiert, ob die Eingabe korrekt ist
+        if user_input in versions:
+            run_shell_file(user_input)
             break
-
         else:
-            print(f"{red}Invalid choice. Please select 1, 2, or 3.{reset}\n")
+            print(f"{red}Error: '{user_input}' is not a valid option. Please try again.{reset}")
 
 if __name__ == "__main__":
-    versions = display_versions()
-    get_user_input(versions)
+    try:
+        versions = display_versions()
+        get_user_input(versions)
+    except Exception as e:
+        print(f"{red}An unexpected error occurred: {e}{reset}")
+        log_error(f"Unexpected error: {e}")
+        sys.exit(1)
+
