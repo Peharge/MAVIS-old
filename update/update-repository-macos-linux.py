@@ -128,8 +128,9 @@ def perform_update():
 
 
 def main():
-    print("MAVIS Repository Update:")
-    print("------------------------")
+    print("MAVIS Repository Update (experimental):")
+    print("---------------------------------------")
+    print("Please note that this update function is not yet 100% reliable and errors may occur. Therefore, we recommend using the git pull https://github.com/Peharge/MAVIS.git command instead. However, if this is not possible...")
 
     last_update = read_last_update()
     if last_update:
