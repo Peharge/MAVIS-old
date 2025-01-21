@@ -62,9 +62,42 @@
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
 import os
+import subprocess
 
-def run_shell_file(shell_name):
-    """Führt die Shell-Datei aus, indem der vollständige Dateiname zusammengebaut wird."""
+# Farbcodes definieren
+red = "\033[91m"
+green = "\033[92m"
+yellow = "\033[93m"
+blue = "\033[94m"
+magenta = "\033[95m"
+cyan = "\033[96m"
+white = "\033[97m"
+black = "\033[30m"
+orange = "\033[38;5;214m"
+reset = "\033[0m"
+bold = "\033[1m"
+
+# Version-Details
+version_details = {
+    "mavis-1-2-main": f"With {red}Xc++ 2 11B{reset} or {green}Llama3.2 11B{reset} +16GB RAM +23GB storage (Works with one CPU) {blue}22B{reset}",
+    "mavis-1-2-math": f"With {red}Xc++ 2 11B{reset} or {green}Llama3.2 11B{reset} + {green}Qwen 2.5 14B{reset} +16GB RAM +23GB storage (Works with one CPU) {blue}27B{reset}",
+    "mavis-1-2-code": f"With {red}Xc++ 2 11B{reset} or {green}Llama3.2 11B{reset} + {green}Qwen 2.5 Coder 14B{reset} +16GB RAM +23GB storage (Works with one CPU) {blue}27B{reset}",
+    "mavis-1-2-math-pro": f"With {red}Xc++ 2 90B{reset} or {green}Llama3.2 90B{reset} + {green}QwQ{reset} +64GB RAM +53GB storage (Works with one CPU) {blue}122B{reset}",
+    "mavis-1-2-code-pro": f"With {red}Xc++ 2 90B{reset} or {green}Llama3.2 90B{reset} + {green}Qwen 2.5 Coder 32B{reset} +64GB RAM +53GB storage (Works with one CPU) {blue}122B{reset}",
+    "mavis-1-2-mini": f"With {red}Xc++ 2 11B{reset} or {green}Llama3.2 11B{reset} + {green}Qwen 2.5 0.5B{reset} +16GB RAM +13GB storage (Works with one CPU) {blue}11.5B{reset}",
+    "mavis-1-2-mini-mini": f"With {red}Xc++ 2 11B{reset} or {green}Llama3.2 11B{reset} + {green}smollm:135m{reset} +16GB RAM +33GB storage (Works with one CPU) {blue}11.0135B{reset}",
+    "mavis-1-2-3-main": f"With {red}Xc++ 2 11B{reset} or {green}Llama3.2 11B{reset} + {green}Phi4{reset} +16GB RAM +23GB storage (Works with one CPU) {blue}27B{reset}",
+    "mavis-1-3-main": f"With {red}Xc++ 2 11B{reset} or {green}Qwen2 VL 7B{reset} + {green}Llama 3.3{reset} +64GB RAM +53GB storage (Works with one CPU) {blue}77B{reset}",
+    "mavis-1-3-math": f"With {red}Xc++ 2 11B{reset} or {green}Qwen2 VL 7B{reset} + {green}Qwen 2.5 14B{reset} +16GB RAM +33GB storage (Works with one CPU) {blue}21B{reset}",
+    "mavis-1-3-code": f"With {red}Xc++ 2 11B{reset} or {green}Qwen2 VL 7B{reset} + {green}Qwen 2.5 Coder{reset} 14B +16B RAM +33GB storage (Works with one CPU) {blue}21B{reset}",
+    "mavis-1-3-math-pro": f"With {red}Xc++ 2 90B{reset} or {green}Qwen2 VL 72B{reset} + {green}Qwen 2.5 Coder{reset} 32B +64GB RAM +53GB storage (Works with one CPU) {blue}104B{reset}",
+    "mavis-1-4-math": f"With {red}Xc++ 2 90B{reset} or {green}QvQ{reset} + {green}QwQ{reset} +64GB RAM +53GB storage (Works with one CPU) {blue}104B{reset}",
+}
+
+def run_shell_file(shell_name: str) -> None:
+    """
+    Führt die Shell-Datei aus, indem der vollständige Dateiname zusammengebaut wird.
+    """
     file_name = os.path.join(
         os.path.expanduser("~"),
         "PycharmProjects",
@@ -72,56 +105,74 @@ def run_shell_file(shell_name):
         f"run-{shell_name}.sh"
     )
     try:
-        os.system(file_name)
-        print(f"The shell file '{file_name}' was executed successfully.\n")
+        result = subprocess.run(file_name, shell=True, check=True, text=True, capture_output=True)
+        print(f"{green}The shell file '{file_name}' was executed successfully.{reset}\n")
+        print(f"Output:\n{result.stdout}")
+    except subprocess.CalledProcessError as e:
+        print(f"{red}Error executing file '{file_name}':{reset}\n{e.stderr}")
     except Exception as e:
-        print(f"Error executing file'{file_name}': {e}\n")
+        print(f"{red}Unexpected error occurred:{reset} {e}\n")
 
-def display_versions():
-    """Zeigt alle Versionen und zugehörigen Shell-Dateien ohne 'run-' und '.sh'."""
-    print("All MAVIS versions are available here:\n")
+def display_versions() -> dict:
+    """
+    Zeigt alle Versionen und zugehörigen Shell-Dateien ohne 'run-' und '.bat'.
+    """
+    print(f"All MAVIS versions are available here:\n")
 
-    versions = {
-        "mavis-1-2-main": "MAVIS 1.2",
-        "mavis-1-2-code": "MAVIS 1.2",
-        "mavis-1-2-code-pro": "MAVIS 1.2",
-        "mavis-1-2-math": "MAVIS 1.2",
-        "mavis-1-2-math-pro": "MAVIS 1.2",
-        "mavis-1-2-mini": "MAVIS 1.2",
-        "mavis-1-2-mini-mini": "MAVIS 1.2",
-        "mavis-1-2-3-main": "MAVIS 1.2-3",
-        "mavis-1-3-main": "MAVIS 1.3 EAP",
-        "mavis-1-3_code": "MAVIS 1.3 EAP",
-        "mavis-1-3_code-pro": "MAVIS 1.3 EAP",
-        "mavis-1-3-math": "MAVIS 1.3 EAP",
-        "mavis-1-3-math-pro": "MAVIS 1.3 EAP",
-        "mavis-1-4-math": "MAVIS 1.4 EAP"
-    }
-
-    # Gruppieren der Versionen für eine saubere Anzeige
     grouped_versions = {}
-    for shell_name, version in versions.items():
+    for shell_name, details in version_details.items():
+        version = details.split("With")[0].strip()  # Gruppiere nach Hauptversion
         if version not in grouped_versions:
             grouped_versions[version] = []
         grouped_versions[version].append(shell_name)
 
-    # Ausgabe der gruppierten Versionen
     for i, (version, shell_files) in enumerate(grouped_versions.items(), 1):
-        print(f"{i}. {version}:")
+        print(f"{i}. {version}")
         for j, shell_file in enumerate(shell_files, 1):
             print(f"   {j}. {shell_file}")
         print()
 
-    return versions
+    return version_details
 
-def get_user_input(versions):
-    """Fragt den Benutzer nach der gewünschten MAVIS-Shell-Datei (direkte Eingabe)."""
-    user_input = input("Enter a MAVIS shell file (e.g. 'mavis-1-2-main'):").strip()
-
-    if user_input in versions:
-        run_shell_file(user_input)
+def show_version_details(shell_name: str) -> None:
+    """
+    Zeigt Details zu einer bestimmten Version an.
+    """
+    if shell_name in version_details:
+        print(f"Details for {blue}{shell_name}:{reset}\n")
+        print(f"{version_details[shell_name]}\n")
     else:
-        print(f"Error: '{user_input}' is not a valid option. Please try again.\n")
+        print(f"{red}No details found for {reset}{blue}{shell_name}{reset}{red}.{reset}\n")
+
+def get_user_input(versions: dict) -> None:
+    """
+    Fragt den Benutzer nach der gewünschten Aktion.
+    """
+    while True:
+        print("\nOptions:")
+        print("1. Run a MAVIS shell file")
+        print("2. Show details of a MAVIS version")
+        print("3. Exit")
+
+        choice = input(f"Enter your choice (1/2/3): ").strip()
+
+        if choice == "1":
+            user_input = input(f"Enter a MAVIS shell file name: ").strip()
+            if user_input in versions:
+                run_shell_file(user_input)
+            else:
+                print(f"{red}Invalid shell file name. Please try again.{reset}\n")
+
+        elif choice == "2":
+            user_input = input(f"Enter a MAVIS shell file name to view details: ").strip()
+            show_version_details(user_input)
+
+        elif choice == "3":
+            print(f"{green}Goodbye!{reset}")
+            break
+
+        else:
+            print(f"{red}Invalid choice. Please select 1, 2, or 3.{reset}\n")
 
 if __name__ == "__main__":
     versions = display_versions()

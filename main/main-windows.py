@@ -68,25 +68,30 @@ import subprocess
 red = "\033[91m"
 green = "\033[92m"
 yellow = "\033[93m"
+blue = "\033[94m"
+magenta = "\033[95m"
 cyan = "\033[96m"
+white = "\033[97m"
+black = "\033[30m"
+orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
 # Version-Details
 version_details = {
-    "mavis-1-2-main": "With Xc++ 2 11B or Llama3.2 11B +16GB RAM +23GB storage (Works with one CPU) 22B",
-    "mavis-1-2-math": "With Xc++ 2 11B or Llama3.2 11B + Qwen 2.5 14B +16GB RAM +23GB storage (Works with one CPU) 27B",
-    "mavis-1-2-code": "With Xc++ 2 11B or Llama3.2 11B + Qwen 2.5 Coder 14B +16GB RAM +23GB storage (Works with one CPU) 27B",
-    "mavis-1-2-math-pro": "With Xc++ 2 90B or Llama3.2 90B + QwQ +64GB RAM +53GB storage (Works with one CPU) 122B",
-    "mavis-1-2-code-pro": "With Xc++ 2 90B or Llama3.2 90B + Qwen 2.5 Coder 32B +64GB RAM +53GB storage (Works with one CPU) 122B",
-    "mavis-1-2-mini": "With Xc++ 2 11B or Llama3.2 11B + Qwen 2.5 0.5B +16GB RAM +13GB storage (Works with one CPU) 11.5B",
-    "mavis-1-2-mini-mini": "With Xc++ 2 11B or Llama3.2 11B + smollm:135m +16GB RAM +33GB storage (Works with one CPU) 11.0135B",
-    "mavis-1-2-3-main": "With Xc++ 2 11B or Llama3.2 11B + Phi4 +16GB RAM +23GB storage (Works with one CPU) 27B",
-    "mavis-1-3-main": "With Xc++ 2 11B or Qwen2 VL 7B + Llama 3.3 +64GB RAM +53GB storage (Works with one CPU) 77B",
-    "mavis-1-3-math": "With Xc++ 2 11B or Qwen2 VL 7B + Qwen 2.5 14B +16GB RAM +33GB storage (Works with one CPU) 21B",
-    "mavis-1-3-code": "With Xc++ 2 11B or Qwen2 VL 7B + Qwen 2.5 Coder 14B +16B RAM +33GB storage (Works with one CPU) 21B",
-    "mavis-1-3-math-pro": "With Xc++ 2 90B or Qwen2 VL 72B + Qwen 2.5 Oder 32B +64GB RAM +53GB storage (Works with one CPU) 104B",
-    "mavis-1-4-math": "With Xc++ 2 90B or QvQ + QwQ +64GB RAM +53GB storage (Works with one CPU) 104B",
+    "mavis-1-2-main": f"With {red}Xc++ 2 11B{reset} or {green}Llama3.2 11B{reset} +16GB RAM +23GB storage (Works with one CPU) {blue}22B{reset}",
+    "mavis-1-2-math": f"With {red}Xc++ 2 11B{reset} or {green}Llama3.2 11B{reset} + {green}Qwen 2.5 14B{reset} +16GB RAM +23GB storage (Works with one CPU) {blue}27B{reset}",
+    "mavis-1-2-code": f"With {red}Xc++ 2 11B{reset} or {green}Llama3.2 11B{reset} + {green}Qwen 2.5 Coder 14B{reset} +16GB RAM +23GB storage (Works with one CPU) {blue}27B{reset}",
+    "mavis-1-2-math-pro": f"With {red}Xc++ 2 90B{reset} or {green}Llama3.2 90B{reset} + {green}QwQ{reset} +64GB RAM +53GB storage (Works with one CPU) {blue}122B{reset}",
+    "mavis-1-2-code-pro": f"With {red}Xc++ 2 90B{reset} or {green}Llama3.2 90B{reset} + {green}Qwen 2.5 Coder 32B{reset} +64GB RAM +53GB storage (Works with one CPU) {blue}122B{reset}",
+    "mavis-1-2-mini": f"With {red}Xc++ 2 11B{reset} or {green}Llama3.2 11B{reset} + {green}Qwen 2.5 0.5B{reset} +16GB RAM +13GB storage (Works with one CPU) {blue}11.5B{reset}",
+    "mavis-1-2-mini-mini": f"With {red}Xc++ 2 11B{reset} or {green}Llama3.2 11B{reset} + {green}smollm:135m{reset} +16GB RAM +33GB storage (Works with one CPU) {blue}11.0135B{reset}",
+    "mavis-1-2-3-main": f"With {red}Xc++ 2 11B{reset} or {green}Llama3.2 11B{reset} + {green}Phi4{reset} +16GB RAM +23GB storage (Works with one CPU) {blue}27B{reset}",
+    "mavis-1-3-main": f"With {red}Xc++ 2 11B{reset} or {green}Qwen2 VL 7B{reset} + {green}Llama 3.3{reset} +64GB RAM +53GB storage (Works with one CPU) {blue}77B{reset}",
+    "mavis-1-3-math": f"With {red}Xc++ 2 11B{reset} or {green}Qwen2 VL 7B{reset} + {green}Qwen 2.5 14B{reset} +16GB RAM +33GB storage (Works with one CPU) {blue}21B{reset}",
+    "mavis-1-3-code": f"With {red}Xc++ 2 11B{reset} or {green}Qwen2 VL 7B{reset} + {green}Qwen 2.5 Coder{reset} 14B +16B RAM +33GB storage (Works with one CPU) {blue}21B{reset}",
+    "mavis-1-3-math-pro": f"With {red}Xc++ 2 90B{reset} or {green}Qwen2 VL 72B{reset} + {green}Qwen 2.5 Coder{reset} 32B +64GB RAM +53GB storage (Works with one CPU) {blue}104B{reset}",
+    "mavis-1-4-math": f"With {red}Xc++ 2 90B{reset} or {green}QvQ{reset} + {green}QwQ{reset} +64GB RAM +53GB storage (Works with one CPU) {blue}104B{reset}",
 }
 
 def run_batch_file(batch_name: str) -> None:
@@ -112,7 +117,7 @@ def display_versions() -> dict:
     """
     Zeigt alle Versionen und zugehörigen Batch-Dateien ohne 'run-' und '.bat'.
     """
-    print(f"{bold}All MAVIS versions are available here:{reset}\n")
+    print(f"All MAVIS versions are available here:\n")
 
     grouped_versions = {}
     for batch_name, details in version_details.items():
@@ -134,10 +139,10 @@ def show_version_details(batch_name: str) -> None:
     Zeigt Details zu einer bestimmten Version an.
     """
     if batch_name in version_details:
-        print(f"{bold}{cyan}Details for {batch_name}:{reset}\n")
+        print(f"Details for {blue}{batch_name}:{reset}\n")
         print(f"{version_details[batch_name]}\n")
     else:
-        print(f"{red}No details found for {batch_name}.{reset}\n")
+        print(f"{red}No details found for {reset}{blue}{batch_name}{reset}{red}.{reset}\n")
 
 def get_user_input(versions: dict) -> None:
     """
@@ -149,17 +154,17 @@ def get_user_input(versions: dict) -> None:
         print("2. Show details of a MAVIS version")
         print("3. Exit")
 
-        choice = input(f"{yellow}Enter your choice (1/2/3): {reset}").strip()
+        choice = input(f"Enter your choice (1/2/3): ").strip()
 
         if choice == "1":
-            user_input = input(f"{cyan}Enter a MAVIS batch file name:{reset} ").strip()
+            user_input = input(f"Enter a MAVIS batch file name: ").strip()
             if user_input in versions:
                 run_batch_file(user_input)
             else:
                 print(f"{red}Invalid batch file name. Please try again.{reset}\n")
 
         elif choice == "2":
-            user_input = input(f"{cyan}Enter a MAVIS batch file name to view details:{reset} ").strip()
+            user_input = input(f"Enter a MAVIS batch file name to view details: ").strip()
             show_version_details(user_input)
 
         elif choice == "3":
