@@ -378,13 +378,12 @@ And more...
 
 **MAVIS (aka Xc++ 2)** is currently under development and is not fully available in this repository. Cloning the repository will only give you the README file, some images and already released code, including the user interface (UI) compatible with **Qwen 2.5 Code** and **Llama 3.2 Vision**.
 
+**Note:** Although manual installation is not much more complicated, it is significantly more stable and secure, so we recommend preferring this method.
+
+The automatic installation installs Git, Python and Ollama, creates a folder and sets up a virtual Python environment. It also installs the required Python frameworks and AI models - but this step is also done automatically with the manual installation.
 
 <details>
   <summary>Automatic Installation (experimental)</summary>
-
-**Note:** While the manual installation is not significantly more complicated, it is much more stable and secure. Therefore, we recommend preferring this method!
-
-During the automatic installation, Git, Python, and Ollama are installed, a folder is created, and a virtual Python environment is set up. Additionally, the required Python frameworks and AI models are automatically installed as part of the manual installation as well.
 
 If you still prefer the automatic installation, please follow the instructions below:
 
@@ -648,17 +647,17 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
 
 **MAVIS (alias Xc++ 2)** befindet sich derzeit in der Entwicklung und ist in diesem Repository nicht vollständig verfügbar. Durch das Klonen des Repositories erhalten Sie lediglich die README-Datei, einige Bilder und bereits veröffentlichte Codes, einschließlich der Benutzeroberfläche (UI), die mit **Qwen 2.5 Code** und **Llama 3.2 Vision** kompatibel ist.
 
+**Hinweis:** Die manuelle Installation ist zwar nicht wesentlich komplizierter, jedoch erheblich stabiler und sicherer. Deshalb empfehlen wir, diese Methode zu bevorzugen.
+
+Bei der automatischen Installation werden Git, Python und Ollama installiert, ein Ordner erstellt und eine virtuelle Python-Umgebung eingerichtet. Außerdem werden die erforderlichen Python-Frameworks und KI-Modelle installiert – dieser Schritt erfolgt jedoch auch bei der manuellen Installation automatisch.
+
 <details>
-  <summary>Automatische Installation</summary>
-
-**Hinweis:** Die manuelle Installation ist zwar nicht wesentlich komplizierter, jedoch deutlich stabiler und sicherer. Daher empfehlen wir, diese Methode zu bevorzugen!
-
-Bei der automatischen Installation werden Git, Python und Ollama installiert, ein Ordner erstellt und eine virtuelle Python-Umgebung eingerichtet. Zudem werden die erforderlichen Python-Frameworks und KI-Modelle auch bei der manuellen Installation automatisch installiert.
+  <summary>Automatische Installation (experimental)</summary>
 
 Solltest du dennoch die automatische Installation bevorzugen, folge bitte den untenstehenden Anweisungen:
 
 1. Lade die C++-Datei [mavis_installer.cpp](https://github.com/Peharge/MAVIS/blob/main/mavis_installer.cpp) herunter.
-3. Falls es zu Problemen kommt, deinstalliere alle Änderungen, die durch die automatische Installation vorgenommen wurden, und versuche es mit der manuellen Installation.
+2. Falls es zu Problemen kommt, deinstalliere alle Änderungen, die durch die automatische Installation vorgenommen wurden, und versuche es mit der manuellen Installation.
 
 ### Installation
 
@@ -754,7 +753,7 @@ Solltest du dennoch die automatische Installation bevorzugen, folge bitte den un
 </details>
 
 <details>
-  <summary>Manuelle Installation</summary>
+  <summary>Manuelle Installation (empfohlen)</summary>
 
 ### Voraussetzungen
 
