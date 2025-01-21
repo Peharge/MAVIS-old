@@ -107,13 +107,13 @@ def write_last_update():
 def prompt_for_update():
     """Fragt den Benutzer, ob ein Update durchgeführt werden soll."""
     while True:
-        choice = input(f"{yellow}Would you like to perform an update? (y/n): {reset}").strip().lower()
+        choice = input(f"Would you like to perform an update? (y/n):").strip().lower()
         if choice in {"y", "yes"}:
             return True
         elif choice in {"n", "no"}:
             return False
         else:
-            print(f"{red}Invalid input. Please enter 'y' or 'n'.{reset}")
+            print(f"{yellow}Invalid input. Please enter 'y' or 'n'.{reset}")
 
 
 def perform_update():
@@ -141,8 +141,7 @@ def main():
     if prompt_for_update():
         perform_update()
     else:
-        print(f"{magenta}Update aborted. Program terminated.{reset}")
-
+        print(f"{blue}Update aborted.{reset}")
 
 if __name__ == "__main__":
     main()
