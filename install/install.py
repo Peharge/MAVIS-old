@@ -128,7 +128,7 @@ packages = [
     "dash", "seaborn", "numpy", "sympy", "pandas", "scipy", "torch", "torchvision",
     "torchaudio", "tensorflow", "scikit-learn", "transformers", "geopandas",
     "altair", "vega_datasets", "altair_viewer", "ipython", "altair-saver", "kaleido",
-    "vl-convert-python", "py-cpuinfo", "GPUtil"
+    "vl-convert-python", "py-cpuinfo", "GPUtil", "requests"
 ]
 
 process_packages(packages, upgrade=False)

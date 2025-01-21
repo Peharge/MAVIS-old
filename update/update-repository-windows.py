@@ -80,7 +80,7 @@ reset = "\033[0m"
 bold = "\033[1m"
 
 # Lokale JSON-Datei, in der das Datum gespeichert wird
-DATA_FILE = "last_update.json"
+DATA_FILE = os.path.join(os.path.dirname(__file__), "last_update.json")
 # Pfad zum Batch-Skript
 image_dir = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "update")
 batch_file = os.path.join(image_dir, "update-mavis-repository.bat")
