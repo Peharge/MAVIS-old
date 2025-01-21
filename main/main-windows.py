@@ -86,13 +86,13 @@ def log_error(message):
     except Exception as e:
         print(f"{red}Error while writing to log file: {e}{reset}")
 
-def run_shell_file(shell_name):
-    """Führt die Shell-Datei aus, überprüft, ob sie existiert, und gibt eine passende Fehlermeldung aus."""
+def run_batch_file(batch_name):
+    """Führt die Batch-Datei aus, überprüft, ob sie existiert, und gibt eine passende Fehlermeldung aus."""
     file_name = os.path.join(
         os.path.expanduser("~"),
         "PycharmProjects",
         "MAVIS",
-        f"run-{shell_name}.bat"
+        f"run-{batch_name}.bat"
     )
 
     # Prüft, ob die Datei existiert
@@ -102,18 +102,18 @@ def run_shell_file(shell_name):
         log_error(f"File not found: {file_name}")
         return
 
-    # Versucht, die Shell-Datei auszuführen
+    # Versucht, die Batch-Datei auszuführen
     try:
         print(f"Executing file: {file_name}")
         os.system(file_name)
-        print(f"{green}The shell file '{file_name}' was executed successfully.{reset}")
+        print(f"{green}The batch file '{file_name}' was executed successfully.{reset}")
     except Exception as e:
         error_message = f"{red}Error executing file '{file_name}': {e}{reset}"
         print(error_message)
         log_error(f"Execution failed for {file_name}: {e}")
 
 def display_versions():
-    """Zeigt alle Versionen und zugehörigen Shell-Dateien ohne 'run-' und '.bat'."""
+    """Zeigt alle Versionen und zugehörigen Batch-Dateien ohne 'run-' und '.bat'."""
     print(f"All MAVIS versions are available here:\n")
 
     versions = {
@@ -135,28 +135,28 @@ def display_versions():
 
     # Gruppieren der Versionen für eine saubere Anzeige
     grouped_versions = {}
-    for shell_name, version in versions.items():
+    for batch_name, version in versions.items():
         if version not in grouped_versions:
             grouped_versions[version] = []
-        grouped_versions[version].append(shell_name)
+        grouped_versions[version].append(batch_name)
 
     # Ausgabe der gruppierten Versionen
-    for i, (version, shell_files) in enumerate(grouped_versions.items(), 1):
+    for i, (version, batch_files) in enumerate(grouped_versions.items(), 1):
         print(f"{i}. {version}:")
-        for j, shell_file in enumerate(shell_files, 1):
-            print(f"   {j}. {shell_file}")
+        for j, batch_file in enumerate(batch_files, 1):
+            print(f"   {j}. {batch_file}")
         print()
 
     return versions
 
 def get_user_input(versions):
-    """Fragt den Benutzer nach der gewünschten MAVIS-Shell-Datei und validiert die Eingabe."""
+    """Fragt den Benutzer nach der gewünschten MAVIS-Batch-Datei und validiert die Eingabe."""
     while True:
-        user_input = input(f"Enter a MAVIS shell file (e.g. 'mavis-1-2-main'): ").strip()
+        user_input = input(f"Enter a MAVIS batch file (e.g. 'mavis-1-2-main'): ").strip()
 
         # Validiert, ob die Eingabe korrekt ist
         if user_input in versions:
-            run_shell_file(user_input)
+            run_batch_file(user_input)
             break
         else:
             print(f"{red}Error: '{user_input}' is not a valid option. Please try again.{reset}")
@@ -169,4 +169,3 @@ if __name__ == "__main__":
         print(f"{red}An unexpected error occurred: {e}{reset}")
         log_error(f"Unexpected error: {e}")
         sys.exit(1)
-
