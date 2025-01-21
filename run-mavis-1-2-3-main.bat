@@ -4,6 +4,7 @@ set USERNAME=%USERNAME%
 set PYTHON_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe
 set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info\info-start-mavis-1-2-3-main.py
 set SCRIPT_PATH_2=C:\Users\%USERNAME%\PycharmProjects\MAVIS\install\install.py
+set SCRIPT_PATH_update=C:\Users\%USERNAME%\PycharmProjects\MAVIS\update\update-repository-windows.py
 set SCRIPT_PATH_3=C:\Users\%USERNAME%\PycharmProjects\MAVIS\install\install-ollama-mavis-1-2-3-main.py
 set SCRIPT_PATH_4=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info\info.py
 set PYTHON_SCRIPT_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run_with_browser\run_with_browser.py
@@ -28,15 +29,22 @@ if not exist "%SCRIPT_PATH_2%" (
 
 "%PYTHON_PATH%" "%SCRIPT_PATH_2%"
 
+if not exist "%SCRIPT_PATH_update%" (
+    echo Error: Script not found: %SCRIPT_PATH_update%
+    exit /B 1
+)
+
+"%PYTHON_PATH%" "%SCRIPT_PATH_update%"
+
 if not exist "%SCRIPT_PATH_3%" (
-    echo Error: Script not found: %SCRIPT_PATH_1%
+    echo Error: Script not found: %SCRIPT_PATH_3%
     exit /B 1
 )
 
 "%PYTHON_PATH%" "%SCRIPT_PATH_3%"
 
 if not exist "%SCRIPT_PATH_4%" (
-    echo Error: Script not found: %SCRIPT_PATH_1%
+    echo Error: Script not found: %SCRIPT_PATH_4%
     exit /B 1
 )
 
@@ -50,7 +58,7 @@ if not exist "%PYTHON_SCRIPT_PATH%" (
 "%PYTHON_PATH%" "%PYTHON_SCRIPT_PATH%"
 
 if not exist "%SCRIPT_PATH_5%" (
-    echo Error: Script not found: %SCRIPT_PATH_1%
+    echo Error: Script not found: %SCRIPT_PATH_5%
     exit /B 1
 )
 
