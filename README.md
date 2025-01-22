@@ -411,6 +411,7 @@ If you still prefer the automatic installation, please follow the instructions b
 
 **Start the UI**
    After installation, you can start MAVIS. There are several start options that vary depending on the version and intended use:<br>
+   - All MAVIS versions:
      - `run-mavis-all.bat` (experimental)<br>
    - With a batch file for MAVIS 1.2:
      - `run-mavis-1-2-main.bat` (recommended)
@@ -465,6 +466,7 @@ chmod +x mavis-installer.sh
 
 **Start the UI**
    After installation, you can start MAVIS. There are several start options that vary depending on the version and intended use:<br>
+   - All MAVIS versions:
      - `run-mavis-all.sh` (experimental)<br>
    - With a shell file for MAVIS 1.2:
      - `run-mavis-1-2-main.sh` (recommended)
@@ -560,6 +562,7 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
 
 **Start the UI**
    After installation, you can start MAVIS. There are several start options that vary depending on the version and intended use:<br>
+   - All MAVIS versions:
      - `run-mavis-all.bat` (experimental)<br>
    - With a batch file for MAVIS 1.2:
      - `run-mavis-1-2-main.bat` (recommended)
@@ -629,6 +632,7 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
 
 **Start the UI**
    After installation, you can start MAVIS. There are several start options that vary depending on the version and intended use:<br>
+   - All MAVIS versions:
      - `run-mavis-all.sh` (experimental)<br>
    - With a shell file for MAVIS 1.2:
      - `run-mavis-1-2-main.sh` (recommended)
@@ -698,6 +702,7 @@ Solltest du dennoch die automatische Installation bevorzugen, folge bitte den un
 **Starten der UI**
 
    Nach der Installation können Sie MAVIS starten. Es gibt mehrere Startoptionen, die je nach Version und Verwendungszweck variieren:<br>
+   - Alle MAVIS Versionen:
      - `run-mavis-all.bat` (experimentell)<br>
    - Mit einer Batch-Datei für MAVIS 1.2:
      - `run-mavis-1-2-main.bat` (empfohlen)  
@@ -753,6 +758,7 @@ Solltest du dennoch die automatische Installation bevorzugen, folge bitte den un
 **Starten der UI**
 
    Nach der Installation können Sie MAVIS starten. Es gibt mehrere Startoptionen, die je nach Version und Verwendungszweck variieren:<br>
+   - Alle MAVIS Versionen:
      - `run-mavis-all.sh` (experimentell)<br>
    - Mit einer shell-Datei für MAVIS 1.2:
      - `run-mavis-1-2-main.sh` (empfohlen)  
@@ -845,6 +851,7 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 **Starten der UI**
 
    Nach der Installation können Sie MAVIS starten. Es gibt mehrere Startoptionen, die je nach Version und Verwendungszweck variieren:<br>
+   - Alle MAVIS Versionen:
      - `run-mavis-all.bat` (experimentell)<br>
    - Mit einer Batch-Datei für MAVIS 1.2:
      - `run-mavis-1-2-main.bat` (empfohlen)  
@@ -913,6 +920,7 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 **Starten der UI**
 
    Nach der Installation können Sie MAVIS starten. Es gibt mehrere Startoptionen, die je nach Version und Verwendungszweck variieren:<br>
+   - Alle MAVIS Versionen:
      - `run-mavis-all.sh` (experimentell)<br>
    - Mit einer shell-Datei für MAVIS 1.2:
      - `run-mavis-1-2-main.sh` (empfohlen)  
