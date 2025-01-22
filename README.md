@@ -947,7 +947,6 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
     <img src="./readme-img/MAVIS-demo121.gif" alt="mavis" width="1400">
 </div>
 
-⚠️
 - Make sure Mavis is always told to use **fig.update_layout(mapbox_style="open-street-map")** in Python code!
 - Stellen Sie sicher, dass Mavis stets darauf hingewiesen wird, im Python-Code **fig.update_layout(mapbox_style="open-street-map")** zu verwenden!
 
