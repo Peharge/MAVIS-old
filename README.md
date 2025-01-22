@@ -332,22 +332,25 @@ And more...
 
 > ⚠️**Still in progress**
 
-| **Model** | **Description**                                                                                       | **Parameters** |
-|-------------|-------------------------------------------------------------------------------------------------------|---------------|            
-| Mavis 1.2 main| With **Xc++ 2 11B** or Llama3.2 11B +16GB RAM +23GB storage (Works with one CPU)                      | 22B |
-| Mavis 1.2 math| With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 14B +16GB RAM +23GB storage (Works with one CPU)       | 27B |
-| Mavis 1.2 code| With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 Coder 14B +16GB RAM +23GB storage (Works with one CPU) | 27B |
-| Mavis 1.2 math pro| With **Xc++ 2 90B** or Llama3.2 90B + QwQ +64GB RAM +53GB storage (Works with one CPU)                | 122B |
-| Mavis 1.2 code pro| With **Xc++ 2 90B** or Llama3.2 90B + Qwen 2.5 Coder 32B +64GB RAM +53GB storage (Works with one CPU) | 122B |
-| Mavis 1.2 mini| With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 0.5B +16GB RAM +13GB storage (Works with one CPU)      | 11.5B |
-| Mavis 1.2 mini mini| With **Xc++ 2 11B** or Llama3.2 11B + smollm:135m +16GB RAM +33GB storage (Works with one CPU)        | 11.0135B |
-| Mavis 1.2.2 main| With **Xc++ 2 11B** or Llama3.2 11B + Phi4 +16GB RAM +23GB storage (Works with one CPU)               | 27B |
-| Mavis 1.3 main| With **Xc++ 2 11B** or Qwen2 VL 7B + Llama 3.3 +64GB RAM +53GB storage (Works with one CPU)           | 77B |
-| Mavis 1.3 math| With **Xc++ 2 11B** or Qwen2 VL 7B + Qwen 2.5 14B +16GB RAM +33GB storage (Works with one CPU)        | 21B |
-| Mavis 1.3 code| With **Xc++ 2 11B** or Qwen2 VL 7B + Qwen 2.5 Coder 14B +16B RAM +33GB storage (Works with one CPU)   | 21B |
-| Mavis 1.3 math pro| With **Xc++ 2 90** or Qwen2 VL 72B + QwQ +64GB RAM +53GB storage (Works with one CPU)                 | 104B |
-| Mavis 1.3 math pro| With **Xc++ 2 90B** or Qwen2 VL 72B + Qwen 2.5 Coder 32B +64GB RAM +53GB storage (Works with one CPU)  | 104B |
-| Mavis 1.4 math| With **Xc++ 2 90B** or QvQ + QwQ +64GB RAM +53GB storage (Works with one CPU)                         | 104B |
+| **Model**              | **Description**                                                                                       | **Parameters** |
+|------------------------|-------------------------------------------------------------------------------------------------------|----------------|            
+| Mavis 1.2 main         | With **Xc++ 2 11B** or Llama3.2 11B +16GB RAM +23GB storage (Works with one CPU)                      | 22B            |
+| Mavis 1.2 math         | With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 14B +16GB RAM +23GB storage (Works with one CPU)       | 27B            |
+| Mavis 1.2 code         | With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 Coder 14B +16GB RAM +23GB storage (Works with one CPU) | 27B            |
+| Mavis 1.2 math pro     | With **Xc++ 2 90B** or Llama3.2 90B + QwQ +64GB RAM +53GB storage (Works with one CPU)                | 122B           |
+| Mavis 1.2 code pro     | With **Xc++ 2 90B** or Llama3.2 90B + Qwen 2.5 Coder 32B +64GB RAM +53GB storage (Works with one CPU) | 122B           |
+| Mavis 1.2 mini         | With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 0.5B +16GB RAM +13GB storage (Works with one CPU)      | 11.5B          |
+| Mavis 1.2 mini mini    | With **Xc++ 2 11B** or Llama3.2 11B + smollm:135m +16GB RAM +33GB storage (Works with one CPU)        | 11.0135B       |
+| Mavis 1.2.2 main       | With **Xc++ 2 11B** or Llama3.2 11B + Phi4 +16GB RAM +23GB storage (Works with one CPU)               | 27B            |
+| Mavis 1.2.2 math       | With **Xc++ 2 11B** or Llama3.2 11B + DeepSeek R1 14B +16GB RAM +23GB storage (Works with one CPU)    | 27B            |
+| Mavis 1.2.2 math pro   | With **Xc++ 2 11B** or Llama3.2 11B + DeepSeek R 32B +32GB RAM +33GB storage (Works with one CPU)     | 43B            |
+| Mavis 1.2.2 math ultra | With **Xc++ 2 90B** or Llama3.2 90B + DeepSeek R1 671B +256GB RAM +469GB storage (Works with one CPU) | 761B            |
+| Mavis 1.3 main         | With **Xc++ 2 11B** or Qwen2 VL 7B + Llama 3.3 +64GB RAM +53GB storage (Works with one CPU)           | 77B            |
+| Mavis 1.3 math         | With **Xc++ 2 11B** or Qwen2 VL 7B + Qwen 2.5 14B +16GB RAM +33GB storage (Works with one CPU)        | 21B            |
+| Mavis 1.3 code         | With **Xc++ 2 11B** or Qwen2 VL 7B + Qwen 2.5 Coder 14B +16B RAM +33GB storage (Works with one CPU)   | 21B            |
+| Mavis 1.3 math pro     | With **Xc++ 2 90** or Qwen2 VL 72B + QwQ +64GB RAM +53GB storage (Works with one CPU)                 | 104B           |
+| Mavis 1.3 math pro     | With **Xc++ 2 90B** or Qwen2 VL 72B + Qwen 2.5 Coder 32B +64GB RAM +53GB storage (Works with one CPU) | 104B           |
+| Mavis 1.4 math         | With **Xc++ 2 90B** or QvQ + QwQ +64GB RAM +53GB storage (Works with one CPU)                         | 104B           |
 
 ## Benchmark
 
@@ -359,13 +362,13 @@ And more...
 
 > ⚠️**Still in progress**
 
-|               | Xc++ 2<br/>(01.12.2024 - goal: 01.06.2025) | QwQ<br/>32B-preview | Open AI<br/>o1-preview | Open AI<br/>o1 mini | Open AI<br/>o1 | GPT-4o | Claude3.5<br/>Sonnet |
-|---------------|--------------------------------------------|---------------------|------------------------|---------------------|----------------|--------|----------------------|
-| GPQA          | 65.2 (goal 80.0)                           | 65.2                | 72.3                   | 60.0                | 77.3           | 53.6   | 49.0                 |
-| AIME          | 50.0 (goal 59.0)                           | 50.0                | 44.6                   | 56.7                | ...            | 59.4   | 53.6                 |
-| MATH-500      | 90.6 (goal 96.0)                           | 90.6                | 85.5                   | 90.0                | 94.8           | 76.6   | 82.6                 |
-| LiveCodeBench | 50.0 (goal 61.0)                           | 50.0                | 53.6                   | 58.0                | ...            | 33.4   | 30.4                 |
-| HumanEval     | 92.7 (goal 95)                             | ...                 | 92.4                   | 92.4                | ...            | 90.2   | 92.0                 |
+|               | DeepSeek<br>R1 | QwQ<br>32B-preview | Open AI<br>o1 | Open AI<br>o1-preview | Open AI<br>o1 mini | GPT-4o   | Claude3.5<br>Sonnet |
+|---------------|----------------|--------------------|---------------|-----------------------|--------------------|----------|---------------------|
+| GPQA          | 71.5           | 65.2               | 75.7          | 72.3                  | 60.0               | 53.6     | 49.0                |
+| AIME          | 79.8           | 50.0               | 79.2          | 44.6                  | 56.7               | 59.4     | 53.6                |
+| MATH-500      | 97.3           | 90.6               | 96.4          | 85.5                  | 90.0               | 76.6     | 82.6                |
+| LiveCodeBench | ...            | 50.0               | ...           | 53.6                  | 58.0               | 33.4     | 30.4                |
+| Codeforces    | 96.3           | ...                | 96.6          | 92.4                  | 92.4               | 90.2     | 92.0                |
 
 ## Installation
 
@@ -387,29 +390,27 @@ The automatic installation installs Git, Python and Ollama, creates a folder and
 
 If you still prefer the automatic installation, please follow the instructions below:
 
-1. Download the C++ file [mavis_installer.cpp](https://github.com/Peharge/MAVIS/blob/main/mavis_installer.cpp).
-2. If issues occur, uninstall all changes made by the automatic installation and try the manual installation instead.
-
 ### Installation
 
 <details>
   <summary>Automatic Installation on Windows</summary>
 
-  1. Install a C++ compiler (e.g., Visual Studio or MinGW).
-  2. Compile the code with the following command:
-     ```bash
-     g++ -std=c++17 -o mavis_installer mavis_installer.cpp
-     ```
-  3. Run the `.exe` file:
-     ```bash
-     mavis_installer.exe
-     ```
-  4. Follow the installation instructions for your operating system.
+1. **Download the installation file:**
+- Download the file [`mavis-installer.bat`](https://github.com/Peharge/MAVIS/blob/main/mavis-installer/mavis-installer.bat) from GitHub.
+
+2. **Run the installation file:**
+- Run the downloaded file by double-clicking it.
+
+3. **Accept security warnings:**
+- If Windows issues a security warning, accept it and allow execution.
+
+4. **Follow the installation instructions:**
+- Follow the on-screen instructions to install MAVIS.
      
 ### Starting the UI
 
 **Start the UI**
-    You can start the UI in two ways:
+   After installation, you can start MAVIS. There are several start options that vary depending on the version and intended use:<br>
      - `run-mavis-all.bat` (experimental)<br>
    - With a batch file for MAVIS 1.2:
      - `run-mavis-1-2-main.bat` (recommended)
@@ -419,7 +420,10 @@ If you still prefer the automatic installation, please follow the instructions b
      - `run-mavis-1-2-math-pro.bat` (recommended)
      - `run-mavis-1-2-mini.bat` (recommended)
      - `run-mavis-1-2-mini-mini.bat` (recommended)
-     - `run-mavis-1-2-3-main.bat` (recommended)<br>
+     - `run-mavis-1-2-3-main.bat` (recommended)
+     - `run-mavis-1-2-3-math.bat` (recommended)
+     - `run-mavis-1-2-3-math-pro.bat` (recommended)
+     - `run-mavis-1-2-3-math-ultra.bat` (recommended)<br>
    - for MAVIS 1.3 EAP:
      - `run-mavis-1-3-main.bat` (experimental)
      - `run-mavis-1-3-code.bat` (experimental)
@@ -438,22 +442,29 @@ If you still prefer the automatic installation, please follow the instructions b
 <details>
   <summary>Automatic Installation on macOS/Linux</summary>
 
-  1. Make sure a C++ compiler like `g++` is installed (on macOS, this is typically part of the Xcode Command Line Tools).
-  2. Compile the code with the following command:
-     ```bash
-     g++ -std=c++17 -o mavis_installer mavis_installer.cpp
-     ```
-  3. Make the script executable (if needed) and run it:
-     ```bash
-     chmod +x mavis_installer
-     ./mavis_installer
-     ```
-  4. Follow the installation instructions for your operating system.
+1. **Download the installation file:**
+- Download the file [`mavis-installer.sh`](https://github.com/Peharge/MAVIS/blob/main/mavis-installer/mavis-installer.sh) from GitHub.
+
+2. **Make the file executable:**
+- Open a terminal and navigate to the directory where the downloaded file is located.
+- Enter the following command:
+```bash
+chmod +x mavis-installer.sh
+```
+
+3. **Run the installation file:**
+- Start the installation with:
+```bash
+./mavis-installer.sh
+```
+
+4. **Follow the installation instructions:**
+- Follow the instructions in the terminal to install MAVIS.
 
 ### Start UI
 
 **Start the UI**
-    You can start the UI in two ways:
+   After installation, you can start MAVIS. There are several start options that vary depending on the version and intended use:<br>
      - `run-mavis-all.sh` (experimental)<br>
    - With a shell file for MAVIS 1.2:
      - `run-mavis-1-2-main.sh` (recommended)
@@ -463,7 +474,10 @@ If you still prefer the automatic installation, please follow the instructions b
      - `run-mavis-1-2-math-pro.sh` (recommended)
      - `run-mavis-1-2-mini.sh` (recommended)
      - `run-mavis-1-2-mini-mini.sh` (recommended)
-     - `run-mavis-1-2-3-main.sh` (recommended)<br>
+     - `run-mavis-1-2-3-main.sh` (recommended)
+     - `run-mavis-1-2-3-math.sh` (recommended)
+     - `run-mavis-1-2-3-math-pro.sh` (recommended)
+     - `run-mavis-1-2-3-math-ultra.sh` (recommended)<br>
    - for MAVIS 1.3 EAP:
      - `run-mavis-1-3-main.sh` (experimental)
      - `run-mavis-1-3-code.sh` (experimental)
@@ -545,7 +559,7 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
 ### Starting the UI
 
 **Start the UI**
-    You can start the UI in two ways:
+   After installation, you can start MAVIS. There are several start options that vary depending on the version and intended use:<br>
      - `run-mavis-all.bat` (experimental)<br>
    - With a batch file for MAVIS 1.2:
      - `run-mavis-1-2-main.bat` (recommended)
@@ -555,7 +569,10 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
      - `run-mavis-1-2-math-pro.bat` (recommended)
      - `run-mavis-1-2-mini.bat` (recommended)
      - `run-mavis-1-2-mini-mini.bat` (recommended)
-     - `run-mavis-1-2-3-main.bat` (recommended)<br>
+     - `run-mavis-1-2-3-main.bat` (recommended)
+     - `run-mavis-1-2-3-math.bat` (recommended)
+     - `run-mavis-1-2-3-math-pro.bat` (recommended)
+     - `run-mavis-1-2-3-math-ultra.bat` (recommended)<br>
    - for MAVIS 1.3 EAP:
      - `run-mavis-1-3-main.bat` (experimental)
      - `run-mavis-1-3-code.bat` (experimental)
@@ -611,7 +628,7 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
 ### Start UI
 
 **Start the UI**
-    You can start the UI in two ways:
+   After installation, you can start MAVIS. There are several start options that vary depending on the version and intended use:<br>
      - `run-mavis-all.sh` (experimental)<br>
    - With a shell file for MAVIS 1.2:
      - `run-mavis-1-2-main.sh` (recommended)
@@ -621,7 +638,10 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
      - `run-mavis-1-2-math-pro.sh` (recommended)
      - `run-mavis-1-2-mini.sh` (recommended)
      - `run-mavis-1-2-mini-mini.sh` (recommended)
-     - `run-mavis-1-2-3-main.sh` (recommended)<br>
+     - `run-mavis-1-2-3-main.sh` (recommended)
+     - `run-mavis-1-2-3-math.sh` (recommended)
+     - `run-mavis-1-2-3-math-pro.sh` (recommended)
+     - `run-mavis-1-2-3-math-ultra.sh` (recommended)<br>
    - for MAVIS 1.3 EAP:
      - `run-mavis-1-3-main.sh` (experimental)
      - `run-mavis-1-3-code.sh` (experimental)
@@ -656,30 +676,28 @@ Bei der automatischen Installation werden Git, Python und Ollama installiert, ei
 
 Solltest du dennoch die automatische Installation bevorzugen, folge bitte den untenstehenden Anweisungen:
 
-1. Lade die C++-Datei [mavis_installer.cpp](https://github.com/Peharge/MAVIS/blob/main/mavis_installer.cpp) herunter.
-2. Falls es zu Problemen kommt, deinstalliere alle Änderungen, die durch die automatische Installation vorgenommen wurden, und versuche es mit der manuellen Installation.
-
 ### Installation
 
 <details>
   <summary>Automatische Installation auf Windows</summary>
 
-  1. Installiere einen C++-Compiler (z. B. Visual Studio oder MinGW).
-  2. Kompiliere den Code mit folgendem Befehl:
-     ```bash
-     g++ -std=c++17 -o mavis_installer mavis_installer.cpp
-     ```
-  3. Führe die `.exe`-Datei aus:
-     ```bash
-     mavis_installer.exe
-     ```
-  4. Folge den Installationsanweisungen für dein Betriebssystem.
+1. **Herunterladen der Installationsdatei:**
+   - Laden Sie die Datei [`mavis-installer.bat`](https://github.com/Peharge/MAVIS/blob/main/mavis-installer/mavis-installer.bat) von GitHub herunter.
+
+2. **Installationsdatei ausführen:**
+   - Führen Sie die heruntergeladene Datei durch Doppelklick aus.
+
+3. **Sicherheitswarnungen akzeptieren:**
+   - Falls Windows eine Sicherheitswarnung ausgibt, bestätigen Sie diese und erlauben Sie die Ausführung.
+
+4. **Installationsanweisungen befolgen:**
+   - Folgen Sie den Anweisungen auf dem Bildschirm, um MAVIS zu installieren.
 
 ### Benutzeroberfläche starten
 
 **Starten der UI**
 
-   Sie können die Benutzeroberfläche auf zwei Arten starten:
+   Nach der Installation können Sie MAVIS starten. Es gibt mehrere Startoptionen, die je nach Version und Verwendungszweck variieren:<br>
      - `run-mavis-all.bat` (experimentell)<br>
    - Mit einer Batch-Datei für MAVIS 1.2:
      - `run-mavis-1-2-main.bat` (empfohlen)  
@@ -689,7 +707,10 @@ Solltest du dennoch die automatische Installation bevorzugen, folge bitte den un
      - `run-mavis-1-2-math-pro.bat` (empfohlen)
      - `run-mavis-1-2-mini.bat` (empfohlen)
      - `run-mavis-1-2-mini-mini.bat` (empfohlen)
-     - `run-mavis-1-2-3-main.bat` (empfohlen)<br>
+     - `run-mavis-1-2-3-main.bat` (empfohlen)
+     - `run-mavis-1-2-3-math.bat` (empfohlen)
+     - `run-mavis-1-2-3-math-pro.bat` (empfohlen)
+     - `run-mavis-1-2-3-math-ultra.bat` (empfohlen)<br>
    - für MAVIS 1.3 EAP:
      - `run-mavis-1-3-main.bat` (experimentell)  
      - `run-mavis-1-3-code.bat` (experimentell)
@@ -708,23 +729,30 @@ Solltest du dennoch die automatische Installation bevorzugen, folge bitte den un
 <details>
   <summary>Automatische Installation auf macOS/Linux</summary>
 
-  1. Stelle sicher, dass ein C++-Compiler wie `g++` installiert ist (auf macOS ist dies in der Regel Teil der Xcode Command Line Tools).
-  2. Kompiliere den Code mit folgendem Befehl:
+1. **Herunterladen der Installationsdatei:**
+   - Laden Sie die Datei [`mavis-installer.sh`](https://github.com/Peharge/MAVIS/blob/main/mavis-installer/mavis-installer.sh) von GitHub herunter.
+
+2. **Datei ausführbar machen:**
+   - Öffnen Sie ein Terminal und navigieren Sie in das Verzeichnis, in dem sich die heruntergeladene Datei befindet.
+   - Geben Sie folgenden Befehl ein:
      ```bash
-     g++ -std=c++17 -o mavis_installer mavis_installer.cpp
+     chmod +x mavis-installer.sh
      ```
-  3. Mache das Skript ausführbar (falls erforderlich) und führe es aus:
+
+3. **Installationsdatei ausführen:**
+   - Starten Sie die Installation mit:
      ```bash
-     chmod +x mavis_installer
-     ./mavis_installer
+     ./mavis-installer.sh
      ```
-  4. Folge den Installationsanweisungen für dein Betriebssystem.
+
+4. **Installationsanweisungen befolgen:**
+   - Folgen Sie den Anweisungen im Terminal, um MAVIS zu installieren.
 
 ### Benutzeroberfläche starten
 
 **Starten der UI**
 
-   Sie können die Benutzeroberfläche auf zwei Arten starten:
+   Nach der Installation können Sie MAVIS starten. Es gibt mehrere Startoptionen, die je nach Version und Verwendungszweck variieren:<br>
      - `run-mavis-all.sh` (experimentell)<br>
    - Mit einer shell-Datei für MAVIS 1.2:
      - `run-mavis-1-2-main.sh` (empfohlen)  
@@ -732,9 +760,10 @@ Solltest du dennoch die automatische Installation bevorzugen, folge bitte den un
      - `run-mavis-1-2-code-pro.sh` (empfohlen)
      - `run-mavis-1-2-math.sh` (empfohlen)
      - `run-mavis-1-2-math-pro.sh` (empfohlen)
-     - `run-mavis-1-2-mini.sh` (empfohlen)
-     - `run-mavis-1-2-mini-mini.sh` (empfohlen)
-     - `run-mavis-1-2-3-main.sh` (empfohlen)<br>
+     - `run-mavis-1-2-3-main.sh` (empfohlen)
+     - `run-mavis-1-2-3-math.sh` (empfohlen)
+     - `run-mavis-1-2-3-math-pro.sh` (empfohlen)
+     - `run-mavis-1-2-3-math-ultra.sh` (empfohlen)<br>
    - für MAVIS 1.3 EAP:
      - `run-mavis-1-3-main.sh` (experimentell)  
      - `run-mavis-1-3-code.sh` (experimentell)
@@ -815,7 +844,7 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 
 **Starten der UI**
 
-   Sie können die Benutzeroberfläche auf zwei Arten starten:
+   Nach der Installation können Sie MAVIS starten. Es gibt mehrere Startoptionen, die je nach Version und Verwendungszweck variieren:<br>
      - `run-mavis-all.bat` (experimentell)<br>
    - Mit einer Batch-Datei für MAVIS 1.2:
      - `run-mavis-1-2-main.bat` (empfohlen)  
@@ -825,7 +854,10 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
      - `run-mavis-1-2-math-pro.bat` (empfohlen)
      - `run-mavis-1-2-mini.bat` (empfohlen)
      - `run-mavis-1-2-mini-mini.bat` (empfohlen)
-     - `run-mavis-1-2-3-main.bat` (empfohlen)<br>
+     - `run-mavis-1-2-3-main.bat` (empfohlen)
+     - `run-mavis-1-2-3-math.bat` (empfohlen)
+     - `run-mavis-1-2-3-math-pro.bat` (empfohlen)
+     - `run-mavis-1-2-3-math-ultra.bat` (empfohlen)<br>
    - für MAVIS 1.3 EAP:
      - `run-mavis-1-3-main.bat` (experimentell)  
      - `run-mavis-1-3-code.bat` (experimentell)
@@ -880,7 +912,7 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 
 **Starten der UI**
 
-   Sie können die Benutzeroberfläche auf zwei Arten starten:
+   Nach der Installation können Sie MAVIS starten. Es gibt mehrere Startoptionen, die je nach Version und Verwendungszweck variieren:<br>
      - `run-mavis-all.sh` (experimentell)<br>
    - Mit einer shell-Datei für MAVIS 1.2:
      - `run-mavis-1-2-main.sh` (empfohlen)  
@@ -890,7 +922,10 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
      - `run-mavis-1-2-math-pro.sh` (empfohlen)
      - `run-mavis-1-2-mini.sh` (empfohlen)
      - `run-mavis-1-2-mini-mini.sh` (empfohlen)
-     - `run-mavis-1-2-3-main.sh` (empfohlen)<br>
+     - `run-mavis-1-2-3-main.sh` (empfohlen)
+     - `run-mavis-1-2-3-math.sh` (empfohlen)
+     - `run-mavis-1-2-3-math-pro.sh` (empfohlen)
+     - `run-mavis-1-2-3-math-ultra.sh` (empfohlen)<br>
    - für MAVIS 1.3 EAP:
      - `run-mavis-1-3-main.sh` (experimentell)  
      - `run-mavis-1-3-code.sh` (experimentell)
