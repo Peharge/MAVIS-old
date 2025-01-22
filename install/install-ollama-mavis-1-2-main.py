@@ -62,6 +62,7 @@
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
 import os
+import platform
 import subprocess
 import time
 
@@ -78,18 +79,46 @@ orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
+def find_ollama_path():
+    """
+    Findet den Installationspfad von Ollama basierend auf dem Betriebssystem.
+    """
+    try:
+        if platform.system() == "Windows":
+            base_path = os.environ.get("LOCALAPPDATA", "C:\\Users\\Default\\AppData\\Local")
+            return os.path.join(base_path, "Programs", "Ollama", "ollama app.exe")
+        elif platform.system() == "Darwin":  # macOS
+            return "/Applications/Ollama.app/Contents/MacOS/Ollama"
+        else:
+            raise EnvironmentError("Unsupported Operating System. Ollama is not supported on this platform.")
+    except Exception as e:
+        raise FileNotFoundError(f"Error finding Ollama path: {e}")
+
+
 def start_ollama():
     """
     Startet Ollama, falls es noch nicht läuft.
     """
     try:
         # Überprüfen, ob Ollama bereits läuft
-        result = subprocess.run("tasklist", stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        result = subprocess.run(
+            ["tasklist"] if platform.system() == "Windows" else ["ps", "aux"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
+
         if "ollama" not in result.stdout.lower():
             print(f"{blue}Ollama is not running. Starting Ollama...{reset}")
+
+            # Pfad zu Ollama finden
+            ollama_path = find_ollama_path()
+
+            if not os.path.exists(ollama_path):
+                raise FileNotFoundError(f"Ollama executable not found at: {ollama_path}")
+
             # Ollama starten
-            ollama_path = r"C:\\Users\\julia\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
-            subprocess.Popen([ollama_path])
+            subprocess.Popen([ollama_path], close_fds=True if platform.system() != "Windows" else False)
             time.sleep(5)  # Warten, bis Ollama gestartet ist
             print(f"{green}Ollama started successfully.{reset}\n")
         else:

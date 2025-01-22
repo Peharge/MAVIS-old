@@ -61,114 +61,19 @@
 #
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
-import os
 import sys
+sys.stdout.reconfigure(encoding='utf-8')
 
-# Farbcodes definieren (kleingeschrieben)
-red = "\033[91m"
-green = "\033[92m"
-yellow = "\033[93m"
-blue = "\033[94m"
-magenta = "\033[95m"
-cyan = "\033[96m"
-white = "\033[97m"
-black = "\033[30m"
-orange = "\033[38;5;214m"
-reset = "\033[0m"
-bold = "\033[1m"
+print ("""
+███╗   ███╗ █████╗ ██╗   ██╗██╗███████╗     ██╗   ██████╗    ██████╗     ███╗   ███╗ █████╗ ████████╗██╗  ██╗
+████╗ ████║██╔══██╗██║   ██║██║██╔════╝    ███║   ╚════██╗   ╚════██╗    ████╗ ████║██╔══██╗╚══██╔══╝██║  ██║
+██╔████╔██║███████║██║   ██║██║███████╗    ╚██║    █████╔╝    █████╔╝    ██╔████╔██║███████║   ██║   ███████║
+██║╚██╔╝██║██╔══██║╚██╗ ██╔╝██║╚════██║     ██║   ██╔═══╝     ╚═══██╗    ██║╚██╔╝██║██╔══██║   ██║   ██╔══██║
+██║ ╚═╝ ██║██║  ██║ ╚████╔╝ ██║███████║     ██║██╗███████╗██╗██████╔╝    ██║ ╚═╝ ██║██║  ██║   ██║   ██║  ██║
+╚═╝     ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚══════╝     ╚═╝╚═╝╚══════╝╚═╝╚═════╝     ╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝
+""")
 
-# Logging-Funktion für Fehler
-def log_error(message):
-    """Protokolliert Fehler in eine Datei."""
-    try:
-        with open("error_log.txt", "a") as log_file:
-            log_file.write(message + "\n")
-    except Exception as e:
-        print(f"{red}Error while writing to log file: {e}{reset}")
+print(f"""🎉 A warm welcome from Peharge 🎉\n""")
 
-def run_batch_file(batch_name):
-    """Führt die Batch-Datei aus, überprüft, ob sie existiert, und gibt eine passende Fehlermeldung aus."""
-    file_name = os.path.join(
-        os.path.expanduser("~"),
-        "PycharmProjects",
-        "MAVIS",
-        f"run-{batch_name}.bat"
-    )
-
-    # Prüft, ob die Datei existiert
-    if not os.path.exists(file_name):
-        error_message = f"{red}Error: The file '{file_name}' does not exist.{reset}"
-        print(error_message)
-        log_error(f"File not found: {file_name}")
-        return
-
-    # Versucht, die Batch-Datei auszuführen
-    try:
-        print(f"Executing file: {file_name}")
-        os.system(file_name)
-        print(f"{green}The batch file '{file_name}' was executed successfully.{reset}")
-    except Exception as e:
-        error_message = f"{red}Error executing file '{file_name}': {e}{reset}"
-        print(error_message)
-        log_error(f"Execution failed for {file_name}: {e}")
-
-def display_versions():
-    """Zeigt alle Versionen und zugehörigen Batch-Dateien ohne 'run-' und '.bat'."""
-    print(f"All MAVIS versions are available here:\n")
-
-    versions = {
-        "mavis-1-2-main": "MAVIS 1.2",
-        "mavis-1-2-code": "MAVIS 1.2",
-        "mavis-1-2-code-pro": "MAVIS 1.2",
-        "mavis-1-2-math": "MAVIS 1.2",
-        "mavis-1-2-math-pro": "MAVIS 1.2",
-        "mavis-1-2-mini": "MAVIS 1.2",
-        "mavis-1-2-mini-mini": "MAVIS 1.2",
-        "mavis-1-2-3-main": "MAVIS 1.2-3",
-        "mavis-1-2-3-math": "MAVIS 1.2-3",
-        "mavis-1-2-3-math-pro": "MAVIS 1.2-3",
-        "mavis-1-2-3-math-ultra": "MAVIS 1.2-3",
-        "mavis-1-3-main": "MAVIS 1.3 EAP",
-        "mavis-1-3_code": "MAVIS 1.3 EAP",
-        "mavis-1-3_code-pro": "MAVIS 1.3 EAP",
-        "mavis-1-3-math": "MAVIS 1.3 EAP",
-        "mavis-1-3-math-pro": "MAVIS 1.3 EAP",
-        "mavis-1-4-math": "MAVIS 1.4 EAP"
-    }
-
-    # Gruppieren der Versionen für eine saubere Anzeige
-    grouped_versions = {}
-    for batch_name, version in versions.items():
-        if version not in grouped_versions:
-            grouped_versions[version] = []
-        grouped_versions[version].append(batch_name)
-
-    # Ausgabe der gruppierten Versionen
-    for i, (version, batch_files) in enumerate(grouped_versions.items(), 1):
-        print(f"{i}. {version}:")
-        for j, batch_file in enumerate(batch_files, 1):
-            print(f"   {j}. {batch_file}")
-        print()
-
-    return versions
-
-def get_user_input(versions):
-    """Fragt den Benutzer nach der gewünschten MAVIS-Batch-Datei und validiert die Eingabe."""
-    while True:
-        user_input = input(f"Enter a MAVIS batch file (e.g. 'mavis-1-2-main'): ").strip()
-
-        # Validiert, ob die Eingabe korrekt ist
-        if user_input in versions:
-            run_batch_file(user_input)
-            break
-        else:
-            print(f"{red}Error: '{user_input}' is not a valid option. Please try again.{reset}")
-
-if __name__ == "__main__":
-    try:
-        versions = display_versions()
-        get_user_input(versions)
-    except Exception as e:
-        print(f"{red}An unexpected error occurred: {e}{reset}")
-        log_error(f"Unexpected error: {e}")
-        sys.exit(1)
+print("Framework Information:")
+print("----------------------")
