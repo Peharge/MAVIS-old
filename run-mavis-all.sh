@@ -2,7 +2,7 @@
 
 USERNAME=$(whoami)
 PYTHON_PATH="/home/$USERNAME/PycharmProjects/MAVIS/.env/bin/python"
-SCRIPT_PATH_1="/home/$USERNAME/PycharmProjects/MAVIS/main/main-macos-linux.py"
+SCRIPT_PATH_1="/home/$USERNAME/PycharmProjects/MAVIS/main-macos-linux.py"
 
 if [[ ! -f "$PYTHON_PATH" ]]; then
     echo "Error: Python interpreter not found: $PYTHON_PATH"

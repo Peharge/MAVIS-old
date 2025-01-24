@@ -8,7 +8,7 @@ SCRIPT_PATH_update="/home/$USERNAME/PycharmProjects/MAVIS/update/update-reposito
 SCRIPT_PATH_3="/home/$USERNAME/PycharmProjects/MAVIS/install/install-ollama-mavis-1-2-3-math-ultra.py"
 SCRIPT_PATH_4="/home/$USERNAME/PycharmProjects/MAVIS/info/info.py"
 PYTHON_SCRIPT_PATH="/home/$USERNAME/PycharmProjects/MAVIS/run_with_browser/run_with_browser.py"
-SCRIPT_PATH_5="/home/$USERNAME/PycharmProjects/MAVIS/main/mavis-1-2-3-main-math-ultra.py"
+SCRIPT_PATH_5="/home/$USERNAME/PycharmProjects/MAVIS/mavis-1-2-3-main-math-ultra.py"
 
 # Check if Python interpreter exists
 if [ ! -f "$PYTHON_PATH" ]; then

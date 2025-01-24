@@ -8,7 +8,7 @@ set SCRIPT_PATH_update=C:\Users\%USERNAME%\PycharmProjects\MAVIS\update\update-r
 set SCRIPT_PATH_3=C:\Users\%USERNAME%\PycharmProjects\MAVIS\install\install-ollama-mavis-1-2-3-math-pro.py
 set SCRIPT_PATH_4=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info\info.py
 set PYTHON_SCRIPT_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run_with_browser\run_with_browser.py
-set SCRIPT_PATH_5=C:\Users\%USERNAME%\PycharmProjects\MAVIS\main\mavis-1-2-3-main-math-pro.py
+set SCRIPT_PATH_5=C:\Users\%USERNAME%\PycharmProjects\MAVIS\mavis-1-2-3-main-math-pro.py
 
 if not exist "%PYTHON_PATH%" (
     echo Error: Python interpreter not found: %PYTHON_PATH%
