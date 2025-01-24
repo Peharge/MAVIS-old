@@ -276,8 +276,7 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
 
 Bei der automatischen Installation werden Git, Python und Ollama installiert, ein Ordner erstellt und eine virtuelle Python-Umgebung eingerichtet. Außerdem werden die erforderlichen Python-Frameworks und KI-Modelle installiert – dieser Schritt erfolgt jedoch auch bei der manuellen Installation automatisch.
 
-<details>
-  <summary>Automatische Installation (experimentell)</summary>
+### Automatische Installation (experimentell)
 
 Solltest du dennoch die automatische Installation bevorzugen, folge bitte den untenstehenden Anweisungen:
 
