@@ -56,7 +56,7 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 
 <br>
 
-> ⚠️ **Still in progress**
+> ⚠️ **Still in progress** ;-)
 
 > ⚠️ Important warning: Beware of fake accounts!<br>
 There is evidence that fake accounts may attempt to misrepresent this project. Please do not share personal information with anyone you do not know and only rely on content coming directly from this repository. Immediately report large activities or accounts to GitHub or the project team.
