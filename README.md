@@ -44,7 +44,11 @@
 # _MAVIS_
 **MA**_th_ **V**_isual_ **I**_ntelligent_ **S**_ystem (Strongest calculator in the world)_
 
-_**MAVIS**: In the darkest times lies the power to create something great – a work only you can understand. It is your light, your strength, your vision. (In den dunkelsten Zeiten liegt die Kraft, etwas Großes zu erschaffen – ein Werk, das nur du verstehen kannst. Es ist dein Licht, deine Stärke, deine Vision.)._
+_**MAVIS**: In the darkest times lies the power to create something great – a work only you can understand. It is your light, your strength, your vision._
+<details>
+  <summary>Deutsch</summary>
+    In den dunkelsten Zeiten liegt die Kraft, etwas Großes zu erschaffen – ein Werk, das nur du verstehen kannst. Es ist dein Licht, deine Stärke, deine Vision.
+</details>
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-banner27.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -52,7 +56,7 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 
 <br>
 
-> ⚠️ **Still in progress**
+> ⚠️ **Still in progress** ;-)
 
 > ⚠️ Important warning: Beware of fake accounts!<br>
 There is evidence that fake accounts may attempt to misrepresent this project. Please do not share personal information with anyone you do not know and only rely on content coming directly from this repository. Immediately report large activities or accounts to GitHub or the project team.
