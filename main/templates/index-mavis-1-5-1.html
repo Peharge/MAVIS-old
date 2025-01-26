@@ -1716,10 +1716,10 @@
         .carddddd {
             width: 80%;
             max-width: 1200px;
-            max-height: 800px;
+            max-height: 900px;
             min-width: 300px;
             min-height: 200px;
-            height: 70%;
+            height: 75%;
             padding: 0.5rem;
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(8px);
@@ -1731,7 +1731,7 @@
             overflow: hidden;
             color: white;
             position: fixed;
-            top: 5%;
+            top: 3%;
             left: 20%;
             right: 20%;
         }
@@ -1791,6 +1791,10 @@
             background-color: white;
             border-radius: 10px;
             border: 1px solid #ccc;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
         }
 
         .draw-controls {
@@ -1846,7 +1850,7 @@
             color: #ffffff;
             overflow-x: auto;
         }
-        
+
         .input-draw:focus {
             outline: none;
             border-color: #00ca4e;
@@ -1854,14 +1858,15 @@
         }
 
         .input-latexCode textarea {
-            background-color: transparent;
+            margin-top: 15px;
+            background-color: rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 1200px;
             min-width: 300px;
             height: 1%;
             max-height: 400px;
             min-height: 80px;
-            border: 2px solid #ffffff;
+            border: 2px solid transparent;
             outline: none;
             padding: 1rem;
             padding-top: 1rem;
@@ -1876,6 +1881,15 @@
             overflow: auto;
             white-space: pre-wrap;
             cursor: text;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
+        }
+
+        .input-latexCode textarea::placeholder {
+            color: white;
+            opacity: 1;
         }
 
     </style>
@@ -2112,7 +2126,7 @@
             </div>
 
             <div class="input-latexCode">
-                <textarea type="text" id="draw-latexCode" rows="2" class="input"></textarea>
+                <textarea type="text" id="draw-latexCode" rows="2" class="input" placeholder="Noch nichts erkannt..."></textarea>
             </div>
             <div class="draw-output-container">
                 <h4>Rendered output:</h4>
