@@ -1803,13 +1803,16 @@
             display: flex;
             justify-content: space-between;
             padding: 10px;
-            background-color: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
             border-radius: 10px;
-            position: absolute; /* Position absolut setzen */
-            top: 60%; /* Positioniert es vertikal in der Mitte */
-            left: 50%; /* Positioniert es horizontal in der Mitte */
-            transform: translate(-50%, -50%); /* Verschiebt das Element um 50% seiner eigenen Größe */
-            z-index: 10; /* Bringt es in den Vordergrund */
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            border-bottom: 3px solid rgba(0, 0, 0, 0.440);
+            border-left: 2px rgba(0, 0, 0, 0.545) outset;
         }
 
         .draw-button {
@@ -2074,24 +2077,43 @@
                     </svg>
                 </button>
                 <button id="draw-eraseMode" class="draw-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M16.24 3.76a1 1 0 0 0-1.41 0L3.76 14.83a1 1 0 0 0 0 1.41l4.24 4.24a1 1 0 0 0 1.41 0l11.07-11.07a1 1 0 0 0 0-1.41ZM6.17 17.41l-2.12-2.12L12.59 6.75l2.12 2.12ZM21 20.59H3v2H21Z"/>
+                    <svg fill="#000000" width="256px" height="256px" viewBox="-1.5 -2.5 24 24"
+                         xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-rubber">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path d="M12.728 12.728L8.485 8.485l-5.657 5.657 2.122 2.121a3 3 0 0 0 4.242 0l3.536-3.535zM11.284 17H14a1 1 0 0 1 0 2H3a1 1 0 0 1-.133-1.991l-1.453-1.453a2 2 0 0 1 0-2.828L12.728 1.414a2 2 0 0 1 2.828 0L19.8 5.657a2 2 0 0 1 0 2.828L11.284 17z"></path>
+                        </g>
                     </svg>
                 </button>
                 <button id="draw-clearCanvas" class="draw-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M19 6H5v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2Zm-7 8h-2v-6h2Zm4-6h-2v6h2Zm2-5h-3l-1-1h-6l-1 1H5v2H19Z"/>
+                    <svg width="256px" height="256px" viewBox="0 0 24 24" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path d="M3 6.52381C3 6.12932 3.32671 5.80952 3.72973 5.80952H8.51787C8.52437 4.9683 8.61554 3.81504 9.45037 3.01668C10.1074 2.38839 11.0081 2 12 2C12.9919 2 13.8926 2.38839 14.5496 3.01668C15.3844 3.81504 15.4756 4.9683 15.4821 5.80952H20.2703C20.6733 5.80952 21 6.12932 21 6.52381C21 6.9183 20.6733 7.2381 20.2703 7.2381H3.72973C3.32671 7.2381 3 6.9183 3 6.52381Z"
+                                  fill="#000000"></path>
+                            <path d="M11.6066 22H12.3935C15.101 22 16.4547 22 17.3349 21.1368C18.2151 20.2736 18.3052 18.8576 18.4853 16.0257L18.7448 11.9452C18.8425 10.4086 18.8913 9.64037 18.4498 9.15352C18.0082 8.66667 17.2625 8.66667 15.7712 8.66667H8.22884C6.7375 8.66667 5.99183 8.66667 5.55026 9.15352C5.1087 9.64037 5.15756 10.4086 5.25528 11.9452L5.51479 16.0257C5.69489 18.8576 5.78494 20.2736 6.66513 21.1368C7.54532 22 8.89906 22 11.6066 22Z"
+                                  fill="#000000"></path>
+                        </g>
                     </svg>
                 </button>
                 <button id="draw-recognizeLatex" class="draw-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M10 2v20H2V2h8zm-6 2v16h4V4H4zm14-2v20h-8V2h8zm-6 2v16h4V4h-4z"/>
+                    <svg width="256px" height="256px" viewBox="0 0 24 24" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path d="M10 6L7 3M7 3L4 6M7 3V17M14 18L17 21M17 21L20 18M17 21V7" stroke="#000000"
+                                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
                     </svg>
                 </button>
             </div>
 
             <div class="input-latexCode">
-                <textarea id="draw-latexCode" rows="2" placeholder="Noch nichts erkannt..."></textarea>
+                <textarea type="text" id="draw-latexCode" rows="2" class="input"></textarea>
             </div>
             <div class="draw-output-container">
                 <h4>Gerenderte Ausgabe:</h4>
@@ -2200,6 +2222,7 @@
                 });
             }
         </script>
+
         <div class="chat-output" id="chat-content"></div>
         <div class="card2" id="loading">
         <div class="loader" id="loaderid">
@@ -3001,22 +3024,21 @@
         }
 
     </script>
+        <script>
+            const textaread = document.getElementById('draw-latexCode');
+            const input = document.getElementById('message');
+            const sendButton = document.getElementById('send-button');
+            
+            textaread.addEventListener('input', () => {
+                input.value = textaread.value;
+            });
 
-    <script>
-        const textarea = document.getElementById('message-text');
-        const input = document.getElementById('message');
-        const sendButton = document.getElementById('send-button');
+            sendButton.addEventListener('click', () => {
+                input.value = textaread.value;
+                alert(`Message sent: ${input.value}`);
+            });
 
-        textarea.addEventListener('input', () => {
-            input.value = textarea.value;
-        });
-
-        sendButton.addEventListener('click', () => {
-            textarea.value = input.value;
-            input.value = textarea.value;
-            alert(`Message sent: ${input.value}`);
-        });
-    </script>
+        </script>
 
 </body>
 </html>
