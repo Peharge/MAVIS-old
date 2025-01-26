@@ -1852,14 +1852,15 @@
         }
 
         .input-latexCode textarea {
+            background-color: transparent;
             width: 100%;
             max-width: 1200px;
             min-width: 300px;
-            height: 100%;
-            box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
-            -1px -1px 6px rgba(255, 255, 255, 0.4),
-            inset 3px 3px 10px rgba(0, 0, 0, 1),
-            inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+            height: 1%;
+            max-height: 400px;
+            min-height: 80px;
+            border: 2px solid #ffffff;
+            outline: none;
             padding: 1rem;
             padding-top: 1rem;
             padding-left: 1rem;
@@ -1868,22 +1869,11 @@
             font-size: clamp(0.3rem, 1vw, 1rem);
             line-height: 1.5;
             text-align: left;
-            border: none;
             box-sizing: border-box;
             resize: none;
             overflow: auto;
             white-space: pre-wrap;
             cursor: text;
-            outline: none;
-        }
-
-        .input-latexCode textarea:focus {
-            border: 1px solid #ffd43b;
-            outline: none;
-            box-shadow: inset 0px 0px 10px rgba(255, 102, 0, 0.5),
-            inset 0px 0px 10px rgba(255, 212, 59, 0.5),
-            0px 0px 100px rgba(255, 212, 59, 0.5),
-            0px 0px 100px rgba(255, 102, 0, 0.5);
         }
 
     </style>
@@ -2101,7 +2091,7 @@
             </div>
 
             <div class="input-latexCode">
-                <textarea id="draw-latexCode" rows="4" placeholder="Noch nichts erkannt..."></textarea>
+                <textarea id="draw-latexCode" rows="2" placeholder="Noch nichts erkannt..."></textarea>
             </div>
             <div class="draw-output-container">
                 <h4>Gerenderte Ausgabe:</h4>
