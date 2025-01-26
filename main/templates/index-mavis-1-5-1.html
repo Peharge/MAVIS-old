@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v2.1.1/dist/tesseract.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"></script>
     <link rel="icon" type="image/png" href="/static/images/peharge-logo3.4.png" />
     <style>
         body {
@@ -22,6 +24,9 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background-color: #121212;
+            color: white;
+            flex-direction: column;
         }
 
         .taskbar {
@@ -1708,61 +1713,13 @@
             animation-delay: 3s;
         }
 
-        .input-container textarea {
-            width: 100%;
-            max-width: 1200px;
-            min-width: 300px;
-            height: 100%;
-            box-shadow: 3px 3px 10px rgba(0,0,0,1),
-                -1px -1px 6px rgba(255, 255, 255, 0.4),
-                inset 3px 3px 10px rgba(0,0,0,1),
-                inset -1px -1px 6px rgba(255, 255, 255, 0.4);
-            padding: 1rem;
-            padding-top: 1rem;
-            padding-left: 1rem;
-            border-radius: 0.8rem;
-            color: white;
-            font-size: clamp(0.3rem, 1vw, 1rem);
-            line-height: 1.5;
-            text-align: left;
-            border: none;
-            box-sizing: border-box;
-            resize: none;
-            overflow: auto;
-            white-space: pre-wrap;
-            cursor: text;
-            outline: none;
-        }
-
-        .input-container textarea:focus {
-            border: 1px solid #ffd43b;
-            outline: none;
-            box-shadow:
-                inset 0px 0px 10px rgba(255, 102, 0, 0.5),
-                inset 0px 0px 10px rgba(255, 212, 59, 0.5),
-                0px 0px 100px rgba(255, 212, 59, 0.5),
-                0px 0px 100px rgba(255, 102, 0, 0.5);
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: white;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-        }
-
         .carddddd {
             width: 80%;
             max-width: 1200px;
-            max-height: 200px;
+            max-height: 800px;
             min-width: 300px;
-            min-height: 100px;
-            height: 13%;
+            min-height: 200px;
+            height: 70%;
             padding: 0.5rem;
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(8px);
@@ -1774,15 +1731,9 @@
             overflow: hidden;
             color: white;
             position: fixed;
-            top: 10%;
-            left: 30%;
-            right: 30%;
-        }
-
-        .carddddd:hover {
-            height: 80%;
-            max-height: 900px;
-            min-height: 300px;
+            top: 5%;
+            left: 10%;
+            right: 10%;
         }
 
         .align {
@@ -1832,7 +1783,11 @@
 
         .draw-canvas {
             width: 100%;
-            height: 400px;
+            height: 60%;
+            min-width: 200px;
+            max-width: 1200px;
+            min-height: 200px;
+            max-height: 1200px;
             background-color: white;
             border-radius: 8px;
             border: 1px solid #ccc;
@@ -1841,7 +1796,7 @@
         .draw-controls {
             display: flex;
             justify-content: space-between;
-            margin-top: 10px;
+            margin-top: 5px;
             padding: 10px;
             background-color: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
@@ -2076,7 +2031,6 @@
             </div>
         </div>
         <div class="carddddd" id="carddddd-id">
-            <h2 style="text-align: center;">Zeichnungsfläche mit SVG-Unterstützung</h2>
             <canvas id="draw-canvas" class="draw-canvas"></canvas>
             <div class="draw-controls">
                 <!-- Buttons für verschiedene Modi -->
@@ -2103,9 +2057,9 @@
             </div>
 
             <div class="draw-output-container">
-                <h3>Erkannte LaTeX-Formel:</h3>
+                <h4>Erkannte LaTeX-Formel:</h4>
                 <pre id="draw-latexCode">Noch nichts erkannt...</pre>
-                <h3>Gerenderte Ausgabe:</h3>
+                <h4>Gerenderte Ausgabe:</h4>
                 <div id="draw-renderedFormula"></div>
             </div>
         </div>
