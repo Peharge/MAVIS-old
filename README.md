@@ -215,7 +215,7 @@ soon...
 
 And more...
 
-> 01.02.2025
+> + 01.02.2025
 
 ### MAVIS 1.5 EAP release
 
@@ -225,7 +225,7 @@ And more...
 
 <br>
 
-> 01.03.2025
+> + 01.03.2025
 
 ### MAVIS 1.6 EAP release
 
@@ -235,7 +235,7 @@ And more...
 
 <br>
 
-> 01.04.2025
+> + 01.04.2025
 
 ### MAVIS 1.7 EAP release
 
