@@ -1846,8 +1846,7 @@
             color: #ffffff;
             overflow-x: auto;
         }
-
-        /* Verbesserung der Zeichnungseingabefelder */
+        
         .input-draw:focus {
             outline: none;
             border-color: #00ca4e;
@@ -2116,7 +2115,7 @@
                 <textarea type="text" id="draw-latexCode" rows="2" class="input"></textarea>
             </div>
             <div class="draw-output-container">
-                <h4>Gerenderte Ausgabe:</h4>
+                <h4>Rendered output:</h4>
                 <div id="draw-renderedFormula"></div>
             </div>
         </div>
@@ -2179,7 +2178,7 @@
             });
 
             recognizeLatexButton.addEventListener("click", async () => {
-                latexCodeContainer.textContent = "Erkenne Formel...";
+                latexCodeContainer.textContent = "Recognize formula...";
                 renderedFormulaContainer.innerHTML = "";
 
                 const imageDataURL = canvas.toDataURL();
@@ -3028,7 +3027,7 @@
             const textaread = document.getElementById('draw-latexCode');
             const input = document.getElementById('message');
             const sendButton = document.getElementById('send-button');
-            
+
             textaread.addEventListener('input', () => {
                 input.value = textaread.value;
             });
