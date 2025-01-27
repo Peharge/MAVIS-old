@@ -310,7 +310,7 @@ def send_message():
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
 
-            image_url = '/static/images/mavis1.3-banner.png'
+            image_url = '/static/images/no-img.png'
 
             return jsonify({
                 'response': wrapped_html_content,
