@@ -127,7 +127,10 @@ UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['UPLOAD_URL'] = '/uploads/'
-DEFAULT_IMAGE_PATH = r""
+# Dynamischer Benutzerpfad
+user_home = os.path.expanduser("~")  # Gibt den Home-Pfad des aktuellen Benutzers zurück
+project_path = os.path.join(user_home, "PycharmProjects", "MAVIS", "static", "images")
+DEFAULT_IMAGE_PATH = os.path.join(project_path, "mavis1.3-banner.png")
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
