@@ -127,10 +127,7 @@ UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['UPLOAD_URL'] = '/uploads/'
-# Dynamischer Benutzerpfad
-user_home = os.path.expanduser("~")  # Gibt den Home-Pfad des aktuellen Benutzers zurück
-project_path = os.path.join(user_home, "PycharmProjects", "MAVIS", "static", "images")
-DEFAULT_IMAGE_PATH = os.path.join(project_path, "mavis1.3-banner.png")
+
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
@@ -313,13 +310,16 @@ def send_message():
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
 
+            image_url = '/static/images/mavis1.3-banner.png'
+
             return jsonify({
                 'response': wrapped_html_content,
-                'image_url': DEFAULT_IMAGE_PATH,
+                'image_url': image_url,
                 'code': response_content_code
             })
         except Exception as e:
             return jsonify({'error': str(e)}), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True)

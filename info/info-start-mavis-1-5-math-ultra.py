@@ -61,100 +61,19 @@
 #
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
-import subprocess
 import sys
-import platform
-from typing import List
+sys.stdout.reconfigure(encoding='utf-8')
 
-# Farbcodes definieren
-red = "\033[91m"
-green = "\033[92m"
-yellow = "\033[93m"
-blue = "\033[94m"
-reset = "\033[0m"
+print ("""
+███╗   ███╗ █████╗ ██╗   ██╗██╗███████╗     ██╗   ███████╗    ███╗   ███╗ █████╗ ████████╗██╗  ██╗    ██╗   ██╗██╗  ████████╗██████╗  █████╗ 
+████╗ ████║██╔══██╗██║   ██║██║██╔════╝    ███║   ██╔════╝    ████╗ ████║██╔══██╗╚══██╔══╝██║  ██║    ██║   ██║██║  ╚══██╔══╝██╔══██╗██╔══██╗
+██╔████╔██║███████║██║   ██║██║███████╗    ╚██║   ███████╗    ██╔████╔██║███████║   ██║   ███████║    ██║   ██║██║     ██║   ██████╔╝███████║
+██║╚██╔╝██║██╔══██║╚██╗ ██╔╝██║╚════██║     ██║   ╚════██║    ██║╚██╔╝██║██╔══██║   ██║   ██╔══██║    ██║   ██║██║     ██║   ██╔══██╗██╔══██║
+██║ ╚═╝ ██║██║  ██║ ╚████╔╝ ██║███████║     ██║██╗███████║    ██║ ╚═╝ ██║██║  ██║   ██║   ██║  ██║    ╚██████╔╝███████╗██║   ██║  ██║██║  ██║
+╚═╝     ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚══════╝     ╚═╝╚═╝╚══════╝    ╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝     ╚═════╝ ╚══════╝╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝
+""")
 
-def confirm_action(message: str) -> bool:
-    """Fordert den Benutzer zur Bestätigung auf."""
-    while True:
-        response = input(f"{message} [y/n]: ").strip().lower()
-        if response in ["y", "yes"]:
-            return True
-        elif response in ["n", "no"]:
-            return False
-        else:
-            print("Invalid input. Please enter 'y' or 'n'.")
+print(f"""🎉 A warm welcome from Peharge 🎉\n""")
 
-def is_package_installed(package: str) -> bool:
-    """Prüft, ob ein Paket installiert ist."""
-    try:
-        subprocess.check_output([sys.executable, "-m", "pip", "show", package], stderr=subprocess.DEVNULL)
-        return True
-    except subprocess.CalledProcessError:
-        return False
-
-def install_or_update_package(package: str, upgrade: bool = False):
-    """Installiert oder aktualisiert ein Paket basierend auf Benutzerbestätigung."""
-    if upgrade:
-        print(f"{package} is installed, checking for updates.")
-        if confirm_action(f"Do you want to upgrade {package}?"):
-            subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", package], check=True)
-            print(f"{green}{package} has been upgraded.{reset}")
-        else:
-            print(f"{yellow}Skipping upgrade for {package}.{reset}")
-    else:
-        print(f"{green}{package} is already installed and up-to-date.{reset}")
-
-def install_package(package: str):
-    """Installiert ein Paket basierend auf Benutzerbestätigung."""
-    print(f"{red}{package} is not installed.{reset}")
-    if confirm_action(f"Do you want to install {package}?"):
-        subprocess.run([sys.executable, "-m", "pip", "install", package], check=True)
-        print(f"{green}{package} has been installed.{reset}")
-    else:
-        print(f"{yellow}Skipping installation for {package}.{reset}")
-
-def process_packages(packages: List[str], upgrade: bool = False):
-    """Überprüft, installiert oder aktualisiert eine Liste von Paketen."""
-    for idx, package in enumerate(packages, start=1):
-        print(f"\n[{idx}/{len(packages)}] Checking package: {blue}{package}{reset}")
-        if is_package_installed(package):
-            install_or_update_package(package, upgrade=upgrade)
-        else:
-            install_package(package)
-
-print("All frameworks for Mavis versions 1.2, 1.3, 1.4 and 1.5 are currently being installed and updated.")
-
-# Paketlisten
-packages = [
-    "Flask", "ollama", "Werkzeug", "markdown", "matplotlib", "plotly",
-    "dash", "seaborn", "numpy", "sympy", "pandas", "scipy", "torch", "torchvision",
-    "torchaudio", "tensorflow", "scikit-learn", "transformers", "geopandas",
-    "altair", "vega_datasets", "altair_viewer", "ipython", "altair-saver", "kaleido",
-    "vl-convert-python", "py-cpuinfo", "GPUtil", "requests"
-]
-
-process_packages(packages, upgrade=False)
-
-print("All frameworks for Mavis versions 1.3 and 1.4 are currently being installed and updated.")
-
-specific_packages = [
-    "qwen-vl-utils", "accelerate"
-]
-
-process_packages(specific_packages, upgrade=False)
-
-print("All frameworks for Mavis versions 1.4 are currently being installed and updated.")
-
-vllm_packages = ["vllm"]
-process_packages(vllm_packages, upgrade=False)
-
-if platform.system().lower() == "windows":
-    print("\nSkipping uvloop installation: uvloop is not supported on Windows.")
-else:
-    uvloop_packages = ["uvloop"]
-    process_packages(uvloop_packages, upgrade=False)
-
-print("\nTo serve vllm, use the following commands:")
-print("vllm serve 'Qwen/Qwen2-VL-7B-Instruct'")
-print("or")
-print("vllm serve 'Qwen/Qwen2-VL-7B-Instruct' --no-uvloop\n")
+print("Framework Information:")
+print("----------------------")
