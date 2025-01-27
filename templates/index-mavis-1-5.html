@@ -1737,49 +1737,11 @@
             right: 20%;
         }
 
-        .align {
-            padding: 1rem;
-            display: flex;
-            flex-direction: row;
-            gap: 5px;
-            align-self: flex-start;
-        }
-
-        .red {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #ff605c;
-            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.280);
-        }
-
-        .yellow {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #ffbd44;
-            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.280);
-        }
-
-        .green {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #00ca4e;
-            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.280);
-        }
-
         .carddddd h1 {
             text-align: center;
             margin: 1%;
             color: rgb(255, 255, 255);
             text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.573);
-        }
-
-        .align {
-            display: flex;
-            justify-content: space-around;
-            padding: 1rem;
         }
 
         .draw-canvas {
@@ -1852,12 +1814,6 @@
             overflow-x: auto;
         }
 
-        .input-draw:focus {
-            outline: none;
-            border-color: #00ca4e;
-            background: rgba(0, 0, 0, 0.6);
-        }
-
         .input-latexCode textarea {
             margin-top: 15px;
             background-color: rgba(0, 0, 0, 0.1);
@@ -1904,8 +1860,8 @@
                 <span class="yellowddd"></span>
                 <span class="greenddd"></span>
             </div>
-            <h1 style="font-size: clamp(1rem, 3vw, 3rem);">MAVIS</h1>
-            <p style="font-size: clamp(0.3rem, 1vw, 1rem);">
+            <h1 style="font-size: clamp(1rem, 3vw, 5rem);">MAVIS</h1>
+            <p style="font-size: clamp(0.3rem, 0.9vw, 2rem);">
                 Most powerful calculator in the world, just for you ❤️<br><br>
 
                 <button class="buttongit">
@@ -1918,7 +1874,7 @@
                     </a>
                 </button>
             </p>
-            <p style="font-size: clamp(0.3rem, 1vw, 1rem);">
+            <p style="font-size: clamp(0.3rem, 0.9vw, 2rem);">
                 MAVIS takes control - everything is done automatically and efficiently for you.<br>Relax and chat without interruptions. <br><br>
                 <div class="server-img">
                     <div class="container_SevMini">
@@ -1987,15 +1943,15 @@
                 <span class="green"></span>
             </div>
 
-            <h1 style="font-size: clamp(0.5rem, 3vw, 3rem);">MAVIS Infos</h1>
+            <h1 style="font-size: clamp(0.5rem, 3vw, 5rem);">MAVIS Infos</h1>
 
-            <p style="font-size: clamp(0.1rem, 0.8vw, 2rem);">MAVIS is an AI-driven application that allows you to analyze visual data such as images (formats: PNG, JPG, JPEG and GIF) and generate interactive answers based on them. With MAVIS you can perform complex mathematical calculations, solve programming tasks and create professional graphics.<br>
+            <p style="font-size: clamp(0.1rem, 0.8vw, 2rem);">MAVIS is an AI-driven application that allows you to analyze visual data such as images <strong>formats: PNG, JPG, JPEG and GIF</strong> and generate interactive answers based on them. With MAVIS you can perform complex mathematical calculations, solve programming tasks and create professional graphics.<br>
 
             <strong>Important:</strong> Always display formulas in LaTeX to ensure precise and attractive formatting.
 
             Request MAVIS to always write code in Python, as this is the only one supported by the user interface.
 
-            Ask MAVIS to create graphics using Matplotlib, as the user interface only supports HTML, LaTeX and Python (version 3.13 with the frameworks Matplotlib, Plotly, Seaborn, Altair, NumPy, Math, SymPy and Pandas (if needed soon: PyTorch, TensorFlow, Keras, Scikit-Learn and Hugging Face Transformers (maybe JAX)).<br>
+            Ask MAVIS to create graphics using Matplotlib, as the user interface only supports HTML, LaTeX and Python - version 3.13 with the frameworks Matplotlib, Plotly, Seaborn, Altair, NumPy, Math, SymPy and Pandas if needed soon: PyTorch, TensorFlow, Keras, Scikit-Learn and Hugging Face Transformers maybe JAX -<br>
             <strong>Important:</strong>This software only works with Microsoft Edge!</p>
 
             <div class="info" style="display: flex; justify-content: center; align-items: center;">
@@ -2084,10 +2040,17 @@
         <div class="carddddd" id="carddddd-id">
             <canvas id="draw-canvas" class="draw-canvas"></canvas>
             <div class="draw-controls">
-                <!-- Buttons für verschiedene Modi -->
                 <button id="draw-drawMode" class="draw-button">
-                    <svg fill="#000000" height="256px" width="256px" viewBox="0 0 512 512">
-                        <path d="M70.2,337.4l104.4,104.4L441.5,175L337,70.5L70.2,337.4z M0.6,499.8c-2.3,9.3,2.3,13.9,11.6,11.6L151.4,465L47,360.6L0.6,499.8z M487.9,24.1c-46.3-46.4-92.8-11.6-92.8-11.6c-7.6,5.8-34.8,34.8-34.8,34.8l104.4,104.4c0,0,28.9-27.2,34.8-34.8C499.5,116.9,534.3,70.6,487.9,24.1z"></path>
+                    <svg width="256px" height="256px" viewBox="0 0 24 24" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path d="M11.4001 18.1612L11.4001 18.1612L18.796 10.7653C17.7894 10.3464 16.5972 9.6582 15.4697 8.53068C14.342 7.40298 13.6537 6.21058 13.2348 5.2039L5.83882 12.5999L5.83879 12.5999C5.26166 13.1771 4.97307 13.4657 4.7249 13.7838C4.43213 14.1592 4.18114 14.5653 3.97634 14.995C3.80273 15.3593 3.67368 15.7465 3.41556 16.5208L2.05445 20.6042C1.92743 20.9852 2.0266 21.4053 2.31063 21.6894C2.59466 21.9734 3.01478 22.0726 3.39584 21.9456L7.47918 20.5844C8.25351 20.3263 8.6407 20.1973 9.00498 20.0237C9.43469 19.8189 9.84082 19.5679 10.2162 19.2751C10.5343 19.0269 10.823 18.7383 11.4001 18.1612Z"
+                                  fill="#000000"></path>
+                            <path d="M20.8482 8.71306C22.3839 7.17735 22.3839 4.68748 20.8482 3.15178C19.3125 1.61607 16.8226 1.61607 15.2869 3.15178L14.3999 4.03882C14.4121 4.0755 14.4246 4.11268 14.4377 4.15035C14.7628 5.0875 15.3763 6.31601 16.5303 7.47002C17.6843 8.62403 18.9128 9.23749 19.85 9.56262C19.8875 9.57563 19.9245 9.58817 19.961 9.60026L20.8482 8.71306Z"
+                                  fill="#000000"></path>
+                        </g>
                     </svg>
                 </button>
                 <button id="draw-eraseMode" class="draw-button">
@@ -2119,8 +2082,8 @@
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                         <g id="SVGRepo_iconCarrier">
-                            <path d="M10 6L7 3M7 3L4 6M7 3V17M14 18L17 21M17 21L20 18M17 21V7" stroke="#000000"
-                                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z"
+                                  fill="#000000"></path>
                         </g>
                     </svg>
                 </button>
@@ -2818,8 +2781,13 @@
               </svg>
             </button>
             <button class="button-input-plus" onclick="toggleCarddddd()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon2">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M3 22H15M9 2H21M9 22L15 2" stroke="#ffffff" stroke-width="1.848" stroke-linecap="round" stroke-linejoin="round"></path> </g>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="0" fill="currentColor" stroke="currentColor" class="icon2">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path d="M12 22C12.5523 22 13 21.5523 13 21C13 20.4477 12.5523 20 12 20V22ZM12.4453 4.01216C12.9968 4.04235 13.4683 3.61979 13.4985 3.06833C13.5287 2.51687 13.1061 2.04535 12.5547 2.01515L12.4453 4.01216ZM11.7627 9.23726L11.0556 8.53015L11.7627 9.23726ZM17.411 3.58902L18.1181 4.29613L17.411 3.58902ZM9 15L8.01005 14.8586C7.96411 15.1802 8.07723 15.504 8.3134 15.727C8.54957 15.9501 8.87936 16.0445 9.19778 15.9802L9 15ZM9.04745 14.6678L8.0575 14.5264L8.0575 14.5264L9.04745 14.6678ZM9.48793 14.9016L9.29015 13.9213L9.48793 14.9016ZM12.8012 13.7247L12.2287 12.9048H12.2287L12.8012 13.7247ZM11.564 14.3882L11.9302 15.3187H11.9302L11.564 14.3882ZM10.1791 10.9786L9.34943 10.4203V10.4203L10.1791 10.9786ZM9.49029 12.3561L8.54586 12.0274V12.0274L9.49029 12.3561ZM16.7071 4.29289C16.3166 3.90237 15.6834 3.90237 15.2929 4.29289C14.9024 4.68342 14.9024 5.31658 15.2929 5.70711L16.7071 4.29289ZM18.1213 8.53553C18.5118 8.92606 19.145 8.92606 19.5355 8.53553C19.9261 8.14501 19.9261 7.51184 19.5355 7.12132L18.1213 8.53553ZM16 16C15.4477 16 15 16.4477 15 17C15 17.5523 15.4477 18 16 18V16ZM21.88 10.8011C21.7701 10.2598 21.2423 9.91012 20.701 10.02C20.1598 10.1299 19.8101 10.6577 19.92 11.1989L21.88 10.8011ZM12 20C7.58172 20 4 16.4183 4 12H2C2 17.5228 6.47715 22 12 22V20ZM4 12C4 7.58172 7.58172 4 12 4V2C6.47715 2 2 6.47715 2 12H4ZM12 4C12.1495 4 12.298 4.00409 12.4453 4.01216L12.5547 2.01515C12.371 2.00509 12.186 2 12 2V4ZM12.4698 9.94436L18.1181 4.29613L16.7039 2.88191L11.0556 8.53015L12.4698 9.94436ZM19.5323 5.71034L13.6703 11.5723L15.0845 12.9865L20.9465 7.12455L19.5323 5.71034ZM9.98995 15.1414L10.0374 14.8093L8.0575 14.5264L8.01005 14.8586L9.98995 15.1414ZM9.29015 13.9213L8.80222 14.0198L9.19778 15.9802L9.68571 15.8818L9.29015 13.9213ZM13.6703 11.5723C12.8844 12.3582 12.5736 12.664 12.2287 12.9048L13.3737 14.5447C13.8964 14.1797 14.3472 13.7239 15.0845 12.9865L13.6703 11.5723ZM9.68571 15.8818C10.7079 15.6755 11.3371 15.5522 11.9302 15.3187L11.1977 13.4577C10.8064 13.6118 10.3796 13.7015 9.29015 13.9213L9.68571 15.8818ZM12.2287 12.9048C11.9079 13.1288 11.5618 13.3144 11.1977 13.4577L11.9302 15.3187C12.44 15.1181 12.9245 14.8583 13.3737 14.5447L12.2287 12.9048ZM11.0556 8.53015C10.243 9.34283 9.74031 9.83942 9.34943 10.4203L11.0087 11.5369C11.2665 11.1538 11.6034 10.8108 12.4698 9.94436L11.0556 8.53015ZM10.0374 14.8093C10.2107 13.5963 10.2829 13.121 10.4347 12.6848L8.54586 12.0274C8.31572 12.6886 8.22004 13.3887 8.0575 14.5264L10.0374 14.8093ZM9.34943 10.4203C9.01364 10.9192 8.74356 11.4594 8.54586 12.0274L10.4347 12.6848C10.5759 12.2791 10.7688 11.8933 11.0087 11.5369L9.34943 10.4203ZM19.5323 4.29613C19.9228 4.68665 19.9228 5.31981 19.5323 5.71034L20.9465 7.12455C22.1181 5.95298 22.1181 4.05348 20.9465 2.88191L19.5323 4.29613ZM20.9465 2.88191C19.7749 1.71034 17.8754 1.71034 16.7039 2.88191L18.1181 4.29613C18.5086 3.9056 19.1418 3.9056 19.5323 4.29613L20.9465 2.88191ZM15.2929 5.70711L18.1213 8.53553L19.5355 7.12132L16.7071 4.29289L15.2929 5.70711ZM20 12C20 14.2091 18.2091 16 16 16V18C19.3137 18 22 15.3137 22 12H20ZM19.92 11.1989C19.9723 11.4569 20 11.7247 20 12H22C22 11.5903 21.9588 11.1893 21.88 10.8011L19.92 11.1989Z"
+                              fill="#ffffff"></path>
+                    </g>
                 </svg>
             </button>
         </div>
@@ -2852,7 +2820,7 @@
                     <input type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)" style="display:none;">
 
                     <br>
-                    <button type="submit" class="button2">Senden</button>
+                    <button type="submit" class="button2">Submit</button>
             </div>
 
             <div id="image-preview" class="card-image-preview" style="display:none; text-align: center; z-index: 10;" onclick="closePreview()">
