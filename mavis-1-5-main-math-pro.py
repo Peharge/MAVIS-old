@@ -298,7 +298,7 @@ def send_message():
         # Verarbeite die Nachricht ohne Bild, benutze das Standardbild
         try:
             response = ollama.chat(
-                model='deepseek-r1:14b',
+                model='deepseek-r1:32b',
                 messages=[{
                     'role': 'user',
                     'content': user_message
