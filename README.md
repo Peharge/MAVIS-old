@@ -225,6 +225,185 @@ And more...
 > 28.01.2025
 
 <details>
+  <summary>Frameworks that MAVIS 1.5 knows</summary>
+
+1. **Flask**  
+   Lightweight web framework for Python.
+
+2. **ollama**  
+   Tool for integration with AI APIs.
+
+3. **Werkzeug**  
+   Utility library for WSGI applications and web development.
+
+4. **markdown**  
+   Library for converting Markdown to HTML.
+
+5. **matplotlib**  
+   Powerful tool for data visualization.
+
+6. **plotly**  
+   Interactive data visualization in Python.
+
+7. **dash**  
+   Framework for creating interactive web dashboards.
+
+8. **seaborn**  
+   Extension of Matplotlib for statistical data visualization.
+
+9. **numpy**  
+   Library for numerical computations.
+
+10. **sympy**  
+    Symbolic computation in Python.
+
+11. **pandas**  
+    Tool for data analysis and manipulation.
+
+12. **scipy**  
+    Library for scientific computing and optimization.
+
+13. **tensorflow** *(soon)*  
+    Framework for machine learning and deep learning.
+
+14. **torch**  
+    PyTorch library for machine learning and deep learning.
+
+15. **scikit-learn**  
+    Library for machine learning.
+
+16. **transformers**  
+    Library for pretrained models (NLP, vision).
+
+17. **geopandas**  
+    Geospatial data processing with Pandas.
+
+18. **altair**  
+    Declarative data visualization library.
+
+19. **vega_datasets**  
+    Datasets for visualizations with Altair.
+
+20. **ipython**  
+    Interactive Python shell.
+
+21. **kaleido**  
+    Renderer for Plotly images.
+
+22. **py-cpuinfo**  
+    Library for retrieving CPU information.
+
+23. **GPUtil**  
+    Monitor GPU utilization.
+
+24. **requests**  
+    HTTP library for Python.
+
+25. **astropy**  
+    Library for analyzing astronomical data.
+
+26. **QuantLib**  
+    Quantitative finance library.
+
+27. **openmdao**  
+    Framework for multidisciplinary optimization.
+
+28. **pybullet** *(soon)*  
+    Physics engine for simulations and robotics.
+
+29. **monai**  
+    Framework for medical imaging with AI.
+
+30. **fenics**  
+    Solution of partial differential equations.
+
+31. **pydy**  
+    Dynamic simulation of mechanical systems.
+
+32. **pycalculix**  
+    Finite element analysis in Python.
+
+33. **solidpython**  
+    Creation of 3D models for OpenSCAD.
+
+34. **pyomo**  
+    Modeling and optimization of mathematical problems.
+
+35. **gekko**  
+    Optimization and control tool for dynamic systems.
+
+36. **casadi**  
+    Optimization and control of dynamic systems.
+
+37. **control**  
+    Tool for control system design and analysis.
+
+38. **rospy** *(soon)*  
+    ROS client library for Python.
+
+39. **h2o**  
+    Platform for machine learning and AI.
+
+40. **pint**  
+    Unit system for physical calculations.
+
+41. **coolprop**  
+    Thermophysical properties of fluids and gases.
+
+42. **pythermo**  
+    Thermodynamic calculations.
+
+43. **biopython**  
+    Library for bioinformatics.
+
+44. **opencv-python**  
+    Computer vision library.
+
+45. **SimpleITK**  
+    Image processing for medical applications.
+
+46. **nilearn**  
+    Analysis and visualization of neuroimaging data.
+
+47. **deepchem**  
+    Machine learning for chemistry and biology.
+
+48. **pymedtermino**  
+    Processing medical terminology.
+
+49. **lifelines**  
+    Survival data analysis.
+
+50. **rdkit**  
+    Tools for cheminformatics.
+
+51. **ase**  
+    Simulation of atomic systems.
+
+52. **chempy**  
+    Chemical computations.
+
+53. **shapely**  
+    Manipulation of geometric objects.
+
+54. **fiona**  
+    Geospatial data access and file formats.
+
+55. **cartopy**  
+    Map projection and geospatial visualization.
+
+56. **statsmodels**  
+    Statistical modeling and data analysis.
+
+57. **yfinance**  
+    Fetching financial market data.
+
+58. **QuantLib**  
+    Quantitative finance library.
+
+</details>
+
+<details>
   <summary>more MAVIS versions</summary>
 
 ### MAVIS 1.6 EAP release
