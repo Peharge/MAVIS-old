@@ -135,7 +135,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 
 ## Updates
 
-### MAVIS 1.1 EAP release (with Llama 3.2)
+### MAVIS 1.1 EAP release (with Llama 3.2) [old]
 
 <p align="center">
     <img src="./readme-img/MAVIS-ads13.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -156,7 +156,7 @@ And more...
 
 > 01.12.2024 
 
-### MAVIS 1.2 release
+### MAVIS 1.2 release [no more updates in the areas of graphics, frameworks and security]
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-ads-new1.3.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -177,7 +177,7 @@ And more...
 
 > 12.12.2024 
 
-### MAVIS 1.3 release [soon]
+### MAVIS 1.3 EAP release [experimental]
 
 <p align="center">
   <img src="./readme-img/mavis1.3-banner-ads2.png" alt="mavis" width="650" style="margin: 10px;">
@@ -200,10 +200,7 @@ And more...
 
 > 24.12.2024
 
-<details>
-  <summary>more MAVIS versions</summary>
-
-### MAVIS 1.4 EAP release [soon]
+### MAVIS 1.4 EAP release [This update (MAVIS 1.4 EAP) is skipped and MAVIS 1.5 EAP is out]
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis1.4-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -215,9 +212,9 @@ soon...
 
 And more...
 
-> + 01.02.2025
+> 01.01.2025
 
-### MAVIS 1.5 EAP release
+### MAVIS 1.5 EAP release [new]
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis1.5-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -225,7 +222,10 @@ And more...
 
 <br>
 
-> + 01.03.2025
+> 28.01.2025
+
+<details>
+  <summary>more MAVIS versions</summary>
 
 ### MAVIS 1.6 EAP release
 
@@ -348,13 +348,17 @@ And more...
 | Mavis 1.2.2 main       | With **Xc++ 2 11B** or Llama3.2 11B + Phi4 +16GB RAM +23GB storage (Works with one CPU)               | 27B            |
 | Mavis 1.2.2 math       | With **Xc++ 2 11B** or Llama3.2 11B + DeepSeek R1 14B +16GB RAM +23GB storage (Works with one CPU)    | 27B            |
 | Mavis 1.2.2 math pro   | With **Xc++ 2 11B** or Llama3.2 11B + DeepSeek R 32B +32GB RAM +33GB storage (Works with one CPU)     | 43B            |
-| Mavis 1.2.2 math ultra | With **Xc++ 2 90B** or Llama3.2 90B + DeepSeek R1 671B +256GB RAM +469GB storage (Works with one CPU) | 761B            |
+| Mavis 1.2.2 math ultra | With **Xc++ 2 90B** or Llama3.2 90B + DeepSeek R1 671B +256GB RAM +469GB storage (Works with one CPU) | 761B           |
 | Mavis 1.3 main         | With **Xc++ 2 11B** or Qwen2 VL 7B + Llama 3.3 +64GB RAM +53GB storage (Works with one CPU)           | 77B            |
 | Mavis 1.3 math         | With **Xc++ 2 11B** or Qwen2 VL 7B + Qwen 2.5 14B +16GB RAM +33GB storage (Works with one CPU)        | 21B            |
 | Mavis 1.3 code         | With **Xc++ 2 11B** or Qwen2 VL 7B + Qwen 2.5 Coder 14B +16B RAM +33GB storage (Works with one CPU)   | 21B            |
 | Mavis 1.3 math pro     | With **Xc++ 2 90** or Qwen2 VL 72B + QwQ +64GB RAM +53GB storage (Works with one CPU)                 | 104B           |
 | Mavis 1.3 math pro     | With **Xc++ 2 90B** or Qwen2 VL 72B + Qwen 2.5 Coder 32B +64GB RAM +53GB storage (Works with one CPU) | 104B           |
 | Mavis 1.4 math         | With **Xc++ 2 90B** or QvQ + QwQ +64GB RAM +53GB storage (Works with one CPU)                         | 104B           |
+| Mavis 1.5 math         | With **Xc++ 2 11B** or Llama3.2 11B + DeepSeek R1 14B +16GB RAM +23GB storage (Works with one CPU)    | 27B            |
+| Mavis 1.5 math pro     | With **Xc++ 2 11B** or Llama3.2 11B + DeepSeek R 32B +32GB RAM +33GB storage (Works with one CPU)     | 43B            |
+| Mavis 1.5 math ultra   | With **Xc++ 2 90B** or Llama3.2 90B + DeepSeek R1 671B +256GB RAM +469GB storage (Works with one CPU) | 761B           |
+| Mavis 1.5 code         | With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 Coder 14B +16GB RAM +23GB storage (Works with one CPU) | 27B            |
 
 ## Benchmark
 
