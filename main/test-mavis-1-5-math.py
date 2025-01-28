@@ -100,8 +100,8 @@ import pyomo.environ as pyo
 from gekko import GEKKO
 import casadi as ca
 import control as ctrl
-import rospy
-import pybullet as p
+# import rospy
+# import pybullet as p
 import h2o
 import pint
 import CoolProp.CoolProp as CP

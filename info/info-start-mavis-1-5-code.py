@@ -85,6 +85,9 @@ yellow = "\033[93m"
 blue = "\033[94m"
 reset = "\033[0m"
 
+# Farbiges Drucken des Textes
+print(f"{green}Don't forget to {yellow}update pip {red}with python -m pip install --upgrade pip {blue}every now and then{reset}")
+
 # Funktion zum Ausgeben von Frameworks mit Beschreibung
 def print_framework(title, description, color=blue):
     print(f"{color}{title}{reset} - {description}")

@@ -59,7 +59,7 @@ pip install pyomo
 pip install gekko
 pip install casadi
 pip install control
-pip install rospy
+# pip install rospy
 pip install pybullet
 pip install h2o
 pip install pint

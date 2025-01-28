@@ -132,7 +132,7 @@ packages = [
     "altair", "vega_datasets", "altair_viewer", "ipython", "altair-saver", "kaleido",
     "vl-convert-python", "py-cpuinfo", "GPUtil", "requests", "astropy", "QuantLib",
     "openmdao", "pybullet", "monai", "fenics", "pydy", "pycalculix", "solidpython",
-    "pyomo", "gekko", "casadi", "control", "rospy", "pybullet", "h2o", "pint", "coolprop",
+    "pyomo", "gekko", "casadi", "control", "pybullet", "h2o", "pint", "coolprop",
     "pythermo", "biopython", "opencv-python", "SimpleITK", "nilearn", "deepchem", "pymedtermino",
     "lifelines", "rdkit", "ase", "chempy", "shapely", "fiona", "cartopy", "statsmodels",
     "yfinance", "QuantLib", ""
