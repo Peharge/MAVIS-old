@@ -122,7 +122,7 @@ def process_packages(packages: List[str], upgrade: bool = False):
         else:
             install_package(package)
 
-print("All frameworks for Mavis versions 1.2, 1.3 and 1.4 are currently being installed and updated.")
+print("All frameworks for Mavis versions 1.2, 1.3, 1.4 and 1.5 are currently being installed and updated.")
 
 # Paketlisten
 packages = [
@@ -130,23 +130,16 @@ packages = [
     "dash", "seaborn", "numpy", "sympy", "pandas", "scipy", "torch", "torchvision",
     "torchaudio", "tensorflow", "scikit-learn", "transformers", "geopandas",
     "altair", "vega_datasets", "altair_viewer", "ipython", "altair-saver", "kaleido",
-    "vl-convert-python", "py-cpuinfo", "GPUtil", "requests"
+    "vl-convert-python", "py-cpuinfo", "GPUtil", "requests", "astropy", "QuantLib",
+    "openmdao", "pybullet", "monai", "fenics", "pydy", "pycalculix", "solidpython",
+    "pyomo", "gekko", "casadi", "control", "rospy", "pybullet", "h2o", "pint", "coolprop",
+    "pythermo", "biopython", "opencv-python", "SimpleITK", "nilearn", "deepchem", "pymedtermino",
+    "lifelines", "rdkit", "ase", "chempy", "shapely", "fiona", "cartopy", "statsmodels",
+    "yfinance", "QuantLib", ""
+
 ]
 
 process_packages(packages, upgrade=False)
-
-print("All frameworks for Mavis versions 1.3 and 1.4 are currently being installed and updated.")
-
-specific_packages = [
-    "qwen-vl-utils", "accelerate"
-]
-
-process_packages(specific_packages, upgrade=False)
-
-print("All frameworks for Mavis versions 1.4 are currently being installed and updated.")
-
-vllm_packages = ["vllm"]
-process_packages(vllm_packages, upgrade=False)
 
 if platform.system().lower() == "windows":
     print("\nSkipping uvloop installation: uvloop is not supported on Windows.")

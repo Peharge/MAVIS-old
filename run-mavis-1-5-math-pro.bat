@@ -66,7 +66,7 @@ REM Veuillez lire l'intégralité des termes et conditions de la licence MIT pou
 set USERNAME=%USERNAME%
 set PYTHON_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe
 set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info\info-start-mavis-1-5-math-pro.py
-set SCRIPT_PATH_2=C:\Users\%USERNAME%\PycharmProjects\MAVIS\install\install.py
+set SCRIPT_PATH_2=C:\Users\%USERNAME%\PycharmProjects\MAVIS\install\install-mavis-1-5.py
 set SCRIPT_PATH_update=C:\Users\%USERNAME%\PycharmProjects\MAVIS\update\update-repository-windows.py
 set SCRIPT_PATH_3=C:\Users\%USERNAME%\PycharmProjects\MAVIS\install\install-ollama-mavis-1-5-math-pro.py
 set SCRIPT_PATH_4=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info\info.py

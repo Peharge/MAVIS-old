@@ -84,41 +84,71 @@ import dash
 from dash import Dash, html, dcc, callback, Output, Input
 import math
 from IPython.display import display
-import math
+import scipy
 
-# Optional: pip install -U kaleido für Plotly Export
+#---für Physik/Chemie/Biologie(Medizin)/Erdkunde/Wirtschaft---
 
-#---soon für Maschinenbau---
-
-# FEniCS, PyDy, PyCalculix, SolidPython, Pyomo, GEKKO, CasADi, Control Systems Library, ROS, PyBullet, H2O.ai, Pint, CoolProp, PyThermo
+import QuantLib as ql
+import openmdao.api as om
+import pybullet as p
+import monai
+import fenics
+import pydy
+import pycalculix
+import solid
+import pyomo.environ as pyo
+from gekko import GEKKO
+import casadi as ca
+import control as ctrl
+import rospy
+import pybullet as p
+import h2o
+import pint
+import CoolProp.CoolProp as CP
+import pythermo
+# import scipy as sp (Problem mit sp)
+import geopandas as gpd
+import Bio
+import cv2
+import SimpleITK as sitk
+from nilearn import plotting
+import deepchem
+import pymedtermino
+from lifelines import KaplanMeierFitter
+from rdkit import Chem
+from ase import Atoms
+from chempy import Substance
+from shapely.geometry import Point
+import fiona
+import cartopy.crs as ccrs
+import statsmodels.api as sm
+import yfinance as yf
+import QuantLib
 
 #---ultimate für Deep Learning etc.---
 
-# import scipy as sp
-# import geopandas as gpd
+# Importiere die wichtigsten Komponenten von PyTorch für Deep Learning (sehr mächtig)
 
-# Importiere die wichtigsten Komponenten von PyTorch für Deep Learning (sehr mächtig) (Install: https://pytorch.org/)
+from torch import *
+from torch.nn import *
+from torch.optim import *
+from torch.autograd import *
+from torch.utils.data import *
 
-# from torch import *
-# from torch.nn import *
-# from torch.optim import *
-# from torch.autograd import *
-# from torch.utils.data import *
-
-# Importiere die wichtigsten Komponenten von TensorFlow für Deep Learning (sehr mächtig) (Install: pip install tensorflow)
+# Importiere die wichtigsten Komponenten von TensorFlow für Deep Learning (sehr mächtig)
 
 # import tensorflow as tf
 # from tensorflow import keras
 # from tensorflow.keras import layers, models, optimizers
 # from tensorflow.data import Dataset
 
-# Importiere die wichtigsten Komponenten von Scikit-Learn für Deep Learning (sehr mächtig) (Install: pip install scikit-learn)
+# Importiere die wichtigsten Komponenten von Scikit-Learn für Deep Learning (sehr mächtig)
 
-# import sklearn as skl
+import sklearn as skl
 
-# Importiere die wichtigsten Komponenten von Transformers für Deep Learning (sehr mächtig) (Install: pip install transformers)
+# Importiere die wichtigsten Komponenten von Transformers für Deep Learning (sehr mächtig)
 
-# from transformers import pipeline
+from transformers import pipeline
 
 app = Flask(__name__)
 # Setze einen geheimen Schlüssel für die Session

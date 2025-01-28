@@ -77,3 +77,80 @@ print(f"""🎉 A warm welcome from Peharge 🎉\n""")
 
 print("Framework Information:")
 print("----------------------")
+
+# Farbcodes definieren
+red = "\033[91m"
+green = "\033[92m"
+yellow = "\033[93m"
+blue = "\033[94m"
+reset = "\033[0m"
+
+# Funktion zum Ausgeben von Frameworks mit Beschreibung
+def print_framework(title, description, color=blue):
+    print(f"{color}{title}{reset} - {description}")
+
+# Frameworks and their descriptions
+frameworks = [
+    ("Flask", "Lightweight web framework for Python."),
+    ("ollama", "Tool for integration with AI APIs."),
+    ("Werkzeug", "Utility library for WSGI applications and web development."),
+    ("markdown", "Library for converting Markdown to HTML."),
+    ("matplotlib", "Powerful tool for data visualization."),
+    ("plotly", "Interactive data visualization in Python."),
+    ("dash", "Framework for creating interactive web dashboards."),
+    ("seaborn", "Extension of Matplotlib for statistical data visualization."),
+    ("numpy", "Library for numerical computations."),
+    ("sympy", "Symbolic computation in Python."),
+    ("pandas", "Tool for data analysis and manipulation."),
+    ("scipy", "Library for scientific computing and optimization."),
+    ("tensorflow", "Framework for machine learning and deep learning."),
+    ("torch", "PyTorch library for machine learning and deep learning."),
+    ("scikit-learn", "Library for machine learning."),
+    ("transformers", "Library for pretrained models (NLP, vision)."),
+    ("geopandas", "Geospatial data processing with Pandas."),
+    ("altair", "Declarative data visualization library."),
+    ("vega_datasets", "Datasets for visualizations with Altair."),
+    ("ipython", "Interactive Python shell."),
+    ("kaleido", "Renderer for Plotly images."),
+    ("py-cpuinfo", "Library for retrieving CPU information."),
+    ("GPUtil", "Monitor GPU utilization."),
+    ("requests", "HTTP library for Python."),
+    ("astropy", "Library for analyzing astronomical data."),
+    ("QuantLib", "Quantitative finance library."),
+    ("openmdao", "Framework for multidisciplinary optimization."),
+    ("pybullet", "Physics engine for simulations and robotics."),
+    ("monai", "Framework for medical imaging with AI."),
+    ("fenics", "Solution of partial differential equations."),
+    ("pydy", "Dynamic simulation of mechanical systems."),
+    ("pycalculix", "Finite element analysis in Python."),
+    ("solidpython", "Creation of 3D models for OpenSCAD."),
+    ("pyomo", "Modeling and optimization of mathematical problems."),
+    ("gekko", "Optimization and control tool for dynamic systems."),
+    ("casadi", "Optimization and control of dynamic systems."),
+    ("control", "Tool for control system design and analysis."),
+    ("rospy", "ROS client library for Python."),
+    ("h2o", "Platform for machine learning and AI."),
+    ("pint", "Unit system for physical calculations."),
+    ("coolprop", "Thermophysical properties of fluids and gases."),
+    ("pythermo", "Thermodynamic calculations."),
+    ("biopython", "Library for bioinformatics."),
+    ("opencv-python", "Computer vision library."),
+    ("SimpleITK", "Image processing for medical applications."),
+    ("nilearn", "Analysis and visualization of neuroimaging data."),
+    ("deepchem", "Machine learning for chemistry and biology."),
+    ("pymedtermino", "Processing medical terminology."),
+    ("lifelines", "Survival data analysis."),
+    ("rdkit", "Tools for cheminformatics."),
+    ("ase", "Simulation of atomic systems."),
+    ("chempy", "Chemical computations."),
+    ("shapely", "Manipulation of geometric objects."),
+    ("fiona", "Geospatial data access and file formats."),
+    ("cartopy", "Map projection and geospatial visualization."),
+    ("statsmodels", "Statistical modeling and data analysis."),
+    ("yfinance", "Fetching financial market data."),
+    ("QuantLib", "Quantitative finance library.")
+]
+
+# Frameworks ausgeben
+for title, description in frameworks:
+    print_framework(title, description)

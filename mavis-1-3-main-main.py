@@ -89,7 +89,6 @@ import dash
 from dash import Dash, html, dcc, callback, Output, Input
 import math
 from IPython.display import display
-import math
 
 # Optional: pip install -U kaleido für Plotly Export
 

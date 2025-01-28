@@ -79,7 +79,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 > - Ask MAVIS to always write code in Python, as this is the only language supported by the user interface.
 > 
 > 
-> - Ask MAVIS to create graphics using Matplotlib, as the user interface only supports HTML, LaTeX and Python (version 3.13 with the frameworks Matplotlib, Plotly, Seaborn, Altair, NumPy, Math, SymPy and Pandas (if needed soon: PyTorch, TensorFlow, Keras, Scikit-Learn and Hugging Face Transformers (maybe JAX)).
+> - Ask MAVIS to create graphics using Matplotlib, as the user interface only supports HTML, LaTeX and Python (version 3.13 with the frameworks Matplotlib, Plotly, Seaborn, Altair, NumPy, Math, SymPy, Pandas, AstroPy, QuantLib, OpenMDAO, pybullet, MONAI (if needed soon: PyTorch, TensorFlow, Keras, Scikit-Learn and Hugging Face Transformers (maybe JAX)).
 > 
 > Use the powerful features of MAVIS to make your projects more efficient and professional.
 

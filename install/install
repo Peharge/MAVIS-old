@@ -43,3 +43,44 @@ vllm serve "Qwen/Qwen2-VL-7B-Instruct"
 # or
 
 vllm serve "Qwen/Qwen2-VL-7B-Instruct" --no-uvloop
+
+# --- 1.5
+
+pip install astropy
+pip install QuantLib
+pip install openmdao
+pip install pybullet
+pip install monai
+pip install fenics
+pip install pydy
+pip install pycalculix
+pip install solidpython
+pip install pyomo
+pip install gekko
+pip install casadi
+pip install control
+pip install rospy
+pip install pybullet
+pip install h2o
+pip install pint
+pip install coolprop
+pip install pythermo
+pip install biopython
+pip install opencv-python
+pip install SimpleITK
+pip install nilearn
+pip install deepchem
+pip install pymedtermino
+pip install lifelines
+pip install rdkit
+pip install ase
+pip install chempy
+pip install shapely
+pip install fiona
+pip install cartopy
+pip install statsmodels
+pip install yfinance
+pip install QuantLib
+
+
+
