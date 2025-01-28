@@ -127,15 +127,15 @@ print("All frameworks for Mavis versions 1.2, 1.3, 1.4 and 1.5 are currently bei
 # Paketlisten
 packages = [
     "Flask", "ollama", "Werkzeug", "markdown", "matplotlib", "plotly",
-    "dash", "seaborn", "numpy", "sympy", "pandas", "scipy", "torch", "torchvision",
-    "torchaudio", "tensorflow", "scikit-learn", "transformers", "geopandas",
+    "dash", "seaborn", "numpy", "sympy", "pandas", "geopandas", "scipy", "torch",
+    "torchvision", "torchaudio", "tensorflow", "scikit-learn", "transformers",
     "altair", "vega_datasets", "altair_viewer", "ipython", "altair-saver", "kaleido",
     "vl-convert-python", "py-cpuinfo", "GPUtil", "requests", "astropy", "QuantLib",
     "openmdao", "pybullet", "monai", "fenics", "pydy", "pycalculix", "solidpython",
     "pyomo", "gekko", "casadi", "control", "pybullet", "h2o", "pint", "coolprop",
-    "pythermo", "biopython", "opencv-python", "SimpleITK", "nilearn", "deepchem", "pymedtermino",
-    "lifelines", "rdkit", "ase", "chempy", "shapely", "fiona", "cartopy", "statsmodels",
-    "yfinance", "QuantLib", ""
+    "pythermo", "biopython", "opencv-python", "SimpleITK", "nilearn", "deepchem",
+    "pymedtermino", "lifelines", "rdkit", "ase", "chempy", "shapely", "fiona", "cartopy",
+    "statsmodels", "yfinance", "QuantLib"
 
 ]
 

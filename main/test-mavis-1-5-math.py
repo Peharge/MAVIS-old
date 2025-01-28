@@ -84,7 +84,7 @@ import dash
 from dash import Dash, html, dcc, callback, Output, Input
 import math
 from IPython.display import display
-import scipy
+# import scipy as sp (Problem mit sp)
 
 #---für Physik/Chemie/Biologie(Medizin)/Erdkunde/Wirtschaft---
 
@@ -92,7 +92,7 @@ import QuantLib as ql
 import openmdao.api as om
 import pybullet as p
 import monai
-import fenics
+# import fenics (soon)
 import pydy
 import pycalculix
 import solid
@@ -100,13 +100,12 @@ import pyomo.environ as pyo
 from gekko import GEKKO
 import casadi as ca
 import control as ctrl
-# import rospy
-# import pybullet as p
+# import rospy (soon)
+# import pybullet as p (soon)
 import h2o
 import pint
 import CoolProp.CoolProp as CP
 import pythermo
-# import scipy as sp (Problem mit sp)
 import geopandas as gpd
 import Bio
 import cv2

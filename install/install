@@ -27,6 +27,7 @@ pip install vl-convert-python
 pip install py-cpuinfo
 pip install GPUtil
 pip install requests
+pip install scipy
 
 # --- 1.2
 
