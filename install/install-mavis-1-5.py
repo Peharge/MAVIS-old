@@ -122,7 +122,7 @@ def process_packages(packages: List[str], upgrade: bool = False):
         else:
             install_package(package)
 
-print("All frameworks for Mavis versions 1.2, 1.3, 1.4 and 1.5 are currently being installed and updated.")
+print(f"\nAll frameworks for {blue}MAVIS versions 1.2, 1.3, 1.4 and 1.5{reset} are currently being installed and updated.")
 
 # Paketlisten
 packages = [
