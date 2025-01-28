@@ -85,6 +85,9 @@ yellow = "\033[93m"
 blue = "\033[94m"
 reset = "\033[0m"
 
+# Farbiges Drucken des Textes
+print(f"Don't forget to update {blue}pip{reset} with {yellow}python -m pip install --upgrade pip{reset} every now and then\n")
+
 # Funktion zum Ausgeben von Frameworks mit Beschreibung
 def print_framework(title, description, color=blue):
     print(f"{color}{title}{reset} - {description}")
@@ -102,8 +105,8 @@ frameworks = [
     ("numpy", "Library for numerical computations."),
     ("sympy", "Symbolic computation in Python."),
     ("pandas", "Tool for data analysis and manipulation."),
-    ("scipy", "Library for scientific computing and optimization."),
-    ("tensorflow", "Framework for machine learning and deep learning."),
+    (f"{red}scipy{reset}", "Library for scientific computing and optimization."),
+    (f"{red}tensorflow{reset} {green}(soon){reset}", "Framework for machine learning and deep learning."),
     ("torch", "PyTorch library for machine learning and deep learning."),
     ("scikit-learn", "Library for machine learning."),
     ("transformers", "Library for pretrained models (NLP, vision)."),
@@ -118,7 +121,7 @@ frameworks = [
     ("astropy", "Library for analyzing astronomical data."),
     ("QuantLib", "Quantitative finance library."),
     ("openmdao", "Framework for multidisciplinary optimization."),
-    ("pybullet", "Physics engine for simulations and robotics."),
+    (f"{red}pybullet{reset} {green}(soon){reset}", "Physics engine for simulations and robotics."),
     ("monai", "Framework for medical imaging with AI."),
     ("fenics", "Solution of partial differential equations."),
     ("pydy", "Dynamic simulation of mechanical systems."),
@@ -128,7 +131,7 @@ frameworks = [
     ("gekko", "Optimization and control tool for dynamic systems."),
     ("casadi", "Optimization and control of dynamic systems."),
     ("control", "Tool for control system design and analysis."),
-    ("rospy", "ROS client library for Python."),
+    (f"{red}rospy{reset} {green}(soon){reset}", "ROS client library for Python."),
     ("h2o", "Platform for machine learning and AI."),
     ("pint", "Unit system for physical calculations."),
     ("coolprop", "Thermophysical properties of fluids and gases."),
