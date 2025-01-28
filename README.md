@@ -224,8 +224,6 @@ And more...
 
 > 28.01.2025
 
-Hier ist die neu nummerierte Liste:
-
 <details>
   <summary>Frameworks that MAVIS 1.5 knows</summary>
 
