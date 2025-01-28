@@ -88,6 +88,9 @@ from IPython.display import display
 
 #---für Physik/Chemie/Biologie(Medizin)/Erdkunde/Wirtschaft---
 
+from astropy.coordinates import SkyCoord
+import astropy.units as u
+import astropy
 import QuantLib as ql
 import openmdao.api as om
 import pybullet as p
@@ -122,7 +125,6 @@ import fiona
 import cartopy.crs as ccrs
 import statsmodels.api as sm
 import yfinance as yf
-import QuantLib
 
 #---ultimate für Deep Learning etc.---
 
