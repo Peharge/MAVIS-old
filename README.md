@@ -224,181 +224,156 @@ And more...
 
 > 28.01.2025
 
+Hier ist die neu nummerierte Liste:
+
 <details>
   <summary>Frameworks that MAVIS 1.5 knows</summary>
 
-1. **Flask**  
-   Lightweight web framework for Python.
-
-2. **ollama**  
-   Tool for integration with AI APIs.
-
-3. **Werkzeug**  
-   Utility library for WSGI applications and web development.
-
-4. **markdown**  
-   Library for converting Markdown to HTML.
-
-5. **matplotlib**  
+1. **matplotlib**  
    Powerful tool for data visualization.
 
-6. **plotly**  
+2. **plotly**  
    Interactive data visualization in Python.
 
-7. **dash**  
-   Framework for creating interactive web dashboards.
-
-8. **seaborn**  
+3. **seaborn**  
    Extension of Matplotlib for statistical data visualization.
 
-9. **numpy**  
+4. **numpy**  
    Library for numerical computations.
 
-10. **sympy**  
-    Symbolic computation in Python.
+5. **sympy**  
+   Symbolic computation in Python.
 
-11. **pandas**  
-    Tool for data analysis and manipulation.
+6. **pandas**  
+   Tool for data analysis and manipulation.
 
-12. **scipy**  
-    Library for scientific computing and optimization.
+7. **scipy**  
+   Library for scientific computing and optimization.
 
-13. **tensorflow** *(soon)*  
-    Framework for machine learning and deep learning.
+8. **tensorflow** *(soon)*  
+   Framework for machine learning and deep learning.
 
-14. **torch**  
-    PyTorch library for machine learning and deep learning.
+9. **torch**  
+   PyTorch library for machine learning and deep learning.
 
-15. **scikit-learn**  
+10. **scikit-learn**  
     Library for machine learning.
 
-16. **transformers**  
+11. **transformers**  
     Library for pretrained models (NLP, vision).
 
-17. **geopandas**  
+12. **geopandas**  
     Geospatial data processing with Pandas.
 
-18. **altair**  
+13. **altair**  
     Declarative data visualization library.
 
-19. **vega_datasets**  
+14. **vega_datasets**  
     Datasets for visualizations with Altair.
 
-20. **ipython**  
-    Interactive Python shell.
-
-21. **kaleido**  
+15. **kaleido**  
     Renderer for Plotly images.
 
-22. **py-cpuinfo**  
-    Library for retrieving CPU information.
-
-23. **GPUtil**  
-    Monitor GPU utilization.
-
-24. **requests**  
-    HTTP library for Python.
-
-25. **astropy**  
+16. **astropy**  
     Library for analyzing astronomical data.
 
-26. **QuantLib**  
+17. **QuantLib**  
     Quantitative finance library.
 
-27. **openmdao**  
+18. **openmdao**  
     Framework for multidisciplinary optimization.
 
-28. **pybullet** *(soon)*  
+19. **pybullet** *(soon)*  
     Physics engine for simulations and robotics.
 
-29. **monai**  
+20. **monai**  
     Framework for medical imaging with AI.
 
-30. **fenics**  
+21. **fenics**  
     Solution of partial differential equations.
 
-31. **pydy**  
+22. **pydy**  
     Dynamic simulation of mechanical systems.
 
-32. **pycalculix**  
+23. **pycalculix**  
     Finite element analysis in Python.
 
-33. **solidpython**  
+24. **solidpython**  
     Creation of 3D models for OpenSCAD.
 
-34. **pyomo**  
+25. **pyomo**  
     Modeling and optimization of mathematical problems.
 
-35. **gekko**  
+26. **gekko**  
     Optimization and control tool for dynamic systems.
 
-36. **casadi**  
+27. **casadi**  
     Optimization and control of dynamic systems.
 
-37. **control**  
+28. **control**  
     Tool for control system design and analysis.
 
-38. **rospy** *(soon)*  
+29. **rospy** *(soon)*  
     ROS client library for Python.
 
-39. **h2o**  
+30. **h2o**  
     Platform for machine learning and AI.
 
-40. **pint**  
+31. **pint**  
     Unit system for physical calculations.
 
-41. **coolprop**  
+32. **coolprop**  
     Thermophysical properties of fluids and gases.
 
-42. **pythermo**  
+33. **pythermo**  
     Thermodynamic calculations.
 
-43. **biopython**  
+34. **biopython**  
     Library for bioinformatics.
 
-44. **opencv-python**  
+35. **opencv-python**  
     Computer vision library.
 
-45. **SimpleITK**  
+36. **SimpleITK**  
     Image processing for medical applications.
 
-46. **nilearn**  
+37. **nilearn**  
     Analysis and visualization of neuroimaging data.
 
-47. **deepchem**  
+38. **deepchem**  
     Machine learning for chemistry and biology.
 
-48. **pymedtermino**  
+39. **pymedtermino**  
     Processing medical terminology.
 
-49. **lifelines**  
+40. **lifelines**  
     Survival data analysis.
 
-50. **rdkit**  
+41. **rdkit**  
     Tools for cheminformatics.
 
-51. **ase**  
+42. **ase**  
     Simulation of atomic systems.
 
-52. **chempy**  
+43. **chempy**  
     Chemical computations.
 
-53. **shapely**  
+44. **shapely**  
     Manipulation of geometric objects.
 
-54. **fiona**  
+45. **fiona**  
     Geospatial data access and file formats.
 
-55. **cartopy**  
+46. **cartopy**  
     Map projection and geospatial visualization.
 
-56. **statsmodels**  
+47. **statsmodels**  
     Statistical modeling and data analysis.
 
-57. **yfinance**  
+48. **yfinance**  
     Fetching financial market data.
 
-58. **QuantLib**  
+49. **QuantLib**  
     Quantitative finance library.
 
 </details>
