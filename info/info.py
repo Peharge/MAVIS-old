@@ -89,21 +89,24 @@ reset = "\033[0m"
 bold = "\033[1m"
 
 # Funktion zur Prüfung auf CUDA-Unterstützung
+'''
 def check_cuda():
     try:
         import torch
         return torch.cuda.is_available()
     except ImportError:
         return False
-
+'''
 
 # Funktion zur Prüfung auf ROCm-Unterstützung
+'''
 def check_rocm():
     try:
         import tensorflow as tf
         return "ROCm" in tf.__version__
     except ImportError:
         return False
+'''
 
 def get_system_info():
     # OS-Informationen
@@ -336,13 +339,13 @@ def mavis_compatibility(ram):
     ram_gb = ram.total / (1024 ** 3)  # ram.total gibt den Gesamt-RAM in Bytes
 
     if ram_gb < 8:
-        return f"{red}Xc++ 2 is not supported on this system{reset}"
+        return f"{red}Xc++ III is not supported on this system{reset}"
     elif 8 <= ram_gb <= 14:
-        return f"{red}Xc++ 2 in limited mode is supported{reset}"
+        return f"{red}Xc++ III in limited mode is supported{reset}"
     elif 15 <= ram_gb <= 64:
-        return f"{green}Xc++ 2 11B is supported{reset}"
+        return f"{green}Xc++ III 11B is supported{reset}"
     elif ram_gb > 64:
-        return f"{green}Xc++ 2 90B is supported{reset}"
+        return f"{green}Xc++ III 90B is supported{reset}"
 
 def remove_color_codes(text):
     return re.sub(r'\033\[[0-9;]*m', '', text)

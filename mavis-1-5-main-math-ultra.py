@@ -88,9 +88,10 @@ from IPython.display import display
 
 #---für Physik/Chemie/Biologie(Medizin)/Erdkunde/Wirtschaft---
 
-from astropy.coordinates import SkyCoord
-import astropy.units as u
+
 import astropy
+import astropy.units as u
+from astropy.coordinates import SkyCoord
 import QuantLib as ql
 import openmdao.api as om
 import pybullet as p
