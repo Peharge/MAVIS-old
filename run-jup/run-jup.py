@@ -18,8 +18,10 @@ bold = "\033[1m"
 
 def start_jupyter():
     try:
+        print("\nJupyter Information:")
+        print("------------------")
         # Ask for confirmation before execution
-        user_input = input(f"{yellow}Do you want to start Jupyter? (y/n): {reset}").strip().lower()
+        user_input = input(f"Do you want to start Jupyter? (y/n): ").strip().lower()
         if user_input != 'y':
             print(f"{green}Jupyter will not be started.{reset}")
             sys.exit(0)
@@ -65,5 +67,5 @@ def start_jupyter():
 
 if __name__ == "__main__":
     start_jupyter()
-    print(f"{cyan}\nFlask Information:")
-    print(f"{cyan}------------------{reset}")
+    print(f"\nFlask Information:")
+    print(f"------------------")

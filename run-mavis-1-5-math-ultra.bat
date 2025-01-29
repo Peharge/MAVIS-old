@@ -115,11 +115,15 @@ if not exist "%SCRIPT_PATH_4%" (
 "%PYTHON_PATH%" "%SCRIPT_PATH_4%"
 
 if not exist "%run_jup%" (
-    echo Error: Python script not found: %PYTHON_SCRIPT_PATH%
+    echo Error: Python script not found: %run_jup%
     exit /B 1
 )
 
-"%PYTHON_PATH%" "%run_jup%"
+REM Run the `run-jup.py` script in the background
+start "" "%PYTHON_PATH%" "%run_jup%"
+
+REM Wait for 10 seconds before continuing
+timeout /t 10 /nobreak
 
 if not exist "%PYTHON_SCRIPT_PATH%" (
     echo Error: Python script not found: %PYTHON_SCRIPT_PATH%
