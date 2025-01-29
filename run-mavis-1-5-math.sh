@@ -120,6 +120,14 @@ fi
 "$PYTHON_PATH" "$SCRIPT_PATH_4"
 
 # Check if python script path exists
+if [ ! -f "$run_jup" ]; then
+    echo "Error: Python script not found: $PYTHON_SCRIPT_PATH"
+    exit 1
+fi
+
+"$PYTHON_PATH" "$run_jup"
+
+# Check if python script path exists
 if [ ! -f "$PYTHON_SCRIPT_PATH" ]; then
     echo "Error: Python script not found: $PYTHON_SCRIPT_PATH"
     exit 1

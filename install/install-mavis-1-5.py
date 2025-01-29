@@ -132,7 +132,7 @@ print(f"\nAll frameworks for {blue}MAVIS versions 1.2, 1.3, 1.4 and 1.5{reset} a
 
 # Paketlisten
 packages = [
-    "Flask", "ollama", "Werkzeug", "markdown", "matplotlib", "plotly",
+    "Flask", "ollama", "jupyter", "Werkzeug", "markdown", "matplotlib", "plotly",
     "dash", "seaborn", "numpy", "sympy", "pandas", "geopandas", "scipy", "torch",
     "torchvision", "torchaudio", "tensorflow", "scikit-learn", "transformers",
     "altair", "vega_datasets", "altair_viewer", "ipython", "altair-saver", "kaleido",

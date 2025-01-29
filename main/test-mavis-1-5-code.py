@@ -158,7 +158,7 @@ UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['UPLOAD_URL'] = '/uploads/'
-
+DEFAULT_IMAGE_PATH = r""
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
@@ -179,7 +179,7 @@ def execute_python_code(md_content):
         return "---"
 
     # Verzeichnis für gespeicherte Bilder
-    image_dir = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "main", "static", "image")
+    image_dir = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "static", "image")
     if not os.path.exists(image_dir):
         os.makedirs(image_dir)
 
@@ -341,16 +341,13 @@ def send_message():
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
 
-            image_url = '/static/images/no-img.svg'
-
             return jsonify({
                 'response': wrapped_html_content,
-                'image_url': image_url,
+                'image_url': DEFAULT_IMAGE_PATH,
                 'code': response_content_code
             })
         except Exception as e:
             return jsonify({'error': str(e)}), 500
 
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)

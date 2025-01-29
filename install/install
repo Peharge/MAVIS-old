@@ -47,6 +47,8 @@ vllm serve "Qwen/Qwen2-VL-7B-Instruct" --no-uvloop
 
 # --- 1.5
 
+pip install jupyter
+
 pip install astropy
 pip install QuantLib
 pip install openmdao
