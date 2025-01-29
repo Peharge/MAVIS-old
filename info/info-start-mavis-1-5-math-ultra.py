@@ -101,6 +101,7 @@ def print_framework(title, description, color=blue):
 frameworks = [
     ("Flask", "Lightweight web framework for Python."),
     ("ollama", "Tool for integration with AI APIs."),
+    ("Jupyter", "Open-source web application for creating and sharing live code, equations, visualizations, and narrative text."),
     ("Werkzeug", "Utility library for WSGI applications and web development."),
     ("markdown", "Library for converting Markdown to HTML."),
     ("matplotlib", "Powerful tool for data visualization."),
