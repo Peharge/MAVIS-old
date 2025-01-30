@@ -13,14 +13,20 @@
 
 <img alt="python" src="https://img.shields.io/badge/Python-3.11 / 3.12 / (3.13)-blue?&logo=Python&logoColor=white%5BPython">
 <img alt="c++" src="https://img.shields.io/badge/-C++-blue?logo=cplusplus">
-<img alt="c++" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white">
+<img alt="javascript++" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white"><br>
+<img alt="bash" src="https://img.shields.io/badge/Shell-4EAA25?&style=plastic&logo=gnu-bash&logoColor=white">
+<img alt="bat" src="https://img.shields.io/badge/Bat-31369E?logo=bat">
+<img alt="html" src="https://img.shields.io/badge/HTML5-%23E34F26.svg?logo=html5&logoColor=white">
+<img alt="css" src="https://img.shields.io/badge/CSS3-%231572B6.svg?logo=css3&logoColor=white">
 <br>
 <br>
 
-<img alt="pytorch" src="https://img.shields.io/badge/PyTorch-EE4C2C?logo=PyTorch&logoColor=white">
 <img alt="flask" src="https://img.shields.io/badge/FLask-F7DF1E?style=flat&logo=flask&logoColor=black">
+<img alt="ollama" src="https://img.shields.io/badge/Ollama-%2300A98F.svg?logoColor=white">
+<img alt="jupyter" src="https://img.shields.io/badge/Jupyter-%23F37626.svg?logo=jupyter&logoColor=white"><br>
 <img alt="pycharm" src="https://img.shields.io/badge/PyCharm-black?logo=PyCharm&logoColor=white">
 <img alt="github" src="https://img.shields.io/badge/GitHub-black?logo=github">
+<img alt="huggingface" src="https://img.shields.io/badge/HuggingFace-%23FFCC00.svg?logo=huggingface&logoColor=black">
 <br>
 <br>
 
