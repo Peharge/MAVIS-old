@@ -86,6 +86,6 @@ pip install QuantLib
 
 # soon
 
-pip install PySpice
+pip install pyspice
 pip install networkx
 pip install schematics
