@@ -21,7 +21,7 @@ def start_jupyter():
         print("\nJupyter Information:")
         print("------------------")
         # Vor der Ausführung um Bestätigung bitten
-        user_input = input(f"Do you want to start Jupyter in Black Mode? (y/n): ").strip().lower()
+        user_input = input(f"Do you want to start Jupyter? (y/n): ").strip().lower()
         if user_input != 'y':
             print(f"{green}Jupyter will not be started.{reset}")
             sys.exit(0)
@@ -47,17 +47,6 @@ def start_jupyter():
         if not os.path.isdir(jupyter_directory):
             print(f"{red}Error: The specified directory '{jupyter_directory}' does not exist.{reset}")
             sys.exit(1)
-
-        # Richten Sie Jupyter mithilfe einer Konfigurationsdatei so ein, dass es im Dunkelmodus startet.
-        # Sie können dazu das Paket „jupyterthemes“ installieren und verwenden.
-        # Wenn es nicht installiert ist, installieren Sie es über „pip install jupyterthemes“.
-
-        # Optional: Wenden Sie das Dark Mode-Design mit jupyterthemes an
-        try:
-            subprocess.run([venv_python, "-m", "pip", "install", "jupyterthemes"], check=True)
-            subprocess.run([venv_python, "-m", "jt", "-t", "monokai"], check=True)  # Das Monokai-Thema ist ein beliebtes dunkles Thema
-        except subprocess.CalledProcessError:
-            print(f"{yellow}Warning: Could not apply the Jupyter dark theme. Proceeding without it.{reset}")
 
         # Starten Sie Jupyter mit dem Python-Interpreter aus der virtuellen Umgebung
         subprocess.run([

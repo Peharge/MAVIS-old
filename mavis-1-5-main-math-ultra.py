@@ -127,6 +127,10 @@ import cartopy.crs as ccrs
 import statsmodels.api as sm
 import yfinance as yf
 
+import PySpice
+import networkx as nx
+from schematics.models import Model
+
 #---ultimate für Deep Learning etc.---
 
 # Importiere die wichtigsten Komponenten von PyTorch für Deep Learning (sehr mächtig)
