@@ -13,7 +13,7 @@
 
 <img alt="python" src="https://img.shields.io/badge/Python-3.11 / 3.12 / (3.13)-blue?&logo=Python&logoColor=white%5BPython">
 <img alt="c++" src="https://img.shields.io/badge/-C++-blue?logo=cplusplus">
-<img alt="c" src="https://img.shields.io/badge/-C-blue?logo=c">
+<img alt="c++" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white">
 <br>
 <br>
 
