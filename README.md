@@ -135,7 +135,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 
 ## Updates
 
-### MAVIS 1.1 EAP release (with Llama 3.2) [old]
+### MAVIS 1.1 EAP release [old]
 
 <details>
   <summary>MAVIS 1.1 EAP</summary>
