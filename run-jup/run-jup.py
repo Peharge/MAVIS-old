@@ -20,35 +20,46 @@ def start_jupyter():
     try:
         print("\nJupyter Information:")
         print("------------------")
-        # Ask for confirmation before execution
-        user_input = input(f"Do you want to start Jupyter? (y/n): ").strip().lower()
+        # Vor der Ausführung um Bestätigung bitten
+        user_input = input(f"Do you want to start Jupyter in Black Mode? (y/n): ").strip().lower()
         if user_input != 'y':
             print(f"{green}Jupyter will not be started.{reset}")
             sys.exit(0)
 
-        # Dynamically determine the username and create the path to the virtual environment
+        # Benutzernamen dynamisch ermitteln und Pfad zur virtuellen Umgebung erstellen
         user_home = os.path.expanduser("~")  # User's home directory
         venv_python = os.path.join(user_home, "PycharmProjects", "MAVIS", ".env", "Scripts", "python.exe")
 
-        # Check if the virtual environment Python exists
+        # Überprüfen Sie, ob die virtuelle Umgebung Python vorhanden ist
         if not os.path.isfile(venv_python):
             print(f"{red}Error: The virtual environment {venv_python} does not exist.{reset}")
             sys.exit(1)
 
-        # Check if Jupyter is installed in the virtual environment using pip
+        # Überprüfen Sie mit pip, ob Jupyter in der virtuellen Umgebung installiert ist
         try:
             subprocess.run([venv_python, "-m", "pip", "show", "jupyter"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         except subprocess.CalledProcessError:
             print(f"{red}Error: Jupyter is not installed in the virtual environment.{reset}")
             sys.exit(1)
 
-        # Target folder for Jupyter Notebooks
+        # Zielordner für Jupyter Notebooks
         jupyter_directory = os.path.join(user_home, "PycharmProjects", "MAVIS", "jupyter")
         if not os.path.isdir(jupyter_directory):
             print(f"{red}Error: The specified directory '{jupyter_directory}' does not exist.{reset}")
             sys.exit(1)
 
-        # Start Jupyter with the Python interpreter from the virtual environment
+        # Richten Sie Jupyter mithilfe einer Konfigurationsdatei so ein, dass es im Dunkelmodus startet.
+        # Sie können dazu das Paket „jupyterthemes“ installieren und verwenden.
+        # Wenn es nicht installiert ist, installieren Sie es über „pip install jupyterthemes“.
+
+        # Optional: Wenden Sie das Dark Mode-Design mit jupyterthemes an
+        try:
+            subprocess.run([venv_python, "-m", "pip", "install", "jupyterthemes"], check=True)
+            subprocess.run([venv_python, "-m", "jt", "-t", "monokai"], check=True)  # Das Monokai-Thema ist ein beliebtes dunkles Thema
+        except subprocess.CalledProcessError:
+            print(f"{yellow}Warning: Could not apply the Jupyter dark theme. Proceeding without it.{reset}")
+
+        # Starten Sie Jupyter mit dem Python-Interpreter aus der virtuellen Umgebung
         subprocess.run([
             venv_python,
             '-m', 'notebook',
