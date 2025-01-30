@@ -23,35 +23,6 @@ This repository provides compatibility with a broad selection of Python librarie
 
 You have access to all these frameworks, allowing you to tailor your workflow depending on the complexity and domain of your project.
 
-### Setting Up the Environment
-
-To begin using this environment, follow the steps below to set up the required dependencies and activate the Python virtual environment.
-
-1. **Clone the Repository**:
-    ```bash
-    git clone <repository_url>
-    cd <project_directory>
-    ```
-
-2. **Install Dependencies**:
-    If you are using `conda`, you can easily set up the environment by running:
-    ```bash
-    conda env create -f environment.yml
-    conda activate <env_name>
-    ```
-
-3. **Link the Environment to Jupyter**:
-    To use Jupyter Notebooks within the created environment, run:
-    ```bash
-    python -m ipykernel install --user --name=<env_name> --display-name "<env_name>"
-    ```
-
-4. **Launch Jupyter Notebook**:
-    Once the environment is set up, start the Jupyter Notebook server with the following command:
-    ```bash
-    jupyter notebook
-    ```
-
 ### Frameworks and Tools Overview
 
 This environment supports a broad array of tools, each serving a specific purpose. Below are the badges corresponding to the supported frameworks, allowing you to quickly identify the available tools:
