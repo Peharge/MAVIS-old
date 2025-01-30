@@ -77,6 +77,10 @@ This environment supports a broad array of tools, each serving a specific purpos
     <img alt="cartopy" src="https://img.shields.io/badge/-Cartopy-336699?&logo=cartopy">
     <img alt="statsmodels" src="https://img.shields.io/badge/-Statsmodels-800000?&logo=statsmodels">
     <img alt="yfinance" src="https://img.shields.io/badge/-YFinance-003366?&logo=yfinance">
+    <img alt="quantLib" src="https://img.shields.io/badge/-QuantLib-003366?&logo=quantLib">
+    <img alt="pyspice" src="https://img.shields.io/badge/-PySpice-003366?&logo=pyspice">
+    <img alt="networkx" src="https://img.shields.io/badge/-networkx-003366?&logo=networkx">
+    <img alt="schematics" src="https://img.shields.io/badge/-Schematics-003366?&logo=schematics">
 </div>
 
 ### Usage
@@ -191,6 +195,14 @@ Natürlich! Hier ist die angepasste Dokumentation mit den Links zu allen Framewo
 - **[Statsmodels Dokumentation](https://www.statsmodels.org/stable/)** – Umfangreiche Dokumentation zu **Statsmodels**, einer Bibliothek für statistische Modellierung.
 
 - **[YFinance Dokumentation](https://pypi.org/project/yfinance/)** – Die offizielle Dokumentation von **YFinance**, einer Bibliothek für den Zugriff auf Finanzdaten von Yahoo Finance.
+
+- **[QuantLib Dokumentation](https://www.quantlib.org/documentation.shtml)** – Die offizielle Dokumentation von **QuantLib**, einer umfassenden Bibliothek für quantitative Finanzanalysen und die Berechnung von Finanzinstrumenten wie Optionen, Anleihen und Derivaten.
+
+- **[PySpice Dokumentation](https://pyspice.org/)** – Die offizielle Dokumentation von **PySpice**, einer Bibliothek für die Simulation von elektronischen Schaltungen und Schaltungssimulationen mit Python.
+  
+- **[NetworkX Dokumentation](https://networkx.github.io/)** – Die offizielle Dokumentation von **NetworkX**, einer Python-Bibliothek für die Analyse und Erstellung von Netzwerken und Graphen.
+
+- **[Schematics Dokumentation](https://schematics.readthedocs.io/en/latest/)** – Die offizielle Dokumentation von **Schematics**, einer Python-Bibliothek zur Definition und Validierung von Datenstrukturen und Modellen mit Typüberprüfungen.
 
 ### Conclusion
 

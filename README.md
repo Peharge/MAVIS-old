@@ -83,6 +83,10 @@
 <img alt="cartopy" src="https://img.shields.io/badge/-Cartopy-336699?&logo=cartopy">
 <img alt="statsmodels" src="https://img.shields.io/badge/-Statsmodels-800000?&logo=statsmodels">
 <img alt="yfinance" src="https://img.shields.io/badge/-YFinance-003366?&logo=yfinance">
+<img alt="quantLib" src="https://img.shields.io/badge/-QuantLib-003366?&logo=quantLib">
+<img alt="pyspice" src="https://img.shields.io/badge/-PySpice-003366?&logo=pyspice">
+<img alt="networkx" src="https://img.shields.io/badge/-networkx-003366?&logo=networkx">
+<img alt="schematics" src="https://img.shields.io/badge/-Schematics-003366?&logo=schematics">
 <br>
 <br>
 
@@ -285,152 +289,103 @@ And more...
 <details>
   <summary>Frameworks that MAVIS 1.5 knows</summary>
 
-1. **matplotlib**  
-   Powerful tool for data visualization.
+- **[LaTeX Dokumentation](https://www.latex-project.org/)** – Umfangreiche Informationen über LaTeX und seine Anwendung zur mathematischen Formelschreibung.
+  
+- **[Matplotlib Dokumentation](https://matplotlib.org/)** – Offizielle Dokumentation für **Matplotlib**, eine umfassende Bibliothek zur Erstellung von 2D-Diagrammen und Visualisierungen in Python.
 
-2. **plotly**  
-   Interactive data visualization in Python.
+- **[Plotly Dokumentation](https://plotly.com/python/)** – Umfangreiche Anleitungen und Beispiele zur interaktiven Visualisierung mit **Plotly**.
 
-3. **seaborn**  
-   Extension of Matplotlib for statistical data visualization.
+- **[Seaborn Dokumentation](https://seaborn.pydata.org/)** – Dokumentation für **Seaborn**, eine Bibliothek für statistische Datenvisualisierung, die auf Matplotlib aufbaut.
 
-4. **numpy**  
-   Library for numerical computations.
+- **[NumPy Dokumentation](https://numpy.org/doc/stable/)** – Offizielle Seite von **NumPy**, die eine leistungsstarke Bibliothek für numerische Berechnungen und die Arbeit mit Arrays bietet.
 
-5. **sympy**  
-   Symbolic computation in Python.
+- **[SymPy Dokumentation](https://docs.sympy.org/latest/index.html)** – Offizielle Dokumentation für **SymPy**, eine Python-Bibliothek für symbolische Mathematik.
 
-6. **pandas**  
-   Tool for data analysis and manipulation.
+- **[Pandas Dokumentation](https://pandas.pydata.org/pandas-docs/stable/)** – Umfangreiche Dokumentation von **Pandas**, einer Bibliothek zur Datenmanipulation und -analyse.
 
-7. **scipy**  
-   Library for scientific computing and optimization.
+- **[SciPy Dokumentation](https://docs.scipy.org/doc/scipy/)** – Dokumentation von **SciPy**, einer Bibliothek für wissenschaftliche und technische Berechnungen.
 
-8. **tensorflow** *(soon)*  
-   Framework for machine learning and deep learning.
+- **[PyTorch Dokumentation](https://pytorch.org/docs/stable/)** – Offizielle Dokumentation von **PyTorch**, einer populären Bibliothek für maschinelles Lernen und Deep Learning.
 
-9. **torch**  
-   PyTorch library for machine learning and deep learning.
+- **[TensorFlow Dokumentation](https://www.tensorflow.org/api_docs)** – Die offizielle Dokumentation für **TensorFlow**, eine umfangreiche Bibliothek zur Implementierung von Deep-Learning-Modellen.
 
-10. **scikit-learn**  
-    Library for machine learning.
+- **[Scikit-learn Dokumentation](https://scikit-learn.org/stable/)** – Offizielle Dokumentation für **Scikit-learn**, die Bibliothek zur Erstellung von maschinellen Lernmodellen.
 
-11. **transformers**  
-    Library for pretrained models (NLP, vision).
+- **[Transformers Dokumentation](https://huggingface.co/docs/transformers/)** – Dokumentation von **Transformers**, einer Bibliothek von Hugging Face für Natural Language Processing (NLP).
 
-12. **geopandas**  
-    Geospatial data processing with Pandas.
+- **[GeoPandas Dokumentation](https://geopandas.org/en/stable/)** – Dokumentation für **GeoPandas**, eine Bibliothek zur Arbeit mit geografischen Daten.
 
-13. **altair**  
-    Declarative data visualization library.
+- **[Astropy Dokumentation](https://docs.astropy.org/en/stable/)** – Offizielle Dokumentation von **Astropy**, einer Bibliothek für astronomische Berechnungen und Datenanalyse.
 
-14. **vega_datasets**  
-    Datasets for visualizations with Altair.
+- **[OpenMDAO Dokumentation](https://openmdao.org/)** – Die Dokumentation von **OpenMDAO**, einer Framework-Bibliothek für Multidisziplinäre Optimierung und Simulation.
 
-15. **kaleido**  
-    Renderer for Plotly images.
+- **[PyBullet Dokumentation](https://pybullet.org/)** – Umfangreiche Anleitung und Dokumentation zur Nutzung von **PyBullet**, einer Physiksimulationsbibliothek.
 
-16. **astropy**  
-    Library for analyzing astronomical data.
+- **[Monai Dokumentation](https://monai.io/)** – Dokumentation von **Monai**, einer Bibliothek für Deep Learning im Gesundheitswesen.
 
-17. **QuantLib**  
-    Quantitative finance library.
+- **[FEniCS Dokumentation](https://fenicsproject.org/)** – Offizielle Dokumentation von **FEniCS**, einem Framework für die Lösung von partiellen Differentialgleichungen.
 
-18. **openmdao**  
-    Framework for multidisciplinary optimization.
+- **[PyDy Dokumentation](http://www.pydy.org/)** – Dokumentation für **PyDy**, ein Framework für die Modellierung und Simulation von mehrdimensionalen dynamischen Systemen.
 
-19. **pybullet** *(soon)*  
-    Physics engine for simulations and robotics.
+- **[PyCalculix Dokumentation](https://github.com/stevencook/pycalculix)** – Umfangreiche Hinweise zur Verwendung von **PyCalculix**, einer Python-Schnittstelle zu Calculix für Finite-Elemente-Analyse.
 
-20. **monai**  
-    Framework for medical imaging with AI.
+- **[SolidPython Dokumentation](https://solidpython3.github.io/solidpython/)** – Offizielle Dokumentation von **SolidPython**, einem Framework zur Erzeugung von 3D-Modelldaten für CAD.
 
-21. **fenics**  
-    Solution of partial differential equations.
+- **[Pyomo Dokumentation](http://www.pyomo.org/)** – Die offizielle Dokumentation von **Pyomo**, einem Framework zur mathematischen Optimierung.
 
-22. **pydy**  
-    Dynamic simulation of mechanical systems.
+- **[Gekko Dokumentation](https://gekko.readthedocs.io/en/latest/)** – Dokumentation von **Gekko**, einer Bibliothek zur Lösung von Optimierungs- und Regelungsproblemen.
 
-23. **pycalculix**  
-    Finite element analysis in Python.
+- **[CasADi Dokumentation](https://web.casadi.org/docs/)** – Umfangreiche Hinweise zur Verwendung von **CasADi**, einer Bibliothek für Optimierung und Simulation.
 
-24. **solidpython**  
-    Creation of 3D models for OpenSCAD.
+- **[Control Dokumentation](https://python-control.readthedocs.io/en/latest/)** – Dokumentation von **Control**, einer Python-Bibliothek zur Analyse und Synthese von Regelungssystemen.
 
-25. **pyomo**  
-    Modeling and optimization of mathematical problems.
+- **[Rospy Dokumentation](https://docs.ros.org/en/noetic/api/rospy/html/)** – Die offizielle Dokumentation von **Rospy**, einem Python-Client für das Robot Operating System (ROS).
 
-26. **gekko**  
-    Optimization and control tool for dynamic systems.
+- **[H2O Dokumentation](http://docs.h2o.ai/)** – Dokumentation für **H2O.ai**, einer Plattform für maschinelles Lernen und KI.
 
-27. **casadi**  
-    Optimization and control of dynamic systems.
+- **[Pint Dokumentation](https://pint.readthedocs.io/en/stable/)** – Die offizielle Dokumentation von **Pint**, einer Bibliothek für die Handhabung von physikalischen Einheiten.
 
-28. **control**  
-    Tool for control system design and analysis.
+- **[CoolProp Dokumentation](https://coolprop.readthedocs.io/en/latest/)** – Die umfangreiche Dokumentation für **CoolProp**, eine Bibliothek zur Thermodynamik und Fluidmechanik.
 
-29. **rospy** *(soon)*  
-    ROS client library for Python.
+- **[PyThermo Dokumentation](https://pythermo.readthedocs.io/en/latest/)** – Hinweise zur Verwendung von **PyThermo**, einer Python-Bibliothek für Thermodynamikberechnungen.
 
-30. **h2o**  
-    Platform for machine learning and AI.
+- **[BioPython Dokumentation](https://biopython.org/)** – Offizielle Dokumentation von **BioPython**, einer Bibliothek für bioinformatische Berechnungen.
 
-31. **pint**  
-    Unit system for physical calculations.
+- **[OpenCV Dokumentation](https://docs.opencv.org/master/)** – Die offizielle Dokumentation von **OpenCV**, einer Bibliothek für Computer Vision und Bildverarbeitung.
 
-32. **coolprop**  
-    Thermophysical properties of fluids and gases.
+- **[SimpleITK Dokumentation](https://simpleitk.readthedocs.io/en/master/)** – Umfangreiche Dokumentation für **SimpleITK**, eine Bibliothek für medizinische Bildverarbeitung.
 
-33. **pythermo**  
-    Thermodynamic calculations.
+- **[Nilearn Dokumentation](https://nilearn.github.io/)** – Die offizielle Dokumentation von **Nilearn**, einer Bibliothek für die Analyse von Neuroimaging-Daten.
 
-34. **biopython**  
-    Library for bioinformatics.
+- **[DeepChem Dokumentation](https://deepchem.io/)** – Dokumentation von **DeepChem**, einer Bibliothek für maschinelles Lernen in der Chemie und Materialwissenschaft.
 
-35. **opencv-python**  
-    Computer vision library.
+- **[PyMedTermino Dokumentation](https://pymedtermino.readthedocs.io/en/latest/)** – Die Dokumentation von **PyMedTermino**, einer Python-Bibliothek zur Arbeit mit medizinischen Begriffen.
 
-36. **SimpleITK**  
-    Image processing for medical applications.
+- **[Lifelines Dokumentation](https://lifelines.readthedocs.io/en/latest/)** – Umfangreiche Anleitung zur Verwendung von **Lifelines**, einer Bibliothek für Überlebensanalyse.
 
-37. **nilearn**  
-    Analysis and visualization of neuroimaging data.
+- **[RDKit Dokumentation](https://www.rdkit.org/docs/)** – Dokumentation für **RDKit**, eine Bibliothek zur Chemoinformatik.
 
-38. **deepchem**  
-    Machine learning for chemistry and biology.
+- **[ASE Dokumentation](https://wiki.fysik.dtu.dk/ase/)** – Offizielle Dokumentation von **ASE**, einem Framework zur Durchführung von atomaren Simulationen.
 
-39. **pymedtermino**  
-    Processing medical terminology.
+- **[ChemPy Dokumentation](https://chemphys.github.io/chemPy/)** – Dokumentation von **ChemPy**, einer Bibliothek für chemische Berechnungen.
 
-40. **lifelines**  
-    Survival data analysis.
+- **[Shapely Dokumentation](https://shapely.readthedocs.io/en/stable/)** – Die Dokumentation von **Shapely**, einer Bibliothek zur geometrischen Analyse.
 
-41. **rdkit**  
-    Tools for cheminformatics.
+- **[Fiona Dokumentation](https://fiona.readthedocs.io/en/stable/)** – Offizielle Dokumentation von **Fiona**, einer Bibliothek zur Verarbeitung geospatialer Daten.
 
-42. **ase**  
-    Simulation of atomic systems.
+- **[Cartopy Dokumentation](https://scitools.org.uk/cartopy/docs/latest/)** – Dokumentation für **Cartopy**, eine Bibliothek zur Erstellung geospatialer Visualisierungen.
 
-43. **chempy**  
-    Chemical computations.
+- **[Statsmodels Dokumentation](https://www.statsmodels.org/stable/)** – Umfangreiche Dokumentation zu **Statsmodels**, einer Bibliothek für statistische Modellierung.
 
-44. **shapely**  
-    Manipulation of geometric objects.
+- **[YFinance Dokumentation](https://pypi.org/project/yfinance/)** – Die offizielle Dokumentation von **YFinance**, einer Bibliothek für den Zugriff auf Finanzdaten von Yahoo Finance.
 
-45. **fiona**  
-    Geospatial data access and file formats.
+- **[QuantLib Dokumentation](https://www.quantlib.org/documentation.shtml)** – Die offizielle Dokumentation von **QuantLib**, einer umfassenden Bibliothek für quantitative Finanzanalysen und die Berechnung von Finanzinstrumenten wie Optionen, Anleihen und Derivaten.
 
-46. **cartopy**  
-    Map projection and geospatial visualization.
+- **[PySpice Dokumentation](https://pyspice.org/)** – Die offizielle Dokumentation von **PySpice**, einer Bibliothek für die Simulation von elektronischen Schaltungen und Schaltungssimulationen mit Python.
+  
+- **[NetworkX Dokumentation](https://networkx.github.io/)** – Die offizielle Dokumentation von **NetworkX**, einer Python-Bibliothek für die Analyse und Erstellung von Netzwerken und Graphen.
 
-47. **statsmodels**  
-    Statistical modeling and data analysis.
-
-48. **yfinance**  
-    Fetching financial market data.
-
-49. **QuantLib**  
-    Quantitative finance library.
+- **[Schematics Dokumentation](https://schematics.readthedocs.io/en/latest/)** – Die offizielle Dokumentation von **Schematics**, einer Python-Bibliothek zur Definition und Validierung von Datenstrukturen und Modellen mit Typüberprüfungen.
 
 </details>
 

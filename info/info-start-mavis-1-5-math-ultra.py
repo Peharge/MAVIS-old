@@ -157,7 +157,10 @@ frameworks = [
     ("cartopy", "Map projection and geospatial visualization."),
     ("statsmodels", "Statistical modeling and data analysis."),
     ("yfinance", "Fetching financial market data."),
-    ("QuantLib", "Quantitative finance library.")
+    ("QuantLib", "Quantitative finance library."),
+    ("PySpice", "Bibliothek zur Simulation von elektronischen Schaltungen in Python."),
+    ("NetworkX", "Python-Bibliothek zur Analyse und Erstellung von Netzwerken und Graphen."),
+    ("Schematics", "Bibliothek für die Definition und Validierung von Datenstrukturen mit Typüberprüfung in Python.")
 ]
 
 # Frameworks ausgeben

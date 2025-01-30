@@ -52,7 +52,7 @@ pip install jupyter
 pip install astropy
 pip install QuantLib
 pip install openmdao
-pip install pybullet
+# pip install pybullet
 pip install monai
 pip install fenics
 pip install pydy
@@ -63,7 +63,6 @@ pip install gekko
 pip install casadi
 pip install control
 # pip install rospy
-pip install pybullet
 pip install h2o
 pip install pint
 pip install coolprop
@@ -85,5 +84,8 @@ pip install statsmodels
 pip install yfinance
 pip install QuantLib
 
+# soon
 
-
+pip install PySpice
+pip install networkx
+pip install schematics
