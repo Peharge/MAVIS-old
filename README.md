@@ -29,12 +29,54 @@
 <br>
 
 <img alt="latex" src="https://img.shields.io/badge/-LaTeX-008080?style=flat&logo=latex&logoColor=white">
-<img alt="numpy" src="https://img.shields.io/badge/-Numpy-013243?&logo=NumPy">
-<img alt="pandas" src="https://img.shields.io/badge/-Pandas-333333?style=flat&logo=pandas">
-<img alt="matplotlib" src="https://img.shields.io/badge/-Matplotlib-013243?style=flat&logo=matplotlib">
-<img alt="plotly" src="https://img.shields.io/badge/-Plotly-3CA9E7?style=flat&logo=plotly">
-<img alt="seaborn" src="https://img.shields.io/badge/-Seaborn-3CA9E7?style=flat&logo=seaborn">
-<img alt="altair" src="https://img.shields.io/badge/-Altair-3CA9E7?style=flat&logo=altair">
+    <img alt="matplotlib" src="https://img.shields.io/badge/-Matplotlib-11557C?&logo=matplotlib">
+    <img alt="plotly" src="https://img.shields.io/badge/-Plotly-3F4F75?&logo=plotly">
+    <img alt="seaborn" src="https://img.shields.io/badge/-Seaborn-4C72B0?&logo=seaborn">
+    <img alt="numpy" src="https://img.shields.io/badge/-Numpy-013243?&logo=NumPy">
+    <img alt="sympy" src="https://img.shields.io/badge/-SymPy-3B5526?&logo=sympy&logoColor=white">
+    <img alt="pandas" src="https://img.shields.io/badge/-Pandas-150458?&logo=pandas">
+    <img alt="scipy" src="https://img.shields.io/badge/-SciPy-8CAAE6?&logo=scipy&logoColor=white">
+    <img alt="pytorch" src="https://img.shields.io/badge/-PyTorch-EE4C2C?&logo=pytorch&logoColor=white">
+    <img alt="tensorflow" src="https://img.shields.io/badge/-TensorFlow-FF6F00?&logo=tensorflow&logoColor=white">
+    <img alt="scikit-learn" src="https://img.shields.io/badge/-Scikit--Learn-F7931E?&logo=scikitlearn&logoColor=white">
+    <img alt="transformers" src="https://img.shields.io/badge/-Transformers-34AADC?&logo=transformers">
+    <img alt="geopandas" src="https://img.shields.io/badge/-GeoPandas-008080?&logo=geopandas&logoColor=white">
+    <img alt="altair" src="https://img.shields.io/badge/-Altair-E54C2F?&logo=altair">
+    <img alt="vega_datasets" src="https://img.shields.io/badge/-Vega__Datasets-FF9900?&logo=vega">
+    <img alt="kaleido" src="https://img.shields.io/badge/-Kaleido-7B1FA2?&logo=kaleido">
+    <img alt="astropy" src="https://img.shields.io/badge/-Astropy-1F77B4?&logo=astropy">
+    <img alt="QuantLib" src="https://img.shields.io/badge/-QuantLib-004080?&logo=quantlib">
+    <img alt="openmdao" src="https://img.shields.io/badge/-OpenMDAO-008C4A?&logo=openmdao">
+    <img alt="pybullet" src="https://img.shields.io/badge/-PyBullet-FF0000?&logo=pybullet">
+    <img alt="monai" src="https://img.shields.io/badge/-Monai-4A90E2?&logo=monai">
+    <img alt="fenics" src="https://img.shields.io/badge/-FEniCS-2E86C1?&logo=fenics">
+    <img alt="pydy" src="https://img.shields.io/badge/-PyDy-008C4A?&logo=pydy">
+    <img alt="pycalculix" src="https://img.shields.io/badge/-PyCalculix-003366?&logo=pycalculix">
+    <img alt="solidpython" src="https://img.shields.io/badge/-SolidPython-FF6600?&logo=solidpython">
+    <img alt="pyomo" src="https://img.shields.io/badge/-Pyomo-990000?&logo=pyomo">
+    <img alt="gekko" src="https://img.shields.io/badge/-Gekko-7A378B?&logo=gekko">
+    <img alt="casadi" src="https://img.shields.io/badge/-CasADi-009688?&logo=casadi">
+    <img alt="control" src="https://img.shields.io/badge/-Control-3E2723?&logo=control">
+    <img alt="rospy" src="https://img.shields.io/badge/-Rospy-0088CC?&logo=ros">
+    <img alt="h2o" src="https://img.shields.io/badge/-H2O-0099CC?&logo=h2o">
+    <img alt="pint" src="https://img.shields.io/badge/-Pint-660099?&logo=pint">
+    <img alt="coolprop" src="https://img.shields.io/badge/-CoolProp-0033CC?&logo=coolprop">
+    <img alt="pythermo" src="https://img.shields.io/badge/-PyThermo-FF3300?&logo=pythermo">
+    <img alt="biopython" src="https://img.shields.io/badge/-BioPython-00A86B?&logo=biopython">
+    <img alt="opencv-python" src="https://img.shields.io/badge/-OpenCV-5C3EE8?&logo=opencv">
+    <img alt="SimpleITK" src="https://img.shields.io/badge/-SimpleITK-1976D2?&logo=simpleitk">
+    <img alt="nilearn" src="https://img.shields.io/badge/-Nilearn-607D8B?&logo=nilearn">
+    <img alt="deepchem" src="https://img.shields.io/badge/-DeepChem-008080?&logo=deepchem">
+    <img alt="pymedtermino" src="https://img.shields.io/badge/-PyMedTermino-336699?&logo=pymedtermino">
+    <img alt="lifelines" src="https://img.shields.io/badge/-Lifelines-FF4500?&logo=lifelines">
+    <img alt="rdkit" src="https://img.shields.io/badge/-RDKit-2C3E50?&logo=rdkit">
+    <img alt="ase" src="https://img.shields.io/badge/-ASE-556B2F?&logo=ase">
+    <img alt="chempy" src="https://img.shields.io/badge/-ChemPy-990000?&logo=chempy">
+    <img alt="shapely" src="https://img.shields.io/badge/-Shapely-1E8449?&logo=shapely">
+    <img alt="fiona" src="https://img.shields.io/badge/-Fiona-9C27B0?&logo=fiona">
+    <img alt="cartopy" src="https://img.shields.io/badge/-Cartopy-336699?&logo=cartopy">
+    <img alt="statsmodels" src="https://img.shields.io/badge/-Statsmodels-800000?&logo=statsmodels">
+    <img alt="yfinance" src="https://img.shields.io/badge/-YFinance-003366?&logo=yfinance">
 <br>
 <br>
 
