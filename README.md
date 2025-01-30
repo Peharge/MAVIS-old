@@ -21,7 +21,7 @@
 <img alt="flask" src="https://img.shields.io/badge/FLask-F7DF1E?style=flat&logo=flask&logoColor=black">
 <img alt="pycharm" src="https://img.shields.io/badge/PyCharm-black?logo=PyCharm&logoColor=white">
 <img alt="github" src="https://img.shields.io/badge/GitHub-black?logo=github">
-<img alt="jupyter" src="https://img.shields.io/badge/Jupyter%20Notebook-F37626?style=flat-square&logo=jupyter&logoColor=white">
+<img alt="jupyter" src="https://img.shields.io/badge/Jupyter%20Notebook-F37626?logo=jupyter&logoColor=white">
 <br>
 <br>
 
