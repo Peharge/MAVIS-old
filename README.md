@@ -36,7 +36,7 @@
 <img alt="seaborn" src="https://img.shields.io/badge/-Seaborn-3CA9E7?style=flat&logo=seaborn">
 <img alt="altair" src="https://img.shields.io/badge/-Altair-3CA9E7?style=flat&logo=altair">
 <img alt="pytorch" src="https://img.shields.io/badge/PyTorch-EE4C2C?logo=PyTorch&logoColor=white">
-<img alt="tensorflow" src="https://img.shields.io/badge/TensorFlow-black?logo=TensorFlow>
+<img alt="tensorflow" src="https://img.shields.io/badge/TensorFlow-black?logo=TensorFlow">
 <br>
 <br>
 
