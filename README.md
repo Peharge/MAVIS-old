@@ -17,7 +17,6 @@
 <br>
 <br>
 
-<img alt="pytorch" src="https://img.shields.io/badge/PyTorch-EE4C2C?logo=PyTorch&logoColor=white">
 <img alt="flask" src="https://img.shields.io/badge/FLask-F7DF1E?style=flat&logo=flask&logoColor=black">
 <img alt="pycharm" src="https://img.shields.io/badge/PyCharm-black?logo=PyCharm&logoColor=white">
 <img alt="github" src="https://img.shields.io/badge/GitHub-black?logo=github">
@@ -36,6 +35,7 @@
 <img alt="plotly" src="https://img.shields.io/badge/-Plotly-3CA9E7?style=flat&logo=plotly">
 <img alt="seaborn" src="https://img.shields.io/badge/-Seaborn-3CA9E7?style=flat&logo=seaborn">
 <img alt="altair" src="https://img.shields.io/badge/-Altair-3CA9E7?style=flat&logo=altair">
+<img alt="pytorch" src="https://img.shields.io/badge/PyTorch-EE4C2C?logo=PyTorch&logoColor=white">
 <br>
 <br>
 
