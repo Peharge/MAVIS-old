@@ -129,6 +129,12 @@ import yfinance as yf
 import PySpice
 import networkx as nx
 from schematics.models import Model
+import schemdraw
+import ipywidgets as widgets
+import pybullet as pb
+import vtk
+from diagrams import Diagram
+import graphviz
 
 
 #---ultimate für Deep Learning etc.---
