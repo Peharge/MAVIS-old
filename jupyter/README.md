@@ -183,3 +183,12 @@ For detailed documentation on each supported library, please refer to their resp
 - **[NetworkX Documentation](https://networkx.github.io/)** – The official documentation for **NetworkX**, a Python library for analyzing and creating networks and graphs.  
 
 - **[Schematics Documentation](https://schematics.readthedocs.io/en/latest/)** – The official documentation for **Schematics**, a Python library for defining and validating data structures and models with type checking.
+
+- **[Schemdraw Documentation](https://schemdraw.readthedocs.io/en/latest/)** – The official documentation for **Schemdraw**, a Python library for creating electronic circuit diagrams with standardized symbols and simplified representations.
+  
+- **[IPyWidgets Documentation](https://ipywidgets.readthedocs.io/en/stable/)** – The official documentation for **IPyWidgets**, a Python library for creating interactive widgets in Jupyter Notebooks, enabling users to interact with data and visualizations.
+  
+- **[PyBullet Documentation](https://pybullet.org/)** – The official documentation for **PyBullet**, a physics-based simulation library for 3D environments and robot simulations, accounting for collisions, forces, and movements.
+  
+- **[VTK Documentation](https://vtk.org/documentation/)** – The official documentation for **VTK**, an open-source library for 3D data visualization and processing, used in fields such as scientific visualization and medical image processing.
+
