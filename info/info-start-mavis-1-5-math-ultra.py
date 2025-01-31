@@ -160,7 +160,11 @@ frameworks = [
     ("QuantLib", "Quantitative finance library."),
     ("PySpice", "Bibliothek zur Simulation von elektronischen Schaltungen in Python."),
     ("NetworkX", "Python-Bibliothek zur Analyse und Erstellung von Netzwerken und Graphen."),
-    ("Schematics", "Bibliothek für die Definition und Validierung von Datenstrukturen mit Typüberprüfung in Python.")
+    ("Schematics", "Bibliothek für die Definition und Validierung von Datenstrukturen mit Typüberprüfung in Python."),
+    ("Schemdraw", "Python library for creating electronic circuit diagrams with standardized symbols and simplified representations."),
+    ("IPyWidgets", "Python library for creating interactive widgets in Jupyter Notebooks, enabling users to interact with data and visualizations."),
+    ("PyBullet", "Physics-based simulation library for 3D environments and robot simulations, accounting for collisions, forces, and movements."),
+    ("VTK", "Open-source library for 3D data visualization and processing, used in fields such as scientific visualization and medical image processing.")
 ]
 
 # Frameworks ausgeben

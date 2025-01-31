@@ -89,3 +89,7 @@ pip install QuantLib
 pip install pyspice
 pip install networkx
 pip install schematics
+pip install schemdraw
+pip install ipywidgets
+pip install pybullet
+pip install vtk

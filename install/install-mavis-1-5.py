@@ -140,8 +140,9 @@ packages = [
     "openmdao", "pybullet", "monai", "fenics", "pydy", "pycalculix", "solidpython",
     "pyomo", "gekko", "casadi", "control", "pybullet", "h2o", "pint", "coolprop",
     "pythermo", "biopython", "opencv-python", "SimpleITK", "nilearn", "deepchem",
-    "pymedtermino", "lifelines", "rdkit", "ase", "chempy", "shapely", "fiona", "cartopy",
-    "statsmodels", "yfinance", "QuantLib", "PySpice", "networkx", "schematics"
+    "pymedtermino", "lifelines", "rdkit", "ase", "chempy", "shapely", "fiona",
+    "cartopy", "statsmodels", "yfinance", "QuantLib", "PySpice", "networkx",
+    "schematics", "schemdraw", "ipywidgets", "pybullet", "vtk"
 
 ]
 

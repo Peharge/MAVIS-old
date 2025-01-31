@@ -23,7 +23,7 @@ You have access to all these frameworks, allowing you to tailor your workflow de
 
 This environment form MAVIS supports a broad array of tools, each serving a specific purpose. Below are the badges corresponding to the supported frameworks, allowing you to quickly identify the available tools:
 
-<div>
+<div align="center">
     <img alt="latex" src="https://img.shields.io/badge/-LaTeX-008080?style=flat&logo=latex&logoColor=white">
     <img alt="matplotlib" src="https://img.shields.io/badge/-Matplotlib-11557C?&logo=matplotlib">
     <img alt="plotly" src="https://img.shields.io/badge/-Plotly-3F4F75?&logo=plotly">
@@ -73,10 +73,13 @@ This environment form MAVIS supports a broad array of tools, each serving a spec
     <img alt="cartopy" src="https://img.shields.io/badge/-Cartopy-336699?&logo=cartopy">
     <img alt="statsmodels" src="https://img.shields.io/badge/-Statsmodels-800000?&logo=statsmodels">
     <img alt="yfinance" src="https://img.shields.io/badge/-YFinance-003366?&logo=yfinance">
-    <img alt="quantLib" src="https://img.shields.io/badge/-QuantLib-003366?&logo=quantLib">
     <img alt="pyspice" src="https://img.shields.io/badge/-PySpice-003366?&logo=pyspice">
-    <img alt="networkx" src="https://img.shields.io/badge/-networkx-003366?&logo=networkx">
-    <img alt="schematics" src="https://img.shields.io/badge/-Schematics-003366?&logo=schematics">
+    <img alt="networkx" src="https://img.shields.io/badge/-networkx-990000?&logo=networkx">
+    <img alt="schematics" src="https://img.shields.io/badge/-Schematics-006400?&logo=schematics">
+    <img alt="schemdraw" src="https://img.shields.io/badge/-Schemdraw-FF7F00?&logo=schemdraw">
+    <img alt="ipywidgets" src="https://img.shields.io/badge/-Ipywidgets-800080?&logo=ipywidgets">
+    <img alt="pybullet" src="https://img.shields.io/badge/-Pybullet-8A2BE2?&logo=pybullet">
+    <img alt="vtk" src="https://img.shields.io/badge/-Vtk-00008B?&logo=vtk">
 </div>
 
 ### Additional Information
