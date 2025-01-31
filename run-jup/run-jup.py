@@ -19,7 +19,7 @@ bold = "\033[1m"
 def start_jupyter():
     try:
         print("\nJupyter Information:")
-        print("------------------")
+        print("--------------------")
         # Vor der Ausführung um Bestätigung bitten
         user_input = input(f"Do you want to start Jupyter? (y/n): ").strip().lower()
         if user_input != 'y':
