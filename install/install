@@ -93,3 +93,8 @@ pip install schemdraw
 pip install ipywidgets
 pip install pybullet
 pip install vtk
+
+pip install diagrams
+pip install graphviz
+
+

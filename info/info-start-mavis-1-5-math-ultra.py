@@ -164,7 +164,9 @@ frameworks = [
     ("Schemdraw", "Python library for creating electronic circuit diagrams with standardized symbols and simplified representations."),
     ("IPyWidgets", "Python library for creating interactive widgets in Jupyter Notebooks, enabling users to interact with data and visualizations."),
     ("PyBullet", "Physics-based simulation library for 3D environments and robot simulations, accounting for collisions, forces, and movements."),
-    ("VTK", "Open-source library for 3D data visualization and processing, used in fields such as scientific visualization and medical image processing.")
+    ("VTK", "Open-source library for 3D data visualization and processing, used in fields such as scientific visualization and medical image processing."),
+    ("diagrams","Diagrams is a Python library for creating cloud architecture diagrams as code, allowing users to visually represent and design infrastructure components in a simple and customizable way."),
+    ("graphviz","Graphviz is a Python library for creating and rendering graph structures, enabling users to visualize relationships and hierarchies through directed and undirected graphs with customizable layouts.")
 ]
 
 # Frameworks ausgeben

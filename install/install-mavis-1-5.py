@@ -142,7 +142,7 @@ packages = [
     "pythermo", "biopython", "opencv-python", "SimpleITK", "nilearn", "deepchem",
     "pymedtermino", "lifelines", "rdkit", "ase", "chempy", "shapely", "fiona",
     "cartopy", "statsmodels", "yfinance", "QuantLib", "PySpice", "networkx",
-    "schematics", "schemdraw", "ipywidgets", "pybullet", "vtk"
+    "schematics", "schemdraw", "ipywidgets", "pybullet", "vtk", "diagrams", "graphviz"
 
 ]
 
