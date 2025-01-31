@@ -141,7 +141,7 @@ packages = [
     "pyomo", "gekko", "casadi", "control", "pybullet", "h2o", "pint", "coolprop",
     "pythermo", "biopython", "opencv-python", "SimpleITK", "nilearn", "deepchem",
     "pymedtermino", "lifelines", "rdkit", "ase", "chempy", "shapely", "fiona",
-    "cartopy", "statsmodels", "yfinance", "QuantLib", "PySpice", "networkx",
+    "cartopy", "statsmodels", "yfinance", "PySpice", "networkx",
     "schematics", "schemdraw", "ipywidgets", "pybullet", "vtk", "diagrams", "graphviz"
 
 ]
