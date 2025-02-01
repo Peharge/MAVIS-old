@@ -625,11 +625,16 @@ If you still prefer the automatic installation, please follow the instructions b
    - for MAVIS 1.4 EAP:
      - `run-mavis-1-4-math.bat` (experimental)<br>
    - for MAVIS 1.5 EAP:
+     - `run-mavis-1-5-main.bat` (experimental)
      - `run-mavis-1-5-math.bat` (experimental)
      - `run-mavis-1-5-math-pro.bat` (experimental)
      - `run-mavis-1-5-math-ultra.bat` (experimental)
+     - `run-mavis-1-5-math-mini.bat` (experimental)
+     - `run-mavis-1-5-math-mini-mini.bat` (experimental)
      - `run-mavis-1-5-code.bat` (experimental)
-
+     - `run-mavis-1-5-code-pro.bat` (experimental)
+     - `run-mavis-1-5-code-mini.bat` (experimental)
+     - `run-mavis-1-5-code-mini-mini.bat` (experimental)
 
 ### Have fun with MAVIS 🚀
 
@@ -686,10 +691,16 @@ chmod +x mavis-installer.sh
    - for MAVIS 1.4 EAP:
      - `run-mavis-1-4-math.sh` (experimental)<br>
    - for MAVIS 1.5 EAP:
+     - `run-mavis-1-5-main.sh` (experimental)
      - `run-mavis-1-5-math.sh` (experimental)
      - `run-mavis-1-5-math-pro.sh` (experimental)
      - `run-mavis-1-5-math-ultra.sh` (experimental)
+     - `run-mavis-1-5-math-mini.sh` (experimental)
+     - `run-mavis-1-5-math-mini-mini.sh` (experimental)
      - `run-mavis-1-5-code.sh` (experimental)
+     - `run-mavis-1-5-code-pro.sh` (experimental)
+     - `run-mavis-1-5-code-mini.sh` (experimental)
+     - `run-mavis-1-5-code-mini-mini.sh` (experimental)
 
 ### Have fun with MAVIS 🚀
 
@@ -787,10 +798,16 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
    - for MAVIS 1.4 EAP:
      - `run-mavis-1-4-math.bat` (experimental)<br>
    - for MAVIS 1.5 EAP:
+     - `run-mavis-1-5-main.bat` (experimental)
      - `run-mavis-1-5-math.bat` (experimental)
      - `run-mavis-1-5-math-pro.bat` (experimental)
      - `run-mavis-1-5-math-ultra.bat` (experimental)
+     - `run-mavis-1-5-math-mini.bat` (experimental)
+     - `run-mavis-1-5-math-mini-mini.bat` (experimental)
      - `run-mavis-1-5-code.bat` (experimental)
+     - `run-mavis-1-5-code-pro.bat` (experimental)
+     - `run-mavis-1-5-code-mini.bat` (experimental)
+     - `run-mavis-1-5-code-mini-mini.bat` (experimental)
 
 ### Have fun with MAVIS 🚀
 
@@ -862,10 +879,16 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
    - for MAVIS 1.4 EAP:
      - `run-mavis-1-4-math.sh` (experimental)<br>
    - for MAVIS 1.5 EAP:
+     - `run-mavis-1-5-main.sh` (experimental)
      - `run-mavis-1-5-math.sh` (experimental)
      - `run-mavis-1-5-math-pro.sh` (experimental)
      - `run-mavis-1-5-math-ultra.sh` (experimental)
+     - `run-mavis-1-5-math-mini.sh` (experimental)
+     - `run-mavis-1-5-math-mini-mini.sh` (experimental)
      - `run-mavis-1-5-code.sh` (experimental)
+     - `run-mavis-1-5-code-pro.sh` (experimental)
+     - `run-mavis-1-5-code-mini.sh` (experimental)
+     - `run-mavis-1-5-code-mini-mini.sh` (experimental)
 
 ### Have fun with MAVIS 🚀
 </details>
@@ -937,10 +960,16 @@ Solltest du dennoch die automatische Installation bevorzugen, folge bitte den un
    - für MAVIS 1.4 EAP:
      - `run-mavis-1-4-math.bat` (experimentell)<br>
    - for MAVIS 1.5 EAP:
+     - `run-mavis-1-5-main.bat` (experimentell)
      - `run-mavis-1-5-math.bat` (experimentell)
      - `run-mavis-1-5-math-pro.bat` (experimentell)
      - `run-mavis-1-5-math-ultra.bat` (experimentell)
+     - `run-mavis-1-5-math-mini.bat` (experimentell)
+     - `run-mavis-1-5-math-mini-mini.bat` (experimentell)
      - `run-mavis-1-5-code.bat` (experimentell)
+     - `run-mavis-1-5-code-pro.bat` (experimentell)
+     - `run-mavis-1-5-code-mini.bat` (experimentell)
+     - `run-mavis-1-5-code-mini-mini.bat` (experimentell)
 
 ### Viel Spaß mit MAVIS 🚀
      
@@ -996,10 +1025,16 @@ Solltest du dennoch die automatische Installation bevorzugen, folge bitte den un
    - für MAVIS 1.4 EAP:
      - `run-mavis-1-4-math.sh` (experimentell)<br>
    - for MAVIS 1.5 EAP:
+     - `run-mavis-1-5-main.sh` (experimentell)
      - `run-mavis-1-5-math.sh` (experimentell)
      - `run-mavis-1-5-math-pro.sh` (experimentell)
      - `run-mavis-1-5-math-ultra.sh` (experimentell)
+     - `run-mavis-1-5-math-mini.sh` (experimentell)
+     - `run-mavis-1-5-math-mini-mini.sh` (experimentell)
      - `run-mavis-1-5-code.sh` (experimentell)
+     - `run-mavis-1-5-code-pro.sh` (experimentell)
+     - `run-mavis-1-5-code-mini.sh` (experimentell)
+     - `run-mavis-1-5-code-mini-mini.sh` (experimentell)
 
 ### Viel Spaß mit MAVIS 🚀
 
@@ -1096,10 +1131,16 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
    - für MAVIS 1.4 EAP:
      - `run-mavis-1-4-math.bat` (experimentell)<br>
    - for MAVIS 1.5 EAP:
+     - `run-mavis-1-5-main.bat` (experimentell)
      - `run-mavis-1-5-math.bat` (experimentell)
      - `run-mavis-1-5-math-pro.bat` (experimentell)
      - `run-mavis-1-5-math-ultra.bat` (experimentell)
+     - `run-mavis-1-5-math-mini.bat` (experimentell)
+     - `run-mavis-1-5-math-mini-mini.bat` (experimentell)
      - `run-mavis-1-5-code.bat` (experimentell)
+     - `run-mavis-1-5-code-pro.bat` (experimentell)
+     - `run-mavis-1-5-code-mini.bat` (experimentell)
+     - `run-mavis-1-5-code-mini-mini.bat` (experimentell)
 
 ### Viel Spaß mit MAVIS 🚀
 
@@ -1170,10 +1211,16 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
    - für MAVIS 1.4 EAP:
      - `run-mavis-1-4-math.sh` (experimentell)<br>
    - for MAVIS 1.5 EAP:
+     - `run-mavis-1-5-main.sh` (experimentell)
      - `run-mavis-1-5-math.sh` (experimentell)
      - `run-mavis-1-5-math-pro.sh` (experimentell)
      - `run-mavis-1-5-math-ultra.sh` (experimentell)
+     - `run-mavis-1-5-math-mini.sh` (experimentell)
+     - `run-mavis-1-5-math-mini-mini.sh` (experimentell)
      - `run-mavis-1-5-code.sh` (experimentell)
+     - `run-mavis-1-5-code-pro.sh` (experimentell)
+     - `run-mavis-1-5-code-mini.sh` (experimentell)
+     - `run-mavis-1-5-code-mini-mini.sh` (experimentell)
 
 ### Viel Spaß mit MAVIS 🚀
 </details>
