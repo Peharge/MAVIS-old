@@ -1974,42 +1974,40 @@
             align-items: center;
         }
 
-.input-latex-graf textarea {
-    margin-top: 15px;
-    background-color: rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 6000px;
-    min-width: 1600px;
-    height: 1%;
-    max-height: 400px;
-    min-height: 80px;
-    border: 2px solid transparent;
-    outline: none;
-    padding: 1rem;
-    padding-top: 1rem;
-    padding-left: 1rem;
-    border-radius: 0.8rem;
-    color: white;
-    font-size: clamp(0.3rem, 1vw, 1rem);
-    line-height: 1.5;
-    text-align: left;
-    box-sizing: border-box;
-    resize: none;
-    overflow: auto;
-    white-space: pre-wrap;
-    cursor: text;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
-    -1px -1px 6px rgba(255, 255, 255, 0.4);
-    text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
-    -1px -1px 6px rgba(255, 255, 255, 0.4);
-}
+        .input-latex-graf textarea {
+            margin-top: 15px;
+            background-color: rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 6000px;
+            min-width: 1600px;
+            height: 1%;
+            max-height: 400px;
+            min-height: 80px;
+            border: 2px solid transparent;
+            outline: none;
+            padding: 1rem;
+            padding-top: 1rem;
+            padding-left: 1rem;
+            border-radius: 0.8rem;
+            color: white;
+            font-size: clamp(0.3rem, 1vw, 1rem);
+            line-height: 1.5;
+            text-align: left;
+            box-sizing: border-box;
+            resize: none;
+            overflow: auto;
+            white-space: pre-wrap;
+            cursor: text;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
+        }
 
-.input-latex-graf textarea::placeholder {
-    color: white;
-    opacity: 1;
-}
-
-
+        .input-latex-graf textarea::placeholder {
+            color: white;
+            opacity: 1;
+        }
 
         .latexFormula-cl {
             width: 100%;
@@ -2121,6 +2119,15 @@
             cursor: pointer;
             font-size: 0.8em;
             margin-top: 5px;
+        }
+        .plot-latex-code {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            color: white;
         }
     </style>
 </head>
@@ -2509,7 +2516,6 @@
             </div>
 
             <div id="controlPanel">
-                <h3>Vorgefertigte Formeln und Symbole</h3>
 
                 <div id="symbolPanel" class="panel-content">
                     <button class="control-button panel-button" onclick="insertFormula('x^2 + y^2')">x² + y²</button>
@@ -2545,7 +2551,10 @@
                 </div>
             </div>
 
-            <div id="mathDisplay"></div>
+        <h3 class="plot-latex-code">
+          Formel: <span id="mathDisplay" style="margin-left: 10px;"></span>
+        </h3>
+
             <div id="plotly-graph"></div>
         </div>
 
