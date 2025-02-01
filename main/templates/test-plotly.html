@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erweiterter Live-Formel-Plot</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.0.0/math.js"></script>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
+    </script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        textarea, select, button { width: 80%; padding: 10px; margin: 10px 0; font-size: 1.2em; }
+        #plotly-graph { width: 100%; height: 600px; }
+        #controlPanel { width: 100%; padding: 10px; text-align: left; }
+        .control-button { margin: 5px; cursor: pointer; }
+        .symbol-button { font-size: 1.5em; }
+
+        /* Styling für das Dropdown-Menü */
+        #menuButton {
+            padding: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .container-latex {
+    display: flex;              /* Flexbox verwenden */
+    align-items: center;        /* Vertikale Ausrichtung der Elemente in der Mitte */
+}
+
+.latexFormula-cl {
+    width: 80%;         /* Setzt die Breite der Textarea auf 80% */
+    height: 5%;         /* Setzt die Höhe der Textarea auf 5% */
+    text-align: left;   /* Text wird links ausgerichtet */
+    margin-left: 0;     /* Entfernt alle Abstände nach links */
+    padding-left: 10px; /* Optional: Abstand vom linken Rand innerhalb der Textarea */
+    display: block;     /* Stellt sicher, dass die Textarea als Block-Element behandelt wird */
+}
+
+
+
+
+
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            text-align: left;
+            padding: 5px;
+            font-size: 0.9em;
+        }
+
+        .dropdown-content a {
+            padding: 5px 10px;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Kompakte Panels */
+        .panel-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            text-align: left;
+            padding: 5px;
+            font-size: 0.9em;
+        }
+
+        .panel-button {
+            font-size: 0.8em;
+            margin: 3px;
+            padding: 5px;
+        }
+
+        .close-button {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 3px 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Erweiterter Live-Formel-Plot</h1>
+
+<div class="container-latex ">
+    <textarea id="latexFormula" class="latexFormula-cl" rows="2" placeholder="Gib eine Formel ein, z.B. x^2 + y^2"></textarea>
+
+    <!-- Dropdown-Menü Button -->
+    <div class="dropdown">
+        <button id="menuButton">Wählen Sie eine Option</button>
+        <div id="dropdownMenu" class="dropdown-content">
+            <a href="#" onclick="togglePanel('symbolPanel')">Sonderzeichen</a>
+            <a href="#" onclick="togglePanel('formulaPanel')">Formeln</a>
+            <a href="#" onclick="togglePanel('operationPanel')">Operationen</a>
+            <a href="#" onclick="togglePanel('dimensionPanel')">Dimensionen</a>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Control Panel für vordefinierte Funktionen und Sonderzeichen -->
+    <div id="controlPanel">
+        <h3>Vorgefertigte Formeln und Symbole</h3>
+
+        <!-- Panel für Sonderzeichen -->
+        <div id="symbolPanel" class="panel-content">
+            <button class="control-button panel-button" onclick="insertFormula('x^2 + y^2')">x² + y²</button>
+            <button class="control-button panel-button" onclick="insertFormula('\\frac{1}{x}')">1/x</button>
+            <button class="control-button panel-button" onclick="insertFormula('\\int x dx')">∫ x dx</button>
+            <button class="control-button panel-button" onclick="insertFormula('\\sin(x)')">sin(x)</button>
+            <button class="control-button panel-button" onclick="insertFormula('\\cos(x)')">cos(x)</button>
+            <button class="control-button panel-button" onclick="insertFormula('\\sqrt{x}')">√x</button>
+            <button class="control-button panel-button" onclick="insertFormula('\\pi')">π</button>
+            <button class="control-button panel-button" onclick="insertFormula('\\infty')">∞</button>
+            <button class="close-button" onclick="hidePanel('symbolPanel')">Schließen</button>
+        </div>
+
+        <!-- Panel für Formeln -->
+        <div id="formulaPanel" class="panel-content">
+            <button class="control-button panel-button" onclick="insertFormula('x^2 + y^2')">x² + y²</button>
+            <button class="control-button panel-button" onclick="insertFormula('\\frac{1}{x}')">1/x</button>
+            <button class="close-button" onclick="hidePanel('formulaPanel')">Schließen</button>
+        </div>
+
+        <!-- Panel für Operationen -->
+        <div id="operationPanel" class="panel-content">
+            <button class="control-button panel-button" onclick="computeDerivative()">Ableitung</button>
+            <button class="control-button panel-button" onclick="computeIntegral()">Integral</button>
+            <button class="close-button" onclick="hidePanel('operationPanel')">Schließen</button>
+        </div>
+
+        <!-- Panel für Dimensionen -->
+        <div id="dimensionPanel" class="panel-content">
+            <label for="graphType">Darstellungsart:</label>
+            <select id="graphType">
+                <option value="2D">2D</option>
+                <option value="3D">3D</option>
+            </select>
+            <button class="close-button" onclick="hidePanel('dimensionPanel')">Schließen</button>
+        </div>
+    </div>
+
+    <div id="mathDisplay"></div>
+    <div id="plotly-graph"></div>
+
+    <script>
+        // Menü anzeigen/ausblenden
+        document.getElementById("menuButton").addEventListener("click", function() {
+            const menu = document.getElementById("dropdownMenu");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        });
+
+        // Toggle Panels (Klicken auf eine Auswahl im Dropdown öffnet das Panel)
+        function togglePanel(panelId) {
+            const panel = document.getElementById(panelId);
+            panel.style.display = panel.style.display === "block" ? "none" : "block";
+        }
+
+        // Panel schließen
+        function hidePanel(panelId) {
+            document.getElementById(panelId).style.display = "none";
+        }
+
+        document.getElementById('latexFormula').addEventListener('input', updateDisplay);
+        document.getElementById('graphType').addEventListener('change', generatePlot);
+
+        function updateDisplay() {
+            let formula = document.getElementById('latexFormula').value;
+            document.getElementById('mathDisplay').innerHTML = "$$" + formula + "$$";
+            MathJax.typesetPromise();
+            generatePlot();
+        }
+
+        function generatePlot() {
+            const latexInput = document.getElementById('latexFormula').value.trim();
+            if (!latexInput) return;
+
+            let expression;
+            try {
+                expression = latexToMathExpression(latexInput);
+            } catch (error) {
+                console.error("Fehler beim Parsen der Formel:", error);
+                return;
+            }
+
+            const graphType = document.getElementById('graphType').value;
+            if (graphType === "2D") {
+                plot2D(expression, latexInput);
+            } else {
+                plot3D(expression, latexInput);
+            }
+        }
+
+        function plot2D(expression, latexInput) {
+            let xValues = [], yValues = [];
+            for (let x = -10; x <= 10; x += 0.1) {
+                try {
+                    let y = math.evaluate(expression, { x });
+                    xValues.push(x);
+                    yValues.push(y);
+                } catch (error) {
+                    console.error("Fehler bei 2D-Berechnung:", error);
+                }
+            }
+            Plotly.newPlot('plotly-graph', [{
+                x: xValues, y: yValues, type: 'scatter', mode: 'lines', name: 'Graph'
+            }], {
+                title: `2D-Plot von: ${latexInput}`, xaxis: { title: 'x' }, yaxis: { title: 'f(x)' }
+            });
+        }
+
+        function plot3D(expression, latexInput) {
+            let xRange = math.range(-10, 10, 0.5)._data;
+            let yRange = math.range(-10, 10, 0.5)._data;
+            let zValues = [];
+
+            for (let x of xRange) {
+                let zRow = [];
+                for (let y of yRange) {
+                    try {
+                        zRow.push(math.evaluate(expression, { x, y }));
+                    } catch (error) {
+                        zRow.push(null);
+                    }
+                }
+                zValues.push(zRow);
+            }
+
+            Plotly.newPlot('plotly-graph', [{
+                x: xRange, y: yRange, z: zValues, type: 'surface'
+            }], {
+                title: `3D-Plot von: ${latexInput}`,
+                scene: { xaxis: { title: 'x' }, yaxis: { title: 'y' }, zaxis: { title: 'f(x, y)' } }
+            });
+        }
+
+        function latexToMathExpression(latex) {
+            return latex
+                .replace(/\^/g, '**')
+                .replace(/([0-9a-zA-Z])\(/g, '$1*(')
+                .replace(/\\frac{([^}]+)}{([^}]+)}/g, '($1)/($2)')
+                .replace(/\\sqrt{([^}]+)}/g, 'sqrt($1)')
+                .replace(/\\int (.*) d([a-zA-Z])/g, 'integrate($1, $2)')
+                .replace(/([a-zA-Z]+)([0-9]+)/g, '$1*$2');
+        }
+
+        function computeDerivative() {
+            const latexInput = document.getElementById('latexFormula').value.trim();
+            if (!latexInput) return;
+            try {
+                let expr = latexToMathExpression(latexInput);
+                let derivative = math.derivative(expr, 'x').toString();
+                document.getElementById('latexFormula').value = derivative;
+                updateDisplay();
+            } catch (error) {
+                console.error("Fehler bei der Ableitung:", error);
+            }
+        }
+
+        function computeIntegral() {
+            const latexInput = document.getElementById('latexFormula').value.trim();
+            if (!latexInput) return;
+            try {
+                let expr = latexToMathExpression(latexInput);
+                let integral = math.integrate(expr, 'x').toString();
+                document.getElementById('latexFormula').value = integral;
+                updateDisplay();
+            } catch (error) {
+                console.error("Fehler beim Integrieren:", error);
+            }
+        }
+
+        function insertFormula(formula) {
+            const latexInput = document.getElementById('latexFormula');
+            latexInput.value += formula;
+            updateDisplay();
+        }
+    </script>
+</body>
+</html>
