@@ -14,8 +14,8 @@
 <img alt="python" src="https://img.shields.io/badge/Python-3.11 / 3.12 / (3.13)-blue?&logo=Python&logoColor=white%5BPython">
 <img alt="c++" src="https://img.shields.io/badge/-C++-blue?logo=cplusplus">
 <img alt="javascript++" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white"><br>
+<img alt="batch" src="https://img.shields.io/badge/Bat-31369E?logo=bat">
 <img alt="bash" src="https://img.shields.io/badge/Shell-4EAA25?&style=plastic&logo=gnu-bash&logoColor=white">
-<img alt="bat" src="https://img.shields.io/badge/Bat-31369E?logo=bat">
 <img alt="html" src="https://img.shields.io/badge/HTML5-%23E34F26.svg?logo=html5&logoColor=white">
 <img alt="css" src="https://img.shields.io/badge/CSS3-%231572B6.svg?logo=css3&logoColor=white">
 <br>
@@ -30,7 +30,7 @@
 <br>
 <br>
 
-<img alt="os" src="https://img.shields.io/badge/os-linux%20%7C%20macOS%20%7C%20windows-blue">
+<img alt="os" src="https://img.shields.io/badge/os-Windows%20%7C%20Linux%20%7C%20MacOS-blue">
 <br>
 <br>
 
