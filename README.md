@@ -587,21 +587,21 @@ If you still prefer the automatic installation, please follow the instructions b
 <details>
   <summary>Automatic Installation on Windows</summary>
 
-1. **Download the installation file:**
+1. **Download the installation file:**<br>
 - Download the file [`mavis-installer.bat`](https://github.com/Peharge/MAVIS/blob/main/mavis-installer/mavis-installer.bat) from GitHub.
 
-2. **Run the installation file:**
+2. **Run the installation file:**<br>
 - Run the downloaded file by double-clicking it.
 
-3. **Accept security warnings:**
+3. **Accept security warnings:**<br>
 - If Windows issues a security warning, accept it and allow execution.
 
-4. **Follow the installation instructions:**
+4. **Follow the installation instructions:**<br>
 - Follow the on-screen instructions to install MAVIS.
      
 ### Starting the UI
 
-**Start the UI**
+**Start the UI**<br>
    After installation, you can start MAVIS. There are several start options that vary depending on the version and intended use:<br>
    - All MAVIS versions:
      - `run-mavis-all.bat` (experimental)<br>
@@ -646,28 +646,28 @@ If you still prefer the automatic installation, please follow the instructions b
 <details>
   <summary>Automatic Installation on macOS/Linux</summary>
 
-1. **Download the installation file:**
+1. **Download the installation file:**<br>
 - Download the file [`mavis-installer.sh`](https://github.com/Peharge/MAVIS/blob/main/mavis-installer/mavis-installer.sh) from GitHub.
 
-2. **Make the file executable:**
+2. **Make the file executable:**<br>
 - Open a terminal and navigate to the directory where the downloaded file is located.
 - Enter the following command:
 ```bash
 chmod +x mavis-installer.sh
 ```
 
-3. **Run the installation file:**
+3. **Run the installation file:**<br>
 - Start the installation with:
 ```bash
 ./mavis-installer.sh
 ```
 
-4. **Follow the installation instructions:**
+4. **Follow the installation instructions:**<br>
 - Follow the instructions in the terminal to install MAVIS.
 
 ### Start UI
 
-**Start the UI**
+**Start the UI**<br>
    After installation, you can start MAVIS. There are several start options that vary depending on the version and intended use:<br>
    - All MAVIS versions:
      - `run-mavis-all.sh` (experimental)<br>
@@ -774,7 +774,7 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
 
 ### Starting the UI
 
-**Start the UI**
+**Start the UI**<br>
    After installation, you can start MAVIS. There are several start options that vary depending on the version and intended use:<br>
    - All MAVIS versions:
      - `run-mavis-all.bat` (experimental)<br>
@@ -855,7 +855,7 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
 
 ### Start UI
 
-**Start the UI**
+**Start the UI**<br>
    After installation, you can start MAVIS. There are several start options that vary depending on the version and intended use:<br>
    - All MAVIS versions:
      - `run-mavis-all.sh` (experimental)<br>
@@ -921,22 +921,21 @@ Solltest du dennoch die automatische Installation bevorzugen, folge bitte den un
 <details>
   <summary>Automatische Installation auf Windows</summary>
 
-1. **Herunterladen der Installationsdatei:**
+1. **Herunterladen der Installationsdatei:**<br>
    - Laden Sie die Datei [`mavis-installer.bat`](https://github.com/Peharge/MAVIS/blob/main/mavis-installer/mavis-installer.bat) von GitHub herunter.
 
-2. **Installationsdatei ausführen:**
+2. **Installationsdatei ausführen:**<br>
    - Führen Sie die heruntergeladene Datei durch Doppelklick aus.
 
-3. **Sicherheitswarnungen akzeptieren:**
+3. **Sicherheitswarnungen akzeptieren:**<br>
    - Falls Windows eine Sicherheitswarnung ausgibt, bestätigen Sie diese und erlauben Sie die Ausführung.
 
-4. **Installationsanweisungen befolgen:**
+4. **Installationsanweisungen befolgen:**<br>
    - Folgen Sie den Anweisungen auf dem Bildschirm, um MAVIS zu installieren.
 
 ### Benutzeroberfläche starten
 
-**Starten der UI**
-
+**Starten der UI**<br>
    Nach der Installation können Sie MAVIS starten. Es gibt mehrere Startoptionen, die je nach Version und Verwendungszweck variieren:<br>
    - Alle MAVIS Versionen:
      - `run-mavis-all.bat` (experimentell)<br>
@@ -981,29 +980,28 @@ Solltest du dennoch die automatische Installation bevorzugen, folge bitte den un
 <details>
   <summary>Automatische Installation auf macOS/Linux</summary>
 
-1. **Herunterladen der Installationsdatei:**
+1. **Herunterladen der Installationsdatei:**<br>
    - Laden Sie die Datei [`mavis-installer.sh`](https://github.com/Peharge/MAVIS/blob/main/mavis-installer/mavis-installer.sh) von GitHub herunter.
 
-2. **Datei ausführbar machen:**
+2. **Datei ausführbar machen:**<br>
    - Öffnen Sie ein Terminal und navigieren Sie in das Verzeichnis, in dem sich die heruntergeladene Datei befindet.
    - Geben Sie folgenden Befehl ein:
      ```bash
      chmod +x mavis-installer.sh
      ```
 
-3. **Installationsdatei ausführen:**
+3. **Installationsdatei ausführen:**<br>
    - Starten Sie die Installation mit:
      ```bash
      ./mavis-installer.sh
      ```
 
-4. **Installationsanweisungen befolgen:**
+4. **Installationsanweisungen befolgen:**<br>
    - Folgen Sie den Anweisungen im Terminal, um MAVIS zu installieren.
 
 ### Benutzeroberfläche starten
 
-**Starten der UI**
-
+**Starten der UI**<br>
    Nach der Installation können Sie MAVIS starten. Es gibt mehrere Startoptionen, die je nach Version und Verwendungszweck variieren:<br>
    - Alle MAVIS Versionen:
      - `run-mavis-all.sh` (experimentell)<br>
@@ -1075,29 +1073,29 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 1. **Ordner erstellen**<br>
     Erstelle einen Ordner mit dem Namen `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProjects`), falls dieser noch nicht existiert. Der Speicherort und die Methode variieren je nach Betriebssystem:  
 
-    - **Option 1: Über den Datei-Explorer**  
+    - **Option 1: Über den Datei-Explorer**<br>
       1. Öffne den Datei-Explorer.  
       2. Navigiere zu `C:\Users\DeinBenutzername\`.  
       3. Erstelle dort einen Ordner namens `PycharmProjects`.  
 
-    - **Option 2: Über die Eingabeaufforderung (Command Prompt)**  
+    - **Option 2: Über die Eingabeaufforderung (Command Prompt)**<br>
        Öffne die Eingabeaufforderung und führe die folgenden Befehle aus:  
        ```cmd
        mkdir C:\Users\%USERNAME%\PycharmProjects
        cd C:\Users\%USERNAME%\PycharmProjects
        ```
 
-1. **Repository klonen**
+1. **Repository klonen**<br>
    Klonen Sie das Repository in ein lokales Verzeichnis:
    ```bash
    git clone https://github.com/Peharge/MAVIS
    ```
-2. **In das Verzeichnis wechseln**
+2. **In das Verzeichnis wechseln**<br>
    Navigieren Sie in das Projektverzeichnis:
    ```bash
    cd MAVIS
    ```
-3. **Virtuelle Python-Umgebung erstellen**
+3. **Virtuelle Python-Umgebung erstellen**<br>
    Richten Sie eine virtuelle Umgebung ein, um Abhängigkeiten isoliert zu installieren:
    ```bash
    python -m venv env
@@ -1106,8 +1104,7 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 
 ### Benutzeroberfläche starten
 
-**Starten der UI**
-
+**Starten der UI**<br>
    Nach der Installation können Sie MAVIS starten. Es gibt mehrere Startoptionen, die je nach Version und Verwendungszweck variieren:<br>
    - Alle MAVIS Versionen:
      - `run-mavis-all.bat` (experimentell)<br>
@@ -1155,29 +1152,29 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 1. **Ordner erstellen**<br>
     Erstelle einen Ordner mit dem Namen `PycharmProjects` (`~/PycharmProjects`), falls dieser noch nicht existiert. Der Speicherort und die Methode variieren je nach Betriebssystem:  
 
-    - **Option 1: Über den Datei-Manager**  
+    - **Option 1: Über den Datei-Manager**<br>
         1. Öffne den Datei-Manager.  
         2. Navigiere zu deinem Home-Verzeichnis (`~/`).  
         3. Erstelle dort einen Ordner namens `PycharmProjects`.  
 
-    - **Option 2: Über das Terminal**  
+    - **Option 2: Über das Terminal**<br>
        Öffne das Terminal und führe die folgenden Befehle aus:  
        ```bash
        mkdir -p ~/PycharmProjects
        cd ~/PycharmProjects
        ```
 
-1. **Repository klonen**
+1. **Repository klonen**<br>
    Klonen Sie das Repository in ein lokales Verzeichnis:
    ```bash
    git clone https://github.com/Peharge/MAVIS
    ```
-2. **In das Verzeichnis wechseln**
+2. **In das Verzeichnis wechseln**<br>
    Navigieren Sie in das Projektverzeichnis:
    ```bash
    cd MAVIS
    ```
-3. **Virtuelle Python-Umgebung erstellen**
+3. **Virtuelle Python-Umgebung erstellen**<br>
    Richten Sie eine virtuelle Umgebung ein, um Abhängigkeiten isoliert zu installieren:
    ```bash
    python -m venv env
@@ -1186,8 +1183,7 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 
 ### Benutzeroberfläche starten
 
-**Starten der UI**
-
+**Starten der UI**<br>
    Nach der Installation können Sie MAVIS starten. Es gibt mehrere Startoptionen, die je nach Version und Verwendungszweck variieren:<br>
    - Alle MAVIS Versionen:
      - `run-mavis-all.sh` (experimentell)<br>
