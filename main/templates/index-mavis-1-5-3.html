@@ -1935,7 +1935,7 @@
             height: 5%;
             max-height: 80px;
             min-height: 80px;
-            border-radius: 6px;
+            border-radius: 0.8rem;
             padding: 0px 7px;
             color: #fff;
             font-size: 18px;
@@ -2525,17 +2525,51 @@
 
             <div id="controlPanel">
 
-                <div id="symbolPanel" class="panel-content">
-                    <button class="control-button panel-button" onclick="insertFormula('x^2 + y^2')">x² + y²</button>
-                    <button class="control-button panel-button" onclick="insertFormula('\\frac{1}{x}')">1/x</button>
-                    <button class="control-button panel-button" onclick="insertFormula('\\int x dx')">∫ x dx</button>
-                    <button class="control-button panel-button" onclick="insertFormula('\\sin(x)')">sin(x)</button>
-                    <button class="control-button panel-button" onclick="insertFormula('\\cos(x)')">cos(x)</button>
-                    <button class="control-button panel-button" onclick="insertFormula('\\sqrt{x}')">√x</button>
-                    <button class="control-button panel-button" onclick="insertFormula('\\pi')">π</button>
-                    <button class="control-button panel-button" onclick="insertFormula('\\infty')">∞</button>
-                    <button class="close-button" onclick="hidePanel('symbolPanel')">Schließen</button>
-                </div>
+            <div id="symbolPanel" class="panel-content">
+                <button class="control-button panel-button" onclick="insertFormula('x^2 + y^2')">x² + y²</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\frac{1}{x}')">1/x</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\int x dx')">∫ x dx</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\sin(x)')">sin(x)</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\cos(x)')">cos(x)</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\sqrt{x}')">√x</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\pi')">π</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\infty')">∞</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\alpha')">α</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\beta')">β</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\gamma')">γ</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\delta')">δ</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\epsilon')">ε</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\lambda')">λ</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\mu')">μ</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\sigma')">σ</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\omega')">ω</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\sum_{i=1}^{n} i')">∑</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\prod_{i=1}^{n} i')">∏</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\left(\\frac{a}{b}\\right)')">(a/b)</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\neq')">≠</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\leq')">≤</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\geq')">≥</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\approx')">≈</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\div')">÷</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\times')">×</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\pm')">±</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\in')">∈</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\notin')">∉</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\exists')">∃</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\forall')">∀</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\nabla')">∇</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\partial')">∂</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\hbar')">ℏ</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\imath')">𝖎</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\Re')">ℜ</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\mathbb{R}')">ℝ</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\mathbb{C}')">ℂ</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\mathbb{Z}')">ℤ</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\mathbb{N}')">ℕ</button>
+                <button class="control-button panel-button" onclick="insertFormula('\\mathbb{Q}')">ℚ</button>
+                <button class="close-button" onclick="hidePanel('symbolPanel')">Schließen</button>
+            </div>
+
 
                 <div id="formulaPanel" class="panel-content">
                     <button class="control-button panel-button" onclick="insertFormula('x^2 + y^2')">x² + y²</button>
