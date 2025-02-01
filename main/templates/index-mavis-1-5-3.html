@@ -816,9 +816,9 @@
             border-left: 2px  rgba(0, 0, 0, 0.545) outset;
             align-items: center;
             box-shadow: 3px 8px 5px 0px rgba(0, 0, 0, 0.2);
-            width: 16%;
+            width: 19%;
             height: 50px;
-            max-width: 350px;
+            max-width: 390px;
             max-height: 100px;
             min-width: 230px;
             justify-content: space-around;
@@ -1887,6 +1887,7 @@
         body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
 
         .card-ploty-graf {
+            display: none;
             z-index: 1;
             width: 90%;
             max-width: 2000px;
@@ -2513,67 +2514,81 @@
                     <textarea id="latexFormula" class="latexFormula-cl" rows="2" placeholder="Gib eine Formel ein, z.B. x^2 + y^2"></textarea>
                 </div>
                 <div class="dropdown">
-                    <button id="menuButton" class="custom-button">Wählen Sie eine Option</button>
+                    <button id="menuButton" class="custom-button">Select an option</button>
                     <div id="dropdownMenu" class="dropdown-content">
-                        <a href="#" onclick="togglePanel('symbolPanel')">Sonderzeichen</a>
-                        <a href="#" onclick="togglePanel('formulaPanel')">Formeln</a>
-                        <a href="#" onclick="togglePanel('operationPanel')">Operationen</a>
-                        <a href="#" onclick="togglePanel('dimensionPanel')">Dimensionen</a>
+                        <a href="#" onclick="togglePanel('symbolPanel')">Special characters</a>
+                        <a href="#" onclick="togglePanel('formulaPanel')">Formulas</a>
+                        <a href="#" onclick="togglePanel('operationPanel')">Operations</a>
+                        <a href="#" onclick="togglePanel('dimensionPanel')">Dimensions</a>
                     </div>
                 </div>
             </div>
 
             <div id="controlPanel">
 
-            <div id="symbolPanel" class="panel-content">
-                <button class="control-button panel-button" onclick="insertFormula('x^2 + y^2')">x² + y²</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\frac{1}{x}')">1/x</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\int x dx')">∫ x dx</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\sin(x)')">sin(x)</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\cos(x)')">cos(x)</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\sqrt{x}')">√x</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\pi')">π</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\infty')">∞</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\alpha')">α</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\beta')">β</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\gamma')">γ</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\delta')">δ</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\epsilon')">ε</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\lambda')">λ</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\mu')">μ</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\sigma')">σ</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\omega')">ω</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\sum_{i=1}^{n} i')">∑</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\prod_{i=1}^{n} i')">∏</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\left(\\frac{a}{b}\\right)')">(a/b)</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\neq')">≠</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\leq')">≤</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\geq')">≥</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\approx')">≈</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\div')">÷</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\times')">×</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\pm')">±</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\in')">∈</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\notin')">∉</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\exists')">∃</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\forall')">∀</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\nabla')">∇</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\partial')">∂</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\hbar')">ℏ</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\imath')">𝖎</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\Re')">ℜ</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\mathbb{R}')">ℝ</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\mathbb{C}')">ℂ</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\mathbb{Z}')">ℤ</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\mathbb{N}')">ℕ</button>
-                <button class="control-button panel-button" onclick="insertFormula('\\mathbb{Q}')">ℚ</button>
-                <button class="close-button" onclick="hidePanel('symbolPanel')">Schließen</button>
-            </div>
-
+                <div id="symbolPanel" class="panel-content">
+                    <button class="control-button panel-button" onclick="insertFormula('x^2 + y^2')">x² + y²</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\frac{1}{x}')">1/x</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\int x dx')">∫ x dx</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\sin(x)')">sin(x)</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\cos(x)')">cos(x)</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\sqrt{x}')">√x</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\pi')">π</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\infty')">∞</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\alpha')">α</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\beta')">β</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\gamma')">γ</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\delta')">δ</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\epsilon')">ε</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\lambda')">λ</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\mu')">μ</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\sigma')">σ</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\omega')">ω</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\sum_{i=1}^{n} i')">∑</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\prod_{i=1}^{n} i')">∏</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\left(\\frac{a}{b}\\right)')">(a/b)</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\neq')">≠</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\leq')">≤</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\geq')">≥</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\approx')">≈</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\div')">÷</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\times')">×</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\pm')">±</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\in')">∈</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\notin')">∉</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\exists')">∃</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\forall')">∀</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\nabla')">∇</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\partial')">∂</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\hbar')">ℏ</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\imath')">𝖎</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\Re')">ℜ</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\mathbb{R}')">ℝ</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\mathbb{C}')">ℂ</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\mathbb{Z}')">ℤ</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\mathbb{N}')">ℕ</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\mathbb{Q}')">ℚ</button>
+                    <button class="close-button" onclick="hidePanel('symbolPanel')">Schließen</button>
+                </div>
 
                 <div id="formulaPanel" class="panel-content">
                     <button class="control-button panel-button" onclick="insertFormula('x^2 + y^2')">x² + y²</button>
                     <button class="control-button panel-button" onclick="insertFormula('\\frac{1}{x}')">1/x</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\int x dx')">∫ x dx</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\sin(x)')">sin(x)</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\cos(x)')">cos(x)</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\sqrt{x}')">√x</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\pi')">π</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\infty')">∞</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\log(x)')">log(x)</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\frac{x}{y}')">x/y</button>
+                    <button class="control-button panel-button" onclick="insertFormula('e^x')">e^x</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\lim_{x\\to\\infty} f(x)')">lim<sub>x→∞</sub> f(x)</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\sum_{n=1}^{\\infty} a_n')">Σ aₙ</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\frac{d}{dx} f(x)')">f'(x)</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\delta(x)')">δ(x)</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\cosh(x)')">cosh(x)</button>
+                    <button class="control-button panel-button" onclick="insertFormula('\\sinh(x)')">sinh(x)</button>
                     <button class="close-button" onclick="hidePanel('formulaPanel')">Schließen</button>
                 </div>
 
@@ -3322,12 +3337,13 @@
                 </svg>
             </button>
             <button class="button-input-plus" onclick="toggleplotygraf()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="0" fill="currentColor" stroke="currentColor" class="icon2">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <svg fill="#ffffff" height="256px" width="256px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 297.167 297.167" xml:space="preserve">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                     <g id="SVGRepo_iconCarrier">
-                        <path d="M12 22C12.5523 22 13 21.5523 13 21C13 20.4477 12.5523 20 12 20V22ZM12.4453 4.01216C12.9968 4.04235 13.4683 3.61979 13.4985 3.06833C13.5287 2.51687 13.1061 2.04535 12.5547 2.01515L12.4453 4.01216ZM11.7627 9.23726L11.0556 8.53015L11.7627 9.23726ZM17.411 3.58902L18.1181 4.29613L17.411 3.58902ZM9 15L8.01005 14.8586C7.96411 15.1802 8.07723 15.504 8.3134 15.727C8.54957 15.9501 8.87936 16.0445 9.19778 15.9802L9 15ZM9.04745 14.6678L8.0575 14.5264L8.0575 14.5264L9.04745 14.6678ZM9.48793 14.9016L9.29015 13.9213L9.48793 14.9016ZM12.8012 13.7247L12.2287 12.9048H12.2287L12.8012 13.7247ZM11.564 14.3882L11.9302 15.3187H11.9302L11.564 14.3882ZM10.1791 10.9786L9.34943 10.4203V10.4203L10.1791 10.9786ZM9.49029 12.3561L8.54586 12.0274V12.0274L9.49029 12.3561ZM16.7071 4.29289C16.3166 3.90237 15.6834 3.90237 15.2929 4.29289C14.9024 4.68342 14.9024 5.31658 15.2929 5.70711L16.7071 4.29289ZM18.1213 8.53553C18.5118 8.92606 19.145 8.92606 19.5355 8.53553C19.9261 8.14501 19.9261 7.51184 19.5355 7.12132L18.1213 8.53553ZM16 16C15.4477 16 15 16.4477 15 17C15 17.5523 15.4477 18 16 18V16ZM21.88 10.8011C21.7701 10.2598 21.2423 9.91012 20.701 10.02C20.1598 10.1299 19.8101 10.6577 19.92 11.1989L21.88 10.8011ZM12 20C7.58172 20 4 16.4183 4 12H2C2 17.5228 6.47715 22 12 22V20ZM4 12C4 7.58172 7.58172 4 12 4V2C6.47715 2 2 6.47715 2 12H4ZM12 4C12.1495 4 12.298 4.00409 12.4453 4.01216L12.5547 2.01515C12.371 2.00509 12.186 2 12 2V4ZM12.4698 9.94436L18.1181 4.29613L16.7039 2.88191L11.0556 8.53015L12.4698 9.94436ZM19.5323 5.71034L13.6703 11.5723L15.0845 12.9865L20.9465 7.12455L19.5323 5.71034ZM9.98995 15.1414L10.0374 14.8093L8.0575 14.5264L8.01005 14.8586L9.98995 15.1414ZM9.29015 13.9213L8.80222 14.0198L9.19778 15.9802L9.68571 15.8818L9.29015 13.9213ZM13.6703 11.5723C12.8844 12.3582 12.5736 12.664 12.2287 12.9048L13.3737 14.5447C13.8964 14.1797 14.3472 13.7239 15.0845 12.9865L13.6703 11.5723ZM9.68571 15.8818C10.7079 15.6755 11.3371 15.5522 11.9302 15.3187L11.1977 13.4577C10.8064 13.6118 10.3796 13.7015 9.29015 13.9213L9.68571 15.8818ZM12.2287 12.9048C11.9079 13.1288 11.5618 13.3144 11.1977 13.4577L11.9302 15.3187C12.44 15.1181 12.9245 14.8583 13.3737 14.5447L12.2287 12.9048ZM11.0556 8.53015C10.243 9.34283 9.74031 9.83942 9.34943 10.4203L11.0087 11.5369C11.2665 11.1538 11.6034 10.8108 12.4698 9.94436L11.0556 8.53015ZM10.0374 14.8093C10.2107 13.5963 10.2829 13.121 10.4347 12.6848L8.54586 12.0274C8.31572 12.6886 8.22004 13.3887 8.0575 14.5264L10.0374 14.8093ZM9.34943 10.4203C9.01364 10.9192 8.74356 11.4594 8.54586 12.0274L10.4347 12.6848C10.5759 12.2791 10.7688 11.8933 11.0087 11.5369L9.34943 10.4203ZM19.5323 4.29613C19.9228 4.68665 19.9228 5.31981 19.5323 5.71034L20.9465 7.12455C22.1181 5.95298 22.1181 4.05348 20.9465 2.88191L19.5323 4.29613ZM20.9465 2.88191C19.7749 1.71034 17.8754 1.71034 16.7039 2.88191L18.1181 4.29613C18.5086 3.9056 19.1418 3.9056 19.5323 4.29613L20.9465 2.88191ZM15.2929 5.70711L18.1213 8.53553L19.5355 7.12132L16.7071 4.29289L15.2929 5.70711ZM20 12C20 14.2091 18.2091 16 16 16V18C19.3137 18 22 15.3137 22 12H20ZM19.92 11.1989C19.9723 11.4569 20 11.7247 20 12H22C22 11.5903 21.9588 11.1893 21.88 10.8011L19.92 11.1989Z"
-                              fill="#ffffff"></path>
+                        <g>
+                            <path d="M281,259.573H17c-8.284,0-15,6.716-15,15c0,8.284,6.716,15,15,15h264c8.284,0,15-6.716,15-15 C296,266.289,289.284,259.573,281,259.573z"></path>
+                            <path d="M33,238.094c18.225,0,33-14.775,33-33c0-7.018-2.197-13.519-5.932-18.867l23.502-44.049c0.2,0.004,0.397,0.015,0.598,0.015 c5.049,0,9.83-1.138,14.109-3.165l51.293,39.584c-0.367,1.972-0.569,4.002-0.569,6.081c0,18.225,14.775,33,33,33 c18.225,0,33-14.775,33-33c0-6.686-1.994-12.903-5.412-18.101l53.051-93.037c0.507,0.023,1.016,0.039,1.528,0.039 c18.225,0,33-14.775,33-33s-14.775-33-33-33s-33,14.775-33,33c0,6.686,1.994,12.903,5.412,18.101l-53.051,93.036 c-0.507-0.023-1.015-0.039-1.528-0.039c-5.049,0-9.83,1.138-14.109,3.164l-51.293-39.584c0.368-1.972,0.569-4.002,0.569-6.08 c0-18.225-14.775-33-33-33c-18.225,0-33,14.775-33,33c0,7.018,2.197,13.519,5.932,18.867l-23.502,44.049 c-0.2-0.004-0.397-0.015-0.597-0.015c-18.225,0-33,14.775-33,33C0,223.319,14.775,238.094,33,238.094z"></path>
+                        </g>
                     </g>
                 </svg>
             </button>
@@ -3523,10 +3539,10 @@
         function toggleplotygraf() {
             const cardploty = document.querySelector('.card-ploty-graf');
 
-            if (cardploty.style.display === 'block' || cardploty.style.display === '') {
-                cardploty.style.display = 'none';
-            } else {
+            if (cardploty.style.display === 'none' || cardploty.style.display === '') {
                 cardploty.style.display = 'block';
+            } else {
+                cardploty.style.display = 'none';
             }
         }
 
