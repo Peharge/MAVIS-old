@@ -1930,11 +1930,12 @@
             align-items: center;
             justify-content: center;
             border: none;
-            width: 20%;
-            max-width: 160px;
-            max-height: 100px;
-            min-width: 80px;
-            height: 50px;
+            width: 30%;
+            max-width: 333px;
+            min-width: 100px;
+            height: 5%;
+            max-height: 80px;
+            min-height: 80px;
             border-radius: 6px;
             padding: 0px 7px;
             color: #fff;
@@ -1980,7 +1981,7 @@
             width: 100%;
             max-width: 6000px;
             min-width: 1600px;
-            height: 1%;
+            height: 5%;
             max-height: 400px;
             min-height: 80px;
             border: 2px solid transparent;
@@ -2071,6 +2072,7 @@
             text-align: left;
             padding: 5px;
             font-size: 0.9em;
+            border-radius: 6px;
         }
 
         .dropdown-content a {
@@ -2079,10 +2081,12 @@
             display: block;
             cursor: pointer;
             font-size: 1em;
+            border-radius: 6px;
+            color: #ffffff;
         }
 
         .dropdown-content a:hover {
-            background-color: #ddd;
+            background-color: rgba(0, 0, 0, 0.3);
         }
 
         .dropdown {
@@ -2095,20 +2099,26 @@
             position: absolute;
             background-color: rgba(0, 0, 0, 0.1);
             min-width: 160px;
-            box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
-            -1px -1px 6px rgba(255, 255, 255, 0.4);
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
-            -1px -1px 6px rgba(255, 255, 255, 0.4);
             z-index: 1;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+                        -1px -1px 6px rgba(255, 255, 255, 0.4);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+                         -1px -1px 6px rgba(255, 255, 255, 0.4);
             text-align: left;
             padding: 5px;
-            font-size: 0.9em;
+            font-size: 1.5em;
+            border-radius: 6px;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .panel-button {
             font-size: 0.8em;
             margin: 3px;
             padding: 5px;
+            border-radius: 6px;
+            background-color: rgba(0, 0, 0, 0.1);
         }
 
         .close-button {
@@ -2119,14 +2129,13 @@
             cursor: pointer;
             font-size: 0.8em;
             margin-top: 5px;
+            border-radius: 6px;
         }
+
         .plot-latex-code {
             display: flex;
             align-items: center;
-            margin-top: 15px;
             padding: 10px;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
             color: white;
         }
     </style>
@@ -2551,9 +2560,9 @@
                 </div>
             </div>
 
-        <h3 class="plot-latex-code">
-          Formel: <span id="mathDisplay" style="margin-left: 10px;"></span>
-        </h3>
+            <h3 class="plot-latex-code">
+              Formel: <span id="mathDisplay" style="margin-left: 10px;"></span>
+            </h3>
 
             <div id="plotly-graph"></div>
         </div>
