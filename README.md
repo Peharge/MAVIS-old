@@ -26,7 +26,8 @@
 <img alt="jupyter" src="https://img.shields.io/badge/Jupyter-%23F37626.svg?logo=jupyter&logoColor=white"><br>
 <img alt="pycharm" src="https://img.shields.io/badge/PyCharm-black?logo=PyCharm&logoColor=white">
 <img alt="github" src="https://img.shields.io/badge/GitHub-black?logo=github">
-<img alt="huggingface" src="https://img.shields.io/badge/HuggingFace-%23FFCC00.svg?logo=huggingface&logoColor=black">
+<img alt="huggingface" src="https://img.shields.io/badge/HuggingFace-%23FFCC00.svg?logo=huggingface&logoColor=black"><br>
+<img alt="llama.cpp" src="https://img.shields.io/badge/Llama.cpp-%2300A9FF.svg?logo=llama&logoColor=black">
 <br>
 <br>
 
@@ -106,7 +107,7 @@ _**MAVIS**: In the darkest times lies the power to create something great – a 
 </details>
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner27.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis-banner27-3.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 <br>
