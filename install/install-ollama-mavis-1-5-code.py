@@ -187,14 +187,13 @@ def prompt_user_for_installation(model_name):
     :return: True, wenn der Benutzer zustimmt, False ansonsten.
     """
     while True:
-        user_input = input(f"Do you want to install the model {model_name}? (y/n): ").strip().lower()
-        if user_input == 'y':
+        user_input = input(f"Do you want to install the model {model_name}? [y/n]: ").strip().lower()
+        if user_input in ["y", "yes"]:
             return True
-        elif user_input == 'n':
+        elif user_input in ["n", "no"]:
             return False
         else:
             print(f"{yellow}Invalid input. Please enter 'y' for yes or 'n' for no.{reset}")
-
 if __name__ == "__main__":
     print("\nOllama Information:")
     print("-------------------")

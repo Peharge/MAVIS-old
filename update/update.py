@@ -153,12 +153,12 @@ def main():
         sys.exit(0)
 
     # Frage, ob der Benutzer die neuesten Commits auf GitHub sehen möchte
-    show_commits = input(f"\n{blue}Want to see the latest commits on GitHub? (y/n): {reset}").strip().lower()
+    show_commits = input(f"\n{blue}Want to see the latest commits on GitHub? [y/n[: {reset}").strip().lower()
     if show_commits in ['y', 'yes']:
         get_latest_commits()
 
     # Frage, ob der Benutzer das Repository aktualisieren möchte
-    update = input(f"\n{cyan}Do you want to update the repository now? (y/n): {reset}").strip().lower()
+    update = input(f"\n{cyan}Do you want to update the repository now? [y/n]: {reset}").strip().lower()
     if update in ['y', 'yes']:
         update_repo()
     else:

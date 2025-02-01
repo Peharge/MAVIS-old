@@ -21,8 +21,8 @@ def start_jupyter():
         print("\nJupyter Information:")
         print("--------------------")
         # Vor der Ausführung um Bestätigung bitten
-        user_input = input(f"Do you want to start Jupyter? (y/n): ").strip().lower()
-        if user_input != 'y':
+        user_input = input(f"Do you want to start Jupyter? [y/n]: ").strip().lower()
+        if user_input not in ['y', 'yes']:
             print(f"{green}Jupyter will not be started.{reset}")
             sys.exit(0)
 
