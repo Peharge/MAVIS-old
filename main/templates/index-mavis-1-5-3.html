@@ -2638,9 +2638,9 @@
             <div id="controlPanel">
 
                 <div id="symbolPanel" class="panel-content">
-                    <button class="panel-button-plot-so" onclick="insertFormula('x^2 + y^2')">$$x²$$</button>
+                    <button class="panel-button-plot-so" onclick="insertFormula('x^2 + y^2')">$$x^2$$</button>
                     <button class="panel-button-plot-so" onclick="insertFormula('\\frac{1}{x}')">$$\frac{1}{x}$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\int x dx')">$$∫ x dx$$</button>
+                    <button class="panel-button-plot-so" onclick="insertFormula('\\int x dx')">$$\int x \, dx$$</button>
                     <button class="panel-button-plot-so" onclick="insertFormula('\\sin(x)')">$$sin(x)$$</button>
                     <button class="panel-button-plot-so" onclick="insertFormula('\\cos(x)')">$$cos(x)$$</button>
                     <button class="panel-button-plot-so" onclick="insertFormula('\\sqrt{x}')">$$√x$$</button>
@@ -2684,16 +2684,15 @@
 
 
                 <div id="formulaPanel" class="panel-content-form">
-                    <button class="panel-button-plot" onclick="insertFormula('x^2 + y^2')">$$x² + y²$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\frac{1}{x}')">$$\frac{1}{x} $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\int x dx')">$$∫ x dx$$</button>
+                    <button class="panel-button-plot" onclick="insertFormula('x^2 + y^2')">$$x^2 + y^2$$</button>
+                    <button class="panel-button-plot" onclick="insertFormula('\\frac{1}{x}')">$$\frac{1}{x}$$</button>
+                    <button class="panel-button-plot" onclick="insertFormula('\\int x dx')">$$\int x \, dx$$</button>
                     <button class="panel-button-plot" onclick="insertFormula('\\sin(x)')">$$sin(x)$$</button>
                     <button class="panel-button-plot" onclick="insertFormula('\\cos(x)')">$$cos(x)$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\sqrt{x}')">$$√x$$</button>
+                    <button class="panel-button-plot" onclick="insertFormula('\\sqrt{x}')">\sqrt{x}</button>
                     <button class="panel-button-plot" onclick="insertFormula('\\pi')">$$π$$</button>
                     <button class="panel-button-plot" onclick="insertFormula('\\infty')">$$∞$$</button>
                     <button class="panel-button-plot" onclick="insertFormula('\\log(x)')">$$log(x)$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\frac{x}{y}')">$$x/y$$</button>
                     <button class="panel-button-plot" onclick="insertFormula('e^x')">$$e^x$$</button>
                     <button class="panel-button-plot" onclick="insertFormula('\\lim_{x\\to\\infty} f(x)')">$$\lim_{x \to \infty} f(x) $$</button>
                     <button class="panel-button-plot" onclick="insertFormula('\\sum_{n=1}^{\\infty} a_n')">$$Σ aₙ$$</button>
@@ -2831,7 +2830,7 @@
                 Plotly.newPlot('plotly-graph', [{
                     x: xValues, y: yValues, type: 'scatter', mode: 'lines', name: 'Graph'
                 }], {
-                    title: `2D-Plot von: ${latexInput}`, xaxis: { title: 'x' }, yaxis: { title: 'f(x)' }
+                    xaxis: { title: 'x' }, yaxis: { title: 'f(x)' }, margin: { l: 50, r: 50, b: 50, t: 50 }
                 });
             }
 
@@ -2853,10 +2852,23 @@
                 }
 
                 Plotly.newPlot('plotly-graph', [{
-                    x: xRange, y: yRange, z: zValues, type: 'surface'
+                    x: xRange,
+                    y: yRange,
+                    z: zValues,
+                    type: 'surface'
                 }], {
-                    title: `3D-Plot von: ${latexInput}`,
-                    scene: { xaxis: { title: 'x' }, yaxis: { title: 'y' }, zaxis: { title: 'f(x, y)' } }
+                    scene: {
+                        xaxis: { title: 'x', showgrid: true, zeroline: false },
+                        yaxis: { title: 'y', showgrid: true, zeroline: false },
+                        zaxis: { title: 'f(x, y)', showgrid: true, zeroline: false },
+                        camera: { projection: { type: 'perspective' } }
+                    },
+                    margin: {
+                        l: 0,
+                        r: 0,
+                        b: 0,
+                        t: 0
+                    }
                 });
             }
 
