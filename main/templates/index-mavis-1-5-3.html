@@ -3703,21 +3703,21 @@
         }
 
     </script>
-        <script>
-            const textaread = document.getElementById('draw-latexCode');
-            const input = document.getElementById('message');
-            const sendButton = document.getElementById('send-button');
+    <script>
+        const textaread = document.getElementById('draw-latexCode');
+        const input = document.getElementById('message');
+        const sendButton = document.getElementById('send-button');
 
-            textaread.addEventListener('input', () => {
-                input.value = textaread.value;
-            });
+        textaread.addEventListener('input', () => {
+            input.value = textaread.value;
+        });
 
-            sendButton.addEventListener('click', () => {
-                input.value = textaread.value;
-                alert(`Message sent: ${input.value}`);
-            });
+        sendButton.addEventListener('click', () => {
+            input.value = textaread.value;
+            alert(`Message sent: ${input.value}`);
+        });
 
-        </script>
+    </script>
 
 </body>
 </html>
