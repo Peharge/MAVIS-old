@@ -1,7 +1,7 @@
 # Benutzung von MAVIS 1.5
 
 ## 1. Starten des MAVIS Installers
-Nachdem Sie die entsprechende `.bat`-Datei der gewünschten MAVIS-Version ausgeführt haben, wird ein Terminal auf Ihrem Betriebssystem geöffnet. Dies ist der MAVIS Installer.
+Nachdem Sie die entsprechende `.bat` oder `.sh`-Datei der gewünschten MAVIS-Version ausgeführt haben, wird ein Terminal auf Ihrem Betriebssystem geöffnet. Dies ist der MAVIS Installer.
 
 Falls Sie MAVIS 1.5 zum ersten Mal starten, kann die Installation je nach Internetgeschwindigkeit zwischen 30 Minuten und 2 Stunden dauern. Wenn MAVIS bereits installiert ist, startet das Programm in etwa einer Minute.
 
