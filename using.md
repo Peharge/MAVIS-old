@@ -1,7 +1,5 @@
 # Benutzung von MAVIS 1.5
 
-# Benutzung von MAVIS 1.5
-
 ## 1. Starten des MAVIS Installers
 Nachdem Sie die entsprechende `.bat`-Datei der gewünschten MAVIS-Version ausgeführt haben, wird ein Terminal auf Ihrem Betriebssystem geöffnet. Dies ist der MAVIS Installer.
 
