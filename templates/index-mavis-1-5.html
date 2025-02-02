@@ -2831,7 +2831,7 @@
                 Plotly.newPlot('plotly-graph', [{
                     x: xValues, y: yValues, type: 'scatter', mode: 'lines', name: 'Graph'
                 }], {
-                    title: `2D-Plot von: ${latexInput}`, xaxis: { title: 'x' }, yaxis: { title: 'f(x)' }
+                    xaxis: { title: 'x' }, yaxis: { title: 'f(x)' }, margin: { l: 50, r: 50, b: 50, t: 50 }
                 });
             }
 
@@ -2853,10 +2853,23 @@
                 }
 
                 Plotly.newPlot('plotly-graph', [{
-                    x: xRange, y: yRange, z: zValues, type: 'surface'
+                    x: xRange,
+                    y: yRange,
+                    z: zValues,
+                    type: 'surface'
                 }], {
-                    title: `3D-Plot von: ${latexInput}`,
-                    scene: { xaxis: { title: 'x' }, yaxis: { title: 'y' }, zaxis: { title: 'f(x, y)' } }
+                    scene: {
+                        xaxis: { title: 'x', showgrid: true, zeroline: false },
+                        yaxis: { title: 'y', showgrid: true, zeroline: false },
+                        zaxis: { title: 'f(x, y)', showgrid: true, zeroline: false },
+                        camera: { projection: { type: 'perspective' } }
+                    },
+                    margin: {
+                        l: 0,
+                        r: 0,
+                        b: 0,
+                        t: 0
+                    }
                 });
             }
 
