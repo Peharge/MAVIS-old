@@ -2147,6 +2147,26 @@
             transform: translate(-50%, -50%);
         }
 
+        .panel-content-son {
+            display: none;
+            position: absolute;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.1);
+            min-width: 60%;
+            z-index: 1;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
+            text-align: left;
+            padding: 5px;
+            font-size: 1.5em;
+            border-radius: 6px;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
         .panel-content-form {
             display: none;
             position: absolute;
@@ -2162,7 +2182,7 @@
             padding: 5px;
             font-size: 1.5em;
             border-radius: 6px;
-            top: 55%;
+            top: 59%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
@@ -2644,7 +2664,7 @@
 
             <div id="controlPanel">
 
-                <div id="symbolPanel" class="panel-content">
+                <div id="symbolPanel" class="panel-content-son">
                     <button class="panel-button-plot-so" onclick="insertFormula('x^2 + y^2')">$$x^2$$</button>
                     <button class="panel-button-plot-so" onclick="insertFormula('\\frac{1}{x}')">$$\frac{1}{x}$$</button>
                     <button class="panel-button-plot-so" onclick="insertFormula('\\int x dx')">$$\int x \, dx$$</button>
