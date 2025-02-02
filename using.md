@@ -121,7 +121,9 @@ Die Eingabebox, in der der LaTeX-Code geschrieben wird, ist mit der unteren Eing
 
 Um den Formeleditor zu schließen, drücken Sie den Stift-Button in der Haupt-Taskleiste.
 
-![Stift-Button](./readme-img/using-img-3.png)
+<div align="center">
+    <img src="./readme-img/using-img-3.png" alt="Stift-Button" width="600">
+</div>
 
 Zusätzlich können Sie den Grafeditor nutzen, um Formeln in einem 2D- oder 3D-Koordinatensystem darzustellen.
 
@@ -133,6 +135,8 @@ Geben Sie Ihre Formel ein und verwenden Sie die "Selekt"-Funktion, um Sonderzeic
 
 Dieses Fenster können Sie jederzeit schließen, indem Sie erneut auf das entsprechende Icon in der Taskleiste klicken.
 
-![Fenster schließen](./readme-img/using-img-6.png)
+<div align="center">
+    <img src="./readme-img/using-img-6.png" alt="Stift-Button" width="600">
+</div>
 
 Viel Spaß mit MAVIS! Mit der Zeit werden Sie sich an die Nutzung des Chatbots gewöhnen. Geben Sie dem Chatbot immer eine klare Rolle, z. B.: "Du bist ein professioneller Programmierer, und deine Aufgabe ist es [...] – lege dich ins Zeug!"
