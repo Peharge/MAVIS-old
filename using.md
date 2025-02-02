@@ -90,14 +90,16 @@ Unabhängig von dieser Auswahl wird MAVIS automatisch in einem Browser-Tab geöf
 
 Nach dem erfolgreichen Start sollte Ihr Browser wie folgt aussehen:
 
-<img src="./readme-img/using-img-1.png"></img>
+![MAVIS](./readme-img/using-img-1.png)
 
 ---
 
 ## 6. Nutzung von MAVIS
 Sie können nun Fragen an den Chatbot senden, Bilder hochladen und das Kontrollpanel verwenden.
 
-<img src="./readme-img/using-img-2.png"></img>
+![MAVIS Nutzung](./readme-img/using-img-2.png)
+
+Wenn Sie ein Bild hochgeladen haben, erscheint ein kleines Fenster mit dem Bild. Klicken Sie einfach auf das Fenster, um es zu schließen.
 
 Falls Sie den Chatbot bitten möchten, ein Diagramm zu erstellen, weisen Sie ihn an, eines der folgenden Frameworks zu verwenden:
 - Matplotlib
@@ -109,22 +111,28 @@ MAVIS unterstützt auch LaTeX für mathematische Formeln und kann Berechnungen d
 
 Hier ein Beispiel für MAVIS im Betrieb:
 
-<img src="./readme-img/mavis-demo123.png"></img>
+![MAVIS Beispiel](./readme-img/mavis-demo123.png)
 
 Standardmäßig ist der Formeleditor geöffnet, mit dem Sie Formeln zeichnen können. Die gezeichneten Formeln werden in die Eingabebox unten als LaTeX-Code umgewandelt und direkt darunter korrekt gerendert angezeigt. Um die Formel zu konvertieren, drücken Sie einfach den schwarzen Play-Button in der Zeichenbox.
 
 Die Eingabebox, in der der LaTeX-Code geschrieben wird, ist mit der unteren Eingabebox in der Taskleiste verbunden und kann als Eingabe für den KI-Chatbot verwendet werden.
 
-<img src="./readme-img/using-gif-1.png"></img>
+![Formeleditor Nutzung](./readme-img/using-gif-1.png)
 
 Um den Formeleditor zu schließen, drücken Sie den Stift-Button in der Haupt-Taskleiste.
 
-<img src="./readme-img/using-img-3.png"></img>
+![Stift-Button](./readme-img/using-img-3.png)
 
 Zusätzlich können Sie den Grafeditor nutzen, um Formeln in einem 2D- oder 3D-Koordinatensystem darzustellen.
 
-<img src="./readme-img/using-img-4.png"></img>
+![Grafeditor](./readme-img/using-img-4.png)
 
 Geben Sie Ihre Formel ein und verwenden Sie die "Selekt"-Funktion, um Sonderzeichen, vorgefertigte Formeln, Operationen (Ableitung und Integration) sowie die Darstellung als 2D- oder 3D-Diagramm auszuwählen (standardmäßig 2D). Die Formel wird in Echtzeit angezeigt.
 
-<img src="./readme-img/using-img-5.png"></img>
+![Formelanzeige](./readme-img/using-img-5.png)
+
+Dieses Fenster können Sie jederzeit schließen, indem Sie erneut auf das entsprechende Icon in der Taskleiste klicken.
+
+![Fenster schließen](./readme-img/using-img-6.png)
+
+Viel Spaß mit MAVIS! Mit der Zeit werden Sie sich an die Nutzung des Chatbots gewöhnen. Geben Sie dem Chatbot immer eine klare Rolle, z. B.: "Du bist ein professioneller Programmierer, und deine Aufgabe ist es [...] – lege dich ins Zeug!"
