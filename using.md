@@ -7,8 +7,6 @@ Falls Sie MAVIS 1.5 zum ersten Mal starten, kann die Installation je nach Intern
 
 Unabhängig vom Zustand der Installation wird das System stets auf Vollständigkeit geprüft und gegebenenfalls aktualisiert.
 
----
-
 ## 2. Installation der benötigten Frameworks
 Sobald das Terminal geöffnet ist, erscheint eine Liste von Python-Frameworks, die für MAVIS erforderlich sind. Diese Frameworks ermöglichen MAVIS, verschiedene Aufgaben auszuführen. Sie können sie später auch in Jupyter Notebook verwenden, da MAVIS in einer eigenen Python-Umgebung läuft.
 
@@ -45,8 +43,6 @@ Möchten Sie Flask installieren? [y/n]:
 
 Bitte bestätigen Sie dies immer mit `y` oder `yes`, um spätere Probleme zu vermeiden. Dasselbe gilt für zukünftige automatische Aktualisierungen der Frameworks.
 
----
-
 ## 3. Aktualisierung von MAVIS
 Nach der Installation der Frameworks werden Sie gefragt, ob Sie MAVIS aktualisieren möchten. Dabei wird die neueste Version von GitHub heruntergeladen. Die automatische Aktualisierung ist in der Regel stabil, jedoch kann es zu Fehlern kommen. Falls Probleme auftreten, verwenden Sie diesen Befehl manuell:
 
@@ -68,14 +64,10 @@ MAVIS - Letztes Update: 30.01.2025
 Möchten Sie ein Update durchführen? [y/n]:
 ```
 
----
-
 ## 4. Installation zusätzlicher KI-Modelle
 Nach der Aktualisierung müssen zwei KI-Modelle installiert werden. Diese müssen jeweils mit `y` oder `yes` bestätigt werden.
 
 Anschließend erscheinen einige Systeminformationen, die für die Nutzung von MAVIS nicht zwingend verstanden werden müssen.
-
----
 
 ## 5. Start von Jupyter Notebook
 Nach kurzer Zeit öffnet sich ein weiteres Terminal, in dem Sie gefragt werden, ob Sie Jupyter Notebook öffnen möchten. Jupyter Notebook ist ein Code-Editor, der im Browser läuft und mit MAVIS installiert wird.
@@ -91,8 +83,6 @@ Unabhängig von dieser Auswahl wird MAVIS automatisch in einem Browser-Tab geöf
 Nach dem erfolgreichen Start sollte Ihr Browser wie folgt aussehen:
 
 ![MAVIS](./readme-img/using-img-1.png)
-
----
 
 ## 6. Nutzung von MAVIS
 Sie können nun Fragen an den Chatbot senden, Bilder hochladen und das Kontrollpanel verwenden.
