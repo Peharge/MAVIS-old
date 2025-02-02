@@ -2095,6 +2095,32 @@
             display: inline-block;
         }
 
+        .graphType-cl {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            color: #ffffff;
+            width: 80px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        .graphType-cl option {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+                        box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+                    -1px -1px 6px rgba(255, 255, 255, 0.4);
+                    text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+                    -1px -1px 6px rgba(255, 255, 255, 0.4);
+            border-radius: 6px;
+        }
+
+        .graphType-cl option:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
         .panel-content {
             display: none;
             position: absolute;
@@ -2725,14 +2751,14 @@
                 </div>
 
                 <div id="operationPanel" class="panel-content">
-                    <button class="panel-button-plot-op" onclick="computeDerivative()">Derivative</button>
-                    <button class="panel-button-plot-op" onclick="computeIntegral()">Integral</button>
+                    <button class="panel-button-plot-op" onclick="computeDerivative()">Deriving</button>
+                    <button class="panel-button-plot-op" onclick="computeIntegral()">to back-derive</button>
                     <button class="close-button" onclick="hidePanel('operationPanel')">Close</button>
                 </div>
 
                 <div id="dimensionPanel" class="panel-content">
                     <label for="graphType">Display type:</label>
-                    <select id="graphType">
+                    <select id="graphType" class="graphType-cl">
                         <option value="2D">2D</option>
                         <option value="3D">3D</option>
                     </select>
