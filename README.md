@@ -1234,11 +1234,11 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 
 ### English:
 
-[using](using.md)
+[Using](using.md)
 
 ### Deutsch:
 
-[using](using.md)
+[Benutzen](using.md)
 
 ## Xcpp
 
