@@ -1230,9 +1230,9 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 
 ## Using
 
-> ⚠️ **Still in progress (01.02.2024)**
+> ⚠️ **Still in progress**
 
-### not jet English:
+### English [soon]:
 
 [Using](using.md)
 
