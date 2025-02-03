@@ -1232,11 +1232,11 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 
 > ⚠️ **Still in progress (01.02.2024)**
 
-### English:
+### not jet English:
 
 [Using](using.md)
 
-### Deutsch:
+### Deutsch [new]:
 
 [Benutzen](using.md)
 
