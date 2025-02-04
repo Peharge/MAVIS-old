@@ -268,7 +268,7 @@ And more...
   <summary>MAVIS 1.4 EAP</summary>
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis1.4-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis1.6-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 ### Demo
@@ -284,8 +284,21 @@ And more...
 ### MAVIS 1.5 EAP release [new]
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis1.5-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis1.4-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
+
+### Demo
+
+<details>
+  <summary>more</summary>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-1.png" alt="mavis" width="1400">
+</div>
+
+And more...
+
+</details>
 
 <br>
 
@@ -408,7 +421,7 @@ And more...
 ### MAVIS 1.6 EAP release
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis1.6-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis1.5-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 <br>
