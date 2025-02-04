@@ -300,8 +300,6 @@ And more...
 
 </details>
 
-<br>
-
 > 28.01.2025
 
 <details>
