@@ -268,7 +268,7 @@ And more...
   <summary>MAVIS 1.4 EAP</summary>
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis1.6-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis1.6-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 ### Demo
