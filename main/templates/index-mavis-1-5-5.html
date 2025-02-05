@@ -1079,7 +1079,7 @@
             border-bottom: 3px solid rgba(0, 0, 0, 0.440);
             border-left: 2px rgba(0, 0, 0, 0.545) outset;
             box-shadow: 40px 50px 30px rgba(0, 0, 0, 0.280);
-            transition: all 0.4s ease-in-out;
+            transition: 0.4s;
             overflow: hidden;
             color: white;
             position: fixed;
@@ -1093,16 +1093,6 @@
             max-height: 800px;
             min-height: 300px;
             transform: skew(0deg);
-            animation: cardGrow 0.5s forwards; /* Animate card scaling */
-        }
-
-        @keyframes cardGrow {
-            0% {
-                transform: scale(1) skew(10deg);
-            }
-            100% {
-                transform: scale(1.05) skew(0deg);
-            }
         }
 
         .alignd {
@@ -1113,23 +1103,28 @@
             align-self: flex-start;
         }
 
-        .redd, .yellowd, .greend {
+        .redd {
+            background-color: #ff605c;
             width: 10px;
             height: 10px;
             border-radius: 50%;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.280);
         }
 
-        .redd {
-            background-color: #ff605c;
-        }
-
         .yellowd {
             background-color: #ffbd44;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.280);
         }
 
         .greend {
             background-color: #00ca4e;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.280);
         }
 
         .cardd h1 {
@@ -1138,7 +1133,7 @@
             color: rgb(255, 255, 255);
             text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.573);
             opacity: 0;
-            animation: fadeIn 1s forwards 0.5s; /* Fade-in title */
+            animation: fadeIn 1s forwards 0.5s;
         }
 
         @keyframes fadeIn {
@@ -1234,38 +1229,6 @@
         .cardd:hover .card__subtitle {
             color: #ffbd44;
         }
-
-        @media (max-width: 768px) {
-            .cardd {
-                width: 80%;
-                top: 20%;
-                left: 10%;
-                right: 10%;
-            }
-
-            .card3 {
-                height: 350px;
-            }
-
-            .card__img {
-                height: 150px;
-            }
-
-            .card__avatar {
-                width: 80px;
-                height: 80px;
-                top: calc(50% - 40px);
-            }
-
-            .card__title {
-                font-size: 16px;
-            }
-
-            .card__subtitle {
-                font-size: 14px;
-            }
-        }
-
 
         .carddd {
             display: none;
