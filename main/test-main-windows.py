@@ -133,7 +133,14 @@ def display_versions():
         "mavis-1-3_code-pro": "MAVIS 1.3 EAP",
         "mavis-1-3-math": "MAVIS 1.3 EAP",
         "mavis-1-3-math-pro": "MAVIS 1.3 EAP",
-        "mavis-1-4-math": "MAVIS 1.4 EAP"
+        "mavis-1-4-math": "MAVIS 1.4 EAP",
+        "mavis-1-5-main": "MAVIS 1.5 EAP",
+        "mavis-1-5-code": "MAVIS 1.5 EAP",
+        "mavis-1-5-code-pro": "MAVIS 1.5 EAP",
+        "mavis-1-5-math": "MAVIS 1.5 EAP",
+        "mavis-1-5-math-pro": "MAVIS 1.5 EAP",
+        "mavis-1-5-mini": "MAVIS 1.5 EAP",
+        "mavis-1-5-mini-mini": "MAVIS 1.5 EAP"
     }
 
     # Gruppieren der Versionen für eine saubere Anzeige
