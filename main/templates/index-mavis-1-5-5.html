@@ -1975,6 +1975,7 @@
             padding: 0px 7px;
             color: #fff;
             font-size: 18px;
+            margin-left: 10px;
             background-color: rgba(0, 0, 0, 0.1);
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 1), -1px -1px 6px rgba(255, 255, 255, 0.4);
             margin-right: 0;
@@ -2334,6 +2335,40 @@
             position: fixed;
             top: 3%;
             left: 5%;
+        }
+
+        .button-plot-show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            width: 10%;
+            max-width: 333px;
+            min-width: 100px;
+            height: 8%;
+            max-height: 150px;
+            min-height: 30px;
+            border-radius: 0.8rem;
+            padding: 0px 7px;
+            color: #fff;
+            font-size: 18px;
+            background-color: rgba(0, 0, 0, 0.1);
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 1), -1px -1px 6px rgba(255, 255, 255, 0.4);
+            margin-right: 0;
+            margin-left: 10px;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
+        }
+
+        .button-plot-show:hover {
+            border: 2px solid transparent;
+            color: #fff;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4),
+            inset 3px 3px 10px rgba(0, 0, 0, 1),
+            inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
         }
 
     </style>
@@ -2720,7 +2755,7 @@
                         <a href="#" onclick="togglePanel('dimensionPanel')">Dimensions</a>
                     </div>
                 </div>
-                <button onclick="plotFunction()"class="custom-button">Plot anzeigen</button>
+                <button onclick="plotFunction()" class="button-plot-show">Show plot</button>
             </div>
 
             <div id="controlPanel">
