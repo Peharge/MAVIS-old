@@ -300,8 +300,6 @@ And more...
 
 </details>
 
-<br>
-
 > 28.01.2025
 
 <details>
@@ -421,7 +419,7 @@ And more...
 ### MAVIS 1.6 EAP release
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis1.5-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis1.5-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 <br>
