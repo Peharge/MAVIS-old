@@ -1,41 +1,32 @@
 import subprocess
 import sys
 import os
-import shutil
 
 # Farbcodes definieren
 red = "\033[91m"
 green = "\033[92m"
-yellow = "\033[93m"
-blue = "\033[94m"
-magenta = "\033[95m"
-cyan = "\033[96m"
-white = "\033[97m"
-black = "\033[30m"
-orange = "\033[38;5;214m"
 reset = "\033[0m"
-bold = "\033[1m"
 
 def start_jupyter():
     try:
         print("\nJupyter Information:")
         print("--------------------")
         # Vor der Ausführung um Bestätigung bitten
-        user_input = input(f"Do you want to start Jupyter? [y/n]: ").strip().lower()
+        user_input = input("Do you want to start Jupyter? [y/n]: ").strip().lower()
         if user_input not in ['y', 'yes']:
             print(f"{green}Jupyter will not be started.{reset}")
             sys.exit(0)
 
-        # Benutzernamen dynamisch ermitteln und Pfad zur virtuellen Umgebung erstellen
-        user_home = os.path.expanduser("~")  # User's home directory
+        # Benutzerverzeichnis ermitteln und Pfad zur virtuellen Umgebung erstellen
+        user_home = os.path.expanduser("~")
         venv_python = os.path.join(user_home, "PycharmProjects", "MAVIS", ".env", "Scripts", "python.exe")
 
-        # Überprüfen Sie, ob die virtuelle Umgebung Python vorhanden ist
+        # Überprüfen, ob die virtuelle Umgebung existiert
         if not os.path.isfile(venv_python):
             print(f"{red}Error: The virtual environment {venv_python} does not exist.{reset}")
             sys.exit(1)
 
-        # Überprüfen Sie mit pip, ob Jupyter in der virtuellen Umgebung installiert ist
+        # Überprüfen, ob Jupyter in der virtuellen Umgebung installiert ist
         try:
             subprocess.run([venv_python, "-m", "pip", "show", "jupyter"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         except subprocess.CalledProcessError:
@@ -48,13 +39,15 @@ def start_jupyter():
             print(f"{red}Error: The specified directory '{jupyter_directory}' does not exist.{reset}")
             sys.exit(1)
 
-        # Starten Sie Jupyter mit dem Python-Interpreter aus der virtuellen Umgebung
+        # Starten von Jupyter mit angepassten CSP- und XSRF-Einstellungen
         subprocess.run([
             venv_python,
-            '-m', 'notebook',
-            '--NotebookApp.ip=0.0.0.0',
-            '--NotebookApp.port=8888',
-            f'--NotebookApp.notebook_dir={jupyter_directory}'
+            "-m", "notebook",
+            "--NotebookApp.ip=0.0.0.0",
+            "--NotebookApp.port=8888",
+            f"--NotebookApp.notebook_dir={jupyter_directory}",
+            "--NotebookApp.disable_check_xsrf=True",
+            "--NotebookApp.tornado_settings={'headers':{'Content-Security-Policy':'frame-ancestors *'}}"
         ], check=True)
 
     except subprocess.CalledProcessError as e:
@@ -64,8 +57,7 @@ def start_jupyter():
         print(f"{red}Unexpected error: {e}{reset}")
         sys.exit(1)
 
-
 if __name__ == "__main__":
     start_jupyter()
-    print(f"\nFlask Information:")
-    print(f"------------------")
+    print("\nFlask Information:")
+    print("------------------")
