@@ -1079,7 +1079,7 @@
             border-bottom: 3px solid rgba(0, 0, 0, 0.440);
             border-left: 2px rgba(0, 0, 0, 0.545) outset;
             box-shadow: 40px 50px 30px rgba(0, 0, 0, 0.280);
-            transition: 0.4s;
+            transition: all 0.4s ease-in-out;
             overflow: hidden;
             color: white;
             position: fixed;
@@ -1093,6 +1093,16 @@
             max-height: 800px;
             min-height: 300px;
             transform: skew(0deg);
+            animation: cardGrow 0.5s forwards; /* Animate card scaling */
+        }
+
+        @keyframes cardGrow {
+            0% {
+                transform: scale(1) skew(10deg);
+            }
+            100% {
+                transform: scale(1.05) skew(0deg);
+            }
         }
 
         .alignd {
@@ -1103,28 +1113,23 @@
             align-self: flex-start;
         }
 
-        .redd {
+        .redd, .yellowd, .greend {
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background-color: #ff605c;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.280);
+        }
+
+        .redd {
+            background-color: #ff605c;
         }
 
         .yellowd {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
             background-color: #ffbd44;
-            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.280);
         }
 
         .greend {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
             background-color: #00ca4e;
-            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.280);
         }
 
         .cardd h1 {
@@ -1132,6 +1137,17 @@
             margin: 1%;
             color: rgb(255, 255, 255);
             text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.573);
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s; /* Fade-in title */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
 
         .card3 {
@@ -1145,6 +1161,7 @@
             align-items: center;
             border-radius: 20px;
             background: var(--bg-color);
+            transition: all 0.3s ease-in-out;
         }
 
         .card__img {
@@ -1152,12 +1169,8 @@
             width: 100%;
             border-bottom: 3px solid rgba(0, 0, 0, 0.440);
             border-left: 2px rgba(0, 0, 0, 0.545) outset;
-            box-shadow: 3px 8px 5px 0px rgba(0, 0, 0, 0.2);
-        }
-
-        .card__img svg {
-            height: 100%;
-            border-radius: 20px 20px 0 0;
+            box-shadow: 3px 8px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
         }
 
         .card__avatar {
@@ -1171,6 +1184,20 @@
             align-items: center;
             top: calc(50% - 57px);
             text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.573);
+            transition: transform 0.3s ease;
+        }
+
+        .card__avatar:hover {
+            animation: avatarHover 1s forwards;
+        }
+
+        @keyframes avatarHover {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .card__avatar svg {
@@ -1184,6 +1211,9 @@
             font-size: 18px;
             color: var(--main-color);
             text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.573);
+            transition: color 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
         }
 
         .card__subtitle {
@@ -1192,7 +1222,50 @@
             font-size: 15px;
             color: var(--submain-color);
             text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.573);
+            transition: color 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 1s forwards 1s;
         }
+
+        .cardd:hover .card__title {
+            color: #ffbd44;
+        }
+
+        .cardd:hover .card__subtitle {
+            color: #ffbd44;
+        }
+
+        @media (max-width: 768px) {
+            .cardd {
+                width: 80%;
+                top: 20%;
+                left: 10%;
+                right: 10%;
+            }
+
+            .card3 {
+                height: 350px;
+            }
+
+            .card__img {
+                height: 150px;
+            }
+
+            .card__avatar {
+                width: 80px;
+                height: 80px;
+                top: calc(50% - 40px);
+            }
+
+            .card__title {
+                font-size: 16px;
+            }
+
+            .card__subtitle {
+                font-size: 14px;
+            }
+        }
+
 
         .carddd {
             display: none;
