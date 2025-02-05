@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v2.1.1/dist/tesseract.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.5.0/math.min.js"></script>
     <link rel="icon" type="image/png" href="/static/images/peharge-logo3.4.png" />
     <style>
         body {
@@ -2704,10 +2706,10 @@
         </script>
 
         <div class="card-ploty-graf" id="card-ploty-graf-id">
-
             <div class="container-latex">
                 <div class="input-latex-graf">
-                    <textarea id="latexFormula" class="latexFormula-cl" rows="2" placeholder="Gib eine Formel ein, z.B. x^2 + y^2"></textarea>
+                    <textarea id="latexFormula" class="latexFormula-cl" rows="2"
+                              placeholder="Gib eine Formel ein, z.B. x^2 + y^2"></textarea>
                 </div>
                 <div class="dropdown">
                     <button id="menuButton" class="custom-button">Select</button>
@@ -2721,121 +2723,22 @@
             </div>
 
             <div id="controlPanel">
-
                 <div id="symbolPanel" class="panel-content-son">
                     <button class="panel-button-plot-so" onclick="insertFormula('x^2 + y^2')">$$x^2$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\frac{1}{x}')">$$\frac{1}{x}$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\int x dx')">$$\int x \, dx$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\sin(x)')">$$sin(x)$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\cos(x)')">$$cos(x)$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\sqrt{x}')">$$√x$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\pi')">$$π$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\infty')">$$∞$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\alpha')">$$α$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\beta')">$$β$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\gamma')">$$γ$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\delta')">$$δ$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\epsilon')">$$ε$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\lambda')">$$λ$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\mu')">$$μ$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\sigma')">$$σ$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\omega')">$$ω$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\sum_{i=1}^{n} i')">$$∑$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\prod_{i=1}^{n} i')">$$∏$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\left(\\frac{a}{b}\\right)')">$$(a/b)$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\neq')">$$≠$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\leq')">$$≤$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\geq')">$$≥$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\approx')">$$≈$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\div')">$$÷$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\times')">$$×$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\pm')">$$±$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\in')">$$∈$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\notin')">$$∉$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\exists')">$$∃$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\forall')">$$∀$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\nabla')">$$∇$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\partial')">$$∂$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\hbar')">$$ℏ$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\imath')">$$𝖎$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\Re')">$$ℜ$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\mathbb{R}')">$$ℝ$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\mathbb{C}')">$$ℂ$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\mathbb{Z}')">$$ℤ$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\mathbb{N}')">$$ℕ$$</button>
-                    <button class="panel-button-plot-so" onclick="insertFormula('\\mathbb{Q}')">$$ℚ$$</button>
+                    <button class="panel-button-plot-so" onclick="insertFormula('\\frac{1}{x}')">$$\\frac{1}{x}$$
+                    </button>
+                    <button class="panel-button-plot-so" onclick="insertFormula('\\int x dx')">$$\\int x dx$$</button>
                     <button class="close-button" onclick="hidePanel('symbolPanel')">Close</button>
                 </div>
 
-
                 <div id="formulaPanel" class="panel-content-form">
                     <button class="panel-button-plot" onclick="insertFormula('x^2 + y^2')">$$x^2 + y^2$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\frac{1}{x}')">$$\frac{1}{x}$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\int x dx')">$$\int x \, dx$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\sin(x)')">$$sin(x)$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\cos(x)')">$$cos(x)$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\sqrt{x}')">\sqrt{x}</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\pi')">$$π$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\infty')">$$∞$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\log(x)')">$$log(x)$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('e^x')">$$e^x$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\lim_{x\\to\\infty} f(x)')">$$\lim_{x \to \infty} f(x) $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\sum_{n=1}^{\\infty} a_n')">$$Σ aₙ$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\frac{d}{dx} f(x)')">$$f'(x)$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\delta(x)')">$$δ(x)$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\cosh(x)')">$$cosh(x)$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\sinh(x)')">$$sinh(x)$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\vec{a} = \\begin{pmatrix} x \\ y \\ z \\end{pmatrix}')">$$\vec{a} = \begin{pmatrix} x \\ y \\ z \end{pmatrix}$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}')">$$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('x = -\\frac{p}{2} \\pm \\sqrt{(\\frac{p}{2})^2 - q}')">$$x = -\frac{p}{2} \pm \sqrt{(\frac{p}{2})^2 - q}$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('V = \\frac{4}{3} \\pi r^3')">$$V = \frac{4}{3} \pi r^3$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('V = \\pi r^2 h')">$$V = \pi r^2 h$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('V = \\frac{1}{3} \\pi r^2 h')">$$V = \frac{1}{3} \pi r^2 h$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('E(X) = \\sum x_i P(X = x_i)')">$$E(X) = \sum x_i P(X = x_i)$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\sigma = \\sqrt{\\sum \\frac{(x_i - \\mu)^2}{N}}')">$$\sigma = \sqrt{\sum \frac{(x_i - \mu)^2}{N}}$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('P(X = k) = \\binom{n}{k} p^k (1-p)^{n-k}')">$$P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('f(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}} e^{-\\frac{(x - \\mu)^2}{2\\sigma^2}}')">$$f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\bar{x} \pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}')">$$\bar{x} \pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('F = m a')">$$F = m a$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('E = m c^2')">$$E = m c^2$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('P = U I')">$$P = U I$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('R = \frac{U}{I}')">$$R = \frac{U}{I}$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('p = \frac{F}{A}')">$$p = \frac{F}{A}$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('v = v_0 + a t')">$$v = v_0 + a t$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('s = v_0 t + \frac{1}{2} a t^2')">$$s = v_0 t + \frac{1}{2} a t^2$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('T = 2\pi \sqrt{\frac{l}{g}}')">$$T = 2\pi \sqrt{\frac{l}{g}}$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('F_g = G \frac{m_1 m_2}{r^2}')">$$F_g = G \frac{m_1 m_2}{r^2}$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('M = F r')">$$M = F r$$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('W = F d')">$$ W = F d $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('P = \frac{W}{t}')">$$ P = \frac{W}{t} $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\tau = \frac{M}{W}')">$$ \tau = \frac{M}{W} $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('E = \frac{1}{2} m v^2')">$$ E = \frac{1}{2} m v^2 $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('E_p = m g h')">$$ E_p = m g h $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('I = \int r^2 dm')">$$ I = \int r^2 dm $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('Q = mc\Delta T')">$$ Q = mc\Delta T $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('C = \frac{Q}{U}')">$$ C = \frac{Q}{U} $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('L = \frac{\Phi}{I}')">$$ L = \frac{\Phi}{I} $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('X_L = \omega L')">$$ X_L = \omega L $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('X_C = \frac{1}{\omega C}')">$$ X_C = \frac{1}{\omega C} $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('Z = \sqrt{R^2 + (X_L - X_C)^2}')">$$ Z = \sqrt{R^2 + (X_L - X_C)^2} $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('f = \frac{1}{2\pi\sqrt{LC}}')">$$ f = \frac{1}{2\pi\sqrt{LC}} $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('y = w x + b')">$$ y = w x + b $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('J = - \sum y \log(\hat{y})')">$$ J = - \sum y \log(\hat{y}) $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\sigma(z) = \frac{1}{1+e^{-z}}')">$$ \sigma(z) = \frac{1}{1+e^{-z}} $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('z = w^T x + b')">$$ z = w^T x + b $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\nabla J = \frac{\partial J}{\partial w}')">$$ \nabla J = \frac{\partial J}{\partial w} $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('a^{(l)} = f(W^{(l)} a^{(l-1)} + b^{(l)})')">$$ a^{(l)} = f(W^{(l)} a^{(l-1)} + b^{(l)}) $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('L = \frac{1}{2} \sum (y - \hat{y})^2')">$$ L = \frac{1}{2} \sum (y - \hat{y})^2 $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\text{ReLU}(x) = \max(0, x)')">$$ \text{ReLU}(x) = \max(0, x) $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\text{ReLU}(x) = \\max(0, x)')">$$ \\text{ReLU}(x) = \\max(0, x) $$</button>
-                    <button class="panel-button-plot" onclick="insertFormula('\\text{Self-Attention}(Q, K, V) = \\text{softmax}\\left(\\frac{QK^T}{\\sqrt{d_k}}\\right)V')">$$\text{Self-Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$</button>
                     <button class="close-button" onclick="hidePanel('formulaPanel')">Close</button>
-
                 </div>
 
                 <div id="operationPanel" class="panel-content">
                     <button class="panel-button-plot-op" onclick="computeDerivative()">Deriving</button>
-                    <button class="panel-button-plot-op" onclick="computeIntegral()">to back-derive</button>
+                    <button class="panel-button-plot-op" onclick="computeIntegral()">Back-derive</button>
                     <button class="close-button" onclick="hidePanel('operationPanel')">Close</button>
                 </div>
 
@@ -2849,154 +2752,89 @@
                 </div>
             </div>
 
-            <h3 class="plot-latex-code">
-              Formula: <span id="mathDisplay" style="margin-left: 10px;"></span>
-            </h3>
+            <h3 class="plot-latex-code">Formula: <span id="mathDisplay" style="margin-left: 10px;"></span></h3>
+            <br><br>
+            <button onclick="plotFunction()">Plot anzeigen</button>
 
             <div id="plotly-graph"></div>
         </div>
 
+        <script type="text/javascript" async
+                src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+
         <script>
-            document.getElementById("menuButton").addEventListener("click", function() {
+            document.getElementById("menuButton").addEventListener("click", function () {
                 const menu = document.getElementById("dropdownMenu");
                 menu.style.display = menu.style.display === "block" ? "none" : "block";
             });
 
             function togglePanel(panelId) {
                 const panel = document.getElementById(panelId);
-                panel.style.display = panel.style.display === "block" ? "none" : "block";
+                panel.style.display = (panel.style.display === "block") ? "none" : "block";
             }
 
             function hidePanel(panelId) {
                 document.getElementById(panelId).style.display = "none";
             }
 
-            document.getElementById('latexFormula').addEventListener('input', updateDisplay);
-            document.getElementById('graphType').addEventListener('change', generatePlot);
-
-            function updateDisplay() {
-                let formula = document.getElementById('latexFormula').value;
-                document.getElementById('mathDisplay').innerHTML = "$$" + formula + "$$";
-                MathJax.typesetPromise();
-                generatePlot();
+            function insertFormula(formula) {
+                const latexField = document.getElementById("latexFormula");
+                latexField.value += formula;
+                renderLatex();
             }
 
-            function generatePlot() {
-                const latexInput = document.getElementById('latexFormula').value.trim();
-                if (!latexInput) return;
+            function renderLatex() {
+                const input = document.getElementById("latexFormula").value;
+                document.getElementById("mathDisplay").innerHTML = `\\(${input}\\)`;
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub, "mathDisplay"]);
+            }
 
-                let expression;
-                try {
-                    expression = latexToMathExpression(latexInput);
-                } catch (error) {
-                    console.error("Fehler beim Parsen der Formel:", error);
+            function plotFunction() {
+                const funcString = document.getElementById("latexFormula").value;
+                const plotType = document.getElementById("graphType").value;
+
+                if (!funcString) {
+                    alert("Bitte gib eine Funktion ein!");
                     return;
                 }
 
-                const graphType = document.getElementById('graphType').value;
-                if (graphType === "2D") {
-                    plot2D(expression, latexInput);
-                } else {
-                    plot3D(expression, latexInput);
-                }
-            }
+                let x = [];
+                let y = [];
+                let z = [];
 
-            function plot2D(expression, latexInput) {
-                let xValues = [], yValues = [];
-                for (let x = -10; x <= 10; x += 0.1) {
+                for (let i = -10; i <= 10; i++) {
+                    x.push(i);
                     try {
-                        let y = math.evaluate(expression, { x });
-                        xValues.push(x);
-                        yValues.push(y);
-                    } catch (error) {
-                        console.error("Fehler bei 2D-Berechnung:", error);
-                    }
-                }
-                Plotly.newPlot('plotly-graph', [{
-                    x: xValues, y: yValues, type: 'scatter', mode: 'lines', name: 'Graph'
-                }], {
-                    xaxis: { title: 'x' }, yaxis: { title: 'f(x)' }, margin: { l: 50, r: 50, b: 50, t: 50 }
-                });
-            }
-
-            function plot3D(expression, latexInput) {
-                let xRange = math.range(-10, 10, 0.5)._data;
-                let yRange = math.range(-10, 10, 0.5)._data;
-                let zValues = [];
-
-                for (let x of xRange) {
-                    let zRow = [];
-                    for (let y of yRange) {
-                        try {
-                            zRow.push(math.evaluate(expression, { x, y }));
-                        } catch (error) {
-                            zRow.push(null);
+                        const result = math.evaluate(funcString, {x: i});
+                        y.push(result);
+                        if (plotType === '3D') {
+                            z.push(result);
                         }
+                    } catch (error) {
+                        alert("Fehler bei der Berechnung der Funktion: " + error.message);
+                        return;
                     }
-                    zValues.push(zRow);
                 }
 
-                Plotly.newPlot('plotly-graph', [{
-                    x: xRange,
-                    y: yRange,
-                    z: zValues,
-                    type: 'surface'
-                }], {
-                    scene: {
-                        xaxis: { title: 'x', showgrid: true, zeroline: false },
-                        yaxis: { title: 'y', showgrid: true, zeroline: false },
-                        zaxis: { title: 'f(x, y)', showgrid: true, zeroline: false },
-                        camera: { projection: { type: 'perspective' } }
-                    },
-                    margin: {
-                        l: 0,
-                        r: 0,
-                        b: 0,
-                        t: 0
-                    }
-                });
-            }
-
-            function latexToMathExpression(latex) {
-                return latex
-                    .replace(/\^/g, '**')
-                    .replace(/([0-9a-zA-Z])\(/g, '$1*(')
-                    .replace(/\\frac{([^}]+)}{([^}]+)}/g, '($1)/($2)')
-                    .replace(/\\sqrt{([^}]+)}/g, 'sqrt($1)')
-                    .replace(/\\int (.*) d([a-zA-Z])/g, 'integrate($1, $2)')
-                    .replace(/([a-zA-Z]+)([0-9]+)/g, '$1*$2');
-            }
-
-            function computeDerivative() {
-                const latexInput = document.getElementById('latexFormula').value.trim();
-                if (!latexInput) return;
-                try {
-                    let expr = latexToMathExpression(latexInput);
-                    let derivative = math.derivative(expr, 'x').toString();
-                    document.getElementById('latexFormula').value = derivative;
-                    updateDisplay();
-                } catch (error) {
-                    console.error("Fehler bei der Ableitung:", error);
+                let data;
+                if (plotType === '2D') {
+                    data = [{
+                        x: x,
+                        y: y,
+                        mode: 'lines'
+                    }];
+                } else if (plotType === '3D') {
+                    data = [{
+                        x: x,
+                        y: y,
+                        z: z,
+                        type: 'scatter3d',
+                        mode: 'lines'
+                    }];
                 }
-            }
 
-            function computeIntegral() {
-                const latexInput = document.getElementById('latexFormula').value.trim();
-                if (!latexInput) return;
-                try {
-                    let expr = latexToMathExpression(latexInput);
-                    let integral = math.integrate(expr, 'x').toString();
-                    document.getElementById('latexFormula').value = integral;
-                    updateDisplay();
-                } catch (error) {
-                    console.error("Fehler beim Integrieren:", error);
-                }
-            }
-
-            function insertFormula(formula) {
-                const latexInput = document.getElementById('latexFormula');
-                latexInput.value += formula;
-                updateDisplay();
+                Plotly.newPlot('plotly-graph', data);
             }
         </script>
 
