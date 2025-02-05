@@ -816,16 +816,16 @@
             border-left: 2px  rgba(0, 0, 0, 0.545) outset;
             align-items: center;
             box-shadow: 3px 8px 5px 0px rgba(0, 0, 0, 0.2);
-            width: 19%;
+            width: 22%;
             height: 50px;
-            max-width: 390px;
+            max-width: 430px;
             max-height: 100px;
             min-width: 230px;
             justify-content: space-around;
             border-radius: 15px;
             position: absolute;
             bottom: clamp(150px, 20%, 500px);
-            left: 42%;
+            left: 39%;
             z-index: 999;
         }
 
@@ -1904,9 +1904,8 @@
             overflow: hidden;
             color: white;
             position: fixed;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 3%;
+            left: 5%;
         }
 
         .card-ploty-graf h1 {
@@ -2274,6 +2273,31 @@
             padding: 10px;
             color: white;
         }
+
+        .card-jup {
+            display: none;
+            z-index: 1;
+            width: 90%;
+            max-width: 2000px;
+            max-height: 900px;
+            min-width: 300px;
+            min-height: 200px;
+            height: 75%;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            border-radius: 15px;
+            border-bottom: 3px solid rgba(0, 0, 0, 0.440);
+            border-left: 2px rgba(0, 0, 0, 0.545) outset;
+            box-shadow: 40px 50px 30px rgba(0, 0, 0, 0.280);
+            transition: 0.4s;
+            overflow: hidden;
+            color: white;
+            position: fixed;
+            top: 3%;
+            left: 5%;
+        }
+
     </style>
 </head>
 <body>
@@ -2940,6 +2964,10 @@
             }
         </script>
 
+        <div class="card-jup" id="card-jup-id">
+            <iframe width="100%" height="100%" src="http://localhost:8888/#" sandbox="allow-same-origin"></iframe>
+        </div>
+
         <div class="chat-output" id="chat-content"></div>
         <div class="card2" id="loading">
         <div class="loader" id="loaderid">
@@ -3542,6 +3570,24 @@
                     </g>
                 </svg>
             </button>
+            <button class="button-input-plus" onclick="togglejup()">
+                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier"><title>file_type_jupyter</title>
+                        <path d="M26.233,3.588A1.69,1.69,0,1,1,24.473,2a1.67,1.67,0,0,1,1.76,1.585Z"
+                              style="fill:#ffffff"></path>
+                        <path d="M16.375,23.111c-4.487,0-8.43-1.61-10.469-3.988a11.162,11.162,0,0,0,20.938,0C24.81,21.5,20.882,23.111,16.375,23.111Z"
+                              style="fill:#ffffff"></path>
+                        <path d="M16.375,7.648c4.487,0,8.43,1.61,10.469,3.988a11.162,11.162,0,0,0-20.938,0C7.945,9.253,11.869,7.648,16.375,7.648Z"
+                              style="fill:#ffffff"></path>
+                        <path d="M10.2,27.739a2.109,2.109,0,1,1-.2-.8,2.129,2.129,0,0,1,.2.8Z"
+                              style="fill:#ffffff"></path>
+                        <path d="M6.416,7.106A1.226,1.226,0,1,1,7.608,5.83,1.241,1.241,0,0,1,6.416,7.106Z"
+                              style="fill:#ffffff"></path>
+                    </g>
+                </svg>
+            </button>
         </div>
 
     <form id="send-form" enctype="multipart/form-data">
@@ -3738,6 +3784,16 @@
                 cardploty.style.display = 'block';
             } else {
                 cardploty.style.display = 'none';
+            }
+        }
+
+        function togglejup() {
+            const cardjup = document.querySelector('.card-jup');
+
+            if (cardjup.style.display === 'none' || cardjup.style.display === '') {
+                cardjup.style.display = 'block';
+            } else {
+                cardjup.style.display = 'none';
             }
         }
 
