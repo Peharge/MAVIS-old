@@ -39,7 +39,7 @@ def start_jupyter():
             print(f"{red}Error: The specified directory '{jupyter_directory}' does not exist.{reset}")
             sys.exit(1)
 
-        # Starten von Jupyter mit angepassten CSP- und XSRF-Einstellungen
+        # Starten von Jupyter mit angepassten CSP- und XSRF-Einstellungen, ohne Browser und Token
         subprocess.run([
             venv_python,
             "-m", "notebook",
@@ -47,7 +47,9 @@ def start_jupyter():
             "--NotebookApp.port=8888",
             f"--NotebookApp.notebook_dir={jupyter_directory}",
             "--NotebookApp.disable_check_xsrf=True",
-            "--NotebookApp.tornado_settings={'headers':{'Content-Security-Policy':'frame-ancestors *'}}"
+            "--NotebookApp.tornado_settings={'headers':{'Content-Security-Policy':'frame-ancestors *'}}",
+            "--no-browser",  # Verhindert das Öffnen des Browsers
+            "--NotebookApp.token='' "  # Deaktiviert die Token-Anmeldung
         ], check=True)
 
     except subprocess.CalledProcessError as e:
