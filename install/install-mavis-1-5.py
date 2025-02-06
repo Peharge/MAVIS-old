@@ -134,8 +134,8 @@ print(f"\nAll frameworks for {blue}MAVIS versions 1.2, 1.3, 1.4 and 1.5{reset} a
 packages = [
     "Flask", "ollama", "jupyter", "Werkzeug", "markdown", "matplotlib", "plotly",
     "dash", "seaborn", "numpy", "sympy", "pandas", "geopandas", "scipy", "torch",
-    "torchvision", "torchaudio", "scikit-learn", "transformers", "altair",
-    "vega_datasets", "altair_viewer", "ipython", "altair-saver", "kaleido",
+    "torchvision", "torchaudio", "tensorflow", "scikit-learn", "transformers",
+    "altair", "vega_datasets", "altair_viewer", "ipython", "altair-saver", "kaleido",
     "vl-convert-python", "py-cpuinfo", "GPUtil", "requests", "astropy", "QuantLib",
     "openmdao", "pybullet", "monai", "fenics", "pydy", "pycalculix", "solidpython",
     "pyomo", "gekko", "casadi", "control", "pybullet", "h2o", "pint", "coolprop",
