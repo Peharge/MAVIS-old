@@ -2934,7 +2934,7 @@
                     data = [{
                         x: x,
                         y: y,
-                        mode: 'lines+markers',
+                        mode: 'lines',
                         type: 'scatter',
                         name: funcString
                     }];
@@ -2946,8 +2946,22 @@
                         mode: 'markers',
                         type: 'scatter3d',
                         name: funcString
-                    }]
+                    }];
                 }
+
+                const layout = {
+                    margin: {
+                        l: 0,
+                        r: 0,
+                        b: 0,
+                        t: 0
+                    }, scene: {
+                        xaxis: { title: 'x', showgrid: true, zeroline: false },
+                        yaxis: { title: 'y', showgrid: true, zeroline: false },
+                        zaxis: { title: 'f(x, y)', showgrid: true, zeroline: false },
+                        camera: { projection: { type: 'perspective' } }
+                    },
+                };
 
                 Plotly.newPlot('plotly-graph', data);
             }
