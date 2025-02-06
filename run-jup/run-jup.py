@@ -48,8 +48,8 @@ def start_jupyter():
             f"--NotebookApp.notebook_dir={jupyter_directory}",
             "--NotebookApp.disable_check_xsrf=True",
             "--NotebookApp.tornado_settings={'headers':{'Content-Security-Policy':'frame-ancestors *'}}",
-            "--no-browser",  # Verhindert das Öffnen des Browsers
-            "--NotebookApp.token='' "  # Deaktiviert die Token-Anmeldung
+            "--no-browser",
+            "--NotebookApp.token='' "
         ], check=True)
 
     except subprocess.CalledProcessError as e:
