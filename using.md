@@ -107,7 +107,7 @@ Standardmäßig ist der Formeleditor geöffnet, mit dem Sie Formeln zeichnen kö
 
 Die Eingabebox, in der der LaTeX-Code geschrieben wird, ist mit der unteren Eingabebox in der Taskleiste verbunden und kann als Eingabe für den KI-Chatbot verwendet werden.
 
-![Formeleditor Nutzung](./readme-img/using-gif-1.gif)
+![Formeleditor Nutzung](./readme-img/mavis-1-5-use-gif-1.gif)
 
 Um den Formeleditor zu schließen, drücken Sie den Stift-Button in der Haupt-Taskleiste.
 
