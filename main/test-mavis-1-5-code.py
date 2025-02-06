@@ -88,53 +88,53 @@ from IPython.display import display
 
 #---für Physik/Chemie/Biologie(Medizin)/Erdkunde/Wirtschaft---
 
-from astropy.coordinates import SkyCoord
-import astropy.units as u
-import astropy
-import QuantLib as ql
-import openmdao.api as om
-import pybullet as p
-import monai
+# from astropy.coordinates import SkyCoord
+# import astropy.units as u
+# import astropy
+# import QuantLib as ql
+# import openmdao.api as om
+# import pybullet as p
+# import monai
 # import fenics (soon)
-import pydy
-import pycalculix
-import solid
-import pyomo.environ as pyo
-from gekko import GEKKO
-import casadi as ca
-import control as ctrl
+# import pydy
+# import pycalculix
+# import solid
+# import pyomo.environ as pyo
+# from gekko import GEKKO
+# import casadi as ca
+# import control as ctrl
 # import rospy (soon)
 # import pybullet as p (soon)
-import h2o
-import pint
-import CoolProp.CoolProp as CP
-import pythermo
-import geopandas as gpd
-import Bio
-import cv2
-import SimpleITK as sitk
-from nilearn import plotting
-import deepchem
-import pymedtermino
-from lifelines import KaplanMeierFitter
-from rdkit import Chem
-from ase import Atoms
-from chempy import Substance
-from shapely.geometry import Point
-import fiona
-import cartopy.crs as ccrs
-import statsmodels.api as sm
-import yfinance as yf
+# import h2o
+# import pint
+# import CoolProp.CoolProp as CP
+# import pythermo
+# import geopandas as gpd
+# import Bio
+# import cv2
+# import SimpleITK as sitk
+# from nilearn import plotting
+# import deepchem
+# import pymedtermino
+# from lifelines import KaplanMeierFitter
+# from rdkit import Chem
+# from ase import Atoms
+# from chempy import Substance
+# from shapely.geometry import Point
+# import fiona
+# import cartopy.crs as ccrs
+# import statsmodels.api as sm
+# import yfinance as yf
 
-import PySpice
-import networkx as nx
-from schematics.models import Model
-import schemdraw
-import ipywidgets as widgets
-import pybullet as pb
-import vtk
-from diagrams import Diagram
-import graphviz
+# import PySpice
+# import networkx as nx
+# from schematics.models import Model
+# import schemdraw
+# import ipywidgets as widgets
+# import pybullet as pb
+# import vtk
+# from diagrams import Diagram
+# import graphviz
 
 #---ultimate für Deep Learning etc.---
 

@@ -88,63 +88,63 @@ from IPython.display import display
 
 #---für Physik/Chemie/Biologie(Medizin)/Erdkunde/Wirtschaft---
 
-from astropy.coordinates import SkyCoord
-import astropy.units as u
-import astropy
-import QuantLib as ql
-import openmdao.api as om
-import pybullet as p
-import monai
+# from astropy.coordinates import SkyCoord
+# import astropy.units as u
+# import astropy
+# import QuantLib as ql
+# import openmdao.api as om
+# import pybullet as p
+# import monai
 # import fenics (soon)
-import pydy
-import pycalculix
-import solid
-import pyomo.environ as pyo
-from gekko import GEKKO
-import casadi as ca
-import control as ctrl
+# import pydy
+# import pycalculix
+# import solid
+# import pyomo.environ as pyo
+# from gekko import GEKKO
+# import casadi as ca
+# import control as ctrl
 # import rospy (soon)
 # import pybullet as p (soon)
-import h2o
-import pint
-import CoolProp.CoolProp as CP
-import pythermo
-import geopandas as gpd
-import Bio
-import cv2
-import SimpleITK as sitk
-from nilearn import plotting
-import deepchem
-import pymedtermino
-from lifelines import KaplanMeierFitter
-from rdkit import Chem
-from ase import Atoms
-from chempy import Substance
-from shapely.geometry import Point
-import fiona
-import cartopy.crs as ccrs
-import statsmodels.api as sm
-import yfinance as yf
+# import h2o
+# import pint
+# import CoolProp.CoolProp as CP
+# import pythermo
+# import geopandas as gpd
+# import Bio
+# import cv2
+# import SimpleITK as sitk
+# from nilearn import plotting
+# import deepchem
+# import pymedtermino
+# from lifelines import KaplanMeierFitter
+# from rdkit import Chem
+# from ase import Atoms
+# from chempy import Substance
+# from shapely.geometry import Point
+# import fiona
+# import cartopy.crs as ccrs
+# import statsmodels.api as sm
+# import yfinance as yf
 
-import PySpice
-import networkx as nx
-from schematics.models import Model
-import schemdraw
-import ipywidgets as widgets
-import pybullet as pb
-import vtk
-from diagrams import Diagram
-import graphviz
+# import PySpice
+# import networkx as nx
+# from schematics.models import Model
+# import schemdraw
+# import ipywidgets as widgets
+# import pybullet as pb
+# import vtk
+# from diagrams import Diagram
+# import graphviz
 
 #---ultimate für Deep Learning etc.---
 
 # Importiere die wichtigsten Komponenten von PyTorch für Deep Learning (sehr mächtig)
 
-from torch import *
-from torch.nn import *
-from torch.optim import *
-from torch.autograd import *
-from torch.utils.data import *
+# from torch import *
+# from torch.nn import *
+# from torch.optim import *
+# from torch.autograd import *
+# from torch.utils.data import *
 
 # Importiere die wichtigsten Komponenten von TensorFlow für Deep Learning (sehr mächtig)
 
@@ -155,11 +155,12 @@ from torch.utils.data import *
 
 # Importiere die wichtigsten Komponenten von Scikit-Learn für Deep Learning (sehr mächtig)
 
-import sklearn as skl
+# import sklearn as skl
 
 # Importiere die wichtigsten Komponenten von Transformers für Deep Learning (sehr mächtig)
 
-from transformers import pipeline
+# from transformers import pipeline
+
 app = Flask(__name__)
 # Setze einen geheimen Schlüssel für die Session
 app.secret_key = os.urandom(24)  # Generiert einen zufälligen Schlüssel mit 24 Bytes
