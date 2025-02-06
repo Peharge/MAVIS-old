@@ -140,11 +140,11 @@ import graphviz
 
 # Importiere die wichtigsten Komponenten von PyTorch für Deep Learning (sehr mächtig)
 
-from torch import *
-from torch.nn import *
-from torch.optim import *
-from torch.autograd import *
-from torch.utils.data import *
+# from torch import *
+# from torch.nn import *
+# from torch.optim import *
+# from torch.autograd import *
+# from torch.utils.data import *
 
 # Importiere die wichtigsten Komponenten von TensorFlow für Deep Learning (sehr mächtig)
 
@@ -155,11 +155,11 @@ from torch.utils.data import *
 
 # Importiere die wichtigsten Komponenten von Scikit-Learn für Deep Learning (sehr mächtig)
 
-import sklearn as skl
+# import sklearn as skl
 
 # Importiere die wichtigsten Komponenten von Transformers für Deep Learning (sehr mächtig)
 
-from transformers import pipeline
+# from transformers import pipeline
 
 app = Flask(__name__)
 # Setze einen geheimen Schlüssel für die Session
