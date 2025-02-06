@@ -94,7 +94,7 @@ import astropy
 import QuantLib as ql
 import openmdao.api as om
 import pybullet as p
-# import monai
+import monai
 # import fenics (soon)
 import pydy
 import pycalculix
@@ -105,7 +105,7 @@ import casadi as ca
 import control as ctrl
 # import rospy (soon)
 # import pybullet as p (soon)
-# import h2o
+import h2o
 import pint
 import CoolProp.CoolProp as CP
 import pythermo
@@ -113,8 +113,8 @@ import geopandas as gpd
 import Bio
 import cv2
 import SimpleITK as sitk
-# from nilearn import plotting
-# import deepchem
+from nilearn import plotting
+import deepchem
 import pymedtermino
 from lifelines import KaplanMeierFitter
 from rdkit import Chem
@@ -132,7 +132,7 @@ from schematics.models import Model
 import schemdraw
 import ipywidgets as widgets
 import pybullet as pb
-# import vtk
+import vtk
 from diagrams import Diagram
 import graphviz
 
@@ -290,7 +290,7 @@ def execute_python_code(md_content):
 
 @app.route('/')
 def index():
-    return render_template('index-mavis-1-5-5.html')
+    return render_template('index-mavis-1-5-1.html')
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
@@ -339,7 +339,7 @@ def send_message():
         # Verarbeite die Nachricht ohne Bild, benutze das Standardbild
         try:
             response = ollama.chat(
-                model='qwen2.5-coder:14b',
+                model='qwen2.5-coder:7b',
                 messages=[{
                     'role': 'user',
                     'content': user_message
