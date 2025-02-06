@@ -112,7 +112,7 @@ Die Eingabebox, in der der LaTeX-Code geschrieben wird, ist mit der unteren Eing
 Um den Formeleditor zu schließen, drücken Sie den Stift-Button in der Haupt-Taskleiste.
 
 <div align="center">
-    <img src="./readme-img/using-img-3.png" alt="Stift-Button" width="600">
+    <img src="./readme-img/mavis-1-5-use-gif-2.gif" alt="Stift-Button" width="600">
 </div>
 
 Zusätzlich können Sie den Grafeditor nutzen, um Formeln in einem 2D- oder 3D-Koordinatensystem darzustellen.
