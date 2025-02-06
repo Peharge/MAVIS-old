@@ -1956,7 +1956,7 @@
             border-left: 2px rgba(0, 0, 0, 0.545) outset;
         }
 
-        .draw-button {
+        .draw-button-dra {
             font-size: 16px;
             border: none;
             border-radius: 5px;
@@ -1965,10 +1965,127 @@
             background-color: transparent;
         }
 
-        .draw-button svg {
+        .draw-button-dra:hover {
+            transform: translateY(-10%) scale(1.05);
+            transition: transform 0.2s ease;
+        }
+
+        .draw-button-dra svg {
             width: 24px;
             height: 24px;
             fill: #000000;
+        }
+
+        .draw-button-rub {
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            background-color: transparent;
+        }
+
+        .draw-button-rub:hover {
+            transform: translateY(-10%) scale(1.05);
+            transition: transform 0.2s ease;
+        }
+
+        .draw-button-rub svg {
+            width: 24px;
+            height: 24px;
+            fill: #000000;
+        }
+
+        .draw-button-del {
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            background-color: transparent;
+        }
+
+        .draw-button-del:hover {
+            transform: translateY(-10%) scale(1.05);
+            transition: transform 0.2s ease;
+        }
+
+        .draw-button-del svg {
+            width: 24px;
+            height: 24px;
+            fill: #000000;
+        }
+
+        .draw-button-run {
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            background-color: transparent;
+        }
+
+        .draw-button-run:hover {
+            transform: translateY(-10%) scale(1.05);
+            transition: transform 0.2s ease;
+        }
+
+        .draw-button-run svg {
+            width: 24px;
+            height: 24px;
+            fill: #000000;
+        }
+
+        .button-tooltip-draw {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            background-color: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            color: white;
+            padding: 5px;
+            border-radius: 8px;
+            visibility: hidden;
+            opacity: 0;
+            white-space: nowrap;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .button-tooltip-draw::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0.3) transparent transparent transparent;
+        }
+
+        .draw-button-dra:hover .button-tooltip-draw {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10%);
+        }
+
+        .draw-button-rub:hover .button-tooltip-draw {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10%);
+        }
+
+        .draw-button-del:hover .button-tooltip-draw {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10%);
+        }
+
+        .draw-button-run:hover .button-tooltip-draw {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10%);
         }
 
         .draw-output-container {
@@ -2667,7 +2784,8 @@
         <div class="carddddd" id="carddddd-id">
             <canvas id="draw-canvas" class="draw-canvas"></canvas>
             <div class="draw-controls">
-                <button id="draw-drawMode" class="draw-button">
+                <button id="draw-drawMode" class="draw-button-dra">
+                    <span class="button-tooltip-draw">Draw</span>
                     <svg width="256px" height="256px" viewBox="0 0 24 24" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -2680,7 +2798,8 @@
                         </g>
                     </svg>
                 </button>
-                <button id="draw-eraseMode" class="draw-button">
+                <button id="draw-eraseMode" class="draw-button-rub">
+                    <span class="button-tooltip-draw">Erase</span>
                     <svg fill="#000000" width="256px" height="256px" viewBox="-1.5 -2.5 24 24"
                          xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-rubber">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -2690,7 +2809,8 @@
                         </g>
                     </svg>
                 </button>
-                <button id="draw-clearCanvas" class="draw-button">
+                <button id="draw-clearCanvas" class="draw-button-del">
+                    <span class="button-tooltip-draw">Delete</span>
                     <svg width="256px" height="256px" viewBox="0 0 24 24" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -2703,7 +2823,8 @@
                         </g>
                     </svg>
                 </button>
-                <button id="draw-recognizeLatex" class="draw-button">
+                <button id="draw-recognizeLatex" class="draw-button-run">
+                    <span class="button-tooltip-draw">Convert formula to Latex</span>
                     <svg width="256px" height="256px" viewBox="0 0 24 24" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
