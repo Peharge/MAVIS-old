@@ -831,6 +831,35 @@
             z-index: 999;
         }
 
+
+        .button-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            background-color: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            color: white;
+            padding: 5px;
+            border-radius: 8px;
+            visibility: hidden;
+            opacity: 0;
+            white-space: nowrap;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .button-tooltip::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0.3) transparent transparent transparent;
+        }
+
         .button-home {
             outline: 0 !important;
             border: 0 !important;
@@ -891,7 +920,37 @@
             cursor: pointer;
         }
 
-        .button-input-plus {
+        .button-input-form {
+            outline: 0 !important;
+            border: 0 !important;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: all ease-in-out 0.3s;
+            cursor: pointer;
+        }
+
+        .button-input-plot {
+            outline: 0 !important;
+            border: 0 !important;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: all ease-in-out 0.3s;
+            cursor: pointer;
+        }
+
+        .button-input-jup {
             outline: 0 !important;
             border: 0 !important;
             width: 40px;
@@ -922,8 +981,57 @@
             transform: translateY(-3px);
         }
 
-        .button-input-plus:hover {
+        .button-input-form:hover {
             transform: translateY(-3px);
+        }
+
+        .button-input-plot:hover {
+            transform: translateY(-3px);
+        }
+
+        .button-input-jup:hover {
+            transform: translateY(-3px);
+        }
+
+        .button-home:hover .button-tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10%);
+        }
+
+        .button-search:hover .button-tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10%);
+        }
+
+        .button-account:hover .button-tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10%);
+        }
+
+        .button-shop:hover .button-tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10%);
+        }
+
+        .button-input-form:hover .button-tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10%);
+        }
+
+        .button-input-plot:hover .button-tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10%);
+        }
+        .button-input-jup:hover .button-tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10%);
         }
 
         .icon2 {
@@ -3526,20 +3634,23 @@
         </div>
         </div>
         <div class="button-container" id="button-containerid">
-          <button class="button-home" onclick="toggleCardddd()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="1.7em" height="1.7em" viewBox="0 0 1614 1689" stroke-width="6.875" fill="currentColor" stroke="#042433">
-              <g transform="translate(-1389 -393)">
-                <path d="M2518.46 407.665 3003 1594.62 2662.79 1594.62 2351.21 822.411ZM1878.35 393 2381.46 1635.86 2203.45 2082 1880.42 1280.01 1754.64 1594.62 1389 1594.62Z" fill="#FFFFFF" fill-rule="evenodd"/>
-              </g>
-            </svg>
-          </button>
+            <button class="button-home" onclick="toggleCardddd()">
+                <span class="button-tooltip">MAVIS</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" viewBox="0 0 1614 1689" stroke-width="6.875" fill="currentColor" stroke="#042433" class="icon2" id="icon-toggle-dddd">
+                    <g transform="translate(-1389 -393)">
+                        <path d="M2518.46 407.665 3003 1594.62 2662.79 1594.62 2351.21 822.411ZM1878.35 393 2381.46 1635.86 2203.45 2082 1880.42 1280.01 1754.64 1594.62 1389 1594.62Z" fill="#FFFFFF" fill-rule="evenodd"></path>
+                    </g>
+                </svg>
+            </button>
             <button class="button-search" id="button-searchid" onclick="toggleCard()">
-              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon2">
-                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linejoin="round" stroke-linecap="round"></path>
-              </svg>
+                <span class="button-tooltip">Search</span>
+                <svg mlns="http://www.w3.org/2000/svg" width="1em" height="1em" aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon2" id="icon-toggle-d">
+                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linejoin="round" stroke-linecap="round"></path>
+                </svg>
             </button>
             <button class="button-account" onclick="toggleCardd()">
-                <svg width="256px" height="256px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <span class="button-tooltip">Account</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" class="icon2" id="icon-toggle-dd">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                     <g id="SVGRepo_iconCarrier">
@@ -3548,14 +3659,16 @@
                 </svg>
             </button>
             <button class="button-shop" onclick="toggleCarddd()">
-              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon2">
+                <span class="button-tooltip">Shop</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon2" id="icon-toggle-ddd">
                 <circle r="1" cy="21" cx="9"></circle>
                 <circle r="1" cy="21" cx="20"></circle>
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
               </svg>
             </button>
-            <button class="button-input-plus" onclick="toggleCarddddd()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="0" fill="currentColor" stroke="currentColor" class="icon2">
+            <button class="button-input-form" onclick="toggleCarddddd()">
+                <span class="button-tooltip">Formel</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="0" fill="currentColor" stroke="currentColor" class="icon2" id="icon-toggle-ddddd">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                     <g id="SVGRepo_iconCarrier">
@@ -3563,8 +3676,9 @@
                     </g>
                 </svg>
             </button>
-            <button class="button-input-plus" onclick="toggleplotygraf()">
-                <svg width="256px" height="256px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <button class="button-input-plot" onclick="toggleplotygraf()">
+                <span class="button-tooltip">Plot</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" class="icon2" id="icon-toggle-graf">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                     <g id="SVGRepo_iconCarrier">
@@ -3579,8 +3693,9 @@
                     </g>
                 </svg>
             </button>
-            <button class="button-input-plus" onclick="togglejup()">
-                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
+            <button class="button-input-jup" onclick="togglejup()">
+                <span class="button-tooltip">Jup</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32" fill="none" class="icon2" id="icon-toggle-jup">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                     <g id="SVGRepo_iconCarrier"><title>file_type_jupyter</title>
@@ -3598,6 +3713,65 @@
                 </svg>
             </button>
         </div>
+
+        <style>
+            #icon-toggle-d {
+                transform: translateY(0%) scale(1);
+                transition: transform 0.2s ease;
+            }
+            #icon-toggle-d.shifted {
+                transform: translateY(-20%) scale(1.05);
+                transition: transform 0.2s ease;
+            }
+            #icon-toggle-dd {
+                transform: translateY(0%) scale(1);
+                transition: transform 0.2s ease;
+            }
+            #icon-toggle-dd.shifted {
+                transform: translateY(-20%) scale(1.05);
+                transition: transform 0.2s ease;
+            }
+            #icon-toggle-ddd {
+                transform: translateY(0%) scale(1);
+                transition: transform 0.2s ease;
+            }
+            #icon-toggle-ddd.shifted {
+                transform: translateY(-20%) scale(1.05);
+                transition: transform 0.2s ease;
+            }
+            #icon-toggle-dddd {
+                transform: translateY(0%) scale(1);
+                transition: transform 0.2s ease;
+            }
+            #icon-toggle-dddd.shifted {
+                transform: translateY(-20%) scale(1.05);
+                transition: transform 0.2s ease;
+            }
+            #icon-toggle-ddddd {
+                transform: translateY(-20%) scale(1.05);
+                transition: transform 0.2s ease;
+            }
+            #icon-toggle-ddddd.shifted {
+                transform: translateY(0%) scale(1);
+                transition: transform 0.2s ease;
+            }
+            #icon-toggle-graf {
+                transform: translateY(0%) scale(1);
+                transition: transform 0.2s ease;
+            }
+            #icon-toggle-graf.shifted {
+                transform: translateY(-20%) scale(1.05);
+                transition: transform 0.2s ease;
+            }
+            #icon-toggle-jup {
+                transform: translateY(0%) scale(1);
+                transition: transform 0.2s ease;
+            }
+            #icon-toggle-jup.shifted {
+                transform: translateY(-20%) scale(1.05);
+                transition: transform 0.2s ease;
+            }
+        </style>
 
     <form id="send-form" enctype="multipart/form-data">
             <div class="taskbar">
@@ -3739,71 +3913,98 @@
         function toggleCard() {
             const card = document.querySelector('.card');
 
+            const icon = document.getElementById("icon-toggle-d");
+
             if (card.style.display === 'none' || card.style.display === '') {
                 card.style.display = 'block';
             } else {
                 card.style.display = 'none';
             }
+
+            icon.classList.toggle("shifted");
         }
 
         function toggleCardd() {
             const cardd = document.querySelector('.cardd');
+
+            const icon = document.getElementById("icon-toggle-dd");
 
             if (cardd.style.display === 'none' || cardd.style.display === '') {
                 cardd.style.display = 'block';
             } else {
                 cardd.style.display = 'none';
             }
+
+            icon.classList.toggle("shifted");
         }
 
         function toggleCarddd() {
             const carddd = document.querySelector('.carddd');
+
+            const icon = document.getElementById("icon-toggle-ddd");
 
             if (carddd.style.display === 'none' || carddd.style.display === '') {
                 carddd.style.display = 'block';
             } else {
                 carddd.style.display = 'none';
             }
+
+            icon.classList.toggle("shifted");
         }
 
         function toggleCardddd() {
             const cardddd = document.querySelector('.cardddd');
+            const icon = document.getElementById("icon-toggle-dddd");
 
             if (cardddd.style.display === 'none' || cardddd.style.display === '') {
                 cardddd.style.display = 'block';
             } else {
                 cardddd.style.display = 'none';
             }
+
+            icon.classList.toggle("shifted");
         }
 
         function toggleCarddddd() {
-            const cardddd = document.querySelector('.carddddd');
+            const carddddd = document.querySelector('.carddddd');
 
-            if (cardddd.style.display === 'block' || cardddd.style.display === '') {
-                cardddd.style.display = 'none';
+            const icon = document.getElementById("icon-toggle-ddddd");
+
+            if (carddddd.style.display === 'block' || carddddd.style.display === '') {
+                carddddd.style.display = 'none';
             } else {
-                cardddd.style.display = 'block';
+                carddddd.style.display = 'block';
             }
+
+            icon.classList.toggle("shifted");
         }
 
         function toggleplotygraf() {
             const cardploty = document.querySelector('.card-ploty-graf');
+
+            const icon = document.getElementById("icon-toggle-graf");
 
             if (cardploty.style.display === 'none' || cardploty.style.display === '') {
                 cardploty.style.display = 'block';
             } else {
                 cardploty.style.display = 'none';
             }
+
+            icon.classList.toggle("shifted");
         }
 
         function togglejup() {
             const cardjup = document.querySelector('.card-jup');
+
+            const icon = document.getElementById("icon-toggle-jup");
 
             if (cardjup.style.display === 'none' || cardjup.style.display === '') {
                 cardjup.style.display = 'block';
             } else {
                 cardjup.style.display = 'none';
             }
+
+            icon.classList.toggle("shifted");
         }
 
         document.getElementById("askInput").addEventListener("keydown", function(event) {
