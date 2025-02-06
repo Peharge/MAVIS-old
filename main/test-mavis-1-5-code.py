@@ -94,7 +94,7 @@ import astropy
 import QuantLib as ql
 import openmdao.api as om
 import pybullet as p
-import monai
+# import monai
 # import fenics (soon)
 import pydy
 import pycalculix
@@ -105,7 +105,7 @@ import casadi as ca
 import control as ctrl
 # import rospy (soon)
 # import pybullet as p (soon)
-import h2o
+# import h2o
 import pint
 import CoolProp.CoolProp as CP
 import pythermo
@@ -113,8 +113,8 @@ import geopandas as gpd
 import Bio
 import cv2
 import SimpleITK as sitk
-from nilearn import plotting
-import deepchem
+# from nilearn import plotting
+# import deepchem
 import pymedtermino
 from lifelines import KaplanMeierFitter
 from rdkit import Chem
@@ -132,10 +132,9 @@ from schematics.models import Model
 import schemdraw
 import ipywidgets as widgets
 import pybullet as pb
-import vtk
+# import vtk
 from diagrams import Diagram
 import graphviz
-
 
 #---ultimate für Deep Learning etc.---
 

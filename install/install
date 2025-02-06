@@ -12,7 +12,7 @@ pip install numpy
 pip install sympy
 pip install pandas
 pip install scipy
-pip install tensorflow
+# pip install tensorflow
 pip install torch
 pip install scikit-learn
 pip install transformers

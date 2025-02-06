@@ -2121,13 +2121,13 @@
             display: block;
             cursor: pointer;
             font-size: 1em;
-            border-radius: 0.8rem;
+            border-radius: 0.4rem;
             color: #ffffff;
         }
 
         .dropdown-content a:hover {
             background-color: rgba(0, 0, 0, 0.3);
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         .dropdown {
@@ -2165,6 +2165,7 @@
             position: absolute;
             color: #ffffff;
             background-color: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px);
             min-width: 160px;
             z-index: 1;
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
@@ -2184,7 +2185,7 @@
             display: none;
             position: absolute;
             color: #ffffff;
-            background-color: rgba(0, 0, 0, 0.1);
+            background-color: rgba(0, 0, 0, 0.3);
             min-width: 60%;
             z-index: 1;
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
@@ -2204,7 +2205,7 @@
             display: none;
             position: absolute;
             color: #ffffff;
-            background-color: rgba(0, 0, 0, 0.1);
+            background-color: rgba(0, 0, 0, 0.3);
             min-width: 80%;
             z-index: 1;
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
@@ -2234,7 +2235,7 @@
 
         .panel-button-plot-so:hover {
             background-color: rgba(0, 0, 0, 0.5);
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         .panel-button-plot {
@@ -2267,22 +2268,6 @@
         }
 
         .panel-button-plot-op:hover {
-            background-color: rgba(0, 0, 0, 0.5);
-            transform: scale(1.05);
-        }
-
-        .panel-button-plot-dim {
-            font-size: 0.8em;
-            margin: 3px;
-            padding: 5px;
-            border-radius: 0.8rem;
-            background-color: rgba(0, 0, 0, 0.3);
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .panel-button-plot-dim:hover {
             background-color: rgba(0, 0, 0, 0.5);
             transform: scale(1.05);
         }
@@ -2750,7 +2735,7 @@
                         <a href="#" onclick="togglePanel('dimensionPanel')">Dimensions</a>
                     </div>
                 </div>
-                <button onclick="plotFunction()" class="button-plot-show">Show plot</button>
+                <button onclick="plotFunction(); renderLatex();" class="button-plot-show">Show plot</button>
             </div>
 
             <div id="controlPanel">
@@ -2930,7 +2915,7 @@
                 let y = [];
                 let z = [];
 
-                for (let i = -10; i <= 10; i++) {
+                for (let i = -10; i <= 10; i += 0.1) {
                     x.push(i);
                     try {
                         const result = math.evaluate(funcString, {x: i});
