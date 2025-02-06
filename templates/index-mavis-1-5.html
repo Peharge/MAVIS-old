@@ -2121,7 +2121,7 @@
             display: block;
             cursor: pointer;
             font-size: 1em;
-            border-radius: 0.8rem;
+            border-radius: 0.4rem;
             color: #ffffff;
         }
 
@@ -2157,7 +2157,7 @@
         }
 
         .graphType-cl option:hover {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.3);
         }
 
         .panel-content {
@@ -2226,15 +2226,15 @@
             padding: 5px;
             color: #ffffff;
             border-radius: 0.8rem;
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: rgba(0, 0, 0, 0.1);
             border: none;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         .panel-button-plot-so:hover {
-            background-color: rgba(0, 0, 0, 0.5);
-            transform: scale(1.05);
+            background-color: rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
         }
 
         .panel-button-plot {
@@ -2243,14 +2243,14 @@
             padding: 5px;
             color: #ffffff;
             border-radius: 0.8rem;
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: rgba(0, 0, 0, 0.1);
             border: none;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         .panel-button-plot:hover {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.3);
             transform: scale(1.05);
         }
 
@@ -2260,30 +2260,14 @@
             padding: 5px;
             color: #ffffff;
             border-radius: 0.8rem;
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: rgba(0, 0, 0, 0.1);
             border: none;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         .panel-button-plot-op:hover {
-            background-color: rgba(0, 0, 0, 0.5);
-            transform: scale(1.05);
-        }
-
-        .panel-button-plot-dim {
-            font-size: 0.8em;
-            margin: 3px;
-            padding: 5px;
-            border-radius: 0.8rem;
             background-color: rgba(0, 0, 0, 0.3);
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .panel-button-plot-dim:hover {
-            background-color: rgba(0, 0, 0, 0.5);
             transform: scale(1.05);
         }
 
@@ -2750,7 +2734,7 @@
                         <a href="#" onclick="togglePanel('dimensionPanel')">Dimensions</a>
                     </div>
                 </div>
-                <button onclick="plotFunction()" class="button-plot-show">Show plot</button>
+                <button onclick="plotFunction(); renderLatex();" class="button-plot-show">Show plot</button>
             </div>
 
             <div id="controlPanel">
@@ -2930,7 +2914,7 @@
                 let y = [];
                 let z = [];
 
-                for (let i = -10; i <= 10; i++) {
+                for (let i = -10; i <= 10; i += 0.1) {
                     x.push(i);
                     try {
                         const result = math.evaluate(funcString, {x: i});
@@ -2949,7 +2933,7 @@
                     data = [{
                         x: x,
                         y: y,
-                        mode: 'lines+markers',
+                        mode: 'lines',
                         type: 'scatter',
                         name: funcString
                     }];
@@ -2961,8 +2945,22 @@
                         mode: 'markers',
                         type: 'scatter3d',
                         name: funcString
-                    }]
+                    }];
                 }
+
+                const layout = {
+                    margin: {
+                        l: 0,
+                        r: 0,
+                        b: 0,
+                        t: 0
+                    }, scene: {
+                        xaxis: { title: 'x', showgrid: true, zeroline: false },
+                        yaxis: { title: 'y', showgrid: true, zeroline: false },
+                        zaxis: { title: 'f(x, y)', showgrid: true, zeroline: false },
+                        camera: { projection: { type: 'perspective' } }
+                    },
+                };
 
                 Plotly.newPlot('plotly-graph', data);
             }
