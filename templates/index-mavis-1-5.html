@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +10,13 @@
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v2.1.1/dist/tesseract.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.5.0/math.min.js"></script>
     <link rel="icon" type="image/png" href="/static/images/peharge-logo3.4.png" />
     <style>
         body {
             font-family: Calibri, sans-serif;
-            background-image: url('/static/images/mavis1.3-banner.png');
+            background-image: url('/static/images/mavis-1-5-banner-1.png');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -816,16 +818,16 @@
             border-left: 2px  rgba(0, 0, 0, 0.545) outset;
             align-items: center;
             box-shadow: 3px 8px 5px 0px rgba(0, 0, 0, 0.2);
-            width: 19%;
+            width: 22%;
             height: 50px;
-            max-width: 390px;
+            max-width: 430px;
             max-height: 100px;
             min-width: 230px;
             justify-content: space-around;
             border-radius: 15px;
             position: absolute;
             bottom: clamp(150px, 20%, 500px);
-            left: 43%;
+            left: 39%;
             z-index: 999;
         }
 
@@ -1104,26 +1106,26 @@
         }
 
         .redd {
+            background-color: #ff605c;
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background-color: #ff605c;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.280);
         }
 
         .yellowd {
+            background-color: #ffbd44;
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background-color: #ffbd44;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.280);
         }
 
         .greend {
+            background-color: #00ca4e;
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background-color: #00ca4e;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.280);
         }
 
@@ -1132,6 +1134,17 @@
             margin: 1%;
             color: rgb(255, 255, 255);
             text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.573);
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
 
         .card3 {
@@ -1145,6 +1158,7 @@
             align-items: center;
             border-radius: 20px;
             background: var(--bg-color);
+            transition: all 0.3s ease-in-out;
         }
 
         .card__img {
@@ -1152,12 +1166,8 @@
             width: 100%;
             border-bottom: 3px solid rgba(0, 0, 0, 0.440);
             border-left: 2px rgba(0, 0, 0, 0.545) outset;
-            box-shadow: 3px 8px 5px 0px rgba(0, 0, 0, 0.2);
-        }
-
-        .card__img svg {
-            height: 100%;
-            border-radius: 20px 20px 0 0;
+            box-shadow: 3px 8px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
         }
 
         .card__avatar {
@@ -1171,6 +1181,20 @@
             align-items: center;
             top: calc(50% - 57px);
             text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.573);
+            transition: transform 0.3s ease;
+        }
+
+        .card__avatar:hover {
+            animation: avatarHover 1s forwards;
+        }
+
+        @keyframes avatarHover {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .card__avatar svg {
@@ -1184,6 +1208,9 @@
             font-size: 18px;
             color: var(--main-color);
             text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.573);
+            transition: color 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
         }
 
         .card__subtitle {
@@ -1192,6 +1219,17 @@
             font-size: 15px;
             color: var(--submain-color);
             text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.573);
+            transition: color 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 1s forwards 1s;
+        }
+
+        .cardd:hover .card__title {
+            color: #ffbd44;
+        }
+
+        .cardd:hover .card__subtitle {
+            color: #ffbd44;
         }
 
         .carddd {
@@ -1884,8 +1922,6 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
     </script>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
-
         .card-ploty-graf {
             display: none;
             z-index: 1;
@@ -1906,9 +1942,8 @@
             overflow: hidden;
             color: white;
             position: fixed;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 3%;
+            left: 5%;
         }
 
         .card-ploty-graf h1 {
@@ -1918,7 +1953,7 @@
             text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.573);
         }
 
-        .latexFormula-cl, .custom-button {
+        .latexFormula-cl, .custom-button, .button-plot-show {
             padding: 10px;
             margin: 10px 0;
             font-size: 1.2em;
@@ -1933,17 +1968,15 @@
             width: 30%;
             max-width: 333px;
             min-width: 100px;
-            height: 5%;
-            max-height: 60px;
-            min-height: 30px;
+            height: 20%;
+            max-height: 150px;
+            min-height: 40px;
             border-radius: 0.8rem;
             padding: 0px 7px;
             color: #fff;
             font-size: 18px;
             background-color: rgba(0, 0, 0, 0.1);
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 1), -1px -1px 6px rgba(255, 255, 255, 0.4);
-            margin-right: 0;
-            margin-left: auto;
             text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
             -1px -1px 6px rgba(255, 255, 255, 0.4);
         }
@@ -1959,7 +1992,14 @@
             -1px -1px 6px rgba(255, 255, 255, 0.4);
         }
 
-        #plotly-graph { width: 100%; height: 600px; }
+        #plotly-graph {
+            width: 100%;
+            height: 71%;
+            max-width: 2000px;
+            min-width: 200px;
+            max-height: 1000px;
+            min-height: 100px;
+        }
         #controlPanel { width: 100%; padding: 10px; text-align: left; }
         .control-button { margin: 5px; cursor: pointer; }
         .symbol-button { font-size: 1.5em; }
@@ -2016,7 +2056,7 @@
             border: none;
             outline: none;
             padding: 0px 7px;
-            border-radius: 6px;
+            border-radius: 0.8rem;
             color: #fff;
             font-size: 15px;
             background-color: transparent;
@@ -2072,7 +2112,7 @@
             text-align: left;
             padding: 5px;
             font-size: 0.9em;
-            border-radius: 6px;
+            border-radius: 0.8rem;
         }
 
         .dropdown-content a {
@@ -2081,7 +2121,7 @@
             display: block;
             cursor: pointer;
             font-size: 1em;
-            border-radius: 6px;
+            border-radius: 0.8rem;
             color: #ffffff;
         }
 
@@ -2103,7 +2143,7 @@
             color: #ffffff;
             width: 80px;
             cursor: pointer;
-            border-radius: 6px;
+            border-radius: 0.8rem;
         }
 
         .graphType-cl option {
@@ -2113,7 +2153,7 @@
             -1px -1px 6px rgba(255, 255, 255, 0.4);
             text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
             -1px -1px 6px rgba(255, 255, 255, 0.4);
-            border-radius: 6px;
+            border-radius: 0.8rem;
         }
 
         .graphType-cl option:hover {
@@ -2134,8 +2174,28 @@
             text-align: left;
             padding: 5px;
             font-size: 1.5em;
-            border-radius: 6px;
-            top: 40%;
+            border-radius: 0.8rem;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .panel-content-son {
+            display: none;
+            position: absolute;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.1);
+            min-width: 60%;
+            z-index: 1;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
+            text-align: left;
+            padding: 5px;
+            font-size: 1.5em;
+            border-radius: 0.8rem;
+            top: 55%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
@@ -2145,7 +2205,7 @@
             position: absolute;
             color: #ffffff;
             background-color: rgba(0, 0, 0, 0.1);
-            min-width: 160px;
+            min-width: 80%;
             z-index: 1;
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
                         -1px -1px 6px rgba(255, 255, 255, 0.4);
@@ -2154,8 +2214,8 @@
             text-align: left;
             padding: 5px;
             font-size: 1.5em;
-            border-radius: 6px;
-            top: 53%;
+            border-radius: 0.8rem;
+            top: 59%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
@@ -2165,7 +2225,7 @@
             margin: 3px;
             padding: 5px;
             color: #ffffff;
-            border-radius: 6px;
+            border-radius: 0.8rem;
             background-color: rgba(0, 0, 0, 0.3);
             border: none;
             cursor: pointer;
@@ -2182,7 +2242,7 @@
             margin: 3px;
             padding: 5px;
             color: #ffffff;
-            border-radius: 6px;
+            border-radius: 0.8rem;
             background-color: rgba(0, 0, 0, 0.3);
             border: none;
             cursor: pointer;
@@ -2199,7 +2259,7 @@
             margin: 3px;
             padding: 5px;
             color: #ffffff;
-            border-radius: 6px;
+            border-radius: 0.8rem;
             background-color: rgba(0, 0, 0, 0.3);
             border: none;
             cursor: pointer;
@@ -2215,7 +2275,7 @@
             font-size: 0.8em;
             margin: 3px;
             padding: 5px;
-            border-radius: 6px;
+            border-radius: 0.8rem;
             background-color: rgba(0, 0, 0, 0.3);
             border: none;
             cursor: pointer;
@@ -2235,7 +2295,7 @@
             cursor: pointer;
             font-size: 0.8em;
             margin-top: 5px;
-            border-radius: 6px;
+            border-radius: 0.8rem;
         }
 
         .close-button:hover {
@@ -2249,6 +2309,63 @@
             padding: 10px;
             color: white;
         }
+
+        .card-jup {
+            display: none;
+            z-index: 1;
+            width: 90%;
+            max-width: 2000px;
+            max-height: 900px;
+            min-width: 300px;
+            min-height: 200px;
+            height: 75%;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            border-radius: 15px;
+            border-bottom: 3px solid rgba(0, 0, 0, 0.440);
+            border-left: 2px rgba(0, 0, 0, 0.545) outset;
+            box-shadow: 40px 50px 30px rgba(0, 0, 0, 0.280);
+            transition: 0.4s;
+            overflow: hidden;
+            color: white;
+            position: fixed;
+            top: 3%;
+            left: 5%;
+        }
+
+        .button-plot-show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            width: 8%;
+            max-width: 333px;
+            min-width: 50px;
+            height: 20%;
+            max-height: 150px;
+            min-height: 40px;
+            border-radius: 0.8rem;
+            padding: 0px 7px;
+            color: #fff;
+            font-size: 18px;
+            background-color: rgba(0, 0, 0, 0.1);
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 1), -1px -1px 6px rgba(255, 255, 255, 0.4);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
+        }
+
+        .button-plot-show:hover {
+            border: 2px solid transparent;
+            color: #fff;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4),
+            inset 3px 3px 10px rgba(0, 0, 0, 1),
+            inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
+        }
+
     </style>
 </head>
 <body>
@@ -2619,10 +2736,10 @@
         </script>
 
         <div class="card-ploty-graf" id="card-ploty-graf-id">
-
             <div class="container-latex">
                 <div class="input-latex-graf">
-                    <textarea id="latexFormula" class="latexFormula-cl" rows="2" placeholder="Gib eine Formel ein, z.B. x^2 + y^2"></textarea>
+                    <textarea id="latexFormula" class="latexFormula-cl" rows="2"
+                              placeholder="Gib eine Formel ein, z.B. x^2 + y^2"></textarea>
                 </div>
                 <div class="dropdown">
                     <button id="menuButton" class="custom-button">Select</button>
@@ -2633,11 +2750,11 @@
                         <a href="#" onclick="togglePanel('dimensionPanel')">Dimensions</a>
                     </div>
                 </div>
+                <button onclick="plotFunction()" class="button-plot-show">Show plot</button>
             </div>
 
             <div id="controlPanel">
-
-                <div id="symbolPanel" class="panel-content">
+                <div id="symbolPanel" class="panel-content-son">
                     <button class="panel-button-plot-so" onclick="insertFormula('x^2 + y^2')">$$x^2$$</button>
                     <button class="panel-button-plot-so" onclick="insertFormula('\\frac{1}{x}')">$$\frac{1}{x}$$</button>
                     <button class="panel-button-plot-so" onclick="insertFormula('\\int x dx')">$$\int x \, dx$$</button>
@@ -2750,7 +2867,7 @@
 
                 <div id="operationPanel" class="panel-content">
                     <button class="panel-button-plot-op" onclick="computeDerivative()">Deriving</button>
-                    <button class="panel-button-plot-op" onclick="computeIntegral()">to back-derive</button>
+                    <button class="panel-button-plot-op" onclick="computeIntegral()">Back-derive</button>
                     <button class="close-button" onclick="hidePanel('operationPanel')">Close</button>
                 </div>
 
@@ -2764,156 +2881,96 @@
                 </div>
             </div>
 
-            <h3 class="plot-latex-code">
-              Formula: <span id="mathDisplay" style="margin-left: 10px;"></span>
-            </h3>
+            <h3 class="plot-latex-code">Formula: <span id="mathDisplay" style="margin-left: 10px;"></span></h3>
 
             <div id="plotly-graph"></div>
         </div>
 
+        <script type="text/javascript" async
+                src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+
         <script>
-            document.getElementById("menuButton").addEventListener("click", function() {
+            document.getElementById("menuButton").addEventListener("click", function () {
                 const menu = document.getElementById("dropdownMenu");
                 menu.style.display = menu.style.display === "block" ? "none" : "block";
             });
 
             function togglePanel(panelId) {
                 const panel = document.getElementById(panelId);
-                panel.style.display = panel.style.display === "block" ? "none" : "block";
+                panel.style.display = (panel.style.display === "block") ? "none" : "block";
             }
 
             function hidePanel(panelId) {
                 document.getElementById(panelId).style.display = "none";
             }
 
-            document.getElementById('latexFormula').addEventListener('input', updateDisplay);
-            document.getElementById('graphType').addEventListener('change', generatePlot);
-
-            function updateDisplay() {
-                let formula = document.getElementById('latexFormula').value;
-                document.getElementById('mathDisplay').innerHTML = "$$" + formula + "$$";
-                MathJax.typesetPromise();
-                generatePlot();
+            function insertFormula(formula) {
+                const latexField = document.getElementById("latexFormula");
+                latexField.value += formula;
+                renderLatex();
             }
 
-            function generatePlot() {
-                const latexInput = document.getElementById('latexFormula').value.trim();
-                if (!latexInput) return;
+            function renderLatex() {
+                const input = document.getElementById("latexFormula").value;
+                document.getElementById("mathDisplay").innerHTML = `\\(${input}\\)`;
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub, "mathDisplay"]);
+            }
 
-                let expression;
-                try {
-                    expression = latexToMathExpression(latexInput);
-                } catch (error) {
-                    console.error("Fehler beim Parsen der Formel:", error);
+            function plotFunction() {
+                const funcString = document.getElementById("latexFormula").value;
+                const plotType = document.getElementById("graphType").value;
+
+                if (!funcString) {
+                    alert("Bitte gib eine Funktion ein!");
                     return;
                 }
 
-                const graphType = document.getElementById('graphType').value;
-                if (graphType === "2D") {
-                    plot2D(expression, latexInput);
-                } else {
-                    plot3D(expression, latexInput);
-                }
-            }
+                let x = [];
+                let y = [];
+                let z = [];
 
-            function plot2D(expression, latexInput) {
-                let xValues = [], yValues = [];
-                for (let x = -10; x <= 10; x += 0.1) {
+                for (let i = -10; i <= 10; i++) {
+                    x.push(i);
                     try {
-                        let y = math.evaluate(expression, { x });
-                        xValues.push(x);
-                        yValues.push(y);
-                    } catch (error) {
-                        console.error("Fehler bei 2D-Berechnung:", error);
-                    }
-                }
-                Plotly.newPlot('plotly-graph', [{
-                    x: xValues, y: yValues, type: 'scatter', mode: 'lines', name: 'Graph'
-                }], {
-                    xaxis: { title: 'x' }, yaxis: { title: 'f(x)' }, margin: { l: 50, r: 50, b: 50, t: 50 }
-                });
-            }
-
-            function plot3D(expression, latexInput) {
-                let xRange = math.range(-10, 10, 0.5)._data;
-                let yRange = math.range(-10, 10, 0.5)._data;
-                let zValues = [];
-
-                for (let x of xRange) {
-                    let zRow = [];
-                    for (let y of yRange) {
-                        try {
-                            zRow.push(math.evaluate(expression, { x, y }));
-                        } catch (error) {
-                            zRow.push(null);
+                        const result = math.evaluate(funcString, {x: i});
+                        y.push(result);
+                        if (plotType === '3D') {
+                            z.push(result);
                         }
+                    } catch (error) {
+                        alert("Fehler bei der Berechnung der Funktion: " + error.message);
+                        return;
                     }
-                    zValues.push(zRow);
                 }
 
-                Plotly.newPlot('plotly-graph', [{
-                    x: xRange,
-                    y: yRange,
-                    z: zValues,
-                    type: 'surface'
-                }], {
-                    scene: {
-                        xaxis: { title: 'x', showgrid: true, zeroline: false },
-                        yaxis: { title: 'y', showgrid: true, zeroline: false },
-                        zaxis: { title: 'f(x, y)', showgrid: true, zeroline: false },
-                        camera: { projection: { type: 'perspective' } }
-                    },
-                    margin: {
-                        l: 0,
-                        r: 0,
-                        b: 0,
-                        t: 0
-                    }
-                });
-            }
-
-            function latexToMathExpression(latex) {
-                return latex
-                    .replace(/\^/g, '**')
-                    .replace(/([0-9a-zA-Z])\(/g, '$1*(')
-                    .replace(/\\frac{([^}]+)}{([^}]+)}/g, '($1)/($2)')
-                    .replace(/\\sqrt{([^}]+)}/g, 'sqrt($1)')
-                    .replace(/\\int (.*) d([a-zA-Z])/g, 'integrate($1, $2)')
-                    .replace(/([a-zA-Z]+)([0-9]+)/g, '$1*$2');
-            }
-
-            function computeDerivative() {
-                const latexInput = document.getElementById('latexFormula').value.trim();
-                if (!latexInput) return;
-                try {
-                    let expr = latexToMathExpression(latexInput);
-                    let derivative = math.derivative(expr, 'x').toString();
-                    document.getElementById('latexFormula').value = derivative;
-                    updateDisplay();
-                } catch (error) {
-                    console.error("Fehler bei der Ableitung:", error);
+                let data;
+                if (plotType === '2D') {
+                    data = [{
+                        x: x,
+                        y: y,
+                        mode: 'lines+markers',
+                        type: 'scatter',
+                        name: funcString
+                    }];
+                } else if (plotType === '3D') {
+                    data = [{
+                        x: x,
+                        y: y,
+                        z: z,
+                        mode: 'markers',
+                        type: 'scatter3d',
+                        name: funcString
+                    }]
                 }
-            }
 
-            function computeIntegral() {
-                const latexInput = document.getElementById('latexFormula').value.trim();
-                if (!latexInput) return;
-                try {
-                    let expr = latexToMathExpression(latexInput);
-                    let integral = math.integrate(expr, 'x').toString();
-                    document.getElementById('latexFormula').value = integral;
-                    updateDisplay();
-                } catch (error) {
-                    console.error("Fehler beim Integrieren:", error);
-                }
-            }
-
-            function insertFormula(formula) {
-                const latexInput = document.getElementById('latexFormula');
-                latexInput.value += formula;
-                updateDisplay();
+                Plotly.newPlot('plotly-graph', data);
             }
         </script>
+
+        <div class="card-jup" id="card-jup-id">
+            <iframe width="100%" height="100%" src="http://localhost:8888" sandbox="allow-same-origin"></iframe>
+        </div>
 
         <div class="chat-output" id="chat-content"></div>
         <div class="card2" id="loading">
@@ -3513,7 +3570,32 @@
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                     <g id="SVGRepo_iconCarrier">
-                        <path d="M11.109 14.546C11 14.7599 11 15.0399 11 15.6V17.4C11 17.9601 11 18.2401 11.109 18.454C11.2049 18.6422 11.3578 18.7951 11.546 18.891C11.7599 19 12.0399 19 12.6 19H14.4C14.9601 19 15.2401 19 15.454 18.891C15.6422 18.7951 15.7951 18.6422 15.891 18.454C16 18.2401 16 17.9601 16 17.4V15.6C16 15.0399 16 14.7599 15.891 14.546C15.7951 14.3578 15.6422 14.2049 15.454 14.109C15.2401 14 14.9601 14 14.4 14H12.6C12.0399 14 11.7599 14 11.546 14.109C11.3578 14.2049 11.2049 14.3578 11.109 14.546ZM11.109 14.546L7.7386 9.67415M8 7.5H16M4.6 10H6.4C6.96005 10 7.24008 10 7.45399 9.89101C7.64215 9.79513 7.79513 9.64215 7.89101 9.45399C8 9.24008 8 8.96005 8 8.4V6.6C8 6.03995 8 5.75992 7.89101 5.54601C7.79513 5.35785 7.64215 5.20487 7.45399 5.10899C7.24008 5 6.96005 5 6.4 5H4.6C4.03995 5 3.75992 5 3.54601 5.10899C3.35785 5.20487 3.20487 5.35785 3.10899 5.54601C3 5.75992 3 6.03995 3 6.6V8.4C3 8.96005 3 9.24008 3.10899 9.45399C3.20487 9.64215 3.35785 9.79513 3.54601 9.89101C3.75992 10 4.03995 10 4.6 10ZM17.6 10H19.4C19.9601 10 20.2401 10 20.454 9.89101C20.6422 9.79513 20.7951 9.64215 20.891 9.45399C21 9.24008 21 8.96005 21 8.4V6.6C21 6.03995 21 5.75992 20.891 5.54601C20.7951 5.35785 20.6422 5.20487 20.454 5.10899C20.2401 5 19.9601 5 19.4 5H17.6C17.0399 5 16.7599 5 16.546 5.10899C16.3578 5.20487 16.2049 5.35785 16.109 5.54601C16 5.75992 16 6.03995 16 6.6V8.4C16 8.96005 16 9.24008 16.109 9.45399C16.2049 9.64215 16.3578 9.79513 16.546 9.89101C16.7599 10 17.0399 10 17.6 10Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M16.42 7.95109C18.86 10.3911 18.86 14.3511 16.42 16.7911C13.98 19.2311 10.02 19.2311 7.58 16.7911C5.14 14.3511 5.14 10.3911 7.58 7.95109C10.02 5.51109 13.98 5.51109 16.42 7.95109Z"
+                              fill="#ffffff"></path>
+                        <path d="M8.24905 22.3889C8.15905 22.3889 8.05905 22.3689 7.96905 22.3389C5.71905 21.4389 3.89905 19.8489 2.67905 17.7489C1.49905 15.6989 1.02905 13.3789 1.33905 11.0189C1.38905 10.6089 1.77905 10.3189 2.17905 10.3689C2.58905 10.4189 2.87905 10.7989 2.82905 11.2089C2.56905 13.2389 2.96905 15.2389 3.97905 16.9989C5.01905 18.7989 6.58906 20.1689 8.51905 20.9389C8.89906 21.0989 9.08905 21.5289 8.93905 21.9189C8.82905 22.2089 8.53905 22.3889 8.24905 22.3889Z"
+                              fill="#ffffff"></path>
+                        <path d="M5.84962 5.22937C5.62962 5.22937 5.40962 5.12937 5.25962 4.93937C4.99962 4.61937 5.05962 4.14938 5.38962 3.88938C7.28962 2.39938 9.57962 1.60938 11.9996 1.60938C14.3596 1.60938 16.6096 2.36937 18.4996 3.80937C18.8296 4.05937 18.8896 4.52938 18.6396 4.85938C18.3896 5.18937 17.9196 5.24937 17.5896 4.99937C15.9596 3.75937 14.0296 3.10937 11.9996 3.10937C9.91962 3.10937 7.94962 3.78938 6.30962 5.06938C6.16962 5.17937 6.00962 5.22937 5.84962 5.22937Z"
+                              fill="#ffffff"></path>
+                        <path d="M15.7507 22.3906C15.4507 22.3906 15.1707 22.2106 15.0507 21.9206C14.9007 21.5406 15.0807 21.1006 15.4707 20.9406C17.4007 20.1606 18.9707 18.8006 20.0107 17.0006C21.0307 15.2406 21.4307 13.2406 21.1607 11.2206C21.1107 10.8106 21.4007 10.4306 21.8107 10.3806C22.2107 10.3306 22.6007 10.6206 22.6507 11.0306C22.9507 13.3806 22.4907 15.7106 21.3107 17.7606C20.1007 19.8606 18.2707 21.4406 16.0207 22.3506C15.9407 22.3706 15.8507 22.3906 15.7507 22.3906Z"
+                              fill="#ffffff"></path>
+                    </g>
+                </svg>
+            </button>
+            <button class="button-input-plus" onclick="togglejup()">
+                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier"><title>file_type_jupyter</title>
+                        <path d="M26.233,3.588A1.69,1.69,0,1,1,24.473,2a1.67,1.67,0,0,1,1.76,1.585Z"
+                              style="fill:#ffffff"></path>
+                        <path d="M16.375,23.111c-4.487,0-8.43-1.61-10.469-3.988a11.162,11.162,0,0,0,20.938,0C24.81,21.5,20.882,23.111,16.375,23.111Z"
+                              style="fill:#ffffff"></path>
+                        <path d="M16.375,7.648c4.487,0,8.43,1.61,10.469,3.988a11.162,11.162,0,0,0-20.938,0C7.945,9.253,11.869,7.648,16.375,7.648Z"
+                              style="fill:#ffffff"></path>
+                        <path d="M10.2,27.739a2.109,2.109,0,1,1-.2-.8,2.129,2.129,0,0,1,.2.8Z"
+                              style="fill:#ffffff"></path>
+                        <path d="M6.416,7.106A1.226,1.226,0,1,1,7.608,5.83,1.241,1.241,0,0,1,6.416,7.106Z"
+                              style="fill:#ffffff"></path>
                     </g>
                 </svg>
             </button>
@@ -3713,6 +3795,16 @@
                 cardploty.style.display = 'block';
             } else {
                 cardploty.style.display = 'none';
+            }
+        }
+
+        function togglejup() {
+            const cardjup = document.querySelector('.card-jup');
+
+            if (cardjup.style.display === 'none' || cardjup.style.display === '') {
+                cardjup.style.display = 'block';
+            } else {
+                cardjup.style.display = 'none';
             }
         }
 

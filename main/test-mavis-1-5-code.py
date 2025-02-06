@@ -136,6 +136,7 @@ import vtk
 from diagrams import Diagram
 import graphviz
 
+
 #---ultimate für Deep Learning etc.---
 
 # Importiere die wichtigsten Komponenten von PyTorch für Deep Learning (sehr mächtig)
@@ -290,7 +291,7 @@ def execute_python_code(md_content):
 
 @app.route('/')
 def index():
-    return render_template('index-mavis-1-5-4.html')
+    return render_template('index-mavis-1-5-5.html')
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
@@ -360,4 +361,4 @@ def send_message():
             return jsonify({'error': str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True)

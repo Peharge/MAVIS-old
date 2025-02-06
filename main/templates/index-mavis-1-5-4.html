@@ -14,7 +14,7 @@
     <style>
         body {
             font-family: Calibri, sans-serif;
-            background-image: url('/static/images/mavis1.3-banner.png');
+            background-image: url('/static/images/mavis-1-5-banner-1.png');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -825,7 +825,7 @@
             border-radius: 15px;
             position: absolute;
             bottom: clamp(150px, 20%, 500px);
-            left: 43%;
+            left: 42%;
             z-index: 999;
         }
 
@@ -1884,8 +1884,6 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
     </script>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
-
         .card-ploty-graf {
             display: none;
             z-index: 1;
@@ -1959,7 +1957,14 @@
             -1px -1px 6px rgba(255, 255, 255, 0.4);
         }
 
-        #plotly-graph { width: 100%; height: 600px; }
+        #plotly-graph {
+            width: 100%;
+            height: 63%;
+            max-width: 2000px;
+            min-width: 200px;
+            max-height: 1000px;
+            min-height: 100px;
+        }
         #controlPanel { width: 100%; padding: 10px; text-align: left; }
         .control-button { margin: 5px; cursor: pointer; }
         .symbol-button { font-size: 1.5em; }
@@ -2135,7 +2140,27 @@
             padding: 5px;
             font-size: 1.5em;
             border-radius: 6px;
-            top: 40%;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .panel-content-son {
+            display: none;
+            position: absolute;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.1);
+            min-width: 60%;
+            z-index: 1;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
+            text-align: left;
+            padding: 5px;
+            font-size: 1.5em;
+            border-radius: 6px;
+            top: 55%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
@@ -2145,7 +2170,7 @@
             position: absolute;
             color: #ffffff;
             background-color: rgba(0, 0, 0, 0.1);
-            min-width: 160px;
+            min-width: 80%;
             z-index: 1;
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
                         -1px -1px 6px rgba(255, 255, 255, 0.4);
@@ -2155,7 +2180,7 @@
             padding: 5px;
             font-size: 1.5em;
             border-radius: 6px;
-            top: 53%;
+            top: 59%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
@@ -2637,7 +2662,7 @@
 
             <div id="controlPanel">
 
-                <div id="symbolPanel" class="panel-content">
+                <div id="symbolPanel" class="panel-content-son">
                     <button class="panel-button-plot-so" onclick="insertFormula('x^2 + y^2')">$$x^2$$</button>
                     <button class="panel-button-plot-so" onclick="insertFormula('\\frac{1}{x}')">$$\frac{1}{x}$$</button>
                     <button class="panel-button-plot-so" onclick="insertFormula('\\int x dx')">$$\int x \, dx$$</button>
