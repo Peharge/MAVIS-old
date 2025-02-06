@@ -3137,6 +3137,7 @@
                 let y = [];
                 let z = [];
 
+                // Erstellen der Datenpunkte
                 for (let i = -10; i <= 10; i += 0.1) {
                     x.push(i);
                     try {
@@ -3173,20 +3174,54 @@
 
                 const layout = {
                     margin: {
-                        l: 0,
-                        r: 0,
-                        b: 0,
-                        t: 0
-                    }, scene: {
-                        xaxis: { title: 'x', showgrid: true, zeroline: false },
-                        yaxis: { title: 'y', showgrid: true, zeroline: false },
-                        zaxis: { title: 'f(x, y)', showgrid: true, zeroline: false },
-                        camera: { projection: { type: 'perspective' } }
+                        l: 40,
+                        r: 40,
+                        b: 40,
+                        t: 40
                     },
+
+                    xaxis: {
+                        title: 'x',
+                        showgrid: true,
+                        zeroline: true,
+                        range: [-30, 30]
+                    },
+                    yaxis: {
+                        title: 'f(x)',
+                        showgrid: true,
+                        zeroline: true,
+                        range: [-30, 30]
+                    },
+
+                    scene: plotType === '3D' ? {
+                        xaxis: {
+                            title: 'x',
+                            showgrid: true,
+                            zeroline: false,
+                            range: [-30, 30]
+                        },
+                        yaxis: {
+                            title: 'y',
+                            showgrid: true,
+                            zeroline: false,
+                            range: [-30, 30]
+                        },
+                        zaxis: {
+                            title: 'f(x)',
+                            showgrid: true,
+                            zeroline: false,
+                            range: [-30, 30]
+                        },
+                        camera: {
+                            projection: { type: 'perspective' },
+                            eye: { x: 1.5, y: 1.5, z: 1.5 }
+                        }
+                    } : {},
                 };
 
-                Plotly.newPlot('plotly-graph', data);
+                Plotly.newPlot('plotly-graph', data, layout);
             }
+
         </script>
 
         <div class="card-jup" id="card-jup-id">
