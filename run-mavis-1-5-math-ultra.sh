@@ -55,7 +55,7 @@
 USERNAME=$(whoami)
 PYTHON_PATH="/home/$USERNAME/.virtualenvs/mavis/bin/python"
 SCRIPT_PATH_1="/home/$USERNAME/PycharmProjects/MAVIS/info/info-start-mavis-1-5-math-ultra.py"
-SCRIPT_PATH_2="/home/$USERNAME/PycharmProjects/MAVIS/install/install-mavis-1-5.py"
+SCRIPT_PATH_2="/home/$USERNAME/PycharmProjects/MAVIS/install/install-info-mavis-1-5.py"
 SCRIPT_PATH_update="/home/$USERNAME/PycharmProjects/MAVIS/update/update-repository-macos-linux.py"
 SCRIPT_PATH_3="/home/$USERNAME/PycharmProjects/MAVIS/install/install-ollama-mavis-1-5-math-ultra.py"
 SCRIPT_PATH_4="/home/$USERNAME/PycharmProjects/MAVIS/info/info.py"
