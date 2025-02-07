@@ -130,7 +130,7 @@ def is_git_repo():
 
 # Hauptprogramm
 def main():
-    print("\nRepository Information:\n-----------------------------------")
+    print("\nRepository Information:\n-----------------------")
     # Sicherstellen, dass das Skript im richtigen Verzeichnis ausgeführt wird
     if not is_git_repo():
         print(f"{red}The current directory is not a Git repository!{reset}")
