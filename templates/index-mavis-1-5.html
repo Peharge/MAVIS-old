@@ -2072,25 +2072,65 @@
         .draw-button-dra:hover .button-tooltip-draw {
             visibility: visible;
             opacity: 1;
-            transform: translateX(-50%) translateY(-30%);
+            transform: translateX(-50%) translateY(-40%);
+        }
+
+        #draw-drawMode {
+            transform: translateY(0%) scale(1);
+            transition: transform 0.2s ease;
+        }
+
+        #draw-drawMode.shifted {
+            transform: translateY(-20%) scale(1.1);
+            transition: transform 0.2s ease;
         }
 
         .draw-button-rub:hover .button-tooltip-draw {
             visibility: visible;
             opacity: 1;
-            transform: translateX(-50%) translateY(-30%);
+            transform: translateX(-50%) translateY(-40%);
+        }
+
+        #draw-eraseMode {
+            transform: translateY(0%) scale(1);
+            transition: transform 0.2s ease;
+        }
+
+        #draw-eraseMode.shifted {
+            transform: translateY(-20%) scale(1.1);
+            transition: transform 0.2s ease;
         }
 
         .draw-button-del:hover .button-tooltip-draw {
             visibility: visible;
             opacity: 1;
-            transform: translateX(-50%) translateY(-30%);
+            transform: translateX(-50%) translateY(-40%);
+        }
+
+        #draw-clearCanvas {
+            transform: translateY(0%) scale(1);
+            transition: transform 0.2s ease;
+        }
+
+        #draw-clearCanvas.shifted {
+            transform: translateY(-20%) scale(1.1);
+            transition: transform 0.2s ease;
         }
 
         .draw-button-run:hover .button-tooltip-draw {
             visibility: visible;
             opacity: 1;
-            transform: translateX(-50%) translateY(-30%);
+            transform: translateX(-50%) translateY(-40%);
+        }
+
+        #draw-recognizeLatex {
+            transform: translateY(0%) scale(1);
+            transition: transform 0.2s ease;
+        }
+
+        #draw-recognizeLatex.shifted {
+            transform: translateY(-20%) scale(1.1);
+            transition: transform 0.2s ease;
         }
 
         .draw-output-container {
