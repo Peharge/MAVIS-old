@@ -369,8 +369,5 @@ def main():
     print("---------------------------------")
     print(compatibility)
 
-    print("\nClient Information:")
-    print("-------------------")
-
 if __name__ == "__main__":
     main()

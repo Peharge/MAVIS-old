@@ -92,6 +92,8 @@ url = "http://127.0.0.1:5000/"
 
 # Öffnen Sie den Browser
 try:
+    print("\nClient Information:")
+    print("-------------------")
     webbrowser.open(url)
     print(f"The browser has been opened and the URL {yellow}{url}{reset} has been called.")
 
