@@ -255,6 +255,18 @@ And more...
     <img src="./readme-img/mavis-1-5-demo-1.png" alt="mavis" width="1400">
 </div>
 
+<div>
+    <img src="./readme-img/mavis-1-5-use-gif-1.gif" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/using-img-5.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-3.png" alt="mavis" width="1400">
+</div>
+
 And more...
 
 </details>
@@ -372,8 +384,10 @@ And more...
 
 </details>
 
+---
+
 <details>
-  <summary>more MAVIS versions</summary>
+  <summary>More MAVIS versions</summary>
 
 ### MAVIS 1.6 EAP release
 
