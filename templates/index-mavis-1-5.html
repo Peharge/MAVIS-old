@@ -3151,9 +3151,9 @@
             }
 
             function renderLatex() {
-                const input = document.getElementById("latexFormula").value;
-                document.getElementById("mathDisplay").innerHTML = `\\(${input}\\)`;
-                MathJax.Hub.Queue(["Typeset", MathJax.Hub, "mathDisplay"]);
+                const latexInput = document.getElementById("latexFormula").value;
+                document.getElementById("mathDisplay").innerHTML = `\\(${latexInput}\\)`;
+                MathJax.typesetPromise([document.getElementById("mathDisplay")]);
             }
 
             function plotFunction() {
@@ -3253,6 +3253,43 @@
 
                 Plotly.newPlot('plotly-graph', data, layout);
             }
+
+            function latexToMathExpression(latex) {
+                return latex
+                        .replace(/\^/g, '**')
+                        .replace(/([0-9a-zA-Z])\(/g, '$1*(')
+                        .replace(/\\frac{([^}]+)}{([^}]+)}/g, '($1)/($2)')
+                        .replace(/\\sqrt{([^}]+)}/g, 'sqrt($1)')
+                        .replace(/\\int (.*) d([a-zA-Z])/g, 'integrate($1, $2)')
+                        .replace(/([a-zA-Z]+)([0-9]+)/g, '$1*$2');
+            }
+
+            function computeDerivative() {
+                const latexInput = document.getElementById('latexFormula').value.trim();
+                if (!latexInput) return;
+                try {
+                    let expr = latexToMathExpression(latexInput);
+                    let derivative = math.derivative(expr, 'x').toString();
+                    document.getElementById('latexFormula').value = derivative;
+                    updateDisplay();
+                } catch (error) {
+                    console.error("Fehler bei der Ableitung:", error);
+                }
+            }
+
+            function computeIntegral() {
+                const latexInput = document.getElementById('latexFormula').value.trim();
+                if (!latexInput) return;
+                try {
+                    let expr = latexToMathExpression(latexInput);
+                    let integral = math.integrate(expr, 'x').toString();
+                    document.getElementById('latexFormula').value = integral;
+                    updateDisplay();
+                } catch (error) {
+                    console.error("Fehler beim Integrieren:", error);
+                }
+            }
+
 
         </script>
 
