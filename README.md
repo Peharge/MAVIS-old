@@ -267,6 +267,10 @@ And more...
     <img src="./readme-img/mavis-1-5-demo-3.png" alt="mavis" width="1400">
 </div>
 
+<div>
+    <img src="./readme-img/mavis-1-5-demo-4.png" alt="mavis" width="1400">
+</div>
+
 And more...
 
 </details>
