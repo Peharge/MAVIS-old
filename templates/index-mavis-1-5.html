@@ -3151,8 +3151,8 @@
             }
 
             function renderLatex() {
-                const latexInput = document.getElementById("latexFormula").value;
-                document.getElementById("mathDisplay").innerHTML = `\\(${latexInput}\\)`;
+                const Input = document.getElementById("latexFormula").value;
+                document.getElementById("mathDisplay").innerHTML = `\\(${Input}\\)`;
                 MathJax.typesetPromise([document.getElementById("mathDisplay")]);
             }
 
