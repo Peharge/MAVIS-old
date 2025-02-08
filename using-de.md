@@ -15,30 +15,28 @@ Die Ausgabe könnte beispielsweise so aussehen:
 ```bash
 Framework Information:
 ----------------------
-Flask - Leichtgewichtiges Web-Framework für Python.
-Ollama - Tool zur Integration mit KI-APIs.
-Jupyter - Open-Source-Webanwendung für Live-Code, Gleichungen, Visualisierungen und Texte.
+Flask - Lightweight web framework for Python.
+Ollama - Tool for integrating with AI APIs.
+Jupyter - Open source web application for live code, equations, visualizations and text.
 etc.
 ```
 
 Außerdem wird die folgende Meldung angezeigt, die Sie darauf hinweist, dass Sie gelegentlich PIP aktualisieren sollten:
 
 ```bash
-Vergessen Sie nicht, PIP regelmäßig mit dem Befehl:
-python -m pip install --upgrade pip
-zu aktualisieren.
+Dont forget to update PIP regularly with the command: python -m pip install --upgrade pip.
 ```
 
 Falls noch nicht geschehen, werden die benötigten Frameworks nun installiert und aktualisiert:
 
 ```bash
-Alle Frameworks für MAVIS Versionen 1.2, 1.3, 1.4 und 1.5 werden derzeit installiert und aktualisiert.
+All frameworks for MAVIS versions 1.2, 1.3, 1.4 and 1.5 are currently being installed and updated:
 ```
 
 Falls Sie MAVIS zum ersten Mal starten, müssen Sie für jedes Framework bestätigen, dass es installiert werden soll. Geben Sie `y` oder `yes` ein, um die Installation zu starten:
 
 ```bash
-Möchten Sie Flask installieren? [y/n]:
+Would you like to install Flask? [y/n]:
 ```
 
 Bitte bestätigen Sie dies immer mit `y` oder `yes`, um spätere Probleme zu vermeiden. Dasselbe gilt für zukünftige automatische Aktualisierungen der Frameworks.
@@ -53,15 +51,15 @@ git pull https://github.com/Peharge/MAVIS.git
 Die Abfrage zur Aktualisierung sieht so aus:
 
 ```bash
-MAVIS Repository Update (experimentell):
+MAVIS Repository Update (experimental):
 ---------------------------------------
-Diese Update-Funktion ist noch nicht zu 100 % zuverlässig und es können Fehler auftreten.
-Wir empfehlen daher, stattdessen den Befehl:
+This update function is not yet 100% reliable and errors may occur.
+We therefore recommend using the command:
 git pull https://github.com/Peharge/MAVIS.git
-zu verwenden.
+instead.
 
-MAVIS - Letztes Update: 30.01.2025
-Möchten Sie ein Update durchführen? [y/n]:
+MAVIS - Last update: 01/30/2025
+Would you like to perform an update? [y/n]:
 ```
 
 ## 4. Installation zusätzlicher KI-Modelle
@@ -73,7 +71,7 @@ Anschließend erscheinen einige Systeminformationen, die für die Nutzung von MA
 Nach kurzer Zeit öffnet sich ein weiteres Terminal, in dem Sie gefragt werden, ob Sie Jupyter Notebook öffnen möchten. Jupyter Notebook ist ein Code-Editor, der im Browser läuft und mit MAVIS installiert wird.
 
 ```bash
-Möchten Sie Jupyter Notebook starten? [y/n]:
+Do you want to start Jupyter Notebook? [y/n]:
 ```
 
 Falls Sie `y` oder `yes` eingeben, öffnet sich Jupyter Notebook im Browser.

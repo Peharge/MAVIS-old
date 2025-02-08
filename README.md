@@ -1220,13 +1220,13 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 
 > ⚠️ **Still in progress**
 
-### English [soon]:
+### English [new]:
 
-[Using](using.md)
+[Using](using-en)
 
 ### Deutsch [new]:
 
-[Benutzen](using.md)
+[Benutzen](using-de)
 
 ## Xcpp
 
