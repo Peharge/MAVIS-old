@@ -68,33 +68,38 @@ import platform
 import logging
 from datetime import datetime
 
-# Configuration
+# Konfiguration
 URL = "http://127.0.0.1:5000/"
 EDGE_PATHS = [
     r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
     r"C:\Program Files\Microsoft\Edge\Application\msedge.exe"
 ]
 
-# Console color definitions
+# Farbcodes definieren
 red = "\033[91m"
 green = "\033[92m"
 yellow = "\033[93m"
 blue = "\033[94m"
+magenta = "\033[95m"
+cyan = "\033[96m"
+white = "\033[97m"
+black = "\033[30m"
+orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
-# Logging setup
+# Protokollierungs-Setup (NEW)
 logging.basicConfig(filename="client_log.txt", level=logging.INFO,
                     format="%(asctime)s - %(levelname)s - %(message)s")
 
-# Enable ANSI support for Windows
+# ANSI-Unterstützung für Windows aktivieren
 if os.name == "nt":
     os.system("")
 
-# Helper functions
+# Hilfsfunktionen
 def log_and_print(message, level="info"):
-    """Logs and prints the message."""
-    colors = {"info": blue, "success": green, "warning": yellow, "error": red}
+    """Protokolliert und druckt die Nachricht."""
+    colors = {"success": green, "warning": yellow, "error": red}
     print(f"{colors.get(level, reset)}{message}{reset}")
     if level == "error":
         logging.error(message)
@@ -104,18 +109,18 @@ def log_and_print(message, level="info"):
         logging.info(message)
 
 def find_edge():
-    """Searches for Edge installations."""
+    """Sucht nach Edge-Installationen."""
     for path in EDGE_PATHS:
         if os.path.exists(path):
             return path
     return None
 
 def open_edge(url):
-    """Tries to open Edge."""
+    """Versucht, Edge zu öffnen."""
     edge_path = find_edge()
     if edge_path:
         try:
-            # Open Edge in app mode
+            # Öffnen Sie Edge im App-Modus
             subprocess.Popen([edge_path, "--app=" + url])
             log_and_print("Microsoft Edge has been successfully opened.", "success")
             return True
@@ -126,14 +131,14 @@ def open_edge(url):
     return False
 
 def open_default_browser(url):
-    """Opens the URL in the default browser."""
+    """Öffnet die URL im Standardbrowser."""
     try:
-        webbrowser.open(url, new=2)  # new=2 opens in a new tab/window
+        webbrowser.open(url, new=2)  # new=2 öffnet in einem neuen Tab/Fenster
         log_and_print(f"Default browser has been opened: {url}", "success")
     except webbrowser.Error as e:
         log_and_print(f"Error opening default browser: {e}", "error")
 
-# Main logic
+# Hauptlogik
 def main():
     log_and_print("\nClient Information:", "info")
     log_and_print("----------------------", "info")
@@ -142,12 +147,15 @@ def main():
 
     log_and_print(f"Username: {username}", "info")
 
-    # Open Edge or default browser
+    # Öffnen Sie Edge oder den Standardbrowser
     if not open_edge(URL):
         log_and_print("Edge not available. Using default browser...", "warning")
         open_default_browser(URL)
 
-    log_and_print(f"Flask server is running at: {URL}", "info")
+    log_and_print(f"Flask server is soon running at: {URL}", "info")
+
+    print("\nFlask Information:")
+    print("------------------")
 
 if __name__ == "__main__":
     try:
