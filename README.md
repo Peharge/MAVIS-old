@@ -559,7 +559,7 @@ And more...
 <details>
 <summary>Installation</summary>
 
-**MAVIS (aka Xc++ 2)** is currently under development and is not fully available in this repository. Cloning the repository will only give you the README file, some images and already released code, including the user interface (UI) compatible with **Qwen 2.5 Code** and **Llama 3.2 Vision**.
+**MAVIS (aka Xc++ III)** is currently under development and is not fully available in this repository. Cloning the repository will only give you the README file, some images and already released code, including the user interface (UI) compatible with **Qwen 2.5 Code** and **Llama 3.2 Vision**.
 
 **Note:** Although manual installation is not much more complicated, it is significantly more stable and secure, so we recommend preferring this method.
 
@@ -893,7 +893,7 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
 <details>
   <summary>Installation</summary>
 
-**MAVIS (alias Xc++ 2)** befindet sich derzeit in der Entwicklung und ist in diesem Repository nicht vollständig verfügbar. Durch das Klonen des Repositories erhalten Sie lediglich die README-Datei, einige Bilder und bereits veröffentlichte Codes, einschließlich der Benutzeroberfläche (UI), die mit **Qwen 2.5 Code** und **Llama 3.2 Vision** kompatibel ist.
+**MAVIS (alias Xc++ III)** befindet sich derzeit in der Entwicklung und ist in diesem Repository nicht vollständig verfügbar. Durch das Klonen des Repositories erhalten Sie lediglich die README-Datei, einige Bilder und bereits veröffentlichte Codes, einschließlich der Benutzeroberfläche (UI), die mit **Qwen 2.5 Code** und **Llama 3.2 Vision** kompatibel ist.
 
 **Hinweis:** Die manuelle Installation ist zwar nicht wesentlich komplizierter, jedoch erheblich stabiler und sicherer. Deshalb empfehlen wir, diese Methode zu bevorzugen.
 
