@@ -88,9 +88,8 @@ orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
-# Protokollierungs-Setup (NEW)
-logging.basicConfig(filename="client_log.txt", level=logging.INFO,
-                    format="%(asctime)s - %(levelname)s - %(message)s")
+# Protokollierungs-Setup ohne Datei
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 # ANSI-Unterstützung für Windows aktivieren
 if os.name == "nt":
@@ -98,7 +97,7 @@ if os.name == "nt":
 
 # Hilfsfunktionen
 def log_and_print(message, level="info"):
-    """Protokolliert und druckt die Nachricht."""
+    """Protokolliert und druckt die Nachricht direkt im Terminal."""
     colors = {"success": green, "warning": yellow, "error": red}
     print(f"{colors.get(level, reset)}{message}{reset}")
     if level == "error":
@@ -140,8 +139,7 @@ def open_default_browser(url):
 
 # Hauptlogik
 def main():
-    log_and_print("\nClient Information:", "info")
-    log_and_print("----------------------", "info")
+    log_and_print("\nClient Information:\n----------------------", "info")
 
     username = os.getenv('USERNAME') or os.getenv('USER') or "Unknown User"
 
