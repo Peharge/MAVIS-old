@@ -123,7 +123,7 @@ REM Run the `run-jup.py` script in the background
 start "" "%PYTHON_PATH%" "%run_jup%"
 
 REM Wait for 10 seconds before continuing
-timeout /t 3 /nobreak
+timeout /t 5 /nobreak
 
 if not exist "%PYTHON_SCRIPT_PATH%" (
     echo Error: Python script not found: %PYTHON_SCRIPT_PATH%
