@@ -49,48 +49,6 @@
 <img alt="transformers" src="https://img.shields.io/badge/-Transformers-34AADC?&logo=transformers">
 <img alt="geopandas" src="https://img.shields.io/badge/-GeoPandas-008080?&logo=geopandas&logoColor=white">
 <img alt="altair" src="https://img.shields.io/badge/-Altair-E54C2F?&logo=altair">
-<img alt="vega_datasets" src="https://img.shields.io/badge/-Vega__Datasets-FF9900?&logo=vega">
-<img alt="kaleido" src="https://img.shields.io/badge/-Kaleido-7B1FA2?&logo=kaleido">
-<img alt="astropy" src="https://img.shields.io/badge/-Astropy-1F77B4?&logo=astropy">
-<img alt="QuantLib" src="https://img.shields.io/badge/-QuantLib-004080?&logo=quantlib">
-<img alt="openmdao" src="https://img.shields.io/badge/-OpenMDAO-008C4A?&logo=openmdao">
-<img alt="pybullet" src="https://img.shields.io/badge/-PyBullet-FF0000?&logo=pybullet">
-<img alt="monai" src="https://img.shields.io/badge/-Monai-4A90E2?&logo=monai">
-<img alt="fenics" src="https://img.shields.io/badge/-FEniCS-2E86C1?&logo=fenics">
-<img alt="pydy" src="https://img.shields.io/badge/-PyDy-008C4A?&logo=pydy">
-<img alt="pycalculix" src="https://img.shields.io/badge/-PyCalculix-003366?&logo=pycalculix">
-<img alt="solidpython" src="https://img.shields.io/badge/-SolidPython-FF6600?&logo=solidpython">
-<img alt="pyomo" src="https://img.shields.io/badge/-Pyomo-990000?&logo=pyomo">
-<img alt="gekko" src="https://img.shields.io/badge/-Gekko-7A378B?&logo=gekko">
-<img alt="casadi" src="https://img.shields.io/badge/-CasADi-009688?&logo=casadi">
-<img alt="control" src="https://img.shields.io/badge/-Control-3E2723?&logo=control">
-<img alt="rospy" src="https://img.shields.io/badge/-Rospy-0088CC?&logo=ros">
-<img alt="h2o" src="https://img.shields.io/badge/-H2O-0099CC?&logo=h2o">
-<img alt="pint" src="https://img.shields.io/badge/-Pint-660099?&logo=pint">
-<img alt="coolprop" src="https://img.shields.io/badge/-CoolProp-0033CC?&logo=coolprop">
-<img alt="pythermo" src="https://img.shields.io/badge/-PyThermo-FF3300?&logo=pythermo">
-<img alt="biopython" src="https://img.shields.io/badge/-BioPython-00A86B?&logo=biopython">
-<img alt="opencv-python" src="https://img.shields.io/badge/-OpenCV-5C3EE8?&logo=opencv">
-<img alt="SimpleITK" src="https://img.shields.io/badge/-SimpleITK-1976D2?&logo=simpleitk">
-<img alt="nilearn" src="https://img.shields.io/badge/-Nilearn-607D8B?&logo=nilearn">
-<img alt="deepchem" src="https://img.shields.io/badge/-DeepChem-008080?&logo=deepchem">
-<img alt="pymedtermino" src="https://img.shields.io/badge/-PyMedTermino-336699?&logo=pymedtermino">
-<img alt="lifelines" src="https://img.shields.io/badge/-Lifelines-FF4500?&logo=lifelines">
-<img alt="rdkit" src="https://img.shields.io/badge/-RDKit-2C3E50?&logo=rdkit">
-<img alt="ase" src="https://img.shields.io/badge/-ASE-556B2F?&logo=ase">
-<img alt="chempy" src="https://img.shields.io/badge/-ChemPy-990000?&logo=chempy">
-<img alt="shapely" src="https://img.shields.io/badge/-Shapely-1E8449?&logo=shapely">
-<img alt="fiona" src="https://img.shields.io/badge/-Fiona-9C27B0?&logo=fiona">
-<img alt="cartopy" src="https://img.shields.io/badge/-Cartopy-336699?&logo=cartopy">
-<img alt="statsmodels" src="https://img.shields.io/badge/-Statsmodels-800000?&logo=statsmodels">
-<img alt="yfinance" src="https://img.shields.io/badge/-YFinance-003366?&logo=yfinance">
-<img alt="pyspice" src="https://img.shields.io/badge/-PySpice-003366?&logo=pyspice">
-<img alt="networkx" src="https://img.shields.io/badge/-networkx-990000?&logo=networkx">
-<img alt="schematics" src="https://img.shields.io/badge/-Schematics-006400?&logo=schematics">
-<img alt="schemdraw" src="https://img.shields.io/badge/-Schemdraw-FF7F00?&logo=schemdraw">
-<img alt="ipywidgets" src="https://img.shields.io/badge/-Ipywidgets-800080?&logo=ipywidgets">
-<img alt="pybullet" src="https://img.shields.io/badge/-Pybullet-8A2BE2?&logo=pybullet">
-<img alt="vtk" src="https://img.shields.io/badge/-Vtk-00008B?&logo=vtk">
 <br>
 <br>
 
@@ -193,10 +151,10 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 
 ## Updates
 
-### MAVIS 1.1 EAP release (with Llama 3.2) [old]
-
 <details>
-  <summary>MAVIS 1.1 EAP</summary>
+  <summary>Old MAVIS Versions</summary>
+
+### MAVIS 1.1 EAP release (with Llama 3.2) [old]
 
 <p align="center">
     <img src="./readme-img/MAVIS-ads13.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -215,9 +173,7 @@ And more...
 
 </details>
 
-> 01.12.2024 
-
-</details>
+> 01.12.2024
 
 ### MAVIS 1.2 release [no more updates in the areas of graphics, frameworks and security]
 
@@ -282,7 +238,9 @@ And more...
 
 </details>
 
-### MAVIS 1.5 EAP release [new]
+</details>
+
+### MAVIS 1.5 EAP release [new] [01.03.2025 - ultimate stabel!!!]
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis1.4-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
