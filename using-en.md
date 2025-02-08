@@ -103,6 +103,8 @@ Here is an example of MAVIS in operation:
 
 ![MAVIS example](./readme-img/mavis-1-5-demo-4.png)
 
+![MAVIS example](./readme-img/mavis-1-5-demo-5.png)
+
 By default, the formula editor is open, which you can use to draw formulas. The drawn formulas are converted to LaTeX code in the input box below and displayed correctly rendered directly below. To convert the formula, simply press the black play button in the drawing box.
 
 The input box in which the LaTeX code is written is connected to the lower input box in the taskbar and can be used as input for the AI-Chatbot.

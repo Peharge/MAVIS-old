@@ -271,6 +271,26 @@ And more...
     <img src="./readme-img/mavis-1-5-demo-4.png" alt="mavis" width="1400">
 </div>
 
+<div>
+    <img src="./readme-img/mavis-1-5-demo-5.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-6.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-7.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-8.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-9.png" alt="mavis" width="1400">
+</div>
+
 And more...
 
 </details>

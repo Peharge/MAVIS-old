@@ -103,6 +103,8 @@ Hier ein Beispiel für MAVIS im Betrieb:
 
 ![MAVIS Beispiel](./readme-img/mavis-1-5-demo-4.png)
 
+![MAVIS Beispiel](./readme-img/mavis-1-5-demo-5.png)
+
 Standardmäßig ist der Formeleditor geöffnet, mit dem Sie Formeln zeichnen können. Die gezeichneten Formeln werden in die Eingabebox unten als LaTeX-Code umgewandelt und direkt darunter korrekt gerendert angezeigt. Um die Formel zu konvertieren, drücken Sie einfach den schwarzen Play-Button in der Zeichenbox.
 
 Die Eingabebox, in der der LaTeX-Code geschrieben wird, ist mit der unteren Eingabebox in der Taskleiste verbunden und kann als Eingabe für den KI-Chatbot verwendet werden.
