@@ -3177,7 +3177,9 @@
                     return;
                 }
 
-                const cleanedFuncString = funcString.replace(/pi/g, 'Math.PI').replace(/e/g, '2.718281828459045');
+                let cleanedFuncString = funcString.replace(/pi/g, '3.141592653589793').replace(/e/g, '2.718281828459045');
+
+                cleanedFuncString = cleanedFuncString.replace(/(\d+)\s*\/\s*(\d+)/g, '($1/$2)');
 
                 let x = [];
                 let y = [];
@@ -3219,43 +3221,13 @@
                 }
 
                 const layout = {
-                    margin: {
-                        l: 40,
-                        r: 40,
-                        b: 40,
-                        t: 40
-                    },
-                    xaxis: {
-                        title: 'x',
-                        showgrid: true,
-                        zeroline: true,
-                        range: [-10, 10]
-                    },
-                    yaxis: {
-                        title: 'f(x)',
-                        showgrid: true,
-                        zeroline: true,
-                        range: [-30, 30]
-                    },
+                    margin: {l: 40, r: 40, b: 40, t: 40},
+                    xaxis: {title: 'x', showgrid: true, zeroline: true, range: [-10, 10]},
+                    yaxis: {title: 'f(x)', showgrid: true, zeroline: true, range: [-30, 30]},
                     scene: plotType === '3D' ? {
-                        xaxis: {
-                            title: 'x',
-                            showgrid: true,
-                            zeroline: false,
-                            range: [-10, 10]
-                        },
-                        yaxis: {
-                            title: 'y',
-                            showgrid: true,
-                            zeroline: false,
-                            range: [-30, 30]
-                        },
-                        zaxis: {
-                            title: 'f(x)',
-                            showgrid: true,
-                            zeroline: false,
-                            range: [-30, 30]
-                        },
+                        xaxis: {title: 'x', showgrid: true, zeroline: false, range: [-10, 10]},
+                        yaxis: {title: 'y', showgrid: true, zeroline: false, range: [-30, 30]},
+                        zaxis: {title: 'f(x)', showgrid: true, zeroline: false, range: [-30, 30]},
                         camera: {
                             projection: {type: 'perspective'},
                             eye: {x: 1.5, y: 1.5, z: 1.5}
