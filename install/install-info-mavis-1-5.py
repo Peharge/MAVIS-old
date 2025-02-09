@@ -200,7 +200,7 @@ def main():
             execute_installation()
             break
         elif user_input in ["n", "no"]:
-            print(f"{blue}{bold}Installation was declined. Exiting the program.\n{reset}")
+            print(f"{blue}{bold}Installation and Update of the required Python frameworks was declined. Exiting the program.\n{reset}")
             sys.exit(0)
         else:
             print(f"{red}{bold}Invalid input. Please enter 'y/yes' or 'n/no'.{reset}")
