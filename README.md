@@ -56,7 +56,7 @@
 </div>
 
 # _MAVIS_
-**MA**_th_ **V**_isual_ **I**_ntelligent_ **S**_ystem (Strongest calculator in the world)_
+**MA**_th_ **V**_isual_ **I**_ntelligent_ **S**_ystem (Strongest calculator in the world)._
 
 _**MAVIS**: In the darkest times lies the power to create something great – a work only you can understand. It is your light, your strength, your vision._
 <details>
