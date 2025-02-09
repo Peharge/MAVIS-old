@@ -2131,6 +2131,7 @@
         }
 
         .draw-output-container {
+            font-size: 18px;
             margin-top: 15px;
             padding: 10px;
             background: rgba(0, 0, 0, 0.1);
@@ -2979,6 +2980,17 @@
                     img.src = dataURL;
                 });
             }
+
+            const inputField = document.getElementById("draw-latexCode");
+            const outputField = document.getElementById("draw-renderedFormula");
+
+            inputField.addEventListener("input", renderLatex);
+
+            function renderLatex() {
+                const inputLatex = inputField.value.trim();
+                outputField.innerHTML = inputLatex ? `\\(${inputLatex}\\)` : "";
+                MathJax.typesetPromise([outputField]);
+            }
         </script>
 
         <div class="card-ploty-graf" id="card-ploty-graf-id">
@@ -3169,7 +3181,6 @@
                 let y = [];
                 let z = [];
 
-                // Erstellen der Datenpunkte
                 for (let i = -10; i <= 10; i += 0.1) {
                     x.push(i);
                     try {
