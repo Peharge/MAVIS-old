@@ -3177,8 +3177,7 @@
                     return;
                 }
 
-                // Ersetze "pi" durch Math.PI und "e" durch Math.E in der Benutzereingabe
-                const cleanedFuncString = funcString.replace(/pi/g, 'Math.PI').replace(/e/g, 'Math.E');
+                const cleanedFuncString = funcString.replace(/pi/g, 'Math.PI').replace(/e/g, '2.718281828459045');
 
                 let x = [];
                 let y = [];
@@ -3187,7 +3186,6 @@
                 for (let i = -10; i <= 10; i += 0.1) {
                     x.push(i);
                     try {
-                        // Berechne die Funktionswerte unter Verwendung von math.evaluate
                         const result = math.evaluate(cleanedFuncString, {x: i});
                         y.push(result);
 
@@ -3231,32 +3229,32 @@
                         title: 'x',
                         showgrid: true,
                         zeroline: true,
-                        range: [-10, 10]  // Kann bei Bedarf angepasst werden
+                        range: [-10, 10]
                     },
                     yaxis: {
                         title: 'f(x)',
                         showgrid: true,
                         zeroline: true,
-                        range: [-30, 30]  // Kann bei Bedarf angepasst werden
+                        range: [-30, 30]
                     },
                     scene: plotType === '3D' ? {
                         xaxis: {
                             title: 'x',
                             showgrid: true,
                             zeroline: false,
-                            range: [-10, 10]  // Kann bei Bedarf angepasst werden
+                            range: [-10, 10]
                         },
                         yaxis: {
                             title: 'y',
                             showgrid: true,
                             zeroline: false,
-                            range: [-30, 30]  // Kann bei Bedarf angepasst werden
+                            range: [-30, 30]
                         },
                         zaxis: {
                             title: 'f(x)',
                             showgrid: true,
                             zeroline: false,
-                            range: [-30, 30]  // Kann bei Bedarf angepasst werden
+                            range: [-30, 30]
                         },
                         camera: {
                             projection: {type: 'perspective'},
