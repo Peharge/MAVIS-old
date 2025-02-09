@@ -83,7 +83,7 @@ def start_mavis():
     print(f"[2] Browser")
 
     while True:
-        choice = input(f"Enter your choice [1 / 2]:").strip()
+        choice = input(f"Enter your choice [1/2]:").strip()
 
         if choice == '1':
             print(f"{green}Starting MAVIS as Edge Extension...{reset}")
