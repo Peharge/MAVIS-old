@@ -90,14 +90,14 @@ def start_mavis():
             try:
                 os.system('python run_with_browser/run_with_browser-ext.py')  # run_with_browser-ext.py wird ausgeführt
             except Exception as e:
-                print(f"{red}Error running extension.py: {e}{reset}")
+                print(f"{red}Error running extension.py{reset}: {e}")
             break
         elif choice == '2':
             print(f"{blue}Starting MAVIS in Browser...{reset}")
             try:
                 os.system('python run_with_browser/run_with_browser.py')  # run_with_browser.py wird ausgeführt
             except Exception as e:
-                print(f"{red}Error running browser.py: {e}{reset}")
+                print(f"{red}Error running browser.py{reset}: {e}")
             break
         else:
             print(f"{red}Invalid choice. Please enter 1 or 2.{reset}")

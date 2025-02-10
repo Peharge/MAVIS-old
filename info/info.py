@@ -154,16 +154,16 @@ def get_system_info():
     network_interfaces = psutil.net_if_addrs()
     interfaces_info = []
     for interface, addresses in network_interfaces.items():
-        interface_details = f"- {interface}:\n"
+        interface_details = f"   {blue}{interface}{reset}:\n"
         for address in addresses:
             if address.family == socket.AF_INET:
-                interface_details += f"  - IPv4: {address.address}\n"
+                interface_details += f"      {blue}IPv4{reset}: {address.address}\n"
             elif address.family == socket.AF_INET6:
-                interface_details += f"  - IPv6: {address.address}\n"
+                interface_details += f"      {blue}IPv6{reset}: {address.address}\n"
             elif address.family == psutil.AF_LINK:
-                interface_details += f"  - MAC: {address.address}\n"
+                interface_details += f"      {blue}MAC{reset}: {address.address}\n"
         interfaces_info.append(interface_details)
-    interfaces_formatted = "\n".join(interfaces_info)
+    interfaces_formatted = "".join(interfaces_info)
 
     # Load Average
     if os_name == "Windows":
@@ -182,23 +182,23 @@ def get_system_info():
     # Benutzerinformationen
     user_info = psutil.users()
     user_data_formatted = "\n".join([
-        f"  - User: {user.name}, Terminal: {user.terminal or 'N/A'}, Started: {time.ctime(user.started)}"
+        f"\n   {blue}User{reset}: {user.name}\n   {blue}Terminal{reset}: {user.terminal or 'N/A'}\n   {blue}Started{reset}: {time.ctime(user.started)}"
         for user in user_info
     ])
 
     # Formatierte Ausgabe
     system_info = {
-        f"{blue}OS{reset}": f"{os_name} {os_release} (Version: {os_version}), Architecture: {os_arch}",
+        f"{blue}OS{reset}": f"{os_name} {os_release}\n   {blue}Version{reset}: {os_version}\n   {blue}Architecture{reset}: {os_arch}\n",
         f"{blue}Hostname{reset}": f"{hostname}",
         f"{blue}IP Address{reset}": f"{ip_address}",
-        f"{blue}CPU{reset}": f"{cpu_model}, Architecture: {cpu_arch}, Cores: {cpu_cores}, Threads: {cpu_threads}, Max Frequency: {cpu_freq} MHz",
-        f"{blue}RAM{reset}": f"Total: {ram_total} GB, Used: {ram_used} GB, Free: {ram_free} GB, Usage: {ram_usage}%",
-        f"{blue}Swap{reset}": f"Total: {swap_total} GB, Used: {swap_used} GB, Free: {swap_free} GB",
-        f"{blue}Storage{reset}": f"Total: {total_storage} GB, Used: {used_storage} GB, Free: {free_storage} GB",
+        f"{blue}CPU{reset}": f"{cpu_model}\n   {blue}Architecture{reset}: {cpu_arch}\n   {blue}Cores{reset}: {cpu_cores}\n   {blue}Threads{reset}: {cpu_threads}\n   {blue}Max Frequency{reset}: {cpu_freq} MHz\n",
+        f"{blue}RAM{reset}": f"\n   {blue}Total{reset}: {ram_total} GB\n   {blue}Used{reset}: {ram_used} GB\n   {blue}Free{reset}: {ram_free} GB, Usage{reset}: {ram_usage}%\n",
+        f"{blue}Swap{reset}": f"\n   {blue}Total{reset}: {swap_total} GB\n   {blue}Used{reset}: {swap_used} GBFree{reset}: {swap_free} GB\n",
+        f"{blue}Storage{reset}": f"\n   {blue}Total{reset}: {total_storage} GB\n   {blue}Used{reset}: {used_storage} GB\n   {blue}Free{reset}: {free_storage} GB\n",
         f"{blue}System Load Average{reset}": load_avg,
         f"{blue}Uptime{reset}": uptime_str,
         f"{blue}Network Interfaces{reset}": f"\n{interfaces_formatted}",
-        f"{blue}Disk Partitions{reset}": "\n".join([f"- Part Device: {part.device} Part Mountpoint: {part.mountpoint}" for part in partitions]),
+        f"{blue}Disk Partitions{reset}": "\n".join([f"\n   {blue}Part Device{reset}: {part.device}\n   {blue}Part Mountpoint{reset}: {part.mountpoint}\n" for part in partitions]),
         f"{blue}User Information{reset}": user_data_formatted,
     }
 
@@ -258,7 +258,7 @@ def check_pip_version(python_path):
     try:
         result = subprocess.run([python_path, '-m', 'pip', '--version'], capture_output=True, text=True)
         if result.returncode == 0:
-            print(f"{green}pip version: {result.stdout.strip()}{reset}")
+            print(f"{blue}pip version{reset}: {result.stdout.strip()}\n")
         else:
             print(f"{red}Error checking pip version: {result.stderr.strip()}{reset}")
     except Exception as e:
@@ -268,9 +268,16 @@ def check_pip_version(python_path):
 def list_installed_packages(python_path):
     """Listet alle installierten Pakete in der virtuellen Umgebung auf."""
     try:
-        result = subprocess.run([python_path, '-m', 'pip', 'list'], capture_output=True, text=True)
+        result = subprocess.run([python_path, '-m', 'pip', 'list', '--format=freeze'], capture_output=True, text=True)
         if result.returncode == 0:
-            print(f"{green}Installed packages:\n{result.stdout.strip()}{reset}")
+            packages = []
+            for line in result.stdout.strip().split('\n'):
+                if '==' in line:
+                    package, version = line.split('==')
+                    packages.append(f"   {blue}{package}{reset}: {version}")
+            print(f"{blue}Installed packages{reset}:")
+            for pkg in packages:
+                print(pkg)
         else:
             print(f"{red}Error listing installed packages: {result.stderr.strip()}{reset}")
     except Exception as e:
@@ -280,17 +287,17 @@ def list_installed_packages(python_path):
 def display_venv_environment_variables(python_path):
     """Umgebungsvariablen für die virtuelle Umgebung anzeigen."""
     venv_path = os.path.dirname(os.path.dirname(python_path))  # Der Pfad zur venv
-    print(f"Virtual environment path: {venv_path}")
+    print(f"\n{blue}Virtual environment path{reset}: {venv_path}")
 
     # Auflisten der wichtigsten Umgebungsvariablen
     try:
         env_vars = os.environ.copy()
         venv_vars = {key: env_vars[key] for key in env_vars if venv_path in env_vars.get(key, '')}
-        print(f"{green}Virtual environment-related environment variables:{reset}")
+        print(f"{blue}Virtual environment-related environment variables{reset}:")
         for key, value in venv_vars.items():
-            print(f"{key}: {value}")
+            print(f"   {blue}{key}{reset}: {value}")
     except Exception as e:
-        print(f"{red}Error displaying environment variables: {e}{reset}")
+        print(f"{red}Error displaying environment variables{reset}: {e}")
 
 
 def display_venv_details(python_path):
@@ -300,9 +307,9 @@ def display_venv_details(python_path):
         executables_path = os.path.join(venv_path, 'Scripts')
         libraries_path = os.path.join(venv_path, 'Lib', 'site-packages')
 
-        print(f"Virtual environment executables path: {executables_path}")
-        print(f"Virtual environment libraries path: {libraries_path}")
-        print(f"Python executable: {python_path}")
+        print(f"{blue}Virtual environment executables path{reset}: {executables_path}")
+        print(f"{blue}Virtual environment libraries path{reset}: {libraries_path}")
+        print(f"{blue}Python executable{reset}: {python_path}")
 
         # Zusätzliche Systemdetails
         print(f"\nSystem Python paths:")
@@ -317,22 +324,27 @@ def display_system_info():
     """Detaillierte Systeminformationen anzeigen."""
     try:
         system_info = {
-            # "OS": platform.system(),
-            # "OS Version": platform.version(),
-            # "OS Architecture": platform.architecture(),
-            "Python Implementation": platform.python_implementation(),
-            "Python Version": platform.python_version(),
-            "Processor": platform.processor(),
-            "Machine Type": platform.machine(),
-            "System Configuration": platform.uname(),
-            "Python Config (sysconfig)": sysconfig.get_config_vars()
+            f"{blue}Python Implementation{reset}": platform.python_implementation(),
+            f"{blue}Python Version{reset}": platform.python_version(),
+            f"{blue}Processor{reset}": platform.processor(),
+            f"{blue}Machine Type{reset}": platform.machine(),
+            f"{blue}System Configuration{reset}": platform.uname()._asdict(),
+            f"{blue}Python Config (sysconfig){reset}": sysconfig.get_config_vars()
         }
 
         print(f"\nSystem Information from Python:")
         print("-------------------------------")
-        print(json.dumps(system_info, indent=4))
+
+        for key, value in system_info.items():
+            if isinstance(value, dict):  # Unterkategorien für dicts
+                print(f"{blue}{key}:{reset}")
+                for sub_key, sub_value in value.items():
+                    print(f"  {blue}{sub_key}{reset}: {sub_value}")
+            else:
+                print(f"{blue}{key}{reset}: {value}")
+
     except Exception as e:
-        print(f"{red}Error displaying system Information: {e}{reset}")
+        print(f"{red}Error displaying system information: {e}{reset}")
 
 def mavis_compatibility(ram):
     # Konvertiere den Gesamt-RAM in GB

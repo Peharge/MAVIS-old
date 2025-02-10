@@ -102,7 +102,7 @@ try:
 
     # Überprüfen Sie, ob der Browser Edge ist
     if "windows-default" not in browser_name.lower():
-        print(f"{yellow}Warning: You are not using Microsoft Edge.{reset}")
+        print(f"{yellow}Warning{reset}: You are not using Microsoft Edge.")
         print(f"{yellow}There may be issues. It is recommended to use Edge for optimal performance.{reset}")
     else:
         print(f"{green}You are using Microsoft Edge. No issues expected.{reset}")

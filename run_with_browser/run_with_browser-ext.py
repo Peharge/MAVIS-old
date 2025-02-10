@@ -65,7 +65,6 @@ import subprocess
 import webbrowser
 import os
 import platform
-import logging
 from datetime import datetime
 
 # Konfiguration
@@ -88,24 +87,9 @@ orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
-# Protokollierungs-Setup ohne Datei
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-
 # ANSI-Unterstützung für Windows aktivieren
 if os.name == "nt":
     os.system("")
-
-# Hilfsfunktionen
-def log_and_print(message, level="info"):
-    """Protokolliert und druckt die Nachricht direkt im Terminal."""
-    colors = {"success": green, "warning": yellow, "error": red}
-    print(f"{colors.get(level, reset)}{message}{reset}")
-    if level == "error":
-        logging.error(message)
-    elif level == "warning":
-        logging.warning(message)
-    else:
-        logging.info(message)
 
 def find_edge():
     """Sucht nach Edge-Installationen."""
@@ -121,42 +105,37 @@ def open_edge(url):
         try:
             # Öffnen Sie Edge im App-Modus
             subprocess.Popen([edge_path, "--app=" + url])
-            log_and_print("Microsoft Edge has been successfully opened.", "success")
+            print(f"{blue}Microsoft Edge has been successfully opened.{reset}")
             return True
         except (subprocess.SubprocessError, PermissionError) as e:
-            log_and_print(f"Error opening Edge: {e}", "error")
+            print(f"{red}Error opening Edge{reset}: {e}")
     else:
-        log_and_print("Microsoft Edge not found.", "warning")
+        print(f"{yellow}Microsoft Edge not found.{reset}")
     return False
 
 def open_default_browser(url):
     """Öffnet die URL im Standardbrowser."""
     try:
         webbrowser.open(url, new=2)  # new=2 öffnet in einem neuen Tab/Fenster
-        log_and_print(f"Default browser has been opened: {url}", "success")
+        print(f"{blue}Default browser has been opened{reset}: {url}")
     except webbrowser.Error as e:
-        log_and_print(f"Error opening default browser: {e}", "error")
+        print(f"{red}Error opening default browser{reset}: {e}")
 
 # Hauptlogik
 def main():
-    log_and_print("\nClient Information:\n----------------------", "info")
-
-    username = os.getenv('USERNAME') or os.getenv('USER') or "Unknown User"
-
-    log_and_print(f"Username: {username}", "info")
+    print(f"\nClient Information:\n----------------------")
 
     # Öffnen Sie Edge oder den Standardbrowser
     if not open_edge(URL):
-        log_and_print("Edge not available. Using default browser...", "warning")
+        print(f"{blue}Edge not available. Using default browser...{reset}")
         open_default_browser(URL)
 
-    log_and_print(f"Flask server is soon running at: {URL}", "info")
+    print(f"{blue}Flask server is soon running at{reset}: {URL}")
 
-    print("\nFlask Information:")
-    print("------------------")
+    print(f"\nFlask Information:\n------------------")
 
 if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        log_and_print(f"Unexpected error: {e}", "error")
+        print(f"{red}Unexpected error{reset}: {e}")
