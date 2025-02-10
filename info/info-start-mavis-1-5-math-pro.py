@@ -118,3 +118,5 @@ def show_color_palette():
 
 # Aufruf der Funktion, um die Farbpalette zu zeigen
 show_color_palette()
+
+print("")
