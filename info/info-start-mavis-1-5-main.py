@@ -68,6 +68,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 
 # Den Benutzernamen abrufen
 user_name = getpass.getuser()
+
 # Farbcodes definieren
 red = "\033[91m"
 green = "\033[92m"
@@ -95,4 +96,4 @@ print (f"""
 
 print(f"""A warm welcome, {user_name}, to MAVIS (MAth Visual Intelligent System) - the most powerful calculator in the world!
 Developed by Peharge and JK
-Thank you so much for using MAVIS. We truly appreciate your support! ❤️""")
+Thank you so much for using MAVIS. We truly appreciate your support ❤️\n""")

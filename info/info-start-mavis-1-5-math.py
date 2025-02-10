@@ -96,4 +96,4 @@ print (f"""
 
 print(f"""A warm welcome, {user_name}, to MAVIS (MAth Visual Intelligent System) - the most powerful calculator in the world!
 Developed by Peharge and JK
-Thank you so much for using MAVIS. We truly appreciate your support! ❤️""")
+Thank you so much for using MAVIS. We truly appreciate your support ❤️\n""")
