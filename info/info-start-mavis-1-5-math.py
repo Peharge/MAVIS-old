@@ -62,7 +62,12 @@
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
 import sys
+import getpass
+
 sys.stdout.reconfigure(encoding='utf-8')
+
+# Den Benutzernamen abrufen
+user_name = getpass.getuser()
 
 # Farbcodes definieren
 red = "\033[91m"
@@ -89,5 +94,6 @@ print (f"""
 {red}          ╚╝          {reset}    
 """)
 
-print(f"""𝘼 𝙬𝙖𝙧𝙢 𝙬𝙚𝙡𝙘𝙤𝙢𝙚 𝙛𝙧𝙤𝙢 𝙋𝙚𝙝𝙖𝙧𝙜𝙚 𝙖𝙣𝙙 𝙅𝙆""")
-print(f"""𝙏𝙝𝙖𝙣𝙠 𝙮𝙤𝙪 𝙫𝙚𝙧𝙮 𝙢𝙪𝙘𝙝 𝙛𝙤𝙧 𝙪𝙨𝙞𝙣𝙜 𝙈𝘼𝙑𝙄𝙎 𝙇𝙖𝙪𝙣𝙘𝙝𝙚𝙧\n""")
+print(f"""A warm welcome, {user_name}, to MAVIS (MAth Visual Intelligent System) - the most powerful calculator in the world!
+Developed by Peharge and JK
+Thank you so much for using MAVIS. We truly appreciate your support! ❤️""")
