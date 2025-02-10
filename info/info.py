@@ -209,22 +209,22 @@ def check_python_interpreter():
     python_path = r'C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe'
     python_path = os.path.expandvars(python_path)  # Variablen im Pfad expandieren
 
-    print(f"\nPython Information:\n-------------------\nChecking for Python interpreter at: {python_path}")
+    print(f"\nPython Information:\n-------------------\n{blue}Checking for Python interpreter at{reset}: {python_path}")
 
     # Definiere, wie oft der Versuch wiederholt werden soll
     attempts = 5
     for attempt in range(attempts):
         if os.path.exists(python_path):
             try:
-                print(f"Attempt {attempt + 1} of {attempts}: Trying to start Python interpreter...")
+                print(f"{blue}Attempt {attempt + 1} of {attempts}{reset}: Trying to start Python interpreter...")
                 # Versuche, die Version des Python-Interpreters zu bekommen
                 result = subprocess.run([python_path, '--version'], capture_output=True, text=True)
 
                 if result.returncode == 0:
                     # Erfolg: Ausgabe der Python-Version
-                    print(f"{green}Python interpreter started successfully: {result.stdout.strip()}{reset}")
-                    print(f"Interpreter path: {python_path}")
-                    print(f"Interpreter version: {result.stdout.strip()}")
+                    print(f"{green}Python interpreter started successfully{reset}: {result.stdout.strip()}")
+                    print(f"{blue}Interpreter path{reset}: {python_path}")
+                    print(f"{blue}Interpreter version{reset}: {result.stdout.strip()}")
 
                     # Weitere Details zur virtuellen Umgebung:
                     check_pip_version(python_path)
@@ -237,14 +237,14 @@ def check_python_interpreter():
 
                     break  # Interpreter erfolgreich gestartet, verlasse die Schleife
                 else:
-                    print(f"{red}Error starting Python interpreter: {result.stderr.strip()}{reset}")
+                    print(f"{red}Error starting Python interpreter{reset}: {result.stderr.strip()}")
             except Exception as e:
                 # Ausnahmebehandlung, falls der Versuch fehlschlägt
                 print(f"{red}Error running Python interpreter: {e}{reset}")
                 print(f"Python path: {python_path}")
         else:
             # Falls der Python-Interpreter nicht gefunden wird
-            print(f"{red}Python interpreter not found at: {python_path}{reset}")
+            print(f"{red}Python interpreter not found at{reset}: {python_path}")
             break  # Verlasse die Schleife, wenn der Interpreter nicht gefunden wurde
 
         # Optional: Füge eine Verzögerung hinzu, bevor der Versuch erneut unternommen wird
@@ -260,9 +260,9 @@ def check_pip_version(python_path):
         if result.returncode == 0:
             print(f"{blue}pip version{reset}: {result.stdout.strip()}\n")
         else:
-            print(f"{red}Error checking pip version: {result.stderr.strip()}{reset}")
+            print(f"{red}Error checking pip version{reset}: {result.stderr.strip()}")
     except Exception as e:
-        print(f"{red}Error checking pip version: {e}{reset}")
+        print(f"{red}Error checking pip version{reset}: {e}")
 
 
 def list_installed_packages(python_path):
