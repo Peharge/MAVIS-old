@@ -367,8 +367,6 @@ import psutil
 def main():
     # Holen der Systeminfos (inkl. RAM)
     ram = psutil.virtual_memory()  # Das ganze psutil-Objekt, nicht nur der float-Wert
-    print("\nSystem Information:")
-    print("-------------------")
     for key, value in get_system_info().items():
         print(f"{key}: {value}")
 

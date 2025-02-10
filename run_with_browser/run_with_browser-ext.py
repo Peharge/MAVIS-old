@@ -123,8 +123,6 @@ def open_default_browser(url):
 
 # Hauptlogik
 def main():
-    print(f"\nClient Information:\n----------------------")
-
     # Öffnen Sie Edge oder den Standardbrowser
     if not open_edge(URL):
         print(f"{blue}Edge not available. Using default browser...{reset}")

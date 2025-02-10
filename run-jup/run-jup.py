@@ -83,7 +83,7 @@ def start_jupyter():
         print("\nJupyter Information:")
         print("--------------------")
         # Vor der Ausführung um Bestätigung bitten
-        user_input = input("Do you want to start Jupyter? [y/n]: ").strip().lower()
+        user_input = input("Do you want to start Jupyter? [y/n]:").strip().lower()
         if user_input not in ['y', 'yes']:
             print(f"{green}Jupyter will not be started.{reset}")
             sys.exit(0)
@@ -94,7 +94,7 @@ def start_jupyter():
 
         # Überprüfen, ob die virtuelle Umgebung existiert
         if not os.path.isfile(venv_python):
-            print(f"{red}Error: The virtual environment {venv_python} does not exist.{reset}")
+            print(f"{red}Error{reset}: The virtual environment {venv_python} does not exist.")
             sys.exit(1)
 
         # Überprüfen, ob Jupyter in der virtuellen Umgebung installiert ist
@@ -124,10 +124,10 @@ def start_jupyter():
         ], check=True)
 
     except subprocess.CalledProcessError as e:
-        print(f"{red}Error starting Jupyter Notebook: {e}{reset}")
+        print(f"{red}Error starting Jupyter Notebook{reset}: {e}")
         sys.exit(1)
     except Exception as e:
-        print(f"{red}Unexpected error: {e}{reset}")
+        print(f"{red}Unexpected error{reset}: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":

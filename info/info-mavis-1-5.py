@@ -79,6 +79,8 @@ bold = "\033[1m"
 
 def get_user_input():
     try:
+        print("\nSystem Information:")
+        print("-------------------")
         user_input = input(f"Would you like to see the system information about MAVIS [y/n]:").strip().lower()
         return user_input
     except (EOFError, KeyboardInterrupt):

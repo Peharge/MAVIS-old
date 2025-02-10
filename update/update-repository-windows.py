@@ -124,17 +124,17 @@ def perform_update():
         print(f"{green}Update completed.{reset}")
         write_last_update()  # Aktualisiert das Datum auf heute
     else:
-        print(f"{red}Batch file not found: {batch_file}{reset}")
+        print(f"{red}Batch file not found{reset}: {batch_file}")
 
 
 def main():
-    print("MAVIS Repository Update (experimental):")
+    print("\nMAVIS Repository Update (experimental):")
     print("---------------------------------------")
     print("Please note that this update function is not yet 100% reliable and errors may occur. \nTherefore, we recommend using the git pull https://github.com/Peharge/MAVIS.git command instead. \nHowever, if this is not possible...\n")
 
     last_update = read_last_update()
     if last_update:
-        print(f"{blue}MAVIS - Last update: {last_update}{reset}")
+        print(f"{blue}MAVIS - Last update{reset}: {last_update}")
     else:
         print(f"{yellow}MAVIS - No update date found.{reset}")
 

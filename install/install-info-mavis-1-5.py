@@ -79,6 +79,8 @@ bold = "\033[1m"
 
 def get_user_input():
     try:
+        print("Framework Information:")
+        print("----------------------")
         user_input = input(f"Do you want to install or update the required Python frameworks for MAVIS? [y/n]:").strip().lower()
         return user_input
     except (EOFError, KeyboardInterrupt):
@@ -88,16 +90,14 @@ def get_user_input():
 def execute_installation():
     try:
         print(f"{blue}{bold}Starting the installation process for MAVIS...{reset}\n")
-        print("Framework Information:")
-        print("----------------------")
 
         # Farbiges Drucken des Textes
         print(
-            f"Don't forget to update {blue}pip{reset} with {yellow}python -m pip install --upgrade pip{reset} every now and then\n")
+            f"Don't forget to update {blue}pip{reset} with {yellow}python -m pip install --upgrade pip{reset} every now and then!!!\n")
 
         # Funktion zum Ausgeben von Frameworks mit Beschreibung
         def print_framework(title, description, color=blue):
-            print(f"{color}{title}{reset} - {description}")
+            print(f"{color}{title}{reset}: {description}")
 
         # Frameworks and their descriptions
         frameworks = [
@@ -192,7 +192,7 @@ def main():
             execute_installation()
             break
         elif user_input in ["n", "no"]:
-            print(f"{blue}{bold}Installation and Update of the required Python frameworks was declined. Exiting the program.\n{reset}")
+            print(f"{blue}{bold}Installation and Update of the required Python frameworks was declined. Exiting the program.{reset}")
             sys.exit(0)
         else:
             print(f"{red}{bold}Invalid input. Please enter 'y/yes' or 'n/no'.{reset}")

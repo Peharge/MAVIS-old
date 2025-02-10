@@ -153,7 +153,7 @@ else:
     uvloop_packages = ["uvloop"]
     process_packages(uvloop_packages, upgrade=False)
 
-print("\nTo serve vllm, use the following commands:")
+print(f"\n{blue}To serve vllm, use the following commands{reset}:")
 print("vllm serve 'Qwen/Qwen2-VL-7B-Instruct'")
 print("or")
 print("vllm serve 'Qwen/Qwen2-VL-7B-Instruct' --no-uvloop\n")
