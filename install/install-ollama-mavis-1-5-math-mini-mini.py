@@ -153,13 +153,13 @@ def check_model_with_ollama(model_name):
                                 stderr=subprocess.PIPE,
                                 text=True)
         if result.returncode == 0:
-            print(f"Model information for {blue}{model_name}{reset}:\n-----------------------------------\n{result.stdout}\n")
+            print(f"Model information for {blue}{model_name}{reset}:\n--------------------------------------\n{result.stdout}\n")
             return True
         else:
-            print(f"{yellow}Model {model_name} is not available:\n-----------------------------------\n{result.stderr}{reset}\n")
+            print(f"{yellow}Model {model_name} is not available{reset}:\n-----------------------------------\n{result.stderr}\n")
             return False
     except Exception as e:
-        print(f"{red}Error checking model {model_name} with ollama:\n-----------------------------------\n{e}{reset}\n")
+        print(f"{red}Error checking model {model_name} with ollama{reset}:\n-----------------------------------\n{e}\n")
         return False
 
 def install_model_with_ollama(model_name):
@@ -176,9 +176,9 @@ def install_model_with_ollama(model_name):
         if result.returncode == 0:
             print(f"{green}Model {model_name} installed successfully.{reset}")
         else:
-            print(f"{red}Failed to install model {model_name}:\n-----------------------------------\n{result.stderr}{reset}\n")
+            print(f"{red}Failed to install model {model_name}{reset}:\n-----------------------------------\n{result.stderr}\n")
     except Exception as e:
-        print(f"{red}Error installing model {model_name}:\n-----------------------------------\n{e}{reset}\n")
+        print(f"{red}Error installing model {model_name}{reset}:\n-----------------------------------\n{e}\n")
 
 def prompt_user_for_installation(model_name):
     """
@@ -187,7 +187,7 @@ def prompt_user_for_installation(model_name):
     :return: True, wenn der Benutzer zustimmt, False ansonsten.
     """
     while True:
-        user_input = input(f"Do you want to install the model {model_name}? [y/n]: ").strip().lower()
+        user_input = input(f"Do you want to install the model {model_name}? [y/n]:").strip().lower()
         if user_input in ["y", "yes"]:
             return True
         elif user_input in ["n", "no"]:
