@@ -61,7 +61,7 @@
 _**MAVIS**: In the darkest times lies the power to create something great – a work only you can understand. It is your light, your strength, your vision._
 <details>
   <summary>Deutsch</summary>
-    _**MAVIS**: In den dunkelsten Zeiten liegt die Kraft, etwas Großes zu erschaffen – ein Werk, das nur du verstehen kannst. Es ist dein Licht, deine Stärke, deine Vision.
+    _**MAVIS**_: In den dunkelsten Zeiten liegt die Kraft, etwas Großes zu erschaffen – ein Werk, das nur du verstehen kannst. Es ist dein Licht, deine Stärke, deine Vision.
 </details>
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
