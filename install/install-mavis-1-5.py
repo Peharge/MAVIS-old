@@ -64,7 +64,10 @@
 import subprocess
 import sys
 import platform
+import requests
 from typing import List
+import requests
+import re
 
 # Farbcodes definieren
 red = "\033[91m"
@@ -82,7 +85,7 @@ bold = "\033[1m"
 def confirm_action(message: str) -> bool:
     """Fordert den Benutzer zur Bestätigung auf."""
     while True:
-        response = input(f"{message} [y/n]: ").strip().lower()
+        response = input(f"{message} [y/n]:").strip().lower()
         if response in ["y", "yes"]:
             return True
         elif response in ["n", "no"]:
@@ -98,17 +101,61 @@ def is_package_installed(package: str) -> bool:
     except subprocess.CalledProcessError:
         return False
 
-def install_or_update_package(package: str, upgrade: bool = False):
-    """Installiert oder aktualisiert ein Paket basierend auf Benutzerbestätigung."""
-    if upgrade:
-        print(f"{package} is installed, checking for updates.")
-        if confirm_action(f"Do you want to upgrade {package}?"):
-            subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", package], check=True)
-            print(f"{green}{package} has been upgraded.{reset}")
-        else:
-            print(f"{yellow}Skipping upgrade for {package}.{reset}")
+def get_package_version(package: str) -> str:
+    """Holt sich die aktuell installierte Version des Pakets."""
+    try:
+        output = subprocess.check_output([sys.executable, "-m", "pip", "show", package], stderr=subprocess.DEVNULL)
+        for line in output.decode().splitlines():
+            if line.startswith("Version:"):
+                return line.split(":")[1].strip()
+    except subprocess.CalledProcessError:
+        return None
+
+def get_latest_package_version(package: str) -> str:
+    """Holt die neueste Version eines Pakets von PyPI."""
+    # Paketname validieren
+    if not re.match(r"^[a-zA-Z0-9_\-\.]+$", package):
+        raise ValueError("Ungültiger Paketname.")
+
+    url = f"https://pypi.org/pypi/{package}/json"
+    try:
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()  # Löst HTTPError bei Fehlercodes (4xx, 5xx)
+
+        # JSON sicher verarbeiten
+        package_info = response.json()
+        version = package_info.get("info", {}).get("version")
+
+        if not version:
+            raise ValueError(f"Versionsinformation für {package} nicht gefunden.")
+
+        return version
+
+    except requests.exceptions.RequestException as e:
+        raise Exception(f"Netzwerkfehler beim Abrufen von {package}: {e}")
+    except ValueError as ve:
+        raise Exception(f"Fehlerhafte Antwort für {package}: {ve}")
+    except Exception as e:
+        raise Exception(f"Unerwarteter Fehler: {e}")
+
+def install_or_update_package(package: str):
+    """Installiert oder aktualisiert ein Paket basierend auf der Version."""
+    if not is_package_installed(package):
+        print(f"{package} is not installed. Installing now.")
+        subprocess.run([sys.executable, "-m", "pip", "install", package], check=True)
+        print(f"{package} has been installed.")
     else:
-        print(f"{green}{package} is already installed and up-to-date.{reset}")
+        current_version = get_package_version(package)
+        latest_version = get_latest_package_version(package)
+
+        if current_version != latest_version:
+            print(f"{blue}{package} is installed, but an update is available.{reset}")
+            print(f"   {blue}Current version{reset}: {current_version}\n   {blue}Latest version{reset}: {latest_version}.")
+            print(f"{blue}Updating {package} to the latest version...{reset}")
+            subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", package], check=True)
+            print(f"{green}{package} has been upgraded to version {latest_version}.{reset}")
+        else:
+            print(f"{green}{package} is already up-to-date (version {current_version}).{reset}")
 
 def install_package(package: str):
     """Installiert ein Paket basierend auf Benutzerbestätigung."""
@@ -124,11 +171,11 @@ def process_packages(packages: List[str], upgrade: bool = False):
     for idx, package in enumerate(packages, start=1):
         print(f"\n[{idx}/{len(packages)}] Checking package: {blue}{package}{reset}")
         if is_package_installed(package):
-            install_or_update_package(package, upgrade=upgrade)
+            install_or_update_package(package)
         else:
             install_package(package)
 
-print(f"\nAll frameworks for {blue}MAVIS versions 1.2, 1.3, 1.4 and 1.5{reset} are currently being installed and updated.")
+print(f"\nAll frameworks for {blue}MAVIS versions 1.2, 1.3, 1.4, and 1.5{reset} are currently being installed and updated.")
 
 # Paketlisten
 packages = [
@@ -145,13 +192,13 @@ packages = [
     "schemdraw", "ipywidgets", "pybullet", "vtk", "diagrams", "graphviz"
 ]
 
-process_packages(packages, upgrade=False)
+process_packages(packages)
 
 if platform.system().lower() == "windows":
     print("\nSkipping uvloop installation: uvloop is not supported on Windows.")
 else:
     uvloop_packages = ["uvloop"]
-    process_packages(uvloop_packages, upgrade=False)
+    process_packages(uvloop_packages)
 
 print(f"\n{blue}To serve vllm, use the following commands{reset}:")
 print("vllm serve 'Qwen/Qwen2-VL-7B-Instruct'")
