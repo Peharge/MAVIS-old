@@ -72,7 +72,6 @@ from typing import Optional
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
-
 # Farbcodes definieren
 red = "\033[91m"
 green = "\033[92m"
