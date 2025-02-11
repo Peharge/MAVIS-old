@@ -66,8 +66,12 @@ import sys
 import platform
 import requests
 from typing import List
-import requests
 import re
+import time
+from typing import Optional
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
 
 # Farbcodes definieren
 red = "\033[91m"
@@ -101,42 +105,95 @@ def is_package_installed(package: str) -> bool:
     except subprocess.CalledProcessError:
         return False
 
+import locale
+
 def get_package_version(package: str) -> str:
     """Holt sich die aktuell installierte Version des Pakets."""
     try:
         output = subprocess.check_output([sys.executable, "-m", "pip", "show", package], stderr=subprocess.DEVNULL)
-        for line in output.decode().splitlines():
+        encoding = locale.getpreferredencoding()  # Lokale Standardkodierung ermitteln
+        for line in output.decode(encoding).splitlines():
             if line.startswith("Version:"):
                 return line.split(":")[1].strip()
     except subprocess.CalledProcessError:
         return None
 
-def get_latest_package_version(package: str) -> str:
-    """Holt die neueste Version eines Pakets von PyPI."""
+def get_latest_package_version(package: str, timeout: int = 10, retries: int = 3, backoff_factor: float = 0.5) -> str:
+    """
+    Holt die neueste Version eines Pakets von PyPI mit verbessertem Fehler- und Retry-Handling.
+
+    Args:
+        package (str): Der Name des Pakets.
+        timeout (int): Timeout für die Netzwerkverbindung (Standard: 10 Sekunden).
+        retries (int): Anzahl der automatischen Wiederholungsversuche bei Fehlern.
+        backoff_factor (float): Faktor für exponentielles Backoff bei Wiederholungen.
+
+    Returns:
+        str: Die neueste Paketversion.
+
+    Raises:
+        ValueError: Ungültiger Paketname oder fehlende Versionsinformationen.
+        ConnectionError: Netzwerkprobleme beim Zugriff auf PyPI.
+        RuntimeError: Allgemeine Fehler beim Verarbeiten der Antwort.
+    """
     # Paketname validieren
     if not re.match(r"^[a-zA-Z0-9_\-\.]+$", package):
-        raise ValueError("Ungültiger Paketname.")
+        raise ValueError(f"Ungültiger Paketname: '{package}'.")
 
     url = f"https://pypi.org/pypi/{package}/json"
+
+    # Session mit Retry-Strategie erstellen
+    session = requests.Session()
+    retry_strategy = Retry(
+        total=retries,
+        backoff_factor=backoff_factor,
+        status_forcelist=[429, 500, 502, 503, 504],  # Fehler, bei denen Retry sinnvoll ist
+        allowed_methods=["HEAD", "GET", "OPTIONS"]
+    )
+    adapter = HTTPAdapter(max_retries=retry_strategy)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+
     try:
-        response = requests.get(url, timeout=5)
-        response.raise_for_status()  # Löst HTTPError bei Fehlercodes (4xx, 5xx)
+        response = session.get(url, timeout=timeout)
+        response.raise_for_status()  # HTTP-Fehler auslösen
 
-        # JSON sicher verarbeiten
-        package_info = response.json()
-        version = package_info.get("info", {}).get("version")
+        # JSON validieren
+        try:
+            package_info = response.json()
+        except ValueError:
+            raise RuntimeError(f"Ungültiges JSON-Format von PyPI für '{package}'.")
 
+        # Version extrahieren
+        version: Optional[str] = package_info.get("info", {}).get("version")
         if not version:
-            raise ValueError(f"Versionsinformation für {package} nicht gefunden.")
+            raise ValueError(f"Keine Versionsinformationen für '{package}' gefunden.")
 
         return version
 
-    except requests.exceptions.RequestException as e:
-        raise Exception(f"Netzwerkfehler beim Abrufen von {package}: {e}")
-    except ValueError as ve:
-        raise Exception(f"Fehlerhafte Antwort für {package}: {ve}")
+    except requests.exceptions.HTTPError as http_err:
+        # Handling von Rate Limits (HTTP 429)
+        if response.status_code == 429:
+            retry_after = int(response.headers.get("Retry-After", 5))
+            print(f"Rate-Limit erreicht. Neuer Versuch in {retry_after} Sekunden...")
+            time.sleep(retry_after)
+            return get_latest_package_version(package, timeout, retries - 1, backoff_factor)
+        raise ConnectionError(f"HTTP-Fehler bei '{package}': {http_err}")
+
+    except requests.exceptions.ConnectionError as conn_err:
+        raise ConnectionError(f"Verbindungsfehler zu PyPI für '{package}': {conn_err}")
+
+    except requests.exceptions.Timeout:
+        raise TimeoutError(f"Timeout nach {timeout} Sekunden beim Abrufen von '{package}'.")
+
+    except requests.exceptions.RequestException as req_err:
+        raise ConnectionError(f"Allgemeiner Netzwerkfehler bei '{package}': {req_err}")
+
+    except ValueError as json_err:
+        raise RuntimeError(f"Ungültige JSON-Antwort für '{package}': {json_err}")
+
     except Exception as e:
-        raise Exception(f"Unerwarteter Fehler: {e}")
+        raise RuntimeError(f"Unerwarteter Fehler bei '{package}': {e}")
 
 def install_or_update_package(package: str):
     """Installiert oder aktualisiert ein Paket basierend auf der Version."""
