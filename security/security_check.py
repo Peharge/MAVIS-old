@@ -83,12 +83,39 @@ bold = "\033[1m"
 
 # Kritische Sicherheitsvariablen
 CRITICAL_VARS = [
-    'SECRET_KEY', 'DB_PASSWORD', 'API_KEY', 'JWT_SECRET', 'EMAIL_PASSWORD'
+    'SECRET_KEY',         # Geheimschlüssel für Sessions, JWT und andere Sicherheitsmechanismen
+    'DB_PASSWORD',        # Passwort für die Datenbankverbindung
+    'API_KEY',            # Schlüssel für externe APIs, um auf Dienste zuzugreifen
+    'JWT_SECRET',         # Geheimschlüssel für JWT Token-Generierung
+    'EMAIL_PASSWORD',     # Passwort für den E-Mail-Server
+    'DEBUG',              # Gibt an, ob die Anwendung im Debug-Modus läuft (sollte in Produktion auf False gesetzt werden)
+    'ALLOWED_HOSTS',      # Hosts, die für die Anwendung zugelassen sind (z. B. Domainnamen)
+    'DATABASE_URL',       # URL zur Verbindung zur Datenbank (z. B. PostgreSQL)
+    'REDIS_URL',          # URL für die Verbindung zu einem Redis-Server (falls verwendet)
+    'CELERY_BROKER_URL',  # URL für den Broker (z. B. RabbitMQ oder Redis) für asynchrone Tasks
+    'LOG_LEVEL',          # Definiert das Logging-Level (z. B. DEBUG, INFO, WARNING, ERROR)
+    'SSL_CERT_PATH',      # Pfad zum SSL-Zertifikat (falls HTTPS erforderlich ist)
+    'SSL_KEY_PATH',       # Pfad zum SSL-Schlüssel (falls HTTPS erforderlich ist)
+    'OAUTH_CLIENT_ID',    # OAuth-Client-ID für externe Authentifizierung (z. B. Google oder GitHub)
+    'OAUTH_CLIENT_SECRET',# Geheimschlüssel für OAuth-Authentifizierung
+    'S3_BUCKET_NAME',     # Name des S3-Buckets für Dateispeicherung (falls AWS S3 verwendet wird)
+    'S3_ACCESS_KEY',      # Access Key für S3
+    'S3_SECRET_KEY',      # Secret Key für S3
+    'SENDGRID_API_KEY',   # API-Schlüssel für SendGrid, wenn E-Mail-Versand erforderlich ist
+    'GITHUB_TOKEN',       # GitHub Access Token, falls mit GitHub integriert wird
+    'TWITTER_API_KEY',    # API-Schlüssel für Twitter-Integration
+    'TWITTER_API_SECRET', # API-Geheimnis für Twitter-Integration
 ]
 
 # Schwache Muster
 WEAK_PATTERNS = [
-    r'1234', r'password', r'test', r'admin', r'secret', r'abc123'
+    r'1234', r'password', r'test', r'admin', r'secret', r'abc123',
+    r'letmein', r'12345', r'123456', r'qwerty', r'password1',
+    r'1q2w3e4r', r'welcome', r'123123', r'root', r'admin123',
+    r'football', r'iloveyou', r'123qwe', r'changeme', r'welcome1',
+    r'123321', r'password123', r'1password', r'password1', r'1234abcd',
+    r'111111', r'123', r'123abc', r'letmein1', r'newpassword',
+    r'passw0rd', r'guest', r'password1234', r'987654321', r'1qaz2wsx'
 ]
 
 def load_env():
@@ -178,6 +205,7 @@ def check_outdated_packages():
 
 def get_user_confirmation():
     while True:
+        print("\nSecurity Check:\n---------------")
         user_input = input(f"Do you want to perform a security check? [y/n]:").strip().lower()
         if user_input in ['y', 'yes']:
             return True
