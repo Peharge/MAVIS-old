@@ -221,7 +221,7 @@ def main():
         check_env_security()
         check_outdated_packages()
     else:
-        print(f"{yellow}INFO{reset}: Security check skipped.")
+        print(f"{blue}Security check skipped...{reset}")
 
 if __name__ == '__main__':
     main()
