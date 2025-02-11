@@ -92,26 +92,45 @@ WEAK_PATTERNS = [
 ]
 
 def load_env():
-    if os.path.exists('.env'):
+    if os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", ".env"):
         load_dotenv()
         print(f"{green}INFO{reset}: .env file loaded successfully.")
     else:
         print(f"{red}WARNING{reset}: No .env file found.")
 
-def loading_bar(duration=3, bar_length=30, message="Running Security Check"):
+import sys
+import time
+
+def loading_bar(progress=100, total=100, duration=10, bar_length=43, message=f"{blue}Running Security Check{reset}:"):
     try:
-        print(f"{blue}{message}{reset}:", end='')
+        start_time = time.time()  # Startzeit für die Berechnung der Gesamtdauer
 
-        for _ in range(bar_length):
-            sys.stdout.write("█")
+        while progress <= total:
+            elapsed_time = time.time() - start_time
+            if elapsed_time >= duration:  # Wenn die Dauer erreicht ist, beenden
+                break
+
+            # Berechnung des Fortschritts und der Balkenlänge
+            bar_progress = int(bar_length * progress / total)
+            bar = "█" * bar_progress + "-" * (bar_length - bar_progress)
+            percent = int((progress / total) * 100)
+
+            # Ausgabe des Fortschrittbalkens
+            sys.stdout.write(f"\r{blue}{message}{reset} [{bar}] {percent}% ({progress}/{total} steps completed)")
             sys.stdout.flush()
-            time.sleep(duration / bar_length)
 
-        print("\nDone.\n")
-    except KeyboardInterrupt:
-        print("\nLoading interrupted.\n")
+            # Aktualisieren des Fortschritts (hier für das Beispiel nur eine Steigerung)
+            progress = int((elapsed_time / duration) * total)
+            time.sleep(0.1)  # Kleine Verzögerung für die fließende Anzeige
+
+        # Sobald die 10 Sekunden um sind, den Balken abschließen
+        sys.stdout.write(f"\r{blue}{message}{reset} [{'█' * bar_length}] 100% ({total}/{total} steps completed)\n")
+        sys.stdout.flush()
+
+        print("")
+
     except Exception as e:
-        print(f"\nAn error occurred: {e}\n")
+        print(f"\n{red}An error occurred{reset}: {e}\n")
 
 def check_env_security():
     issues_found = False
@@ -136,7 +155,7 @@ def check_env_security():
         print(f"   {green}SECURE{reset}: No obvious issues found.")
 
 def check_outdated_packages():
-    print(f"\n{blue}OUTDATED PACKAGES CHECK{reset}")
+    print(f"\n{blue}OUTDATED PACKAGES CHECK{reset}:")
     try:
         result = subprocess.run(['pip', 'list', '--outdated'], capture_output=True, text=True, timeout=60)
         outdated = result.stdout.strip()
@@ -159,7 +178,7 @@ def check_outdated_packages():
 
 def get_user_confirmation():
     while True:
-        user_input = input(f"Do you want to perform a security check? (y/n):").strip().lower()
+        user_input = input(f"Do you want to perform a security check? [y/n]:").strip().lower()
         if user_input in ['y', 'yes']:
             return True
         elif user_input in ['n', 'no']:
@@ -175,7 +194,6 @@ def main():
         check_outdated_packages()
     else:
         print(f"{yellow}INFO{reset}: Security check skipped.")
-
 
 if __name__ == '__main__':
     main()
