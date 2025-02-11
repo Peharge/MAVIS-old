@@ -69,6 +69,7 @@ set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info\info-start-mavi
 set SCRIPT_PATH_2=C:\Users\%USERNAME%\PycharmProjects\MAVIS\install\install-info-mavis-1-5.py
 set SCRIPT_PATH_update=C:\Users\%USERNAME%\PycharmProjects\MAVIS\update\update-repository-windows.py
 set SCRIPT_PATH_3=C:\Users\%USERNAME%\PycharmProjects\MAVIS\install\install-ollama-mavis-1-5-math.py
+set SCRIPT_PATH_security=C:\Users\%USERNAME%\PycharmProjects\MAVIS\security\security_check.py
 set SCRIPT_PATH_4=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info\info-mavis-1-5.py
 set PYTHON_SCRIPT_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run_with_browser\run_browser-one.py
 set run_jup=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run-jup\run-jup.py
@@ -106,6 +107,13 @@ if not exist "%SCRIPT_PATH_3%" (
 )
 
 "%PYTHON_PATH%" "%SCRIPT_PATH_3%"
+
+if not exist "%SCRIPT_PATH_security%" (
+    echo Error: Script not found: %SCRIPT_PATH_security%
+    exit /B 1
+)
+
+"%PYTHON_PATH%" "%SCRIPT_PATH_security%"
 
 if not exist "%SCRIPT_PATH_4%" (
     echo Error: Script not found: %SCRIPT_PATH_4%
