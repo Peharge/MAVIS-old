@@ -3274,11 +3274,14 @@
                 }
             }
 
-
         </script>
 
         <div class="card-jup" id="card-jup-id">
-            <iframe width="100%" height="100%" src="http://localhost:8888" sandbox="allow-same-origin"></iframe>
+            <iframe src="http://localhost:8888"
+                    style="border: none; width: 100%; height: 100%;"
+                    sandbox="allow-same-origin allow-scripts allow-forms"
+                    referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
 
         <div class="chat-output" id="chat-content"></div>
