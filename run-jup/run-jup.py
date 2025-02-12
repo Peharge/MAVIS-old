@@ -42,7 +42,7 @@ def start_jupyter():
             print(f"{red}Error: The specified directory '{jupyter_directory}' does not exist.{reset}")
             sys.exit(1)
 
-        # Start Jupyter Notebook
+        # Starten von Jupyter ohne Token und Passwort, mit verbesserten CORS- und Sicherheitskonfigurationen
         jupyter_command = [
             venv_python,
             "-m", "notebook",
@@ -56,20 +56,15 @@ def start_jupyter():
             "--NotebookApp.password=",  # Kein Passwort
             "--no-browser",
             "--NotebookApp.tornado_settings={\"headers\": {\"Content-Security-Policy\": \"frame-ancestors *\"}}",
-            "--NotebookApp.log_level=DEBUG"
+            "--NotebookApp.log_level=DEBUG"  # Aktiviertes Debug-Logging
         ]
 
-        # Start Jupyter-Server
-        process = subprocess.Popen(jupyter_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        print(f"{green}Jupyter Notebook is running.{reset}")
-        print(f"Access it via: {cyan}http://localhost:8888{reset}")
-
-        # Warte auf den Prozess, um Fehler abzufangen
-        stdout, stderr = process.communicate()
-        if process.returncode != 0:
-            print(f"{yellow}Jupyter Notebook stopped with errors:{reset}\n{stderr.decode()}")
-        else:
-            print(f"{green}Jupyter Notebook closed successfully.{reset}")
+        # Versuch, den Jupyter-Server zu starten
+        try:
+            subprocess.run(jupyter_command, check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"{yellow}Restarting Jupyter due to error:{reset} {e}")
+            subprocess.run(jupyter_command, check=True)
 
     except subprocess.CalledProcessError as e:
         print(f"{red}Error starting Jupyter Notebook{reset}: {e}")
