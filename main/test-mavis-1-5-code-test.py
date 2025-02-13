@@ -375,7 +375,6 @@ def send_message():
         except Exception as e:
             return jsonify({'error': str(e)}), 500
 
-
 @app.route('/predict', methods=['POST'])
 def predict():
     if 'file' in request.files:
