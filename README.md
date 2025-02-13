@@ -43,9 +43,9 @@
 <img alt="sympy" src="https://img.shields.io/badge/-SymPy-3B5526?&logo=sympy&logoColor=white">
 <img alt="pandas" src="https://img.shields.io/badge/-Pandas-150458?&logo=pandas">
 <img alt="scipy" src="https://img.shields.io/badge/-SciPy-8CAAE6?&logo=scipy&logoColor=white">
-<img alt="pytorch" src="https://img.shields.io/badge/-PyTorch-EE4C2C?&logo=pytorch&logoColor=white">
+<img alt="pytorch" src="https://img.shields.io/badge/-PyTorch-EE4C2C?&logo=pytorch&logoColor=white"><br>
 <img alt="tensorflow" src="https://img.shields.io/badge/-TensorFlow-FF6F00?&logo=tensorflow&logoColor=white">
-<img alt="scikit-learn" src="https://img.shields.io/badge/-Scikit--Learn-F7931E?&logo=scikitlearn&logoColor=white"><br>
+<img alt="scikit-learn" src="https://img.shields.io/badge/-Scikit--Learn-F7931E?&logo=scikitlearn&logoColor=white">
 <img alt="transformers" src="https://img.shields.io/badge/-Transformers-34AADC?&logo=transformers">
 <img alt="geopandas" src="https://img.shields.io/badge/-GeoPandas-008080?&logo=geopandas&logoColor=white">
 <img alt="altair" src="https://img.shields.io/badge/-Altair-E54C2F?&logo=altair">
