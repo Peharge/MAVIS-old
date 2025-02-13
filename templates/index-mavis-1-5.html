@@ -16,6 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.0.0/math.js"></script>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="https://webdemo.myscript.com/static/myscript.min.js"></script>
     <link rel="icon" type="image/x-icon" href="/static/images/mavis-logo.ico" />
     <style>
         body {
@@ -2881,116 +2882,93 @@
         </div>
 
         <script>
-            const canvas = document.getElementById("draw-canvas");
-            const ctx = canvas.getContext("2d");
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
+            document.addEventListener("DOMContentLoaded", function () {
+                const canvas = document.getElementById("draw-canvas");
+                const ctx = canvas.getContext("2d");
+                canvas.width = canvas.offsetWidth;
+                canvas.height = canvas.offsetHeight;
 
-            let drawing = false;
-            let erasing = false;
+                let drawing = false;
+                let erasing = false;
 
-            const drawModeButton = document.getElementById("draw-drawMode");
-            const eraseModeButton = document.getElementById("draw-eraseMode");
-            const clearCanvasButton = document.getElementById("draw-clearCanvas");
-            const recognizeLatexButton = document.getElementById("draw-recognizeLatex");
+                const drawModeButton = document.getElementById("draw-drawMode");
+                const eraseModeButton = document.getElementById("draw-eraseMode");
+                const clearCanvasButton = document.getElementById("draw-clearCanvas");
+                const recognizeLatexButton = document.getElementById("draw-recognizeLatex");
+                const latexCodeContainer = document.getElementById("draw-latexCode");
+                const renderedFormulaContainer = document.getElementById("draw-renderedFormula");
 
-            const latexCodeContainer = document.getElementById("draw-latexCode");
-            const renderedFormulaContainer = document.getElementById("draw-renderedFormula");
+                drawModeButton.addEventListener("click", () => {
+                    erasing = false;
+                    canvas.style.cursor = "url('stift.svg'), auto";
+                });
 
-            drawModeButton.addEventListener("click", () => {
-                erasing = false;
-                canvas.style.cursor = "url('stift.svg'), auto";
-            });
+                eraseModeButton.addEventListener("click", () => {
+                    erasing = true;
+                    canvas.style.cursor = "url('radierer.svg'), auto";
+                });
 
-            eraseModeButton.addEventListener("click", () => {
-                erasing = true;
-                canvas.style.cursor = "url('radierer.svg'), auto";
-            });
+                canvas.addEventListener("mousedown", (e) => {
+                    drawing = true;
+                    ctx.beginPath();
+                    ctx.moveTo(e.offsetX, e.offsetY);
+                });
 
-            canvas.addEventListener("mousedown", (e) => {
-                drawing = true;
-                ctx.beginPath();
-                ctx.moveTo(e.offsetX, e.offsetY);
-            });
+                canvas.addEventListener("mousemove", (e) => {
+                    if (!drawing) return;
 
-            canvas.addEventListener("mousemove", (e) => {
-                if (!drawing) return;
+                    if (erasing) {
+                        ctx.globalCompositeOperation = "destination-out";
+                        ctx.arc(e.offsetX, e.offsetY, 10, 0, Math.PI * 2, false);
+                        ctx.fill();
+                    } else {
+                        ctx.globalCompositeOperation = "source-over";
+                        ctx.lineTo(e.offsetX, e.offsetY);
+                        ctx.strokeStyle = "black";
+                        ctx.lineWidth = 5;
+                        ctx.stroke();
+                    }
+                });
 
-                if (erasing) {
-                    ctx.globalCompositeOperation = "destination-out";
-                    ctx.arc(e.offsetX, e.offsetY, 10, 0, Math.PI * 2, false);
-                    ctx.fill();
-                } else {
-                    ctx.globalCompositeOperation = "source-over";
-                    ctx.lineTo(e.offsetX, e.offsetY);
-                    ctx.strokeStyle = "black";
-                    ctx.lineWidth = 5;
-                    ctx.stroke();
+                canvas.addEventListener("mouseup", () => {
+                    drawing = false;
+                });
+
+                clearCanvasButton.addEventListener("click", () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                });
+
+                recognizeLatexButton.addEventListener("click", async () => {
+                    latexCodeContainer.value = "Recognizing formula...";
+                    renderedFormulaContainer.innerHTML = "";
+
+                    const imageDataURL = canvas.toDataURL();
+                    const ocrResult = await recognizeImage(imageDataURL);
+                    const recognizedText = ocrResult.trim();
+
+                    latexCodeContainer.value = recognizedText;
+
+                    renderLatex(recognizedText);
+                });
+
+                async function recognizeImage(imageDataURL) {
+                    const {data} = await Tesseract.recognize(imageDataURL, "eng", {
+                        tessedit_char_whitelist: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+-=*/(){}[]^",
+                        oem: 1,
+                        psm: 6
+                    });
+                    return data.text;
                 }
-            });
 
-            canvas.addEventListener("mouseup", () => {
-                drawing = false;
-            });
+                function renderLatex(latexCode) {
+                    renderedFormulaContainer.innerHTML = latexCode ? `\\(${latexCode}\\)` : "";
+                    MathJax.typesetPromise([renderedFormulaContainer]);
+                }
 
-            clearCanvasButton.addEventListener("click", () => {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-            });
-
-            recognizeLatexButton.addEventListener("click", async () => {
-                latexCodeContainer.textContent = "Recognize formula...";
-                renderedFormulaContainer.innerHTML = "";
-
-                const imageDataURL = canvas.toDataURL();
-                const image = await loadImage(imageDataURL);
-                const processedImage = preprocessImage(image);
-
-                const ocrResult = await Tesseract.recognize(processedImage, "eng", {
-                    tessjs_create_pdf: "1",
-                    lang: "eng",
-                    oem: 1,
-                    psm: 6,
-                });
-
-                const recognizedText = ocrResult.data.text.trim();
-                latexCodeContainer.textContent = recognizedText;
-
-                katex.render(recognizedText, renderedFormulaContainer, {
-                    throwOnError: false,
-                    displayMode: true,
+                latexCodeContainer.addEventListener("input", () => {
+                    renderLatex(latexCodeContainer.value.trim());
                 });
             });
-
-            function preprocessImage(image) {
-                const canvasTemp = document.createElement("canvas");
-                const ctxTemp = canvasTemp.getContext("2d");
-                canvasTemp.width = image.width;
-                canvasTemp.height = image.height;
-                ctxTemp.drawImage(image, 0, 0);
-                ctxTemp.filter = "contrast(150%) brightness(120%)";
-                ctxTemp.drawImage(canvasTemp, 0, 0);
-
-                return canvasTemp.toDataURL();
-            }
-
-            function loadImage(dataURL) {
-                return new Promise((resolve) => {
-                    const img = new Image();
-                    img.onload = () => resolve(img);
-                    img.src = dataURL;
-                });
-            }
-
-            const inputField = document.getElementById("draw-latexCode");
-            const outputField = document.getElementById("draw-renderedFormula");
-
-            inputField.addEventListener("input", renderLatex);
-
-            function renderLatex() {
-                const inputLatex = inputField.value.trim();
-                outputField.innerHTML = inputLatex ? `\\(${inputLatex}\\)` : "";
-                MathJax.typesetPromise([outputField]);
-            }
         </script>
 
         <div class="card-ploty-graf" id="card-ploty-graf-id">
