@@ -2953,14 +2953,24 @@
                     return new Blob([ab], {type: mimeString});
                 }
 
-                function renderLatex(latexCode) {
+                document.addEventListener("DOMContentLoaded", function () {
+                    const inputField = document.getElementById("draw-latexCode");
                     const formulaContainer = document.getElementById("draw-renderedFormula");
-                    formulaContainer.innerHTML = latexCode ? `\\(${latexCode}\\)` : "";
 
-                    if (window.MathJax) {
-                        MathJax.typesetPromise([formulaContainer]).catch((err) => console.error("MathJax rendering error:", err));
+                    function renderLatex() {
+                        const latexCode = inputField.value.trim();
+                        formulaContainer.innerHTML = latexCode ? `\\(${latexCode}\\)` : "";
+
+                        if (window.MathJax) {
+                            MathJax.typesetPromise([formulaContainer])
+                                    .catch((err) => console.error("MathJax rendering error:", err));
+                        }
                     }
-                }
+
+                    inputField.addEventListener("input", renderLatex);
+
+                    renderLatex();
+                });
 
                 document.getElementById("upload-form").addEventListener("submit", async function (e) {
                     e.preventDefault();
