@@ -64,6 +64,11 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory, session
 import ollama
 import os
+from PIL import Image
+from pix2tex.cli import LatexOCR
+import os
+import base64
+import io
 from werkzeug.utils import secure_filename
 import markdown
 import re
@@ -164,17 +169,28 @@ from IPython.display import display
 app = Flask(__name__)
 # Setze einen geheimen Schlüssel für die Session
 app.secret_key = os.urandom(24)  # Generiert einen zufälligen Schlüssel mit 24 Bytes
+
+# Verzeichnisse konfigurieren
 UPLOAD_FOLDER = 'uploads'
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+UPLOAD_FOLDER_LATEX = 'uploads_latex'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+os.makedirs(UPLOAD_FOLDER_LATEX, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['UPLOAD_FOLDER_LATEX'] = UPLOAD_FOLDER_LATEX
 app.config['UPLOAD_URL'] = '/uploads/'
 DEFAULT_IMAGE_PATH = r""
+
+# Erlaubte Dateitypen
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+# Modell für LaTeX-OCR initialisieren
+model = LatexOCR()
 
 def execute_python_code(md_content):
 
@@ -290,7 +306,7 @@ def execute_python_code(md_content):
 
 @app.route('/')
 def index():
-    return render_template('index-mavis-1-5.html')
+    return render_template('index-mavis-1-5-10.html')
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
@@ -358,6 +374,28 @@ def send_message():
             })
         except Exception as e:
             return jsonify({'error': str(e)}), 500
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    if 'file' in request.files:
+        file = request.files['file']
+        if file.filename == '':
+            return jsonify({'error': 'No selected file'}), 400
+        image_path_latex = os.path.join(app.config['UPLOAD_FOLDER_LATEX'], file.filename)
+        file.save(image_path_latex)
+        img_latex = Image.open(image_path_latex)
+    elif 'image' in request.json:
+        image_latex_data = request.json['image'].split(",")[1]
+        image_latex_bytes = base64.b64decode(image_latex_data)
+        img_latex = Image.open(io.BytesIO(image_latex_bytes))
+    else:
+        return jsonify({'error': 'No image data provided'}), 400
+
+    try:
+        latex_code = model(img_latex)
+        return jsonify({'latex': latex_code})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
