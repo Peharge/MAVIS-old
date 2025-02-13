@@ -245,7 +245,7 @@ packages = [
     "pythermo", "biopython", "opencv-python", "SimpleITK", "nilearn", "deepchem",
     "pymedtermino", "lifelines", "rdkit", "ase", "chempy", "shapely", "fiona",
     "cartopy", "statsmodels", "yfinance", "PySpice", "networkx", "schematics",
-    "schemdraw", "ipywidgets", "pybullet", "vtk", "diagrams", "graphviz", "'pix2tex[gui]'",
+    "schemdraw", "ipywidgets", "pybullet", "vtk", "diagrams", "graphviz", '"pix2tex[gui]"',
     "pillow"
 ]
 
