@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pix2Tex - LaTeX Prediction</title>
+</head>
+<body>
+    <h1>Upload an image to get LaTeX code prediction</h1>
+    <form action="/predict" method="POST" enctype="multipart/form-data">
+        <label for="file">Choose an image:</label>
+        <input type="file" name="file" id="file" required>
+        <button type="submit">Upload Image</button>
+    </form>
+
+    {% if latex %}
+        <h2>Predicted LaTeX:</h2>
+        <pre>{{ latex }}</pre>
+    {% endif %}
+</body>
+</html>
