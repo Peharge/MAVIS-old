@@ -2892,12 +2892,17 @@
             document.addEventListener("DOMContentLoaded", function () {
                 const canvas = document.getElementById("draw-canvas");
                 const ctx = canvas.getContext("2d");
+
                 canvas.width = canvas.offsetWidth;
                 canvas.height = canvas.offsetHeight;
+
+                ctx.fillStyle = "white";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
                 let drawing = false;
                 let erasing = false;
 
-                document.getElementById("draw-drawMode").addEventListener("click", () => {
+            document.getElementById("draw-drawMode").addEventListener("click", () => {
                     erasing = false;
                 });
                 document.getElementById("draw-eraseMode").addEventListener("click", () => {
@@ -2953,23 +2958,19 @@
                     return new Blob([ab], {type: mimeString});
                 }
 
-                document.addEventListener("DOMContentLoaded", function () {
-                    const inputField = document.getElementById("draw-latexCode");
+                function renderLatex(latexCode) {
                     const formulaContainer = document.getElementById("draw-renderedFormula");
+                    formulaContainer.innerHTML = latexCode ? `\\(${latexCode}\\)` : "";
 
-                    function renderLatex() {
-                        const latexCode = inputField.value.trim();
-                        formulaContainer.innerHTML = latexCode ? `\\(${latexCode}\\)` : "";
-
-                        if (window.MathJax) {
-                            MathJax.typesetPromise([formulaContainer])
-                                    .catch((err) => console.error("MathJax rendering error:", err));
-                        }
+                    if (window.MathJax) {
+                        MathJax.typesetPromise([formulaContainer]).catch((err) => console.error("MathJax rendering error:", err));
                     }
+                }
 
-                    inputField.addEventListener("input", renderLatex);
-
-                    renderLatex();
+                const textarea = document.getElementById("draw-latexCode");
+                textarea.addEventListener("input", function () {
+                    const latexCode = textarea.value;
+                    renderLatex(latexCode);
                 });
 
                 document.getElementById("upload-form").addEventListener("submit", async function (e) {
