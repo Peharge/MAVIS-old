@@ -183,9 +183,13 @@ $$
 $$
 
 ## Spacing in Mathematics
-```
-\, \: \; \quad \qquad \hspace{1cm}
-```
+
+- `\,` → $ \, $
+- `\: ` → $ \: $
+- `\;` → $ \; $
+- `\quad` → $ \quad $
+- `\qquad` → $ \qquad $
+- `\hspace{1cm}` → $ \hspace{1cm} $
 
 ## Displayed Equations
 ```latex
@@ -202,7 +206,13 @@ $$
 
 $$
 \lim_{h\to 0} \frac{f(x+h)-f(x)}{h}
+$$
+
+$$
 \int x^2 \,dx = \frac{x^3}{3} + C
+$$
+
+$$
 \frac{\partial f}{\partial x} \quad \frac{\delta S}{\delta x}
 $$
 
@@ -214,6 +224,9 @@ $$
 
 $$
 \binom{n}{k} \quad n^{\underline{r}}
+$$
+
+$$
 \sum_{k=0}^{n} k^2
 $$
 
@@ -299,6 +312,9 @@ A v = \lambda v
 
 $$
 \det(A - \lambda I) = 0 \\
+$$
+
+$$
 A v = \lambda v
 $$
 
@@ -312,6 +328,9 @@ F_x & F_y & F_z \end{vmatrix}
 
 $$
 \nabla \cdot \mathbf{F} = \frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} + \frac{\partial F_z}{\partial z} \\
+$$
+
+$$
 \nabla \times \mathbf{F} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\
 \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
 F_x & F_y & F_z \end{vmatrix}
@@ -344,6 +363,9 @@ $$
 
 $$
 \mathcal{F}\{f(t)\} = \int_{-\infty}^{\infty} f(t) e^{-i\omega t} dt \\
+$$
+
+$$
 \mathcal{L}\{f(t)\} = \int_{0}^{\infty} f(t) e^{-st} dt
 $$
 
@@ -356,9 +378,14 @@ N(t) = N_0 e^{-\lambda t}
 
 $$
 y'' + p(x)y' + q(x)y = r(x) \\
+$$
+
+$$
 \frac{dN}{dt} = -\lambda N \\
+$$
+
+$$
 N(t) = N_0 e^{-\lambda t}
 $$
 
 For a comprehensive list of LaTeX symbols, see the [Comprehensive LaTeX Symbols List](http://mirror.ctan.org/info/symbols/comprehensive).
-
