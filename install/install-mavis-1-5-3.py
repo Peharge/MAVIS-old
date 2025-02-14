@@ -353,7 +353,7 @@ print(f"\nAll frameworks for {blue}MAVIS versions 1.2, 1.3, 1.4, and 1.5{reset} 
 
 # Paketlisten
 packages = [
-    "Flask", "ollama", "jupyter", "jupyterlab", "Werkzeug", "markdown", "matplotlib", "plotly",
+    "pillow", "Flask", "ollama", "jupyter", "jupyterlab", "Werkzeug", "markdown", "matplotlib", "plotly",
     "dash", "seaborn", "numpy", "sympy", "pandas", "geopandas", "scipy", "torch",
     "torchvision", "torchaudio", "tensorflow", "scikit-learn", "transformers",
     "altair", "vega_datasets", "altair_viewer", "ipython", "altair-saver", "kaleido",
@@ -363,8 +363,7 @@ packages = [
     "pythermo", "biopython", "opencv-python", "SimpleITK", "nilearn", "deepchem",
     "pymedtermino", "lifelines", "rdkit", "ase", "chempy", "shapely", "fiona",
     "cartopy", "statsmodels", "yfinance", "PySpice", "networkx", "schematics",
-    "schemdraw", "ipywidgets", "vtk", "diagrams", "graphviz", "pix2tex[gui]",
-    "pillow"
+    "schemdraw", "ipywidgets", "vtk", "diagrams", "graphviz", "pix2tex[gui]"
 ]
 
 process_packages(packages)
