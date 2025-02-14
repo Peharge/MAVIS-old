@@ -104,8 +104,6 @@ def is_package_installed(package: str) -> bool:
     except subprocess.CalledProcessError:
         return False
 
-import locale
-
 def get_package_version(package: str) -> str:
     """Holt sich die aktuell installierte Version des Pakets."""
     try:
@@ -197,7 +195,7 @@ def get_latest_package_version(package: str, timeout: int = 10, retries: int = 3
 
 def install_or_update_package(package: str):
     """Fragt nach Bestätigung für Updates und zeigt Inkompatibilitäten an."""
-    installed_packages = {pkg: get_package_version(pkg) for pkg in packages}  # Alle installierten Pakete holen
+    # installed_packages = {pkg: get_package_version(pkg) for pkg in packages}  # Alle installierten Pakete holen
 
     if not is_package_installed(package):
         if confirm_action(f"{package} is not installed. Do you want to install it?"):
@@ -213,6 +211,8 @@ def install_or_update_package(package: str):
             # Wenn aktuelle und neueste Versionen vorhanden sind und sie nicht übereinstimmen, wird die Inkompatibilitätsprüfung durchgeführt
             if current_version and latest_version and current_version != latest_version:
                 # Überprüfe Inkompatibilitäten vor der Anzeige der veralteten Version
+
+                """
                 incompatibilities = check_dependency_compatibility(package, latest_version, installed_packages)
 
                 if incompatibilities:
@@ -220,6 +220,7 @@ def install_or_update_package(package: str):
                     for issue in incompatibilities:
                         print(f"  {yellow}{issue}{reset}")
 
+                """
                 # Wenn keine Inkompatibilitäten gefunden wurden, fahren wir fort und zeigen die veraltete Version an
                 print(f"{blue}{package} is outdated ({current_version} -> {latest_version}).{reset}")
                 if confirm_action(f"Do you want to update {package} to {latest_version}?"):
@@ -247,9 +248,9 @@ def install_package(package: str):
     else:
         print(f"{yellow}Skipping installation for {package}.{reset}")
 
-
+"""
 def get_package_dependencies(package: str) -> List[str]:
-    """Holt die Abhängigkeiten eines Pakets von 'pip show'."""
+    # Holt die Abhängigkeiten eines Pakets von 'pip show'.
     try:
         output = subprocess.check_output([sys.executable, "-m", "pip", "show", package], stderr=subprocess.DEVNULL).decode()
         dependencies = []
@@ -264,7 +265,7 @@ def get_package_dependencies(package: str) -> List[str]:
         return []
 
 def check_dependency_compatibility(package: str, new_version: str, installed_packages: Dict[str, str]) -> List[str]:
-    """Überprüft, welche anderen installierten Pakete möglicherweise inkompatibel mit der neuen Version sind."""
+    # Überprüft, welche anderen installierten Pakete möglicherweise inkompatibel mit der neuen Version sind.
     incompatibilities = []
 
     # Holen Sie die Abhängigkeiten des Pakets
@@ -320,7 +321,7 @@ def check_dependency_compatibility(package: str, new_version: str, installed_pac
     return incompatibilities
 
 def check_all_installed_packages_compatibility(packages: List[str]) -> None:
-    """Prüft alle installierten Pakete und ihre Abhängigkeiten auf mögliche Inkompatibilitäten."""
+    # Prüft alle installierten Pakete und ihre Abhängigkeiten auf mögliche Inkompatibilitäten.
     installed_packages = {pkg: get_package_version(pkg) for pkg in packages}
 
     for package in packages:
@@ -342,6 +343,7 @@ def check_all_installed_packages_compatibility(packages: List[str]) -> None:
                 print(f"{package} is up to date.")
         else:
             print(f"{package} is not installed.")
+"""
 
 def process_packages(packages: List[str]):
     """Überprüft und installiert oder aktualisiert eine Liste von Paketen."""
@@ -353,7 +355,7 @@ print(f"\nAll frameworks for {blue}MAVIS versions 1.2, 1.3, 1.4, and 1.5{reset} 
 
 # Paketlisten
 packages = [
-    "pillow", "Flask", "ollama", "jupyter", "jupyterlab", "Werkzeug", "markdown", "matplotlib", "plotly",
+    "Flask", "ollama", "jupyter", "jupyterlab", "Werkzeug", "markdown", "matplotlib", "plotly",
     "dash", "seaborn", "numpy", "sympy", "pandas", "geopandas", "scipy", "torch",
     "torchvision", "torchaudio", "tensorflow", "scikit-learn", "transformers",
     "altair", "vega_datasets", "altair_viewer", "ipython", "altair-saver", "kaleido",
@@ -363,7 +365,8 @@ packages = [
     "pythermo", "biopython", "opencv-python", "SimpleITK", "nilearn", "deepchem",
     "pymedtermino", "lifelines", "rdkit", "ase", "chempy", "shapely", "fiona",
     "cartopy", "statsmodels", "yfinance", "PySpice", "networkx", "schematics",
-    "schemdraw", "ipywidgets", "vtk", "diagrams", "graphviz", "pix2tex[gui]"
+    "schemdraw", "ipywidgets", "vtk", "diagrams", "graphviz", "pix2tex[gui]",
+    "pillow"
 ]
 
 process_packages(packages)
