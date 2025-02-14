@@ -72,6 +72,14 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import locale
 from typing import List, Dict
+import subprocess
+import sys
+from typing import Dict, List
+import re
+from concurrent.futures import ThreadPoolExecutor
+
+# Caching für Paketinformationen (Versionen und Abhängigkeiten)
+package_cache = {}
 
 # Farbcodes definieren
 red = "\033[91m"
@@ -245,17 +253,6 @@ def install_package(package: str):
         print(f"{green}{package} has been installed.{reset}")
     else:
         print(f"{yellow}Skipping installation for {package}.{reset}")
-
-
-import subprocess
-import sys
-from typing import Dict, List
-import re
-from concurrent.futures import ThreadPoolExecutor
-
-# Caching für Paketinformationen (Versionen und Abhängigkeiten)
-package_cache = {}
-
 
 def get_package_dependencies(package: str) -> List[str]:
     """Holt die Abhängigkeiten eines Pakets von 'pip show' und gibt die Anforderungen in einer lesbaren Form zurück."""
