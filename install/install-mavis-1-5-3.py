@@ -65,13 +65,13 @@ import subprocess
 import sys
 import platform
 import requests
-from typing import List
 import re
 import time
 from typing import Optional
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import locale
+from typing import List, Dict
 
 # Farbcodes definieren
 red = "\033[91m"
@@ -89,7 +89,7 @@ bold = "\033[1m"
 def confirm_action(message: str) -> bool:
     """Fordert den Benutzer zur Bestätigung auf."""
     while True:
-        response = input(f"{message} [y/n]: ").strip().lower()
+        response = input(f"{message} [y/n]:").strip().lower()
         if response in ["y", "yes"]:
             return True
         elif response in ["n", "no"]:
@@ -194,8 +194,11 @@ def get_latest_package_version(package: str, timeout: int = 10, retries: int = 3
     except Exception as e:
         raise RuntimeError(f"Unexpected error in '{package}': {e}")
 
+
 def install_or_update_package(package: str):
     """Fragt nach Bestätigung für Updates und zeigt Inkompatibilitäten an."""
+    installed_packages = {pkg: get_package_version(pkg) for pkg in packages}  # Alle installierten Pakete holen
+
     if not is_package_installed(package):
         if confirm_action(f"{package} is not installed. Do you want to install it?"):
             subprocess.run([sys.executable, "-m", "pip", "install", package], check=True)
@@ -206,19 +209,32 @@ def install_or_update_package(package: str):
         current_version = get_package_version(package)
         latest_version = get_latest_package_version(package)
 
-        if current_version and latest_version and current_version != latest_version:
-            print(f"{blue}{package} is outdated ({current_version} -> {latest_version}).{reset}")
-            incompatibilities = check_dependency_compatibility(package, latest_version)
-            if incompatibilities:
-                print(f"{red}Warning{reset}: The new version of {package} may cause incompatibilities!")
-                for issue in incompatibilities:
-                    print(f"  {yellow}{issue}{reset}")
-            if confirm_action(f"Do you want to update {package} to {latest_version}?"):
-                subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", package], check=True)
-                print(f"{green}{package} was updated to version {latest_version}.{reset}")
-            else:
-                print(f"{yellow}{package} remains at {current_version}.{reset}")
-        else:
+        try:
+            # Wenn aktuelle und neueste Versionen vorhanden sind und sie nicht übereinstimmen, wird die Inkompatibilitätsprüfung durchgeführt
+            if current_version and latest_version and current_version != latest_version:
+                # Überprüfe Inkompatibilitäten vor der Anzeige der veralteten Version
+                incompatibilities = check_dependency_compatibility(package, latest_version, installed_packages)
+
+                if incompatibilities:
+                    print(f"{red}Warning{reset}: The new version of {package} may cause incompatibilities!")
+                    for issue in incompatibilities:
+                        print(f"  {yellow}{issue}{reset}")
+
+                # Wenn keine Inkompatibilitäten gefunden wurden, fahren wir fort und zeigen die veraltete Version an
+                print(f"{blue}{package} is outdated ({current_version} -> {latest_version}).{reset}")
+                if confirm_action(f"Do you want to update {package} to {latest_version}?"):
+                    subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", package], check=True)
+                    print(f"{green}{package} was updated to version {latest_version}.{reset}")
+                else:
+                    print(f"{yellow}{package} remains at {current_version}.{reset}")
+
+        except Exception as e:
+            # Falls bei der Prüfung ein Fehler auftritt, geben wir diesen aus
+            print(f"{red}Error while checking dependencies for {package}: {str(e)}{reset}")
+            return  # Funktion vorzeitig verlassen, wenn ein Fehler auftritt
+
+        # Wenn das Paket auf dem neuesten Stand ist, wird dies ebenfalls angezeigt
+        if current_version and latest_version and current_version == latest_version:
             print(f"{green}{package} is up to date (Version {current_version}).{reset}")
 
 def install_package(package: str):
@@ -230,26 +246,106 @@ def install_package(package: str):
     else:
         print(f"{yellow}Skipping installation for {package}.{reset}")
 
-def check_dependency_compatibility(package: str, new_version: str) -> List[str]:
-    """Überprüft, welche anderen installierten Pakete möglicherweise inkompatibel mit der neuen Version sind."""
-    incompatibilities = []
+import re
+
+def get_package_dependencies(package: str) -> List[str]:
+    """Holt die Abhängigkeiten eines Pakets von 'pip show' und gibt die Anforderungen in einer lesbaren Form zurück."""
     try:
         output = subprocess.check_output([sys.executable, "-m", "pip", "show", package], stderr=subprocess.DEVNULL).decode()
-        requires_section = False
+        dependencies = []
         for line in output.splitlines():
             if line.startswith("Requires:"):
-                requires_section = True
                 dependencies = line.split(":")[1].strip().split(", ")
-                for dep in dependencies:
-                    installed_version = get_package_version(dep)
-                    if installed_version and installed_version != get_latest_package_version(dep):
-                        incompatibilities.append(
-                            f"{dep} (installed: {installed_version}, latest: {get_latest_package_version(dep)})")
-        if not requires_section:
-            return []
-    except subprocess.CalledProcessError:
+        return dependencies
+    except subprocess.CalledProcessError as e:
+        print(f"Error while retrieving package info for {package}: {e}")
         return []
+
+def check_dependency_compatibility(package: str, new_version: str, installed_packages: Dict[str, str]) -> List[str]:
+    """Überprüft, welche anderen installierten Pakete möglicherweise inkompatibel mit der neuen Version sind."""
+    incompatibilities = []
+
+    # Holen Sie die Abhängigkeiten des Pakets
+    dependencies = get_package_dependencies(package)
+    if not dependencies:
+        print(f"No dependencies found for {package}.")
+        return incompatibilities
+
+    # Dictionary für neueste Versionen der Abhängigkeiten
+    latest_versions = {}
+
+    # Überprüfe jede Abhängigkeit
+    for dep in dependencies:
+        dep = dep.strip()
+
+        if not dep:
+            continue
+
+        # Hole die Versionsanforderungen der Abhängigkeit
+        dependency_version = get_package_version(dep)
+
+        # Hole die neueste Version der Abhängigkeit
+        if dep not in latest_versions:
+            try:
+                latest_versions[dep] = get_latest_package_version(dep)
+            except Exception as e:
+                print(f"Error while getting latest version for {dep}: {e}")
+                incompatibilities.append(f"Failed to check latest version for {dep}")
+                continue
+
+        installed_version = installed_packages.get(dep, None)
+        latest_version = latest_versions.get(dep)
+
+        # Prüfe auf Versionsanforderungen in den Abhängigkeiten
+        version_range = get_dependency_version_range(dep)  # Funktion, die den Versionsbereich extrahiert
+
+        if installed_version and not is_version_compatible(installed_version, version_range):
+            incompatibilities.append(
+                f"{dep} (installed: {installed_version}, required: {version_range}) may conflict with {package} {new_version}")
+
+    # Indirekte Abhängigkeiten prüfen (rekursiv)
+    for dep in dependencies:
+        dep = dep.strip()
+        if not dep:
+            continue
+
+        try:
+            indirect_incompatibilities = check_dependency_compatibility(dep, new_version, installed_packages)
+            incompatibilities.extend(indirect_incompatibilities)
+        except Exception as e:
+            print(f"Error while checking indirect dependencies for {dep}: {e}")
+
+    # Wenn keine Inkompatibilitäten gefunden wurden
+    if not incompatibilities:
+        print(f"{package} {new_version} is compatible with all dependencies.")
+
     return incompatibilities
+
+def get_dependency_version_range(package: str) -> str:
+    """Extrahiert die Versionsanforderungen für ein Abhängigkeits-Paket (z. B. '>=10.3.0')."""
+    try:
+        output = subprocess.check_output([sys.executable, "-m", "pip", "show", package], stderr=subprocess.DEVNULL).decode()
+        for line in output.splitlines():
+            if line.startswith("Requires-Dist:"):
+                match = re.search(r"(\S+)([<=>]+[\d\.]+)?", line.split(":")[1].strip())
+                if match:
+                    return match.group(2)  # Gibt den Versionsbereich zurück
+        return ""
+    except subprocess.CalledProcessError as e:
+        print(f"Error while retrieving version requirements for {package}: {e}")
+        return ""
+
+def is_version_compatible(installed_version: str, version_range: str) -> bool:
+    """Überprüft, ob die installierte Version mit dem Versionsbereich kompatibel ist."""
+    if not version_range:
+        return True
+
+    # Beispiel für einfache Versionsermittlung: vergleiche ">=10.3.0" mit "10.3.0"
+    if version_range.startswith(">="):
+        return installed_version >= version_range[2:]
+    elif version_range.startswith("<"):
+        return installed_version < version_range[1:]
+    return False
 
 def process_packages(packages: List[str]):
     """Überprüft und installiert oder aktualisiert eine Liste von Paketen."""
@@ -261,7 +357,7 @@ print(f"\nAll frameworks for {blue}MAVIS versions 1.2, 1.3, 1.4, and 1.5{reset} 
 
 # Paketlisten
 packages = [
-    "Flask", "ollama", "jupyter", "jupyterlab", "Werkzeug", "markdown", "matplotlib", "plotly",
+    "pillow", "Flask", "ollama", "jupyter", "jupyterlab", "Werkzeug", "markdown", "matplotlib", "plotly",
     "dash", "seaborn", "numpy", "sympy", "pandas", "geopandas", "scipy", "torch",
     "torchvision", "torchaudio", "tensorflow", "scikit-learn", "transformers",
     "altair", "vega_datasets", "altair_viewer", "ipython", "altair-saver", "kaleido",
@@ -271,8 +367,7 @@ packages = [
     "pythermo", "biopython", "opencv-python", "SimpleITK", "nilearn", "deepchem",
     "pymedtermino", "lifelines", "rdkit", "ase", "chempy", "shapely", "fiona",
     "cartopy", "statsmodels", "yfinance", "PySpice", "networkx", "schematics",
-    "schemdraw", "ipywidgets", "vtk", "diagrams", "graphviz", "pix2tex[gui]",
-    "pillow"
+    "schemdraw", "ipywidgets", "vtk", "diagrams", "graphviz", "pix2tex[gui]"
 ]
 
 process_packages(packages)
