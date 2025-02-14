@@ -175,7 +175,7 @@ def execute_installation():
         for title, description in frameworks:
             print_framework(title, description)
 
-        subprocess.run([sys.executable, "install/install-mavis-1-5.py"], check=True)
+        subprocess.run([sys.executable, "install/install-mavis-1-5-3.py"], check=True)
         print(f"{blue}{bold}MAVIS installation completed successfully.{reset}")
     except subprocess.CalledProcessError:
         print(f"{red}{bold}An error occurred while running the installation script.{reset}")
