@@ -2156,9 +2156,7 @@
             width: 100%;
             max-width: 1200px;
             min-width: 300px;
-            height: 1%;
-            max-height: 400px;
-            min-height: 80px;
+            height: auto;
             border: 2px solid transparent;
             outline: none;
             padding: 1rem;
@@ -2170,7 +2168,7 @@
             line-height: 1.5;
             text-align: left;
             box-sizing: border-box;
-            resize: none;
+            resize: vertical;
             overflow: auto;
             white-space: pre-wrap;
             cursor: text;
@@ -2879,8 +2877,7 @@
             </div>
 
             <div class="input-latexCode">
-                <textarea type="text" id="draw-latexCode" rows="2" class="input"
-                          placeholder="Haven't recognized anything yet..."></textarea>
+                <textarea type="text" id="draw-latexCode" rows="2" class="input" placeholder="Haven't recognized anything yet..."></textarea>
             </div>
             <div class="draw-output-container">
                 <h4>Rendered output:</h4>
