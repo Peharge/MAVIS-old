@@ -361,12 +361,11 @@ packages = [
     "altair", "vega_datasets", "altair_viewer", "ipython", "altair-saver", "kaleido",
     "vl-convert-python", "py-cpuinfo", "GPUtil", "requests", "astropy", "QuantLib",
     "openmdao", "pybullet", "monai", "fenics", "pydy", "pycalculix", "solidpython",
-    "pyomo", "gekko", "casadi", "control", "h2o", "pint", "coolprop",
-    "pythermo", "biopython", "opencv-python", "SimpleITK", "nilearn", "deepchem",
-    "pymedtermino", "lifelines", "rdkit", "ase", "chempy", "shapely", "fiona",
-    "cartopy", "statsmodels", "yfinance", "PySpice", "networkx", "schematics",
-    "schemdraw", "ipywidgets", "vtk", "diagrams", "graphviz", "pix2tex[gui]",
-    "pillow"
+    "pyomo", "gekko", "casadi", "control", "h2o", "pint", "coolprop", "pythermo",
+    "biopython", "opencv-python", "SimpleITK", "nilearn", "deepchem", "pymedtermino",
+    "lifelines", "rdkit", "ase", "chempy", "shapely", "fiona", "cartopy", "statsmodels",
+    "yfinance", "PySpice", "networkx", "schematics", "schemdraw", "ipywidgets", "vtk",
+    "diagrams", "graphviz", "pix2tex[gui]", "pillow"
 ]
 
 process_packages(packages)
