@@ -119,6 +119,8 @@ def get_package_version(package: str) -> str:
 
 def get_latest_package_version(package: str, timeout: int = 10, retries: int = 3, backoff_factor: float = 0.5) -> str:
     """
+    Achtung Deutsch
+
     Holt die neueste Version eines Pakets von PyPI mit verbessertem Fehler- und Retry-Handling.
 
     Args:
