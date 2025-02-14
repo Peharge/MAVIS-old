@@ -213,7 +213,7 @@ def install_or_update_package(package: str):
                 print(f"{red}Warning{reset}: The new version of {package} may cause incompatibilities!")
                 for issue in incompatibilities:
                     print(f"  {yellow}{issue}{reset}")
-            if confirm_action(f"Do you want to update {package} to {latest_version} update?"):
+            if confirm_action(f"Do you want to update {package} to {latest_version}?"):
                 subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", package], check=True)
                 print(f"{green}{package} was updated to version {latest_version}.{reset}")
             else:
