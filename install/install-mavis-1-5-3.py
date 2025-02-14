@@ -254,7 +254,7 @@ def check_dependency_compatibility(package: str, new_version: str) -> List[str]:
 def process_packages(packages: List[str]):
     """Überprüft und installiert oder aktualisiert eine Liste von Paketen."""
     for idx, package in enumerate(packages, start=1):
-        print(f"\n[{idx}/{len(packages)}] Überprüfung von {blue}{package}{reset}")
+        print(f"\n[{idx}/{len(packages)}] Checking package: {blue}{package}{reset}")
         install_or_update_package(package)
 
 print(f"\nAll frameworks for {blue}MAVIS versions 1.2, 1.3, 1.4, and 1.5{reset} are currently being installed and updated.")
