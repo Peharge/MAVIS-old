@@ -311,7 +311,13 @@ z = a + ib, \quad \bar{z} = a - ib, \quad |z| = \sqrt{a^2 + b^2} \\
 
 $$
 i^2 = -1, \quad e^{i\pi} + 1 = 0 \\
+$$
+
+$$
 z = a + ib, \quad \bar{z} = a - ib, \quad |z| = \sqrt{a^2 + b^2} \\
+$$
+
+$$
 \operatorname{Re}(z) = \frac{z + \bar{z}}{2}, \quad \operatorname{Im}(z) = \frac{z - \bar{z}}{2i}
 $$
 
