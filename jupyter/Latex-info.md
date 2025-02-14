@@ -271,8 +271,17 @@ A^{-1} A = I \\
 
 $$
 A \cdot B = \sum_{i,j} A_{ij} B_{ji} \\
+$$
+
+$$
 \operatorname{tr}(A) = \sum_{i} A_{ii} \\
+$$
+
+$$
 A^{-1} A = I \\
+$$
+
+$$
 \lambda v = Av
 $$
 
