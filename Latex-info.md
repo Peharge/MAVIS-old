@@ -226,7 +226,13 @@ E(X) = \mu_X = \sum (x_i P(x_i))
 
 $$
 \sigma^2 = \sqrt{\sum (x_i - \mu)^2/N}
+$$
+
+$$
 E(X) = \mu_X = \sum (x_i P(x_i))
+$$
+
+$$
 \operatorname{Var}(X) = E(X^2) - (E(X))^2
 $$
 
