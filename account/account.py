@@ -176,7 +176,7 @@ def login():
         if username_or_email in [username, data["email"]] and check_password(data["password"], password):
             greeting = f"Welcome {username}!"
             if data.get("user_type") == "MAVIS Ultra":
-                greeting = f"{green}Welcome MAVIS Ultra User{username}!{reset}"
+                greeting = f"{green}Welcome MAVIS Ultra User: {username}!{reset}"
             print(greeting)
             exit()
 
