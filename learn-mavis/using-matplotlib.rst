@@ -2,7 +2,7 @@
 Matplotlib tutorial
 ===================
 
-> https://github.com/rougier/matplotlib-tutorial/blob/master/README.rst
+https://github.com/rougier/matplotlib-tutorial/blob/master/README.rst
 
 ------------------
 Nicolas P. Rougier
