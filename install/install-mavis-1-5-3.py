@@ -365,7 +365,7 @@ packages = [
     "biopython", "opencv-python", "SimpleITK", "nilearn", "deepchem", "pymedtermino",
     "lifelines", "rdkit", "ase", "chempy", "shapely", "fiona", "cartopy", "statsmodels",
     "yfinance", "PySpice", "networkx", "schematics", "schemdraw", "ipywidgets", "vtk",
-    "diagrams", "graphviz", "pix2tex[gui]", "pillow"
+    "diagrams", "graphviz", "pix2tex[gui]", "pillow", "bcrypt"
 ]
 
 process_packages(packages)

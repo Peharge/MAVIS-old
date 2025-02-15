@@ -98,3 +98,6 @@ pip install diagrams
 pip install graphviz
 
 # pip install dash
+
+pip install bcrypt
+
