@@ -102,6 +102,13 @@ if not exist "%SCRIPT_PATH_update%" (
 
 "%PYTHON_PATH%" "%SCRIPT_PATH_update%"
 
+if not exist "%SCRIPT_PATH_account%" (
+    echo Error: Script not found: %SCRIPT_PATH_account%
+    exit /B 1
+)
+
+"%PYTHON_PATH%" "%SCRIPT_PATH_account%"
+
 if not exist "%SCRIPT_PATH_3%" (
     echo Error: Script not found: %SCRIPT_PATH_3%
     exit /B 1
@@ -115,13 +122,6 @@ if not exist "%SCRIPT_PATH_security%" (
 )
 
 "%PYTHON_PATH%" "%SCRIPT_PATH_security%"
-
-if not exist "%SCRIPT_PATH_account%" (
-    echo Error: Script not found: %SCRIPT_PATH_account%
-    exit /B 1
-)
-
-"%PYTHON_PATH%" "%SCRIPT_PATH_account%"
 
 if not exist "%SCRIPT_PATH_4%" (
     echo Error: Script not found: %SCRIPT_PATH_4%
