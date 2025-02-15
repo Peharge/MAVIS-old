@@ -80,7 +80,7 @@ def register(user_type="Standard"):
 
     # Username Eingabe
     while True:
-        username = input(f"{blue}Username{reset}: ")
+        username = input(f"{blue}Username{reset}:")
         if not username.strip():
             print(f"{red}ERROR{reset}: Username cannot be empty!")
             continue
@@ -91,7 +91,7 @@ def register(user_type="Standard"):
 
     # E-Mail Eingabe
     while True:
-        email = input(f"{blue}E-Mail{reset}: ")
+        email = input(f"{blue}E-Mail{reset}:")
         if "@" in email and "." in email:
             if any(user["email"] == email for user in users.values()):
                 print(f"{red}ERROR{reset}: This email is already in use. Please choose another one.")
@@ -101,14 +101,14 @@ def register(user_type="Standard"):
 
     # Geburtsdatum Eingabe
     while True:
-        birthdate = input(f"{blue}Date of birth (YYYY-MM-DD){reset}: ")
+        birthdate = input(f"{blue}Date of birth (YYYY-MM-DD){reset}:")
         if validate_age(birthdate):
             break
         print(f"{red}ERROR{reset}: Invalid birthdate or age is not valid. You must be at least 18 years old.")
 
     # Passwort Eingabe
     while True:
-        password = input(f"{blue}Password{reset}: ")
+        password = input(f"{blue}Password{reset}:")
         if validate_password(password):
             break
         print(
@@ -116,7 +116,7 @@ def register(user_type="Standard"):
 
     # Bestätigung des Passworts
     while True:
-        confirm_password = input(f"{blue}Repeat password{reset}: ")
+        confirm_password = input(f"{blue}Repeat password{reset}:")
         if password == confirm_password:
             break
         print(f"{red}ERROR{reset}: Passwords do not match!")
@@ -142,7 +142,7 @@ def register_mavis_ultra():
 
     # Token Eingabe
     while True:
-        token = input(f"{blue}Enter your MAVIS Ultra token{reset}: ")
+        token = input(f"{blue}Enter your MAVIS Ultra token{reset}:")
 
         # Überprüfen der Tokens
         token_valid = False
@@ -169,8 +169,8 @@ def register_mavis_ultra():
 
 def login():
     print("\n--- Login ---")
-    username_or_email = input(f"{blue}Username or Email{reset}: ")
-    password = input(f"{blue}Password{reset}: ")
+    username_or_email = input(f"{blue}Username or Email{reset}:")
+    password = input(f"{blue}Password{reset}:")
     users = load_users()
 
     for username, data in users.items():
