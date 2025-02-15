@@ -104,7 +104,7 @@ are rather good in most cases, you may want to modify some properties for
 specific cases.
 
 
-.. include:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_1.py
+.. include:: scripts/exercice_1.py
    :code: python
    :start-line: 4
 
@@ -168,9 +168,9 @@ Setting limits
    * `ylim() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.ylim>`_
 
 
-.. image:: figures/exercice_4.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_4.png
    :align: right
-   :target: scripts/exercice_4.py
+   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_4.py
 
 Current limits of the figure are a bit too tight and we want to make some space
 in order to clearly see all data points.
@@ -195,9 +195,9 @@ Setting ticks
    * `Tick locating and formatting <http://matplotlib.sourceforge.net/api/ticker_api.html>`_
 
 
-.. image:: figures/exercice_5.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_5.png
    :align: right
-   :target: scripts/exercice_5.py
+   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_5.py
 
 Current ticks are not ideal because they do not show the interesting values
 (+/-π,+/-π/2) for sine and cosine. We'll change them such that they show only
@@ -223,9 +223,9 @@ Setting tick labels
    * `set_xticklabels() <http://matplotlib.sourceforge.net/api/axes_api.html?#matplotlib.axes.Axes.set_xticklabels>`_
    * `set_yticklabels() <http://matplotlib.sourceforge.net/api/axes_api.html?#matplotlib.axes.Axes.set_yticklabels>`_
 
-.. image:: figures/exercice_6.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_6.png
    :align: right
-   :target: scripts/exercice_6.py
+   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_6.py
 
 Ticks are now properly placed but their label is not very explicit. We could
 guess that 3.142 is π but it would be better to make it explicit. When we set
@@ -254,9 +254,9 @@ Moving spines
    * `Axis container <http://matplotlib.sourceforge.net/users/artists.html#axis-container>`_
    * `Transformations tutorial <http://matplotlib.sourceforge.net/users/transforms_tutorial.html>`_
 
-.. image:: figures/exercice_7.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_7.png
    :align: right
-   :target: scripts/exercice_7.py
+   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_7.py
 
 Spines are the lines connecting the axis tick marks and noting the boundaries
 of the data area. They can be placed at arbitrary positions and until now, they
@@ -289,9 +289,9 @@ Adding a legend
    * `legend() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.legend>`_
    * `Legend API <http://matplotlib.sourceforge.net/api/legend_api.html#matplotlib.legend.Legend>`_
 
-.. image:: figures/exercice_8.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_8.png
    :align: right
-   :target: scripts/exercice_8.py
+   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_8.py
 
 Let's add a legend in the upper left corner. This only requires adding the
 keyword argument label (that will be used in the legend box) to the plot
@@ -317,9 +317,9 @@ Annotate some points
    * `Annotating axis <http://matplotlib.sourceforge.net/users/annotations_guide.html>`_
    * `annotate() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.annotate>`_
 
-.. image:: figures/exercice_9.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_9.png
    :align: right
-   :target: scripts/exercice_9.py
+   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_9.py
 
 Let's annotate some interesting points using the annotate command. We choose the
 2π/3 value and we want to annotate both the sine and the cosine. We'll first
@@ -359,9 +359,9 @@ Devil is in the details
    * `Artists <http://matplotlib.sourceforge.net/api/artist_api.html>`_
    * `BBox <http://matplotlib.sourceforge.net/api/artist_api.html#matplotlib.text.Text.set_bbox>`_
 
-.. image:: figures/exercice_10.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_10.png
    :align: right
-   :target: scripts/exercice_10.py
+   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_10.py
 
 The tick labels are now hardly visible because of the blue and red lines. We can
 make them bigger and we can also adjust their properties such that they'll be
@@ -433,14 +433,14 @@ number of rows and columns and the number of the plot. Note that the `gridspec
 <http://matplotlib.sourceforge.net/users/gridspec.html>`_ command is a more
 powerful alternative.
 
-.. image:: figures/subplot-horizontal.png
-   :target: scripts/subplot-horizontal.py
-.. image:: figures/subplot-vertical.png
-   :target: scripts/subplot-vertical.py
-.. image:: figures/subplot-grid.png
-   :target: scripts/subplot-grid.py
-.. image:: figures/gridspec.png
-   :target: scripts/gridspec.py
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/subplot-horizontal.png
+   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/subplot-horizontal.py
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/subplot-vertical.png
+   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/subplot-vertical.py
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/subplot-grid.png
+   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/subplot-grid.py
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/gridspec.png
+   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/gridspec.py
 
 
 
@@ -451,10 +451,10 @@ Axes are very similar to subplots but allow placement of plots at any location
 in the figure. So if we want to put a smaller plot inside a bigger one we do
 so with axes.
 
-.. image:: figures/axes.png
-   :target: scripts/axes.py
-.. image:: figures/axes-2.png
-   :target: scripts/axes-2.py
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/axes.png
+   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/axes.py
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/axes-2.png
+   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/axes-2.py
 
 
 Ticks
@@ -485,17 +485,17 @@ There are several locators for different kind of requirements:
    * - ``NullLocator``
      - No ticks.
 
-       .. image:: figures/ticks-NullLocator.png
+       .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/ticks-NullLocator.png
 
    * - ``IndexLocator``
      - Place a tick on every multiple of some base number of points plotted.
 
-       .. image:: figures/ticks-IndexLocator.png
+       .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/ticks-IndexLocator.png
 
    * - ``FixedLocator``
      - Tick locations are fixed.
 
-       .. image:: figures/ticks-FixedLocator.png
+       .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/ticks-FixedLocator.png
 
    * - ``LinearLocator``
      - Determine the tick locations.
