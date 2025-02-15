@@ -2,6 +2,7 @@
 Matplotlib tutorial
 ===================
 
+> https://github.com/rougier/matplotlib-tutorial/blob/master/README.rst
 
 ------------------
 Nicolas P. Rougier
@@ -21,7 +22,7 @@ All code and material is licensed under a `Creative Commons
 Attribution-ShareAlike 4.0
 <http://creativecommons.org/licenses/by-sa/4.0>`_.
 
-You can test your installation before the tutorial using the `check-installation.py <scripts/check-installation.py>`_ script.
+You can test your installation before the tutorial using the `check-installation.py <https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/check-installation.py>`_ script.
 
 See also:
 
@@ -94,7 +95,7 @@ Using defaults
 
 .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_1.png
    :align: right
-   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_1.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/exercice_1.py
 
 Matplotlib comes with a set of default settings that allow customizing all
 kinds of properties. You can control the defaults of almost every property in
@@ -104,7 +105,7 @@ are rather good in most cases, you may want to modify some properties for
 specific cases.
 
 
-.. include:: scripts/exercice_1.py
+.. include:: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/exercice_1.py
    :code: python
    :start-line: 4
 
@@ -118,7 +119,7 @@ Instantiating defaults
 
 .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_2.png
    :align: right
-   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_2.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/exercice_2.py
 
 
 In the script below, we've instantiated (and commented) all the figure settings
@@ -126,7 +127,7 @@ that influence the appearance of the plot. The settings have been explicitly
 set to their default values, but now you can interactively play with the values
 to explore their affect (see `Line properties`_ and `Line styles`_ below).
 
-.. include:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_2.py
+.. include:: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/exercice_2.py
    :code: python
    :start-line: 4
 
@@ -142,7 +143,7 @@ Changing colors and line widths
 
 .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_3.png
    :align: right
-   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_3.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/exercice_3.py
 
 As a first step, we want to have the cosine in blue and the sine in red and a
 slightly thicker line for both of them. We'll also slightly alter the figure
@@ -170,7 +171,7 @@ Setting limits
 
 .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_4.png
    :align: right
-   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_4.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/exercice_4.py
 
 Current limits of the figure are a bit too tight and we want to make some space
 in order to clearly see all data points.
@@ -197,7 +198,7 @@ Setting ticks
 
 .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_5.png
    :align: right
-   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_5.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/exercice_5.py
 
 Current ticks are not ideal because they do not show the interesting values
 (+/-π,+/-π/2) for sine and cosine. We'll change them such that they show only
@@ -225,7 +226,7 @@ Setting tick labels
 
 .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_6.png
    :align: right
-   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_6.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/exercice_6.py
 
 Ticks are now properly placed but their label is not very explicit. We could
 guess that 3.142 is π but it would be better to make it explicit. When we set
@@ -256,7 +257,7 @@ Moving spines
 
 .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_7.png
    :align: right
-   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_7.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/exercice_7.py
 
 Spines are the lines connecting the axis tick marks and noting the boundaries
 of the data area. They can be placed at arbitrary positions and until now, they
@@ -291,7 +292,7 @@ Adding a legend
 
 .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_8.png
    :align: right
-   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_8.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/exercice_8.py
 
 Let's add a legend in the upper left corner. This only requires adding the
 keyword argument label (that will be used in the legend box) to the plot
@@ -319,7 +320,7 @@ Annotate some points
 
 .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_9.png
    :align: right
-   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_9.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/exercice_9.py
 
 Let's annotate some interesting points using the annotate command. We choose the
 2π/3 value and we want to annotate both the sine and the cosine. We'll first
@@ -361,7 +362,7 @@ Devil is in the details
 
 .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_10.png
    :align: right
-   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/exercice_10.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/exercice_10.py
 
 The tick labels are now hardly visible because of the blue and red lines. We can
 make them bigger and we can also adjust their properties such that they'll be
@@ -434,13 +435,13 @@ number of rows and columns and the number of the plot. Note that the `gridspec
 powerful alternative.
 
 .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/subplot-horizontal.png
-   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/subplot-horizontal.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/subplot-horizontal.py
 .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/subplot-vertical.png
-   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/subplot-vertical.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/subplot-vertical.py
 .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/subplot-grid.png
-   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/subplot-grid.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/subplot-grid.py
 .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/gridspec.png
-   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/gridspec.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/gridspec.py
 
 
 
@@ -452,9 +453,9 @@ in the figure. So if we want to put a smaller plot inside a bigger one we do
 so with axes.
 
 .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/axes.png
-   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/axes.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/axes.py
 .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/axes-2.png
-   :target: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/axes-2.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/axes-2.py
 
 
 Ticks
@@ -500,22 +501,22 @@ There are several locators for different kind of requirements:
    * - ``LinearLocator``
      - Determine the tick locations.
 
-       .. image:: figures/ticks-LinearLocator.png
+       .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/ticks-LinearLocator.png
 
    * - ``MultipleLocator``
      - Set a tick on every integer that is multiple of some base.
 
-       .. image:: figures/ticks-MultipleLocator.png
+       .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/ticks-MultipleLocator.png
 
    * - ``AutoLocator``
      - Select no more than n intervals at nice locations.
 
-       .. image:: figures/ticks-AutoLocator.png
+       .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/ticks-AutoLocator.png
 
    * - ``LogLocator``
      - Determine the tick locations for log axes.
 
-       .. image:: figures/ticks-LogLocator.png
+       .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/ticks-LogLocator.png
 
 All of these locators derive from the base class matplotlib.ticker.Locator.
 You can make your own locator deriving from it. Handling dates as ticks can be
@@ -569,8 +570,8 @@ a minimum and a maximum size. In addition, we need to make sure the largest ring
 is almost transparent.
 
 
-.. image:: figures/rain-static.png
-   :target: scripts/rain-static.py
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/rain-static.png
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/rain-static.py
    :align: right
 
 
@@ -609,8 +610,8 @@ position, with nominal size and color. Hence, we keep the number of rings
 constant.
 
 
-.. image:: figures/rain.gif
-   :target: scripts/rain-dynamic.py
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/rain.gif
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/rain-dynamic.py
    :align: right
 
 
@@ -801,57 +802,57 @@ function of the chosen Miller projection:
 
 If everything went well, you should obtain something like this (with animation):
 
-.. image:: figures/earthquakes.png
-   :target: scripts/earthquakes.py
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/earthquakes.png
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/earthquakes.py
    :width: 50%
 
 
 Other Types of Plots
 ====================
 
-.. image:: figures/plot.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/plot.png
    :target: #regular-plots
 
-.. image:: figures/scatter.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/scatter.png
    :target: #scatter-plots
 
-.. image:: figures/bar.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/bar.png
    :target: #bar-plots
 
-.. image:: figures/contour.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/contour.png
    :target: #contour-plots
 
-.. image:: figures/imshow.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/imshow.png
    :target: #imshow
 
-.. image:: figures/quiver.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/quiver.png
    :target: #quiver-plots
 
-.. image:: figures/pie.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/pie.png
    :target: #pie-charts
 
-.. image:: figures/grid.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/grid.png
    :target: #grids
 
-.. image:: figures/multiplot.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/multiplot.png
    :target: #multi-plots
 
-.. image:: figures/polar.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/polar.png
    :target: #polar-axis
 
-.. image:: figures/plot3d.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/plot3d.png
    :target: #3d-plots
 
-.. image:: figures/text.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/text.png
    :target: #text
 
 
 Regular Plots
 -------------
 
-.. image:: figures/plot_ex.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/plot_ex.png
    :align: right
-   :target: scripts/plot_ex.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/plot_ex.py
 
 .. admonition:: Hints
 
@@ -882,9 +883,9 @@ Click on figure for solution.
 Scatter Plots
 -------------
 
-.. image:: figures/scatter_ex.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/scatter_ex.png
    :align: right
-   :target: scripts/scatter_ex.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/scatter_ex.py
 
 .. admonition:: Hints
 
@@ -914,9 +915,9 @@ Click on figure for solution.
 Bar Plots
 ---------
 
-.. image:: figures/bar_ex.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/bar_ex.png
    :align: right
-   :target: scripts/bar_ex.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/bar_ex.py
 
 .. admonition:: Hints
 
@@ -951,9 +952,9 @@ Click on figure for solution.
 Contour Plots
 -------------
 
-.. image:: figures/contour_ex.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/contour_ex.png
    :align: right
-   :target: scripts/contour_ex.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/contour_ex.py
 
 .. admonition:: Hints
 
@@ -987,9 +988,9 @@ Click on figure for solution.
 Imshow
 ------
 
-.. image:: figures/imshow_ex.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/imshow_ex.png
    :align: right
-   :target: scripts/imshow_ex.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/imshow_ex.py
 
 .. admonition:: Hints
 
@@ -1021,9 +1022,9 @@ Click on figure for solution.
 Pie Charts
 ----------
 
-.. image:: figures/pie_ex.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/pie_ex.png
    :align: right
-   :target: scripts/pie_ex.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/pie_ex.py
 
 .. admonition:: Hints
 
@@ -1049,9 +1050,9 @@ Click on figure for solution.
 Quiver Plots
 ------------
 
-.. image:: figures/quiver_ex.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/quiver_ex.png
    :align: right
-   :target: scripts/quiver_ex.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/quiver_ex.py
 
 .. admonition:: Hints
 
@@ -1077,9 +1078,9 @@ Click on figure for solution.
 Grids
 -----
 
-.. image:: figures/grid_ex.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/grid_ex.png
    :align: right
-   :target: scripts/grid_ex.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/grid_ex.py
 
 
 Starting from the code below, try to reproduce the graphic on the right taking
@@ -1104,9 +1105,9 @@ Click on figure for solution.
 Multi Plots
 -----------
 
-.. image:: figures/multiplot_ex.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/multiplot_ex.png
    :align: right
-   :target: scripts/multiplot_ex.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/multiplot_ex.py
 
 .. admonition:: Hints
 
@@ -1132,9 +1133,9 @@ Click on figure for solution.
 Polar Axis
 ----------
 
-.. image:: figures/polar_ex.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/polar_ex.png
    :align: right
-   :target: scripts/polar_ex.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/polar_ex.py
 
 .. admonition:: Hints
 
@@ -1168,9 +1169,9 @@ Click on figure for solution.
 3D Plots
 --------
 
-.. image:: figures/plot3d_ex.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/plot3d_ex.png
    :align: right
-   :target: scripts/plot3d_ex.py
+   :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/plot3d_ex.py
 
 .. admonition:: Hints
 
@@ -1205,9 +1206,9 @@ Click on figure for solution.
 Text
 ----
 
-.. image:: figures/text_ex.png
+.. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/text_ex.png
   :align: right
-  :target: scripts/text_ex.py
+  :target: https://github.com/rougier/matplotlib-tutorial/blob/master/scripts/text_ex.py
 
 .. admonition:: Hints
 
@@ -1365,16 +1366,16 @@ Line properties
 
    * - alpha (or a)
      - alpha transparency on 0-1 scale
-     - .. image:: figures/alpha.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/alpha.png
 
    * - antialiased
      - True or False - use antialised rendering
-     - .. image:: figures/aliased.png
-       .. image:: figures/antialiased.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/aliased.png
+       .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/antialiased.png
 
    * - color (or c)
      - matplotlib color arg
-     - .. image:: figures/color.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/color.png
 
    * - linestyle (or ls)
      - see `Line properties`_
@@ -1382,23 +1383,23 @@ Line properties
 
    * - linewidth (or lw)
      - float, the line width in points
-     - .. image:: figures/linewidth.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linewidth.png
 
    * - solid_capstyle
      - Cap style for solid lines
-     - .. image:: figures/solid_capstyle.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/solid_capstyle.png
 
    * - solid_joinstyle
      - Join style for solid lines
-     - .. image:: figures/solid_joinstyle.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/solid_joinstyle.png
 
    * - dash_capstyle
      - Cap style for dashes
-     - .. image:: figures/dash_capstyle.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/dash_capstyle.png
 
    * - dash_joinstyle
      - Join style for dashes
-     - .. image:: figures/dash_joinstyle.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/dash_joinstyle.png
 
    * - marker
      - see `Markers`_
@@ -1406,19 +1407,19 @@ Line properties
 
    * - markeredgewidth (mew)
      - line width around the marker symbol
-     - .. image:: figures/mew.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/mew.png
 
    * - markeredgecolor (mec)
      - edge color if a marker is used
-     - .. image:: figures/mec.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/mec.png
 
    * - markerfacecolor (mfc)
      - face color if a marker is used
-     - .. image:: figures/mfc.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/mfc.png
 
    * - markersize (ms)
      - size of the marker in points
-     - .. image:: figures/ms.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/ms.png
 
 
 
@@ -1435,103 +1436,103 @@ Line styles
 
    * - ``-``
      - solid line
-     - .. image:: figures/linestyle--.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle--.png
 
    * - ``--``
      - dashed line
-     - .. image:: figures/linestyle---.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle---.png
 
    * - ``-.``
      - dash-dot line
-     - .. image:: figures/linestyle--dot.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle--dot.png
 
    * - ``:``
      - dotted line
-     - .. image:: figures/linestyle-:.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-:.png
 
    * - ``.``
      - points
-     - .. image:: figures/linestyle-dot.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-dot.png
 
    * - ``,``
      - pixels
-     - .. image:: figures/linestyle-,.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-,.png
 
    * - ``o``
      - circle
-     - .. image:: figures/linestyle-o.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-o.png
 
    * - ``^``
      - triangle up
-     - .. image:: figures/linestyle-^.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-^.png
 
    * - ``v``
      - triangle down
-     - .. image:: figures/linestyle-v.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-v.png
 
    * - ``<``
      - triangle left
-     - .. image:: figures/linestyle-<.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-<.png
 
    * - ``>``
      - triangle right
-     - .. image:: figures/linestyle->.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle->.png
 
    * - ``s``
      - square
-     - .. image:: figures/linestyle-s.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-s.png
 
    * - ``+``
      - plus
-     - .. image:: figures/linestyle-+.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-+.png
 
    * - ``x``
      -  cross
-     - .. image:: figures/linestyle-x.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-x.png
 
    * - ``D``
      - diamond
-     - .. image:: figures/linestyle-dd.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-dd.png
 
    * - ``d``
      - thin diamond
-     - .. image:: figures/linestyle-d.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-d.png
 
    * - ``1``
      - tripod down
-     - .. image:: figures/linestyle-1.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-1.png
 
    * - ``2``
      - tripod up
-     - .. image:: figures/linestyle-2.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-2.png
 
    * - ``3``
      - tripod left
-     - .. image:: figures/linestyle-3.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-3.png
 
    * - ``4``
      - tripod right
-     - .. image:: figures/linestyle-4.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-4.png
 
    * - ``h``
      - hexagon
-     - .. image:: figures/linestyle-h.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-h.png
 
    * - ``H``
      - rotated hexagon
-     - .. image:: figures/linestyle-hh.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-hh.png
 
    * - ``p``
      -  pentagon
-     - .. image:: figures/linestyle-p.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-p.png
 
    * - ``|``
      - vertical line
-     - .. image:: figures/linestyle-|.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-|.png
 
    * - ``_``
      - horizontal line
-     - .. image:: figures/linestyle-_.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/linestyle-_.png
 
 
 Markers
@@ -1548,131 +1549,131 @@ Markers
 
    * - 0
      - tick left
-     - .. image:: figures/marker-i0.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-i0.png
 
    * - 1
      - tick right
-     - .. image:: figures/marker-i1.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-i1.png
 
    * - 2
      - tick up
-     - .. image:: figures/marker-i2.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-i2.png
 
    * - 3
      - tick down
-     - .. image:: figures/marker-i3.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-i3.png
 
    * - 4
      - caret left
-     - .. image:: figures/marker-i4.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-i4.png
 
    * - 5
      - caret right
-     - .. image:: figures/marker-i5.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-i5.png
 
    * - 6
      - caret up
-     - .. image:: figures/marker-i6.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-i6.png
 
    * - 7
      - caret down
-     - .. image:: figures/marker-i7.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-i7.png
 
    * - ``o``
      - circle
-     - .. image:: figures/marker-o.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-o.png
 
    * - ``D``
      - diamond
-     - .. image:: figures/marker-dd.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-dd.png
 
    * - ``h``
      - hexagon 1
-     - .. image:: figures/marker-h.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-h.png
 
    * - ``H``
      - hexagon 2
-     - .. image:: figures/marker-hh.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-hh.png
 
    * - ``_``
      - horizontal line
-     - .. image:: figures/marker-_.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-_.png
 
    * - ``1``
      - tripod down
-     - .. image:: figures/marker-1.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-1.png
 
    * - ``2``
      - tripod up
-     - .. image:: figures/marker-2.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-2.png
 
    * - ``3``
      - tripod left
-     - .. image:: figures/marker-3.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-3.png
 
    * - ``4``
      - tripod right
-     - .. image:: figures/marker-4.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-4.png
 
    * - ``8``
      - octagon
-     - .. image:: figures/marker-8.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-8.png
 
    * - ``p``
      - pentagon
-     - .. image:: figures/marker-p.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-p.png
 
    * - ``^``
      - triangle up
-     - .. image:: figures/marker-^.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-^.png
 
    * - ``v``
      - triangle down
-     - .. image:: figures/marker-v.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-v.png
 
    * - ``<``
      - triangle left
-     - .. image:: figures/marker-<.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-<.png
 
    * - ``>``
      - triangle right
-     - .. image:: figures/marker->.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker->.png
 
    * - ``d``
      - thin diamond
-     - .. image:: figures/marker-d.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-d.png
 
    * - ``,``
      - pixel
-     - .. image:: figures/marker-,.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-,.png
 
    * - ``+``
      - plus
-     - .. image:: figures/marker-+.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-+.png
 
    * - ``.``
      - point
-     - .. image:: figures/marker-dot.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-dot.png
 
    * - ``s``
      - square
-     - .. image:: figures/marker-s.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-s.png
 
    * - ``*``
      - star
-     - .. image:: figures/marker-*.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-*.png
 
    * - ``|``
      - vertical line
-     - .. image:: figures/marker-|.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-|.png
 
    * - ``x``
      - cross
-     - .. image:: figures/marker-x.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-x.png
 
    * - ``r'$\sqrt{2}$'``
      - any latex expression
-     - .. image:: figures/marker-latex.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/marker-latex.png
 
 
 
@@ -1698,49 +1699,49 @@ Base
      - Appearance
 
    * - autumn
-     - .. image:: figures/cmap-autumn.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-autumn.png
 
    * - bone
-     - .. image:: figures/cmap-bone.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-bone.png
 
    * - cool
-     - .. image:: figures/cmap-cool.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-cool.png
 
    * - copper
-     - .. image:: figures/cmap-copper.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-copper.png
 
    * - flag
-     - .. image:: figures/cmap-flag.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-flag.png
 
    * - gray
-     - .. image:: figures/cmap-gray.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-gray.png
 
    * - hot
-     - .. image:: figures/cmap-hot.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-hot.png
 
    * - hsv
-     - .. image:: figures/cmap-hsv.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-hsv.png
 
    * - jet
-     - .. image:: figures/cmap-jet.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-jet.png
 
    * - pink
-     - .. image:: figures/cmap-pink.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-pink.png
 
    * - prism
-     - .. image:: figures/cmap-prism.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-prism.png
 
    * - spectral
-     - .. image:: figures/cmap-spectral.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-spectral.png
 
    * - spring
-     - .. image:: figures/cmap-spring.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-spring.png
 
    * - summer
-     - .. image:: figures/cmap-summer.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-summer.png
 
    * - winter
-     - .. image:: figures/cmap-winter.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-winter.png
 
 
 GIST
@@ -1754,25 +1755,25 @@ GIST
      - Appearance
 
    * - gist_earth
-     - .. image:: figures/cmap-gist_earth.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-gist_earth.png
 
    * - gist_gray
-     - .. image:: figures/cmap-gist_gray.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-gist_gray.png
 
    * - gist_heat
-     - .. image:: figures/cmap-gist_heat.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-gist_heat.png
 
    * - gist_ncar
-     - .. image:: figures/cmap-gist_ncar.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-gist_ncar.png
 
    * - gist_rainbow
-     - .. image:: figures/cmap-gist_rainbow.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-gist_rainbow.png
 
    * - gist_stern
-     - .. image:: figures/cmap-gist_stern.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-gist_stern.png
 
    * - gist_yarg
-     - .. image:: figures/cmap-gist_yarg.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-gist_yarg.png
 
 
 Diverging
@@ -1786,31 +1787,31 @@ Diverging
      - Appearance
 
    * - BrBG
-     - .. image:: figures/cmap-BrBG.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-BrBG.png
 
    * - PiYG
-     - .. image:: figures/cmap-PiYG.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-PiYG.png
 
    * - PRGn
-     - .. image:: figures/cmap-PRGn.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-PRGn.png
 
    * - PuOr
-     - .. image:: figures/cmap-PuOr.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-PuOr.png
 
    * - RdBu
-     - .. image:: figures/cmap-RdBu.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-RdBu.png
 
    * - RdGy
-     - .. image:: figures/cmap-RdGy.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-RdGy.png
 
    * - RdYlBu
-     - .. image:: figures/cmap-RdYlBu.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-RdYlBu.png
 
    * - RdYlGn
-     - .. image:: figures/cmap-RdYlGn.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-RdYlGn.png
 
    * - Spectral
-     - .. image:: figures/cmap-spectral-2.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-spectral-2.png
 
 
 
@@ -1825,58 +1826,58 @@ Sequential
      - Appearance
 
    * - Blues
-     - .. image:: figures/cmap-Blues.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-Blues.png
 
    * - BuGn
-     - .. image:: figures/cmap-BuGn.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-BuGn.png
 
    * - BuPu
-     - .. image:: figures/cmap-BuPu.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-BuPu.png
 
    * - GnBu
-     - .. image:: figures/cmap-GnBu.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-GnBu.png
 
    * - Greens
-     - .. image:: figures/cmap-Greens.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-Greens.png
 
    * - Greys
-     - .. image:: figures/cmap-Greys.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-Greys.png
 
    * - Oranges
-     - .. image:: figures/cmap-Oranges.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-Oranges.png
 
    * - OrRd
-     - .. image:: figures/cmap-OrRd.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-OrRd.png
 
    * - PuBu
-     - .. image:: figures/cmap-PuBu.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-PuBu.png
 
    * - PuBuGn
-     - .. image:: figures/cmap-PuBuGn.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-PuBuGn.png
 
    * - PuRd
-     - .. image:: figures/cmap-PuRd.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-PuRd.png
 
    * - Purples
-     - .. image:: figures/cmap-Purples.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-Purples.png
 
    * - RdPu
-     - .. image:: figures/cmap-RdPu.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-RdPu.png
 
    * - Reds
-     - .. image:: figures/cmap-Reds.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-Reds.png
 
    * - YlGn
-     - .. image:: figures/cmap-YlGn.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-YlGn.png
 
    * - YlGnBu
-     - .. image:: figures/cmap-YlGnBu.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-YlGnBu.png
 
    * - YlOrBr
-     - .. image:: figures/cmap-YlOrBr.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-YlOrBr.png
 
    * - YlOrRd
-     - .. image:: figures/cmap-YlOrRd.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-YlOrRd.png
 
 
 Qualitative
@@ -1890,28 +1891,28 @@ Qualitative
      - Appearance
 
    * - Accent
-     - .. image:: figures/cmap-Accent.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-Accent.png
 
    * - Dark2
-     - .. image:: figures/cmap-Dark2.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-Dark2.png
 
    * - Paired
-     - .. image:: figures/cmap-Paired.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-Paired.png
 
    * - Pastel1
-     - .. image:: figures/cmap-Pastel1.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-Pastel1.png
 
    * - Pastel2
-     - .. image:: figures/cmap-Pastel2.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-Pastel2.png
 
    * - Set1
-     - .. image:: figures/cmap-Set1.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-Set1.png
 
    * - Set2
-     - .. image:: figures/cmap-Set2.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-Set2.png
 
    * - Set3
-     - .. image:: figures/cmap-Set3.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-Set3.png
 
 
 
@@ -1927,41 +1928,41 @@ Miscellaneous
 
 
    * - afmhot
-     - .. image:: figures/cmap-afmhot.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-afmhot.png
 
 
    * - binary
-     - .. image:: figures/cmap-binary.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-binary.png
 
    * - brg
-     - .. image:: figures/cmap-brg.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-brg.png
 
    * - bwr
-     - .. image:: figures/cmap-bwr.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-bwr.png
 
    * - coolwarm
-     - .. image:: figures/cmap-coolwarm.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-coolwarm.png
 
    * - CMRmap
-     - .. image:: figures/cmap-CMRmap.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-CMRmap.png
 
    * - cubehelix
-     - .. image:: figures/cmap-cubehelix.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-cubehelix.png
 
    * - gnuplot
-     - .. image:: figures/cmap-gnuplot.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-gnuplot.png
 
    * - gnuplot2
-     - .. image:: figures/cmap-gnuplot2.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-gnuplot2.png
 
    * - ocean
-     - .. image:: figures/cmap-ocean.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-ocean.png
 
    * - rainbow
-     - .. image:: figures/cmap-rainbow.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-rainbow.png
 
    * - seismic
-     - .. image:: figures/cmap-seismic.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-seismic.png
 
    * - terrain
-     - .. image:: figures/cmap-terrain.png
+     - .. image:: https://raw.githubusercontent.com/rougier/matplotlib-tutorial/master/figures/cmap-terrain.png
