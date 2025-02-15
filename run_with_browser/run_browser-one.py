@@ -80,8 +80,8 @@ bold = "\033[1m"
 def start_mavis():
     print(f"\nClient Information:\n----------------------")
     print(f"Would you like to run MAVIS as:")
-    print(f"[1] Edge Extension")
-    print(f"[2] Browser")
+    print(f" [1] Edge Extension")
+    print(f" [2] Browser")
 
     while True:
         choice = input(f"Enter your choice [1/2]:").strip()

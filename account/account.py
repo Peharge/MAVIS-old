@@ -2,9 +2,10 @@ import json
 import bcrypt
 from datetime import datetime
 import re
+import os
 
-DATA_FILE = "users.json"
-TOKEN_FILE = "token.json"
+DATA_FILE = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "account", "users.json")
+TOKEN_FILE = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "account", "token.json")
 
 # Farbcodes definieren
 red = "\033[91m"
@@ -165,8 +166,6 @@ def register_mavis_ultra():
     # Nach erfolgreicher Token-Überprüfung wird die Registrierung fortgesetzt
     register("MAVIS Ultra")
 
-
-
 def login():
     print("\n--- Login ---")
     username_or_email = input(f"{blue}Username or Email{reset}:")
@@ -179,7 +178,7 @@ def login():
             if data.get("user_type") == "MAVIS Ultra":
                 greeting = f"{green}Welcome MAVIS Ultra User{username}!{reset}"
             print(greeting)
-            return
+            exit()
 
     print(f"{red}ERROR{reset}: Incorrect login details!")
 
@@ -190,7 +189,7 @@ def main():
         print(f"{red}ERROR{reset}: No token found. You cannot use this software.")
 
     while True:
-        print("\nOptions:\n - Login [1]\n - Register [2]\n - Register as a MAVIS Ultra user [3]")
+        print("\nOptions:\n [1] Login\n [2] Register\n [3] Register as a MAVIS Ultra user")
         choice = input("Selection [1/2/3]:")
 
         if choice == "1":
