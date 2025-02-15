@@ -1408,7 +1408,8 @@ _Good luck!_
 
 ## Learn-MAVIS
 
-https://github.com/Peharge/MAVIS/blob/main/learn-mavis/README.md
+> [Learn to install \ use MAVIS Installer; use MAVIS UI; use Latex; use Matplotlib](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/README.md)<br>
+> Soon: Use Plotly; Seaborn; Numpy; Sympy; PyTorch; Tensorflow; Sikit-Learn;  etc.
 
 ## Transformer
 
