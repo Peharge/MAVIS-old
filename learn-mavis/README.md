@@ -2,6 +2,7 @@
 
 - [Install MAVIS](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/installation.md)
 - [Using MAVIS Installer + UI](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/using-mavis.md)
+- [Learn Prompting](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/prompting.md)
 - [Latex Formula Collection](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/Latex-info.md)
 - [Matplotlib Formula Collection](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/using-matplotlib.rst)
 - [Matplotlib examples](https://matplotlib.org/stable/gallery/index.html)
@@ -15,6 +16,5 @@
 - [Learn scikit-learn](https://scikit-learn.org/stable/)
 - [Learn Transformer](https://huggingface.co/docs/hub/transformers)
 - [Learn Astropy](https://learn.astropy.org/)
-- [Learn Prompting](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/prompting.md)
 
 soon more...
