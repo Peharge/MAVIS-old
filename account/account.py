@@ -189,7 +189,7 @@ def main():
         print(f"{red}ERROR{reset}: No token found. You cannot use this software.")
 
     while True:
-        print("\nOptions:\n [1] Login\n [2] Register\n [3] Register as a MAVIS Ultra user")
+        print("\nOptions:\n [1] Login\n [2] Register\n [3] Register as a MAVIS Ultra (Developer) user")
         choice = input("Selection [1/2/3]:")
 
         if choice == "1":
