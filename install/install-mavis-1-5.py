@@ -248,7 +248,7 @@ packages = [
     "pymedtermino", "lifelines", "rdkit", "ase", "chempy", "shapely", "fiona",
     "cartopy", "statsmodels", "yfinance", "PySpice", "networkx", "schematics",
     "schemdraw", "ipywidgets", "pybullet", "vtk", "diagrams", "graphviz", '"pix2tex[gui]"',
-    "pillow", "watchdog", "bandit", "dotenv-linter", "psutil"
+    "pillow",
 ]
 
 process_packages(packages)
