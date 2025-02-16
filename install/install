@@ -101,3 +101,9 @@ pip install graphviz
 
 pip install bcrypt
 
+pip install watchdog
+
+pip install bandit
+pip install dotenv-linter
+pip install psutil
+

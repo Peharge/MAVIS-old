@@ -65,8 +65,12 @@ import os
 import re
 import sys
 import time
-from dotenv import load_dotenv
+import hashlib
+import psutil
 import subprocess
+from dotenv import load_dotenv
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
 
 # Farbcodes definieren
 red = "\033[91m"
@@ -118,110 +122,95 @@ WEAK_PATTERNS = [
     r'passw0rd', r'guest', r'password1234', r'987654321', r'1qaz2wsx'
 ]
 
+def loading_bar(duration=10, message=f"{blue}Running Security Check{reset}:"):
+    start_time = time.time()
+    while True:
+        elapsed_time = time.time() - start_time
+        progress = min(int((elapsed_time / duration) * 100), 100)
+        bar_length = 43
+        bar_progress = int(bar_length * progress / 100)
+        bar = "█" * bar_progress + "-" * (bar_length - bar_progress)
+        sys.stdout.write(f"\r{blue}{message}{reset} [{bar}] {progress}%")
+        sys.stdout.flush()
+        if progress >= 100:
+            break
+        time.sleep(0.1)
+    sys.stdout.write("\n")
+
 def load_env():
-    if os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", ".env"):
-        load_dotenv()
+    env_path = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", ".env")
+    if os.path.exists(env_path):
+        load_dotenv(dotenv_path=env_path)
         print(f"{green}INFO{reset}: .env file loaded successfully.")
     else:
         print(f"{red}WARNING{reset}: No .env file found.")
+    return env_path
 
-import sys
-import time
+class EnvFileMonitor(FileSystemEventHandler):
+    def on_modified(self, event):
+        if event.src_path.endswith(".env"):
+            print(f"{red}WARNING{reset}: .env file has been modified!")
 
-def loading_bar(progress=100, total=100, duration=10, bar_length=43, message=f"{blue}Running Security Check{reset}:"):
-    try:
-        start_time = time.time()  # Startzeit für die Berechnung der Gesamtdauer
-
-        while progress <= total:
-            elapsed_time = time.time() - start_time
-            if elapsed_time >= duration:  # Wenn die Dauer erreicht ist, beenden
-                break
-
-            # Berechnung des Fortschritts und der Balkenlänge
-            bar_progress = int(bar_length * progress / total)
-            bar = "█" * bar_progress + "-" * (bar_length - bar_progress)
-            percent = int((progress / total) * 100)
-
-            # Ausgabe des Fortschrittbalkens
-            sys.stdout.write(f"\r{blue}{message}{reset} [{bar}] {percent}% ({progress}/{total} steps completed)")
-            sys.stdout.flush()
-
-            # Aktualisieren des Fortschritts (hier für das Beispiel nur eine Steigerung)
-            progress = int((elapsed_time / duration) * total)
-            time.sleep(0.1)  # Kleine Verzögerung für die fließende Anzeige
-
-        # Sobald die 10 Sekunden um sind, den Balken abschließen
-        sys.stdout.write(f"\r{blue}{message}{reset} [{'█' * bar_length}] 100% ({total}/{total} steps completed)\n")
-        sys.stdout.flush()
-
-        print("")
-
-    except Exception as e:
-        print(f"\n{red}An error occurred{reset}: {e}\n")
+def start_env_monitor():
+    observer = Observer()
+    observer.schedule(EnvFileMonitor(), path=".", recursive=False)
+    observer.start()
 
 def check_env_security():
-    issues_found = False
-    print(f"\n{blue}.env SECURITY CHECK{reset}:")
-
+    print(f"\n{blue}.env security variables{reset}:")
     for var in CRITICAL_VARS:
         value = os.getenv(var)
         if not value:
             print(f"   {red}ERROR{reset}: {var} is not set!")
-            issues_found = True
         elif any(re.search(pattern, value, re.IGNORECASE) for pattern in WEAK_PATTERNS):
-            print(f"   {orange}WARNING{reset}: {var} uses a weak pattern: {value}")
-            issues_found = True
-        elif len(value) < 16:
-            print(f"   {yellow}WARNING{reset}: {var} is very short. At least 16 characters recommended.")
-            issues_found = True
-        elif not all(re.search(p, value) for p in [r'[A-Z]', r'[a-z]', r'[0-9]', r'[!@#$%^&*(),.?":{}|<>]']):
-            print(f"   {yellow}WARNING{reset}: {var} should contain uppercase, lowercase, numbers, and special characters.")
-            issues_found = True
+            print(f"   {yellow}WARNING{reset}: {var} uses a weak pattern!")
 
-    if not issues_found:
-        print(f"   {green}SECURE{reset}: No obvious issues found.")
+def check_env_integrity(path):
+    print(f"\n{blue}.env security CHECK{reset}:")
+    if not os.path.exists(path):
+        print(f"   {red}ERROR{reset}: .env file not found!")
+        return None
+    try:
+        with open(path, "rb") as f:
+            return hashlib.sha256(f.read()).hexdigest()
+    except Exception as e:
+        print(f"   {red}ERROR{reset}: Failed to read .env - {e}")
+        return None
 
 def check_outdated_packages():
     print(f"\n{blue}OUTDATED PACKAGES CHECK{reset}:")
-    try:
-        result = subprocess.run(['pip', 'list', '--outdated'], capture_output=True, text=True, timeout=60)
-        outdated = result.stdout.strip()
+    result = subprocess.run(['pip', 'list', '--outdated'], capture_output=True, text=True, timeout=60)
+    print(result.stdout if result.stdout else f"   {green}SUCCESS{reset}: All packages are up to date!")
 
-        if outdated:
-            print(f"   {orange}WARNING{reset}: Outdated packages found:")
-            for line in outdated.splitlines()[2:]:
-                package_info = line.split()
-                package_name = package_info[0]
-                current_version = package_info[1]
-                latest_version = package_info[2]
-                print(
-                    f"      {blue}{package_name}{reset}: Current version: {current_version}, Latest version: {latest_version}")
-        else:
-            print(f"      {green}SECURE{reset}: All packages are up to date.")
-    except subprocess.TimeoutExpired:
-        print(f"      {red}ERROR{reset}: Package check timed out.")
-    except Exception as e:
-        print(f"   {red}ERROR{reset}: Error checking packages: {e}")
+def check_network_connections():
+    print(f"\n{blue}NETWORK SECURITY CHECK{reset}:")
+    for conn in psutil.net_connections(kind="inet"):
+        if conn.raddr:
+            print(f"   Connection from {conn.laddr.ip}:{conn.laddr.port} to {conn.raddr.ip}:{conn.raddr.port}")
 
-def get_user_confirmation():
-    while True:
-        print("\nSecurity Check:\n---------------")
-        user_input = input(f"Do you want to perform a security check? [y/n]:").strip().lower()
-        if user_input in ['y', 'yes']:
-            return True
-        elif user_input in ['n', 'no']:
-            return False
-        else:
-            print(f"{red}ERROR{reset}: Invalid input. Please enter y or n.")
+def run_bandit_scan():
+    print(f"\n{blue}CODE SECURITY CHECK (Bandit){reset}:")
+    result = subprocess.run(["bandit", "-r", "."], capture_output=True, text=True)
+    print(result.stdout if result.stdout else f"   {green}SUCCESS{reset}: No security issues found.")
+
+def run_dotenv_linter():
+    print(f"\n{blue}.env FORMAT CHECK{reset}:")
+    result = subprocess.run(["dotenv-linter", ".env"], capture_output=True, text=True)
+    print(result.stdout if result.stdout else f"   {green}SUCCESS{reset}: No issues found with .env format.")
 
 def main():
-    if get_user_confirmation():
+    env_path = load_env()
+    if env_path:
+        start_env_monitor()
         loading_bar()
-        load_env()
         check_env_security()
-        check_outdated_packages()
-    else:
-        print(f"{blue}Security check skipped...{reset}")
+        reference_hash = check_env_integrity(env_path)
+        if reference_hash:
+            check_outdated_packages()
+            check_network_connections()
+            run_bandit_scan()
+            run_dotenv_linter()
+            print(f"\n{green}SUCCESS{reset}: Security check complete!")
 
 if __name__ == '__main__':
     main()
