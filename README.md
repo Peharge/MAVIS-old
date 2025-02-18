@@ -135,6 +135,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 - **[24.12.2024]** MAVIS 1.3 EAP release: new Plotly functions [Demo](#demo) + Stronger adaptability through Transformer (Huggingface) + Bigger Input Box
 - **[01.02.2025]** MAVIS 1.5 EAP release: new functions
 - **[01.03.2025]** MAVIS 1.5 release!!!
+- **[01.04.2025]** MAVIS 1.6 EAP release!!!
 
 ## Table of contents
 - [Updates](#updates)
