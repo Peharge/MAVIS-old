@@ -970,6 +970,21 @@
             cursor: pointer;
         }
 
+        .button-input-grafana {
+            outline: 0 !important;
+            border: 0 !important;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: all ease-in-out 0.3s;
+            cursor: pointer;
+        }
+
         .button-home:hover {
             transform: translateY(-3px);
         }
@@ -995,6 +1010,10 @@
         }
 
         .button-input-jup:hover {
+            transform: translateY(-3px);
+        }
+
+        .button-input-grafana:hover {
             transform: translateY(-3px);
         }
 
@@ -1034,6 +1053,12 @@
             transform: translateX(-50%) translateY(-30%);
         }
         .button-input-jup:hover .button-tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-30%);
+        }
+
+        .button-input-grafana:hover .button-tooltip {
             visibility: visible;
             opacity: 1;
             transform: translateX(-50%) translateY(-30%);
@@ -2615,6 +2640,30 @@
             -1px -1px 6px rgba(255, 255, 255, 0.4);
         }
 
+        .card-grafana {
+            display: none;
+            z-index: 1;
+            width: 90%;
+            max-width: 4000px;
+            max-height: 2000px;
+            min-width: 300px;
+            min-height: 200px;
+            height: 75%;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            border-radius: 15px;
+            border-bottom: 3px solid rgba(0, 0, 0, 0.440);
+            border-left: 2px rgba(0, 0, 0, 0.545) outset;
+            box-shadow: 40px 50px 30px rgba(0, 0, 0, 0.280);
+            transition: 0.4s;
+            overflow: hidden;
+            color: white;
+            position: fixed;
+            top: 3%;
+            left: 5%;
+        }
+
     </style>
 </head>
 <body>
@@ -3327,6 +3376,14 @@
             </iframe>
         </div>
 
+        <div class="card-grafana" id="card-grafana-id">
+            <iframe src="http://localhost:3000/login"
+                    style="border: none; width: 100%; height: 100%;"
+                    sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
+                    referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
 
         <div class="chat-output" id="chat-content"></div>
         <div class="card2" id="loading">
@@ -3962,6 +4019,25 @@
                 </g>
             </svg>
         </button>
+        <button class="button-input-grafana" onclick="togglegrafana()">
+            <span class="button-tooltip">Grafana</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" viewBox="0 0 32 32" fill="none" class="icon2" id="icon-toggle-grafana">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier"><title>file_type_jupyter</title>
+                    <path d="M26.233,3.588A1.69,1.69,0,1,1,24.473,2a1.67,1.67,0,0,1,1.76,1.585Z"
+                          style="fill:#ffffff"></path>
+                    <path d="M16.375,23.111c-4.487,0-8.43-1.61-10.469-3.988a11.162,11.162,0,0,0,20.938,0C24.81,21.5,20.882,23.111,16.375,23.111Z"
+                          style="fill:#ffffff"></path>
+                    <path d="M16.375,7.648c4.487,0,8.43,1.61,10.469,3.988a11.162,11.162,0,0,0-20.938,0C7.945,9.253,11.869,7.648,16.375,7.648Z"
+                          style="fill:#ffffff"></path>
+                    <path d="M10.2,27.739a2.109,2.109,0,1,1-.2-.8,2.129,2.129,0,0,1,.2.8Z"
+                          style="fill:#ffffff"></path>
+                    <path d="M6.416,7.106A1.226,1.226,0,1,1,7.608,5.83,1.241,1.241,0,0,1,6.416,7.106Z"
+                          style="fill:#ffffff"></path>
+                </g>
+            </svg>
+        </button>
     </div>
 
     <style>
@@ -4018,6 +4094,16 @@
             transition: transform 0.2s ease;
         }
         #icon-toggle-jup.shifted {
+            transform: translateY(-20%) scale(1.1);
+            transition: transform 0.2s ease;
+        }
+
+        #icon-toggle-grafana {
+            transform: translateY(0%) scale(1);
+            transition: transform 0.2s ease;
+        }
+
+        #icon-toggle-grafana.shifted {
             transform: translateY(-20%) scale(1.1);
             transition: transform 0.2s ease;
         }
@@ -4251,6 +4337,20 @@
                 cardjup.style.display = 'block';
             } else {
                 cardjup.style.display = 'none';
+            }
+
+            icon.classList.toggle("shifted");
+        }
+
+        function togglegrafana() {
+            const cargrafana = document.querySelector('.card-grafana');
+
+            const icon = document.getElementById("icon-toggle-grafana");
+
+            if (cargrafana.style.display === 'none' || cargrafana.style.display === '') {
+                cargrafana.style.display = 'block';
+            } else {
+                cargrafana.style.display = 'none';
             }
 
             icon.classList.toggle("shifted");
