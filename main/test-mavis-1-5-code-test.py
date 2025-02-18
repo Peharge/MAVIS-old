@@ -306,7 +306,7 @@ def execute_python_code(md_content):
 
 @app.route('/')
 def index():
-    return render_template('index-mavis-1-5-10.html')
+    return render_template('index-mavis-1-5-11.html')
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
