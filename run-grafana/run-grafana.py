@@ -191,18 +191,32 @@ def install_grafana():
         logging.error(f"Installation fehlgeschlagen: {e}")
         raise
 
+def ask_to_start_grafana():
+    """Fragt den Benutzer, ob er Grafana starten möchte."""
+    while True:
+        choice = input("Möchtest du Grafana starten? (y/yes/n/no): ").strip().lower()
+        if choice in ["y", "yes"]:
+            return True
+        elif choice in ["n", "no"]:
+            logging.info("Grafana wird nicht gestartet.")
+            return False
+        else:
+            print("Ungültige Eingabe. Bitte 'y' für Ja oder 'n' für Nein eingeben.")
+
 def main():
     try:
-        install_grafana()
-        start_grafana()
-        wait_for_grafana()
-        logging.info("Grafana läuft nun unter http://localhost:3000")
-        # Der Code läuft weiter, solange Grafana unter localhost:3000 läuft
-        while is_grafana_running():
-            time.sleep(5)  # Alle 5 Sekunden prüfen, ob Grafana noch läuft
+
+        if ask_to_start_grafana():  # Nutzerentscheidung abfragen
+            install_grafana()
+            start_grafana()
+            wait_for_grafana()
+            logging.info("Grafana läuft nun unter http://localhost:3000")
+
+            while is_grafana_running():
+                time.sleep(5)  # Alle 5 Sekunden prüfen, ob Grafana noch läuft
+        else:
+            logging.info("Das Skript wird ohne Grafana-Start beendet.")
+
     except Exception as e:
         logging.error(f"Fehler bei der Ausführung: {e}")
         logging.info("Grafana konnte nicht korrekt installiert oder gestartet werden.")
-
-if __name__ == "__main__":
-    main()
