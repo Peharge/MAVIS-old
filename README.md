@@ -412,9 +412,9 @@ And more...
   
 - **[VTK Documentation](https://vtk.org/documentation/)** – The official documentation for **VTK**, an open-source library for 3D data visualization and processing, used in fields such as scientific visualization and medical image processing.
 
-</details>
-
 ---
+
+</details>
 
 ### MAVIS 1.6 EAP release [soon]
 
@@ -424,7 +424,7 @@ And more...
 
 <br>
 
-> + 01.04.2025
+> +01.04.2025
 
 <details>
   <summary>More MAVIS versions</summary>
