@@ -221,7 +221,9 @@ And more...
 
 > 24.12.2024
 
-### MAVIS 1.4 EAP release [This update (MAVIS 1.4 EAP) is skipped and MAVIS 1.5 EAP is out]
+### MAVIS 1.4 EAP release 
+
+> This update (MAVIS 1.4 EAP) is skipped and MAVIS 1.5 EAP is out
 
 <details>
   <summary>MAVIS 1.4 EAP</summary>
@@ -242,7 +244,9 @@ And more...
 
 </details>
 
-### MAVIS 1.5 EAP release [new] [01.03.2025 - ultimate stabel!!!]
+### MAVIS 1.5 EAP release [new]
+
+> 01.03.2025 - ultimate stabel!!!]
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis1.4-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -412,10 +416,7 @@ And more...
 
 ---
 
-<details>
-  <summary>More MAVIS versions</summary>
-
-### MAVIS 1.6 EAP release
+### MAVIS 1.6 EAP release [soon]
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis1.5-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -424,6 +425,9 @@ And more...
 <br>
 
 > + 01.04.2025
+
+<details>
+  <summary>More MAVIS versions</summary>
 
 ### MAVIS 1.7 EAP release
 
