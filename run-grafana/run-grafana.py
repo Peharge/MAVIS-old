@@ -82,28 +82,28 @@ GRAFANA_EXEC = os.path.join(GRAFANA_DIR, "bin", "grafana-server.exe")
 def download_grafana():
     """Lädt das Grafana-Archiv herunter und überprüft den Download."""
     try:
-        logging.info("Lade Grafana für Windows herunter...")
+        logging.info("Download Grafana for Windows...")
         urlretrieve(GRAFANA_WINDOWS_URL, GRAFANA_WINDOWS_ZIP)
-        logging.info(f"Grafana wurde erfolgreich heruntergeladen: {GRAFANA_WINDOWS_ZIP}")
+        logging.info(f"Grafana was downloaded successfully: {GRAFANA_WINDOWS_ZIP}")
     except Exception as e:
-        logging.error(f"Fehler beim Herunterladen von Grafana: {e}")
+        logging.error(f"Error downloading Grafana: {e}")
         raise
 
 def verify_download():
     """Überprüft, ob die heruntergeladene Datei existiert und die Größe korrekt ist."""
     if not os.path.exists(GRAFANA_WINDOWS_ZIP):
-        logging.error("Das heruntergeladene Archiv existiert nicht.")
+        logging.error("The downloaded archive does not exist.")
         return False
     return True
 
 def extract_grafana():
     """Entpackt das heruntergeladene Grafana-Archiv."""
     try:
-        logging.info("Entpacke Grafana...")
+        logging.info("Unpack Grafana...")
         subprocess.run(["powershell", "-Command", f"Expand-Archive -Path {GRAFANA_WINDOWS_ZIP} -DestinationPath {GRAFANA_DIR} -Force"], check=True)
-        logging.info("Grafana erfolgreich entpackt.")
+        logging.info("Grafana successfully unpacked.")
     except subprocess.CalledProcessError as e:
-        logging.error(f"Fehler beim Entpacken von Grafana: {e}")
+        logging.error(f"Error unpacking Grafana: {e}")
         raise
 
 def find_grafana_exec():
@@ -114,7 +114,7 @@ def find_grafana_exec():
     if os.path.exists(grafana_exec):
         return grafana_exec
     else:
-        logging.error(f"Die Datei 'grafana-server.exe' wurde nicht gefunden: {grafana_exec}")
+        logging.error(f"The file 'grafana-server.exe' was not found: {grafana_exec}")
         return None
 
 
@@ -122,7 +122,7 @@ def start_grafana():
     """Startet den Grafana-Server und zeigt die Ausgaben an."""
     try:
         if os.path.exists(GRAFANA_EXEC_TEMPLATE):
-            logging.info("Starte Grafana...")
+            logging.info("Start Grafana...")
 
             # Setze das Arbeitsverzeichnis auf das Grafana-Home-Verzeichnis
             grafana_homepath = os.path.join(GRAFANA_DIR, f"grafana-v{GRAFANA_VERSION}")
@@ -139,16 +139,16 @@ def start_grafana():
                 print(line.strip())  # Zeigt Fehlerausgaben an
 
             process.wait()  # Warten, bis der Prozess beendet wird
-            logging.info("Grafana wurde erfolgreich gestartet.")
+            logging.info("Grafana was started successfully.")
         else:
-            logging.error(f"Grafana-Executable nicht gefunden: {GRAFANA_EXEC_TEMPLATE}")
+            logging.error(f"Grafana executable not found: {GRAFANA_EXEC_TEMPLATE}")
     except subprocess.CalledProcessError as e:
-        logging.error(f"Fehler beim Starten von Grafana: {e}")
+        logging.error(f"Error starting Grafana: {e}")
 
 def wait_for_grafana():
     """Wartet, bis Grafana unter localhost:3000 läuft."""
     while not is_grafana_running():
-        logging.info("Warte darauf, dass Grafana startet...")
+        logging.info("Waiting for Grafana to start...")
         time.sleep(5)  # Warte 5 Sekunden, bevor erneut geprüft wird
 
 def is_grafana_running():
@@ -156,13 +156,13 @@ def is_grafana_running():
     try:
         response = requests.get("http://localhost:3000", timeout=10)
         if response.status_code == 200:
-            logging.info("Grafana läuft erfolgreich unter http://localhost:3000")
+            logging.info("Grafana runs successfully at http://localhost:3000")
             return True
         else:
-            logging.warning(f"Grafana antwortet mit Statuscode {response.status_code}.")
+            logging.warning(f"Grafana responds with status code {response.status_code}.")
             return False
     except requests.ConnectionError:
-        logging.warning("Verbindung zu Grafana fehlgeschlagen. Grafana läuft wahrscheinlich noch nicht.")
+        logging.warning("Connection to Grafana failed. Grafana is probably not running yet.")
         return False
 
 def install_grafana():
@@ -172,51 +172,52 @@ def install_grafana():
         if system == "Windows":
             # Prüfen, ob Grafana bereits installiert ist
             if os.path.exists(find_grafana_exec()):
-                logging.info("Grafana ist bereits installiert.")
+                logging.info("Grafana is already installed.")
             else:
                 # Prüfen, ob die ZIP-Datei vorhanden ist
                 if os.path.exists(GRAFANA_WINDOWS_ZIP):
-                    logging.info("Die ZIP-Datei von Grafana ist bereits vorhanden.")
-                    logging.info("Entpacke Grafana...")
+                    logging.info("The Grafana ZIP file is already there.")
+                    logging.info("Unpack Grafana...")
                     extract_grafana()
                     start_grafana()
                 else:
-                    logging.info("Grafana ist noch nicht installiert und die ZIP-Datei fehlt.")
+                    logging.info("Grafana is not yet installed and the ZIP file is missing.")
                     download_grafana()
                     extract_grafana()
                     start_grafana()
         else:
-            logging.error("Dieses Betriebssystem wird nicht unterstützt.")
+            logging.error("This operating system is not supported.")
     except Exception as e:
-        logging.error(f"Installation fehlgeschlagen: {e}")
+        logging.error(f"Installation failed: {e}")
         raise
 
 def ask_to_start_grafana():
     """Fragt den Benutzer, ob er Grafana starten möchte."""
     while True:
-        choice = input("Möchtest du Grafana starten? (y/yes/n/no): ").strip().lower()
+        choice = input("Do you want to start Grafana?[y/n]: ").strip().lower()
         if choice in ["y", "yes"]:
             return True
         elif choice in ["n", "no"]:
-            logging.info("Grafana wird nicht gestartet.")
+            logging.info("Grafana won't start.")
             return False
         else:
-            print("Ungültige Eingabe. Bitte 'y' für Ja oder 'n' für Nein eingeben.")
+            print("Invalid input. Please enter 'y' for yes or 'n' for no.")
 
 def main():
     try:
-
-        if ask_to_start_grafana():  # Nutzerentscheidung abfragen
+        if ask_to_start_grafana():
             install_grafana()
             start_grafana()
             wait_for_grafana()
-            logging.info("Grafana läuft nun unter http://localhost:3000")
-
+            logging.info("Grafana now runs at http://localhost:3000")
+            # Der Code läuft weiter, solange Grafana unter localhost:3000 läuft
             while is_grafana_running():
                 time.sleep(5)  # Alle 5 Sekunden prüfen, ob Grafana noch läuft
         else:
-            logging.info("Das Skript wird ohne Grafana-Start beendet.")
-
+            logging.info("The script exits without starting Grafana.")
     except Exception as e:
-        logging.error(f"Fehler bei der Ausführung: {e}")
-        logging.info("Grafana konnte nicht korrekt installiert oder gestartet werden.")
+        logging.error(f"Error during execution: {e}")
+        logging.info("Grafana could not be installed or started correctly.")
+
+if __name__ == "__main__":
+    main()
