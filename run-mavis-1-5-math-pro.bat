@@ -74,6 +74,7 @@ set SCRIPT_PATH_security=C:\Users\%USERNAME%\PycharmProjects\MAVIS\security\secu
 set SCRIPT_PATH_4=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info\info-mavis-1-5.py
 set PYTHON_SCRIPT_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run_with_browser\run_browser-one.py
 set run_jup=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run-jup\run-jup.py
+set run_grafana=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run-grafana\run-grafana.py
 set SCRIPT_PATH_5=C:\Users\%USERNAME%\PycharmProjects\MAVIS\mavis-1-5-main-math-pro.py
 
 if not exist "%PYTHON_PATH%" (
@@ -144,6 +145,17 @@ if not exist "%run_jup%" (
 
 REM Run the `run-jup.py` script in the background
 start "" "%PYTHON_PATH%" "%run_jup%"
+
+REM Wait for 5 seconds before continuing
+timeout /t 5 /nobreak
+
+if not exist "%run_grafana%" (
+    echo Error: Python script not found: %run_grafana%
+    exit /B 1
+)
+
+REM Run the `run-grafana.py` script in the background
+start "" "%PYTHON_PATH%" "%run_grafana%"
 
 REM Wait for 5 seconds before continuing
 timeout /t 5 /nobreak
