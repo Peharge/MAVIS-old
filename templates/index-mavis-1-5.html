@@ -984,6 +984,21 @@
             cursor: pointer;
         }
 
+        .button-input-gallery {
+            outline: 0 !important;
+            border: 0 !important;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: all ease-in-out 0.3s;
+            cursor: pointer;
+        }
+
         .button-home:hover {
             transform: translateY(-3px);
         }
@@ -1013,6 +1028,10 @@
         }
 
         .button-input-grafana:hover {
+            transform: translateY(-3px);
+        }
+
+        .button-input-gallery:hover {
             transform: translateY(-3px);
         }
 
@@ -1058,6 +1077,12 @@
         }
 
         .button-input-grafana:hover .button-tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-30%);
+        }
+
+        .button-input-gallery:hover .button-tooltip {
             visibility: visible;
             opacity: 1;
             transform: translateX(-50%) translateY(-30%);
@@ -2663,7 +2688,7 @@
             left: 5%;
         }
 
-        .chat-gallery {
+        .card-gallery {
             display: none;
             z-index: 1;
             width: 90%;
@@ -3407,7 +3432,7 @@
             </iframe>
         </div>
 
-        <div id="chat-gallery" class="chat-gallery">
+        <div id="chat-gallery" class="card-gallery">
             <h2>Gespeicherte Chat-Daten</h2>
             <!-- Hier werden die gespeicherten Chat-Daten angezeigt -->
         </div>
@@ -4058,9 +4083,9 @@
             </svg>
         </button>
 
-        <button class="button-input-grafana" onclick="togglegallery()">
-            <span class="button-tooltip">Grafana</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" viewBox="0 0 16 16" fill="none" class="icon2" id="icon-toggle-grafana">
+        <button class="button-input-gallery" onclick="togglegallery()">
+            <span class="button-tooltip">Gallery</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" viewBox="0 0 16 16" fill="none" class="icon2" id="icon-toggle-gallery">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                 <g id="SVGRepo_iconCarrier">
@@ -4135,6 +4160,16 @@
         }
 
         #icon-toggle-grafana.shifted {
+            transform: translateY(-20%) scale(1.1);
+            transition: transform 0.2s ease;
+        }
+
+        #icon-toggle-gallery {
+            transform: translateY(0%) scale(1);
+            transition: transform 0.2s ease;
+        }
+
+        #icon-toggle-gallery.shifted {
             transform: translateY(-20%) scale(1.1);
             transition: transform 0.2s ease;
         }
@@ -4450,7 +4485,7 @@
         }
 
         function togglegallery() {
-            const gallery = document.querySelector('.chat-gallery');
+            const gallery = document.querySelector('.card-gallery');
 
             const icon = document.getElementById("icon-toggle-gallery");
 
