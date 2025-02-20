@@ -196,7 +196,7 @@ def ask_to_start_grafana():
     while True:
         print("\nGrafana Information:")
         print("--------------------")
-        choice = input("Do you want to start Grafana?[y/n]: ").strip().lower()
+        choice = input("Do you want to start Grafana?[y/n]:").strip().lower()
         if choice in ["y", "yes"]:
             return True
         elif choice in ["n", "no"]:
