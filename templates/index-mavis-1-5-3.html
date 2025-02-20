@@ -2666,9 +2666,38 @@
     </style>
 
     <style>
-        .gallery-item { margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; }
-        .gallery-item img { max-width: 100%; height: auto; }
-        pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; }
+        .gallerie {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .card-gallerie {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            padding: 15px;
+        }
+        pre {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 3px;
+            overflow-x: auto;
+        }
+        .image-box {
+            margin: 10px 0;
+        }
+        .image-box img {
+            max-width: 100%;
+            height: auto;
+        }
+        .response-box {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -3387,31 +3416,6 @@
                     sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
                     referrerpolicy="no-referrer-when-downgrade">
             </iframe>
-        </div>
-
-        <h1>MAVIS Galerie</h1>
-
-        <!-- Deine bestehende Seite kann hier fortgesetzt werden -->
-
-        <h2>Galerie</h2>
-        <div class="gallery-container">
-            {% for event in gallery_data %}
-                <div class="gallery-item">
-                    <h3>{{ event.timestamp }}</h3>
-                    <p><strong>Message:</strong> {{ event.user_message }}</p>
-                    <p><strong>Response:</strong> {{ event.response_content }}</p>
-
-                    <div><strong>Images:</strong></div>
-                    <div class="gallery-images">
-                        {% for url in event.image_urls %}
-                            <img src="{{ url }}" alt="Image" width="300px" />
-                        {% endfor %}
-                    </div>
-
-                    <div><strong>Code Output:</strong></div>
-                    <pre>{{ event.response_content_code }}</pre>
-                </div>
-            {% endfor %}
         </div>
 
         <div class="chat-output" id="chat-content"></div>
