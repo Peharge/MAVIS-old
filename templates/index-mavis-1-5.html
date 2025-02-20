@@ -3456,7 +3456,7 @@
         </div>
 
         <div id="chat-gallery" class="card-gallery">
-            <h2>Gespeicherte Chat-Daten</h2>
+            <h2>Saved chat data</h2>
             <!-- Hier werden die gespeicherten Chat-Daten angezeigt -->
         </div>
 
@@ -4286,7 +4286,7 @@
                         <p>${message}</p>
                     </div>
                     <div>
-                        <img class="img-out-out" src="${data.image_url}" alt="Hochgeladenes Bild">
+                        <img class="img-out-out" src="${data.image_url}" alt="Uploaded image">
                     </div>`;
 
                 chatContent.innerHTML += `
@@ -4317,14 +4317,14 @@
         // Funktion, um die gespeicherten Chat-Daten anzuzeigen
         const displayChatGallery = () => {
             const chatGallery = document.getElementById('chat-gallery'); // Container für die Galerie
-            chatGallery.innerHTML = '<h2>Gespeicherte Chat-Daten</h2>'; // Titel der Galerie zurücksetzen
+            chatGallery.innerHTML = '<h2>Saved chat data</h2>'; // Titel der Galerie zurücksetzen
 
             // Lade die gespeicherten Chat-Daten aus dem localStorage
             const storedChatData = JSON.parse(localStorage.getItem('chatData')) || [];
 
             // Wenn keine Chat-Daten vorhanden sind, zeige eine Nachricht an
             if (storedChatData.length === 0) {
-                chatGallery.innerHTML += '<p>Keine gespeicherten Chat-Daten vorhanden.</p>';
+                chatGallery.innerHTML += '<p>No saved chat data available.</p>';
                 return;
             }
 
@@ -4339,7 +4339,7 @@
                         <p><strong>Nachricht:</strong> ${chat.message}</p>
                     </div>
                     <div>
-                        <img class="gallery-img" src="${chat.image_url}" alt="Hochgeladenes Bild" style="max-width: 400px; height: auto;">
+                        <img class="gallery-img" src="${chat.image_url}" alt="Uploaded image" style="max-width: 400px; height: auto;">
                     </div>
                     <div class="gallery-answer">
                         <p><strong>Antwort:</strong>
