@@ -4309,7 +4309,7 @@
 
             } else {
                 // Falls ein Fehler in den Daten ist
-                chatContent.innerHTML += `<p><strong>Fehler:</strong> ${data.error}</p>`;
+                chatContent.innerHTML += `<p><strong>Error:</strong> ${data.error}</p>`;
             }
 
         };
@@ -4336,19 +4336,19 @@
                 // HTML-Inhalt für jedes Chat-Element
                 chatItem.innerHTML = `
                     <div class="gallery-message">
-                        <p><strong>Nachricht:</strong> ${chat.message}</p>
+                        <p><strong>Message:</strong> ${chat.message}</p>
                     </div>
                     <div>
                         <img class="gallery-img" src="${chat.image_url}" alt="Uploaded image" style="max-width: 400px; height: auto;">
                     </div>
                     <div class="gallery-answer">
-                        <p><strong>Antwort:</strong>
+                        <p><strong>Answer:</strong>
                             <span style="cursor: pointer; font-size: 20px; margin-left: 10px;" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'inline' : 'none'; this.innerHTML = this.innerHTML === '↓' ? '↑' : '↓';">↓</span>
                             <span style="display: none;">${chat.response}</span>
                         </p>
                     </div>
                     <div class="gallery-code">
-                        <p><strong>Code:</strong> ${chat.code}</p>
+                        <p><strong>Terminal:</strong> ${chat.code}</p>
                     </div>
                     <hr>
                 `;
