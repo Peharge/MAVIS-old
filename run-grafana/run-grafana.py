@@ -210,7 +210,7 @@ def ask_to_start_grafana():
     while True:
         print("\nGrafana Information:")
         print("--------------------")
-        print("")
+        print("Grafana is installed and started here, this also works without a cover but Grafan has problems being embedded in MAVIS UI! If there are still problems, please always run >SThe Grafana in your browser under http://localhost:3000!\n")
         choice = input("Do you want to start Grafana? [y/n]:").strip().lower()
         if choice in ["y", "yes"]:
             return True
