@@ -185,9 +185,6 @@ app.config['UPLOAD_FOLDER_LATEX'] = UPLOAD_FOLDER_LATEX
 app.config['UPLOAD_URL'] = '/uploads/'
 DEFAULT_IMAGE_PATH = r""
 
-# Die JSON-Datei, in der wir die Galerie speichern
-GALLERY_JSON_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'gallery.json')
-
 # Erlaubte Dateitypen
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
@@ -196,6 +193,12 @@ if not os.path.exists(UPLOAD_FOLDER):
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+import os
+import datetime
+import json
+
+GALLERY_JSON_PATH = "gallery.json"
 
 def save_to_gallery(user_message, wrapped_html_content, response_content_code, filename):
     # Debugging: Ausgabe vor dem Speichern
@@ -214,16 +217,29 @@ def save_to_gallery(user_message, wrapped_html_content, response_content_code, f
     else:
         gallery_data = []
 
+    # Stelle sicher, dass beim ersten Start ein "Start"-Datensatz existiert
+    if len(gallery_data) == 0:
+        start_timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        start_event = {
+            'timestamp': start_timestamp,
+            'user_message': "Start der Galerie",
+            'response_content': "Dies ist der Startpunkt der Galerie.",
+            'response_content_code': "start_code",
+            'image_urls': ""
+        }
+        gallery_data.append(start_event)
+        print("Start-Datensatz hinzugefügt:", start_event)
+
     # Debugging: Ausgabe der geladenen Galerie
     print("Galerie-Daten vor dem Hinzufügen:", gallery_data)
 
     # Erstelle das neue Event
     event = {
         'timestamp': timestamp,
-        'user_message': user_message,
+        'user_message': request.form.get('message', '').strip(),
         'response_content': wrapped_html_content,
         'response_content_code': response_content_code,
-        'image_urls': app.config['UPLOAD_URL'] + filename
+        'image_urls': "http://example.com/" + filename  # Beispiel-URL, anpassen
     }
 
     # Füge das neue Event der Galerie hinzu
@@ -239,6 +255,10 @@ def save_to_gallery(user_message, wrapped_html_content, response_content_code, f
         print(f"Galerie erfolgreich in {GALLERY_JSON_PATH} gespeichert.")
     except Exception as e:
         print(f"Fehler beim Speichern der Galerie-Daten: {e}")
+
+# Dieser Block würde beim Start der Anwendung oder des Skripts aufgerufen
+save_to_gallery("Beispiel-Nachricht", "HTML-Inhalt hier", "code123", "image1.jpg")
+
 
 def execute_python_code(md_content):
 
@@ -362,7 +382,7 @@ def index():
     else:
         gallery_data = []
 
-    return render_template('index-mavis-1-5.html', gallery_data=gallery_data)
+    return render_template('index-mavis-1-5-3.html', gallery_data=gallery_data)
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):

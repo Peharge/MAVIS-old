@@ -3389,31 +3389,30 @@
             </iframe>
         </div>
 
-    <h1>MAVIS Galerie</h1>
+        <h1>MAVIS Galerie</h1>
 
-    <!-- Deine bestehende Seite kann hier fortgesetzt werden -->
+        <!-- Deine bestehende Seite kann hier fortgesetzt werden -->
 
-    <h2>Galerie</h2>
-    <div class="gallery-container">
-        {% for event in gallery_data %}
-            <div class="gallery-item">
-                <h3>{{ event.timestamp }}</h3>
-                <p><strong>Message:</strong> {{ event.user_message }}</p>
-                <p><strong>Response:</strong> {{ event.response_content }}</p>
+        <h2>Galerie</h2>
+        <div class="gallery-container">
+            {% for event in gallery_data %}
+                <div class="gallery-item">
+                    <h3>{{ event.timestamp }}</h3>
+                    <p><strong>Message:</strong> {{ event.user_message }}</p>
+                    <p><strong>Response:</strong> {{ event.response_content }}</p>
 
-                <div><strong>Images:</strong></div>
-                <div class="gallery-images">
-                    {% for url in event.image_urls %}
-                        <img src="{{ url }}" alt="Image" width="300px" />
-                    {% endfor %}
+                    <div><strong>Images:</strong></div>
+                    <div class="gallery-images">
+                        {% for url in event.image_urls %}
+                            <img src="{{ url }}" alt="Image" width="300px" />
+                        {% endfor %}
+                    </div>
+
+                    <div><strong>Code Output:</strong></div>
+                    <pre>{{ event.response_content_code }}</pre>
                 </div>
-
-                <div><strong>Code Output:</strong></div>
-                <pre>{{ event.response_content_code }}</pre>
-            </div>
-        {% endfor %}
-    </div>
-
+            {% endfor %}
+        </div>
 
         <div class="chat-output" id="chat-content"></div>
         <div class="card2" id="loading">
