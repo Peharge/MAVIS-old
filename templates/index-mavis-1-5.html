@@ -4195,20 +4195,20 @@
 
                 // Füge die HTML-Inhalte zum Chat hinzu
                 chatContent.innerHTML += `
-                    <div class="">
+                    <div class="user-box">
                         <p>${message}</p>
                     </div>
                     <div>
-                        <img class="" src="${data.image_url}" alt="Hochgeladenes Bild">
+                        <img class="img-out-out" src="${data.image_url}" alt="Hochgeladenes Bild">
                     </div>`;
 
                 chatContent.innerHTML += `
-                    <div class="">
+                    <div class="chatbot-box">
                         <p>${data.response}</p>
                     </div>`;
 
                 chatContent.innerHTML += `
-                    <div class="">
+                    <div class="chatbot-box-code">
                         <p>${data.code}</p>
                     </div>`;
 
@@ -4248,16 +4248,16 @@
 
                 // HTML-Inhalt für jedes Chat-Element
                 chatItem.innerHTML = `
-                    <div class="user-box">
+                    <div class="">
                         <p><strong>Nachricht:</strong> ${chat.message}</p>
                     </div>
                     <div>
-                        <img class="img-out-out" src="${chat.image_url}" alt="Hochgeladenes Bild" style="max-width: 100px; height: auto;">
+                        <img class="" src="${chat.image_url}" alt="Hochgeladenes Bild" style="max-width: 100px; height: auto;">
                     </div>
-                    <div class="chatbot-box">
+                    <div class="">
                         <p><strong>Antwort:</strong> ${chat.response}</p>
                     </div>
-                    <div class="chatbot-box-code">
+                    <div class="">
                         <p><strong>Code:</strong> ${chat.code}</p>
                     </div>
                     <hr>
