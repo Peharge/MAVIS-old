@@ -3383,6 +3383,11 @@
             </iframe>
         </div>
 
+        <div id="chat-gallery" class="chat-gallery">
+            <h2>Gespeicherte Chat-Daten</h2>
+            <!-- Hier werden die gespeicherten Chat-Daten angezeigt -->
+        </div>
+
         <div class="chat-output" id="chat-content"></div>
         <div class="card2" id="loading">
         <div class="loader" id="loaderid">
@@ -4180,30 +4185,92 @@
 
             const data = await response.json();
             if (data.response) {
+                // Erstelle ein Objekt, um die angezeigten Daten zu speichern
+                const chatData = {
+                    message: message,
+                    image_url: data.image_url,
+                    response: data.response,
+                    code: data.code
+                };
+
+                // Füge die HTML-Inhalte zum Chat hinzu
                 chatContent.innerHTML += `
-                    <div class="user-box">
-                          <p>${message}</p>
+                    <div class="">
+                        <p>${message}</p>
                     </div>
                     <div>
-                        <img class="img-out-out" src="${data.image_url}" alt="Hochgeladenes Bild">
+                        <img class="" src="${data.image_url}" alt="Hochgeladenes Bild">
                     </div>`;
 
                 chatContent.innerHTML += `
-                    <div class="chatbot-box">
+                    <div class="">
                         <p>${data.response}</p>
                     </div>`;
 
                 chatContent.innerHTML += `
-                    <div class="chatbot-box-code">
+                    <div class="">
                         <p>${data.code}</p>
                     </div>`;
 
+                // MathJax für die mathematische Formatierung
                 MathJax.typeset();
+
+                // Speichern der gesammelten Daten in localStorage
+                let storedChatData = JSON.parse(localStorage.getItem('chatData')) || []; // Hole bereits gespeicherte Daten, falls vorhanden
+                storedChatData.push(chatData); // Füge die neuen Daten hinzu
+                localStorage.setItem('chatData', JSON.stringify(storedChatData)); // Speichere die Daten zurück in localStorage
+
             } else {
+                // Falls ein Fehler in den Daten ist
                 chatContent.innerHTML += `<p><strong>Fehler:</strong> ${data.error}</p>`;
             }
 
         };
+
+        // Funktion, um die gespeicherten Chat-Daten anzuzeigen
+        const displayChatGallery = () => {
+            const chatGallery = document.getElementById('chat-gallery'); // Container für die Galerie
+            chatGallery.innerHTML = '<h2>Gespeicherte Chat-Daten</h2>'; // Titel der Galerie zurücksetzen
+
+            // Lade die gespeicherten Chat-Daten aus dem localStorage
+            const storedChatData = JSON.parse(localStorage.getItem('chatData')) || [];
+
+            // Wenn keine Chat-Daten vorhanden sind, zeige eine Nachricht an
+            if (storedChatData.length === 0) {
+                chatGallery.innerHTML += '<p>Keine gespeicherten Chat-Daten vorhanden.</p>';
+                return;
+            }
+
+            // Durchlaufe alle gespeicherten Chat-Daten und erstelle HTML für die Galerie
+            storedChatData.forEach(chat => {
+                const chatItem = document.createElement('div');
+                chatItem.classList.add('chat-item');
+
+                // HTML-Inhalt für jedes Chat-Element
+                chatItem.innerHTML = `
+                    <div class="user-box">
+                        <p><strong>Nachricht:</strong> ${chat.message}</p>
+                    </div>
+                    <div>
+                        <img class="img-out-out" src="${chat.image_url}" alt="Hochgeladenes Bild" style="max-width: 100px; height: auto;">
+                    </div>
+                    <div class="chatbot-box">
+                        <p><strong>Antwort:</strong> ${chat.response}</p>
+                    </div>
+                    <div class="chatbot-box-code">
+                        <p><strong>Code:</strong> ${chat.code}</p>
+                    </div>
+                    <hr>
+                `;
+
+                // Füge das Chat-Element der Galerie hinzu
+                chatGallery.appendChild(chatItem);
+            });
+        };
+
+        // Rufe die Funktion auf, um die Galerie bei Seitenladung anzuzeigen
+        window.onload = displayChatGallery;
+
 
         const taskBox = document.getElementById('button-containerid');
 
