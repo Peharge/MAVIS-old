@@ -166,9 +166,14 @@ from IPython.display import display
 
 # from transformers import pipeline
 
+import json
+
 app = Flask(__name__)
 # Setze einen geheimen Schlüssel für die Session
 app.secret_key = os.urandom(24)  # Generiert einen zufälligen Schlüssel mit 24 Bytes
+
+# Modell für LaTeX-OCR initialisieren
+model = LatexOCR()
 
 # Verzeichnisse konfigurieren
 UPLOAD_FOLDER = 'uploads'
@@ -180,6 +185,9 @@ app.config['UPLOAD_FOLDER_LATEX'] = UPLOAD_FOLDER_LATEX
 app.config['UPLOAD_URL'] = '/uploads/'
 DEFAULT_IMAGE_PATH = r""
 
+# Die JSON-Datei, in der wir die Galerie speichern
+GALLERY_JSON_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'gallery.json')
+
 # Erlaubte Dateitypen
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
@@ -189,8 +197,48 @@ if not os.path.exists(UPLOAD_FOLDER):
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# Modell für LaTeX-OCR initialisieren
-model = LatexOCR()
+def save_to_gallery(user_message, wrapped_html_content, response_content_code, filename):
+    # Debugging: Ausgabe vor dem Speichern
+    print("Speichere Galerie-Daten in gallery.json")
+
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    # Lade die bestehende Galerie (oder erstelle eine neue, falls sie nicht existiert)
+    if os.path.exists(GALLERY_JSON_PATH):
+        try:
+            with open(GALLERY_JSON_PATH, 'r') as f:
+                gallery_data = json.load(f)
+        except Exception as e:
+            print(f"Fehler beim Laden der Galerie-Daten: {e}")
+            gallery_data = []
+    else:
+        gallery_data = []
+
+    # Debugging: Ausgabe der geladenen Galerie
+    print("Galerie-Daten vor dem Hinzufügen:", gallery_data)
+
+    # Erstelle das neue Event
+    event = {
+        'timestamp': timestamp,
+        'user_message': user_message,
+        'response_content': wrapped_html_content,
+        'response_content_code': response_content_code,
+        'image_urls': app.config['UPLOAD_URL'] + filename
+    }
+
+    # Füge das neue Event der Galerie hinzu
+    gallery_data.append(event)
+
+    # Debugging: Ausgabe nach dem Hinzufügen des Events
+    print("Galerie-Daten nach dem Hinzufügen des Events:", gallery_data)
+
+    # Versuche, die Galerie-Daten zu speichern
+    try:
+        with open(GALLERY_JSON_PATH, 'w') as f:
+            json.dump(gallery_data, f, indent=4)
+        print(f"Galerie erfolgreich in {GALLERY_JSON_PATH} gespeichert.")
+    except Exception as e:
+        print(f"Fehler beim Speichern der Galerie-Daten: {e}")
 
 def execute_python_code(md_content):
 
@@ -306,11 +354,20 @@ def execute_python_code(md_content):
 
 @app.route('/')
 def index():
-    return render_template('index-mavis-1-5.html')
+    # Lade die Galerie-Daten aus der JSON-Datei
+    if os.path.exists(GALLERY_JSON_PATH):
+        with open(GALLERY_JSON_PATH, 'r') as f:
+            gallery_data = json.load(f)
+        print("Galerie-Daten geladen:", gallery_data)  # Debugging-Ausgabe
+    else:
+        gallery_data = []
+
+    return render_template('index-mavis-1-5.html', gallery_data=gallery_data)
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 
 @app.route('/send_message', methods=['POST'])
 def send_message():
@@ -321,13 +378,20 @@ def send_message():
     if not user_message:
         return jsonify({'error': 'Message cannot be empty'}), 400
 
+    # Standardwert für die Bild-URLs
+    image_urls = []
+    response_content = ""
+    response_content_code = ""
+
+    # Überprüfen, ob nur die Benutzereingabe existiert (kein Bild)
     if file and file.filename and allowed_file(file.filename):
-        # Verarbeite die Nachricht mit dem hochgeladenen Bild
+        # Wenn ein Bild hochgeladen wurde
         filename = secure_filename(file.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
 
         try:
+            # API-Aufruf und Verarbeitung mit Bild
             response = ollama.chat(
                 model='llama3.2-vision',
                 messages=[{
@@ -342,7 +406,11 @@ def send_message():
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
 
-            # Hier wird das 'md_content' mit der Antwort und dem Code (als 'code') gesendet
+            # Füge die Bild-URL zur Galerie hinzu
+            image_urls.append(app.config['UPLOAD_URL'] + filename)
+            save_to_gallery(user_message, wrapped_html_content, app.config['UPLOAD_URL'] + filename,
+                            response_content_code)
+
             return jsonify({
                 'response': wrapped_html_content,
                 'image_url': app.config['UPLOAD_URL'] + filename,
@@ -352,26 +420,34 @@ def send_message():
             return jsonify({'error': str(e)}), 500
 
     else:
-        # Verarbeite die Nachricht ohne Bild, benutze das Standardbild
+        # Verarbeite die Nachricht ohne Bild
         try:
-            response = ollama.chat(
-                model='deepseek-r1:14b',
-                messages=[{
-                    'role': 'user',
-                    'content': user_message
-                }]
-            )
+            # Überprüfen, ob nur die Benutzereingabe vorhanden ist, und gegebenenfalls wiederholt verarbeiten
+            while not file:
+                print("Keine Bilddatei, verarbeite nur Text...")
 
-            response_content = response['message']['content']
-            response_content_code = execute_python_code(response_content)
-            html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
-            wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
+                # Verwende die Ollama-API ohne Bild
+                response = ollama.chat(
+                    model='qwen2.5-coder:14b',
+                    messages=[{
+                        'role': 'user',
+                        'content': user_message
+                    }]
+                )
 
-            return jsonify({
-                'response': wrapped_html_content,
-                'image_url': DEFAULT_IMAGE_PATH,
-                'code': response_content_code
-            })
+                response_content = response['message']['content']
+                response_content_code = execute_python_code(response_content)
+                html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
+                wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
+
+                # Füge das Ereignis in die Galerie ein, auch ohne Bild
+                save_to_gallery(user_message, wrapped_html_content, response_content_code, "no_image")
+
+                return jsonify({
+                    'response': wrapped_html_content,
+                    'image_url': DEFAULT_IMAGE_PATH,  # Standard-Bild oder leer
+                    'code': response_content_code
+                })
         except Exception as e:
             return jsonify({'error': str(e)}), 500
 
