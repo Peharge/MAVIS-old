@@ -4319,16 +4319,16 @@
 
                 // HTML-Inhalt für jedes Chat-Element
                 chatItem.innerHTML = `
-                    <div class="">
+                    <div class="gallery-message">
                         <p><strong>Nachricht:</strong> ${chat.message}</p>
                     </div>
                     <div>
-                        <img class="" src="${chat.image_url}" alt="Hochgeladenes Bild" style="max-width: 100px; height: auto;">
+                        <img class="gallery-img" src="${chat.image_url}" alt="Hochgeladenes Bild" style="max-width: 400px; height: auto;">
                     </div>
-                    <div class="">
+                    <div class="gallery-anser">
                         <p><strong>Antwort:</strong> ${chat.response}</p>
                     </div>
-                    <div class="">
+                    <div class="gallery-code">
                         <p><strong>Code:</strong> ${chat.code}</p>
                     </div>
                     <hr>
