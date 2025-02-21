@@ -2752,6 +2752,8 @@
             border-bottom: 3px solid rgba(0, 0, 0, 0.440);
             border-left: 2px rgba(0, 0, 0, 0.545) outset;
             box-shadow: 4px 6px 3px rgba(0, 0, 0, 0.280);
+            margin-top: 8px;
+            margin-bottom: 8px;
         }
 
         .gallery-content {
@@ -2772,8 +2774,8 @@
             border-bottom: 3px solid rgba(0, 0, 0, 0.440);
             border-left: 2px rgba(0, 0, 0, 0.545) outset;
             box-shadow: 4px 6px 3px rgba(0, 0, 0, 0.280);
-            margin-top: 15px;
-            margin-bottom: 15px;
+            margin-top: 8px;
+            margin-bottom: 8px;
         }
 
     </style>
@@ -4236,11 +4238,11 @@
         }
 
         .icon2.shifted {
-            filter: drop-shadow(0px 0px 5px #575757) drop-shadow(0px 0px 5px rgba(161, 161, 161, 0.6));
+            filter: drop-shadow(0px 0px 5px rgba(87, 87, 87, 0.6)) drop-shadow(0px 0px 5px rgba(161, 161, 161, 0.6));
         }
 
         .icon3:not(.shifted) {
-            filter: drop-shadow(0px 0px 5px #575757) drop-shadow(0px 0px 5px rgba(161, 161, 161, 0.6));
+            filter: drop-shadow(0px 0px 5px rgba(87, 87, 87, 0.6)) drop-shadow(0px 0px 5px rgba(161, 161, 161, 0.6));
         }
 
     </style>
@@ -4370,7 +4372,7 @@
 
         const displayChatGallery = () => {
             const chatGallery = document.getElementById('chat-gallery');
-            chatGallery.innerHTML = '<h2>Saved chat data</h2>';
+            chatGallery.innerHTML = '<h2 style="text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.573);">Saved chat data</h2>';
 
             const storedChatData = JSON.parse(localStorage.getItem('chatData')) || [];
 
