@@ -1092,6 +1092,10 @@
             font-size: 25px;
         }
 
+        .icon3 {
+            font-size: 25px;
+        }
+
         .card {
             display: none;
             width: 40%;
@@ -4091,7 +4095,7 @@
         </button>
         <button class="button-input-form" onclick="toggleCarddddd()">
             <span class="button-tooltip">Formula Drawing Assistant</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="0" fill="currentColor" stroke="currentColor" class="icon2" id="icon-toggle-ddddd">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="0" fill="currentColor" stroke="currentColor" class="icon3" id="icon-toggle-ddddd">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                 <g id="SVGRepo_iconCarrier">
@@ -4230,6 +4234,15 @@
             transform: translateY(-20%) scale(1.1);
             transition: transform 0.2s ease;
         }
+
+        .icon2.shifted {
+            filter: drop-shadow(0px 0px 5px rgb(151, 243, 255));
+        }
+
+        .icon3:not(.shifted) {
+            filter: drop-shadow(0px 0px 5px rgb(151, 243, 255));
+        }
+
     </style>
 
     <form id="send-form" enctype="multipart/form-data">
