@@ -69,9 +69,9 @@ from datetime import datetime
 
 # Konfiguration
 URL = "http://127.0.0.1:5000/"
-BRAVE_PATHS = [
-    r"C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe",
-    r"C:\Program Files (x86)\BraveSoftware\Brave-Browser\Application\brave.exe"
+FIREFOX_PATHS = [
+    r"C:\Program Files\Mozilla Firefox\firefox.exe",
+    r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"
 ]
 
 # Farbcodes definieren
@@ -91,31 +91,26 @@ bold = "\033[1m"
 if os.name == "nt":
     os.system("")
 
-def find_brave():
-    """Sucht nach Brave-Installationen in einem erweiterten Verzeichnis."""
-    potential_paths = [
-        r"C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe",
-        r"C:\Program Files (x86)\BraveSoftware\Brave-Browser\Application\brave.exe",
-        r"C:\Users\{user}\AppData\Local\BraveSoftware\Brave-Browser\Application\brave.exe".format(user=os.getlogin())  # Benutzername dynamisch
-    ]
-    for path in potential_paths:
+def find_firefox():
+    """Sucht nach Firefox-Installationen."""
+    for path in FIREFOX_PATHS:
         if os.path.exists(path):
             return path
     return None
 
-def open_brave(url):
-    """Versucht, Brave zu öffnen."""
-    brave_path = find_brave()
-    if brave_path:
+def open_firefox(url):
+    """Versucht, Firefox zu öffnen."""
+    firefox_path = find_firefox()
+    if firefox_path:
         try:
-            # Öffnen Sie Brave im App-Modus
-            subprocess.Popen([brave_path, "--app=" + url])
-            print(f"{blue}Brave Browser has been successfully opened.{reset}")
+            # Öffnen Sie Firefox im App-Modus
+            subprocess.Popen([firefox_path, "--new-tab", url])
+            print(f"{blue}Mozilla Firefox has been successfully opened.{reset}")
             return True
         except (subprocess.SubprocessError, PermissionError) as e:
-            print(f"{red}Error opening Brave{reset}: {e}")
+            print(f"{red}Error opening Firefox{reset}: {e}")
     else:
-        print(f"{yellow}Brave Browser not found.{reset}")
+        print(f"{yellow}Mozilla Firefox not found.{reset}")
     return False
 
 def open_default_browser(url):
@@ -128,9 +123,9 @@ def open_default_browser(url):
 
 # Hauptlogik
 def main():
-    # Öffnen Sie Brave oder den Standardbrowser
-    if not open_brave(URL):
-        print(f"{blue}Brave not available. Using default browser...{reset}")
+    # Öffnen Sie Firefox oder den Standardbrowser
+    if not open_firefox(URL):
+        print(f"{blue}Firefox not available. Using default browser...{reset}")
         open_default_browser(URL)
 
     print(f"{blue}Flask server is soon running at{reset}: {URL}")

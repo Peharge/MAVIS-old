@@ -82,10 +82,13 @@ def start_mavis():
     print(f"Would you like to run MAVIS as:")
     print(f" [1] Edge Extension")
     print(f" [2] Chrome Extension")
-    print(f" [3] Browser")
+    print(f" [3] Brave Extension")
+    print(f" [4] Opera Extension")
+    print(f" [5] FireFox Extension")
+    print(f" [6] Your main Browser")
 
     while True:
-        choice = input(f"Enter your choice [1/2/3]:").strip()
+        choice = input(f"Enter your choice [1/2/3/4/5/6]:").strip()
 
         if choice == '1':
             print(f"{green}Starting MAVIS as Edge Extension...{reset}")
@@ -102,6 +105,27 @@ def start_mavis():
                 print(f"{red}Error running extension.py{reset}: {e}")
             break
         elif choice == '3':
+            print(f"{blue}Starting MAVIS as Brave Extension...{reset}")
+            try:
+                os.system('python run_with_browser/run_with_browser-ext-brave.py')  # run_with_browser.py wird ausgeführt
+            except Exception as e:
+                print(f"{red}Error running browser.py{reset}: {e}")
+            break
+        elif choice == '4':
+            print(f"{blue}Starting MAVIS as Opera Extension...{reset}")
+            try:
+                os.system('python run_with_browser/run_with_browser-ext-opera.py')  # run_with_browser.py wird ausgeführt
+            except Exception as e:
+                print(f"{red}Error running browser.py{reset}: {e}")
+            break
+        elif choice == '5':
+            print(f"{blue}Starting MAVIS as FireFox Extension...{reset}")
+            try:
+                os.system('python run_with_browser/run_with_browser-ext-firefox.py')  # run_with_browser.py wird ausgeführt
+            except Exception as e:
+                print(f"{red}Error running browser.py{reset}: {e}")
+            break
+        elif choice == '6':
             print(f"{blue}Starting MAVIS in Browser...{reset}")
             try:
                 os.system('python run_with_browser/run_with_browser.py')  # run_with_browser.py wird ausgeführt
@@ -109,7 +133,7 @@ def start_mavis():
                 print(f"{red}Error running browser.py{reset}: {e}")
             break
         else:
-            print(f"{red}Invalid choice. Please enter 1 or 2.{reset}")
+            print(f"{red}Invalid choice. Please enter 1, 2, 3, 4, 5 or 6.{reset}")
 
 # Hauptprogramm starten
 if __name__ == "__main__":
