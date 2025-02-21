@@ -1512,7 +1512,7 @@
             backdrop-filter: blur(8px);
             border-bottom: 3px solid rgba(0, 0, 0, 0.440);
             border-left: 2px rgba(0, 0, 0, 0.545) outset;
-            box-shadow: 40px 50px 30px rgba(0, 0, 0, 0.280);
+            box-shadow: 8px 10px 6px rgba(0, 0, 0, 0.280);
         }
 
         .item--2 {
@@ -1520,7 +1520,7 @@
             backdrop-filter: blur(8px);
             border-bottom: 3px solid rgba(0, 0, 0, 0.440);
             border-left: 2px rgba(0, 0, 0, 0.545) outset;
-            box-shadow: 40px 50px 30px rgba(0, 0, 0, 0.280);
+            box-shadow: 8px 10px 6px rgba(0, 0, 0, 0.280);
         }
 
         .item--3 {
@@ -1528,7 +1528,7 @@
             backdrop-filter: blur(8px);
             border-bottom: 3px solid rgba(0, 0, 0, 0.440);
             border-left: 2px rgba(0, 0, 0, 0.545) outset;
-            box-shadow: 40px 50px 30px rgba(0, 0, 0, 0.280);
+            box-shadow: 8px 10px 6px rgba(0, 0, 0, 0.280);
         }
 
         .item--4 {
@@ -1536,7 +1536,7 @@
             backdrop-filter: blur(8px);
             border-bottom: 3px solid rgba(0, 0, 0, 0.440);
             border-left: 2px rgba(0, 0, 0, 0.545) outset;
-            box-shadow: 40px 50px 30px rgba(0, 0, 0, 0.280);
+            box-shadow: 8px 10px 6px rgba(0, 0, 0, 0.280);
         }
 
         .item--5 {
@@ -1555,7 +1555,7 @@
             backdrop-filter: blur(8px);
             border-bottom: 3px solid rgba(0, 0, 0, 0.440);
             border-left: 2px rgba(0, 0, 0, 0.545) outset;
-            box-shadow: 40px 50px 30px rgba(0, 0, 0, 0.280);
+            box-shadow: 8px 10px 6px rgba(0, 0, 0, 0.280);
         }
 
         .quantity {
@@ -2728,6 +2728,48 @@
 
         #chat-gallery::-webkit-scrollbar-track {
             background: transparent;
+        }
+
+        .gallery-header {
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 16px;
+            max-width: 90%;
+            width: fit-content;
+            word-wrap: break-word;
+            white-space: normal;
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            text-align: left;
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+            color: #ffffff;
+            border-bottom: 3px solid rgba(0, 0, 0, 0.440);
+            border-left: 2px rgba(0, 0, 0, 0.545) outset;
+            box-shadow: 4px 6px 3px rgba(0, 0, 0, 0.280);
+        }
+
+        .gallery-content {
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 16px;
+            max-width: 90%;
+            width: fit-content;
+            word-wrap: break-word;
+            white-space: normal;
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            text-align: left;
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+            color: #ffffff;
+            border-bottom: 3px solid rgba(0, 0, 0, 0.440);
+            border-left: 2px rgba(0, 0, 0, 0.545) outset;
+            box-shadow: 4px 6px 3px rgba(0, 0, 0, 0.280);
+            margin-top: 15px;
+            margin-bottom: 15px;
         }
 
     </style>
@@ -4313,49 +4355,58 @@
 
         };
 
-        // Funktion, um die gespeicherten Chat-Daten anzuzeigen
         const displayChatGallery = () => {
-            const chatGallery = document.getElementById('chat-gallery'); // Container für die Galerie
-            chatGallery.innerHTML = '<h2>Saved chat data</h2>'; // Titel der Galerie zurücksetzen
+            const chatGallery = document.getElementById('chat-gallery');
+            chatGallery.innerHTML = '<h2>Saved chat data</h2>';
 
-            // Lade die gespeicherten Chat-Daten aus dem localStorage
             const storedChatData = JSON.parse(localStorage.getItem('chatData')) || [];
 
-            // Wenn keine Chat-Daten vorhanden sind, zeige eine Nachricht an
             if (storedChatData.length === 0) {
                 chatGallery.innerHTML += '<p>No saved chat data available.</p>';
                 return;
             }
 
-            // Durchlaufe alle gespeicherten Chat-Daten und erstelle HTML für die Galerie
             storedChatData.forEach(chat => {
                 const chatItem = document.createElement('div');
                 chatItem.classList.add('chat-item');
 
-                // HTML-Inhalt für jedes Chat-Element
                 chatItem.innerHTML = `
-                    <div class="gallery-message">
-                        <p><strong>Message:</strong> ${chat.message}</p>
+                    <div class="gallery-header" style="display: flex; align-items: center; cursor: pointer;" onclick="toggleChatDetails(this)">
+                        <p class="gallery-message" style="margin: 0;">${chat.message}</p>
+                        <span class="toggle-arrow" style="font-size: 20px; margin-left: 10px;">↓</span>
                     </div>
-                    <div>
-                        <img class="gallery-img" src="${chat.image_url}" alt="Uploaded image" style="max-width: 400px; height: auto;">
+                    <div class="gallery-content" style="display: none;">
+                        <div>
+                            <img class="gallery-img" src="${chat.image_url}" alt="Uploaded image" style="max-width: 400px; height: auto;">
+                        </div>
+                        <div class="gallery-answer">
+                            <p><strong>MAVIS:</strong> ${chat.response}</p>
+                        </div>
+                        <div class="gallery-code">
+                            <p><strong>Terminal:</strong> ${chat.code}</p>
+                        </div>
+                        <hr>
                     </div>
-                    <div class="gallery-answer">
-                        <p><strong>Answer:</strong>
-                            <span style="cursor: pointer; font-size: 20px; margin-left: 10px;" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'inline' : 'none'; this.innerHTML = this.innerHTML === '↓' ? '↑' : '↓';">↓</span>
-                            <span style="display: none;">${chat.response}</span>
-                        </p>
-                    </div>
-                    <div class="gallery-code">
-                        <p><strong>Terminal:</strong> ${chat.code}</p>
-                    </div>
-                    <hr>
                 `;
 
-                // Füge das Chat-Element der Galerie hinzu
                 chatGallery.appendChild(chatItem);
             });
         };
+
+        // Funktion zum Ein-/Ausblenden der Chat-Details
+        const toggleChatDetails = (header) => {
+            const content = header.nextElementSibling;
+            const arrow = header.querySelector('.toggle-arrow');
+
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                arrow.innerHTML = '↑';
+            } else {
+                content.style.display = 'none';
+                arrow.innerHTML = '↓';
+            }
+        };
+
 
         // Rufe die Funktion auf, um die Galerie bei Seitenladung anzuzeigen
         window.onload = displayChatGallery;
