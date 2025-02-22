@@ -64,76 +64,65 @@
 import subprocess
 import webbrowser
 import os
-import platform
-from datetime import datetime
+import shutil
 
-# Konfiguration
-URL = "http://127.0.0.1:5000/"
-FIREFOX_PATHS = [
-    r"C:\Program Files\Mozilla Firefox\firefox.exe",
-    r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"
-]
-
-# Farbcodes definieren
-red = "\033[91m"
-green = "\033[92m"
-yellow = "\033[93m"
-blue = "\033[94m"
-magenta = "\033[95m"
-cyan = "\033[96m"
-white = "\033[97m"
-black = "\033[30m"
-orange = "\033[38;5;214m"
-reset = "\033[0m"
-bold = "\033[1m"
-
-# ANSI-Unterstützung für Windows aktivieren
-if os.name == "nt":
-    os.system("")
 
 def find_firefox():
-    """Sucht nach Firefox-Installationen."""
-    for path in FIREFOX_PATHS:
+    """Versucht, den Pfad von Firefox zu finden."""
+    firefox_paths = [
+        r"C:\Program Files\Mozilla Firefox\firefox.exe",
+        r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"
+    ]
+
+    for path in firefox_paths:
         if os.path.exists(path):
             return path
+
+    # Prüfe, ob Firefox im PATH ist
+    firefox_path = shutil.which("firefox")
+    if firefox_path:
+        return firefox_path
+
     return None
 
+
 def open_firefox(url):
-    """Versucht, Firefox zu öffnen."""
+    """Versucht, Firefox im App-Modus zu öffnen."""
     firefox_path = find_firefox()
+
     if firefox_path:
         try:
-            # Öffnen Sie Firefox im App-Modus
-            subprocess.Popen([firefox_path, "--new-tab", url])
-            print(f"{blue}Mozilla Firefox has been successfully opened.{reset}")
+            subprocess.Popen([firefox_path, "--kiosk", url])  # --kiosk für Vollbild-App-Modus
+            print("Mozilla Firefox wurde erfolgreich im App-Modus geöffnet.")
             return True
-        except (subprocess.SubprocessError, PermissionError) as e:
-            print(f"{red}Error opening Firefox{reset}: {e}")
+        except Exception as e:
+            print(f"Fehler beim Öffnen von Firefox: {e}")
     else:
-        print(f"{yellow}Mozilla Firefox not found.{reset}")
+        print("Mozilla Firefox wurde nicht gefunden.")
     return False
+
 
 def open_default_browser(url):
     """Öffnet die URL im Standardbrowser."""
     try:
-        webbrowser.open(url, new=2)  # new=2 öffnet in einem neuen Tab/Fenster
-        print(f"{blue}Default browser has been opened{reset}: {url}")
-    except webbrowser.Error as e:
-        print(f"{red}Error opening default browser{reset}: {e}")
+        webbrowser.open(url, new=2)
+        print("Standardbrowser wurde geöffnet:", url)
+    except Exception as e:
+        print(f"Fehler beim Öffnen des Standardbrowsers: {e}")
 
-# Hauptlogik
+
 def main():
-    # Öffnen Sie Firefox oder den Standardbrowser
-    if not open_firefox(URL):
-        print(f"{blue}Firefox not available. Using default browser...{reset}")
-        open_default_browser(URL)
+    url = "http://127.0.0.1:5000/"
 
-    print(f"{blue}Flask server is soon running at{reset}: {URL}")
+    if not open_firefox(url):
+        print("Firefox nicht verfügbar. Verwende Standardbrowser...")
+        open_default_browser(url)
 
-    print(f"\nFlask Information:\n------------------")
+    print(f"Flask-Server läuft bald unter: {url}")
+
 
 if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        print(f"{red}Unexpected error{reset}: {e}")
+        print(f"Unerwarteter Fehler: {e}")
