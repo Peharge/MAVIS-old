@@ -297,7 +297,7 @@ def execute_python_code(md_content):
 
         except Exception as e:
             # Fehler beim Ausführen des Codes
-            error_msg = f"Fehler beim Ausführen des Codes: {e}"
+            error_msg = f"{e}"
             error_html = f"<div class='code-output-box error'>Execution Error: {error_msg}</div>"
             result = error_html
 
