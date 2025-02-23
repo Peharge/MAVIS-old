@@ -2779,6 +2779,25 @@
         }
 
     </style>
+
+    <script>
+        const images = [
+            '/static/images/mavis-1-5-banner-1.png',
+            '/static/images/mavis1.3-banner.png',
+            '/static/images/mavis1.3-banner9.png'
+        ];
+
+        let index = 0;
+
+        function changeBackground() {
+            const body = document.body;
+            index = (index + 1) % images.length;
+            body.style.backgroundImage = `url('${images[index]}')`;
+        }
+
+        setInterval(changeBackground, 30000);
+    </script>
+
 </head>
 <body>
     <footer style="position: fixed; bottom: 10px; right: 10px; font-size: clamp(0.2rem, 0.8vw, 2rem); text-align: right;">
