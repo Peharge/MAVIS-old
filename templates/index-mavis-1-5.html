@@ -210,7 +210,7 @@
         }
 
         .chat-output::-webkit-scrollbar-thumb {
-            background-color: #888;
+            background-color: #fff;
             border-radius: 10px;
         }
 
@@ -2211,6 +2211,7 @@
             max-width: 1200px;
             min-width: 300px;
             height: auto;
+            max-height: 400px;
             border: 2px solid transparent;
             outline: none;
             padding: 1rem;
@@ -2235,6 +2236,19 @@
         .input-latexCode textarea::placeholder {
             color: white;
             opacity: 1;
+        }
+
+        .input-latexCode textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .input-latexCode textarea::-webkit-scrollbar-thumb {
+            background-color: #fff;
+            border-radius: 10px;
+        }
+
+        .input-latexCode textarea::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
         }
 
     </style>
@@ -2727,12 +2741,12 @@
         }
 
         #chat-gallery::-webkit-scrollbar-thumb {
-            background-color: #888;
+            background-color: #fff;
             border-radius: 10px;
         }
 
-        #chat-gallery::-webkit-scrollbar-track {
-            background: transparent;
+        #chat-gallery::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
         }
 
         .gallery-header {
