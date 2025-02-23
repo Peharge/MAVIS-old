@@ -180,7 +180,7 @@ And more...
 ### MAVIS 1.2 release [no more updates in the areas of graphics, frameworks and security]
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-ads-new1.3.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis1.4-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 ### Demo
@@ -249,7 +249,7 @@ And more...
 > 01.03.2025 - ultimate stabel!!!]
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis1.4-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="./readme-img/mavis-ads-new1.3.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 ### Demo
