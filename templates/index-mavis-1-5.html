@@ -3932,17 +3932,31 @@
 
         <script>
             async function loadUserData() {
+                const loadingMessage = document.getElementById('username');
+                const userTypeMessage = document.getElementById('usertype');
+
                 try {
                     const response = await fetch('./account/users.json');
+
+                    if (!response.ok) {
+                        throw new Error("Network issue or file not found.");
+                    }
+
                     const data = await response.json();
 
                     const userKey = Object.keys(data)[0];
                     const userData = data[userKey];
 
-                    document.getElementById('username').textContent = userKey;
-                    document.getElementById('usertype').textContent = userData.user_type;
+                    if (userData) {
+                        loadingMessage.textContent = userKey;
+                        userTypeMessage.textContent = userData.user_type;
+                    } else {
+                        throw new Error("Data for the first user is missing.");
+                    }
                 } catch (error) {
-                    console.error("Fehler beim Laden der Nutzerdaten:", error);
+                    console.error("Error loading user data:", error);
+                    loadingMessage.textContent = 'Error loading user';
+                    userTypeMessage.textContent = 'Please try again later';
                 }
             }
 
