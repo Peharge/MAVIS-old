@@ -174,29 +174,33 @@ from flask import Flask, request, jsonify, send_from_directory, render_template,
 from werkzeug.utils import secure_filename
 import ollama
 
+
 def extract_text_from_file(filepath):
     file_ext = filepath.rsplit('.', 1)[-1].lower()
     text = ""
 
-    if file_ext == "txt":
-        with open(filepath, "r", encoding="utf-8") as f:
-            text = f.read()
-    elif file_ext == "pdf":
-        with open(filepath, "rb") as f:
-            reader = PyPDF2.PdfReader(f)
-            text = "\n".join([page.extract_text() for page in reader.pages if page.extract_text()])
-    elif file_ext == "docx":
-        doc = docx.Document(filepath)
-        text = "\n".join([para.text for para in doc.paragraphs])
-    elif file_ext == "py":
-        with open(filepath, "r", encoding="utf-8") as f:
-            text = f.read()
-    elif file_ext == "html":
-        with open(filepath, "r", encoding="utf-8") as f:
-            text = markdown.markdown(f.read())
-    elif file_ext == "md":
-        with open(filepath, "r", encoding="utf-8") as f:
-            text = f.read()
+    try:
+        if file_ext == "txt":
+            with open(filepath, "r", encoding="utf-8") as f:
+                text = f.read()
+        elif file_ext == "pdf":
+            with open(filepath, "rb") as f:
+                reader = PyPDF2.PdfReader(f)
+                text = "\n".join([page.extract_text() for page in reader.pages if page.extract_text()])
+        elif file_ext == "docx":
+            doc = docx.Document(filepath)
+            text = "\n".join([para.text for para in doc.paragraphs])
+        elif file_ext == "py":
+            with open(filepath, "r", encoding="utf-8") as f:
+                text = f.read()
+        elif file_ext == "html":
+            with open(filepath, "r", encoding="utf-8") as f:
+                text = markdown.markdown(f.read())
+        elif file_ext == "md":
+            with open(filepath, "r", encoding="utf-8") as f:
+                text = f.read()
+    except Exception as e:
+        print(f"Error processing file {filepath}: {e}")
 
     return text
 
