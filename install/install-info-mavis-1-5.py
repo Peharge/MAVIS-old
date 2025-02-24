@@ -170,7 +170,7 @@ def execute_installation():
             ("diagrams", "Diagrams is a Python library for creating cloud architecture diagrams as code, allowing users to visually represent and design infrastructure components in a simple and customizable way."),
             ("graphviz", "Graphviz is a Python library for creating and rendering graph structures, enabling users to visualize relationships and hierarchies through directed and undirected graphs with customizable layouts."),
             ("pix2tex[gui]", "pix2tex[gui] is a tool that allows converting mathematical expressions from images into LaTeX code, offering a user-friendly graphical interface for easy use."),
-            ("pillow", "Pillow is a powerful Python library for image processing, providing numerous functions for opening, editing, and saving images in various formats.")
+            ("pillow", "Pillow is a powerful Python library for image processing, providing numerous functions for opening, editing, and saving images in various formats.\n")
         ]
 
         # Frameworks ausgeben

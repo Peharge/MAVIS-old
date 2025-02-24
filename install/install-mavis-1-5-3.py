@@ -64,6 +64,27 @@
 import subprocess
 import sys
 import platform
+import importlib.util
+
+# List of required packages
+required_packages = ["requests", "Flask", "numpy", "pandas"]
+
+def ensure_packages_installed(packages):
+    """Ensures that all required packages are installed."""
+    for package in packages:
+        if importlib.util.find_spec(package) is None:
+            print(f"Installing {package}...")
+            try:
+                subprocess.run([sys.executable, "-m", "pip", "install", package], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                print(f"{package} installed successfully.")
+            except subprocess.CalledProcessError:
+                print(f"WARNING: Failed to install {package}. Please install it manually.")
+        else:
+            print(f"{package} is already installed.")
+
+# Ensure all required packages are installed
+ensure_packages_installed(required_packages)
+
 import requests
 import re
 import time
