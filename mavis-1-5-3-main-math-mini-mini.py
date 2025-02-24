@@ -66,7 +66,6 @@ import ollama
 import os
 from PIL import Image
 from pix2tex.cli import LatexOCR
-import os
 import base64
 import io
 from werkzeug.utils import secure_filename
@@ -90,6 +89,8 @@ from dash import Dash, html, dcc, callback, Output, Input
 import math
 from IPython.display import display
 # import scipy as sp (Problem mit sp)
+import PyPDF2
+import docx
 
 #---für Physik/Chemie/Biologie(Medizin)/Erdkunde/Wirtschaft---
 
@@ -165,15 +166,6 @@ from IPython.display import display
 # Importiere die wichtigsten Komponenten von Transformers für Deep Learning (sehr mächtig)
 
 # from transformers import pipeline
-
-import os
-import markdown
-import PyPDF2
-import docx
-from flask import Flask, request, jsonify, send_from_directory, render_template, session
-from werkzeug.utils import secure_filename
-import ollama
-
 
 def extract_text_from_file(filepath):
     file_ext = filepath.rsplit('.', 1)[-1].lower()
