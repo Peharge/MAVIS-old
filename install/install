@@ -111,3 +111,5 @@ pip install docx
 
 pip uninstall docx
 pip install python-docx
+
+pip install ipydrawio[all]
