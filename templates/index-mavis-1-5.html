@@ -1757,14 +1757,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-right: 1px solid rgba(255, 255, 255, 0.2);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 5px 45px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(2px);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            border-bottom: 3px solid rgba(0, 0, 0, 0.440);
+            border-left: 2px  rgba(0, 0, 0, 0.545) outset;
+            box-shadow: 4px 6px 3px rgba(0, 0, 0, 0.280);
             transition: 0.5s;
             overflow: hidden;
-            background-color: rgba(255, 255, 255, 0.1);
         }
 
         .buttonedge a:hover {
@@ -3039,6 +3038,7 @@
                     </button>
                 </div>
 
+                <br>
                 <p style="font-size: clamp(0.2rem, 0.9vw, 2.5rem); text-align: center;">
                     MAVIS is an AI-driven application that allows you to analyze visual data such as images formats: PNG, JPG, JPEG, GIF, Text, PNG and Py and generate interactive answers based on them. With MAVIS you can perform complex mathematical calculations, solve programming tasks and create professional graphics.<br>
                     Learn more:
