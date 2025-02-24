@@ -18,7 +18,6 @@
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <script src="https://webdemo.myscript.com/static/myscript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
     <link rel="icon" type="image/x-icon" href="/static/images/mavis-logo.ico" />
     <style>
         body {
@@ -5245,7 +5244,7 @@
                               <path d="M12 4l0 12"></path>
                           </svg>
                     </label>
-                    <input type="file" id="image" name="image" accept=".txt,.png,.py,.jpg,.jpeg,.gif,.pdf,.doc,.docx" onchange="previewImage(event)" style="display:none;">
+                    <input type="file" id="image" name="image" accept=".txt,.png,.py,.jpg,.jpeg,.gif,.pdf" onchange="previewImage(event)" style="display:none;">
 
                     <br>
                     <button type="submit" class="button2">Submit</button>
@@ -5592,7 +5591,6 @@
 
             const fileExtension = file.name.split('.').pop().toLowerCase();
 
-            // Bild-Dateien
             if (["png", "jpg", "jpeg", "gif"].includes(fileExtension)) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
@@ -5600,8 +5598,6 @@
                     previewImage.style.display = 'block';
                 };
                 reader.readAsDataURL(file);
-
-                // PDF-Dateien
             } else if (fileExtension === "pdf") {
                 const reader = new FileReader();
                 reader.onload = function (e) {
@@ -5609,33 +5605,13 @@
                     previewPDF.style.display = 'block';
                 };
                 reader.readAsDataURL(file);
-
-                // Text- und Word-Dateien
-            } else if (["txt", "py"].includes(fileExtension)) {
+            } else if (["txt", "py", "doc", "docx"].includes(fileExtension)) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
                     previewText.textContent = e.target.result;
                     previewText.style.display = 'block';
                 };
                 reader.readAsText(file);
-
-                // .docx und .doc-Dateien
-            } else if (["doc", "docx"].includes(fileExtension)) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const arrayBuffer = e.target.result;
-                    mammoth.extractRawText({arrayBuffer: arrayBuffer})
-                            .then(function (result) {
-                                previewText.textContent = result.value;
-                                previewText.style.display = 'block';
-                            })
-                            .catch(function (err) {
-                                alert("Fehler beim Umwandeln der .docx-Datei in Text.");
-                                console.log(err);
-                            });
-                };
-                reader.readAsArrayBuffer(file);
-
             } else {
                 alert("Vorschau für dieses Format nicht unterstützt.");
                 return;
