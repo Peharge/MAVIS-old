@@ -115,7 +115,7 @@ def confirm_action(message: str) -> bool:
             return True
         elif response in ["n", "no"]:
             return False
-        print("Invalid input. Please enter 'y' or 'n'.")
+        print("Invalid input. Please enter 'y/yes' or 'n/no'.")
 
 def is_package_installed(package: str) -> bool:
     """Prüft, ob ein Paket installiert ist."""
