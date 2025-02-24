@@ -387,7 +387,7 @@ packages = [
     "lifelines", "rdkit", "ase", "chempy", "shapely", "fiona", "cartopy", "statsmodels",
     "yfinance", "PySpice", "networkx", "schematics", "schemdraw", "ipywidgets", "vtk",
     "diagrams", "graphviz", "pix2tex[gui]", "pillow", "bcrypt", "watchdog", "bandit",
-    "dotenv-linter", "psutil", "ipydrawio[all]", "python-docx"
+    "dotenv-linter", "psutil", "dotenv", "PyPDF2", "ipydrawio[all]", "python-docx"
 ]
 
 process_packages(packages)
