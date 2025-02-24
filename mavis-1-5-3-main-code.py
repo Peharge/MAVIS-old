@@ -166,28 +166,65 @@ from IPython.display import display
 
 # from transformers import pipeline
 
+import os
+import markdown
+import PyPDF2
+import docx
+from flask import Flask, request, jsonify, send_from_directory, render_template, session
+from werkzeug.utils import secure_filename
+import ollama
+
+def extract_text_from_file(filepath):
+    file_ext = filepath.rsplit('.', 1)[-1].lower()
+    text = ""
+
+    if file_ext == "txt":
+        with open(filepath, "r", encoding="utf-8") as f:
+            text = f.read()
+    elif file_ext == "pdf":
+        with open(filepath, "rb") as f:
+            reader = PyPDF2.PdfReader(f)
+            text = "\n".join([page.extract_text() for page in reader.pages if page.extract_text()])
+    elif file_ext == "docx":
+        doc = docx.Document(filepath)
+        text = "\n".join([para.text for para in doc.paragraphs])
+    elif file_ext == "py":
+        with open(filepath, "r", encoding="utf-8") as f:
+            text = f.read()
+    elif file_ext == "html":
+        with open(filepath, "r", encoding="utf-8") as f:
+            text = markdown.markdown(f.read())
+    elif file_ext == "md":
+        with open(filepath, "r", encoding="utf-8") as f:
+            text = f.read()
+
+    return text
+
 app = Flask(__name__)
 # Setze einen geheimen Schlüssel für die Session
 app.secret_key = os.urandom(24)  # Generiert einen zufälligen Schlüssel mit 24 Bytes
 
 # Verzeichnisse konfigurieren
-UPLOAD_FOLDER = 'uploads'
 UPLOAD_FOLDER_LATEX = 'uploads_latex'
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(UPLOAD_FOLDER_LATEX, exist_ok=True)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['UPLOAD_FOLDER_LATEX'] = UPLOAD_FOLDER_LATEX
 app.config['UPLOAD_URL'] = '/uploads/'
 DEFAULT_IMAGE_PATH = r""
 
-# Erlaubte Dateitypen
+UPLOAD_FOLDER = 'uploads'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+TEXT_EXTENSIONS = {'txt', 'pdf', 'docx', 'py', 'html', 'md'}
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def allowed_text_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in TEXT_EXTENSIONS
 
 # Modell für LaTeX-OCR initialisieren
 model = LatexOCR()
@@ -312,11 +349,20 @@ def index():
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
+
 @app.route('/send_message', methods=['POST'])
 def send_message():
     user_message = request.form.get('message', '').strip()
-    result = session.get('result', '')
     file = request.files.get('image', None)
+
+    if file and file.filename:
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+
+        if allowed_text_file(filename):  # Falls Dokument, extrahiere Text
+            extracted_text = extract_text_from_file(filepath)
+            user_message += "\n" + extracted_text if extracted_text else ""
 
     if not user_message:
         return jsonify({'error': 'Message cannot be empty'}), 400

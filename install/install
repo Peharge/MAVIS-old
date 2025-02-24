@@ -107,3 +107,7 @@ pip install bandit
 pip install dotenv-linter
 pip install psutil
 
+pip install docx
+
+pip uninstall docx
+pip install python-docx
