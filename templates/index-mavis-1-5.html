@@ -4352,14 +4352,11 @@
                 <span class="yellow-image-preview"></span>
                 <span class="green-image-preview"></span>
             </div>
-
-            <!-- Bild-Vorschau -->
+            
             <img class="img-out" id="preview" src="" alt="Bild Vorschau" style="display:none; min-height: 280px; max-width: 550px; max-height: 90%; margin: 0 auto; border-radius: 15px; box-shadow: 3px 8px 5px 0px rgba(0, 0, 0, 0.2);">
 
-            <!-- PDF-Vorschau -->
             <iframe id="previewPDF" style="display:none; width: 100%; height: 90%; max-height: 1000px; min-height: 250px; border: none !important; border-radius: 15px;"></iframe>
 
-            <!-- Text-Vorschau -->
             <pre id="previewText"
                  style="display:none; white-space: pre-wrap; padding: 10px; border-radius: 15px; color: white !important; text-align: left !important; overflow: auto; height: 90%; max-height: 850px; min-height: 250px;">
             </pre>
@@ -4422,7 +4419,6 @@
 
             const data = await response.json();
             if (data.response) {
-                // Erstelle ein Objekt, um die angezeigten Daten zu speichern
                 const chatData = {
                     message: message,
                     image_url: data.image_url,
@@ -4430,7 +4426,6 @@
                     code: data.code
                 };
 
-                // Füge die HTML-Inhalte zum Chat hinzu
                 chatContent.innerHTML += `
                     <div class="user-box">
                         <p>${message}</p>
@@ -4449,16 +4444,13 @@
                         <p>${data.code}</p>
                     </div>`;
 
-                // MathJax für die mathematische Formatierung
                 MathJax.typeset();
 
-                // Speichern der gesammelten Daten in localStorage
-                let storedChatData = JSON.parse(localStorage.getItem('chatData')) || []; // Hole bereits gespeicherte Daten, falls vorhanden
-                storedChatData.push(chatData); // Füge die neuen Daten hinzu
-                localStorage.setItem('chatData', JSON.stringify(storedChatData)); // Speichere die Daten zurück in localStorage
+                let storedChatData = JSON.parse(localStorage.getItem('chatData')) || [];
+                storedChatData.push(chatData);
+                localStorage.setItem('chatData', JSON.stringify(storedChatData));
 
             } else {
-                // Falls ein Fehler in den Daten ist
                 chatContent.innerHTML += `<p><strong>Error:</strong> ${data.error}</p>`;
             }
 
@@ -4501,7 +4493,6 @@
             });
         };
 
-        // Funktion zum Ein-/Ausblenden der Chat-Details
         const toggleChatDetails = (header) => {
             const content = header.nextElementSibling;
             const arrow = header.querySelector('.toggle-arrow');
@@ -4515,10 +4506,7 @@
             }
         };
 
-
-        // Rufe die Funktion auf, um die Galerie bei Seitenladung anzuzeigen
         window.onload = displayChatGallery;
-
 
         const taskBox = document.getElementById('button-containerid');
 
@@ -4684,13 +4672,12 @@
         });
 
         function previewImage(event) {
-            const file = event.target.files[0];  // Die ausgewählte Datei
+            const file = event.target.files[0];
             const previewImage = document.getElementById('preview');
             const previewPDF = document.getElementById('previewPDF');
             const previewText = document.getElementById('previewText');
             const previewContainer = document.getElementById('image-preview');
 
-            // Alle Vorschau-Elemente zurücksetzen
             previewImage.style.display = 'none';
             previewPDF.style.display = 'none';
             previewText.style.display = 'none';
@@ -4700,44 +4687,38 @@
                 return;
             }
 
-            // Ermitteln der Dateierweiterung
             const fileExtension = file.name.split('.').pop().toLowerCase();
 
             if (["png", "jpg", "jpeg", "gif"].includes(fileExtension)) {
-                // Wenn es sich um ein Bild handelt
                 const reader = new FileReader();
                 reader.onload = function (e) {
-                    previewImage.src = e.target.result;  // Bild als Data URL setzen
-                    previewImage.style.display = 'block';  // Bild anzeigen
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block';
                 };
-                reader.readAsDataURL(file);  // Bild als Data URL lesen
+                reader.readAsDataURL(file);
             } else if (fileExtension === "pdf") {
-                // Wenn es sich um ein PDF handelt
                 const reader = new FileReader();
                 reader.onload = function (e) {
-                    previewPDF.src = e.target.result;  // PDF als Data URL setzen
-                    previewPDF.style.display = 'block';  // PDF anzeigen
+                    previewPDF.src = e.target.result;
+                    previewPDF.style.display = 'block';
                 };
-                reader.readAsDataURL(file);  // PDF als Data URL lesen
+                reader.readAsDataURL(file);
             } else if (["txt", "py", "doc", "docx"].includes(fileExtension)) {
-                // Wenn es sich um eine Textdatei handelt
                 const reader = new FileReader();
                 reader.onload = function (e) {
-                    previewText.textContent = e.target.result;  // Textinhalt setzen
-                    previewText.style.display = 'block';  // Text anzeigen
+                    previewText.textContent = e.target.result;
+                    previewText.style.display = 'block';
                 };
-                reader.readAsText(file);  // Textinhalt lesen
+                reader.readAsText(file);
             } else {
                 alert("Vorschau für dieses Format nicht unterstützt.");
                 return;
             }
 
-            // Vorschau-Container anzeigen
             previewContainer.style.display = 'block';
         }
 
         function closePreview() {
-            // Vorschau-Container ausblenden
             document.getElementById('image-preview').style.display = 'none';
         }
 
