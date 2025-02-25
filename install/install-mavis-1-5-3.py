@@ -66,11 +66,10 @@ import sys
 import platform
 import importlib.util
 
-# List of required packages
 required_packages = ["requests", "Flask", "numpy", "pandas"]
 
 def ensure_packages_installed(packages):
-    """Ensures that all required packages are installed."""
+    """Stellt sicher, dass alle erforderlichen Pakete installiert sind."""
     for package in packages:
         if importlib.util.find_spec(package) is None:
             print(f"Installing {package}...")
@@ -82,7 +81,7 @@ def ensure_packages_installed(packages):
         else:
             print(f"{package} is already installed.")
 
-# Ensure all required packages are installed
+# Stellen Sie sicher, dass alle erforderlichen Pakete installiert sind
 ensure_packages_installed(required_packages)
 
 import requests
