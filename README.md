@@ -58,7 +58,7 @@
 # _MAVIS_
 **MA**_th_ **V**_isual_ **I**_ntelligent_ **S**_ystem (Strongest calculator in the world)._
 
-_Think you're better at math than an AI? Prove it! Show that there are infinitely many prime numbers exactly 2 apart. No proof? No answer? Well, maybe you do need AI after all! So, what are you waiting for? Ask MAVIS!_
+_Think you're better at math than an AI? Prove it! Show that there are infinitely many prime numbers exactly 2 apart. No proof? No answer? Well, maybe you do need AI after all! So, what are you waiting for? Ask [MAVIS - install](#installation)!_
 <details>
   <summary>Deutsch</summary>
     Denkst du, du bist besser in Mathe als eine KI? Beweise es! Zeig, dass es unendlich viele Primzahlen gibt, die genau 2 auseinander liegen. Kein Beweis? Keine Antwort? Tja – vielleicht geht’s doch nicht ohne KI! Worauf wartest du? Frag MAVIS!
