@@ -351,17 +351,34 @@ def send_message():
     user_message = request.form.get('message', '').strip()
     file = request.files.get('image', None)
 
-    if file and file.filename:
+    if file and file.filename and allowed_text_file(file.filename):
         filename = secure_filename(file.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
+        extracted_text = extract_text_from_file(filepath)
+        user_message += "\n" + extracted_text if extracted_text else ""
 
-        if allowed_text_file(filename):  # Falls Dokument, extrahiere Text
-            extracted_text = extract_text_from_file(filepath)
-            user_message += "\n" + extracted_text if extracted_text else ""
+        try:
+            response = ollama.chat(
+                model='phi4',
+                messages=[{
+                    'role': 'user',
+                    'content': user_message
+                }]
+            )
 
-    if not user_message:
-        return jsonify({'error': 'Message cannot be empty'}), 400
+            response_content = response['message']['content']
+            response_content_code = execute_python_code(response_content)
+            html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
+            wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
+
+            return jsonify({
+                'response': wrapped_html_content,
+                'image_url': DEFAULT_IMAGE_PATH,
+                'code': response_content_code
+            })
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
 
     if file and file.filename and allowed_file(file.filename):
         # Verarbeite die Nachricht mit dem hochgeladenen Bild
