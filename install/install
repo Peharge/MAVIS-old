@@ -113,3 +113,5 @@ pip uninstall docx
 pip install python-docx
 
 pip install ipydrawio[all]
+
+Not bad to have: https://www.rust-lang.org/tools/install
