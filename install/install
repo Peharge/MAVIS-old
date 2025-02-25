@@ -114,4 +114,7 @@ pip install python-docx
 
 pip install ipydrawio[all]
 
-Not bad to have: https://www.rust-lang.org/tools/install
+Not bad to have: https://www.rust-lang.org/tools/install and https://visualstudio.microsoft.com/de/ (aka. Visual C++)
+
+Import to do: pip uninstall jupyter-server
+pip install -U "jupyter-server<2.0.0"
