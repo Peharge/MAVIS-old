@@ -155,11 +155,68 @@
             padding-left: 10px;
             position: absolute;
             top: 13px;
-            transition: 0.3s;
+            transition: 1s;
             pointer-events: none;
         }
 
         .input {
+            width: 100%;
+            height: 50px;
+            border: none;
+            outline: none;
+            padding: 5px 7px;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 15px;
+            background-color: transparent;
+            box-shadow: 3px 3px 10px rgba(0,0,0,1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
+            transition: height 1s ease-in-out, padding 1s ease-in-out;
+        }
+
+        .input:focus {
+            min-height: 65px;
+            height: 65px;
+            max-height: 115px;
+            border: 2px solid transparent;
+            color: #fff;
+            box-shadow: 3px 3px 10px rgba(0,0,0,1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4),
+            inset 3px 3px 10px rgba(0,0,0,1),
+            inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+        }
+
+        .input::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .input::-webkit-scrollbar-thumb {
+            background-color: #ffffff;
+            border-radius: 10px;
+        }
+
+        .input::-webkit-scrollbar-thumb:hover {
+            background-color: #a1a1a1;
+        }
+
+        .container-usern .input:valid ~ .label,
+        .container-usern .input:focus ~ .label {
+            transition: 1s;
+            padding-left: 2px;
+            transform: translateY(-40px);
+        }
+
+        .container-usern .input:valid,
+        .container-usern .input:focus {
+            box-shadow: 3px 3px 10px rgba(0,0,0,1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4),
+            inset 3px 3px 10px rgba(0,0,0,1),
+            inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+        }
+
+        .input-daw {
             width: 100%;
             height: 50px;
             border: none;
@@ -175,7 +232,7 @@
             -1px -1px 6px rgba(255, 255, 255, 0.4);
         }
 
-        .input:focus {
+        .input-daw:focus {
             border: 2px solid transparent;
             color: #fff;
             box-shadow: 3px 3px 10px rgba(0,0,0,1),
@@ -184,19 +241,17 @@
             inset -1px -1px 6px rgba(255, 255, 255, 0.4);
         }
 
-        .container-usern .input:valid ~ .label,
-        .container-usern .input:focus ~ .label {
-            transition: 0.3s;
-            padding-left: 2px;
-            transform: translateY(-35px);
+        .input-daw::-webkit-scrollbar {
+            width: 8px;
         }
 
-        .container-usern .input:valid,
-        .container-usern .input:focus {
-            box-shadow: 3px 3px 10px rgba(0,0,0,1),
-            -1px -1px 6px rgba(255, 255, 255, 0.4),
-            inset 3px 3px 10px rgba(0,0,0,1),
-            inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+        .input-daw::-webkit-scrollbar-thumb {
+            background-color: #ffffff;
+            border-radius: 10px;
+        }
+
+        .input-daw::-webkit-scrollbar-thumb:hover {
+            background-color: #a1a1a1;
         }
 
         .loading {
@@ -2267,7 +2322,7 @@
         }
 
         .input-latexCode textarea::-webkit-scrollbar-thumb {
-            background-color: #717171;
+            background-color: #ffffff;
             border-radius: 10px;
         }
 
@@ -4051,7 +4106,7 @@
             </div>
 
             <div class="input-latexCode">
-                <textarea type="text" id="draw-latexCode" rows="2" class="input" placeholder="Haven't recognized anything yet..."></textarea>
+                <textarea type="text" id="draw-latexCode" rows="2" class="input-daw" placeholder="Haven't recognized anything yet..."></textarea>
             </div>
             <div class="draw-output-container">
                 <h4>Rendered output:</h4>
@@ -5214,7 +5269,7 @@
     <form id="send-form" enctype="multipart/form-data">
             <div class="taskbar">
                     <div class="container-usern">
-                        <input required="" type="text" id="message" class="input" name="username" required>
+                        <textarea required="" type="text" id="message" class="input" name="username" required></textarea>
                         <label class="label">MAVIS</label>
                     </div>
 
