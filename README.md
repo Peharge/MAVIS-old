@@ -245,9 +245,9 @@ And more...
 
 </details>
 
-### MAVIS 1.5 EAP release [new]
+### MAVIS 1.5 release [new]
 
-> 01.03.2025 - ultimate stabel!!!]
+> 01.03.2025 - ultimate stabel!!!
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-ads-new1.3.png" alt="mavis" width="1400" style="margin: 10px;">
