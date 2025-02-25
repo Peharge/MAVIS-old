@@ -58,10 +58,10 @@
 # _MAVIS_
 **MA**_th_ **V**_isual_ **I**_ntelligent_ **S**_ystem (Strongest calculator in the world)._
 
-_**MAVIS**: In the darkest times lies the power to create something great – a work only you can understand. It is your light, your strength, your vision._
+_Think you're better at math than an AI? Prove it! Show that there are infinitely many prime numbers exactly 2 apart. No proof? No answer? Well, maybe you do need AI after all! So, what are you waiting for? Ask MAVIS!_
 <details>
   <summary>Deutsch</summary>
-    MAVIS: In den dunkelsten Zeiten liegt die Kraft, etwas Großes zu erschaffen – ein Werk, das nur du verstehen kannst. Es ist dein Licht, deine Stärke, deine Vision.
+    Denkst du, du bist besser in Mathe als eine KI? Beweise es! Zeig, dass es unendlich viele Primzahlen gibt, die genau 2 auseinander liegen. Kein Beweis? Keine Antwort? Tja – vielleicht geht’s doch nicht ohne KI! Worauf wartest du? Frag MAVIS!
 </details>
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
@@ -122,7 +122,22 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
   <img src="./readme-img/MAVIS-ads11.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
-## _News_
+## Table of contents
+- [News](#news)
+- [Updates](#updates)
+- [Versions](#versions)
+- [Benchmark](#benchmark)
+- [Installation](#installation)
+- [Usage](#using)
+- [Xc++](#Xcpp)
+- [Demo](#demo)
+- [Learn_MAVIS](#learn-mavis)
+- [Transformer](#transformer)
+- [License](#lizenz)
+
+---
+
+## News
 
 - **[09.11.2024]** Start ;-)
 - **[10.11.2024]** Available with Llama3.2 + [Demo](#demo-text) with Xc++ 2
@@ -136,20 +151,6 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 - **[01.02.2025]** MAVIS 1.5 EAP release: new functions
 - **[01.03.2025]** MAVIS 1.5 release!!!
 - **[01.04.2025]** MAVIS 1.6 EAP release!!!
-
-## Table of contents
-- [Updates](#updates)
-- [Versions](#versions)
-- [Benchmark](#benchmark)
-- [Installation](#installation)
-- [Usage](#using)
-- [Xc++](#Xcpp)
-- [Demo](#demo)
-- [Learn_MAVIS](#learn-mavis)
-- [Transformer](#transformer)
-- [License](#lizenz)
-
----
 
 ## Updates
 
