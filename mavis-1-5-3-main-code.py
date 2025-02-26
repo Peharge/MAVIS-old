@@ -457,7 +457,8 @@ def predict():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-
+import os
+import pygame
 import whisper
 import ollama
 import sounddevice as sd
@@ -465,6 +466,16 @@ import numpy as np
 import wave
 from TTS.api import TTS
 from flask import Flask, jsonify
+import time
+
+# Stelle sicher, dass pygame korrekt initialisiert wird
+def init_pygame():
+    try:
+        pygame.mixer.pre_init(frequency=22050, size=-16, channels=2, buffer=512)
+        pygame.mixer.init()
+        print("Pygame mixer initialized.")
+    except pygame.error as e:
+        print(f"Fehler bei der Initialisierung von Pygame: {e}")
 
 # Funktion zur Audioaufnahme
 def record_audio(filename="input.wav", duration=5, samplerate=16000):
@@ -484,7 +495,7 @@ def transcribe_audio(file_path):
     model = whisper.load_model("small")
 
     # Load audio and pad/trim it to fit the model
-    audio = whisper.load_audio(file_path)  # Corrected: using the actual file path
+    audio = whisper.load_audio(file_path)
     audio = whisper.pad_or_trim(audio)
 
     # Make log-Mel spectrogram and move to the same device as the model
@@ -502,30 +513,25 @@ def transcribe_audio(file_path):
     message = result.text
     return message
 
-import os
-import time
-import pygame
-from TTS.api import TTS
+# Sicherstellen, dass das Verzeichnis existiert
+if not os.path.exists("static"):
+    os.makedirs("static")
 
 # Funktion für die TTS-Ausgabe (Text-to-Speech)
 def text_to_speech(text):
     tts = TTS(model_name="tts_models/en/ljspeech/glow-tts")
-    output_file = "static/output.wav"
 
-    # Speichern der Audio-Datei
-    print("Speichere Audio-Datei...")
-    tts.tts_to_file(text=text, file_path=output_file)
+    # Dynamischer Dateiname für jede Ausgabe
+    output_file = f"static/output_{int(time.time())}.wav"
 
-    # Überprüfen, ob die Datei gespeichert wurde
-    if os.path.exists(output_file):
-        print(f"Datei gespeichert: {output_file}")
+    try:
+        # Speichern der Audio-Datei
+        print("Speichere Audio-Datei...")
+        tts.tts_to_file(text=text, file_path=output_file)
 
-        # Kurze Verzögerung hinzufügen, um sicherzustellen, dass die Datei vollständig gespeichert ist
-        time.sleep(1)
-
-        try:
-            # Initialisiere pygame mixer
-            pygame.mixer.init()
+        # Überprüfen, ob die Datei gespeichert wurde
+        if os.path.exists(output_file):
+            print(f"Datei gespeichert: {output_file}")
 
             # Lade die Audiodatei
             pygame.mixer.music.load(output_file)
@@ -539,29 +545,40 @@ def text_to_speech(text):
                 pygame.time.Clock().tick(10)
 
             print("Audio abgespielt.")
-        except Exception as e:
-            print(f"Fehler beim Abspielen der Datei mit pygame: {e}")
-    else:
-        print(f"Die Datei {output_file} existiert nicht. Überprüfen Sie den Pfad.")
+        else:
+            print(f"Die Datei {output_file} existiert nicht.")
+    except PermissionError as e:
+        print(f"Fehler beim Schreiben der Datei: {e}")
+    except pygame.error as e:
+        print(f"Fehler beim Abspielen der Datei: {e}")
+    except Exception as e:
+        print(f"Fehler beim Abspielen der Datei: {e}")
+    finally:
+        pygame.mixer.quit()
 
     return output_file
 
-
 # Funktion zur Kommunikation mit Ollama (für die Chat-Nachricht)
 def chat_response(message):
-    response = ollama.chat(
-        model='qwen2.5:1.5b',
-        messages=[{
-            'role': 'user',
-            'content': message
-        }]
-    )
-    # Return the actual content from the response
-    return response['message']['content']
+    try:
+        response = ollama.chat(
+            model='qwen2.5:1.5b',
+            messages=[{
+                'role': 'user',
+                'content': message
+            }]
+        )
+        return response['message']['content']
+    except Exception as e:
+        print(f"Fehler bei der Kommunikation mit Ollama: {e}")
+        return "Es gab ein Problem bei der Verarbeitung der Anfrage."
 
 @app.route('/process_audio', methods=['POST'])
 def process_audio():
     try:
+        # Initialisiere pygame mixer zu Beginn jeder Anfrage
+        init_pygame()
+
         # Audio aufnehmen
         file_path = record_audio()
 
@@ -579,6 +596,7 @@ def process_audio():
 
     except Exception as e:
         # Rückgabe der Fehlerdetails im JSON-Format
+        print(f"Fehler beim Verarbeiten der Anfrage: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
