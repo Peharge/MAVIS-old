@@ -475,56 +475,18 @@ def init_pygame():
         pygame.mixer.init()
         print("Pygame mixer initialized.")
     except pygame.error as e:
-        print(f"Fehler bei der Initialisierung von Pygame: {e}")
+        print(f"Error initializing Pygame: {e}")
 
-
-import sounddevice as sd
-import numpy as np
-import wave
-import time
-
-
-# Funktion zur Audioaufnahme mit Stille-Erkennung
-def record_audio(filename="input.wav", max_silence_duration=3, samplerate=16000, threshold=500):
+# Funktion zur Audioaufnahme
+def record_audio(filename="input.wav", duration=5, samplerate=16000):
     print("Recording...")
-
-    # Parameter
-    chunk_size = 1024  # Größe des Pufferblocks (kann je nach Bedarf angepasst werden)
-    silence_count = 0  # Zähler für Stille
-    audio_data = []  # Hier wird die aufgezeichnete Audiodaten gesammelt
-
-    # Start der Aufnahme
-    start_time = time.time()
-
-    while True:
-        # Aufnahme eines Pufferblocks
-        audio_chunk = sd.rec(chunk_size, samplerate=samplerate, channels=1, dtype=np.int16)
-        sd.wait()
-
-        # Füge den aktuellen Puffer zur Gesamtdatenliste hinzu
-        audio_data.append(audio_chunk)
-
-        # Berechne die Lautstärke (Summation der absoluten Amplituden)
-        volume_norm = np.linalg.norm(audio_chunk) / chunk_size
-
-        # Wenn die Lautstärke unter dem Schwellenwert ist, erhöhen wir den Stillezähler
-        if volume_norm < threshold:
-            silence_count += 1
-        else:
-            silence_count = 0  # Reset des Stillezählers, wenn Lautstärke erkannt wird
-
-        # Überprüfe, ob die Stille lange genug anhält, um die Aufnahme zu beenden
-        if silence_count > (max_silence_duration * samplerate / chunk_size):
-            break
-
-    # Speichern der aufgenommenen Daten in einer WAV-Datei
+    audio_data = sd.rec(int(duration * samplerate), samplerate=samplerate, channels=1, dtype=np.int16)
+    sd.wait()
     with wave.open(filename, 'wb') as wave_file:
         wave_file.setnchannels(1)
         wave_file.setsampwidth(2)
         wave_file.setframerate(samplerate)
-        # Flache Liste der aufgenommenen Audio-Daten in Bytes umwandeln
-        wave_file.writeframes(np.concatenate(audio_data).tobytes())
-
+        wave_file.writeframes(audio_data.tobytes())
     print("Recording finished.")
     return filename
 
@@ -564,33 +526,33 @@ def text_to_speech(text):
 
     try:
         # Speichern der Audio-Datei
-        print("Speichere Audio-Datei...")
+        print("Saving audio file...")
         tts.tts_to_file(text=text, file_path=output_file)
 
         # Überprüfen, ob die Datei gespeichert wurde
         if os.path.exists(output_file):
-            print(f"Datei gespeichert: {output_file}")
+            print(f"File saved: {output_file}")
 
             # Lade die Audiodatei
             pygame.mixer.music.load(output_file)
 
             # Spiele die Audiodatei ab
-            print("Spiele die Datei ab...")
+            print("Play the file...")
             pygame.mixer.music.play()
 
             # Warte, bis die Wiedergabe beendet ist
             while pygame.mixer.music.get_busy():
                 pygame.time.Clock().tick(10)
 
-            print("Audio abgespielt.")
+            print("Audio played.")
         else:
-            print(f"Die Datei {output_file} existiert nicht.")
+            print(f"The file {output_file} does not exist.")
     except PermissionError as e:
-        print(f"Fehler beim Schreiben der Datei: {e}")
+        print(f"Error writing file: {e}")
     except pygame.error as e:
-        print(f"Fehler beim Abspielen der Datei: {e}")
+        print(f"Error playing file: {e}")
     except Exception as e:
-        print(f"Fehler beim Abspielen der Datei: {e}")
+        print(f"Error playing file: {e}")
     finally:
         pygame.mixer.quit()
 
@@ -608,8 +570,8 @@ def chat_response(message):
         )
         return response['message']['content']
     except Exception as e:
-        print(f"Fehler bei der Kommunikation mit Ollama: {e}")
-        return "Es gab ein Problem bei der Verarbeitung der Anfrage."
+        print(f"Error communicating with Ollama: {e}")
+        return "There was a problem processing the request."
 
 @app.route('/process_audio', methods=['POST'])
 def process_audio():
@@ -634,7 +596,7 @@ def process_audio():
 
     except Exception as e:
         # Rückgabe der Fehlerdetails im JSON-Format
-        print(f"Fehler beim Verarbeiten der Anfrage: {str(e)}")
+        print(f"Error processing request: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
