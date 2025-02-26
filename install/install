@@ -126,3 +126,5 @@ pip install coqui-tts
 pip install setuptools-rust
 choco install ffmpeg
 pip install sounddevice
+pip install playsound
+pip install pygame

@@ -502,12 +502,50 @@ def transcribe_audio(file_path):
     message = result.text
     return message
 
+import os
+import time
+import pygame
+from TTS.api import TTS
+
 # Funktion für die TTS-Ausgabe (Text-to-Speech)
 def text_to_speech(text):
     tts = TTS(model_name="tts_models/en/ljspeech/glow-tts")
     output_file = "static/output.wav"
+
+    # Speichern der Audio-Datei
+    print("Speichere Audio-Datei...")
     tts.tts_to_file(text=text, file_path=output_file)
+
+    # Überprüfen, ob die Datei gespeichert wurde
+    if os.path.exists(output_file):
+        print(f"Datei gespeichert: {output_file}")
+
+        # Kurze Verzögerung hinzufügen, um sicherzustellen, dass die Datei vollständig gespeichert ist
+        time.sleep(1)
+
+        try:
+            # Initialisiere pygame mixer
+            pygame.mixer.init()
+
+            # Lade die Audiodatei
+            pygame.mixer.music.load(output_file)
+
+            # Spiele die Audiodatei ab
+            print("Spiele die Datei ab...")
+            pygame.mixer.music.play()
+
+            # Warte, bis die Wiedergabe beendet ist
+            while pygame.mixer.music.get_busy():
+                pygame.time.Clock().tick(10)
+
+            print("Audio abgespielt.")
+        except Exception as e:
+            print(f"Fehler beim Abspielen der Datei mit pygame: {e}")
+    else:
+        print(f"Die Datei {output_file} existiert nicht. Überprüfen Sie den Pfad.")
+
     return output_file
+
 
 # Funktion zur Kommunikation mit Ollama (für die Chat-Nachricht)
 def chat_response(message):
@@ -533,7 +571,7 @@ def process_audio():
         # Anfrage an Ollama senden
         response_text = chat_response(message)
 
-        # TTS-Ausgabe (Text-to-Speech)
+        # TTS-Ausgabe (Text-to-Speech) und Abspielen der Audiodatei
         text_to_speech(response_text)
 
         # Rückgabe der Antwort als JSON
