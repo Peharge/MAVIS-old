@@ -2925,6 +2925,8 @@
         }
 
         .card-voice-assistant {
+            align-items: center;
+            justify-content: center;
             display: none;
             z-index: 1;
             width: 90%;
@@ -2946,6 +2948,58 @@
             position: fixed;
             top: 3%;
             left: 5%;
+        }
+
+        .btn-audio {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            left: 40%;
+            border: none;
+            width: 20%;
+            max-width: 333px;
+            min-width: 50px;
+            height: 8%;
+            max-height: 150px;
+            min-height: 40px;
+            border-radius: 0.8rem;
+            gap: 12px;
+            background-color: rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 450ms ease-in-out;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 1), -1px -1px 6px rgba(255, 255, 255, 0.4);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+            -1px -1px 6px rgba(255, 255, 255, 0.4);
+        }
+
+        .sparkle-audio {
+            fill: #ffffff;
+            transition: all 800ms ease;
+        }
+
+        .text-audio {
+            font-weight: 600;
+            color: #ffffff;
+            font-size: medium;
+        }
+
+        .btn-audio:hover {
+            background: linear-gradient(0deg,#A47CF3,#683FEA);
+            box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4),
+            inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2),
+            0px 0px 0px 4px rgba(255, 255, 255, 0.2),
+            0px 0px 180px 0px #9917FF;
+            transform: translateY(-2px);
+        }
+
+        .btn-audio:hover .text {
+            color: white;
+        }
+
+        .btn-audio:hover .sparkle {
+            fill: white;
+            transform: scale(1.2);
         }
 
         .card-solution {
@@ -2971,6 +3025,7 @@
             top: 3%;
             left: 5%;
         }
+
 
     </style>
 
@@ -4653,7 +4708,13 @@
 
         <div class="card-voice-assistant">
             <h1>SOON!!!</h1>
-            <button id="recordBtn">Aufnahme starten</button>
+            <button class="btn-audio" id="recordBtn">
+                <svg height="24" width="24" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1" class="sparkle-audio">
+                    <path d="M10,21.236,6.755,14.745.264,11.5,6.755,8.255,10,1.764l3.245,6.491L19.736,11.5l-6.491,3.245ZM18,21l1.5,3L21,21l3-1.5L21,18l-1.5-3L18,18l-3,1.5ZM19.333,4.667,20.5,7l1.167-2.333L24,3.5,21.667,2.333,20.5,0,19.333,2.333,17,3.5Z"></path>
+                </svg>
+
+                <span class="text-audio">Generate</span>
+            </button>
             <audio id="audioPlayer" controls></audio>
             <script>
                 let recording = false;

@@ -477,16 +477,54 @@ def init_pygame():
     except pygame.error as e:
         print(f"Fehler bei der Initialisierung von Pygame: {e}")
 
-# Funktion zur Audioaufnahme
-def record_audio(filename="input.wav", duration=5, samplerate=16000):
+
+import sounddevice as sd
+import numpy as np
+import wave
+import time
+
+
+# Funktion zur Audioaufnahme mit Stille-Erkennung
+def record_audio(filename="input.wav", max_silence_duration=3, samplerate=16000, threshold=500):
     print("Recording...")
-    audio_data = sd.rec(int(duration * samplerate), samplerate=samplerate, channels=1, dtype=np.int16)
-    sd.wait()
+
+    # Parameter
+    chunk_size = 1024  # Größe des Pufferblocks (kann je nach Bedarf angepasst werden)
+    silence_count = 0  # Zähler für Stille
+    audio_data = []  # Hier wird die aufgezeichnete Audiodaten gesammelt
+
+    # Start der Aufnahme
+    start_time = time.time()
+
+    while True:
+        # Aufnahme eines Pufferblocks
+        audio_chunk = sd.rec(chunk_size, samplerate=samplerate, channels=1, dtype=np.int16)
+        sd.wait()
+
+        # Füge den aktuellen Puffer zur Gesamtdatenliste hinzu
+        audio_data.append(audio_chunk)
+
+        # Berechne die Lautstärke (Summation der absoluten Amplituden)
+        volume_norm = np.linalg.norm(audio_chunk) / chunk_size
+
+        # Wenn die Lautstärke unter dem Schwellenwert ist, erhöhen wir den Stillezähler
+        if volume_norm < threshold:
+            silence_count += 1
+        else:
+            silence_count = 0  # Reset des Stillezählers, wenn Lautstärke erkannt wird
+
+        # Überprüfe, ob die Stille lange genug anhält, um die Aufnahme zu beenden
+        if silence_count > (max_silence_duration * samplerate / chunk_size):
+            break
+
+    # Speichern der aufgenommenen Daten in einer WAV-Datei
     with wave.open(filename, 'wb') as wave_file:
         wave_file.setnchannels(1)
         wave_file.setsampwidth(2)
         wave_file.setframerate(samplerate)
-        wave_file.writeframes(audio_data.tobytes())
+        # Flache Liste der aufgenommenen Audio-Daten in Bytes umwandeln
+        wave_file.writeframes(np.concatenate(audio_data).tobytes())
+
     print("Recording finished.")
     return filename
 
