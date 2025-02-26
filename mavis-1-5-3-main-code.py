@@ -197,6 +197,7 @@ def extract_text_from_file(filepath):
     return text
 
 app = Flask(__name__)
+
 # Setze einen geheimen Schlüssel für die Session
 app.secret_key = os.urandom(24)  # Generiert einen zufälligen Schlüssel mit 24 Bytes
 
@@ -455,6 +456,92 @@ def predict():
         return jsonify({'latex': latex_code})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+
+import whisper
+import ollama
+import sounddevice as sd
+import numpy as np
+import wave
+from TTS.api import TTS
+from flask import Flask, jsonify
+
+# Funktion zur Audioaufnahme
+def record_audio(filename="input.wav", duration=5, samplerate=16000):
+    print("Recording...")
+    audio_data = sd.rec(int(duration * samplerate), samplerate=samplerate, channels=1, dtype=np.int16)
+    sd.wait()
+    with wave.open(filename, 'wb') as wave_file:
+        wave_file.setnchannels(1)
+        wave_file.setsampwidth(2)
+        wave_file.setframerate(samplerate)
+        wave_file.writeframes(audio_data.tobytes())
+    print("Recording finished.")
+    return filename
+
+# Funktion zur Transkription der Audiodatei
+def transcribe_audio(file_path):
+    model = whisper.load_model("small")
+
+    # Load audio and pad/trim it to fit the model
+    audio = whisper.load_audio(file_path)  # Corrected: using the actual file path
+    audio = whisper.pad_or_trim(audio)
+
+    # Make log-Mel spectrogram and move to the same device as the model
+    mel = whisper.log_mel_spectrogram(audio).to(model.device)
+
+    # Detect the spoken language
+    _, probs = model.detect_language(mel)
+    print(f"Detected language: {max(probs, key=probs.get)}")
+
+    # Decode the audio
+    options = whisper.DecodingOptions()
+    result = whisper.decode(model, mel, options)
+
+    # Store the transcribed text in 'message'
+    message = result.text
+    return message
+
+# Funktion für die TTS-Ausgabe (Text-to-Speech)
+def text_to_speech(text):
+    tts = TTS(model_name="tts_models/en/ljspeech/glow-tts")
+    output_file = "static/output.wav"
+    tts.tts_to_file(text=text, file_path=output_file)
+    return output_file
+
+# Funktion zur Kommunikation mit Ollama (für die Chat-Nachricht)
+def chat_response(message):
+    response = ollama.chat(
+        model='qwen2.5:1.5b',
+        messages=[{
+            'role': 'user',
+            'content': message
+        }]
+    )
+    # Return the actual content from the response
+    return response['message']['content']
+
+@app.route('/process_audio', methods=['POST'])
+def process_audio():
+    try:
+        # Audio aufnehmen
+        file_path = record_audio()
+
+        # Transkribieren
+        message = transcribe_audio(file_path)
+
+        # Anfrage an Ollama senden
+        response_text = chat_response(message)
+
+        # TTS-Ausgabe (Text-to-Speech)
+        text_to_speech(response_text)
+
+        # Rückgabe der Antwort als JSON
+        return jsonify({"response": response_text})
+
+    except Exception as e:
+        # Rückgabe der Fehlerdetails im JSON-Format
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(debug=False)

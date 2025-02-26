@@ -4653,6 +4653,34 @@
 
         <div class="card-voice-assistant">
             <h1>SOON!!!</h1>
+            <button id="recordBtn">Aufnahme starten</button>
+            <audio id="audioPlayer" controls></audio>
+            <script>
+                let recording = false;
+                const recordBtn = document.getElementById('recordBtn');
+                const audioPlayer = document.getElementById('audioPlayer');
+
+                recordBtn.addEventListener('click', async () => {
+                    if (recording) {
+                        alert("Aufnahme läuft bereits.");
+                        return;
+                    }
+                    recording = true;
+                    recordBtn.textContent = "Stoppen";
+                    const response = await fetch('/process_audio', {
+                        method: 'POST'
+                    });
+                    const data = await response.json();
+
+                    // Audio abspielen
+                    const audioUrl = data.audio_url;
+                    audioPlayer.src = audioUrl;
+                    audioPlayer.play();
+
+                    recording = false;
+                    recordBtn.textContent = "Aufnahme starten";
+                });
+            </script>
         </div>
 
         <div class="card-solution">

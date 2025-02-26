@@ -118,3 +118,11 @@ Not bad to have: https://www.rust-lang.org/tools/install and https://visualstudi
 
 Import to do: pip uninstall jupyter-server
 pip install -U "jupyter-server<2.0.0"
+
+---
+
+pip install -U openai-whisper
+pip install coqui-tts
+pip install setuptools-rust
+choco install ffmpeg
+pip install sounddevice
