@@ -2929,12 +2929,12 @@
             justify-content: center;
             display: none;
             z-index: 1;
-            width: 30%;
-            max-width: 900px;
-            max-height: 600px;
+            width: 90%;
+            max-width: 4000px;
+            max-height: 2000px;
             min-width: 300px;
             min-height: 200px;
-            height: 20%;
+            height: 75%;
             padding: 0.5rem;
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(8px);
@@ -2955,12 +2955,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            left: 30%;
+            left: 40%;
             border: none;
-            width: 40%;
+            width: 20%;
             max-width: 450px;
             min-width: 50px;
-            height: 30%;
+            height: 10%;
             max-height: 250px;
             min-height: 40px;
             border-radius: 0.8rem;
@@ -2979,7 +2979,7 @@
         .text-audio {
             font-weight: 600;
             color: #ffffff;
-            font-size: clamp(0.5rem, 0.6vw, 3rem);
+            font-size: clamp(0.5rem, 1.3vw, 4rem);
         }
 
         .btn-audio:hover {
@@ -4701,11 +4701,11 @@
             <!-- Hier werden die gespeicherten Chat-Daten angezeigt -->
         </div>
 
-        <div class="card-voice-assistant" id="card-voice-assistant-id">
+        <div class="card-voice-assistant">
         <br>
-            <h1 style="font-size: clamp(0.5rem, 2vw, 3rem); text-align: center;">
+            <h1 style="font-size: clamp(0.5rem, 3vw, 6rem); text-align: center;">
                 MAVIS Voice Assistant
-                <svg height="2.3vw" width="2.3vw" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1"
+                <svg height="3.3vw" width="3.3vw" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1"
                      class="sparkle-audio">
                     <path d="M10,21.236,6.755,14.745.264,11.5,6.755,8.255,10,1.764l3.245,6.491L19.736,11.5l-6.491,3.245ZM18,21l1.5,3L21,21l3-1.5L21,18l-1.5-3L18,18l-3,1.5ZM19.333,4.667,20.5,7l1.167-2.333L24,3.5,21.667,2.333,20.5,0,19.333,2.333,17,3.5Z"></path>
                 </svg>
@@ -4714,7 +4714,7 @@
            <br>
 
             <button class="btn-audio" id="recordBtn">
-                <svg height="1.3vw" width="1.3vw" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1" class="sparkle-audio">
+                <svg height="1.6vw" width="1.6vw" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1" class="sparkle-audio">
                     <path d="M10,21.236,6.755,14.745.264,11.5,6.755,8.255,10,1.764l3.245,6.491L19.736,11.5l-6.491,3.245ZM18,21l1.5,3L21,21l3-1.5L21,18l-1.5-3L18,18l-3,1.5ZM19.333,4.667,20.5,7l1.167-2.333L24,3.5,21.667,2.333,20.5,0,19.333,2.333,17,3.5Z"></path>
                 </svg>
 
@@ -5751,48 +5751,6 @@
             this.style.height = `${this.scrollHeight}px`;
         });
 
-        }
-
-        const voiceCard = document.getElementById('card-voice-assistant-id');
-
-        let offsetX, offsetY, isDragging = false;
-
-        voiceCard.addEventListener('mousedown', (e) => {
-            e.preventDefault();
-            offsetX = e.clientX - voiceCard.getBoundingClientRect().left;
-            offsetY = e.clientY - voiceCard.getBoundingClientRect().top;
-            isDragging = true;
-
-            document.addEventListener('mousemove', dragVoiceCard);
-            document.addEventListener('mouseup', stopDraggingVoiceCard);
-        });
-
-        function dragVoiceCard(e) {
-            if (!isDragging) return;
-
-            const newX = e.clientX - offsetX;
-            const newY = e.clientY - offsetY;
-
-            const viewportWidth = window.innerWidth;
-            const viewportHeight = window.innerHeight;
-
-            const maxX = Math.min(viewportWidth - voiceCard.offsetWidth, newX);
-            const maxY = Math.min(viewportHeight - voiceCard.offsetHeight, newY);
-
-            voiceCard.style.left = `${Math.max(0, maxX)}px`;
-            voiceCard.style.top = `${Math.max(0, maxY)}px`;
-        }
-
-        function stopDraggingVoiceCard() {
-            isDragging = false;
-            document.removeEventListener('mousemove', dragVoiceCard);
-            document.removeEventListener('mouseup', stopDraggingVoiceCard);
-
-            const inputField = document.querySelector('.input');
-            inputField.addEventListener('input', function () {
-                this.style.height = 'auto';
-                this.style.height = `${this.scrollHeight}px`;
-            });
         }
 
         function toggleCard() {
