@@ -387,7 +387,6 @@ packages = [
     "yfinance", "PySpice", "networkx", "schematics", "schemdraw", "ipywidgets", "vtk",
     "diagrams", "graphviz", "pix2tex[gui]", "pillow", "bcrypt", "watchdog", "bandit",
     "dotenv-linter", "psutil", "dotenv", "PyPDF2", "ipydrawio[all]", "python-docx",
-    "openai-whisper", "coqui-tts", "sounddevice", "pygame"
 ]
 
 process_packages(packages)
