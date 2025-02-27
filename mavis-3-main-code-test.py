@@ -510,10 +510,8 @@ def record_audio(filename="input.wav", samplerate=16000, frame_duration_ms=30, v
 
         # Überprüfen, ob Sprache erkannt wird
         if vad.is_speech(audio_frame, samplerate):
-            print("Speech detected...")
             silence_duration = 0  # Zurücksetzen des Schweigens, wenn Sprache erkannt wird
         else:
-            print("Silence detected...")
             silence_duration += frame_duration_ms / 1000  # Erhöhe die Stille-Zeit
 
         # Wenn keine Sprache für 1 Sekunde (1000 ms) erkannt wurde, Aufnahme beenden
@@ -536,7 +534,6 @@ def record_audio(filename="input.wav", samplerate=16000, frame_duration_ms=30, v
     print("Recording finished.")
     return filename
 
-
 # Funktion zur Transkription der Audiodatei
 def transcribe_audio(file_path):
     model = whisper.load_model("small")
@@ -558,6 +555,7 @@ def transcribe_audio(file_path):
 
     # Store the transcribed text in 'message'
     message = result.text
+    print(f"{message}")
     return message
 
 # Sicherstellen, dass das Verzeichnis existiert
@@ -615,6 +613,7 @@ def chat_response(message):
                 'content': message
             }]
         )
+        print(f"{response['message']['content']}")
         return response['message']['content']
     except Exception as e:
         print(f"Error communicating with Ollama: {e}")
