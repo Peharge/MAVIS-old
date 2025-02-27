@@ -4702,7 +4702,7 @@
         </div>
 
         <div class="card-voice-assistant" id="card-voice-assistant-id">
-        <br>
+            <br>
             <h1 style="font-size: clamp(0.5rem, 2vw, 3rem); text-align: center;">
                 MAVIS Voice Assistant
                 <svg height="2.3vw" width="2.3vw" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1"
@@ -4711,10 +4711,11 @@
                 </svg>
             </h1>
 
-           <br>
+            <br>
 
             <button class="btn-audio" id="recordBtn">
-                <svg height="1.3vw" width="1.3vw" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1" class="sparkle-audio">
+                <svg height="1.3vw" width="1.3vw" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1"
+                     class="sparkle-audio">
                     <path d="M10,21.236,6.755,14.745.264,11.5,6.755,8.255,10,1.764l3.245,6.491L19.736,11.5l-6.491,3.245ZM18,21l1.5,3L21,21l3-1.5L21,18l-1.5-3L18,18l-3,1.5ZM19.333,4.667,20.5,7l1.167-2.333L24,3.5,21.667,2.333,20.5,0,19.333,2.333,17,3.5Z"></path>
                 </svg>
 
@@ -4724,6 +4725,12 @@
             <br><br><br><br><br>
 
             <h1 style="font-size: clamp(0.5rem, 2vw, 4rem); text-align: center;">SOON!!!</h1>
+
+            <!-- Audio Player -->
+            <audio id="audioPlayer" controls style="display:none;">
+                Your browser does not support the audio element.
+            </audio>
+
             <script>
                 let recording = false;
                 const recordBtn = document.getElementById('recordBtn');
@@ -4736,18 +4743,43 @@
                     }
                     recording = true;
                     recordBtn.textContent = "Stoppen";
-                    const response = await fetch('/process_audio', {
-                        method: 'POST'
-                    });
-                    const data = await response.json();
 
-                    // Audio abspielen
-                    const audioUrl = data.audio_url;
-                    audioPlayer.src = audioUrl;
-                    audioPlayer.play();
+                    try {
+                        const response = await fetch('/process_audio', {
+                            method: 'POST'
+                        });
 
-                    recording = false;
-                    recordBtn.textContent = "Aufnahme starten";
+                        if (!response.ok) {
+                            throw new Error('Fehler bei der Audioverarbeitung');
+                        }
+
+                        const data = await response.json();
+
+                        if (data.error) {
+                            alert('Fehler: ' + data.error);
+                            recording = false;
+                            recordBtn.textContent = "Aufnahme starten";
+                            return;
+                        }
+
+                        // Audio URL erhalten und abspielen
+                        const audioUrl = data.audio_url;
+                        audioPlayer.src = audioUrl;
+                        audioPlayer.style.display = "block"; // Sicherstellen, dass der Player sichtbar ist
+                        audioPlayer.play();
+
+                        // Sobald das Audio zu Ende ist, kann der Button wieder betätigt werden
+                        audioPlayer.onended = () => {
+                            recording = false;
+                            recordBtn.textContent = "Aufnahme starten"; // Button zurücksetzen
+                        };
+
+                    } catch (error) {
+                        console.error('Fehler:', error);
+                        alert('Ein Fehler ist aufgetreten. Bitte versuche es später erneut.');
+                        recording = false;
+                        recordBtn.textContent = "Aufnahme starten";
+                    }
                 });
             </script>
         </div>
