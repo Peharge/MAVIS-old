@@ -128,3 +128,14 @@ choco install ffmpeg
 pip install sounddevice
 pip install playsound
 pip install pygame
+
+
+---
+
+some missing from 27.02.2025
+pip install notebook
+pip install --upgrade jupyterlab jupyter_server notebook
+pip install --upgrade notebook
+pip uninstall jupyterlab
+pip install jupyterlab
+
