@@ -93,42 +93,42 @@ def start_mavis():
         if choice == '1':
             print(f"{green}Starting MAVIS as Edge Extension...{reset}")
             try:
-                os.system('python run_with_browser/run_with_browser-ext-edge.py')  # run_with_browser-ext-edge.py wird ausgeführt
+                os.system('python run-with-browser/run-with-browser-ext-edge.py')  # run_with_browser-ext-edge.py wird ausgeführt
             except Exception as e:
                 print(f"{red}Error running extension.py{reset}: {e}")
             break
         elif choice == '2':
             print(f"{green}Starting MAVIS as Chrome Extension...{reset}")
             try:
-                os.system('python run_with_browser/run_with_browser-ext-chrome.py')  # run_with_browser-ext-chrome.py wird ausgeführt
+                os.system('python run-with-browser/run-with-browser-ext-chrome.py')  # run_with_browser-ext-chrome.py wird ausgeführt
             except Exception as e:
                 print(f"{red}Error running extension.py{reset}: {e}")
             break
         elif choice == '3':
             print(f"{blue}Starting MAVIS as Brave Extension...{reset}")
             try:
-                os.system('python run_with_browser/run_with_browser-ext-brave.py')  # run_with_browser.py wird ausgeführt
+                os.system('python run-with-browser/run-with-browser-ext-brave.py')  # run_with_browser.py wird ausgeführt
             except Exception as e:
                 print(f"{red}Error running browser.py{reset}: {e}")
             break
         elif choice == '4':
             print(f"{blue}Starting MAVIS as Opera Extension...{reset}")
             try:
-                os.system('python run_with_browser/run_with_browser-ext-opera.py')  # run_with_browser.py wird ausgeführt
+                os.system('python run-with-browser/run-with-browser-ext-opera.py')  # run_with_browser.py wird ausgeführt
             except Exception as e:
                 print(f"{red}Error running browser.py{reset}: {e}")
             break
         elif choice == '5':
             print(f"{blue}Starting MAVIS as FireFox Extension...{reset}")
             try:
-                os.system('python run_with_browser/run_with_browser-ext-firefox.py')  # run_with_browser.py wird ausgeführt
+                os.system('python run-with-browser/run-with-browser-ext-firefox.py')  # run_with_browser.py wird ausgeführt
             except Exception as e:
                 print(f"{red}Error running browser.py{reset}: {e}")
             break
         elif choice == '6':
             print(f"{blue}Starting MAVIS in Browser...{reset}")
             try:
-                os.system('python run_with_browser/run_with_browser.py')  # run_with_browser.py wird ausgeführt
+                os.system('python run-with-browser/run-with-browser.py')  # run_with_browser.py wird ausgeführt
             except Exception as e:
                 print(f"{red}Error running browser.py{reset}: {e}")
             break
