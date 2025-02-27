@@ -149,8 +149,10 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 - **[03.12.2024]** Available with **Altair**
 - **[24.12.2024]** MAVIS 1.3 EAP release: new Plotly functions [Demo](#demo) + Stronger adaptability through Transformer (Huggingface) + Bigger Input Box
 - **[01.02.2025]** MAVIS 1.5 EAP release: new functions
-- **[01.03.2025]** MAVIS 1.5 release!!!
-- **[01.04.2025]** MAVIS 1.6 EAP release!!!
+- **[27.02.2025]** MAVIS 1.5 release
+- **[27.02.2025]** MAVIS 1.n and MAVIS 2.n was terminated!!!
+- **[27.02.2025]** Start of development of MAVIS 3
+- **[27.02.2025]** MAVIS 3 EAP release
 
 ## Updates
 
@@ -243,8 +245,6 @@ And more...
 
 </details>
 
-</details>
-
 ### MAVIS 1.5 release [new]
 
 > 01.03.2025 - ultimate stabel!!!
@@ -302,122 +302,9 @@ And more...
 
 </details>
 
-> 28.01.2025
+> 27.02.2025
 
-<details>
-  <summary>Frameworks that MAVIS 1.5 knows</summary>
-
-- **[LaTeX Documentation](https://www.latex-project.org/)** – Comprehensive information about LaTeX and its use for mathematical formula notation.  
-
-- **[Matplotlib Documentation](https://matplotlib.org/)** – Official documentation for **Matplotlib**, a comprehensive library for creating 2D plots and visualizations in Python.  
-
-- **[Plotly Documentation](https://plotly.com/python/)** – Extensive guides and examples for interactive visualization with **Plotly**.  
-
-- **[Seaborn Documentation](https://seaborn.pydata.org/)** – Documentation for **Seaborn**, a statistical data visualization library built on Matplotlib.  
-
-- **[NumPy Documentation](https://numpy.org/doc/stable/)** – Official site for **NumPy**, providing a powerful library for numerical computations and working with arrays.  
-
-- **[SymPy Documentation](https://docs.sympy.org/latest/index.html)** – Official documentation for **SymPy**, a Python library for symbolic mathematics.  
-
-- **[Pandas Documentation](https://pandas.pydata.org/pandas-docs/stable/)** – Comprehensive documentation for **Pandas**, a library for data manipulation and analysis.  
-
-- **[SciPy Documentation](https://docs.scipy.org/doc/scipy/)** – Documentation for **SciPy**, a library for scientific and technical computing.  
-
-- **[PyTorch Documentation](https://pytorch.org/docs/stable/)** – Official documentation for **PyTorch**, a popular library for machine learning and deep learning.  
-
-- **[TensorFlow Documentation](https://www.tensorflow.org/api_docs)** – The official documentation for **TensorFlow**, a comprehensive library for implementing deep learning models.  
-
-- **[Scikit-learn Documentation](https://scikit-learn.org/stable/)** – Official documentation for **Scikit-learn**, a library for building machine learning models.  
-
-- **[Transformers Documentation](https://huggingface.co/docs/transformers/)** – Documentation for **Transformers**, a library by Hugging Face for Natural Language Processing (NLP).  
-
-- **[GeoPandas Documentation](https://geopandas.org/en/stable/)** – Documentation for **GeoPandas**, a library for working with geospatial data.  
-
-- **[Astropy Documentation](https://docs.astropy.org/en/stable/)** – Official documentation for **Astropy**, a library for astronomical computations and data analysis.  
-
-- **[OpenMDAO Documentation](https://openmdao.org/)** – Documentation for **OpenMDAO**, a framework library for multidisciplinary optimization and simulation.  
-
-- **[PyBullet Documentation](https://pybullet.org/)** – Extensive guide and documentation for using **PyBullet**, a physics simulation library.  
-
-- **[Monai Documentation](https://monai.io/)** – Documentation for **Monai**, a deep learning library for healthcare applications.  
-
-- **[FEniCS Documentation](https://fenicsproject.org/)** – Official documentation for **FEniCS**, a framework for solving partial differential equations.  
-
-- **[PyDy Documentation](http://www.pydy.org/)** – Documentation for **PyDy**, a framework for modeling and simulating multi-dimensional dynamic systems.  
-
-- **[PyCalculix Documentation](https://github.com/stevencook/pycalculix)** – Extensive guidelines for using **PyCalculix**, a Python interface for Calculix for finite element analysis.  
-
-- **[SolidPython Documentation](https://solidpython3.github.io/solidpython/)** – Official documentation for **SolidPython**, a framework for generating 3D model data for CAD.  
-
-- **[Pyomo Documentation](http://www.pyomo.org/)** – The official documentation for **Pyomo**, a framework for mathematical optimization.  
-
-- **[Gekko Documentation](https://gekko.readthedocs.io/en/latest/)** – Documentation for **Gekko**, a library for solving optimization and control problems.  
-
-- **[CasADi Documentation](https://web.casadi.org/docs/)** – Extensive guidelines for using **CasADi**, a library for optimization and simulation.  
-
-- **[Control Documentation](https://python-control.readthedocs.io/en/latest/)** – Documentation for **Control**, a Python library for analyzing and synthesizing control systems.  
-
-- **[Rospy Documentation](https://docs.ros.org/en/noetic/api/rospy/html/)** – The official documentation for **Rospy**, a Python client for the Robot Operating System (ROS).  
-
-- **[H2O Documentation](http://docs.h2o.ai/)** – Documentation for **H2O.ai**, a platform for machine learning and AI.  
-
-- **[Pint Documentation](https://pint.readthedocs.io/en/stable/)** – The official documentation for **Pint**, a library for handling physical units.  
-
-- **[CoolProp Documentation](https://coolprop.readthedocs.io/en/latest/)** – Comprehensive documentation for **CoolProp**, a library for thermodynamics and fluid mechanics.  
-
-- **[PyThermo Documentation](https://pythermo.readthedocs.io/en/latest/)** – Guidelines for using **PyThermo**, a Python library for thermodynamic calculations.  
-
-- **[BioPython Documentation](https://biopython.org/)** – Official documentation for **BioPython**, a library for bioinformatics computations.  
-
-- **[OpenCV Documentation](https://docs.opencv.org/master/)** – The official documentation for **OpenCV**, a library for computer vision and image processing.  
-
-- **[SimpleITK Documentation](https://simpleitk.readthedocs.io/en/master/)** – Comprehensive documentation for **SimpleITK**, a library for medical image processing.  
-
-- **[Nilearn Documentation](https://nilearn.github.io/)** – The official documentation for **Nilearn**, a library for analyzing neuroimaging data.  
-
-- **[DeepChem Documentation](https://deepchem.io/)** – Documentation for **DeepChem**, a library for machine learning in chemistry and materials science.  
-
-- **[PyMedTermino Documentation](https://pymedtermino.readthedocs.io/en/latest/)** – Documentation for **PyMedTermino**, a Python library for working with medical terminology.  
-
-- **[Lifelines Documentation](https://lifelines.readthedocs.io/en/latest/)** – Extensive guide on using **Lifelines**, a library for survival analysis.  
-
-- **[RDKit Documentation](https://www.rdkit.org/docs/)** – Documentation for **RDKit**, a library for cheminformatics.  
-
-- **[ASE Documentation](https://wiki.fysik.dtu.dk/ase/)** – Official documentation for **ASE**, a framework for performing atomic simulations.  
-
-- **[ChemPy Documentation](https://chemphys.github.io/chemPy/)** – Documentation for **ChemPy**, a library for chemical computations.  
-
-- **[Shapely Documentation](https://shapely.readthedocs.io/en/stable/)** – The documentation for **Shapely**, a library for geometric analysis.  
-
-- **[Fiona Documentation](https://fiona.readthedocs.io/en/stable/)** – Official documentation for **Fiona**, a library for processing geospatial data.  
-
-- **[Cartopy Documentation](https://scitools.org.uk/cartopy/docs/latest/)** – Documentation for **Cartopy**, a library for creating geospatial visualizations.  
-
-- **[Statsmodels Documentation](https://www.statsmodels.org/stable/)** – Comprehensive documentation for **Statsmodels**, a library for statistical modeling.  
-
-- **[YFinance Documentation](https://pypi.org/project/yfinance/)** – The official documentation for **YFinance**, a library for accessing financial data from Yahoo Finance.  
-
-- **[QuantLib Documentation](https://www.quantlib.org/documentation.shtml)** – The official documentation for **QuantLib**, a comprehensive library for quantitative financial analysis and the valuation of financial instruments like options, bonds, and derivatives.  
-
-- **[PySpice Documentation](https://pyspice.org/)** – The official documentation for **PySpice**, a library for simulating electronic circuits and circuit analysis with Python.  
-
-- **[NetworkX Documentation](https://networkx.github.io/)** – The official documentation for **NetworkX**, a Python library for analyzing and creating networks and graphs.  
-
-- **[Schematics Documentation](https://schematics.readthedocs.io/en/latest/)** – The official documentation for **Schematics**, a Python library for defining and validating data structures and models with type checking.
-
-- **[Schemdraw Documentation](https://schemdraw.readthedocs.io/en/latest/)** – The official documentation for **Schemdraw**, a Python library for creating electronic circuit diagrams with standardized symbols and simplified representations.
-  
-- **[IPyWidgets Documentation](https://ipywidgets.readthedocs.io/en/stable/)** – The official documentation for **IPyWidgets**, a Python library for creating interactive widgets in Jupyter Notebooks, enabling users to interact with data and visualizations.
-  
-- **[PyBullet Documentation](https://pybullet.org/)** – The official documentation for **PyBullet**, a physics-based simulation library for 3D environments and robot simulations, accounting for collisions, forces, and movements.
-  
-- **[VTK Documentation](https://vtk.org/documentation/)** – The official documentation for **VTK**, an open-source library for 3D data visualization and processing, used in fields such as scientific visualization and medical image processing.
-
----
-
-</details>
-
-### MAVIS 1.6 EAP release [soon]
+### MAVIS 1.6 EAP release
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis1.5-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -517,6 +404,17 @@ And more...
 
 </details>
 
+</details>
+
+### MAVIS 3 [SOON]                     
+<p align="center">
+    <img src="./readme-img/mavis2.1-banner-ads.png" alt="mavis" width="800" style="margin: 10px;">
+</p>
+
+<br>
+
+> 01.04.2025
+
 <br>
 
 ## Versions
@@ -529,8 +427,11 @@ And more...
 
 > ⚠️**Still in progress**
 
+<details>
+  <summary> Old MAVIS versions</summary>
+
 | **Model**                | **Description**                                           | **Requirements**                               | **Parameters**   |
-|--------------------------|-----------------------------------------------------------|------------------------------------------------|------------------|            
+|--------------------------|-----------------------------------------------------------|------------------------------------------------|------------------|
 | Mavis 1.2 main           | With **Xc++ 2 11B** or Llama3.2 11B +16GB RAM             | +23GB storage (Works with one CPU)             | 22B              |
 | Mavis 1.2 math           | With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 14B        | +16GB RAM +23GB storage (Works with one CPU)   | 25B              |
 | Mavis 1.2 code           | With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 Coder 14B  | +16GB RAM +23GB storage (Works with one CPU)   | 25B              |
@@ -548,6 +449,11 @@ And more...
 | Mavis 1.3 math pro       | With **Xc++ 2 90** or Qwen2 VL 72B + QwQ 32B              | +64GB RAM +53GB storage (Works with one CPU)   | 104B             |
 | Mavis 1.3 math pro       | With **Xc++ 2 90B** or Qwen2 VL 72B + Qwen 2.5 Coder 32B  | +64GB RAM +53GB storage (Works with one CPU)   | 104B             |
 | Mavis 1.4 math           | With **Xc++ 2 90B** or QvQ + QwQ 32B                      | +64GB RAM +53GB storage (Works with one CPU)   | 104B             |
+
+</details>
+
+| **Model**                | **Description**                                           | **Requirements**                               | **Parameters**   |
+|--------------------------|-----------------------------------------------------------|------------------------------------------------|------------------|
 | Mavis 1.5 main           | With **Xc++ 2 11B** or Llama3.2 11B + Phi 4 14B           | +16GB RAM +23GB storage (Works with one CPU)   | 25B              |
 | Mavis 1.5 math           | With **Xc++ 2 11B** or Llama3.2 11B + DeepSeek R1 14B     | +16GB RAM +23GB storage (Works with one CPU)   | 25B              |
 | Mavis 1.5 math pro       | With **Xc++ 2 11B** or Llama3.2 11B + DeepSeek R 32B      | +32GB RAM +33GB storage (Works with one CPU)   | 43B              |
@@ -558,6 +464,7 @@ And more...
 | Mavis 1.5 code pro       | With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 Coder 32B  | +32GB RAM +33GB storage (Works with one CPU)   | 43B              |
 | Mavis 1.5 code mini      | With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 Coder 7B   | +16GB RAM +18GB storage (Works with one CPU)   | 18B              |
 | Mavis 1.5 code mini mini | With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 Coder 1.5B | +16GB RAM +14GB storage (Works with one CPU)   | 12.5B            |
+| Mavis 1.5 math mini mini | With **Xc++ 2 11B** or Llama3.2 11B + DeepScaleR 1.5B     | +16GB RAM +14GB storage (Works with one CPU)   | 12.5B            |
 
 ## Benchmark
 
@@ -584,7 +491,7 @@ And more...
 ### English:
 
 <details>
-<summary>Installation</summary>
+<summary>Installation MAVIS 1.1 - 1.5</summary>
 
 **MAVIS (aka Xc++ III)** is currently under development and is not fully available in this repository. Cloning the repository will only give you the README file, some images and already released code, including the user interface (UI) compatible with **Qwen 2.5 Code** and **Llama 3.2 Vision**.
 
@@ -918,7 +825,7 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
 ### Deutsch:
 
 <details>
-  <summary>Installation</summary>
+  <summary>Installation MAVIS 1.1 - 1.5</summary>
 
 **MAVIS (alias Xc++ III)** befindet sich derzeit in der Entwicklung und ist in diesem Repository nicht vollständig verfügbar. Durch das Klonen des Repositories erhalten Sie lediglich die README-Datei, einige Bilder und bereits veröffentlichte Codes, einschließlich der Benutzeroberfläche (UI), die mit **Qwen 2.5 Code** und **Llama 3.2 Vision** kompatibel ist.
 
@@ -1242,6 +1149,58 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 ---
 
 </details>
+
+### Install MAVIS 3 EAP (Windows Only) - Englisch
+
+To install MAVIS 3 EAP on a Windows computer, please follow these steps:
+
+1. Download the installation file [`mavis-installer.bat`](https://github.com/Peharge/MAVIS/blob/main/run-mavis-installer-3.bat).
+
+2. Navigate to the folder where you saved the file.
+
+3. **Important:** Make sure you have administrator rights, as the installation process may require changes to your system.
+
+4. Double-click the `mavis-installer.bat` file to begin the installation.
+
+5. Follow the on-screen instructions provided by the installation script. This may involve confirming multiple steps, such as installing dependencies or adjusting environment variables.
+
+6. Once the installation process is complete, MAVIS 3 EAP will be installed on your system and can be launched from the Start menu or your desktop.
+
+### Troubleshooting
+
+- **Issue:** The script does not run.  
+  **Solution:** Ensure that you are running the script with administrator rights. Right-click on `mavis-installer.bat` and select **"Run as Administrator"**.
+
+- **Issue:** Missing permissions or errors during installation.  
+  **Solution:** Check your user rights and ensure that you have the necessary permissions to install programs.
+
+If you need further assistance, refer to the [documentation](https://github.com/Peharge/MAVIS/blob/main/Susing-en) or ask a question in the Issues section of the repository.
+
+### Installiere MAVIS 3 EAP (Nur Windows) - Deutsch
+
+Um MAVIS 3 EAP auf einem Windows-Computer zu installieren, folge bitte diesen Schritten:
+
+1. Lade die Installationsdatei [`mavis-installer.bat`](https://github.com/Peharge/MAVIS/blob/main/run-mavis-installer-3.bat) herunter.
+   
+2. Navigiere zu dem Ordner, in dem du die Datei gespeichert hast.
+
+3. **Wichtiger Hinweis:** Stelle sicher, dass du über Administratorrechte verfügst, da der Installationsprozess Änderungen an deinem System vornehmen kann.
+
+4. Doppelklicke auf die Datei `mavis-installer.bat`, um die Installation zu starten.
+
+5. Folge den Anweisungen im Installationsskript. Dies kann die Bestätigung mehrerer Schritte umfassen, wie z.B. die Installation von Abhängigkeiten oder das Anpassen von Umgebungsvariablen.
+
+6. Wenn der Installationsprozess abgeschlossen ist, wird MAVIS 3 EAP auf deinem System installiert und kann über das Startmenü oder den Desktop gestartet werden.
+
+### Troubleshooting
+
+- **Problem:** Das Skript lässt sich nicht ausführen.  
+  **Lösung:** Stelle sicher, dass du das Skript mit Administratorrechten ausführst. Klicke mit der rechten Maustaste auf `mavis-installer.bat` und wähle **"Als Administrator ausführen"**.
+
+- **Problem:** Fehlende Berechtigungen oder Fehler während der Installation.  
+  **Lösung:** Überprüfe deine Benutzerrechte und stelle sicher, dass du über die erforderlichen Rechte zum Installieren von Programmen verfügst.
+
+Falls du weitere Hilfe benötigst, schau in die [Dokumentation](https://github.com/Peharge/MAVIS/blob/main/Susing-de) oder stelle eine Frage im Issues-Bereich des Repositories.
 
 ## Using
 
