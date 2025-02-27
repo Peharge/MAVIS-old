@@ -492,7 +492,7 @@ And more...
 
 > ⚠️**Still in progress**
 
-### English:
+### Installation MAVIS 1.1 - 1.5 - English
 
 <details>
 <summary>Installation MAVIS 1.1 - 1.5</summary>
@@ -826,7 +826,7 @@ Create a folder named `PycharmProjects` (`C:\Users\DeinBenutzername\PycharmProje
 
 </details>
 
-### Deutsch:
+### Installation MAVIS 1.1 - 1.5 - Deutsch:
 
 <details>
   <summary>Installation MAVIS 1.1 - 1.5</summary>
