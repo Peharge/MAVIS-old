@@ -466,6 +466,10 @@ And more...
 | Mavis 1.5 code mini mini | With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 Coder 1.5B | +16GB RAM +14GB storage (Works with one CPU)   | 12.5B            |
 | Mavis 1.5 math mini mini | With **Xc++ 2 11B** or Llama3.2 11B + DeepScaleR 1.5B     | +16GB RAM +14GB storage (Works with one CPU)   | 12.5B            |
 
+| **Model**    | **Description**                                          | **Requirements**                               | **Parameters**   |
+|--------------|----------------------------------------------------------|------------------------------------------------|------------------|
+| MAVIS 3 code | With **Xc++ 3 11B** or Llama3.2 11B + Qwen 2.5 Coder 14B | +16GB RAM +23GB storage (Works with one CPU)   | 25B              |
+
 ## Benchmark
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
