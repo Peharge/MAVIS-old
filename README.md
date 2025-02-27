@@ -1154,7 +1154,7 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 
 </details>
 
-### Install MAVIS 3 EAP (Windows Only) - Englisch
+### Installation MAVIS 3 EAP (Windows Only) - Englisch
 
 To install MAVIS 3 EAP on a Windows computer, please follow these steps:
 
@@ -1180,7 +1180,7 @@ To install MAVIS 3 EAP on a Windows computer, please follow these steps:
 
 If you need further assistance, refer to the [documentation](https://github.com/Peharge/MAVIS/blob/main/Susing-en) or ask a question in the Issues section of the repository.
 
-### Installiere MAVIS 3 EAP (Nur Windows) - Deutsch
+### Installation MAVIS 3 EAP (Nur Windows) - Deutsch
 
 Um MAVIS 3 EAP auf einem Windows-Computer zu installieren, folge bitte diesen Schritten:
 
