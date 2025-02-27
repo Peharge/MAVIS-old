@@ -61,10 +61,10 @@
 #
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
-import os
+import subprocess
 import sys
 
-# Farbcodes definieren (kleingeschrieben)
+# Farbcodes definieren
 red = "\033[91m"
 green = "\033[92m"
 yellow = "\033[93m"
@@ -77,88 +77,39 @@ orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
-# Logging-Funktion für Fehler
-def log_error(message):
-    """Protokolliert Fehler in eine Datei."""
+def get_user_input():
     try:
-        with open("error_log.txt", "a") as log_file:
-            log_file.write(message + "\n")
-    except Exception as e:
-        print(f"{red}Error while writing to log file: {e}{reset}")
+        print("\nSystem Information:")
+        print("-------------------")
+        user_input = input(f"Would you like to see the system information about MAVIS [y/n]:").strip().lower()
+        return user_input
+    except (EOFError, KeyboardInterrupt):
+        print(f"{red}{bold}\nInput interrupted. Exiting the program.{reset}")
+        sys.exit(1)
 
-def run_batch_file(batch_name):
-    """Führt die Batch-Datei aus, überprüft, ob sie existiert, und gibt eine passende Fehlermeldung aus."""
-    file_name = os.path.join(
-        os.path.expanduser("~"),
-        "PycharmProjects",
-        "MAVIS",
-        f"run-{batch_name}.bat"
-    )
-
-    # Prüft, ob die Datei existiert
-    if not os.path.exists(file_name):
-        error_message = f"{red}Error: The file '{file_name}' does not exist.{reset}"
-        print(error_message)
-        log_error(f"File not found: {file_name}")
-        return
-
-    # Versucht, die Batch-Datei auszuführen
+def execute_installation():
     try:
-        print(f"Executing file: {file_name}")
-        os.system(file_name)
-        print(f"{green}The batch file '{file_name}' was executed successfully.{reset}")
-    except Exception as e:
-        error_message = f"{red}Error executing file '{file_name}': {e}{reset}"
-        print(error_message)
-        log_error(f"Execution failed for {file_name}: {e}")
+        subprocess.run([sys.executable, "info/info.py"], check=True)
+        print(f"{blue}{bold}MAVIS information completed successfully.{reset}")
+    except subprocess.CalledProcessError:
+        print(f"{red}{bold}An error occurred while running the information script.{reset}")
+        sys.exit(1)
+    except FileNotFoundError:
+        print(f"{red}{bold}The information script 'info.py' was not found.{reset}")
+        sys.exit(1)
 
-def display_versions():
-    """Zeigt alle Versionen und zugehörigen Batch-Dateien ohne 'run-' und '.bat'."""
-    print(f"All MAVIS versions are available here:\n")
-
-    versions = {
-        "mavis-3-main not jet": "MAVIS 3 EAP",
-        "mavis-3-code": "MAVIS 3 EAP",
-        "mavis-3-code-pro not jet": "MAVIS 3 EAP",
-        "mavis-3-math not jet": "MAVIS 3 EAP",
-        "mavis-3-math-pro not jet": "MAVIS 3 EAP",
-        "mavis-3-mini not jet": "MAVIS 3 EAP",
-        "mavis-3-mini-mini not jet": "MAVIS 3 EAP"
-    }
-
-    # Gruppieren der Versionen für eine saubere Anzeige
-    grouped_versions = {}
-    for batch_name, version in versions.items():
-        if version not in grouped_versions:
-            grouped_versions[version] = []
-        grouped_versions[version].append(batch_name)
-
-    # Ausgabe der gruppierten Versionen
-    for i, (version, batch_files) in enumerate(grouped_versions.items(), 1):
-        print(f"{i}. {version}:")
-        for j, batch_file in enumerate(batch_files, 1):
-            print(f"   {j}. {batch_file}")
-        print()
-
-    return versions
-
-def get_user_input(versions):
-    """Fragt den Benutzer nach der gewünschten MAVIS-Batch-Datei und validiert die Eingabe."""
+def main():
     while True:
-        user_input = input(f"Enter a MAVIS batch file (e.g. 'mavis-3-code'):").strip()
+        user_input = get_user_input()
 
-        # Validiert, ob die Eingabe korrekt ist
-        if user_input in versions:
-            run_batch_file(user_input)
+        if user_input in ["y", "yes"]:
+            execute_installation()
             break
+        elif user_input in ["n", "no"]:
+            print(f"{blue}{bold}Information was declined. Exiting the program.\n{reset}")
+            sys.exit(0)
         else:
-            print(f"{red}Error: '{user_input}' is not a valid option. Please try again.{reset}")
+            print(f"{red}{bold}Invalid input. Please enter 'y/yes' or 'n/no'.{reset}")
 
 if __name__ == "__main__":
-    try:
-        versions = display_versions()
-        get_user_input(versions)
-    except Exception as e:
-        print(f"{red}An unexpected error occurred: {e}{reset}")
-        log_error(f"Unexpected error: {e}")
-        sys.exit(1)
+    main()
