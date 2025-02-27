@@ -4737,10 +4737,6 @@
                 const audioPlayer = document.getElementById('audioPlayer');
 
                 recordBtn.addEventListener('click', async () => {
-                    if (recording) {
-                        alert("Aufnahme läuft bereits.");
-                        return;
-                    }
                     recording = true;
                     recordBtn.textContent = "Stoppen";
 
