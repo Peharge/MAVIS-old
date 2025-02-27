@@ -99,8 +99,8 @@ Developed by Peharge and JK (Peharge Projects 2025)
 Thank you so much for using MAVIS. We truly appreciate your support ❤️""")
 
 print(f"""
-{blue}MAVIS Version{reset}: 1.5
-{blue}MAVIS Installer Version{reset}: 1.3
+{blue}MAVIS Version{reset}: 3
+{blue}MAVIS Installer Version{reset}: 3
 {blue}MAVIS License{reset}: MIT
 """)
 
