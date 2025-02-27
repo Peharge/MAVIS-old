@@ -477,16 +477,60 @@ def init_pygame():
     except pygame.error as e:
         print(f"Error initializing Pygame: {e}")
 
-# Funktion zur Audioaufnahme
-def record_audio(filename="input.wav", duration=5, samplerate=16000):
-    print("Recording...")
-    audio_data = sd.rec(int(duration * samplerate), samplerate=samplerate, channels=1, dtype=np.int16)
-    sd.wait()
-    with wave.open(filename, 'wb') as wave_file:
-        wave_file.setnchannels(1)
-        wave_file.setsampwidth(2)
-        wave_file.setframerate(samplerate)
-        wave_file.writeframes(audio_data.tobytes())
+import pyaudio
+import wave
+import webrtcvad
+import numpy as np
+import time
+
+# Funktion zur Audioaufnahme mit pyaudio und webrtcvad
+def record_audio(filename="input.wav", samplerate=16000, frame_duration_ms=30, vad_mode=1):
+    # Initialisierung von VAD (Voice Activity Detection)
+    vad = webrtcvad.Vad(vad_mode)  # VAD-Mode kann von 0 bis 3 gehen, wobei 3 am empfindlichsten ist
+
+    # pyaudio Setup
+    p = pyaudio.PyAudio()
+
+    # Audio-Stream öffnen
+    stream = p.open(format=pyaudio.paInt16,
+                    channels=1,
+                    rate=samplerate,
+                    input=True,
+                    frames_per_buffer=int(samplerate * frame_duration_ms / 1000))
+
+    print("Recording started...")
+
+    frames = []
+    silence_duration = 0  # Variable, um die Stille zu überwachen
+
+    while True:
+        # Audio-Frame aufnehmen
+        audio_frame = stream.read(int(samplerate * frame_duration_ms / 1000))
+        frames.append(audio_frame)
+
+        # Überprüfen, ob Sprache erkannt wird
+        if vad.is_speech(audio_frame, samplerate):
+            silence_duration = 0  # Zurücksetzen des Schweigens, wenn Sprache erkannt wird
+        else:
+            silence_duration += frame_duration_ms / 1000  # Erhöhe die Stille-Zeit
+
+        # Wenn keine Sprache für 1 Sekunde (1000 ms) erkannt wurde, Aufnahme beenden
+        if silence_duration >= 1:
+            print("No speech detected for 1 second, stopping recording.")
+            break
+
+    # Aufnahme beenden
+    stream.stop_stream()
+    stream.close()
+    p.terminate()
+
+    # WAV-Datei speichern
+    with wave.open(filename, 'wb') as wf:
+        wf.setnchannels(1)
+        wf.setsampwidth(p.get_sample_size(pyaudio.paInt16))
+        wf.setframerate(samplerate)
+        wf.writeframes(b''.join(frames))
+
     print("Recording finished.")
     return filename
 
@@ -511,6 +555,7 @@ def transcribe_audio(file_path):
 
     # Store the transcribed text in 'message'
     message = result.text
+    print(f"{message}")
     return message
 
 # Sicherstellen, dass das Verzeichnis existiert
@@ -568,6 +613,7 @@ def chat_response(message):
                 'content': message
             }]
         )
+        print(f"{response['message']['content']}")
         return response['message']['content']
     except Exception as e:
         print(f"Error communicating with Ollama: {e}")
