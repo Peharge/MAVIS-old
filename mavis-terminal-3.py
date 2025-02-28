@@ -113,8 +113,7 @@ def run_command(command, shell=False):
     if 'pip' in command:
         command = [python_path, "-m", "pip"] + command[1:]
 
-    process = subprocess.Popen(command, shell=shell, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                               stdin=subprocess.PIPE, text=True)
+    process = subprocess.Popen(command, shell=shell, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
     def read_stream(stream, output_list):
         for line in iter(stream.readline, ''):
@@ -126,21 +125,9 @@ def run_command(command, shell=False):
     threading.Thread(target=read_stream, args=(process.stdout, stdout_lines), daemon=True).start()
     threading.Thread(target=read_stream, args=(process.stderr, stderr_lines), daemon=True).start()
 
-    # Um sicherzustellen, dass interaktive Fragen korrekt behandelt werden
     while process.poll() is None or stdout_lines or stderr_lines:
         while stdout_lines:
-            line = stdout_lines.pop(0)
-            print(line, end='', flush=True)
-
-            # Wenn der Text interaktive Eingabeaufforderungen enthält, warten wir darauf, dass der Benutzer etwas eingibt.
-            if line.endswith(":"):
-                # Die Eingabeaufforderung anzeigen, damit der Benutzer seine Antwort geben kann
-                sys.stdout.write(f"{line.strip()} ")  # Zeigt nur die Frage ohne den Zeilenumbruch
-                sys.stdout.flush()
-                response = input()  # Benutzerantwort
-                process.stdin.write(response + "\n")  # Antwort an den Prozess senden
-                process.stdin.flush()
-
+            print(stdout_lines.pop(0), end='', flush=True)
         while stderr_lines:
             print(stderr_lines.pop(0), end='', flush=True, file=sys.stderr)
         time.sleep(1 / 24)  # 24 FPS Aktualisierung

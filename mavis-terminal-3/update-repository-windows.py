@@ -107,7 +107,7 @@ def write_last_update():
 def prompt_for_update():
     """Fragt den Benutzer, ob ein Update durchgeführt werden soll."""
     while True:
-        choice = input(f"Would you like to perform an update? [y/n]:").strip().lower()
+        choice = input(f"Would you like to perform an update? [y/n]:\n").strip().lower()
         if choice in {"y", "yes"}:
             return True
         elif choice in {"n", "no"}:
