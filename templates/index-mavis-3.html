@@ -2929,12 +2929,12 @@
             justify-content: center;
             display: none;
             z-index: 1;
-            width: 30%;
-            max-width: 900px;
+            width: 25%;
+            max-width: 750px;
             max-height: 600px;
-            min-width: 300px;
+            min-width: 400px;
             min-height: 200px;
-            height: 20%;
+            height: 25%;
             padding: 0.5rem;
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(8px);
@@ -2960,7 +2960,7 @@
             width: 40%;
             max-width: 450px;
             min-width: 50px;
-            height: 30%;
+            height: 25%;
             max-height: 250px;
             min-height: 40px;
             border-radius: 0.8rem;
@@ -2979,7 +2979,7 @@
         .text-audio {
             font-weight: 600;
             color: #ffffff;
-            font-size: clamp(0.5rem, 0.6vw, 3rem);
+            font-size: clamp(0.5rem, 0.85vw, 3rem);
         }
 
         .btn-audio:hover {
@@ -4714,7 +4714,7 @@
             <br>
 
             <button class="btn-audio" id="recordBtn">
-                <svg height="1.3vw" width="1.3vw" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1"
+                <svg height="1.4vw" width="1.4vw" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1"
                      class="sparkle-audio">
                     <path d="M10,21.236,6.755,14.745.264,11.5,6.755,8.255,10,1.764l3.245,6.491L19.736,11.5l-6.491,3.245ZM18,21l1.5,3L21,21l3-1.5L21,18l-1.5-3L18,18l-3,1.5ZM19.333,4.667,20.5,7l1.167-2.333L24,3.5,21.667,2.333,20.5,0,19.333,2.333,17,3.5Z"></path>
                 </svg>
@@ -4722,11 +4722,6 @@
                 <span class="text-audio">ask MAVIS-VS</span>
             </button>
 
-            <br><br><br><br><br>
-
-            <h1 style="font-size: clamp(0.5rem, 2vw, 4rem); text-align: center;">SOON!!!</h1>
-
-            <!-- Audio Player -->
             <audio id="audioPlayer" controls style="display:none;">
                 Your browser does not support the audio element.
             </audio>
@@ -4735,10 +4730,11 @@
                 let recording = false;
                 const recordBtn = document.getElementById('recordBtn');
                 const audioPlayer = document.getElementById('audioPlayer');
+                const textAudio = document.querySelector('.text-audio');
 
                 recordBtn.addEventListener('click', async () => {
                     recording = true;
-                    recordBtn.textContent = "Stoppen";
+                    textAudio.textContent = "Stoppen";
 
                     try {
                         const response = await fetch('/process_audio', {
@@ -4754,30 +4750,29 @@
                         if (data.error) {
                             alert('Fehler: ' + data.error);
                             recording = false;
-                            recordBtn.textContent = "Aufnahme starten";
+                            textAudio.textContent = "Aufnahme starten";
                             return;
                         }
 
-                        // Audio URL erhalten und abspielen
                         const audioUrl = data.audio_url;
                         audioPlayer.src = audioUrl;
-                        audioPlayer.style.display = "block"; // Sicherstellen, dass der Player sichtbar ist
+                        audioPlayer.style.display = "block";
                         audioPlayer.play();
 
-                        // Sobald das Audio zu Ende ist, kann der Button wieder betätigt werden
                         audioPlayer.onended = () => {
                             recording = false;
-                            recordBtn.textContent = "Aufnahme starten"; // Button zurücksetzen
+                            textAudio.textContent = "Aufnahme starten";
                         };
 
                     } catch (error) {
                         console.error('Fehler:', error);
                         alert('Ein Fehler ist aufgetreten. Bitte versuche es später erneut.');
                         recording = false;
-                        recordBtn.textContent = "Aufnahme starten";
+                        textAudio.textContent = "Aufnahme starten";
                     }
                 });
             </script>
+
         </div>
 
         <div class="card-solution">
