@@ -65,17 +65,19 @@ import sys
 import getpass
 import os
 import subprocess
+import threading
+import time
 
 sys.stdout.reconfigure(encoding='utf-8')
-
-# Den Benutzernamen abrufen
 user_name = getpass.getuser()
 
 # Farbcodes definieren
 blue = "\033[94m"
 reset = "\033[0m"
 
-print(f"""
+
+def print_banner():
+    print(f"""
 {blue}      ██╗     █╗      {reset}
 {blue}     ████╗   ███╗     {reset}   ███╗   ███╗ █████╗ ██╗   ██╗██╗███████╗    ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗     
 {blue}    ██████╗  ████╗    {reset}   ████╗ ████║██╔══██╗██║   ██║██║██╔════╝    ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║     
@@ -86,57 +88,42 @@ print(f"""
 {blue}         ╚█╔╝         {reset}
 {blue}          ╚╝          {reset}    
 """)
+    print(f"A warm welcome, {blue}{user_name}{reset}, to MAVIS!")
 
-print(f"""A warm welcome, {blue}{user_name}{reset}, to MAVIS (MAth Visual Intelligent System) - the most powerful calculator in the world!
-Developed by Peharge and JK (Peharge Projects 2025)
-Thank you so much for using MAVIS. We truly appreciate your support ❤️""")
-
-print(f"""
-{blue}MAVIS Version{reset}: 3
-{blue}MAVIS Installer Version{reset}: 3
-{blue}MAVIS Terminal Version{reset}: 3
-{blue}MAVIS License{reset}: MIT
-""")
 
 def set_python_path():
-    """Set the PYTHON_PATH environment variable."""
     python_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
     os.environ["PYTHON_PATH"] = python_path
     print(f"PYTHON_PATH set to {python_path}")
 
+
 def run_command(command, shell=False):
-    """Run a given command using subprocess and print the full output."""
-    try:
-        print(f"Running command: {command}")  # Debug-Ausgabe
-        result = subprocess.run(command, shell=shell, check=True, text=True, stdout=subprocess.PIPE,
-                                stderr=subprocess.PIPE)
+    process = subprocess.Popen(command, shell=shell, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
-        if result.stdout:
-            print("Output:", result.stdout, end='')
-        if result.stderr:
-            print("Error:", result.stderr, end='', file=sys.stderr)
+    def read_stream(stream, output_list):
+        for line in iter(stream.readline, ''):
+            output_list.append(line)
+        stream.close()
 
-    except subprocess.CalledProcessError as e:
-        print(f"Error while executing the command: {e.stderr}", end='', file=sys.stderr)
-    except Exception as e:
-        print(f"An unexpected error occurred: {str(e)}", end='', file=sys.stderr)
+    stdout_lines = []
+    stderr_lines = []
+    threading.Thread(target=read_stream, args=(process.stdout, stdout_lines), daemon=True).start()
+    threading.Thread(target=read_stream, args=(process.stderr, stderr_lines), daemon=True).start()
 
-def run_mavis_command(script_path, is_bat=False):
-    """Run a MAVIS command."""
-    try:
-        print(f"Running MAVIS command: {script_path}")
+    while process.poll() is None:
+        if stdout_lines:
+            print(stdout_lines.pop(0), end='', flush=True)
+        if stderr_lines:
+            print(stderr_lines.pop(0), end='', flush=True, file=sys.stderr)
+        time.sleep(1 / 24)  # 24 FPS Aktualisierung
 
-        if is_bat:
-            run_command([script_path], shell=True)
-        else:
-            run_command(["python", script_path], shell=True)
-    except subprocess.CalledProcessError as e:
-        print(f"Script execution error: {e.stderr}", end='', file=sys.stderr)
-    except Exception as e:
-        print(f"An unexpected error occurred during MAVIS command execution: {str(e)}", end='', file=sys.stderr)
+    while stdout_lines:
+        print(stdout_lines.pop(0), end='', flush=True)
+    while stderr_lines:
+        print(stderr_lines.pop(0), end='', flush=True, file=sys.stderr)
+
 
 def handle_special_commands(user_input):
-    """Handle special MAVIS commands."""
     commands = {
         "mavis-env-install": "mavis-terminal-3\\install-info-mavis-3.py",
         "mavis-env-update": "mavis-terminal-3\\install-info-mavis-3.py",
@@ -148,34 +135,31 @@ def handle_special_commands(user_input):
 
     if user_input in commands:
         script_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\{commands[user_input]}"
-        if user_input == "run-mavis":
-            run_mavis_command(script_path, is_bat=True)
-        else:
-            run_mavis_command(script_path)
+        run_command(["python", script_path] if not user_input.endswith(".bat") else [script_path], shell=True)
         return True
-
     return False
 
+
 def main():
+    print_banner()
     set_python_path()
     while True:
         try:
-            user_input = input(">>> ").strip()  # User Input
+            user_input = input(">>> ").strip()
             if user_input.lower() == "exit":
                 break
             elif handle_special_commands(user_input):
-                continue  # Skip rest of the code, since the special command was handled
+                continue
             elif user_input.startswith("powershell "):
-                run_command(user_input, shell=True)  # Run PowerShell command
+                run_command(user_input, shell=True)
             else:
-                run_command(user_input.split())  # Execute general commands
-            print()  # Print a new line after each command output
-            print(">>> ", end='', flush=True)  # Print prompt immediately after each command execution
+                run_command(user_input.split())
         except KeyboardInterrupt:
             print("\nExiting...")
             break
         except Exception as e:
-            print(f"An unexpected error occurred in the main loop: {str(e)}", file=sys.stderr)
+            print(f"Error: {str(e)}", file=sys.stderr)
+
 
 if __name__ == "__main__":
     main()
