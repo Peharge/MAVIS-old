@@ -4722,10 +4722,6 @@
                 <span class="text-audio">ask MAVIS-VS</span>
             </button>
 
-            <audio id="audioPlayer" controls style="display:none;">
-                Your browser does not support the audio element.
-            </audio>
-
             <script>
                 let recording = false;
                 const recordBtn = document.getElementById('recordBtn');
@@ -4740,7 +4736,6 @@
                     });
                     const data = await response.json();
 
-                    // Audio abspielen
                     const audioUrl = data.audio_url;
                     audioPlayer.src = audioUrl;
                     audioPlayer.play();
