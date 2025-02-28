@@ -4702,7 +4702,7 @@
         </div>
 
         <div class="card-voice-assistant" id="card-voice-assistant-id">
-            <br>
+            <br><br>
             <h1 style="font-size: clamp(0.5rem, 2vw, 3rem); text-align: center;">
                 MAVIS Voice Assistant
                 <svg height="2.3vw" width="2.3vw" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1"
@@ -4711,7 +4711,7 @@
                 </svg>
             </h1>
 
-            <br>
+            <br><br>
 
             <button class="btn-audio" id="recordBtn">
                 <svg height="1.4vw" width="1.4vw" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1"
@@ -4734,42 +4734,19 @@
 
                 recordBtn.addEventListener('click', async () => {
                     recording = true;
-                    textAudio.textContent = "Stoppen";
+                    textAudio.textContent = "Stop";
+                    const response = await fetch('/process_audio', {
+                        method: 'POST'
+                    });
+                    const data = await response.json();
 
-                    try {
-                        const response = await fetch('/process_audio', {
-                            method: 'POST'
-                        });
+                    // Audio abspielen
+                    const audioUrl = data.audio_url;
+                    audioPlayer.src = audioUrl;
+                    audioPlayer.play();
 
-                        if (!response.ok) {
-                            throw new Error('Fehler bei der Audioverarbeitung');
-                        }
-
-                        const data = await response.json();
-
-                        if (data.error) {
-                            alert('Fehler: ' + data.error);
-                            recording = false;
-                            textAudio.textContent = "Aufnahme starten";
-                            return;
-                        }
-
-                        const audioUrl = data.audio_url;
-                        audioPlayer.src = audioUrl;
-                        audioPlayer.style.display = "block";
-                        audioPlayer.play();
-
-                        audioPlayer.onended = () => {
-                            recording = false;
-                            textAudio.textContent = "Aufnahme starten";
-                        };
-
-                    } catch (error) {
-                        console.error('Fehler:', error);
-                        alert('Ein Fehler ist aufgetreten. Bitte versuche es später erneut.');
-                        recording = false;
-                        textAudio.textContent = "Aufnahme starten";
-                    }
+                    recording = false;
+                    textAudio.textContent = "Start recording";
                 });
             </script>
 
