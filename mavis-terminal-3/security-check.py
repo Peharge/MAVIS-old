@@ -122,6 +122,7 @@ WEAK_PATTERNS = [
     r'passw0rd', r'guest', r'password1234', r'987654321', r'1qaz2wsx'
 ]
 
+'''
 def loading_bar(duration=10, message=f"{blue}Running Security Check{reset}:"):
     start_time = time.time()
     while True:
@@ -136,6 +137,7 @@ def loading_bar(duration=10, message=f"{blue}Running Security Check{reset}:"):
             break
         time.sleep(0.1)
     sys.stdout.write("\n")
+'''
 
 def load_env():
     env_path = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", ".env")
@@ -202,7 +204,7 @@ def main():
     env_path = load_env()
     if env_path:
         start_env_monitor()
-        loading_bar()
+        # loading_bar()
         check_env_security()
         reference_hash = check_env_integrity(env_path)
         if reference_hash:

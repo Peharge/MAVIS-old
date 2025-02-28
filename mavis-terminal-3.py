@@ -134,10 +134,10 @@ def run_command(command, shell=False):
 
 def handle_special_commands(user_input):
     commands = {
-        "mavis-env-install": "mavis-terminal-3\\install-info-mavis-3.py",
-        "mavis-env-update": "mavis-terminal-3\\install-info-mavis-3.py",
+        "mavis-env-install": "mavis-terminal-3\\install-mavis-3.py",
+        "mavis-env-update": "mavis-terminal-3\\install-mavis-3.py",
         "update-mavis": "mavis-terminal-3\\update-repository-windows.py",
-        "mavis-security": "mavis-terminal-3\\security_check.py",
+        "mavis-security": "mavis-terminal-3\\security-check.py",
         "mavis-info": "mavis-terminal-3\\info.py",
         "run-mavis": "run-mavis-3-all.bat"
     }
