@@ -113,7 +113,8 @@ def run_command(command, shell=False):
     if 'pip' in command:
         command = [python_path, "-m", "pip"] + command[1:]
 
-    process = subprocess.Popen(command, shell=shell, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    process = subprocess.Popen(command, shell=shell, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                               stdin=subprocess.PIPE, text=True)
 
     def read_stream(stream, output_list):
         for line in iter(stream.readline, ''):
@@ -125,9 +126,21 @@ def run_command(command, shell=False):
     threading.Thread(target=read_stream, args=(process.stdout, stdout_lines), daemon=True).start()
     threading.Thread(target=read_stream, args=(process.stderr, stderr_lines), daemon=True).start()
 
+    # Um sicherzustellen, dass interaktive Fragen korrekt behandelt werden
     while process.poll() is None or stdout_lines or stderr_lines:
         while stdout_lines:
-            print(stdout_lines.pop(0), end='', flush=True)
+            line = stdout_lines.pop(0)
+            print(line, end='', flush=True)
+
+            # Wenn der Text interaktive Eingabeaufforderungen enthält, warten wir darauf, dass der Benutzer etwas eingibt.
+            if line.endswith(":"):
+                # Die Eingabeaufforderung anzeigen, damit der Benutzer seine Antwort geben kann
+                sys.stdout.write(f"{line.strip()} ")  # Zeigt nur die Frage ohne den Zeilenumbruch
+                sys.stdout.flush()
+                response = input()  # Benutzerantwort
+                process.stdin.write(response + "\n")  # Antwort an den Prozess senden
+                process.stdin.flush()
+
         while stderr_lines:
             print(stderr_lines.pop(0), end='', flush=True, file=sys.stderr)
         time.sleep(1 / 24)  # 24 FPS Aktualisierung
@@ -141,10 +154,15 @@ def run_command(command, shell=False):
 
 def handle_special_commands(user_input):
     commands = {
+        "env-install": "mavis-terminal-3\\install-mavis-3.py",
         "mavis-env-install": "mavis-terminal-3\\install-mavis-3.py",
+        "env-update": "mavis-terminal-3\\install-mavis-3.py",
         "mavis-env-update": "mavis-terminal-3\\install-mavis-3.py",
+        "update": "mavis-terminal-3\\update-repository-windows.py",
         "update-mavis": "mavis-terminal-3\\update-repository-windows.py",
+        "security": "mavis-terminal-3\\security-check.py",
         "mavis-security": "mavis-terminal-3\\security-check.py",
+        "info": "mavis-terminal-3\\info.py",
         "mavis-info": "mavis-terminal-3\\info.py",
         "run-mavis": "run-mavis-3-all.bat"
     }
@@ -165,7 +183,13 @@ def main():
         try:
             # Den aktuellen Arbeitsordner anzeigen
             current_dir = os.getcwd()
-            user_input = input(f"{current_dir}> ").strip()  # Eingabeaufforderung zeigt den aktuellen Ordner an
+
+            # Eingabeaufforderung anzeigen, bevor der Benutzer etwas eingibt
+            sys.stdout.write(f"{current_dir}> ")
+            sys.stdout.flush()
+
+            # Benutzer-Eingabe erfassen
+            user_input = input().strip()
 
             if user_input.lower() == "exit":
                 break
