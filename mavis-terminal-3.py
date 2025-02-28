@@ -84,6 +84,7 @@ orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
+
 def print_banner():
     print(f"""
 {blue}      ██╗     █╗      {reset}
@@ -106,6 +107,12 @@ def set_python_path():
 
 
 def run_command(command, shell=False):
+    python_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
+
+    # Sicherstellen, dass pip-Befehle den richtigen Python-Pfad verwenden
+    if 'pip' in command:
+        command = [python_path, "-m", "pip"] + command[1:]
+
     process = subprocess.Popen(command, shell=shell, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
     def read_stream(stream, output_list):
@@ -152,9 +159,14 @@ def handle_special_commands(user_input):
 def main():
     print_banner()
     set_python_path()
+    default_dir = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\"
+
     while True:
         try:
-            user_input = input(">>> ").strip()
+            # Den aktuellen Arbeitsordner anzeigen
+            current_dir = os.getcwd()
+            user_input = input(f"{current_dir}> ").strip()  # Eingabeaufforderung zeigt den aktuellen Ordner an
+
             if user_input.lower() == "exit":
                 break
             elif handle_special_commands(user_input):
