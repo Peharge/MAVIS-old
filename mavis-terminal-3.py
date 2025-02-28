@@ -71,10 +71,18 @@ import time
 sys.stdout.reconfigure(encoding='utf-8')
 user_name = getpass.getuser()
 
-# Farbcodes definieren
+# Farbcodes definieren (kleingeschrieben)
+red = "\033[91m"
+green = "\033[92m"
+yellow = "\033[93m"
 blue = "\033[94m"
+magenta = "\033[95m"
+cyan = "\033[96m"
+white = "\033[97m"
+black = "\033[30m"
+orange = "\033[38;5;214m"
 reset = "\033[0m"
-
+bold = "\033[1m"
 
 def print_banner():
     print(f"""
@@ -117,6 +125,12 @@ def run_command(command, shell=False):
             print(stderr_lines.pop(0), end='', flush=True, file=sys.stderr)
         time.sleep(1 / 24)  # 24 FPS Aktualisierung
 
+    # Letzte Zeile sicherstellen
+    while stdout_lines:
+        print(stdout_lines.pop(0), end='', flush=True)
+    while stderr_lines:
+        print(stderr_lines.pop(0), end='', flush=True, file=sys.stderr)
+
 
 def handle_special_commands(user_input):
     commands = {
@@ -149,6 +163,11 @@ def main():
                 run_command(user_input, shell=True)
             else:
                 run_command(user_input.split())
+
+            # Sicherstellen, dass alle Ausgaben abgeschlossen sind, bevor die nächste Eingabeaufforderung erscheint
+            sys.stdout.flush()
+            sys.stderr.flush()
+
         except KeyboardInterrupt:
             print("\nExiting...")
             break
