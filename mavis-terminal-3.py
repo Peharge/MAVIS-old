@@ -72,17 +72,8 @@ sys.stdout.reconfigure(encoding='utf-8')
 user_name = getpass.getuser()
 
 # Farbcodes definieren
-red = "\033[91m"
-green = "\033[92m"
-yellow = "\033[93m"
 blue = "\033[94m"
-magenta = "\033[95m"
-cyan = "\033[96m"
-white = "\033[97m"
-black = "\033[30m"
-orange = "\033[38;5;214m"
 reset = "\033[0m"
-bold = "\033[1m"
 
 print(f"""
 {blue}      ██╗     █╗      {reset}
@@ -107,35 +98,34 @@ print(f"""
 {blue}MAVIS License{reset}: MIT
 """)
 
-
 def set_python_path():
     """Set the PYTHON_PATH environment variable."""
     python_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
     os.environ["PYTHON_PATH"] = python_path
     print(f"PYTHON_PATH set to {python_path}")
 
-
 def run_command(command, shell=False):
     """Run a given command using subprocess and print the full output."""
     try:
-        # Wenn shell=True, dann Powershell oder Shell verwenden
+        print(f"Running command: {command}")  # Debug-Ausgabe
         result = subprocess.run(command, shell=shell, check=True, text=True, stdout=subprocess.PIPE,
                                 stderr=subprocess.PIPE)
 
-        # Drucke die gesamte Ausgabe (stdout und stderr)
         if result.stdout:
-            print(result.stdout, end='')
+            print("Output:", result.stdout, end='')
         if result.stderr:
-            print(result.stderr, end='', file=sys.stderr)
+            print("Error:", result.stderr, end='', file=sys.stderr)
+
     except subprocess.CalledProcessError as e:
-        print(f"Error: {e.stderr}", end='', file=sys.stderr)
+        print(f"Error while executing the command: {e.stderr}", end='', file=sys.stderr)
     except Exception as e:
         print(f"An unexpected error occurred: {str(e)}", end='', file=sys.stderr)
-
 
 def run_mavis_command(script_path, is_bat=False):
     """Run a MAVIS command."""
     try:
+        print(f"Running MAVIS command: {script_path}")
+
         if is_bat:
             run_command([script_path], shell=True)
         else:
@@ -145,15 +135,14 @@ def run_mavis_command(script_path, is_bat=False):
     except Exception as e:
         print(f"An unexpected error occurred during MAVIS command execution: {str(e)}", end='', file=sys.stderr)
 
-
 def handle_special_commands(user_input):
     """Handle special MAVIS commands."""
     commands = {
-        "mavis-env-install": "install\\install-info-mavis-3.py",
-        "mavis-env-update": "install\\install-info-mavis-3.py",
-        "update-mavis": "update\\update-repository-windows.py",
-        "mavis-security": "security\\security_check.py",
-        "mavis-info": "info\\info-mavis-3.py",
+        "mavis-env-install": "mavis-terminal-3\\install-info-mavis-3.py",
+        "mavis-env-update": "mavis-terminal-3\\install-info-mavis-3.py",
+        "update-mavis": "mavis-terminal-3\\update-repository-windows.py",
+        "mavis-security": "mavis-terminal-3\\security_check.py",
+        "mavis-info": "mavis-terminal-3\\info.py",
         "run-mavis": "run-mavis-3-all.bat"
     }
 
@@ -167,30 +156,26 @@ def handle_special_commands(user_input):
 
     return False
 
-
 def main():
     set_python_path()
     while True:
         try:
-            user_input = input(">>> ").strip()
+            user_input = input(">>> ").strip()  # User Input
             if user_input.lower() == "exit":
                 break
             elif handle_special_commands(user_input):
                 continue  # Skip rest of the code, since the special command was handled
             elif user_input.startswith("powershell "):
-                # Powershell-Befehl ausführen und Echtzeit-Ausgabe anzeigen
-                run_command(user_input, shell=True)
+                run_command(user_input, shell=True)  # Run PowerShell command
             else:
-                # Allgemeine Befehle ausführen und Echtzeit-Ausgabe anzeigen
-                run_command(user_input.split())
+                run_command(user_input.split())  # Execute general commands
             print()  # Print a new line after each command output
-
+            print(">>> ", end='', flush=True)  # Print prompt immediately after each command execution
         except KeyboardInterrupt:
             print("\nExiting...")
             break
         except Exception as e:
             print(f"An unexpected error occurred in the main loop: {str(e)}", file=sys.stderr)
-
 
 if __name__ == "__main__":
     main()

@@ -62,9 +62,11 @@
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
 import os
-import sys
+import json
+import subprocess
+from datetime import datetime
 
-# Farbcodes definieren (kleingeschrieben)
+# Farbcodes definieren
 red = "\033[91m"
 green = "\033[92m"
 yellow = "\033[93m"
@@ -77,89 +79,69 @@ orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
-# Logging-Funktion für Fehler
-def log_error(message):
-    """Protokolliert Fehler in eine Datei."""
-    try:
-        with open("error_log.txt", "a") as log_file:
-            log_file.write(message + "\n")
-    except Exception as e:
-        print(f"{red}Error while writing to log file: {e}{reset}")
+# Lokale JSON-Datei, in der das Datum gespeichert wird
+DATA_FILE = os.path.join(os.path.dirname(__file__), "last_update.json")
+# Pfad zum Batch-Skript
+image_dir = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "update")
+batch_file = os.path.join(image_dir, "update-mavis-repository.bat")
 
-def run_batch_file(batch_name):
-    """Führt die Batch-Datei aus, überprüft, ob sie existiert, und gibt eine passende Fehlermeldung aus."""
-    file_name = os.path.join(
-        os.path.expanduser("~"),
-        "PycharmProjects",
-        "MAVIS",
-        f"run-{batch_name}.bat"
-    )
 
-    # Prüft, ob die Datei existiert
-    if not os.path.exists(file_name):
-        error_message = f"{red}Error: The file '{file_name}' does not exist.{reset}"
-        print(error_message)
-        log_error(f"File not found: {file_name}")
-        return
+def read_last_update():
+    """Liest das letzte gespeicherte Datum aus der JSON-Datei."""
+    if os.path.exists(DATA_FILE):
+        with open(DATA_FILE, "r") as file:
+            data = json.load(file)
+            return data.get("last_update")
+    return None
 
-    # Versucht, die Batch-Datei auszuführen
-    try:
-        print(f"Executing file: {file_name}")
-        os.system(file_name)
-        print(f"{green}The batch file '{file_name}' was executed successfully.{reset}")
-    except Exception as e:
-        error_message = f"{red}Error executing file '{file_name}': {e}{reset}"
-        print(error_message)
-        log_error(f"Execution failed for {file_name}: {e}")
 
-def display_versions():
-    """Zeigt alle Versionen und zugehörigen Batch-Dateien ohne 'run-' und '.bat'."""
-    print(f"All MAVIS versions are available here:\n")
+def write_last_update():
+    """Speichert das aktuelle Datum in die JSON-Datei."""
+    current_date = datetime.now().strftime("%d.%m.%Y")
+    data = {"last_update": current_date}
+    with open(DATA_FILE, "w") as file:
+        json.dump(data, file)
+    return current_date
 
-    versions = {
-        "mavis-3-main not jet": "MAVIS 3 EAP",
-        "mavis-3-code": "MAVIS 3 EAP",
-        "mavis-3-code-pro not jet": "MAVIS 3 EAP",
-        "mavis-3-math not jet": "MAVIS 3 EAP",
-        "mavis-3-math-pro not jet": "MAVIS 3 EAP",
-        "mavis-3-mini not jet": "MAVIS 3 EAP",
-        "mavis-3-mini-mini not jet": "MAVIS 3 EAP",
-        "mavis-terminal-3": "MAVIS Terminal 3 EAP"
-    }
 
-    # Gruppieren der Versionen für eine saubere Anzeige
-    grouped_versions = {}
-    for batch_name, version in versions.items():
-        if version not in grouped_versions:
-            grouped_versions[version] = []
-        grouped_versions[version].append(batch_name)
-
-    # Ausgabe der gruppierten Versionen
-    for i, (version, batch_files) in enumerate(grouped_versions.items(), 1):
-        print(f"{i}. {version}:")
-        for j, batch_file in enumerate(batch_files, 1):
-            print(f"   {j}. {batch_file}")
-        print()
-
-    return versions
-
-def get_user_input(versions):
-    """Fragt den Benutzer nach der gewünschten MAVIS-Batch-Datei und validiert die Eingabe."""
+def prompt_for_update():
+    """Fragt den Benutzer, ob ein Update durchgeführt werden soll."""
     while True:
-        user_input = input(f"Enter a MAVIS batch file (e.g. 'mavis-3-code'):").strip()
-
-        # Validiert, ob die Eingabe korrekt ist
-        if user_input in versions:
-            run_batch_file(user_input)
-            break
+        choice = input(f"Would you like to perform an update? [y/n]:").strip().lower()
+        if choice in {"y", "yes"}:
+            return True
+        elif choice in {"n", "no"}:
+            return False
         else:
-            print(f"{red}Error: '{user_input}' is not a valid option. Please try again.{reset}")
+            print(f"{yellow}Invalid input. Please enter 'y' or 'n'.{reset}")
+
+
+def perform_update():
+    """Führt das Update durch, indem das Batch-Skript ausgeführt wird."""
+    if os.path.exists(batch_file):
+        print(f"{green}Start update...{reset}")
+        subprocess.run(batch_file, shell=True)  # Führt das Skript aus
+        print(f"{green}Update completed.{reset}")
+        write_last_update()  # Aktualisiert das Datum auf heute
+    else:
+        print(f"{red}Batch file not found{reset}: {batch_file}")
+
+
+def main():
+    print("\nMAVIS Repository Update (experimental):")
+    print("---------------------------------------")
+    print("Please note that this update function is not yet 100% reliable and errors may occur. \nTherefore, we recommend using the git pull https://github.com/Peharge/MAVIS.git command instead. \nHowever, if this is not possible...\n")
+
+    last_update = read_last_update()
+    if last_update:
+        print(f"{blue}MAVIS - Last update{reset}: {last_update}")
+    else:
+        print(f"{yellow}MAVIS - No update date found.{reset}")
+
+    if prompt_for_update():
+        perform_update()
+    else:
+        print(f"{blue}Update aborted.{reset}")
 
 if __name__ == "__main__":
-    try:
-        versions = display_versions()
-        get_user_input(versions)
-    except Exception as e:
-        print(f"{red}An unexpected error occurred: {e}{reset}")
-        log_error(f"Unexpected error: {e}")
-        sys.exit(1)
+    main()
