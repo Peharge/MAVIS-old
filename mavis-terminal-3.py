@@ -110,17 +110,12 @@ def run_command(command, shell=False):
     threading.Thread(target=read_stream, args=(process.stdout, stdout_lines), daemon=True).start()
     threading.Thread(target=read_stream, args=(process.stderr, stderr_lines), daemon=True).start()
 
-    while process.poll() is None:
-        if stdout_lines:
+    while process.poll() is None or stdout_lines or stderr_lines:
+        while stdout_lines:
             print(stdout_lines.pop(0), end='', flush=True)
-        if stderr_lines:
+        while stderr_lines:
             print(stderr_lines.pop(0), end='', flush=True, file=sys.stderr)
         time.sleep(1 / 24)  # 24 FPS Aktualisierung
-
-    while stdout_lines:
-        print(stdout_lines.pop(0), end='', flush=True)
-    while stderr_lines:
-        print(stderr_lines.pop(0), end='', flush=True, file=sys.stderr)
 
 
 def handle_special_commands(user_input):
