@@ -294,6 +294,7 @@ def handle_special_commands(user_input):
         "run qwen2.5-coder:7b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
         "run qwen2.5-coder:14b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
         "run qwen2.5-coder:32b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
+        "help": "mavis-terminal-3\\help.py",
         "run mavis": "mavis-installer-3-main-windows.py"
     }
 
