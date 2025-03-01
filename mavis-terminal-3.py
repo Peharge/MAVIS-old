@@ -143,14 +143,14 @@ def print_banner():
 {blue}          ╚╝          {reset}    
 """)
     print(f"""A warm welcome, {blue}{user_name}{reset}, to MAVIS (MAth Visual Intelligent System) - the most powerful calculator in the world!
-    Developed by Peharge and JK (Peharge Projects 2025)
-    Thank you so much for using MAVIS. We truly appreciate your support ❤️""")
+Developed by Peharge and JK (Peharge Projects 2025)
+Thank you so much for using MAVIS. We truly appreciate your support ❤️""")
 
     print(f"""
-    {blue}MAVIS Version{reset}: 3
-    {blue}MAVIS Installer Version{reset}: 3
-    {blue}MAVIS Terminal Version{reset}: 3
-    {blue}MAVIS License{reset}: MIT
+{blue}MAVIS Version{reset}: 3
+{blue}MAVIS Installer Version{reset}: 3
+{blue}MAVIS Terminal Version{reset}: 3
+{blue}MAVIS License{reset}: MIT
     """)
 
     # Funktion zur Anzeige der 16 Farbpaletten ohne Abstände und Zahlen
