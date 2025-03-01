@@ -130,23 +130,23 @@ def show_help():
     print("-----------------------------")
 
     # pip instructions
-    print("\n1. Using `pip` (Python Package Installer):")
-    print("- To install a Python package, execute the following command in your terminal or command prompt:")
+    print("1. Using `pip` (Python Package Installer):")
+    print(" - To install a Python package, execute the following command in your terminal or command prompt:")
     print("  pip install <package_name>")
     print("  Example: pip install numpy")
-    print("- To upgrade pip itself, run:")
+    print(" - To upgrade pip itself, run:")
     print("  python -m pip install --upgrade pip")
-    print("- Note: In some environments, you may need to use `pip3` instead of `pip`.\n")
+    print(" - Note: In some environments, you may need to use `pip3` instead of `pip`.\n")
 
     # PowerShell instructions
     print("2. Using PowerShell:")
-    print("- To run Python scripts in PowerShell, navigate to the script directory and execute the command:")
+    print(" - To run Python scripts in PowerShell, navigate to the script directory and execute the command:")
     print("  python <script_name>.py")
     print("  Example: python my_script.py")
-    print("- To install Python packages in PowerShell using pip, run:")
+    print(" - To install Python packages in PowerShell using pip, run:")
     print("  pip install <package_name>")
     print("  Example: pip install requests")
-    print("- If you're using PowerShell as an administrator and face any permission issues, try running it as Administrator.\n")
+    print(" - If you're using PowerShell as an administrator and face any permission issues, try running it as Administrator.\n")
 
     print("For more information, refer to the official documentation or contact support.")
 
