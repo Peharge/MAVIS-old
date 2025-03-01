@@ -137,12 +137,39 @@ def print_banner():
 {blue}    ██████╗  ████╗    {reset}   ████╗ ████║██╔══██╗██║   ██║██║██╔════╝    ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║     
 {blue}   ████████╗  ████╗   {reset}   ██╔████╔██║███████║██║   ██║██║███████╗       ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║     
 {blue}  ████╔█████╗  ████╗  {reset}   ██║╚██╔╝██║██╔══██║╚██╗ ██╔╝██║╚════██║       ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══██║██║     
-{blue} ████╔╝╚█████╗  ████╗ {reset}   ██║ ╚═╝ ██║██║  ██║ ╚████╔╝ ██║███████║       ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗
-{blue} ╚═══╝  ╚███╔╝  ╚═══╝ {reset}   ╚═╝     ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚══════╝       ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝
-{blue}         ╚█╔╝         {reset}
+{blue} ████╔╝ █████╗  ████╗ {reset}   ██║ ╚═╝ ██║██║  ██║ ╚████╔╝ ██║███████║       ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗
+{blue} ╚═══╝   ███╔╝  ╚═══╝ {reset}   ╚═╝     ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚══════╝       ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝
+{blue}          █╔╝         {reset}
 {blue}          ╚╝          {reset}    
 """)
-    print(f"A warm welcome, {blue}{user_name}{reset}, to MAVIS!")
+    print(f"""A warm welcome, {blue}{user_name}{reset}, to MAVIS (MAth Visual Intelligent System) - the most powerful calculator in the world!
+    Developed by Peharge and JK (Peharge Projects 2025)
+    Thank you so much for using MAVIS. We truly appreciate your support ❤️""")
+
+    print(f"""
+    {blue}MAVIS Version{reset}: 3
+    {blue}MAVIS Installer Version{reset}: 3
+    {blue}MAVIS Terminal Version{reset}: 3
+    {blue}MAVIS License{reset}: MIT
+    """)
+
+    # Funktion zur Anzeige der 16 Farbpaletten ohne Abstände und Zahlen
+    def show_color_palette():
+        for i in range(8):
+            print(f"\033[48;5;{i}m  \033[0m", end="")  # Farben ohne Zahlen und ohne Abstände
+
+        print()  # Zeilenumbruch nach der ersten Reihe
+
+        # Anzeige der helleren Farben (8-15) ohne Abstände und Zahlen
+        for i in range(8, 16):
+            print(f"\033[48;5;{i}m  \033[0m", end="")
+
+        print()  # Noch ein Zeilenumbruch am Ende
+
+    # Aufruf der Funktion, um die Farbpalette zu zeigen
+    show_color_palette()
+
+    print("")
 
 
 def set_python_path():
@@ -205,6 +232,7 @@ def handle_special_commands(user_input):
         "mavis-security": "mavis-terminal-3\\security-check.py",
         "info": "mavis-terminal-3\\info.py",
         "mavis-info": "mavis-terminal-3\\info.py",
+        "neofetch": "mavis-terminal-3\\neofetch.py",
         "run-mavis": "run-mavis-3-all.bat"
     }
 
