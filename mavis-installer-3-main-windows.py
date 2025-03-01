@@ -114,7 +114,7 @@ def run_batch_file(batch_name):
 
 def display_versions():
     """Zeigt alle Versionen und zugehörigen Batch-Dateien ohne 'run-' und '.bat'."""
-    print(f"All MAVIS versions are available here:\n")
+    print(f"\nAll MAVIS versions are available here:\n")
 
     versions = {
         "mavis-3-main": "MAVIS 3 EAP",
