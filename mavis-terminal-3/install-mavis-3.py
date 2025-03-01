@@ -66,7 +66,7 @@ import sys
 import platform
 import importlib.util
 
-required_packages = ["requests", "Flask", "numpy", "pandas"]
+required_packages = ["requests", "Flask", "numpy", "pandas", "python-dotenv"]
 
 def ensure_packages_installed(packages):
     """Stellt sicher, dass alle erforderlichen Pakete installiert sind."""
@@ -387,7 +387,7 @@ packages = [
     "yfinance", "PySpice", "networkx", "schematics", "schemdraw", "ipywidgets", "vtk",
     "diagrams", "graphviz", "pix2tex[gui]", "pillow", "bcrypt", "watchdog", "bandit",
     "dotenv-linter", "psutil", "dotenv", "PyPDF2", "ipydrawio[all]", "python-docx",
-    "openai-whisper", "coqui-tts", "sounddevice", "pygame"
+    "openai-whisper", "coqui-tts", "sounddevice", "pygame", "python-dotenv"
 ]
 
 process_packages(packages)

@@ -158,15 +158,16 @@ def run_command(command, shell=False):
     while stderr_lines:
         print(stderr_lines.pop(0), end='', flush=True, file=sys.stderr)
 
-
 import os
 from dotenv import load_dotenv
 from subprocess import run
 
-
 def handle_special_commands(user_input):
     # Lade die .env-Datei
     load_dotenv(dotenv_path="C:\\Users\\julia\\PycharmProjects\\MAVIS\\.env")
+
+    # Der Pfad zum Python-Interpreter in der .env
+    python_path = "C:\\Users\\julia\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
 
     commands = {
         "env-install": "mavis-terminal-3\\install-mavis-3.py",
@@ -187,8 +188,10 @@ def handle_special_commands(user_input):
 
         # Prüfen, ob es eine Python-Datei oder eine Batch-Datei ist
         if not user_input.endswith(".bat"):
-            run(["python", script_path], shell=True)
+            # Führe das Skript mit dem Python-Interpreter aus der .env-Umgebung aus
+            run([python_path, script_path], shell=True)
         else:
+            # Wenn es eine Batch-Datei ist, führe sie direkt aus
             run([script_path], shell=True)
 
         return True
