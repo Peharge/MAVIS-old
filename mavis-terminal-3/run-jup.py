@@ -82,10 +82,6 @@ def start_jupyter():
     try:
         print("\nJupyter Information:")
         print("--------------------")
-        user_input = input("Do you want to start Jupyter? [y/n]:").strip().lower()
-        if user_input not in ['y', 'yes']:
-            print(f"{green}Jupyter will not be started.{reset}")
-            sys.exit(0)
 
         user_home = os.path.expanduser("~")
         venv_python = os.path.join(user_home, "PycharmProjects", "MAVIS", ".env", "Scripts", "python.exe")

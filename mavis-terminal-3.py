@@ -69,6 +69,9 @@ import threading
 import time
 from dotenv import load_dotenv
 import importlib.util
+import os
+from dotenv import load_dotenv
+from subprocess import run
 
 required_packages = ["requests", "Flask", "numpy", "pandas", "python-dotenv"]
 
@@ -86,7 +89,6 @@ def activate_virtualenv(venv_path):
     os.environ["VIRTUAL_ENV"] = venv_path
     os.environ["PATH"] = os.path.join(venv_path, "Scripts") + os.pathsep + os.environ["PATH"]
     print(f"Virtuelle Umgebung {venv_path} aktiviert.")
-
 
 def ensure_packages_installed(packages):
     """Stellt sicher, dass alle erforderlichen Pakete installiert sind."""
@@ -127,7 +129,6 @@ black = "\033[30m"
 orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
-
 
 def print_banner():
 
@@ -171,12 +172,10 @@ Thank you so much for using MAVIS. We truly appreciate your support ❤️""")
 
     print("")
 
-
 def set_python_path():
     python_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
     os.environ["PYTHON_PATH"] = python_path
     print(f"PYTHON_PATH set to {python_path}")
-
 
 def run_command(command, shell=False):
     python_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
@@ -210,10 +209,6 @@ def run_command(command, shell=False):
     while stderr_lines:
         print(stderr_lines.pop(0), end='', flush=True, file=sys.stderr)
 
-import os
-from dotenv import load_dotenv
-from subprocess import run
-
 def handle_special_commands(user_input):
     # Lade die .env-Datei
     load_dotenv(dotenv_path="C:\\Users\\julia\\PycharmProjects\\MAVIS\\.env")
@@ -222,18 +217,49 @@ def handle_special_commands(user_input):
     python_path = "C:\\Users\\julia\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
 
     commands = {
-        "env-install": "mavis-terminal-3\\install-mavis-3.py",
-        "mavis-env-install": "mavis-terminal-3\\install-mavis-3.py",
-        "env-update": "mavis-terminal-3\\install-mavis-3.py",
-        "mavis-env-update": "mavis-terminal-3\\install-mavis-3.py",
+        "env install": "mavis-terminal-3\\install-mavis-3.py",
+        "mavis env install": "mavis-terminal-3\\install-mavis-3.py",
+        "env update": "mavis-terminal-3\\install-mavis-3.py",
+        "mavis env update": "mavis-terminal-3\\install-mavis-3.py",
         "update": "mavis-terminal-3\\update-repository-windows.py",
-        "update-mavis": "mavis-terminal-3\\update-repository-windows.py",
+        "update mavis": "mavis-terminal-3\\update-repository-windows.py",
         "security": "mavis-terminal-3\\security-check.py",
-        "mavis-security": "mavis-terminal-3\\security-check.py",
+        "mavis security": "mavis-terminal-3\\security-check.py",
         "info": "mavis-terminal-3\\info.py",
-        "mavis-info": "mavis-terminal-3\\info.py",
+        "mavis info": "mavis-terminal-3\\info.py",
         "neofetch": "mavis-terminal-3\\neofetch.py",
-        "run-mavis": "run-mavis-3-all.bat"
+        "jupyter": "mavis-terminal-3\\run-jup.py",
+        "run jupyter": "mavis-terminal-3\\run-jup.py",
+        "run mavis-1-5-main": "mavis-1-5-main-main.py",
+        "run mavis-1-5-math": "mavis-1-5-math-math.py",
+        "run mavis-1-5-math-pro": "mavis-1-5-math-math-pro.py",
+        "run mavis-1-5-math-ultra": "mavis-1-5-math-math-ultra.py",
+        "run mavis-1-5-math-mini": "mavis-1-5-math-math-mini.py",
+        "run mavis-1-5-math-mini-mini": "mavis-1-5-math-math-mini-mini.py",
+        "run mavis-1-5-code": "mavis-1-5-main-code.py",
+        "run mavis-1-5-code-pro": "mavis-1-5-main-code-pro.py",
+        "run mavis-1-5-code-mini": "mavis-1-5-main-code-mini.py",
+        "run mavis-1-5-code-mini-mini": "mavis-1-5-main-code-mini-mini.py",
+        "run mavis-1-5-3-math-mini-mini": "mavis-1-5-3-main-math-mini-mini.py",
+        "run mavis-3-main": "mavis-3-main.py",
+        "run mavis-3-math": "mavis-3-math.py",
+        "run mavis-3-code": "mavis-3-code.py",
+        "install ollama mavis-1-5-main": "install\\install-ollama-mavis-1-5-main.py",
+        "install ollama mavis-1-5-math": "install\\install-ollama-mavis-1-5-math.py",
+        "install ollama mavis-1-5-math-pro": "install\\install-ollama-mavis-1-5-math-pro.py",
+        "install ollama mavis-1-5-math-ultra": "install\\install-ollama-mavis-1-5-math-ultra.py",
+        "install ollama mavis-1-5-math-mini": "install\\install-ollama-mavis-1-5-math-mini.py",
+        "install ollama mavis-1-5-math-mini-mini": "install\\install-ollama-mavis-1-5-math-mini-mini.py",
+        "install ollama mavis-1-5-code": "install\\install-ollama-mavis-1-5-code.py",
+        "install ollama mavis-1-5-code-pro": "install\\install-ollama-mavis-1-5-code-pro.py",
+        "install ollama mavis-1-5-code-mini": "install\\install-ollama-mavis-1-5-code-mini.py",
+        "install ollama mavis-1-5-code-mini-mini": "install\\install-ollama-mavis-1-5-code-mini-mini.py",
+        "install ollama mavis-1-5-3-math-mini-mini": "install\\install-ollama-mavis-1-5-3-math-mini-mini.py",
+        "install ollama mavis-3-main": "install\\install-ollama-mavis-3-main.py",
+        "install ollama mavis-3-math": "install\\install-ollama-mavis-3-math.py",
+        "install ollama mavis-3-code": "install\\install-ollama-mavis-3-code.py",
+        "run grafana": "run-grafana\\run-grafana.py",
+        "run mavis": "mavis-installer-3-main-windows.py"
     }
 
     if user_input in commands:
@@ -285,7 +311,6 @@ def main():
             break
         except Exception as e:
             print(f"Error: {str(e)}", file=sys.stderr)
-
 
 if __name__ == "__main__":
     main()
