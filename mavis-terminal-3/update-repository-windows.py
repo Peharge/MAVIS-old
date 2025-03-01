@@ -65,6 +65,8 @@ import os
 import json
 import subprocess
 from datetime import datetime
+import sys
+# import getpass
 
 # Farbcodes definieren
 red = "\033[91m"
@@ -79,8 +81,14 @@ orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
+sys.stdout.reconfigure(encoding='utf-8')
+# user_name = getpass.getuser()
+
 # Lokale JSON-Datei, in der das Datum gespeichert wird
-DATA_FILE = os.path.join(os.path.dirname(__file__), "last_update.json")
+DATA_FILE = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "update", "last_update.json")
+
+print(f"{DATA_FILE}")
+
 # Pfad zum Batch-Skript
 image_dir = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "update")
 batch_file = os.path.join(image_dir, "update-mavis-repository.bat")
