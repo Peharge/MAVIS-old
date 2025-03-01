@@ -61,6 +61,19 @@
 #
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
+# Farbcodes definieren (kleingeschrieben)
+red = "\033[91m"
+green = "\033[92m"
+yellow = "\033[93m"
+blue = "\033[94m"
+magenta = "\033[95m"
+cyan = "\033[96m"
+white = "\033[97m"
+black = "\033[30m"
+orange = "\033[38;5;214m"
+reset = "\033[0m"
+bold = "\033[1m"
+
 def show_help():
     # Kopfzeile
     print("\nThis guide provides descriptions of the available terminal commands and usage instructions.\n")
@@ -110,7 +123,7 @@ def show_help():
 
     # Drucken der Befehle in einem übersichtlichen, tabellenähnlichen Format
     for command, description in commands.items():
-        print(f"{command:35} : {description}")
+        print(f"{blue}{command}{reset}: {description}")
 
     # How to use pip and PowerShell
     print("\nHow to Use pip and PowerShell")
