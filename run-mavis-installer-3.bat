@@ -65,11 +65,11 @@ REM Veuillez lire l'intégralité des termes et conditions de la licence MIT pou
 
 setlocal enabledelayedexpansion
 
-echo
-echo        Welcome to the MAVIS Installer 3
-echo   -----------------------------------------
-echo      Initiating high-tech installation...
-echo         Prepare for the next level! 🚀
+echo.
+echo Welcome to the MAVIS Installer 3
+echo --------------------------------
+echo Initiating high-tech installation...
+echo Prepare for the next level! 🚀
 echo.
 echo MIT License
 echo Copyright (c) 2024 Peharge
@@ -92,7 +92,7 @@ echo LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FRO
 echo OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 echo SOFTWARE.
 echo.
-echo.
+echo Gooo...
 echo.
 
 :: Function to check if Python is installed
