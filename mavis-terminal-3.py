@@ -258,7 +258,10 @@ def handle_special_commands(user_input):
         "install ollama mavis-3-main": "install\\install-ollama-mavis-3-main.py",
         "install ollama mavis-3-math": "install\\install-ollama-mavis-3-math.py",
         "install ollama mavis-3-code": "install\\install-ollama-mavis-3-code.py",
+        "grafana": "run-grafana\\run-grafana.py",
         "run grafana": "run-grafana\\run-grafana.py",
+        "install grafana": "run-grafana\\run-grafana.py",
+        "account": "account\\account.py",
         "run mavis": "mavis-installer-3-main-windows.py"
     }
 
@@ -287,7 +290,7 @@ def main():
             current_dir = os.getcwd()
 
             # Eingabeaufforderung anzeigen, bevor der Benutzer etwas eingibt
-            sys.stdout.write(f"\n{blue}┌──({reset}{red}root👌Peharge{reset}{blue})-[{reset}{current_dir}{blue}]{reset}\n{blue}└─{reset}{red}#{reset}")
+            sys.stdout.write(f"\n{blue}┌──({reset}{red}rootⓅMAVIS{reset}{blue})-[{reset}{current_dir}{blue}]{reset}\n{blue}└─{reset}{red}#{reset}")
             sys.stdout.flush()
 
             # Benutzer-Eingabe erfassen
