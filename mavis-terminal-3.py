@@ -225,6 +225,7 @@ def handle_special_commands(user_input):
         "update mavis": "mavis-terminal-3\\update-repository-windows.py",
         "security": "mavis-terminal-3\\security-check.py",
         "mavis security": "mavis-terminal-3\\security-check.py",
+        "securitycheck": "mavis-terminal-3\\security-check.py",
         "info": "mavis-terminal-3\\info.py",
         "mavis info": "mavis-terminal-3\\info.py",
         "neofetch": "mavis-terminal-3\\neofetch.py",
