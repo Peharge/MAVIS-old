@@ -67,6 +67,26 @@ import os
 import subprocess
 import threading
 import time
+from dotenv import load_dotenv
+import importlib.util
+
+required_packages = ["requests", "Flask", "numpy", "pandas", "python-dotenv"]
+
+def ensure_packages_installed(packages):
+    """Stellt sicher, dass alle erforderlichen Pakete installiert sind."""
+    for package in packages:
+        if importlib.util.find_spec(package) is None:
+            print(f"Installing {package}...")
+            try:
+                subprocess.run([sys.executable, "-m", "pip", "install", package], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                print(f"{package} installed successfully.")
+            except subprocess.CalledProcessError:
+                print(f"WARNING: Failed to install {package}. Please install it manually.")
+        else:
+            print(f"{package} is already installed.")
+
+# Stellen Sie sicher, dass alle erforderlichen Pakete installiert sind
+ensure_packages_installed(required_packages)
 
 sys.stdout.reconfigure(encoding='utf-8')
 user_name = getpass.getuser()
@@ -139,7 +159,15 @@ def run_command(command, shell=False):
         print(stderr_lines.pop(0), end='', flush=True, file=sys.stderr)
 
 
+import os
+from dotenv import load_dotenv
+from subprocess import run
+
+
 def handle_special_commands(user_input):
+    # Lade die .env-Datei
+    load_dotenv(dotenv_path="C:\\Users\\julia\\PycharmProjects\\MAVIS\\.env")
+
     commands = {
         "env-install": "mavis-terminal-3\\install-mavis-3.py",
         "mavis-env-install": "mavis-terminal-3\\install-mavis-3.py",
@@ -156,10 +184,15 @@ def handle_special_commands(user_input):
 
     if user_input in commands:
         script_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\{commands[user_input]}"
-        run_command(["python", script_path] if not user_input.endswith(".bat") else [script_path], shell=True)
+
+        # Prüfen, ob es eine Python-Datei oder eine Batch-Datei ist
+        if not user_input.endswith(".bat"):
+            run(["python", script_path], shell=True)
+        else:
+            run([script_path], shell=True)
+
         return True
     return False
-
 
 def main():
     print_banner()
