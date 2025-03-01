@@ -72,20 +72,44 @@ import importlib.util
 
 required_packages = ["requests", "Flask", "numpy", "pandas", "python-dotenv"]
 
+
+def activate_virtualenv(venv_path):
+    """Aktiviert eine bestehende virtuelle Umgebung."""
+    activate_script = os.path.join(venv_path, "Scripts", "activate") if os.name == "nt" else os.path.join(venv_path, "bin", "activate")
+
+    # Überprüfen, ob die virtuelle Umgebung existiert
+    if not os.path.exists(activate_script):
+        print(f"Fehler: Die virtuelle Umgebung wurde unter {venv_path} nicht gefunden.")
+        sys.exit(1)
+
+    # Umgebungsvariable für die virtuelle Umgebung setzen
+    os.environ["VIRTUAL_ENV"] = venv_path
+    os.environ["PATH"] = os.path.join(venv_path, "Scripts") + os.pathsep + os.environ["PATH"]
+    print(f"Virtuelle Umgebung {venv_path} aktiviert.")
+
+
 def ensure_packages_installed(packages):
     """Stellt sicher, dass alle erforderlichen Pakete installiert sind."""
     for package in packages:
         if importlib.util.find_spec(package) is None:
             print(f"Installing {package}...")
             try:
-                subprocess.run([sys.executable, "-m", "pip", "install", package], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                subprocess.run([sys.executable, "-m", "pip", "install", package], check=True, stdout=subprocess.DEVNULL,
+                               stderr=subprocess.DEVNULL)
                 print(f"{package} installed successfully.")
             except subprocess.CalledProcessError:
                 print(f"WARNING: Failed to install {package}. Please install it manually.")
         else:
             print(f"{package} is already installed.")
 
-# Stellen Sie sicher, dass alle erforderlichen Pakete installiert sind
+
+# Pfad zur bestehenden virtuellen Umgebung
+venv_path = r"C:\Users\julia\PycharmProjects\MAVIS\.env"
+
+# Aktivieren der virtuellen Umgebung
+activate_virtualenv(venv_path)
+
+# Sicherstellen, dass alle erforderlichen Pakete installiert sind
 ensure_packages_installed(required_packages)
 
 sys.stdout.reconfigure(encoding='utf-8')
@@ -106,6 +130,7 @@ bold = "\033[1m"
 
 
 def print_banner():
+
     print(f"""
 {blue}      ██╗     █╗      {reset}
 {blue}     ████╗   ███╗     {reset}   ███╗   ███╗ █████╗ ██╗   ██╗██╗███████╗    ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗     
@@ -208,7 +233,7 @@ def main():
             current_dir = os.getcwd()
 
             # Eingabeaufforderung anzeigen, bevor der Benutzer etwas eingibt
-            sys.stdout.write(f"{current_dir}> ")
+            sys.stdout.write(f"\n{blue}┌──({reset}{red}root👌Peharge{reset}{blue})-[{reset}{current_dir}{blue}]{reset}\n{blue}└─{reset}{red}#{reset}")
             sys.stdout.flush()
 
             # Benutzer-Eingabe erfassen
