@@ -69,6 +69,7 @@ import shutil
 import time
 import socket
 from typing import Tuple
+import pip
 
 # Farbcodes definieren
 red = "\033[91m"
@@ -193,10 +194,9 @@ def print_system_info(system_info: dict):
 {blue}     ███████████║     ███████████╗        {reset}{blue}Max Frequency{reset}: {system_info['cpu_freq']} MHz
 {blue}    ██████████╔═╝       ██████████╗       {reset}{blue}RAM Usage{reset}: {system_info['ram_usage']}%
 {blue}   ███████╔═══╝             ███████╗      {reset}{blue}RAM Total{reset}: {system_info['ram_total']} GB
-{blue}  ████╔═══╝                     ████╗     {reset}{blue}RAM Used{reset}: {system_info['ram_used']} GB
-{blue} ███╔═╝                           ███╗    {reset}{blue}RAM Free{reset}: {system_info['ram_free']} GB
-{blue} ╚══╝                             ╚══╝    {reset}
-{blue}                                          {reset}{show_color_palette_1()}
+{blue}  ████╔═══╝                     ████╗     {reset}{blue}PIP Version{reset}: {pip.__version__}
+{blue} ███╔═╝                           ███╗    {reset}
+{blue} ╚══╝                             ╚══╝    {reset}{show_color_palette_1()}
 {blue}                                          {reset}{show_color_palette_3()}
 """)
 
@@ -218,7 +218,6 @@ def show_color_palette_3():
 
     # Noch ein Zeilenumbruch am Ende
     return palette
-
 
 if __name__ == "__main__":
     system_info = get_system_info()
