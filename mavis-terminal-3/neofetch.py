@@ -178,26 +178,26 @@ def get_system_info() -> dict:
 def print_system_info(system_info: dict):
     """Funktion, um die Systeminformationen im Terminal auszugeben"""
     print(f"""
-{blue}                  ██╗                     {reset}{blue}MAVIS Terminal{reset}
-{blue}                 ████╗                    {reset}--------------
-{blue}                ██████╗                   {reset}{blue}MAVIS Version{reset}: 3
-{blue}               ████████╗                  {reset}{blue}MAVIS Installer Version{reset}: 3
-{blue}              ██████████╗                 {reset}{blue}MAVIS Terminal Version{reset}: 3
-{blue}             ████████████╗                {reset}{blue}MAVIS License{reset}: MIT
-{blue}            ██████████████╗               {reset}{blue}OS{reset}: {system_info['os_name']} {system_info['os_release']}
-{blue}           ████████████████╗              {reset}{blue}Version{reset}: {system_info['os_version']}
-{blue}          ██████████████████╗             {reset}{blue}Architecture{reset}: {system_info['os_arch']}
-{blue}         ████████████████████╗            {reset}{blue}Hostname{reset}: {system_info['hostname']}
-{blue}        ██████████████████████╗           {reset}{blue}IP Address{reset}: {system_info['ip_address']}
-{blue}       ██████████╔═══██████████╗          {reset}{blue}CPU{reset}: {system_info['cpu_model']}
-{blue}      ██████████╔╝    ██████████╗         {reset}{blue}Architecture{reset}: {system_info['cpu_arch']}
-{blue}     ███████████║     ███████████╗        {reset}{blue}Max Frequency{reset}: {system_info['cpu_freq']} MHz
-{blue}    ██████████╔═╝       ██████████╗       {reset}{blue}RAM Usage{reset}: {system_info['ram_usage']}%
-{blue}   ███████╔═══╝             ███████╗      {reset}{blue}RAM Total{reset}: {system_info['ram_total']} GB
-{blue}  ████╔═══╝                     ████╗     {reset}{blue}PIP Version{reset}: {pip.__version__}
-{blue} ███╔═╝                           ███╗    {reset}
-{blue} ╚══╝                             ╚══╝    {reset}{show_color_palette_1()}
-{blue}                                          {reset}{show_color_palette_3()}
+{blue}                   ██╗                      {reset}{blue}MAVIS Terminal{reset}
+{blue}                  ████╗                     {reset}--------------
+{blue}                 ██████╗                    {reset}{blue}MAVIS Version{reset}: 3
+{blue}                ████████╗                   {reset}{blue}MAVIS Installer Version{reset}: 3
+{blue}               ██████████╗                  {reset}{blue}MAVIS Terminal Version{reset}: 3
+{blue}              ████████████╗                 {reset}{blue}MAVIS License{reset}: MIT
+{blue}             ██████████████╗                {reset}{blue}OS{reset}: {system_info['os_name']} {system_info['os_release']}
+{blue}            ████████████████╗               {reset}{blue}Version{reset}: {system_info['os_version']}
+{blue}           ██████████████████╗              {reset}{blue}Architecture{reset}: {system_info['os_arch']}
+{blue}          ████████████████████╗             {reset}{blue}Hostname{reset}: {system_info['hostname']}
+{blue}         ██████████████████████╗            {reset}{blue}IP Address{reset}: {system_info['ip_address']}
+{blue}        ██████████╔═══██████████╗           {reset}{blue}CPU{reset}: {system_info['cpu_model']}
+{blue}       ██████████╔╝    ██████████╗          {reset}{blue}Architecture{reset}: {system_info['cpu_arch']}
+{blue}      ███████████║     ███████████╗         {reset}{blue}Max Frequency{reset}: {system_info['cpu_freq']} MHz
+{blue}     ██████████╔═╝       ██████████╗        {reset}{blue}RAM Usage{reset}: {system_info['ram_usage']}%
+{blue}    ███████╔═══╝             ███████╗       {reset}{blue}RAM Total{reset}: {system_info['ram_total']} GB
+{blue}   ████╔═══╝                     ████╗      {reset}{blue}PIP Version{reset}: {pip.__version__}
+{blue}  ███╔═╝                           ███╗     {reset}
+{blue}  ╚══╝                             ╚══╝     {reset}{show_color_palette_1()}
+{blue}                                            {reset}{show_color_palette_3()}
 """)
 
 def show_color_palette_1():
