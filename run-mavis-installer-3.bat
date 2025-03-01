@@ -69,7 +69,7 @@ echo.
 echo Welcome to the MAVIS Installer 3
 echo --------------------------------
 echo Initiating high-tech installation...
-echo Prepare for the next level! 🚀
+echo Prepare for the next level!
 echo.
 echo MIT License
 echo Copyright (c) 2024 Peharge
