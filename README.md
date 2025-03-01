@@ -153,6 +153,8 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 - **[27.02.2025]** MAVIS 1.n and MAVIS 2.n was terminated!!!
 - **[27.02.2025]** Start of development of MAVIS 3
 - **[27.02.2025]** MAVIS 3 EAP release
+- **[01.03.2025]** MAVIS Terminal 3 EAP release
+- **[01.03.2025]** MAVIS Installer 3 EAP release
 
 ## Updates
 
