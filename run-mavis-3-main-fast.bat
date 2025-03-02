@@ -71,7 +71,7 @@ set SCRIPT_PATH_3=C:\Users\%USERNAME%\PycharmProjects\MAVIS\install\install-olla
 set PYTHON_SCRIPT_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run-browser\run-browser-one.py
 set run_jup=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run-jup\run-jup.py
 set run_grafana=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run-grafana\run-grafana.py
-set run_solution=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run-solution-3.py
+set run_solution=C:\Users\%USERNAME%\PycharmProjects\MAVIS\solution\run-solution-3.py
 set SCRIPT_PATH_5=C:\Users\%USERNAME%\PycharmProjects\MAVIS\mavis-3-main-main.py
 
 if not exist "%PYTHON_PATH%" (
