@@ -1216,11 +1216,11 @@ Falls du weitere Hilfe benötigst, schau in die [Dokumentation](https://github.c
 
 ### English [new]:
 
-[Using](using-en)
+[Using](using-mavis-1-5-en)
 
 ### Deutsch [new]:
 
-[Benutzen](using-de)
+[Benutzen](using-mavis-1-5-de)
 
 ## Xcpp
 
