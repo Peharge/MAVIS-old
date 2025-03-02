@@ -454,25 +454,25 @@ And more...
 
 </details>
 
-| **Model**                | **Description**                                           | **Requirements**                               | **Parameters**   |
-|--------------------------|-----------------------------------------------------------|------------------------------------------------|------------------|
-| Mavis 1.5 main           | With **Xc++ 2 11B** or Llama3.2 11B + Phi 4 14B           | +16GB RAM +23GB storage (Works with one CPU)   | 25B              |
-| Mavis 1.5 math           | With **Xc++ 2 11B** or Llama3.2 11B + DeepSeek R1 14B     | +16GB RAM +23GB storage (Works with one CPU)   | 25B              |
-| Mavis 1.5 math pro       | With **Xc++ 2 11B** or Llama3.2 11B + DeepSeek R 32B      | +32GB RAM +33GB storage (Works with one CPU)   | 43B              |
-| Mavis 1.5 math ultra     | With **Xc++ 2 90B** or Llama3.2 90B + DeepSeek R1 671B    | +256GB RAM +469GB storage (Works with one CPU) | 761B             |
-| Mavis 1.5 math mini      | With **Xc++ 2 11B** or Llama3.2 11B + DeepSeek R1 7B      | +16GB RAM +18GB storage (Works with one CPU)   | 18B              |
-| Mavis 1.5 math mini mini | With **Xc++ 2 11B** or Llama3.2 11B + DeepSeek R1 1.5B    | +16GB RAM +14GB storage (Works with one CPU)   | 12.5B            |
-| Mavis 1.5 code           | With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 Coder 14B  | +16GB RAM +23GB storage (Works with one CPU)   | 25B              |
-| Mavis 1.5 code pro       | With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 Coder 32B  | +32GB RAM +33GB storage (Works with one CPU)   | 43B              |
-| Mavis 1.5 code mini      | With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 Coder 7B   | +16GB RAM +18GB storage (Works with one CPU)   | 18B              |
-| Mavis 1.5 code mini mini | With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 Coder 1.5B | +16GB RAM +14GB storage (Works with one CPU)   | 12.5B            |
-| Mavis 1.5 math mini mini | With **Xc++ 2 11B** or Llama3.2 11B + DeepScaleR 1.5B     | +16GB RAM +14GB storage (Works with one CPU)   | 12.5B            |
+| **Model**                  | **Description**                                           | **Requirements**                               | **Parameters**   |
+|----------------------------|-----------------------------------------------------------|------------------------------------------------|------------------|
+| Mavis 1.5 main             | With **Xc++ 2 11B** or Llama3.2 11B + Phi 4 14B           | +16GB RAM +23GB storage (Works with one CPU)   | 25B              |
+| Mavis 1.5 math             | With **Xc++ 2 11B** or Llama3.2 11B + DeepSeek R1 14B     | +16GB RAM +23GB storage (Works with one CPU)   | 25B              |
+| Mavis 1.5 math pro         | With **Xc++ 2 11B** or Llama3.2 11B + DeepSeek R 32B      | +32GB RAM +33GB storage (Works with one CPU)   | 43B              |
+| Mavis 1.5 math ultra       | With **Xc++ 2 90B** or Llama3.2 90B + DeepSeek R1 671B    | +256GB RAM +469GB storage (Works with one CPU) | 761B             |
+| Mavis 1.5 math mini        | With **Xc++ 2 11B** or Llama3.2 11B + DeepSeek R1 7B      | +16GB RAM +18GB storage (Works with one CPU)   | 18B              |
+| Mavis 1.5 math mini mini   | With **Xc++ 2 11B** or Llama3.2 11B + DeepSeek R1 1.5B    | +16GB RAM +14GB storage (Works with one CPU)   | 12.5B            |
+| Mavis 1.5 code             | With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 Coder 14B  | +16GB RAM +23GB storage (Works with one CPU)   | 25B              |
+| Mavis 1.5 code pro         | With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 Coder 32B  | +32GB RAM +33GB storage (Works with one CPU)   | 43B              |
+| Mavis 1.5 code mini        | With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 Coder 7B   | +16GB RAM +18GB storage (Works with one CPU)   | 18B              |
+| Mavis 1.5 code mini mini   | With **Xc++ 2 11B** or Llama3.2 11B + Qwen 2.5 Coder 1.5B | +16GB RAM +14GB storage (Works with one CPU)   | 12.5B            |
+| Mavis 1.5.3 math mini mini | With **Xc++ 2 11B** or Llama3.2 11B + DeepScaleR 1.5B     | +16GB RAM +14GB storage (Works with one CPU)   | 12.5B            |
 
-| **Model**    | **Description**                                                         | **Requirements**                               | **Parameters** |
-|--------------|-------------------------------------------------------------------------|------------------------------------------------|----------------|
-| MAVIS 3 main | With **Xc++ 3 11B** or Llama3.2 11B + Phi4 + Qwen 2.5 1.5b              | +16GB RAM +23GB storage (Works with one CPU)   | 26.5B          |
-| MAVIS 3 math | With **Xc++ 3 11B** or Llama3.2 11B + DeepSeek R1 14b + Qwen 2.5 1.5b   | +16GB RAM +23GB storage (Works with one CPU)   | 26.5B          |
-| MAVIS 3 code | With **Xc++ 3 11B** or Llama3.2 11B + Qwen 2.5 Coder 14B +Qwen 2.5 1.5b | +16GB RAM +23GB storage (Works with one CPU)   | 26.5B          |
+| **Model**    | **Description**                                                                                | **Requirements**                               | **Parameters** |
+|--------------|------------------------------------------------------------------------------------------------|------------------------------------------------|----------------|
+| MAVIS 3 main | With **Xc++ 3 11B** or Llama3.2 11B + Phi4 + Qwen 2.5 1.5b + granite3.2-vision 2 b             | +16GB RAM +23GB storage (Works with one CPU)   | 28.5B          |
+| MAVIS 3 math | With **Xc++ 3 11B** or Llama3.2 11B + DeepSeek R1 14b + Qwen 2.5 1.5b + granite3.2-vision 2b   | +16GB RAM +23GB storage (Works with one CPU)   | 28.5B          |
+| MAVIS 3 code | With **Xc++ 3 11B** or Llama3.2 11B + Qwen 2.5 Coder 14B +Qwen 2.5 1.5b + granite3.2-vision 2b | +16GB RAM +23GB storage (Works with one CPU)   | 28.5B          |
 
 ## Benchmark
 
