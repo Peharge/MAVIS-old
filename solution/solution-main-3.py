@@ -193,7 +193,7 @@ def text_to_speech(text):
 def chat_response(message, image_path):
     try:
         response = ollama.chat(
-            model='llama3.2-vision',
+            model='granite3.2-vision', # ore llama3.2-vision
             messages=[{
                 'role': 'user',
                 'content': message,

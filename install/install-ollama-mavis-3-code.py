@@ -207,7 +207,7 @@ if __name__ == "__main__":
 
     start_ollama()
 
-    models_to_check = ["llama3.2-vision", "qwen2.5-coder:14b", "qwen2.5:1.5b"]
+    models_to_check = ["llama3.2-vision", "qwen2.5-coder:14b", "qwen2.5:1.5b", "granite3.2-vision"]
 
     for model in models_to_check:
         model_installed = check_model_with_ollama(model)
