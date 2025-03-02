@@ -64,7 +64,8 @@ from flask import Flask, jsonify, render_template, request
 app = Flask(__name__)
 
 # Sicherstellen, dass das "static" Verzeichnis existiert
-os.makedirs("../static", exist_ok=True)
+os.makedirs("static", exist_ok=True)
+
 
 # Pygame initialisieren (für Audioausgabe)
 def init_pygame():
@@ -224,6 +225,7 @@ def process():
     threading.Thread(target=text_to_speech, args=(response_text,)).start()
 
     return jsonify({"response": response_text, "image": image_path, "audio": f"/static/{os.path.basename(audio_path)}"})
+
 
 # Start der Flask-App
 if __name__ == '__main__':
