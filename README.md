@@ -410,7 +410,7 @@ And more...
 
 ### MAVIS 3 [SOON]                     
 <p align="center">
-    <img src="./readme-img/mavis2.1-banner-ads.png" alt="mavis" width="800" style="margin: 10px;">
+    <img src="./readme-img/mavis-3-banner-ads.png" alt="mavis" width="800" style="margin: 10px;">
 </p>
 
 <br>
