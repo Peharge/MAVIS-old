@@ -65,14 +65,15 @@ REM Veuillez lire l'intégralité des termes et conditions de la licence MIT pou
 
 setlocal enabledelayedexpansion
 
+echo -------------------------------------------------
+echo        Welcome to the MAVIS Installer 3
+echo -------------------------------------------------
+echo      Initiating high-tech installation...
+echo           Prepare for the next level!
 echo.
-echo Welcome to the MAVIS Installer 3
-echo --------------------------------
-echo Initiating high-tech installation...
-echo Prepare for the next level!
-echo.
-echo MIT License
-echo Copyright (c) 2024 Peharge
+echo                  MIT License
+echo              Copyright (c) 2024
+echo                    Peharge
 echo.
 echo Permission is hereby granted, free of charge, to any person obtaining a copy
 echo of this software and associated documentation files (the "Software"), to deal
