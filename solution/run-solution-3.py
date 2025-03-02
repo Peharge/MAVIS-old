@@ -87,6 +87,7 @@ def get_user_input():
     while True:
         try:
             print(f"\nSolution Extension Information:\n-------------------------------")
+            print("Problems!!!!!!!!")
             user_input = input(f"Do you want to start Solution Extension? [y/n]:").strip().lower()
             if user_input in ['y', 'yes']:
                 return True
