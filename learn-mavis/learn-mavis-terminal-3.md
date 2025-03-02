@@ -1,4 +1,8 @@
-# **Mavis Terminal - Command Reference and Setup Guide**  
+<p align="center">
+    <img src="https://github.com/Peharge/MAVIS/tree/main/mavis-terminal-3-banner.png" alt="mavis" width="800" style="margin: 10px;">
+</p>
+
+# _**Mavis Terminal - Command Reference and Setup Guide**_
 
 ## **Overview**  
 Mavis Terminal is a powerful command-line interface designed to streamline development, system monitoring, and AI model execution. This document provides a comprehensive list of available commands, along with usage guidelines for `pip` and PowerShell.  
