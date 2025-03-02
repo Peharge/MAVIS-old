@@ -225,8 +225,16 @@ def process():
 
     return jsonify({"response": response_text, "image": image_path, "audio": f"/static/{os.path.basename(audio_path)}"})
 
+def start_solution_extension():
+    print(f"\nSolution Extension Information:\n-------------------------------")
+    antwort = input("Do you want to start Solution Extension? [y/n]:")
+    if antwort.lower() not in ['y', 'yes']:
+        print("Solution Extension will not be started.")
+        exit()  # Beendet das Programm
+
+    init_pygame()
+    app.run(debug=True, threaded=False, host="0.0.0.0", port=5000)
 
 # Start der Flask-App
 if __name__ == '__main__':
-    init_pygame()
-    app.run(debug=True, threaded=False, host="0.0.0.0", port=5000)
+    start_solution_extension()
