@@ -66,7 +66,6 @@ app = Flask(__name__)
 # Sicherstellen, dass das "static" Verzeichnis existiert
 os.makedirs("static", exist_ok=True)
 
-
 # Pygame initialisieren (für Audioausgabe)
 def init_pygame():
     try:
