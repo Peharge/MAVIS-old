@@ -4311,7 +4311,7 @@
                 let drawing = false;
                 let erasing = false;
 
-                document.getElementById("draw-drawMode").addEventListener("click", () => {
+            document.getElementById("draw-drawMode").addEventListener("click", () => {
                     erasing = false;
                 });
                 document.getElementById("draw-eraseMode").addEventListener("click", () => {
@@ -4331,7 +4331,7 @@
                     ctx.globalCompositeOperation = erasing ? "destination-out" : "source-over";
                     ctx.lineTo(e.offsetX, e.offsetY);
                     ctx.strokeStyle = "black";
-                    ctx.lineWidth = erasing ? 25 : 5;
+                    ctx.lineWidth = 8;
                     ctx.stroke();
                 });
                 canvas.addEventListener("mouseup", () => {
