@@ -386,8 +386,9 @@ packages = [
     "lifelines", "rdkit", "ase", "chempy", "shapely", "fiona", "cartopy", "statsmodels",
     "yfinance", "PySpice", "networkx", "schematics", "schemdraw", "ipywidgets", "vtk",
     "diagrams", "graphviz", "pix2tex[gui]", "pillow", "bcrypt", "watchdog", "bandit",
-    "dotenv-linter", "psutil", "dotenv", "PyPDF2", "ipydrawio[all]", "python-docx",
-    "openai-whisper", "coqui-tts", "sounddevice", "pygame", "python-dotenv"
+    "dotenv-linter", "psutil", "dotenv", "PyPDF2", "python-docx", "openai-whisper",
+    "coqui-tts", "sounddevice", "pygame", "python-dotenv", "pyaudio", "webrtcvad",
+    "ipydrawio[all]"
 ]
 
 process_packages(packages)
