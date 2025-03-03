@@ -139,7 +139,7 @@ def validate_password(password):
 
 
 def register(user_type="Standard"):
-    print("\n--- Registration ---")
+    print("\nRegistration\n------------")
     users = load_users()
 
     # Username Eingabe
@@ -197,7 +197,7 @@ def register(user_type="Standard"):
 
 
 def register_mavis_ultra():
-    print("\n--- MAVIS Ultra Registration ---")
+    print("\nMAVIS Ultra Registration\n------------------------")
     tokens = load_tokens()
 
     if not tokens:  # Falls keine Tokens vorhanden sind
@@ -230,7 +230,7 @@ def register_mavis_ultra():
     register("MAVIS Ultra")
 
 def login():
-    print("\n--- Login ---")
+    print("\nLogin\n-----")
     username_or_email = input(f"{blue}Username or Email{reset}:")
     password = input(f"{blue}Password{reset}:")
     users = load_users()
