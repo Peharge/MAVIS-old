@@ -4331,7 +4331,7 @@
                     ctx.globalCompositeOperation = erasing ? "destination-out" : "source-over";
                     ctx.lineTo(e.offsetX, e.offsetY);
                     ctx.strokeStyle = "black";
-                    ctx.lineWidth = erasing ? 25 : 5;
+                    ctx.lineWidth = erasing ? 30 : 5;
                     ctx.stroke();
                 });
                 canvas.addEventListener("mouseup", () => {
@@ -4400,25 +4400,25 @@
             const canvas = document.getElementById("draw-canvas");
             const drawButton = document.getElementById("draw-drawMode");
             const eraseButton = document.getElementById("draw-eraseMode");
-            const rubber = document.getElementById("draw-button-rub");
 
-            // Einfacher Stift als SVG (bleibt unverändert)
-            const customCursor = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMCAxMCI+PHBhdGggZD0iTTEwLDEuOTY3OUwtMywzIEwgMiw0ICIgZmlsbD0iI2ZmZmZmZiIgLz48L3N2Zz4=";
-
-            // Einfacher Radierer als SVG
-            const customRubber = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNSAyNSIgZmlsbD0iIzAwMDAwMCIgY2xpcC1yb3c9IjEiPjxwYXRoIGQ9Ik0xMi43NSwxMi4yMTU2TDEwLDEwLjY3OTg1TDExLjEsMTAuNTk3NjIsOC42ODc4NTYsMTIuNzUxLCJzdHJva2Utb3BhY2l0eT0xLjgiLz48L3N2Zz4=";
+            // Cursor mit Bild-Dateien als URLs
+            const customCursor = "url('/static/images/stift.svg') 16 16, auto";  // Stift als Cursor
+            const customRubber = "url('/static/images/rubber.svg') 25 25, auto";  // Radierer als Cursor
 
             // Event Listener für den Zeichnen-Button (Stift)
             drawButton.addEventListener("click", () => {
-                // Setze den benutzerdefinierten Cursor für den Stift
-                canvas.style.cursor = `url(${customCursor}) 5 5, auto`;
+                // Setze den benutzerdefinierten Cursor für den Stift auf das Canvas
+                canvas.style.cursor = customCursor;
             });
 
             // Event Listener für den Radierer-Button (Radierer)
             eraseButton.addEventListener("click", () => {
-                // Setze den benutzerdefinierten Cursor für den Radierer
-                rubber.style.cursor = `url(${customRubber}) 5 5, auto`;
+                // Setze den benutzerdefinierten Cursor für den Radierer auf das Canvas
+                canvas.style.cursor = customRubber;
             });
+
+            // Setze den Standard-Cursor für das Canvas
+            canvas.style.cursor = "default";
         </script>
 
         <div class="card-ploty-graf" id="card-ploty-graf-id">
