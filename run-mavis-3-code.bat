@@ -172,7 +172,7 @@ start "" "%PYTHON_PATH%" "%run_solution%"
 REM Wait for 5 seconds before continuing
 timeout /t 5 /nobreak
 
-if %" (
+if not exist "%SCRIPT_PATH_5%" (
     echo Error: Script not found: %SCRIPT_PATH_5%
     exit /B 1
 )
