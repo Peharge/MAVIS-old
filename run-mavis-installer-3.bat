@@ -144,6 +144,22 @@ if %errorlevel% neq 0 (
     echo Ollama is already installed.
 )
 
+:: Function to check if ffmpeg is installed
+:check_ffmpeg
+ffmpeg -version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo ffmpeg is not installed.
+    set /p install_ffmpeg="Would you like to install ffmpeg? (y/n):"
+    if /i "%install_ffmpeg%"=="y" (
+        echo Downloading and installing ffmpeg...
+        start https://www.gyan.dev/ffmpeg/builds/
+    ) else (
+        echo ffmpeg installation aborted.
+    )
+) else (
+    echo ffmpeg is already installed.
+)
+
 :: Create PyCharm Projects folder if it doesn't exist
 set "pycharm_projects=%USERPROFILE%\PycharmProjects"
 if not exist "%pycharm_projects%" (
