@@ -160,6 +160,22 @@ if %errorlevel% neq 0 (
     echo ffmpeg is already installed.
 )
 
+:: Function to check if rustup is installed
+:check_rustup
+rustup --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo Rustup is not installed.
+    set /p install_rustup="Would you like to install Rustup? [y/n]:"
+    if /i "%install_rustup%"=="y" (
+        echo Downloading and installing Rustup...
+        start https://sh.rustup.rs
+    ) else (
+        echo Rustup installation aborted. Please go to https://sh.rustup.rs and install it manually.
+    )
+) else (
+    echo Rustup is already installed.
+)
+
 :: Create PyCharm Projects folder if it doesn't exist
 set "pycharm_projects=%USERPROFILE%\PycharmProjects"
 if not exist "%pycharm_projects%" (
