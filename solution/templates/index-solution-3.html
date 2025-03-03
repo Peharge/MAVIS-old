@@ -123,7 +123,7 @@
         fetch('/process', {method: 'POST'})
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById("response").innerText = "Antwort: " + data.response;
+                    document.getElementById("response").innerText = "Answer: " + data.response;
                     let audioPlayer = document.getElementById("audio-player");
                     audioPlayer.src = data.audio;
                     audioPlayer.play();
@@ -137,7 +137,7 @@
                     let videoElement = document.getElementById("background-video");
                     videoElement.srcObject = stream;
                 })
-                .catch(error => console.error("Fehler beim Zugriff auf die Kamera:", error));
+                .catch(error => console.error("Error accessing the camera: ", error));
     }
 
     startCamera();
