@@ -101,12 +101,12 @@ echo.
 python --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo Python 3.12 is not installed.
-    set /p install_python="Would you like to install Python 3.12? (y/n):"
+    set /p install_python="Would you like to install Python 3.12? [y/n]:"
     if /i "%install_python%"=="y" (
         echo Downloading and installing Python 3.12...
         start https://www.python.org/downloads/release/python-3120/
     ) else (
-        echo Python installation aborted.
+        echo Python installation aborted. Please go to https://git-scm.com/downloads and install the dependencies from there! But only Python 3.12.9 not Python 3.13
     )
 ) else (
     echo Python 3.12 is already installed.
@@ -117,12 +117,12 @@ if %errorlevel% neq 0 (
 git --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo Git is not installed.
-    set /p install_git="Would you like to install Git? (y/n):"
+    set /p install_git="Would you like to install Git? [y/n]:"
     if /i "%install_git%"=="y" (
         echo Downloading and installing Git...
         start https://git-scm.com/download/win
     ) else (
-        echo Git installation aborted.
+        echo Git installation aborted. Please go to https://git-scm.com/downloads and install the dependencies from there
     )
 ) else (
     echo Git is already installed.
@@ -133,12 +133,12 @@ if %errorlevel% neq 0 (
 ollama --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo Ollama is not installed.
-    set /p install_ollama="Would you like to install Ollama? (y/n):"
+    set /p install_ollama="Would you like to install Ollama? [y/n]:"
     if /i "%install_ollama%"=="y" (
         echo Downloading and installing Ollama...
         start https://ollama.com/download
     ) else (
-        echo Ollama installation aborted.
+        echo Ollama installation aborted. Please go to https://ollama.com/download and install the dependencies from there
     )
 ) else (
     echo Ollama is already installed.
@@ -149,12 +149,12 @@ if %errorlevel% neq 0 (
 ffmpeg -version >nul 2>&1
 if %errorlevel% neq 0 (
     echo ffmpeg is not installed.
-    set /p install_ffmpeg="Would you like to install ffmpeg? (y/n):"
+    set /p install_ffmpeg="Would you like to install ffmpeg? [y/n]:"
     if /i "%install_ffmpeg%"=="y" (
         echo Downloading and installing ffmpeg...
         start https://www.gyan.dev/ffmpeg/builds/
     ) else (
-        echo ffmpeg installation aborted.
+        echo ffmpeg installation aborted. Please go to https://ffmpeg.org/download.html#build-windows and install the dependencies from there
     )
 ) else (
     echo ffmpeg is already installed.
