@@ -101,7 +101,7 @@ echo.
 python --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo Python 3.12 is not installed.
-    set /p install_python="Would you like to install Python 3.12? (y/n): "
+    set /p install_python="Would you like to install Python 3.12? (y/n):"
     if /i "%install_python%"=="y" (
         echo Downloading and installing Python 3.12...
         start https://www.python.org/downloads/release/python-3120/
@@ -117,7 +117,7 @@ if %errorlevel% neq 0 (
 git --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo Git is not installed.
-    set /p install_git="Would you like to install Git? (y/n): "
+    set /p install_git="Would you like to install Git? (y/n):"
     if /i "%install_git%"=="y" (
         echo Downloading and installing Git...
         start https://git-scm.com/download/win
@@ -133,7 +133,7 @@ if %errorlevel% neq 0 (
 ollama --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo Ollama is not installed.
-    set /p install_ollama="Would you like to install Ollama? (y/n): "
+    set /p install_ollama="Would you like to install Ollama? (y/n):"
     if /i "%install_ollama%"=="y" (
         echo Downloading and installing Ollama...
         start https://ollama.com/download

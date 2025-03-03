@@ -102,7 +102,7 @@ def get_user_input():
 def execute_installation():
     """Installation ausführen und Fehlerbehandlung"""
     try:
-        subprocess.run([sys.executable, "solution", "solution-main-3.py"], check=True)
+        subprocess.run([sys.executable, "solution-main-3.py"], check=True)
         print_message("Solution Extension completed successfully.", blue, True)
     except subprocess.CalledProcessError:
         print_message("An error occurred while running the Solution Extension script.", red, True)

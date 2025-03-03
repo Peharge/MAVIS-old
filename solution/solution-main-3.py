@@ -58,8 +58,16 @@ import time
 import threading
 import pyaudio
 import webrtcvad
+import logging
 from TTS.api import TTS
 from flask import Flask, jsonify, render_template, request
+
+# TensorFlow Warnungen unterdrücken
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '0'
+
+# Logging reduzieren
+logging.getLogger('tensorflow').setLevel(logging.ERROR)
 
 app = Flask(__name__)
 
@@ -229,4 +237,4 @@ def process():
 # Start der Flask-App
 if __name__ == '__main__':
     init_pygame()
-    app.run(debug=True, threaded=False, host="0.0.0.0", port=5000)
+    app.run(debug=False, host="192.168.0.67", port=5000, threaded=True)
