@@ -70,15 +70,18 @@ _Think you're better at math than an AI? Prove it! Show that there are infinitel
 
 <br>
 
-> ⚠️ **Still in progress** ;-)
+> [!WARNING]  
+> **Still in progress** ;-)
 
-> ⚠️ Important warning: Beware of fake accounts!<br>
+> [!WARNING]  
+> Important warning: Beware of fake accounts!<br>
 There is evidence that fake accounts may attempt to misrepresent this project. Please do not share personal information with anyone you do not know and only rely on content coming directly from this repository. Immediately report large activities or accounts to GitHub or the project team.
 
 <details>
   <summary>Deutsch</summary>
 
-> ⚠️ Wichtiger Hinweis: Vorsicht vor Fake-Accounts!<br>
+> [!WARNING]  
+> Wichtiger Hinweis: Vorsicht vor Fake-Accounts!<br>
 > Es gibt Hinweise darauf, dass Fake-Accounts versuchen könnten, dieses Projekt falsch darzustellen. Bitte geben Sie keine persönlichen Daten an Unbekannte weiter und verlassen Sie sich nur auf Inhalte, die direkt aus diesem Repository stammen. Melden Sie umfangreiche Aktivitäten oder Accounts umgehend an GitHub oder das Projektteam.
 
 </details>
@@ -228,6 +231,7 @@ And more...
 
 ### MAVIS 1.4 EAP release 
 
+> [!IMPORTANT]  
 > This update (MAVIS 1.4 EAP) is skipped and MAVIS 1.5 EAP is out
 
 <details>
@@ -249,6 +253,7 @@ And more...
 
 ### MAVIS 1.5 release [new]
 
+> [!IMPORTANT]
 > 01.03.2025 - ultimate stabel!!!
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
@@ -427,7 +432,8 @@ And more...
 
 <br>
 
-> ⚠️**Still in progress**
+> [!WARNING]
+> **Still in progress**
 
 <details>
   <summary> Old MAVIS versions</summary>
@@ -482,7 +488,8 @@ And more...
 
 <br>
 
-> ⚠️**Still in progress**
+> [!WARNING]
+> **Still in progress**
 
 |               | Xc++ III | DeepSeek<br>R1 | QwQ<br>32B-preview | Open AI<br>o1 | Open AI<br>o1-preview | Open AI<br>o1 mini | GPT-4o   | Claude3.5<br>Sonnet |
 |---------------|---------|----------------|--------------------|---------------|-----------------------|--------------------|----------|---------------------|
@@ -494,7 +501,8 @@ And more...
 
 ## Installation
 
-> ⚠️**Still in progress**
+> [!WARNING]
+> **Still in progress**
 
 ### Installation MAVIS 1.1 - 1.5 - English
 
@@ -1212,7 +1220,8 @@ Falls du weitere Hilfe benötigst, schau in die [Dokumentation](https://github.c
 
 ## Using
 
-> ⚠️ **Still in progress**
+> [!WARNING]
+> **Still in progress**
 
 ### English [new]:
 
@@ -1224,7 +1233,8 @@ Falls du weitere Hilfe benötigst, schau in die [Dokumentation](https://github.c
 
 ## Xcpp
 
-> ⚠️**Still in progress**
+> [!WARNING]
+> **Still in progress**
 
 > got to: [Github/Xc++-II](https://github.com/Peharge/Xcpp-II)
 
