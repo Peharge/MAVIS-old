@@ -1,6 +1,7 @@
 ## Installation
 
-> ⚠️**Still in progress**
+> [!WARNING]
+> **Still in progress**
 
 ### English:
 

@@ -1190,7 +1190,7 @@ To install MAVIS 3 EAP on a Windows computer, please follow these steps:
 - **Issue:** Missing permissions or errors during installation.  
   **Solution:** Check your user rights and ensure that you have the necessary permissions to install programs.
 
-If you need further assistance, refer to the [documentation](https://github.com/Peharge/MAVIS/blob/main/Susing-en) or ask a question in the Issues section of the repository.
+If you need further assistance, refer to the [Dokumentation](https://github.com/Peharge/MAVIS/blob/main/learn-mavis) - [Using MAVIS](https://github.com/Peharge/MAVIS/blob/main/using-mavis-3-en.md) or ask a question in the Issues section of the repository.
 
 ### Installation MAVIS 3 EAP (Nur Windows) - Deutsch
 
@@ -1216,7 +1216,7 @@ Um MAVIS 3 EAP auf einem Windows-Computer zu installieren, folge bitte diesen Sc
 - **Problem:** Fehlende Berechtigungen oder Fehler während der Installation.  
   **Lösung:** Überprüfe deine Benutzerrechte und stelle sicher, dass du über die erforderlichen Rechte zum Installieren von Programmen verfügst.
 
-Falls du weitere Hilfe benötigst, schau in die [Dokumentation](https://github.com/Peharge/MAVIS/blob/main/Susing-de) oder stelle eine Frage im Issues-Bereich des Repositories.
+Falls du weitere Hilfe benötigst, schau in die [Dokumentation](https://github.com/Peharge/MAVIS/blob/main/learn-mavis) - [Using MAVIS](https://github.com/Peharge/MAVIS/blob/main/using-mavis-3-en.md) oder stelle eine Frage im Issues-Bereich des Repositories.
 
 ## Using
 
