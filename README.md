@@ -231,7 +231,7 @@ And more...
 
 ### MAVIS 1.4 EAP release 
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > This update (MAVIS 1.4 EAP) is skipped and MAVIS 1.5 EAP is out
 
 <details>
