@@ -160,6 +160,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 - **[27.02.2025]** MAVIS 3 EAP release
 - **[01.03.2025]** MAVIS Terminal 3 EAP release
 - **[01.03.2025]** MAVIS Installer 3 EAP release
+- **[01.05.2025]** MAVIS 3 release
 
 ## Updates
 
