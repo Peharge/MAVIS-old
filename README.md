@@ -479,7 +479,7 @@ And more...
 
 | **Model**    | **Description**                                                                                | **Requirements**                               | **Parameters** |
 |--------------|------------------------------------------------------------------------------------------------|------------------------------------------------|----------------|
-| MAVIS 3 main | With **Xc++ 3 11B** or Llama3.2 11B + Phi4 + Qwen 2.5 1.5b + granite3.2-vision 2 b             | +16GB RAM +23GB storage (Works with one CPU)   | 28.5B          |
+| MAVIS 3 main | With **Xc++ 3 11B** or Llama3.2 11B + Phi4 14b + Qwen 2.5 1.5b + granite3.2-vision 2b             | +16GB RAM +23GB storage (Works with one CPU)   | 28.5B          |
 | MAVIS 3 math | With **Xc++ 3 11B** or Llama3.2 11B + DeepSeek R1 14b + Qwen 2.5 1.5b + granite3.2-vision 2b   | +16GB RAM +23GB storage (Works with one CPU)   | 28.5B          |
 | MAVIS 3 code | With **Xc++ 3 11B** or Llama3.2 11B + Qwen 2.5 Coder 14B +Qwen 2.5 1.5b + granite3.2-vision 2b | +16GB RAM +23GB storage (Works with one CPU)   | 28.5B          |
 
