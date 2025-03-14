@@ -282,10 +282,12 @@ def handle_special_commands(user_input):
         "install ollama mavis-3-main": "install\\install-ollama-mavis-3-main.py",
         "install ollama mavis-3-math": "install\\install-ollama-mavis-3-math.py",
         "install ollama mavis-3-code": "install\\install-ollama-mavis-3-code.py",
-        "install ollama mavis-3-3-main": "install\\install-ollama-mavis-3-3-main.py",
-        "install ollama mavis-3-3-main-pro": "install\\install-ollama-mavis-3-3-main-pro.py",
-        "install ollama mavis-3-3-main-mini": "install\\install-ollama-mavis-3-3-main-mini.py",
-        "install ollama mavis-3-3-main-mini-mini": "install\\install-ollama-mavis-3-3-main-mini-mini.py",
+        "install ollama mavis-3-3-main": "install\\install-ollama-mavis-3-3-main.py", #new
+        "install ollama mavis-3-3-main-pro": "install\\install-ollama-mavis-3-3-main-pro.py", #new
+        "install ollama mavis-3-3-main-mini": "install\\install-ollama-mavis-3-3-main-mini.py", #new
+        "install ollama mavis-3-3-main-mini-mini": "install\\install-ollama-mavis-3-3-main-mini-mini.py", #new
+        "install ollama mavis-3-3-math": "install\\install-ollama-mavis-3-3-math.py", #new
+        "install ollama mavis-3-3-math-mini": "install\\install-ollama-mavis-3-3-math-mini.py", #new
         "grafana": "run-grafana\\run-grafana.py",
         "run grafana": "run-grafana\\run-grafana.py",
         "install grafana": "run-grafana\\run-grafana.py",
@@ -306,8 +308,8 @@ def handle_special_commands(user_input):
         "run llama3.3": "mavis-terminal-3\\llama-3-3.py",
         "run llama3:8b": "mavis-terminal-3\\llama-3-8b.py",
         "run llama3:70b": "mavis-terminal-3\\llama-3-70b.py",
-        "run mistral": "run-mistral\\run-mistral.py",
-        "run phi4": "run-phi4\\run-phi4.py",
+        "run mistral": "mavis-terminal-3\\run-mistral.py",
+        "run phi4": "mavis-terminal-3\\run-phi-4.py",
         "run qwen2.5:0.5b": "mavis-terminal-3\\qwen-2-5-0.5b.py",
         "run qwen2.5:1.5b": "mavis-terminal-3\\qwen-2-5-1.5b.py",
         "run qwen2.5:3b": "mavis-terminal-3\\qwen-2-5-3b.py",
@@ -321,6 +323,13 @@ def handle_special_commands(user_input):
         "run qwen2.5-coder:7b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
         "run qwen2.5-coder:14b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
         "run qwen2.5-coder:32b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
+        "run gemma3:1b": "mavis-terminal-3\\gemma-3-1b.py", # new
+        "run gemma3:4b": "mavis-terminal-3\\gemma-3-4b.py",  # new
+        "run gemma3:12b": "mavis-terminal-3\\gemma-3-12b.py",  # new
+        "run gemma3:27b": "mavis-terminal-3\\gemma-3-27b.py",  # new
+        "run qwq": "mavis-terminal-3\\qwq.py",  # new
+        "run command-a": "mavis-terminal-3\\command-a.py", #new
+        "run phi4-mini": "mavis-terminal-3\\phi-4-mini.py", #new
         "install deepseek-r1:1.5b": "mavis-terminal-3\\deepseek-r1-1-5b.py",
         "install deepseek-r1:7b": "mavis-terminal-3\\deepseek-r1-7b.py",
         "install deepseek-r1:8b": "mavis-terminal-3\\deepseek-r1-8b.py",
@@ -337,8 +346,8 @@ def handle_special_commands(user_input):
         "install llama3.3": "mavis-terminal-3\\llama-3-3.py",
         "install llama3:8b": "mavis-terminal-3\\llama-3-8b.py",
         "install llama3:70b": "mavis-terminal-3\\llama-3-70b.py",
-        "install mistral": "run-mistral\\run-mistral.py",
-        "install phi4": "run-phi4\\run-phi4.py",
+        "install mistral": "mavis-terminal-3\\run-mistral.py",
+        "install phi4": "mavis-terminal-3\\run-phi-4.py",
         "install qwen2.5:0.5b": "mavis-terminal-3\\qwen-2-5-0.5b.py",
         "install qwen2.5:1.5b": "mavis-terminal-3\\qwen-2-5-1.5b.py",
         "install qwen2.5:3b": "mavis-terminal-3\\qwen-2-5-3b.py",
@@ -352,6 +361,13 @@ def handle_special_commands(user_input):
         "install qwen2.5-coder:7b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
         "install qwen2.5-coder:14b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
         "install qwen2.5-coder:32b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
+        "install gemma3:1b": "mavis-terminal-3\\gemma-3-1b.py",  # new
+        "install gemma3:4b": "mavis-terminal-3\\gemma-3-4b.py",  # new
+        "install gemma3:12b": "mavis-terminal-3\\gemma-3-12b.py",  # new
+        "install gemma3:27b": "mavis-terminal-3\\gemma-3-27b.py",  # new
+        "install qwq": "mavis-terminal-3\\qwq.py",  # new
+        "install command-a": "mavis-terminal-3\\command-a.py",  # new
+        "install phi4-mini": "mavis-terminal-3\\phi-4-mini.py",  # new
         "help": "mavis-terminal-3\\help.py",
         "run mavis": "mavis-installer-3-main-windows.py"
     }
