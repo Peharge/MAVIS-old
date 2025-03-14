@@ -124,6 +124,7 @@ def display_versions():
         "mavis-3-3-main-mini": "MAVIS 3 EAP",
         "mavis-3-3-main-mini-mini": "MAVIS 3 EAP",
         "mavis-3-3-math": "MAVIS 3 EAP",
+        "mavis-3-3-math-mini": "MAVIS 3 EAP",
         "mavis-3-math-pro (not jet)": "MAVIS 3 EAP",
         "mavis-3-code-pro (not jet)": "MAVIS 3 EAP",
         "mavis-3-mini (not jet)": "MAVIS 3 EAP",
