@@ -61,10 +61,15 @@
 #
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
-import os
 import sys
+import getpass
 
-# Farbcodes definieren (kleingeschrieben)
+sys.stdout.reconfigure(encoding='utf-8')
+
+# Den Benutzernamen abrufen
+user_name = getpass.getuser()
+
+# Farbcodes definieren
 red = "\033[91m"
 green = "\033[92m"
 yellow = "\033[93m"
@@ -77,100 +82,43 @@ orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
-# Logging-Funktion für Fehler
-def log_error(message):
-    """Protokolliert Fehler in eine Datei."""
-    try:
-        with open("error_log.txt", "a") as log_file:
-            log_file.write(message + "\n")
-    except Exception as e:
-        print(f"{red}Error while writing to log file: {e}{reset}")
+print (f"""
+{blue}      ██╗     █╗      {reset}
+{blue}     ████╗   ███╗     {reset}   ███╗   ███╗ █████╗ ██╗   ██╗██╗███████╗    ██████╗     ███╗   ███╗ █████╗ ████████╗██╗  ██╗
+{blue}    ██████╗  ████╗    {reset}   ████╗ ████║██╔══██╗██║   ██║██║██╔════╝    ╚════██╗    ████╗ ████║██╔══██╗╚══██╔══╝██║  ██║
+{blue}   ████████╗  ████╗   {reset}   ██╔████╔██║███████║██║   ██║██║███████╗     █████╔╝    ██╔████╔██║███████║   ██║   ███████║
+{blue}  ████╔█████╗  ████╗  {reset}   ██║╚██╔╝██║██╔══██║╚██╗ ██╔╝██║╚════██║     ╚═══██╗    ██║╚██╔╝██║██╔══██║   ██║   ██╔══██║
+{blue} ████╔╝ █████╗  ████╗ {reset}   ██║ ╚═╝ ██║██║  ██║ ╚████╔╝ ██║███████║    ██████╔╝    ██║ ╚═╝ ██║██║  ██║   ██║   ██║  ██║
+{blue} ╚═══╝   ███╔╝  ╚═══╝ {reset}   ╚═╝     ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚══════╝    ╚═════╝     ╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝
+{blue}          █╔╝         {reset}
+{blue}          ╚╝          {reset}    
+""")
 
-def run_batch_file(batch_name):
-    """Führt die Batch-Datei aus, überprüft, ob sie existiert, und gibt eine passende Fehlermeldung aus."""
-    file_name = os.path.join(
-        os.path.expanduser("~"),
-        "PycharmProjects",
-        "MAVIS",
-        f"run-{batch_name}.bat"
-    )
+print(f"""A warm welcome, {blue}{user_name}{reset}, to MAVIS (MAth Visual Intelligent System) - the most powerful calculator in the world!
+Developed by Peharge and JK (Peharge Projects 2025)
+Thank you so much for using MAVIS. We truly appreciate your support ❤️""")
 
-    # Prüft, ob die Datei existiert
-    if not os.path.exists(file_name):
-        error_message = f"{red}Error: The file '{file_name}' does not exist.{reset}"
-        print(error_message)
-        log_error(f"File not found: {file_name}")
-        return
+print(f"""
+{blue}MAVIS Version{reset}: 3
+{blue}MAVIS Installer Version{reset}: 3
+{blue}MAVIS Terminal Version{reset}: 3
+{blue}MAVIS License{reset}: MIT
+""")
 
-    # Versucht, die Batch-Datei auszuführen
-    try:
-        print(f"Executing file: {file_name}")
-        os.system(file_name)
-        print(f"{green}The batch file '{file_name}' was executed successfully.{reset}")
-    except Exception as e:
-        error_message = f"{red}Error executing file '{file_name}': {e}{reset}"
-        print(error_message)
-        log_error(f"Execution failed for {file_name}: {e}")
+# Funktion zur Anzeige der 16 Farbpaletten ohne Abstände und Zahlen
+def show_color_palette():
+    for i in range(8):
+        print(f"\033[48;5;{i}m  \033[0m", end="")  # Farben ohne Zahlen und ohne Abstände
 
-def display_versions():
-    """Zeigt alle Versionen und zugehörigen Batch-Dateien ohne 'run-' und '.bat'."""
-    print(f"\nAll MAVIS versions are available here:\n")
+    print()  # Zeilenumbruch nach der ersten Reihe
 
-    versions = {
-        "mavis-3-main": "MAVIS 3 EAP",
-        "mavis-3-code": "MAVIS 3 EAP",
-        "mavis-3-math": "MAVIS 3 EAP",
-        "mavis-3-3-main-porn": "MAVIS 3 EAP",
-        "mavis-3-3-main-mini": "MAVIS 3 EAP",
-        "mavis-3-3-main-mini-mini": "MAVIS 3 EAP",
-        "mavis-3-3-math": "MAVIS 3 EAP",
-        "mavis-3-math-pro (not jet)": "MAVIS 3 EAP",
-        "mavis-3-code-pro (not jet)": "MAVIS 3 EAP",
-        "mavis-3-mini (not jet)": "MAVIS 3 EAP",
-        "mavis-3-mini-mini (not jet)": "MAVIS 3 EAP",
-        "mavis-terminal-3": "MAVIS Terminal 3 EAP",
-        "mavis-3-main-fast": "MAVIS 3 EAP fast start",
-        "mavis-3-code-fast": "MAVIS 3 EAP fast start",
-        "mavis-3-code-pro-fast (not jet)": "MAVIS 3 EAP fast start",
-        "mavis-3-math-fast": "MAVIS 3 EAP fast start",
-        "mavis-3-math-pro-fast (not jet)": "MAVIS 3 EAP fast start",
-        "mavis-3-mini-fast (not jet)": "MAVIS 3 EAP fast start",
-        "mavis-3-mini-mini-fast (not jet)": "MAVIS 3 EAP fast start"
-    }
+    # Anzeige der helleren Farben (8-15) ohne Abstände und Zahlen
+    for i in range(8, 16):
+        print(f"\033[48;5;{i}m  \033[0m", end="")
 
-    # Gruppieren der Versionen für eine saubere Anzeige
-    grouped_versions = {}
-    for batch_name, version in versions.items():
-        if version not in grouped_versions:
-            grouped_versions[version] = []
-        grouped_versions[version].append(batch_name)
+    print()  # Noch ein Zeilenumbruch am Ende
 
-    # Ausgabe der gruppierten Versionen
-    for i, (version, batch_files) in enumerate(grouped_versions.items(), 1):
-        print(f"{i}. {version}:")
-        for j, batch_file in enumerate(batch_files, 1):
-            print(f"   {j}. {batch_file}")
-        print()
+# Aufruf der Funktion, um die Farbpalette zu zeigen
+show_color_palette()
 
-    return versions
-
-def get_user_input(versions):
-    """Fragt den Benutzer nach der gewünschten MAVIS-Batch-Datei und validiert die Eingabe."""
-    while True:
-        user_input = input(f"Enter a MAVIS batch file (e.g. 'mavis-3-code'):").strip()
-
-        # Validiert, ob die Eingabe korrekt ist
-        if user_input in versions:
-            run_batch_file(user_input)
-            break
-        else:
-            print(f"{red}Error: '{user_input}' is not a valid option. Please try again.{reset}")
-
-if __name__ == "__main__":
-    try:
-        versions = display_versions()
-        get_user_input(versions)
-    except Exception as e:
-        print(f"{red}An unexpected error occurred: {e}{reset}")
-        log_error(f"Unexpected error: {e}")
-        sys.exit(1)
+print("")
