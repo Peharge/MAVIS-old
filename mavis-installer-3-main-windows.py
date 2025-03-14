@@ -136,11 +136,7 @@ def display_versions():
         "mavis-terminal-3": "MAVIS Terminal 3 EAP",
         "mavis-3-main-fast": "MAVIS 3 EAP fast start",
         "mavis-3-code-fast": "MAVIS 3 EAP fast start",
-        "mavis-3-code-pro-fast (not jet)": "MAVIS 3 EAP fast start",
         "mavis-3-math-fast": "MAVIS 3 EAP fast start",
-        "mavis-3-math-pro-fast (not jet)": "MAVIS 3 EAP fast start",
-        "mavis-3-mini-fast (not jet)": "MAVIS 3 EAP fast start",
-        "mavis-3-mini-mini-fast (not jet)": "MAVIS 3 EAP fast start"
     }
 
     # Gruppieren der Versionen für eine saubere Anzeige
