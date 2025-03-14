@@ -262,12 +262,24 @@ def handle_special_commands(user_input):
         "run mavis-1-2-3-math": "main-old\\mavis-1-2-3-main-math.py",
         "run mavis-1-2-3-math-pro": "main-old\\mavis-1-2-3-main-math-pro.py",
         "run mavis-1-2-3-math-ultra": "main-old\\mavis-1-2-3-main-math-ultra.py",
-        "run mavis-1-3-main": "main-old\\mavis-1-3-main-main.py",
-        "run mavis-1-3-math": "main-old\\mavis-1-3-main-math.py",
-        "run mavis-1-3-math pro": "main-old\\mavis-1-3-main-math-pro.py",
-        "run mavis-1-3-code": "main-old\\mavis-1-3-main-code.py",
-        "run mavis-1-3-code pro": "main-old\\mavis-1-3-main-code-pro.py",
         "run mavis-1-4-math": "main-old\\mavis-1-4-main-math.py",
+        "run ollama mavis-3-main": "install\\install-ollama-mavis-3-main.py",  # new
+        "run ollama mavis-3-main-mini": "install\\install-ollama-mavis-3-main-mini.py",  # new
+        "run ollama mavis-3-math": "install\\install-ollama-mavis-3-math.py",  # new
+        "run ollama mavis-3-math-pro": "install\\install-ollama-mavis-3-math.py",  # new
+        "run ollama mavis-3-math-ultra": "install\\install-ollama-mavis-3-math.py",  # new
+        "run ollama mavis-3-math-mini": "install\\install-ollama-mavis-3-math.py",  # new
+        "run ollama mavis-3-math-mini-mini": "install\\install-ollama-mavis-3-math.py",  # new
+        "run ollama mavis-3-code": "install\\install-ollama-mavis-3-code.py",  # new
+        "run ollama mavis-3-code-pro": "install\\install-ollama-mavis-3-code.py",  # new
+        "run ollama mavis-3-code-mini": "install\\install-ollama-mavis-3-code.py",  # new
+        "run ollama mavis-3-code-mini-mini": "install\\install-ollama-mavis-3-code.py",  # new
+        "run ollama mavis-3-3-main": "install\\install-ollama-mavis-3-3-main.py",  # new
+        "run ollama mavis-3-3-main-pro": "install\\install-ollama-mavis-3-3-main-pro.py",  # new
+        "run ollama mavis-3-3-main-mini": "install\\install-ollama-mavis-3-3-main-mini.py",  # new
+        "run ollama mavis-3-3-main-mini-mini": "install\\install-ollama-mavis-3-3-main-mini-mini.py",  # new
+        "run ollama mavis-3-3-math": "install\\install-ollama-mavis-3-3-math.py",  # new
+        "run ollama mavis-3-3-math-mini": "install\\install-ollama-mavis-3-3-math-mini.py",  # new
         "install ollama mavis-1-5-main": "install\\install-ollama-mavis-1-5-main.py",
         "install ollama mavis-1-5-math": "install\\install-ollama-mavis-1-5-math.py",
         "install ollama mavis-1-5-math-pro": "install\\install-ollama-mavis-1-5-math-pro.py",
@@ -279,15 +291,23 @@ def handle_special_commands(user_input):
         "install ollama mavis-1-5-code-mini": "install\\install-ollama-mavis-1-5-code-mini.py",
         "install ollama mavis-1-5-code-mini-mini": "install\\install-ollama-mavis-1-5-code-mini-mini.py",
         "install ollama mavis-1-5-3-math-mini-mini": "install\\install-ollama-mavis-1-5-3-math-mini-mini.py",
-        "install ollama mavis-3-main": "install\\install-ollama-mavis-3-main.py",
-        "install ollama mavis-3-math": "install\\install-ollama-mavis-3-math.py",
-        "install ollama mavis-3-code": "install\\install-ollama-mavis-3-code.py",
-        "install ollama mavis-3-3-main": "install\\install-ollama-mavis-3-3-main.py", #new
-        "install ollama mavis-3-3-main-pro": "install\\install-ollama-mavis-3-3-main-pro.py", #new
-        "install ollama mavis-3-3-main-mini": "install\\install-ollama-mavis-3-3-main-mini.py", #new
-        "install ollama mavis-3-3-main-mini-mini": "install\\install-ollama-mavis-3-3-main-mini-mini.py", #new
-        "install ollama mavis-3-3-math": "install\\install-ollama-mavis-3-3-math.py", #new
-        "install ollama mavis-3-3-math-mini": "install\\install-ollama-mavis-3-3-math-mini.py", #new
+        "install ollama mavis-3-main": "install\\install-ollama-mavis-3-main.py",  # new
+        "install ollama mavis-3-main-mini": "install\\install-ollama-mavis-3-main-mini.py",  # new
+        "install ollama mavis-3-math": "install\\install-ollama-mavis-3-math.py",  # new
+        "install ollama mavis-3-math-pro": "install\\install-ollama-mavis-3-math.py",  # new
+        "install ollama mavis-3-math-ultra": "install\\install-ollama-mavis-3-math.py",  # new
+        "install ollama mavis-3-math-mini": "install\\install-ollama-mavis-3-math.py",  # new
+        "install ollama mavis-3-math-mini-mini": "install\\install-ollama-mavis-3-math.py",  # new
+        "install ollama mavis-3-code": "install\\install-ollama-mavis-3-code.py",  # new
+        "install ollama mavis-3-code-pro": "install\\install-ollama-mavis-3-code.py",  # new
+        "install ollama mavis-3-code-mini": "install\\install-ollama-mavis-3-code.py",  # new
+        "install ollama mavis-3-code-mini-mini": "install\\install-ollama-mavis-3-code.py",  # new
+        "install ollama mavis-3-3-main": "install\\install-ollama-mavis-3-3-main.py",  # new
+        "install ollama mavis-3-3-main-pro": "install\\install-ollama-mavis-3-3-main-pro.py",  # new
+        "install ollama mavis-3-3-main-mini": "install\\install-ollama-mavis-3-3-main-mini.py",  # new
+        "install ollama mavis-3-3-main-mini-mini": "install\\install-ollama-mavis-3-3-main-mini-mini.py",  # new
+        "install ollama mavis-3-3-math": "install\\install-ollama-mavis-3-3-math.py",  # new
+        "install ollama mavis-3-3-math-mini": "install\\install-ollama-mavis-3-3-math-mini.py",  # new
         "grafana": "run-grafana\\run-grafana.py",
         "run grafana": "run-grafana\\run-grafana.py",
         "install grafana": "run-grafana\\run-grafana.py",
