@@ -448,7 +448,7 @@ And more...
 </details>
 
 > [!IMPORTANT]
-> 15.03.2025
+> Release: 15.03.2025
 
 <br>
 
