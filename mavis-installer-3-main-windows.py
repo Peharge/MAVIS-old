@@ -229,7 +229,7 @@ def display_versions():
         "mavis-3-3-main-mini-mini": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Gemma3 1B + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "gemma3:1b"),
         "mavis-3-3-math": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + QwQ 32b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "qwq"),
         "mavis-3-3-math-mini": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + DeepScaleR 1.5b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "deepscaler"),
-        "mavis-terminal-3": ("MAVIS Terminal 3 EAP", "", ""),
+        "mavis-terminal-3": ("MAVIS Terminal 3 EAP", "The MAVIS Terminal is always available for you!!!", ""),
         "mavis-3-main-fast": ("MAVIS 3 fast start", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Phi4 14b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "phi4"),
         "mavis-3-math-fast": ("MAVIS 3 fast start", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + DeepSeek R1 14b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "deepseek-r1:14b"),
         "mavis-3-code-fast": ("MAVIS 3 fast start", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Qwen 2.5 Coder 14B +Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "qwen2.5-code:14b"),
