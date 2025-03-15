@@ -235,13 +235,13 @@ def display_versions():
         "mavis-3-code-fast": ("MAVIS 3 fast start", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Qwen 2.5 Coder 14B +Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "qwen2.5-code:14b"),
     }
 
-    print(f"All MAVIS versions are available here:\n\n{green}█{reset} Required LLM model for this MAVIS version is already installed\n{orange}█{reset} Required LLM model for this MAVIS version is not yet installed\n{blue}█{reset} LLM model is available for you - you have all the permissions\n{red}█{reset} LLM model is not available for you - you do not have permission to install the model\n")
+    print(f"All MAVIS versions are available here:\n\n{green}█{reset} Required LLM model for this MAVIS version is already installed\n{orange}█{reset} Required LLM model for this MAVIS version is not yet installed\n{blue}█{reset} LLM model is available for you - you have all the permissions\n{red}█{reset} LLM model is not available for you - you do not have permission to install the model")
     categories = {}
     for batch_name, (version, description, model_name) in versions.items():
         categories.setdefault(version, []).append((batch_name, description, model_name))
 
     for i, (version, batch_files) in enumerate(categories.items(), 1):
-        print(f"{i}. {version}:")
+        print(f"\n{i}. {version}:")
         for batch_name, description, model_name in batch_files:
             # Check if model for the version is installed
             if check_installed_model(model_name):  # Check for the specific model
