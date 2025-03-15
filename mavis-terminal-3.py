@@ -235,6 +235,7 @@ def handle_special_commands(user_input):
         "mavis info": "mavis-terminal-3\\info.py",
         "info mavis": "mavis-terminal-3\\info.py",
         "neofetch": "mavis-terminal-3\\neofetch.py",
+        "fastfetch": "mavis-terminal-3\\neofetch.py", #new
         "jupyter": "mavis-terminal-3\\run-jup.py",
         "run jupyter": "mavis-terminal-3\\run-jup.py",
         "run mavis-1-5-main": "mavis-1-5-main-main.py",
