@@ -1264,11 +1264,11 @@ Falls du weitere Hilfe benötigst, schau in die [Dokumentation](https://github.c
 
 ### English [new]:
 
-[Using](using-mavis-1-5-en)
+[Using](main-old/using-mavis-1-5-en.md)
 
 ### Deutsch [new]:
 
-[Benutzen](using-mavis-1-5-de)
+[Benutzen](main-old/using-mavis-1-5-de.md)
 
 ## Xcpp
 

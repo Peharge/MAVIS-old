@@ -36,32 +36,41 @@ Gooo...
 Python 3.12 is already installed.
 Git is already installed.
 Ollama is already installed.
+ffmpeg is already installed.
+Rustup is already installed.
 MAVIS already exists.
 .env file already exists.
 Starting run-mavis-3-all.bat...
 
 All MAVIS versions are available here:
 
-1. MAVIS 3 EAP:
+1. MAVIS 3:
    1. mavis-3-main
-   2. mavis-3-code
-   3. mavis-3-code-pro (not jet)
-   4. mavis-3-math
-   5. mavis-3-math-pro (not jet)
-   6. mavis-3-mini (not jet)
-   7. mavis-3-mini-mini (not jet)
+   2. mavis-3-main-mini
+   3. mavis-3-math
+   4. mavis-3-math-pro
+   5. mavis-3-math-ultra
+   6. mavis-3-math-mini
+   7. mavis-3-math-mini-mini
+   8. mavis-3-code
+   9. mavis-3-code-pro
+   10. mavis-3-code-mini
+   11. mavis-3-code-mini-mini
 
-2. MAVIS Terminal 3 EAP:
+2. MAVIS 3.3:
+   1. mavis-3-3-main-porn
+   2. mavis-3-3-main-mini
+   3. mavis-3-3-main-mini-mini
+   4. mavis-3-3-math
+   5. mavis-3-3-math-mini
+
+3. MAVIS Terminal 3 EAP:
    1. mavis-terminal-3
 
-3. MAVIS 3 EAP fast start:
+4. MAVIS 3 fast start:
    1. mavis-3-main-fast
    2. mavis-3-code-fast
-   3. mavis-3-code-pro-fast (not jet)
-   4. mavis-3-math-fast
-   5. mavis-3-math-pro-fast (not jet)
-   6. mavis-3-mini-fast (not jet)
-   7. mavis-3-mini-mini-fast (not jet)
+   3. mavis-3-math-fast
 
 Enter a MAVIS batch file (e.g. 'mavis-3-code'):
 ```
