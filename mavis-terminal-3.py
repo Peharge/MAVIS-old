@@ -320,7 +320,7 @@ def handle_special_commands(user_input):
         "run deepseek-r1:32b": "mavis-terminal-3\\deepseek-r1-32b.py",
         "run deepseek-r1:70b": "mavis-terminal-3\\deepseek-r1-70b.py",
         "run deepseek-r1:671b": "mavis-terminal-3\\deepseek-r1-671b.py",
-        "run deepscaler": "run-deepscaler\\run-deepscaler.py",
+        "run deepscaler": "run-deepscaler\\deepscaler.py",
         "run llama3.1:8b": "mavis-terminal-3\\llama-3-1-8b.py",
         "run llama3.1:70b": "mavis-terminal-3\\llama-3-1-70b.py",
         "run llama3.1:405": "mavis-terminal-3\\llama-3-1-405b.py",
@@ -329,8 +329,13 @@ def handle_special_commands(user_input):
         "run llama3.3": "mavis-terminal-3\\llama-3-3.py",
         "run llama3:8b": "mavis-terminal-3\\llama-3-8b.py",
         "run llama3:70b": "mavis-terminal-3\\llama-3-70b.py",
-        "run mistral": "mavis-terminal-3\\run-mistral.py",
-        "run phi4": "mavis-terminal-3\\run-phi-4.py",
+        "run mistral": "mavis-terminal-3\\mistral.py",
+        "run mistral-large": "mavis-terminal-3\\mistral-large.py", #new
+        "run mistral-nemo": "mavis-terminal-3\\mistral-nemo.py", #new
+        "run mistral-openorca": "mavis-terminal-3\\mistral-openorca.py", #new
+        "run mistral-small:22b": "mavis-terminal-3\\mistral-small-22b.py", #new
+        "run mistral-small:24b": "mavis-terminal-3\\mistral-small-24b.py", #new
+        "run phi4": "mavis-terminal-3\\phi-4.py",
         "run qwen2.5:0.5b": "mavis-terminal-3\\qwen-2-5-0.5b.py",
         "run qwen2.5:1.5b": "mavis-terminal-3\\qwen-2-5-1.5b.py",
         "run qwen2.5:3b": "mavis-terminal-3\\qwen-2-5-3b.py",
@@ -361,7 +366,7 @@ def handle_special_commands(user_input):
         "install deepseek-r1:32b": "mavis-terminal-3\\deepseek-r1-32b.py",
         "install deepseek-r1:70b": "mavis-terminal-3\\deepseek-r1-70b.py",
         "install deepseek-r1:671b": "mavis-terminal-3\\deepseek-r1-671b.py",
-        "install deepscaler": "run-deepscaler\\run-deepscaler.py",
+        "install deepscaler": "run-deepscaler\\deepscaler.py",
         "install llama3.1:8b": "mavis-terminal-3\\llama-3-1-8b.py",
         "install llama3.1:70b": "mavis-terminal-3\\llama-3-1-70b.py",
         "install llama3.1:405": "mavis-terminal-3\\llama-3-1-405b.py",
@@ -370,8 +375,13 @@ def handle_special_commands(user_input):
         "install llama3.3": "mavis-terminal-3\\llama-3-3.py",
         "install llama3:8b": "mavis-terminal-3\\llama-3-8b.py",
         "install llama3:70b": "mavis-terminal-3\\llama-3-70b.py",
-        "install mistral": "mavis-terminal-3\\run-mistral.py",
-        "install phi4": "mavis-terminal-3\\run-phi-4.py",
+        "install mistral": "mavis-terminal-3\\mistral.py",
+        "install mistral-large": "mavis-terminal-3\\mistral-large.py", #new
+        "install mistral-nemo": "mavis-terminal-3\\mistral-nemo.py", #new
+        "install mistral-openorca": "mavis-terminal-3\\mistral-openorca.py", #new
+        "install mistral-small:22b": "mavis-terminal-3\\mistral-small-22b.py", #new
+        "install mistral-small:24b": "mavis-terminal-3\\mistral-small-24b.py", #new
+        "install phi4": "mavis-terminal-3\\phi-4.py",
         "install qwen2.5:0.5b": "mavis-terminal-3\\qwen-2-5-0.5b.py",
         "install qwen2.5:1.5b": "mavis-terminal-3\\qwen-2-5-1.5b.py",
         "install qwen2.5:3b": "mavis-terminal-3\\qwen-2-5-3b.py",
