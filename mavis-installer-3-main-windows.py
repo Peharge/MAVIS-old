@@ -62,9 +62,12 @@
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
 import os
+import platform
+import subprocess
+import time
 import sys
 
-# Farbcodes definieren (kleingeschrieben)
+# Farbcodes definieren
 red = "\033[91m"
 green = "\033[92m"
 yellow = "\033[93m"
@@ -77,101 +80,203 @@ orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
-# Logging-Funktion für Fehler
-def log_error(message):
-    """Protokolliert Fehler in eine Datei."""
+def check_ollama_update():
+    """
+    Prüft, ob eine neue Version von Ollama verfügbar ist, und bietet ein Update an.
+    """
     try:
-        with open("error_log.txt", "a") as log_file:
-            log_file.write(message + "\n")
+        result = subprocess.run(["ollama", "version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        if result.returncode == 0:
+            local_version = result.stdout.strip()
+            remote_version = subprocess.run(["curl", "-s", "https://api.ollama.ai/version"],
+                                            stdout=subprocess.PIPE, text=True).stdout.strip()
+
+            if local_version != remote_version:
+                print(f"{yellow}New Ollama version available: {remote_version} (Current: {local_version}){reset}")
+                while True:
+                    user_input = input("Do you want to update Ollama? [y/n]:").strip().lower()
+                    if user_input in ["y", "yes"]:
+                        subprocess.run(["ollama", "update"], check=True)
+                        print(f"{green}Ollama updated successfully! Please restart the script.{reset}")
+                        exit()
+                    elif user_input in ["n", "no"]:
+                        print("Skipping update.")
+                        break
+                    else:
+                        print(f"{red}Invalid input. Please enter 'y' for yes or 'n' for no.{reset}")
+
     except Exception as e:
-        print(f"{red}Error while writing to log file: {e}{reset}")
+        print(f"{red}Error checking for updates: {e}{reset}")
+
+def find_ollama_path():
+    """
+    Findet den Installationspfad von Ollama basierend auf dem Betriebssystem.
+    """
+    try:
+        if platform.system() == "Windows":
+            base_path = os.environ.get("LOCALAPPDATA", "C:\\Users\\Default\\AppData\\Local")
+            return os.path.join(base_path, "Programs", "Ollama", "ollama app.exe")
+        elif platform.system() == "Darwin":  # macOS
+            return "/Applications/Ollama.app/Contents/MacOS/Ollama"
+        else:
+            raise EnvironmentError("Unsupported Operating System. Ollama is not supported on this platform.")
+    except Exception as e:
+        raise FileNotFoundError(f"Error finding Ollama path: {e}")
+
+def check_installed_model(model_name):
+    """
+    Prüft, ob ein bestimmtes Modell in Ollama installiert ist.
+    :param model_name: Name des zu prüfenden Modells (z. B. "phi4").
+    :return: True, wenn das Modell installiert ist, andernfalls False.
+    """
+    try:
+        # Use ollama list or another Ollama command to check for installed models
+        result = subprocess.run(["ollama", "list"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        if result.returncode == 0:
+            models_list = result.stdout.lower()
+            if model_name.lower() in models_list:
+                return True
+            else:
+                return False
+        else:
+            print(f"{red}Error fetching models list from Ollama: {result.stderr}{reset}")
+            return False
+    except Exception as e:
+        print(f"{red}Error checking for installed model: {e}{reset}")
+        return False
+
+def start_ollama():
+    """
+    Startet Ollama, falls es noch nicht läuft.
+    """
+    try:
+        # Überprüfen, ob Ollama bereits läuft
+        result = subprocess.run(
+            ["tasklist"] if platform.system() == "Windows" else ["ps", "aux"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
+
+        if "ollama" not in result.stdout.lower():
+            print(f"{blue}Ollama is not running. Starting Ollama...{reset}")
+
+            # Pfad zu Ollama finden
+            ollama_path = find_ollama_path()
+
+            if not os.path.exists(ollama_path):
+                raise FileNotFoundError(f"Ollama executable not found at: {ollama_path}")
+
+            # Ollama starten
+            subprocess.Popen([ollama_path], close_fds=True if platform.system() != "Windows" else False)
+            time.sleep(5)  # Warten, bis Ollama gestartet ist
+            print(f"{green}Ollama started successfully.{reset}\n")
+        else:
+            print(f"{green}Ollama is already running.{reset}\n")
+    except Exception as e:
+        print(f"{red}Error starting Ollama: {e}{reset}")
+
+def check_command_installed(command):
+    """
+    Überprüft, ob ein Befehlszeilentool installiert ist (z. B. ollama).
+    :param command: Zu prüfender Befehlsname.
+    :return: True, wenn installiert, andernfalls False.
+    """
+    try:
+        result = subprocess.run(["which" if os.name != "nt" else "where", command],
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE)
+        return result.returncode == 0
+    except Exception as e:
+        print(f"{red}Error checking command {command}: {e}{reset}")
+        return False
 
 def run_batch_file(batch_name):
-    """Führt die Batch-Datei aus, überprüft, ob sie existiert, und gibt eine passende Fehlermeldung aus."""
-    file_name = os.path.join(
-        os.path.expanduser("~"),
-        "PycharmProjects",
-        "MAVIS",
-        f"run-{batch_name}.bat"
-    )
+    """Führt die angegebene Batch-Datei aus."""
+    file_path = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", f"run-{batch_name}.bat")
 
-    # Prüft, ob die Datei existiert
-    if not os.path.exists(file_name):
-        error_message = f"{red}Error: The file '{file_name}' does not exist.{reset}"
-        print(error_message)
-        log_error(f"File not found: {file_name}")
+    if not os.path.isfile(file_path):
+        print(f"The file '{file_path}' does not exist.")
         return
 
-    # Versucht, die Batch-Datei auszuführen
     try:
-        print(f"Executing file: {file_name}")
-        os.system(file_name)
-        print(f"{green}The batch file '{file_name}' was executed successfully.{reset}")
+        print(f"Start: {file_path}")
+        exit_code = os.system(file_path)
+        if exit_code == 0:
+            print(f" '{file_path}' executed successfully.")
+        else:
+            print(f"Error executing '{file_path}' with exit code {exit_code}.")
     except Exception as e:
-        error_message = f"{red}Error executing file '{file_name}': {e}{reset}"
-        print(error_message)
-        log_error(f"Execution failed for {file_name}: {e}")
+        print(f"Execution errors: {e}")
 
 def display_versions():
-    """Zeigt alle Versionen und zugehörigen Batch-Dateien ohne 'run-' und '.bat'."""
-    print(f"\nAll MAVIS versions are available here:\n")
-
+    """Zeigt verfügbare MAVIS-Versionen und Batch-Dateien an."""
     versions = {
-        "mavis-3-main": "MAVIS 3",
-        "mavis-3-main-mini": "MAVIS 3",
-        "mavis-3-math": "MAVIS 3",
-        "mavis-3-math-pro": "MAVIS 3",
-        "mavis-3-math-ultra": "MAVIS 3",
-        "mavis-3-math-mini": "MAVIS 3",
-        "mavis-3-math-mini-mini": "MAVIS 3",
-        "mavis-3-code": "MAVIS 3",
-        "mavis-3-code-pro": "MAVIS 3",
-        "mavis-3-code-mini": "MAVIS 3",
-        "mavis-3-code-mini-mini": "MAVIS 3",
-        "mavis-3-3-main-porn": "MAVIS 3.3",
-        "mavis-3-3-main-mini": "MAVIS 3.3",
-        "mavis-3-3-main-mini-mini": "MAVIS 3.3",
-        "mavis-3-3-math": "MAVIS 3.3",
-        "mavis-3-3-math-mini": "MAVIS 3.3",
-        "mavis-terminal-3": "MAVIS Terminal 3 EAP",
-        "mavis-3-main-fast": "MAVIS 3 fast start",
-        "mavis-3-code-fast": "MAVIS 3 fast start",
-        "mavis-3-math-fast": "MAVIS 3 fast start"
+        "mavis-3-main": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Phi4 14b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "phi4"),
+        "mavis-3-main-mini": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Phi4-mini 3.8b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "phi4-mini"),
+        "mavis-3-math": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + DeepSeek R1 14b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "deepseek-r1:14b"),
+        "mavis-3-math-pro": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + DeepSeek R1 32b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "deepseek-r1:32b"),
+        "mavis-3-math-ultra": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 90B + DeepSeek R1 671b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "deepseek-r1:671b"),
+        "mavis-3-math-mini": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + DeepSeek R1 7b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "deepseek-r1:7b"),
+        "mavis-3-math-mini-mini": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + DeepSeek R1 1.5b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "deepseek-r1:1.5b"),
+        "mavis-3-code": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Qwen 2.5 Coder 14B +Qwen 2.5 1.5b + granite3.2-vision 2b", "qwen2.5-code:14b{reset}"),
+        "mavis-3-code-pro": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Qwen 2.5 Coder 32B +Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "qwen2.5-code:32b"),
+        "mavis-3-code-mini": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Qwen 2.5 Coder 7B +Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "qwen2.5-code:7b"),
+        "mavis-3-code-mini-mini": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Qwen 2.5 Coder 1.5B +Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "qwen2.5-code:1.5b"),
+        "mavis-3-3-main": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Gemma3 12B + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "gemma3:12b"),
+        "mavis-3-3-main-pro": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Gemma3 27B + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "gemma3:27b"),
+        "mavis-3-3-main-mini": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Gemma3 4B + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "gemma3:4b"),
+        "mavis-3-3-main-mini-mini": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Gemma3 1B + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "gemma3:1b"),
+        "mavis-3-3-math": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + QwQ 32b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "qwq"),
+        "mavis-3-3-math-mini": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + DeepScaleR 1.5b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "deepscaler"),
+        "mavis-terminal-3": ("MAVIS Terminal 3 EAP", "", ""),
+        "mavis-3-main-fast": ("MAVIS 3 fast start", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Phi4 14b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "phi4"),
+        "mavis-3-math-fast": ("MAVIS 3 fast start", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + DeepSeek R1 14b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "deepseek-r1:14b"),
+        "mavis-3-code-fast": ("MAVIS 3 fast start", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Qwen 2.5 Coder 14B +Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "qwen2.5-code:14b"),
     }
 
-    # Gruppieren der Versionen für eine saubere Anzeige
-    grouped_versions = {}
-    for batch_name, version in versions.items():
-        if version not in grouped_versions:
-            grouped_versions[version] = []
-        grouped_versions[version].append(batch_name)
+    print(f"All MAVIS versions are available here:\n\n{green}█{reset} Required LLM model for this MAVIS version is already installed\n{orange}█{reset} Required LLM model for this MAVIS version is not yet installed\n{blue}█{reset} LLM model is available for you - you have all the permissions\n{red}█{reset} LLM model is not available for you - you do not have permission to install the model\n")
+    categories = {}
+    for batch_name, (version, description, model_name) in versions.items():
+        categories.setdefault(version, []).append((batch_name, description, model_name))
 
-    # Ausgabe der gruppierten Versionen
-    for i, (version, batch_files) in enumerate(grouped_versions.items(), 1):
+    for i, (version, batch_files) in enumerate(categories.items(), 1):
         print(f"{i}. {version}:")
-        for j, batch_file in enumerate(batch_files, 1):
-            print(f"   {j}. {batch_file}")
-        print()
+        for batch_name, description, model_name in batch_files:
+            # Check if model for the version is installed
+            if check_installed_model(model_name):  # Check for the specific model
+                print(f"   - {green}{batch_name}{reset}: {description} ({blue}{model_name}{reset} Installed)")
+            else:
+                print(f"   - {orange}{batch_name}{reset}: {description} ({blue}{model_name}{reset} Not Installed)")
 
     return versions
 
 def get_user_input(versions):
-    """Fragt den Benutzer nach der gewünschten MAVIS-Batch-Datei und validiert die Eingabe."""
+    """Fragt nach einer MAVIS-Batch-Datei und führt sie aus."""
     while True:
-        user_input = input(f"Enter a MAVIS batch file (e.g. 'mavis-3-code'):").strip()
-
-        # Validiert, ob die Eingabe korrekt ist
+        user_input = input("\nEnter a MAVIS batch file (e.g. 'mavis-3-code'):").strip()
         if user_input in versions:
             run_batch_file(user_input)
             break
         else:
-            print(f"{red}Error: '{user_input}' is not a valid option. Please try again.{reset}")
+            print("Invalid input. Please try again.")
 
-if __name__ == "__main__":
+def main():
+    ollama_installed = check_command_installed("ollama")
+    if ollama_installed:
+        print(f"{green}Ollama is installed.{reset}")
+    else:
+        print(f"{red}Ollama is not installed. Please install it to proceed.{reset}")
+
+    start_ollama()
+    check_ollama_update()
+
     try:
         versions = display_versions()
         get_user_input(versions)
     except Exception as e:
-        print(f"{red}An unexpected error occurred: {e}{reset}")
-        log_error(f"Unexpected error: {e}")
+        print(f"Unexpected error: {e}")
         sys.exit(1)
+
+if __name__ == "__main__":
+    main()
