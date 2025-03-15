@@ -79,6 +79,34 @@ orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
+def check_ollama_update():
+    """
+    Prüft, ob eine neue Version von Ollama verfügbar ist, und bietet ein Update an.
+    """
+    try:
+        result = subprocess.run(["ollama", "version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        if result.returncode == 0:
+            local_version = result.stdout.strip()
+            remote_version = subprocess.run(["curl", "-s", "https://api.ollama.ai/version"],
+                                            stdout=subprocess.PIPE, text=True).stdout.strip()
+
+            if local_version != remote_version:
+                print(f"{yellow}New Ollama version available: {remote_version} (Current: {local_version}){reset}")
+                while True:
+                    user_input = input("Do you want to update Ollama? [y/n]:").strip().lower()
+                    if user_input in ["y", "yes"]:
+                        subprocess.run(["ollama", "update"], check=True)
+                        print(f"{green}Ollama updated successfully! Please restart the script.{reset}")
+                        exit()
+                    elif user_input in ["n", "no"]:
+                        print("Skipping update.")
+                        break
+                    else:
+                        print(f"{red}Invalid input. Please enter 'y' for yes or 'n' for no.{reset}")
+
+    except Exception as e:
+        print(f"{red}Error checking for updates: {e}{reset}")
+
 def find_ollama_path():
     """
     Findet den Installationspfad von Ollama basierend auf dem Betriebssystem.
@@ -141,6 +169,7 @@ def check_command_installed(command):
         print(f"{red}Error checking command {command}: {e}{reset}")
         return False
 
+
 def check_model_with_ollama(model_name):
     """
     Überprüft, ob ein bestimmtes Modell in ollama verfügbar ist.
@@ -148,18 +177,27 @@ def check_model_with_ollama(model_name):
     :return: True, wenn verfügbar, andernfalls False.
     """
     try:
-        result = subprocess.run(["ollama", "show", model_name],
-                                stdout=subprocess.PIPE,
-                                stderr=subprocess.PIPE,
-                                text=True)
+        result = subprocess.run(
+            ["ollama", "show", model_name],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",  # Sicherstellen, dass UTF-8 für die Ausgabe verwendet wird
+            errors="replace"  # Ersetzt ungültige Zeichen, anstatt eine Exception auszulösen
+        )
+
         if result.returncode == 0:
-            print(f"Model information for {blue}{model_name}{reset}:\n--------------------------------------\n{result.stdout}\n")
+            print(f"Model information for {blue}{model_name}{reset}:\n"
+                  f"--------------------------------------\n{result.stdout}\n")
             return True
         else:
-            print(f"{yellow}Model {model_name} is not available{reset}:\n-----------------------------------\n{result.stderr}\n")
+            print(f"{yellow}Model {model_name} is not available{reset}:\n"
+                  f"-----------------------------------\n{result.stderr}\n")
             return False
+
     except Exception as e:
-        print(f"{red}Error checking model {model_name} with ollama{reset}:\n-----------------------------------\n{e}\n")
+        print(f"{red}Error checking model {model_name} with ollama{reset}:\n"
+              f"-----------------------------------\n{e}\n")
         return False
 
 def install_model_with_ollama(model_name):
@@ -206,6 +244,7 @@ if __name__ == "__main__":
         print(f"{red}Ollama is not installed. Please install it to proceed.{reset}")
 
     start_ollama()
+    check_ollama_update()
 
     models_to_check = ["llama3.2-vision", "gemma3:12b", "qwen2.5:1.5b", "granite3.2-vision"]
 
