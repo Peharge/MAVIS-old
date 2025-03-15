@@ -1293,6 +1293,9 @@ Falls du weitere Hilfe benötigst, schau in die [Dokumentation](https://github.c
     <img src="./readme-img/mavis-1-5-demo-5.png" alt="mavis" width="1400">
 </div>
 
+<details>
+  <summary>more</summary>
+
 <div>
     <img src="./readme-img/mavis-1-5-demo-6.png" alt="mavis" width="1400">
 </div>
@@ -1308,6 +1311,8 @@ Falls du weitere Hilfe benötigst, schau in die [Dokumentation](https://github.c
 <div>
     <img src="./readme-img/mavis-1-5-demo-9.png" alt="mavis" width="1400">
 </div>
+
+</details>
 
 ### Demo 14
 
