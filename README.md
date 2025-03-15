@@ -160,7 +160,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 - **[27.02.2025]** MAVIS 3 EAP release
 - **[01.03.2025]** MAVIS Terminal 3 EAP release
 - **[01.03.2025]** MAVIS Installer 3 EAP release
-- **[01.05.2025]** MAVIS 3 release
+- **[15.03.2025]** MAVIS 3 release !!!
 
 ## Updates
 
@@ -262,55 +262,6 @@ And more...
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis-ads-new1.3.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
-
-### Demo
-
-<details>
-  <summary>more</summary>
-
-<div>
-    <img src="./readme-img/mavis-1-5-demo-1.png" alt="mavis" width="1400">
-</div>
-
-<div>
-    <img src="./readme-img/mavis-1-5-use-gif-1.gif" alt="mavis" width="1400">
-</div>
-
-<div>
-    <img src="./readme-img/using-img-5.png" alt="mavis" width="1400">
-</div>
-
-<div>
-    <img src="./readme-img/mavis-1-5-demo-3.png" alt="mavis" width="1400">
-</div>
-
-<div>
-    <img src="./readme-img/mavis-1-5-demo-4.png" alt="mavis" width="1400">
-</div>
-
-<div>
-    <img src="./readme-img/mavis-1-5-demo-5.png" alt="mavis" width="1400">
-</div>
-
-<div>
-    <img src="./readme-img/mavis-1-5-demo-6.png" alt="mavis" width="1400">
-</div>
-
-<div>
-    <img src="./readme-img/mavis-1-5-demo-7.png" alt="mavis" width="1400">
-</div>
-
-<div>
-    <img src="./readme-img/mavis-1-5-demo-8.png" alt="mavis" width="1400">
-</div>
-
-<div>
-    <img src="./readme-img/mavis-1-5-demo-9.png" alt="mavis" width="1400">
-</div>
-
-And more...
-
-</details>
 
 > 27.02.2025
 
@@ -416,14 +367,64 @@ And more...
 
 </details>
 
-### MAVIS 3 [SOON]                     
+### MAVIS 3 [NEW]
 <p align="center">
     <img src="./readme-img/mavis-3-banner-ads.png" alt="mavis" width="800" style="margin: 10px;">
 </p>
 
 <br>
 
-> 01.04.2025
+### Demo
+
+<details>
+  <summary>more</summary>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-1.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-use-gif-1.gif" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/using-img-5.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-3.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-4.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-5.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-6.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-7.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-8.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-9.png" alt="mavis" width="1400">
+</div>
+
+And more...
+
+</details>
+
+> [!IMPORTANT]
+> 15.03.2025
 
 <br>
 
