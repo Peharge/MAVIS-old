@@ -73,7 +73,7 @@ import os
 from dotenv import load_dotenv
 from subprocess import run
 
-required_packages = ["requests", "ollama", "transformers", "numpy", "pandas", "python-dotenv"]
+required_packages = ["requests", "ollama", "transformers", "numpy", "pandas", "python-dotenv", "PyQt6", "PyQt6-sip"]
 
 def activate_virtualenv(venv_path):
     """Aktiviert eine bestehende virtuelle Umgebung."""
@@ -311,6 +311,7 @@ def handle_special_commands(user_input):
         "run grafana": "run-grafana\\run-grafana.py",
         "install grafana": "run-grafana\\run-grafana.py",
         "account": "account\\account.py",
+        "run all": "mavis-terminal\\run-all.py", # new
         "run deepseek-r1:1.5b": "mavis-terminal-3\\deepseek-r1-1-5b.py",
         "run deepseek-r1:7b": "mavis-terminal-3\\deepseek-r1-7b.py",
         "run deepseek-r1:8b": "mavis-terminal-3\\deepseek-r1-8b.py",
