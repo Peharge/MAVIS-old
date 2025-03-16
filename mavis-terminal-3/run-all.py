@@ -324,14 +324,6 @@ class Terminal(QWidget):
         self.output.setFont(QFont("Courier New", 12))
         self.output.setLineWrapMode(QTextEdit.LineWrapMode.WidgetWidth)
 
-        self.scroll_content = QWidget()
-        self.scroll_content_layout = QVBoxLayout()
-        self.scroll_content_layout.addWidget(self.output)
-        self.scroll_content.setLayout(self.scroll_content_layout)
-        self.scroll_area.setWidget(self.scroll_content)
-
-        layout.addWidget(self.scroll_area)
-
         self.model_selector = QComboBox()
         self.model_selector.setFont(QFont("Courier", 12))
         self.model_selector.setStyleSheet("""
@@ -420,7 +412,14 @@ class Terminal(QWidget):
                 background: none;
             }
         """)
-        layout.addWidget(self.model_selector)
+        self.scroll_content = QWidget()
+        self.scroll_content_layout = QVBoxLayout()
+        self.scroll_content_layout.addWidget(self.output)
+        self.scroll_content_layout.addWidget(self.model_selector)
+        self.scroll_content.setLayout(self.scroll_content_layout)
+        self.scroll_area.setWidget(self.scroll_content)
+
+        layout.addWidget(self.scroll_area)
 
         self.input = CustomTextEdit()
         self.input.setFont(QFont("Courier", 12))
