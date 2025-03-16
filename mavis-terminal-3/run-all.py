@@ -349,7 +349,7 @@ class Terminal(QWidget):
             }
             
             QComboBox::down-arrow {
-                image: url(icon_path); #important 
+                image: url({icon_path});
                 width: 20px;
                 height: 20px;
             }
