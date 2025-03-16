@@ -372,7 +372,88 @@ And more...
     <img src="./readme-img/mavis-3-banner-ads.png" alt="mavis" width="800" style="margin: 10px;">
 </p>
 
+### Demo
+
+<details>
+  <summary>more</summary>
+
+<div>
+    <img src="./readme-img/mavis-3-demo-3.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-3-demo-4.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-3-demo-1.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-3-demo-2.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-use-gif-1.gif" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/using-img-5.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-3-demo-5.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-3-demo-7.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-3-demo-6.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-3.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-4.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-5.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-6.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-7.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-8.png" alt="mavis" width="1400">
+</div>
+
+<div>
+    <img src="./readme-img/mavis-1-5-demo-9.png" alt="mavis" width="1400">
+</div>
+
+And more...
+
+</details>
+
+> [!IMPORTANT]
+> Release: 15.03.2025
+
 <br>
+
+### MAVIS 3.3 [NEW]
+<p align="center">
+    <img src="./readme-img/mavis-3-3-banner-ads.png" alt="mavis" width="800" style="margin: 10px;">
+</p>
 
 ### Demo
 
