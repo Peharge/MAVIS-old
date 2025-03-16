@@ -261,6 +261,7 @@ class Terminal(QWidget):
 
         user = os.getenv("USERNAME") or os.getenv("USER")
         icon_path = f"C:/Users/{user}/PycharmProjects/MAVIS/icons/mavis-logo.ico"
+        icon_path_3 = f"C:/Users/{user}/PycharmProjects/MAVIS/icons/mavis-logo-new.png"
         self.setWindowIcon(QIcon(icon_path))
 
         self.setStyleSheet("background-color: #1e1e1e; color: #ffffff;")
@@ -349,7 +350,7 @@ class Terminal(QWidget):
             }
             
             QComboBox::down-arrow {
-                image: url({icon_path});
+                image: url({icon_path_3});
                 width: 20px;
                 height: 20px;
             }
