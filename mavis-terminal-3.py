@@ -75,7 +75,6 @@ from subprocess import run
 
 required_packages = ["requests", "ollama", "transformers", "numpy", "pandas", "python-dotenv"]
 
-
 def activate_virtualenv(venv_path):
     """Aktiviert eine bestehende virtuelle Umgebung."""
     activate_script = os.path.join(venv_path, "Scripts", "activate") if os.name == "nt" else os.path.join(venv_path, "bin", "activate")
@@ -103,7 +102,6 @@ def ensure_packages_installed(packages):
                 print(f"WARNING: Failed to install {package}. Please install it manually.")
         else:
             print(f"{package} is already installed.")
-
 
 # Pfad zur bestehenden virtuellen Umgebung
 venv_path = r"C:\Users\julia\PycharmProjects\MAVIS\.env"
