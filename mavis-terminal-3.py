@@ -441,7 +441,11 @@ def main():
             user_input = input().strip()
 
             if user_input.lower() == "exit":
+                run([f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe",
+                     f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\mavis-installer-3-main-windows.py"],
+                    shell=True)
                 break
+
             elif handle_special_commands(user_input):
                 continue
             elif user_input.startswith("powershell "):
