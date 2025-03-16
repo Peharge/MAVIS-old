@@ -73,7 +73,7 @@ import os
 from dotenv import load_dotenv
 from subprocess import run
 
-required_packages = ["requests", "Flask", "numpy", "pandas", "python-dotenv"]
+required_packages = ["requests", "ollama", "transformers", "numpy", "pandas", "python-dotenv"]
 
 
 def activate_virtualenv(venv_path):
