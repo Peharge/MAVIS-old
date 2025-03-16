@@ -168,7 +168,7 @@ def start_ollama():
                 raise FileNotFoundError(f"Ollama executable not found at: {ollama_path}")
 
             # Ollama starten
-            subprocess.Popen([ollama_path], close_fds=True if platform.system() != "Windows" else False)
+            subprocess.Popen([ollama_path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, close_fds=True if platform.system() != "Windows" else False)
             time.sleep(5)  # Warten, bis Ollama gestartet ist
             print(f"{green}Ollama started successfully.{reset}\n")
         else:
@@ -212,27 +212,26 @@ def run_batch_file(batch_name):
 def display_versions():
     """Zeigt verfügbare MAVIS-Versionen und Batch-Dateien an."""
     versions = {
-        "mavis-3-main": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Phi4 14b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "phi4"),
-        "mavis-3-main-mini": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Phi4-mini 3.8b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "phi4-mini"),
-        "mavis-3-math": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + DeepSeek R1 14b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "deepseek-r1:14b"),
-        "mavis-3-math-pro": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + DeepSeek R1 32b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "deepseek-r1:32b"),
-        "mavis-3-math-ultra": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 90B + DeepSeek R1 671b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "deepseek-r1:671b"),
-        "mavis-3-math-mini": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + DeepSeek R1 7b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "deepseek-r1:7b"),
-        "mavis-3-math-mini-mini": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + DeepSeek R1 1.5b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "deepseek-r1:1.5b"),
-        "mavis-3-code": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Qwen 2.5 Coder 14B +Qwen 2.5 1.5b + granite3.2-vision 2b", "qwen2.5-code:14b{reset}"),
-        "mavis-3-code-pro": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Qwen 2.5 Coder 32B +Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "qwen2.5-code:32b"),
-        "mavis-3-code-mini": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Qwen 2.5 Coder 7B +Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "qwen2.5-code:7b"),
-        "mavis-3-code-mini-mini": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Qwen 2.5 Coder 1.5B +Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "qwen2.5-code:1.5b"),
-        "mavis-3-3-main": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Gemma3 12B + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "gemma3:12b"),
-        "mavis-3-3-main-pro": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Gemma3 27B + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "gemma3:27b"),
-        "mavis-3-3-main-mini": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Gemma3 4B + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "gemma3:4b"),
-        "mavis-3-3-main-mini-mini": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Gemma3 1B + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "gemma3:1b"),
-        "mavis-3-3-math": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + QwQ 32b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "qwq"),
-        "mavis-3-3-math-mini": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + DeepScaleR 1.5b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "deepscaler"),
-        "mavis-terminal-3": ("MAVIS Terminal 3 EAP", "The MAVIS Terminal is always available for you!!!", ""),
-        "mavis-3-main-fast": ("MAVIS 3 fast start", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Phi4 14b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "phi4"),
-        "mavis-3-math-fast": ("MAVIS 3 fast start", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + DeepSeek R1 14b + Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "deepseek-r1:14b"),
-        "mavis-3-code-fast": ("MAVIS 3 fast start", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B + Qwen 2.5 Coder 14B +Qwen 2.5 1.5b + granite3.2-vision 2b{reset}", "qwen2.5-code:14b"),
+        "mavis-3-main": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}Phi4 14b{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "phi4"),
+        "mavis-3-main-mini": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}Phi4-mini 3.8b{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "phi4-mini"),
+        "mavis-3-math": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}DeepSeek R1 14b{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "deepseek-r1:14b"),
+        "mavis-3-math-pro": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}DeepSeek R1 32b{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "deepseek-r1:32b"),
+        "mavis-3-math-ultra": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 90B{reset} + {blue}DeepSeek R1 671b{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "deepseek-r1:671b"),
+        "mavis-3-math-mini": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}DeepSeek R1 7b{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "deepseek-r1:7b"),
+        "mavis-3-math-mini-mini": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}DeepSeek R1 1.5b{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "deepseek-r1:1.5b"),
+        "mavis-3-code": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}Qwen 2.5 Coder 14B{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "qwen2.5-code:14b"),
+        "mavis-3-code-pro": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}Qwen 2.5 Coder 32B{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "qwen2.5-code:32b"),
+        "mavis-3-code-mini": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}Qwen 2.5 Coder 7B{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "qwen2.5-code:7b"),
+        "mavis-3-code-mini-mini": ("MAVIS 3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}Qwen 2.5 Coder 1.5B{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "qwen2.5-code:1.5b"),
+        "mavis-3-3-main": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}Gemma3 12B{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "gemma3:12b"),
+        "mavis-3-3-main-pro": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}Gemma3 27B{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "gemma3:27b"),
+        "mavis-3-3-main-mini": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}Gemma3 4B{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "gemma3:4b"),
+        "mavis-3-3-main-mini-mini": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}Gemma3 1B{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "gemma3:1b"),
+        "mavis-3-3-math": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}QwQ 32b{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "qwq"),
+        "mavis-3-3-math-mini": ("MAVIS 3.3", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}DeepScaleR 1.5b{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "deepscaler"),
+        "mavis-3-main-fast": ("MAVIS 3 fast start", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}Phi4 14b{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "phi4"),
+        "mavis-3-math-fast": ("MAVIS 3 fast start", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}DeepSeek R1 14b{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "deepseek-r1:14b"),
+        "mavis-3-code-fast": ("MAVIS 3 fast start", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}Qwen 2.5 Coder 14B{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "qwen2.5-code:14b"),
     }
 
     print(f"All MAVIS versions are available here:\n\n{green}█{reset} Required LLM model for this MAVIS version is already installed\n{orange}█{reset} Required LLM model for this MAVIS version is not yet installed\n{blue}█{reset} LLM model is available for you - you have all the permissions\n{red}█{reset} LLM model is not available for you - you do not have permission to install the model")
@@ -253,6 +252,7 @@ def display_versions():
 
 def get_user_input(versions):
     """Fragt nach einer MAVIS-Batch-Datei und führt sie aus."""
+    print(f"\n4. MAVIS Terminal 3 EAP\n   - {green}mavis-terminal-3{reset}: The MAVIS Terminal is always available for you!!!")
     while True:
         user_input = input("\nEnter a MAVIS batch file (e.g. 'mavis-3-code'):").strip()
         if user_input in versions:
