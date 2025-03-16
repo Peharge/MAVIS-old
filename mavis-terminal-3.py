@@ -73,7 +73,7 @@ import os
 from dotenv import load_dotenv
 from subprocess import run
 
-required_packages = ["requests", "ollama", "transformers", "numpy", "pandas", "python-dotenv", "PyQt6", "PyQt6-sip"]
+required_packages = ["requests", "ollama", "transformers", "numpy", "pandas", "python-dotenv", "PyQt6", "PyQt6-sip", "keyboard"]
 
 def activate_virtualenv(venv_path):
     """Aktiviert eine bestehende virtuelle Umgebung."""
@@ -233,7 +233,8 @@ def handle_special_commands(user_input):
         "mavis info": "mavis-terminal-3\\info.py",
         "info mavis": "mavis-terminal-3\\info.py",
         "neofetch": "mavis-terminal-3\\neofetch.py",
-        "fastfetch": "mavis-terminal-3\\neofetch.py", #new
+        "fastfetch": "mavis-terminal-3\\neofetch.py", # new
+        "htop": "mavis-terminal-3\\htop.py", # new
         "jupyter": "mavis-terminal-3\\run-jup.py",
         "run jupyter": "mavis-terminal-3\\run-jup.py",
         "run mavis-1-5-main": "mavis-1-5-main-main.py",
