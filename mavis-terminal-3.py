@@ -411,7 +411,8 @@ def handle_special_commands(user_input):
         "m run deepseek-r1": "mavis-terminal-3\\m-deepseek-r1.py", # soon
         "m run qwen2.5": "mavis-terminal-3\\m-qwen-2-5.py",  # soon
         "m python frameworks": "mavis-terminal-3\\m-python-frameworks.py", # soon
-        "m pip list": "mavis-terminal-3\\m-python-frameworks.py" # soon
+        "m pip list": "mavis-terminal-3\\m-python-frameworks.py", # soon
+        "m ls": "mavis-terminal-3\\m-ls.py", # soon
     }
 
     if user_input in commands:
