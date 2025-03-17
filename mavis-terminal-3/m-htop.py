@@ -70,8 +70,54 @@ class SystemMonitor(QWidget):
         self.scroll_area = QScrollArea()
         self.scroll_area.setWidgetResizable(True)
         self.scroll_area.setWidget(self.process_table)
-        self.scroll_area.setStyleSheet(
-            "QScrollBar:vertical { background-color: #ffffff; width: 10px; border-radius: 5px; } QScrollBar::handle:vertical { background-color: #ffffff; min-height: 20px; border-radius: 5px; } QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical, QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical, QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical, QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal, QScrollBar::left-arrow:horizontal, QScrollBar::right-arrow:horizontal, QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal { background: none; }")
+        self.scroll_area.setStyleSheet("""
+            QScrollArea {
+                border: none;
+                background-color: none;
+            }
+            
+            QScrollBar:vertical {
+                background-color: none;
+                width: 10px;
+                border-radius: 5px;
+            }
+            
+            QScrollBar::handle:vertical {
+                background-color: #ffffff;
+                min-height: 20px;
+                border-radius: 5px;
+            }
+            
+            QScrollBar::add-line:vertical,
+            QScrollBar::sub-line:vertical {
+                background: none;
+            }
+            
+            QScrollBar::up-arrow:vertical,
+            QScrollBar::down-arrow:vertical {
+                background: none;
+            }
+            
+            QScrollBar::add-page:vertical,
+            QScrollBar::sub-page:vertical {
+                background: none;
+            }
+            
+            QScrollBar::add-line:horizontal,
+            QScrollBar::sub-line:horizontal {
+                background: none;
+            }
+            
+            QScrollBar::left-arrow:horizontal,
+            QScrollBar::right-arrow:horizontal {
+                background: none;
+            }
+            
+            QScrollBar::add-page:horizontal,
+            QScrollBar::sub-page:horizontal {
+                background: none;
+            }
+        """)
         main_layout.addWidget(self.scroll_area)
 
         self.setLayout(main_layout)

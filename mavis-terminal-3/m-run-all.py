@@ -273,11 +273,11 @@ class Terminal(QWidget):
         self.scroll_area.setStyleSheet("""
             QScrollArea {
                 border: none;
-                background-color: #ffffff;
+                background-color: none;
             }
             
             QScrollBar:vertical {
-                background-color: #ffffff;
+                background-color: none;
                 width: 10px;
                 border-radius: 5px;
             }
@@ -394,11 +394,11 @@ class Terminal(QWidget):
             
             QScrollArea {
                 border: none;
-                background-color: #ffffff;
+                background-color: none;
             }
             
             QScrollBar:vertical {
-                background-color: #ffffff;
+                background-color: none;
                 width: 10px;
                 border-radius: 5px;
             }
