@@ -409,7 +409,9 @@ def handle_special_commands(user_input):
         "m htop": "mavis-terminal-3\\m-htop.py",  # new
         "m run gemma3": "mavis-terminal-3\\m-gemma-3.py",  # soon
         "m run deepseek-r1": "mavis-terminal-3\\m-deepseek-r1.py", # soon
-        "m run qwen2.5": "mavis-terminal-3\\m-qwen-2-5.py"  # soon
+        "m run qwen2.5": "mavis-terminal-3\\m-qwen-2-5.py",  # soon
+        "m python frameworks": "mavis-terminal-3\\m-python-frameworks.py", # soon
+        "m pip list": "mavis-terminal-3\\m-python-frameworks.py" # soon
     }
 
     if user_input in commands:
