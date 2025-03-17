@@ -234,7 +234,6 @@ def handle_special_commands(user_input):
         "info mavis": "mavis-terminal-3\\info.py",
         "neofetch": "mavis-terminal-3\\neofetch.py",
         "fastfetch": "mavis-terminal-3\\neofetch.py", # new
-        "htop": "mavis-terminal-3\\htop.py", # new
         "jupyter": "mavis-terminal-3\\run-jup.py",
         "run jupyter": "mavis-terminal-3\\run-jup.py",
         "run mavis-1-5-main": "mavis-1-5-main-main.py",
@@ -312,7 +311,6 @@ def handle_special_commands(user_input):
         "run grafana": "run-grafana\\run-grafana.py",
         "install grafana": "run-grafana\\run-grafana.py",
         "account": "account\\account.py",
-        "run all": "mavis-terminal-3\\run-all.py", # new
         "run deepseek-r1:1.5b": "mavis-terminal-3\\deepseek-r1-1-5b.py",
         "run deepseek-r1:7b": "mavis-terminal-3\\deepseek-r1-7b.py",
         "run deepseek-r1:8b": "mavis-terminal-3\\deepseek-r1-8b.py",
@@ -406,7 +404,12 @@ def handle_special_commands(user_input):
         "install granite3.2:2b": "mavis-terminal-3\\granite-3-2-2b.py",  # new
         "install granite3.2-vision:2b": "mavis-terminal-3\\granite-3-2-2b-vision.py",  # new
         "help": "mavis-terminal-3\\help.py",
-        "run mavis": "mavis-installer-3-main-windows.py"
+        "run mavis": "mavis-installer-3-main-windows.py",
+        "m run all": "mavis-terminal-3\\m-run-all.py",  # new
+        "m htop": "mavis-terminal-3\\m-htop.py",  # new
+        "m run gemma3": "mavis-terminal-3\\m-gemma-3.py",  # soon
+        "m run deepseek-r1": "mavis-terminal-3\\m-deepseek-r1.py", # soon
+        "m run qwen2.5": "mavis-terminal-3\\m-qwen-2-5.py"  # soon
     }
 
     if user_input in commands:
