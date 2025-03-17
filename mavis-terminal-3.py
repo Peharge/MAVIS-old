@@ -413,7 +413,8 @@ def handle_special_commands(user_input):
         "m run qwen2.5-coder": "mavis-terminal-3\\m-qwen-2-5-coder.py", # new
         "m python frameworks": "mavis-terminal-3\\m-python-frameworks.py", # new
         "m pip list": "mavis-terminal-3\\m-python-frameworks.py", # new
-        "m ls": "mavis-terminal-3\\m-ls.py", # new
+        "m pip ls": "mavis-terminal-3\\m-python-frameworks.py",  # new
+        "m ls": "mavis-terminal-3\\m-ls.py" # new
     }
 
     if user_input in commands:
