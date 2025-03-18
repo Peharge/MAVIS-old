@@ -91,6 +91,7 @@ bold = "\033[1m"
 
 def fetch_models():
     return {
+        "DeepScaleR 1.5b": "deepscaler",
         "Qwen 0.5b": "qwen:0.5b",
         "Qwen 1.8b": "qwen:1.8b",
         "Qwen 4b": "qwen:4b",
