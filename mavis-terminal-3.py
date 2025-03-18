@@ -247,9 +247,6 @@ def handle_special_commands(user_input):
         "run mavis-1-5-code-mini": "mavis-1-5-main-code-mini.py",
         "run mavis-1-5-code-mini-mini": "mavis-1-5-main-code-mini-mini.py",
         "run mavis-1-5-3-math-mini-mini": "mavis-1-5-3-main-math-mini-mini.py",
-        "run mavis-3-main": "mavis-3-main-main.py",
-        "run mavis-3-math": "mavis-3-main-math.py",
-        "run mavis-3-code": "mavis-3-main-code.py",
         "run mavis-1-2-main": "main-old\\mavis-1-2-main-main.py",
         "run mavis-1-2-math": "main-old\\mavis-1-2-main-math.py",
         "run mavis-1-2-math pro": "main-old\\mavis-1-2-main-math-pro.py",
@@ -262,6 +259,23 @@ def handle_special_commands(user_input):
         "run mavis-1-2-3-math-pro": "main-old\\mavis-1-2-3-main-math-pro.py",
         "run mavis-1-2-3-math-ultra": "main-old\\mavis-1-2-3-main-math-ultra.py",
         "run mavis-1-4-math": "main-old\\mavis-1-4-main-math.py",
+        "run mavis-3-main": "mavis-3-main-main.py",  # new
+        "run mavis-3-main-mini": "mavis-3-main-main-mini.py",  # new
+        "run mavis-3-math": "mavis-3-main-math.py",  # new
+        "run mavis-3-math-pro": "mavis-3-main-math-pro.py",  # new
+        "run mavis-3-math-ultra": "mavis-3-main-math-ultra.py",  # new
+        "run mavis-3-math-mini": "mavis-3-main-math-mini.py",  # new
+        "run mavis-3-math-mini-mini": "mavis-3-main-math-mini-mini.py",  # new
+        "run mavis-3-code": "mavis-3-main-code.py",  # new
+        "run mavis-3-code-pro": "mavis-3-main-code-pro.py",  # new
+        "run mavis-3-code-mini": "mavis-3-main-code-mini.py",  # new
+        "run mavis-3-code-mini-mini": "mavis-3-main-code-mini-mini.py",  # new
+        "run mavis-3-3-main": "mavis-3-3-main-main.py",  # new
+        "run mavis-3-3-main-pro": "mavis-3-3-main-main-pro.py",  # new
+        "run mavis-3-3-main-mini": "mavis-3-3-main-main-mini.py",  # new
+        "run mavis-3-3-main-mini-mini": "mavis-3-3-main-main-mini-mini.py",  # new
+        "run mavis-3-3-math": "mavis-3-3-main-math.py",  # new
+        "run mavis-3-3-math-mini": "mavis-3-3-main-math-pro.py",  # new
         "run ollama mavis-3-main": "install\\install-ollama-mavis-3-main.py",  # new
         "run ollama mavis-3-main-mini": "install\\install-ollama-mavis-3-main-mini.py",  # new
         "run ollama mavis-3-math": "install\\install-ollama-mavis-3-math.py",  # new
@@ -318,7 +332,7 @@ def handle_special_commands(user_input):
         "run deepseek-r1:32b": "mavis-terminal-3\\deepseek-r1-32b.py",
         "run deepseek-r1:70b": "mavis-terminal-3\\deepseek-r1-70b.py",
         "run deepseek-r1:671b": "mavis-terminal-3\\deepseek-r1-671b.py",
-        "run deepscaler": "run-deepscaler\\deepscaler.py",
+        "run deepscaler": "mavis-terminal-3\\deepscaler.py",
         "run llama3.1:8b": "mavis-terminal-3\\llama-3-1-8b.py",
         "run llama3.1:70b": "mavis-terminal-3\\llama-3-1-70b.py",
         "run llama3.1:405": "mavis-terminal-3\\llama-3-1-405b.py",
@@ -364,7 +378,7 @@ def handle_special_commands(user_input):
         "install deepseek-r1:32b": "mavis-terminal-3\\deepseek-r1-32b.py",
         "install deepseek-r1:70b": "mavis-terminal-3\\deepseek-r1-70b.py",
         "install deepseek-r1:671b": "mavis-terminal-3\\deepseek-r1-671b.py",
-        "install deepscaler": "run-deepscaler\\deepscaler.py",
+        "install deepscaler": "mavis-terminal-3\\deepscaler.py",
         "install llama3.1:8b": "mavis-terminal-3\\llama-3-1-8b.py",
         "install llama3.1:70b": "mavis-terminal-3\\llama-3-1-70b.py",
         "install llama3.1:405": "mavis-terminal-3\\llama-3-1-405b.py",
