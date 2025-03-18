@@ -13,68 +13,100 @@ Mavis Terminal is a powerful command-line interface designed to streamline devel
 
 Below is a structured list of available commands and their corresponding functions:  
 
-### **Environment Setup & Updates**  
-| Command | Description |
-|---------|-------------|
-| `env install` | Installs the Mavis environment, ensuring all dependencies are correctly set up. |
-| `install env` | Equivalent to `env install`, used for environment setup. |
-| `mavis env install` | Alternative command for installing the Mavis environment. |
-| `env update` | Updates the Mavis environment to the latest version. |
-| `update env` | Alternative command for updating the Mavis environment. |
-| `mavis env update` | Another equivalent command for updating the Mavis environment. |
-| `update` | Fetches and applies the latest updates for the Mavis repository. |
-| `mavis update` | Alternative command for updating the Mavis repository. |
-| `update mavis` | Equivalent to `mavis update`. |
+### Environment Setup and Updates
 
-### **System & Security**  
-| Command | Description |
-|---------|-------------|
-| `security` | Performs a security check to identify vulnerabilities in the system. |
-| `mavis security` | Alternative command for security checks. |
-| `securitycheck` | Executes a security check to ensure system integrity. |
-| `info` | Displays system and environment details related to Mavis. |
-| `mavis info` | Alternative command for retrieving system information. |
-| `info mavis` | Equivalent to `mavis info`. |
-| `neofetch` | Retrieves system hardware and software information in a concise format. |
+- **`env install`**: Installs the required environment for Mavis.
+- **`install env`**: Installs the Mavis environment.
+- **`mavis env install`**: Installs the Mavis environment for the Mavis project.
+- **`install mavis env`**: Installs the specific Mavis environment for the project.
+- **`env update`**: Updates the Mavis environment to the latest version.
+- **`update env`**: Updates the environment to the latest version.
+- **`mavis env update`**: Updates the Mavis environment to the latest version.
+- **`update mavis env`**: Updates the specific Mavis environment to the latest version.
 
-### **Development & Execution**  
-| Command | Description |
-|---------|-------------|
-| `jupyter` | Launches a Jupyter Notebook instance for interactive computing. |
-| `run jupyter` | Alternative command to start Jupyter Notebook. |
-| `run mavis-1-5-main` | Executes the primary Mavis 1.5 module. |
-| `run mavis-1-5-math` | Runs the mathematics-focused Mavis 1.5 module. |
-| `run mavis-1-5-math-pro` | Executes the advanced mathematics module of Mavis 1.5. |
-| `run mavis-1-5-math-ultra` | Runs the ultra-performance mathematics module of Mavis 1.5. |
-| `run mavis-1-5-code` | Executes the coding-related Mavis 1.5 module. |
-| `run mavis-3-main` | Launches the core Mavis 3 module. |
+### Repository and Project Updates
 
-### **AI Model Execution**  
-| Command | Description |
-|---------|-------------|
-| `run deepseek-r1:14b` | Runs the DeepSeek model version R1 with 14 billion parameters. |
-| `run deepseek-r1:70b` | Executes the DeepSeek R1 model with 70 billion parameters. |
-| `run llama3.1:70b` | Runs the LLaMA 3.1 model with 70 billion parameters. |
-| `run llama3.1:405b` | Launches the LLaMA 3.1 model with 405 billion parameters. |
-| `run mistral` | Executes the Mistral AI model for advanced natural language processing. |
-| `run phi4` | Starts the Phi-4 AI model for computational tasks. |
-| `run qwen2.5:14b` | Runs the Qwen 2.5 model with 14 billion parameters. |
+- **`update`**: Performs a repository update.
+- **`mavis update`**: Performs an update for the Mavis project.
+- **`update mavis`**: Performs an update for the Mavis installation.
 
-### **Package Installation & System Tools**  
-| Command | Description |
-|---------|-------------|
-| `install ollama mavis-3-main` | Installs the Ollama package required for the Mavis 3 main module. |
-| `install ollama mavis-1-5-math` | Installs the necessary Ollama dependencies for Mavis 1.5 math module. |
-| `grafana` | Starts the Grafana visualization and monitoring tool. |
-| `run grafana` | Alternative command to launch Grafana. |
-| `install grafana` | Installs and runs Grafana. |
-| `account` | Manages user account settings within the Mavis system. |
+### Security and System Information
 
-### **Help & Documentation**  
-| Command | Description |
-|---------|-------------|
-| `help` | Displays the list of available commands and their descriptions. |
-| `run mavis` | Initializes the Mavis installer for system-wide setup. |
+- **`security`**: Checks the system’s security.
+- **`mavis security`**: Performs a security check for the Mavis project.
+- **`securitycheck`**: Initiates a security check for the system.
+- **`info`**: Displays general system information.
+- **`mavis info`**: Displays specific information about the Mavis project.
+- **`info mavis`**: Shows information about the Mavis installation.
+- **`neofetch`**: Displays system information in a visually appealing format.
+- **`fastfetch`**: Displays system information using Neofetch.
+
+### Jupyter and Mavis Model Running Commands
+
+- **`jupyter`**: Launches the Jupyter Notebook environment.
+- **`run jupyter`**: Starts the Jupyter Notebook environment.
+
+### Running Mavis Versions
+The following commands run different versions of Mavis (1.2, 1.5, 3, etc.), along with specific versions for math and coding tasks:
+
+- **`run mavis-1-5-main`**: Runs the main version of Mavis 1.5.
+- **`run mavis-1-5-math`**: Runs the mathematical version of Mavis 1.5.
+- **`run mavis-1-5-math-pro`**: Runs the professional math version of Mavis 1.5.
+- **`run mavis-1-5-math-ultra`**: Runs the ultra math version of Mavis 1.5.
+- **`run mavis-1-5-math-mini`**: Runs the mini math version of Mavis 1.5.
+- **`run mavis-1-5-code`**: Runs the coding version of Mavis 1.5.
+- **`run mavis-1-5-code-pro`**: Runs the professional coding version of Mavis 1.5.
+- **`run mavis-3-main`**: Runs the main version of Mavis 3.
+- **`run mavis-3-math`**: Runs the math version of Mavis 3.
+
+Additional specific versions for each Mavis iteration are also available, e.g., **`mavis-1-5-main-mini`** or **`mavis-3-code-mini`**, tailored to different needs (mini, ultra-mini, professional, etc.).
+
+### Ollama Mavis Versions
+- **`run ollama mavis-3-main`**: Runs the Ollama Mavis 3 Main model.
+- **`run ollama mavis-3-math`**: Runs the Ollama Mavis 3 Math model.
+- **`install ollama mavis-1-5-main`**: Installs Ollama for Mavis 1.5 main version.
+- Additional models available for installation or running, e.g., **`install ollama mavis-3-code-mini`**.
+
+### Model-Specific Commands
+
+The following are commands to run or install various models like DeepSeek, Llama3, Mistral, Phi4, Qwen2.5, and others.
+
+- **DeepSeek Models**:
+  - **`run deepseek-r1:1.5b`**: Runs the DeepSeek model version 1.5b.
+  - **`install deepseek-r1:70b`**: Installs the DeepSeek model version 70b.
+
+- **Llama3 Models**:
+  - **`run llama3.1:8b`**: Runs the Llama3 model version 3.1 8b.
+  - **`install llama3.2:1b`**: Installs the Llama3 model version 3.2 1b.
+
+- **Mistral Models**:
+  - **`run mistral`**: Runs the Mistral model.
+  - **`install mistral-large`**: Installs the Mistral Large model.
+
+- **Phi4 Models**:
+  - **`run phi4`**: Runs the Phi4 model.
+  - **`install phi4-mini`**: Installs the Phi4-Mini tool.
+
+- **Qwen2.5 Models**:
+  - **`run qwen2.5:0.5b`**: Runs the Qwen2.5 model version 0.5b.
+  - **`install qwen2.5-coder:1.5b`**: Installs the Qwen2.5 Coder model version 1.5b.
+
+- **Gemma3 Models**:
+  - **`run gemma3:1b`**: Runs the Gemma3 model version 1b.
+  - **`install gemma3:27b`**: Installs the Gemma3 model version 27b.
+
+### Additional Tools and Applications
+
+- **`grafana`**: Runs the Grafana application.
+- **`run deepseek-r1:1.5b`**: Runs the DeepSeek model version 1.5b.
+- **`install deepseek-r1:70b`**: Installs the DeepSeek model version 70b.
+
+### Miscellaneous
+
+- **`m run all`**: Runs all available scripts in a graphic window.
+- **`m htop`**: Displays a system resource overview (htop) in a graphic window.
+- **`m pip list`**: Lists all installed Python packages (pip list), in a graphic window.
+- **`m git`**: Lists git repositories.
 
 ---
 

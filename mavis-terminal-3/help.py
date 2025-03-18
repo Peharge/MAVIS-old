@@ -318,6 +318,5 @@ def show_help():
 
     print("For more information, refer to the official documentation or contact support.")
 
-
 # Call the help function
 show_help()
