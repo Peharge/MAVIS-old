@@ -97,23 +97,24 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 > - Ask MAVIS to always write code in Python, as this is the only language supported by the user interface.
 > 
 > 
-> - Ask MAVIS to create graphics using Matplotlib, as the user interface only supports HTML, LaTeX and Python (version 3.13 with the frameworks Matplotlib, Plotly, Seaborn, Altair, NumPy, Math, SymPy, Pandas, AstroPy, QuantLib, OpenMDAO, pybullet, MONAI (if needed soon: PyTorch, TensorFlow, Keras, Scikit-Learn and Hugging Face Transformers etc. (maybe JAX)).
+> - Ask MAVIS to create graphics using Matplotlib, Plotly, Seaborn and Altair, as the user interface only supports HTML, LaTeX and Python (version 3.13 with the frameworks Matplotlib, Plotly, Seaborn, Altair, NumPy, Math, SymPy, Pandas, AstroPy, QuantLib, OpenMDAO, pybullet, MONAI (if needed soon: PyTorch, TensorFlow, Keras, Scikit-Learn and Hugging Face Transformers etc. (maybe JAX)).
 > 
 > Use the powerful features of MAVIS to make your projects more efficient and professional.
 
 <details>
   <summary>Deutsch</summary>
 
->MAVIS ist eine KI-basierte Anwendung, mit der Sie visuelle Daten wie Bildformate wie PNG, JPG, JPEG, GIF, Text, PNG, Py, doc und docx analysieren und daraus interaktive Antworten generieren können. Mit MAVIS können Sie komplexe mathematische Berechnungen durchführen, Programmieraufgaben lösen und professionelle Grafiken erstellen.
+>MAVIS ist eine KI-basierte Anwendung, mit der Sie visuelle Daten wie Bildformate wie PNG, JPG, JPEG, GIF, Text, PNG, Py, doc und docx analysieren und daraus interaktive Antworten generieren kann. Mit MAVIS können Sie komplexe mathematische Berechnungen durchführen, Programmieraufgaben lösen und professionelle Grafiken erstellen.
 >
 >Für optimale Ergebnisse beachten Sie bitte Folgendes:
 >
 > - Formeln sollten immer in LaTeX dargestellt werden, um eine präzise und ansprechende Formatierung zu gewährleisten.
 >
+>
 > - Mavis soll Code immer in Python schreiben, da die Benutzeroberfläche nur Python unterstützt.
 >
 >
-> - MAVIS erstellt Grafiken mit Matplotlib, da die Benutzeroberfläche nur HTML, LaTeX und Python unterstützt (Version 3.13 mit den Frameworks Matplotlib, Plotly, Seaborn, Altair, NumPy, Math, SymPy, Pandas, AstroPy, QuantLib, OpenMDAO, Pybullet, MONAI (bei Bedarf auch PyTorch, TensorFlow, Keras, Scikit-Learn und Hugging Face Transformers etc. (ggf. JAX)).
+> - MAVIS erstellt Grafiken mit Matplotlib, Plotly, Seaborn und Altair da die Benutzeroberfläche nur HTML, LaTeX und Python unterstützt (Version 3.13 mit den Frameworks Matplotlib, Plotly, Seaborn, Altair, NumPy, Math, SymPy, Pandas, AstroPy, QuantLib, OpenMDAO, Pybullet, MONAI (bei Bedarf auch PyTorch, TensorFlow, Keras, Scikit-Learn und Hugging Face Transformers etc. (ggf. JAX)).
 >
 > Nutzen Sie die leistungsstarken Funktionen von MAVIS, um Ihre Projekte effizienter und professioneller zu gestalten.
 
