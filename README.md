@@ -86,7 +86,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 
 </details>
 
-> [!IMPORTANT]
+> [!TIP]
 > **English**: MAVIS is an AI-driven application that allows you to analyze visual data such as images (formats: PNG, JPG, JPEG and GIF) and generate interactive answers based on them. With MAVIS you can perform complex mathematical calculations, solve programming tasks and create professional graphics.
 > 
 > To achieve optimal results, please note the following:
