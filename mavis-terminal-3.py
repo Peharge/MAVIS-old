@@ -81,7 +81,7 @@ def activate_virtualenv(venv_path):
 
     # Überprüfen, ob die virtuelle Umgebung existiert
     if not os.path.exists(activate_script):
-        print(f"{red}ERROR{reset}: The virtual environment could not be found at {venv_path}.")
+        print(f"Error: The virtual environment could not be found at {venv_path}.")
         sys.exit(1)
 
     # Umgebungsvariable für die virtuelle Umgebung setzen
@@ -470,7 +470,7 @@ def main():
             print("\nExiting...")
             break
         except Exception as e:
-            print(f"{red}ERROR{reset}: {str(e)}", file=sys.stderr)
+            print(f"Error: {str(e)}", file=sys.stderr)
 
 if __name__ == "__main__":
     main()
