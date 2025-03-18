@@ -81,13 +81,13 @@ def activate_virtualenv(venv_path):
 
     # Überprüfen, ob die virtuelle Umgebung existiert
     if not os.path.exists(activate_script):
-        print(f"Fehler: Die virtuelle Umgebung wurde unter {venv_path} nicht gefunden.")
+        print(f"Error: The virtual environment could not be found at {venv_path}.")
         sys.exit(1)
 
     # Umgebungsvariable für die virtuelle Umgebung setzen
     os.environ["VIRTUAL_ENV"] = venv_path
     os.environ["PATH"] = os.path.join(venv_path, "Scripts") + os.pathsep + os.environ["PATH"]
-    print(f"Virtuelle Umgebung {venv_path} aktiviert.")
+    print(f"Virtual environment {venv_path} enabled.")
 
 def ensure_packages_installed(packages):
     """Stellt sicher, dass alle erforderlichen Pakete installiert sind."""

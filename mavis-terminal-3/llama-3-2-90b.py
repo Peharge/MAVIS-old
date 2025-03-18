@@ -86,16 +86,15 @@ bold = "\033[1m"
 
 def activate_virtualenv(venv_path):
     """Aktiviert eine bestehende virtuelle Umgebung."""
-    activate_script = os.path.join(venv_path, "Scripts", "activate") if os.name == "nt" else os.path.join(venv_path,
-                                                                                                          "bin",
-                                                                                                          "activate")
+    activate_script = os.path.join(venv_path, "Scripts", "activate") if os.name == "nt" else os.path.join(venv_path, "bin", "activate")
+
     if not os.path.exists(activate_script):
-        print(f"Fehler: Die virtuelle Umgebung wurde unter {venv_path} nicht gefunden.")
+        print(f"Error: The virtual environment could not be found at {venv_path}.")
         sys.exit(1)
 
     os.environ["VIRTUAL_ENV"] = venv_path
     os.environ["PATH"] = os.path.join(venv_path, "Scripts") + os.pathsep + os.environ["PATH"]
-    print(f"Virtuelle Umgebung {venv_path} aktiviert.")
+    print(f"Virtual environment {venv_path} enabled.")
 
 def ensure_packages_installed(packages):
     """Stellt sicher, dass alle erforderlichen Pakete installiert sind."""
@@ -197,7 +196,7 @@ def install_model_with_ollama(model_name):
 def prompt_user_for_installation(model_name):
     """Fragt den Benutzer, ob das Modell installiert werden soll."""
     while True:
-        user_input = input_with_timeout(f"Do you want to install the model {model_name}? [y/n]", 10)
+        user_input = input_with_timeout(f"Do you want to install the model {model_name}? [y/n]:", 10)
         if user_input is None:
             print(f"{yellow}Timeout reached. No input received. Defaulting to 'no'.{reset}")
             return False
