@@ -87,7 +87,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 </details>
 
 > [!TIP]
-> **English**: MAVIS is an AI-driven application that allows you to analyze visual data such as images (formats: PNG, JPG, JPEG and GIF) and generate interactive answers based on them. With MAVIS you can perform complex mathematical calculations, solve programming tasks and create professional graphics.
+> MAVIS is an AI-driven application that allows you to analyze visual data such as images formats: PNG, JPG, JPEG, GIF, Text, PNG, Py, doc and docx and generate interactive answers based on them. With MAVIS you can perform complex mathematical calculations, solve programming tasks and create professional graphics.
 > 
 > To achieve optimal results, please note the following:
 > 
@@ -97,26 +97,24 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 > - Ask MAVIS to always write code in Python, as this is the only language supported by the user interface.
 > 
 > 
-> - Ask MAVIS to create graphics using Matplotlib, as the user interface only supports HTML, LaTeX and Python (version 3.13 with the frameworks Matplotlib, Plotly, Seaborn, Altair, NumPy, Math, SymPy, Pandas, AstroPy, QuantLib, OpenMDAO, pybullet, MONAI (if needed soon: PyTorch, TensorFlow, Keras, Scikit-Learn and Hugging Face Transformers (maybe JAX)).
+> - Ask MAVIS to create graphics using Matplotlib, as the user interface only supports HTML, LaTeX and Python (version 3.13 with the frameworks Matplotlib, Plotly, Seaborn, Altair, NumPy, Math, SymPy, Pandas, AstroPy, QuantLib, OpenMDAO, pybullet, MONAI (if needed soon: PyTorch, TensorFlow, Keras, Scikit-Learn and Hugging Face Transformers etc. (maybe JAX)).
 > 
 > Use the powerful features of MAVIS to make your projects more efficient and professional.
 
 <details>
   <summary>Deutsch</summary>
 
-> [!IMPORTANT]
-> **Deutsch**: MAVIS ist eine KI-gesteuerte Anwendung, die Ihnen ermöglicht, visuelle Daten wie Bilder (Formate: PNG, JPG, JPEG und GIF) zu analysieren und darauf basierend interaktive Antworten zu generieren. Mit MAVIS können Sie komplexe mathematische Berechnungen durchführen, programmiertechnische Aufgaben lösen und professionelle Grafiken erstellen.
-> 
-> Um optimale Ergebnisse zu erzielen, beachten Sie folgende Hinweise:
-> 
-> - Lassen Sie Formeln stets in LaTeX darstellen, um eine präzise und ansprechende Formatierung zu gewährleisten.
-> 
-> 
-> - Fordern Sie MAVIS dazu auf, Code immer in Python zu schreiben, da nur dieser von der Benutzeroberfläche unterstützt wird.
-> 
-> 
-> - Bitten Sie MAVIS, Grafiken mithilfe von Matplotlib zu erstellen, da die Benutzeroberfläche ausschließlich HTML, LaTeX und Python (Version 3.13 mit den Frameworks Matplotlib, Plotly, Seaborn, Altair,NumPy, Math, SymPy und Pandas (bei Bedarf soon: PyTorch, TensorFlow, Keras, Scikit-Learn und Hugging Face Transformers (vielleicht noch JAX)) unterstützt.
-> 
+>MAVIS ist eine KI-basierte Anwendung, mit der Sie visuelle Daten wie Bildformate wie PNG, JPG, JPEG, GIF, Text, PNG, Py, doc und docx analysieren und daraus interaktive Antworten generieren können. Mit MAVIS können Sie komplexe mathematische Berechnungen durchführen, Programmieraufgaben lösen und professionelle Grafiken erstellen.
+>
+>Für optimale Ergebnisse beachten Sie bitte Folgendes:
+>
+> - Formeln sollten immer in LaTeX dargestellt werden, um eine präzise und ansprechende Formatierung zu gewährleisten.
+>
+> - Mavis soll Code immer in Python schreiben, da die Benutzeroberfläche nur Python unterstützt.
+>
+>
+> - MAVIS erstellt Grafiken mit Matplotlib, da die Benutzeroberfläche nur HTML, LaTeX und Python unterstützt (Version 3.13 mit den Frameworks Matplotlib, Plotly, Seaborn, Altair, NumPy, Math, SymPy, Pandas, AstroPy, QuantLib, OpenMDAO, Pybullet, MONAI (bei Bedarf auch PyTorch, TensorFlow, Keras, Scikit-Learn und Hugging Face Transformers etc. (ggf. JAX)).
+>
 > Nutzen Sie die leistungsstarken Funktionen von MAVIS, um Ihre Projekte effizienter und professioneller zu gestalten.
 
 </details>
