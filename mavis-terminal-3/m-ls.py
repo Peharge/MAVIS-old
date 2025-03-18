@@ -87,6 +87,59 @@ class FileExplorer(QWidget):
         self.tree.setHeaderLabels(["Name", "Type"])
         layout.addWidget(self.tree)
 
+        self.scroll_area = QScrollArea()
+        self.scroll_area.setWidgetResizable(True)
+
+        # Dies wird jetzt auf die Instanz von QApplication angewendet
+        app.setStyleSheet("""
+            QScrollArea {
+                border: none;
+                background-color: none;
+            }
+
+            QScrollBar:vertical {
+                background-color: none;
+                width: 10px;
+                border-radius: 5px;
+            }
+
+            QScrollBar::handle:vertical {
+                background-color: #ffffff;
+                min-height: 20px;
+                border-radius: 5px;
+            }
+
+            QScrollBar::add-line:vertical,
+            QScrollBar::sub-line:vertical {
+                background: none;
+            }
+
+            QScrollBar::up-arrow:vertical,
+            QScrollBar::down-arrow:vertical {
+                background: none;
+            }
+
+            QScrollBar::add-page:vertical,
+            QScrollBar::sub-page:vertical {
+                background: none;
+            }
+
+            QScrollBar::add-line:horizontal,
+            QScrollBar::sub-line:horizontal {
+                background: none;
+            }
+
+            QScrollBar::left-arrow:horizontal,
+            QScrollBar::right-arrow:horizontal {
+                background: none;
+            }
+
+            QScrollBar::add-page:horizontal,
+            QScrollBar::sub-page:horizontal {
+                background: none;
+            }
+        """)
+
         self.status_label = QLabel("Loading...")
         layout.addWidget(self.status_label)
 
