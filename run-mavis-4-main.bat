@@ -70,8 +70,7 @@ set SCRIPT_PATH_2=C:\Users\%USERNAME%\PycharmProjects\MAVIS\install\install-info
 set SCRIPT_PATH_update=C:\Users\%USERNAME%\PycharmProjects\MAVIS\update\update-repository-windows.py
 set SCRIPT_PATH_account=C:\Users\%USERNAME%\PycharmProjects\MAVIS\account\account.py
 set SCRIPT_PATH_3=C:\Users\%USERNAME%\PycharmProjects\MAVIS\install\install-ollama-mavis-4-main.py
-set SCRIPT_PATH_security=C:\Users\%USERNAME%\PycharmProjects\MAVIS\security\security_check.py
-set SCRIPT_PATH_4=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info\info-mavis-4.py
+set SCRIPT_PATH_security=C:\Users\%USERNAME%\PycharmProjects\MAVIS\security\security_check-mavis-4.py
 set PYTHON_SCRIPT_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run-browser\run-browser-one.py
 set run_jup=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run-jup\run-jup.py
 set run_grafana=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run-grafana\run-grafana.py
@@ -124,13 +123,6 @@ if not exist "%SCRIPT_PATH_security%" (
 )
 
 "%PYTHON_PATH%" "%SCRIPT_PATH_security%"
-
-if not exist "%SCRIPT_PATH_4%" (
-    echo Error: Script not found: %SCRIPT_PATH_4%
-    exit /B 1
-)
-
-"%PYTHON_PATH%" "%SCRIPT_PATH_4%"
 
 if not exist "%PYTHON_SCRIPT_PATH%" (
     echo Error: Python script not found: %PYTHON_SCRIPT_PATH%
