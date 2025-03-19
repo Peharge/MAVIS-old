@@ -65,17 +65,17 @@ REM Veuillez lire l'intégralité des termes et conditions de la licence MIT pou
 
 set USERNAME=%USERNAME%
 set PYTHON_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe
-set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info\info-start-mavis-4-main.py
+set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info\info-start-mavis-4.py
 set SCRIPT_PATH_2=C:\Users\%USERNAME%\PycharmProjects\MAVIS\install\install-info-mavis-4.py
 set SCRIPT_PATH_update=C:\Users\%USERNAME%\PycharmProjects\MAVIS\update\update-repository-windows.py
 set SCRIPT_PATH_account=C:\Users\%USERNAME%\PycharmProjects\MAVIS\account\account.py
-set SCRIPT_PATH_3=C:\Users\%USERNAME%\PycharmProjects\MAVIS\install\install-ollama-mavis-4-main.py
+set SCRIPT_PATH_3=C:\Users\%USERNAME%\PycharmProjects\MAVIS\install\install-ollama-mavis-4.py
 set SCRIPT_PATH_security=C:\Users\%USERNAME%\PycharmProjects\MAVIS\security\security_check-mavis-4.py
 set PYTHON_SCRIPT_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run-browser\run-browser-one.py
 set run_jup=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run-jup\run-jup.py
 set run_grafana=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run-grafana\run-grafana.py
 set run_solution=C:\Users\%USERNAME%\PycharmProjects\MAVIS\solution\run-solution-3.py
-set SCRIPT_PATH_5=C:\Users\%USERNAME%\PycharmProjects\MAVIS\mavis-4-main-main.py
+set SCRIPT_PATH_5=C:\Users\%USERNAME%\PycharmProjects\MAVIS\mavis-4-main.py
 
 if not exist "%PYTHON_PATH%" (
     echo Error: Python interpreter not found: %PYTHON_PATH%
