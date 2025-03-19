@@ -466,7 +466,7 @@ def main():
 
             if user_input.lower() == "exit":
                 run([f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe",
-                     f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\mavis-installer-3-main-windows.py"],
+                     f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\mavis-installer-4-main-windows.py"],
                     shell=True)
                 break
 
