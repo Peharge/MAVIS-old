@@ -444,7 +444,7 @@ And more...
 
 <br>
 
-### MAVIS 4 EAP release
+### MAVIS 4 release
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="./readme-img/mavis2.3-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
