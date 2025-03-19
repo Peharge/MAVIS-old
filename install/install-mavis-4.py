@@ -242,31 +242,36 @@ def get_latest_version(package):
 
 def check_package_compatibility(package):
     # Hole die neueste verfügbare Version des Pakets
-    current_version = get_latest_version(package)
-    if not current_version:
+    current_version = get_package_version(package)
+    latest_version = get_latest_package_version(package)
+    if not latest_version:
         return
 
-    print(f"Latest version of {package}: {current_version}")
+    installed_packages = {pkg.metadata['Name'].lower(): pkg.version for pkg in importlib.metadata.distributions()}
+
+    print(f"{blue}{package} is outdated ({current_version} -> {latest_version}).{reset}")
 
     # Überprüfen Sie, ob das Paket bereits installiert ist und welche Version
-    installed_packages = {pkg.metadata['Name'].lower(): pkg.version for pkg in importlib.metadata.distributions()}
 
     # Prüfe Inkompatibilitäten mit installierten Paketen
     print(f"\nCheck for incompatibilities with installed packages...")
 
     # Verwenden Sie pipdeptree, um alle Pakete und deren Abhängigkeiten zu überprüfen
-    pipdeptree_result = subprocess.run(['pipdeptree', '--freeze'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    pipdeptree_result = subprocess.run(['pipdeptree', '-r', '-p', package], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
     if pipdeptree_result.returncode == 0:
         # Pipdeptree liefert alle installierten Pakete und deren Abhängigkeiten
-        print("Installed packages and their dependencies:")
-        print(pipdeptree_result.stdout)
+        # print(pipdeptree_result.stdout)
 
-        # Wenn das aktualisierte Paket eine Inkompatibilität verursacht, wird es hier angezeigt
         incompatible_packages = pipdeptree_result.stdout.splitlines()
         for line in incompatible_packages:
             if package in line:
-                print(f"Incompatibility found with: {package} -> {line}")
+                # Extrahiere das Paket, das eine inkompatible Version benötigt
+                print(f"{red}Incompatibility found with{reset}: {line}")
+                # Optional: Wenn du mehr Details zu den Abhängigkeiten sehen möchtest, kannst du nach dem Paket suchen,
+                # das eine inkompatible Version benötigt.
+                package_dependency = line.split('==')[0]  # Extrahiere den Namen des Pakets
+                print(f"{red}{package_dependency} requires an incompatible version of {package}{reset}")
     else:
         print(f"Error retrieving package dependencies: {pipdeptree_result.stderr}")
 
@@ -334,13 +339,11 @@ def install_or_update_package(package: str):
                 """
                 # Wenn keine Inkompatibilitäten gefunden wurden, fahren wir fort und zeigen die veraltete Version an
                 check_package_compatibility(package)
-                print(f"{blue}{package} is outdated ({current_version} -> {latest_version}).{reset}")
-                if confirm_action(f"Do you want to update {package} to {latest_version}?"):
+                if confirm_action(f"\nDo you want to update {package} to {latest_version}?"):
                     subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", package], check=True)
                     print(f"{green}{package} was updated to version {latest_version}.{reset}")
                     print(f"\nCheck again for incompatibilities after installation...")
-                    pipdeptree_result = subprocess.run(['pipdeptree', '--freeze'], stdout=subprocess.PIPE,
-                                                       stderr=subprocess.PIPE, text=True)
+                    pipdeptree_result = subprocess.run(['pipdeptree', '-r', '-p', package], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
                     if pipdeptree_result.returncode == 0:
                         print("Packages installed after installation:")
@@ -478,7 +481,7 @@ def process_packages(packages: List[str]):
         print(f"\n[{idx}/{len(packages)}] Checking package: {blue}{package}{reset}")
         install_or_update_package(package)
 
-print(f"\nAll frameworks for {blue}MAVIS versions 3{reset} are currently being installed and updated.")
+print(f"\nAll frameworks for {blue}MAVIS versions 4{reset} are currently being installed and updated.")
 
 # Paketlisten
 packages = [
