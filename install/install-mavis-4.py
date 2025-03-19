@@ -258,7 +258,7 @@ def check_package_compatibility(package):
     print(f"\nCheck for incompatibilities with installed packages...")
 
     # Verwenden Sie pipdeptree, um alle Pakete und deren Abhängigkeiten zu überprüfen
-    pipdeptree_result = subprocess.run(['pipdeptree', '-r', '-p', package], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    pipdeptree_result = subprocess.run([sys.executable, 'pipdeptree', '-r', '-p', package], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
     if pipdeptree_result.returncode == 0:
         # Pipdeptree liefert alle installierten Pakete und deren Abhängigkeiten
@@ -344,7 +344,7 @@ def install_or_update_package(package: str):
                     subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", package], check=True)
                     print(f"{green}{package} was updated to version {latest_version}.{reset}")
                     print(f"\nCheck again for incompatibilities after installation...")
-                    pipdeptree_result = subprocess.run(['pipdeptree', '-r', '-p', package], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    pipdeptree_result = subprocess.run([sys.executable, 'pipdeptree', '-r', '-p', package], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
                     if pipdeptree_result.returncode == 0:
                         print("Packages installed after installation:")

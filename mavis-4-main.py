@@ -233,6 +233,7 @@ except json.JSONDecodeError as e:
 # Extrahiere die Modelle aus der Konfiguration
 model1 = model_config['mavis-4']['model1']
 model2 = model_config['mavis-4']['model2']
+model3 = model_config['mavis-4']['model3']
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
@@ -627,7 +628,7 @@ def text_to_speech(text):
 def chat_response(message):
     try:
         response = ollama.chat(
-            model='qwen2.5:1.5b',
+            model='model3',
             messages=[{
                 'role': 'user',
                 'content': message
