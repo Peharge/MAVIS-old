@@ -92,7 +92,7 @@ def check_model_with_ollama(model_version: str) -> bool:
         )
         return result.returncode == 0  # Wenn der Rückgabewert 0 ist, wurde das Modell gefunden
     except subprocess.CalledProcessError as e:
-        logging.error(f"Fehler beim Überprüfen des Modells {model_version}: {e.stderr}")
+        logging.error(f"Error checking model {model_version}: {e.stderr}")
         return False
     except Exception as e:
         logging.error(f"Unbekannter Fehler beim Überprüfen des Modells {model_version}: {e}")
@@ -246,7 +246,7 @@ class FrameworkViewer(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("Python Framework Viewer")
+        self.setWindowTitle("Ollama Model Viewer")
         self.setGeometry(100, 100, 1000, 800)
 
         self.set_dark_mode()
@@ -359,7 +359,7 @@ class FrameworkViewer(QWidget):
 
                 self.tree.addTopLevelItem(item)
 
-        self.status_label.setText("Modelle erfolgreich geladen.")
+        self.status_label.setText("Models loaded successfully.")
 
     def resizeEvent(self, event):
         """
