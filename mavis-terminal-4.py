@@ -428,7 +428,8 @@ def handle_special_commands(user_input):
         "m python frameworks": "mavis-terminal-3\\m-python-frameworks.py", # new
         "m pip list": "mavis-terminal-3\\m-python-frameworks.py", # new
         "m pip ls": "mavis-terminal-3\\m-python-frameworks.py",  # new
-        "m git": "mavis-terminal-3\\m-git.py", # new
+        "m git ls": "mavis-terminal-3\\m-git.py", # new
+        "m git": "mavis-terminal-3\\m-git.py",  # new
         "m ls": "mavis-terminal-3\\m-ls.py", # new
         "m models ls": "mavis-terminal-3\\m-models-ls.py"  # new
     }
