@@ -302,9 +302,9 @@ if __name__ == "__main__":
     existing_models = load_existing_models()
     print("Current models:")
     for key, value in existing_models.items():
-        print(f"{key}: {value}")
+        print(f"   {blue}{key}{reset}: {value}")
 
-    choice = input("Do you want to change the models? [y/n]:").strip().lower()
+    choice = input("\nDo you want to change the models? [y/n]:").strip().lower()
 
     if choice in ["y", "yes"]:
         # Benutzer fragt nach den Modellnamen
@@ -348,7 +348,7 @@ if __name__ == "__main__":
     else:
         models = existing_models
 
-    print("Final models:", models)
+    print(f"{blue}Final models{reset}:", models)
 
     models_to_check = [models["model1"], models["model2"], models["model3"], models["model4"]]
 
