@@ -244,6 +244,7 @@ def check_package_compatibility(package):
     # Hole die neueste verfügbare Version des Pakets
     current_version = get_package_version(package)
     latest_version = get_latest_package_version(package)
+
     if not latest_version:
         return
 
