@@ -17,6 +17,17 @@ orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
+def run_help_script():
+    """
+    Führt das Hilfe-Skript aus, wenn der Benutzer 'help' eingibt.
+    """
+    help_script_path = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "install", "help-models.py")
+    if os.path.exists(help_script_path):
+        print(f"{cyan}Running help script...{reset}")
+        subprocess.run(["python", help_script_path], check=True)
+    else:
+        print(f"{red}Help script not found at {help_script_path}. Please check the path.{reset}")
+
 def check_ollama_update():
     """
     Prüft, ob eine neue Version von Ollama verfügbar ist, und bietet ein Update an.
@@ -186,6 +197,20 @@ def save_model_selection(models):
     except Exception as e:
         print(f"{red}Error saving model selection: {e}{reset}")
 
+import os
+import subprocess
+
+def run_help_script():
+    """
+    Führt das Hilfe-Skript aus, wenn der Benutzer 'help' eingibt.
+    """
+    help_script_path = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "install", "help-models.py")
+    if os.path.exists(help_script_path):
+        print(f"{cyan}Running help script...{reset}")
+        subprocess.run(["python", help_script_path], check=True)
+    else:
+        print(f"{red}Help script not found at {help_script_path}. Please check the path.{reset}")
+
 if __name__ == "__main__":
     print("\nOllama Information:")
     print("-------------------")
@@ -201,9 +226,44 @@ if __name__ == "__main__":
 
     # Benutzer fragt nach den Modellnamen
     models = {}
-    for i in range(1, 5):
-        model_name = input(f"Please select model {i} (e.g. gemma3:12b, llama3.2-vision:11b, qwen2.5:1.5b, granite3.2-vision): ").strip()
-        models[f"model{i}"] = model_name
+
+    # Model 1: Beliebiges Modell
+    while True:
+        models["model1"] = input(f"Please select model 1 (e.g. gemma3:12b, llama3.2-vision:11b, qwen2.5:1.5b, granite3.2-vision) or type 'help' for assistance: ").strip()
+        if models["model1"].lower() == "help":
+            run_help_script()
+        else:
+            break
+
+    # Model 2: Vision-Modell
+    while True:
+        models["model2"] = input(f"Please select model 2 (This should be a vision model, e.g. llama3.2-vision:11b, granite3.2-vision) or type 'help' for assistance: ").strip()
+        if models["model2"].lower() == "help":
+            run_help_script()
+        elif "vision" in models["model2"]:
+            break
+        else:
+            print(f"{red}Model 2 must be a vision model! Please select a model that includes 'vision' in the name.{reset}")
+
+    # Model 3: Kleineren Modell auswählen
+    while True:
+        models["model3"] = input(f"Please select model 3 (This should be a smaller model, e.g. qwen2.5:1.5b) or type 'help' for assistance: ").strip()
+        if models["model3"].lower() == "help":
+            run_help_script()
+        elif "b" in models["model3"]:  # Hier nehme ich an, dass kleinere Modelle ein "b" in ihrem Namen haben, wie z.B. 1.5b
+            break
+        else:
+            print(f"{red}Model 3 must be a smaller model! Please select a model with a smaller size (e.g., with 'b' in the name).{reset}")
+
+    # Model 4: Sehr kleines Vision-Modell auswählen
+    while True:
+        models["model4"] = input(f"Please select model 4 (This should be a very small vision model, e.g. tiny-vision:0.5b) or type 'help' for assistance: ").strip()
+        if models["model4"].lower() == "help":
+            run_help_script()
+        elif "vision" in models["model4"] and "b" in models["model4"]:
+            break
+        else:
+            print(f"{red}Model 4 must be a very small vision model! Please select a model that includes both 'vision' and 'b' in the name.{reset}")
 
     # Speichern der Auswahl
     save_model_selection(models)
