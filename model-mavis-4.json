@@ -1,0 +1,6 @@
+{
+    "mavis-4": {
+        "model1": "gemma3:12b",
+        "model2": "llama3.2-vision:11b"
+    }
+}
