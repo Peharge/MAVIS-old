@@ -3,6 +3,6 @@
         "model1": "gemma3:12b",
         "model2": "llama3.2-vision:11b",
         "model3": "qwen2.5:1.5b",
-        "model4": "tiny-vision:0.5b"
+        "model4": "granite3.2-vision"
     }
 }
