@@ -1,8 +1,8 @@
 {
     "mavis-4": {
         "model1": "gemma3:12b",
-        "model2": "llama3.2-vision:11b",
-        "model3": "qwen2.5:1.5b",
-        "model4": "granite3.2-vision"
+        "model2": "gemma3:12b",
+        "model3": "gemma3:1b",
+        "model4": "gemma3:1b"
     }
 }
