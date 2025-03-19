@@ -235,7 +235,8 @@ def display_versions():
         "mavis-3-3-main-fast": ("MAVIS fast start", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}Gemma3 12B{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "gemma3:12b"),
         "mavis-3-3-math-fast": ("MAVIS fast start", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}QwQ 32b{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "qwq"),
         "mavis-terminal-3": ("MAVIS Terminal 3 EAP", "The MAVIS Terminal is always available for you!!!", ""),
-        "mavis-4": ("MAVIS 4 EAP", "Soon - don´t run!!!", "")
+        "mavis-4": ("MAVIS 4 EAP", "Soon - don´t run!!!", ""),
+        "mavis-terminal-4": ("MAVIS Terminal 4 EAP", "The MAVIS Terminal is always available for you!!!", "")
     }
 
     print(f"All MAVIS versions are available here:\n\n{green}█{reset} Required LLM model for this MAVIS version is already installed\n{orange}█{reset} Required LLM model for this MAVIS version is not yet installed\n{blue}█{reset} LLM model is available for you - you have all the permissions\n{red}█{reset} LLM model is not available for you - you do not have permission to install the model")

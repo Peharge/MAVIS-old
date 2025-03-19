@@ -216,7 +216,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 TEXT_EXTENSIONS = {'txt', 'pdf', 'docx', 'py', 'html', 'md'}
 
-# Beispiel für das Laden der Konfiguration aus der model-mavis-4.json
 # Pfad zur JSON-Datei korrekt zusammensetzen
 file_path = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "model-mavis-4.json")
 
