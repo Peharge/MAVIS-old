@@ -66,7 +66,7 @@ import sys
 import platform
 import importlib.util
 
-required_packages = ["requests", "Flask", "numpy", "pandas", "python-dotenv", "pipdeptree", "urllib3"]
+required_packages = ["requests", "Flask", "numpy", "pandas", "python-dotenv", "pipdeptree", "urllib3", "PyQt6"]
 
 def ensure_packages_installed(packages):
     """Stellt sicher, dass alle erforderlichen Pakete installiert sind."""
