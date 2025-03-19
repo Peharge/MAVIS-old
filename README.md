@@ -161,6 +161,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 - **[01.03.2025]** MAVIS Installer 3 EAP release
 - **[15.03.2025]** MAVIS 3 release !!!
 - **[16.03.2025]** MAVIS 3.3 release !!!
+- **[19.03.2025]** Development of MAVIS 4 has begun – featuring new Vision Models, a more powerful and faster MAVIS Terminal, and access to over 200 models. No separate main, math, or code versions – ensuring greater usability.
 
 ## Updates
 
@@ -274,96 +275,6 @@ And more...
 <br>
 
 > +01.04.2025
-
-<details>
-  <summary>More MAVIS versions</summary>
-
-### MAVIS 1.7 EAP release
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis1.7-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-
-<br>
-
-> 01.05.2025
-
-### MAVIS 1.8 EAP release
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis1.8-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-
-<br>
-
-> 01.06.2025
-
-### MAVIS 1.9 EAP release
-
-<p align="center">
-  <img src="./readme-img/mavis1.9-banner-ads.png" alt="mavis" width="650" style="margin: 10px;">
-</p>
-
-<br>
-
-> 01.07.2025
-
-### MAVIS big release on Windows / Linux / MAC OS (no EAP)
-
-<p align="center">
-    <img src="./readme-img/mavis-banner23.png" alt="mavis" width="450" style="margin: 10px;"><img src="./readme-img/mavis-banner25.png" alt="mavis" width="360" style="margin: 10px;"> 
-</p>
-
-<br>
-
-> 01.08.2025
- 
-### MAVIS on Apple Vision Pro                     
-<p align="center">
-    <img src="./readme-img/mavis-banner24.png" alt="mavis" width="400" style="margin: 10px;"><img src="./readme-img/mavis-banner26.png" alt="mavis" width="400" style="margin: 10px;"> 
-</p>
-
-<br>
-
-> soon
-
-### MAVIS 2.0                     
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis2-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-
-<br>
-
-> 01.01.2026
-
-### MAVIS 2.1                     
-<p align="center">
-    <img src="./readme-img/mavis2.1-banner-ads.png" alt="mavis" width="800" style="margin: 10px;">
-</p>
-
-<br>
-
-> 01.03.2026
-
-### MAVIS 2.2                     
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis2.2-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-
-<br>
-
-> 01.05.2026
-
-### MAVIS 2.3                     
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis2.3-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-
-<br>
-
-> 01.07.2026
-
-</details>
 
 </details>
 
@@ -532,6 +443,17 @@ And more...
 > Release: 15.03.2025
 
 <br>
+
+### MAVIS 4 EAP release
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="./readme-img/mavis2.3-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+<br>
+
+> [!IMPORTANT]
+> Release: 01.05.2025
 
 ## Versions
 
