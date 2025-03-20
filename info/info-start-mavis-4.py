@@ -100,7 +100,7 @@ Thank you so much for using MAVIS. We truly appreciate your support ❤️""")
 
 print(f"""
 {blue}MAVIS Version{reset}: 4
-{blue}MAVIS Installer Version{reset}: 4
+{blue}MAVIS Launcher Version{reset}: 4
 {blue}MAVIS Terminal Version{reset}: 4
 {blue}MAVIS License{reset}: MIT
 """)

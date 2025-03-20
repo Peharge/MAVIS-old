@@ -66,7 +66,7 @@ REM Veuillez lire l'intégralité des termes et conditions de la licence MIT pou
 setlocal enabledelayedexpansion
 
 echo -------------------------------------------------
-echo        Welcome to the MAVIS Installer 4
+echo        Welcome to the MAVIS Launcher 4
 echo -------------------------------------------------
 echo      Initiating high-tech installation...
 echo           Prepare for the next level!

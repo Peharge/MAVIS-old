@@ -147,7 +147,7 @@ Thank you so much for using MAVIS. We truly appreciate your support ❤️""")
 
     print(f"""
 {blue}MAVIS Version{reset}: 4
-{blue}MAVIS Installer Version{reset}: 4
+{blue}MAVIS Launcher Version{reset}: 4
 {blue}MAVIS Terminal Version{reset}: 4
 {blue}MAVIS License{reset}: MIT
     """)
@@ -276,6 +276,7 @@ def handle_special_commands(user_input):
         "run mavis-3-3-main-mini-mini": "mavis-3-3-main-main-mini-mini.py",  # new
         "run mavis-3-3-math": "mavis-3-3-main-math.py",  # new
         "run mavis-3-3-math-mini": "mavis-3-3-main-math-pro.py",  # new
+        "run mavis-4": "mavis-4-main.py",  # new
         "run ollama mavis-3-main": "install\\install-ollama-mavis-3-main.py",  # new
         "run ollama mavis-3-main-mini": "install\\install-ollama-mavis-3-main-mini.py",  # new
         "run ollama mavis-3-math": "install\\install-ollama-mavis-3-math.py",  # new
@@ -321,6 +322,8 @@ def handle_special_commands(user_input):
         "install ollama mavis-3-3-main-mini-mini": "install\\install-ollama-mavis-3-3-main-mini-mini.py", # new
         "install ollama mavis-3-3-math": "install\\install-ollama-mavis-3-3-math.py", # new
         "install ollama mavis-3-3-math-mini": "install\\install-ollama-mavis-3-3-math-mini.py", # new
+        "install ollama mavis-4": "install\\install-ollama-mavis-4.py",  # new
+        "install mavis-4": "install\\install-ollama-mavis-4.py",  # new
         "grafana": "run-grafana\\run-grafana.py",
         "run grafana": "run-grafana\\run-grafana.py",
         "install grafana": "run-grafana\\run-grafana.py",
