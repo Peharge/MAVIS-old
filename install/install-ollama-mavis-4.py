@@ -402,7 +402,7 @@ if __name__ == "__main__":
     else:
         models = existing_models
 
-    print(f"{blue}Final models{reset}:", models)
+    print(f"{blue}Final models{reset}:", models, "\n")
 
     models_to_check = [models["model1"], models["model2"], models["model3"], models["model4"]]
 
