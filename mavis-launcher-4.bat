@@ -65,6 +65,8 @@ REM Veuillez lire l'intégralité des termes et conditions de la licence MIT pou
 
 setlocal enabledelayedexpansion
 
+chcp 65001
+
 echo -------------------------------------------------
 echo        Welcome to the MAVIS Launcher 4
 echo -------------------------------------------------
@@ -474,6 +476,7 @@ if %errorlevel% neq 0 (
 
 :: Completion
 echo 🎉 All tasks have been completed successfully!
+echo.
+
 pause
 exit /b
-
