@@ -64,7 +64,6 @@ REM
 REM Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
 setlocal enabledelayedexpansion
-
 chcp 65001
 
 echo -------------------------------------------------
