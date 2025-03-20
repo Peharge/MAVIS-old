@@ -464,7 +464,6 @@ if not exist "%MAVIS_RUN_FILE%" (
 
 :: Execute run-mavis-4-all.bat
 echo ✅ Starting MAVIS...
-call "%MAVIS_RUN_FILE%"
 
 :: Verify if execution was successful
 if %errorlevel% neq 0 (
@@ -475,8 +474,10 @@ if %errorlevel% neq 0 (
 )
 
 :: Completion
-echo 🎉 All tasks have been completed successfully!
+echo ✅ All tasks have been completed successfully!
 echo.
+
+call "%MAVIS_RUN_FILE%"
 
 pause
 exit /b
