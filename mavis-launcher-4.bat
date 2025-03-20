@@ -96,125 +96,384 @@ echo.
 echo Gooo...
 echo.
 
-:: Function to check if Python is installed
-:check_python
+:: Check if Python is installed
 python --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo Python 3.12 is not installed.
     set /p install_python="Would you like to install Python 3.12? [y/n]:"
+
     if /i "%install_python%"=="y" (
         echo Downloading and installing Python 3.12...
-        start https://www.python.org/downloads/release/python-3120/
+
+        :: Define Python installer URL and download path
+        set "PYTHON_URL=https://www.python.org/ftp/python/3.12.2/python-3.12.2-amd64.exe"
+        set "PYTHON_INSTALLER=%TEMP%\python-3.12.2-installer.exe"
+
+        :: Securely download Python using PowerShell
+        powershell -Command "& {
+            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
+            Invoke-WebRequest -Uri '%PYTHON_URL%' -OutFile '%PYTHON_INSTALLER%'
+        }"
+
+        :: Verify if the installer was downloaded
+        if exist "%PYTHON_INSTALLER%" (
+            echo Running the Python installer...
+
+            :: Install Python silently for all users and add to PATH
+            start /wait %PYTHON_INSTALLER% /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
+
+            :: Verify installation
+            python --version >nul 2>&1
+            if %errorlevel% neq 0 (
+                echo ❌ Error: Python installation failed!
+            ) else (
+                echo ✅ Python 3.12 was successfully installed!
+            )
+        ) else (
+            echo ❌ Error: Python installer could not be downloaded!
+        )
     ) else (
-        echo Python installation aborted. Please go to https://git-scm.com/downloads and install the dependencies from there! But only Python 3.12.9 not Python 3.13
+        echo Installation aborted. Please install Python 3.12 manually from: https://www.python.org/downloads
     )
 ) else (
-    echo Python 3.12 is already installed.
+    echo ✅ Python is already installed.
 )
 
-:: Function to check if Git is installed
-:check_git
+:: Check if Git is installed
 git --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo Git is not installed.
     set /p install_git="Would you like to install Git? [y/n]:"
+
     if /i "%install_git%"=="y" (
         echo Downloading and installing Git...
-        start https://git-scm.com/download/win
+
+        :: Define Git installer URL and download path
+        set "GIT_URL=https://github.com/git-for-windows/git/releases/latest/download/Git-2.44.0-64-bit.exe"
+        set "GIT_INSTALLER=%TEMP%\git-installer.exe"
+
+        :: Securely download Git using PowerShell
+        powershell -Command "& {
+            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
+            Invoke-WebRequest -Uri '%GIT_URL%' -OutFile '%GIT_INSTALLER%'
+        }"
+
+        :: Verify if the installer was downloaded
+        if exist "%GIT_INSTALLER%" (
+            echo Running the Git installer...
+
+            :: Install Git silently with default options
+            start /wait %GIT_INSTALLER% /VERYSILENT /NORESTART /CLOSEAPPLICATIONS
+
+            :: Verify installation
+            git --version >nul 2>&1
+            if %errorlevel% neq 0 (
+                echo ❌ Error: Git installation failed!
+            ) else (
+                echo ✅ Git was successfully installed!
+            )
+        ) else (
+            echo ❌ Error: Git installer could not be downloaded!
+        )
     ) else (
-        echo Git installation aborted. Please go to https://git-scm.com/downloads and install the dependencies from there
+        echo Installation aborted. Please install Git manually from: https://git-scm.com/downloads
     )
 ) else (
-    echo Git is already installed.
+    echo ✅ Git is already installed.
 )
 
-:: Function to check if Ollama is installed
-:check_ollama
+:: Check if Ollama is installed
 ollama --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo Ollama is not installed.
     set /p install_ollama="Would you like to install Ollama? [y/n]:"
+
     if /i "%install_ollama%"=="y" (
         echo Downloading and installing Ollama...
-        start https://ollama.com/download
+
+        :: Define Ollama installer URL and download path
+        set "OLLAMA_URL=https://ollama.com/download/OllamaSetup.exe"
+        set "OLLAMA_INSTALLER=%TEMP%\OllamaSetup.exe"
+
+        :: Securely download Ollama using PowerShell
+        powershell -Command "& {
+            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
+            Invoke-WebRequest -Uri '%OLLAMA_URL%' -OutFile '%OLLAMA_INSTALLER%'
+        }"
+
+        :: Verify if the installer was downloaded
+        if exist "%OLLAMA_INSTALLER%" (
+            echo Running the Ollama installer...
+
+            :: Install Ollama silently
+            start /wait %OLLAMA_INSTALLER% /silent /norestart
+
+            :: Verify installation
+            ollama --version >nul 2>&1
+            if %errorlevel% neq 0 (
+                echo ❌ Error: Ollama installation failed!
+            ) else (
+                echo ✅ Ollama was successfully installed!
+            )
+        ) else (
+            echo ❌ Error: Ollama installer could not be downloaded!
+        )
     ) else (
-        echo Ollama installation aborted. Please go to https://ollama.com/download and install the dependencies from there
+        echo Installation aborted. Please install Ollama manually from: https://ollama.com/download
     )
 ) else (
-    echo Ollama is already installed.
+    echo ✅ Ollama is already installed.
 )
 
-:: Function to check if ffmpeg is installed
-:check_ffmpeg
+:: Check if FFmpeg is installed
 ffmpeg -version >nul 2>&1
 if %errorlevel% neq 0 (
-    echo ffmpeg is not installed.
-    set /p install_ffmpeg="Would you like to install ffmpeg? [y/n]:"
+    echo FFmpeg is not installed.
+    set /p install_ffmpeg="Would you like to install FFmpeg? [y/n]:"
+
     if /i "%install_ffmpeg%"=="y" (
-        echo Downloading and installing ffmpeg...
-        start https://www.gyan.dev/ffmpeg/builds/
+        echo Downloading and installing FFmpeg...
+
+        :: Define FFmpeg installer URL and download path
+        set "FFMPEG_URL=https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip"
+        set "FFMPEG_ZIP=%TEMP%\ffmpeg.zip"
+        set "FFMPEG_EXTRACT=%TEMP%\ffmpeg"
+
+        :: Securely download FFmpeg using PowerShell
+        powershell -Command "& {
+            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
+            Invoke-WebRequest -Uri '%FFMPEG_URL%' -OutFile '%FFMPEG_ZIP%'
+        }"
+
+        :: Verify if the zip file was downloaded
+        if exist "%FFMPEG_ZIP%" (
+            echo Extracting FFmpeg...
+
+            :: Extract FFmpeg (requires PowerShell 5+)
+            powershell -Command "Expand-Archive -Path '%FFMPEG_ZIP%' -DestinationPath '%FFMPEG_EXTRACT%' -Force"
+
+            :: Move FFmpeg to C:\ffmpeg (system-wide installation)
+            if not exist "C:\ffmpeg" mkdir "C:\ffmpeg"
+            xcopy "%FFMPEG_EXTRACT%\ffmpeg-*\" "C:\ffmpeg\" /E /Y >nul
+
+            :: Add FFmpeg to System PATH
+            setx PATH "C:\ffmpeg\bin;%PATH%" /M
+
+            :: Verify installation
+            ffmpeg -version >nul 2>&1
+            if %errorlevel% neq 0 (
+                echo ❌ Error: FFmpeg installation failed!
+            ) else (
+                echo ✅ FFmpeg was successfully installed and added to PATH!
+            )
+        ) else (
+            echo ❌ Error: FFmpeg could not be downloaded!
+        )
     ) else (
-        echo ffmpeg installation aborted. Please go to https://ffmpeg.org/download.html#build-windows and install the dependencies from there
+        echo Installation aborted. Please install FFmpeg manually from: https://ffmpeg.org/download.html#build-windows
     )
 ) else (
-    echo ffmpeg is already installed.
+    echo ✅ FFmpeg is already installed.
 )
 
-:: Function to check if rustup is installed
-:check_rustup
+:: Check if Rustup is installed
 rustup --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo Rustup is not installed.
     set /p install_rustup="Would you like to install Rustup? [y/n]:"
+
     if /i "%install_rustup%"=="y" (
         echo Downloading and installing Rustup...
-        start https://sh.rustup.rs
+
+        :: Define Rustup installer URL and download path
+        set "RUSTUP_URL=https://win.rustup.rs"
+        set "RUSTUP_INSTALLER=%TEMP%\rustup-init.exe"
+
+        :: Securely download Rustup using PowerShell
+        powershell -Command "& {
+            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
+            Invoke-WebRequest -Uri '%RUSTUP_URL%' -OutFile '%RUSTUP_INSTALLER%'
+        }"
+
+        :: Verify if the installer was downloaded
+        if exist "%RUSTUP_INSTALLER%" (
+            echo Running the Rustup installer...
+
+            :: Install Rustup silently
+            start /wait %RUSTUP_INSTALLER% -y
+
+            :: Verify installation
+            rustup --version >nul 2>&1
+            if %errorlevel% neq 0 (
+                echo ❌ Error: Rustup installation failed!
+            ) else (
+                echo ✅ Rustup was successfully installed!
+            )
+        ) else (
+            echo ❌ Error: Rustup installer could not be downloaded!
+        )
     ) else (
-        echo Rustup installation aborted. Please go to https://sh.rustup.rs and install it manually.
+        echo Installation aborted. Please install Rustup manually from: https://sh.rustup.rs
     )
 ) else (
-    echo Rustup is already installed.
+    echo ✅ Rustup is already installed.
 )
 
-:: Create PyCharm Projects folder if it doesn't exist
-set "pycharm_projects=%USERPROFILE%\PycharmProjects"
-if not exist "%pycharm_projects%" (
-    echo Creating folder %pycharm_projects%...
-    mkdir "%pycharm_projects%"
+:: Define project path
+set "PYCHARM_PROJECTS=%USERPROFILE%\PycharmProjects"
+set "MAVIS_DIR=%PYCHARM_PROJECTS%\MAVIS"
+
+:: Function to double-check whether Git is installed and working
+where git >nul 2>&1
+if %errorlevel% neq 0 (
+    echo ❌ Git is not installed or not in PATH. Installing Git first...
+
+    :: Set Git download URL and installer path
+    set "GIT_URL=https://github.com/git-for-windows/git/releases/latest/download/Git-2.44.0-64-bit.exe"
+    set "GIT_INSTALLER=%TEMP%\git-installer.exe"
+
+    :: Check if Internet is available before download
+    ping -n 1 google.com >nul 2>&1
+    if %errorlevel% neq 0 (
+        echo ❌ No internet connection! Please connect to the internet and try again.
+        exit /b 1
+    )
+
+    :: Securely download Git installer using PowerShell
+    powershell -Command "& {
+        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
+        Invoke-WebRequest -Uri '%GIT_URL%' -OutFile '%GIT_INSTALLER%'
+    }"
+
+    :: Verify if Git installer was downloaded successfully
+    if not exist "%GIT_INSTALLER%" (
+        echo ❌ Error: Could not download Git installer! Check your internet connection or download it manually from:
+        echo    https://git-scm.com/downloads
+        exit /b 1
+    )
+
+    :: Install Git silently
+    echo Installing Git silently...
+    start /wait %GIT_INSTALLER% /VERYSILENT /NORESTART /CLOSEAPPLICATIONS
+
+    :: Verify installation
+    where git >nul 2>&1
+    if %errorlevel% neq 0 (
+        echo ❌ Git installation failed! Please install it manually from:
+        echo    https://git-scm.com/downloads
+        exit /b 1
+    ) else (
+        echo ✅ Git was successfully installed and configured!
+    )
+)
+
+:: Ensure PyCharm Projects directory exists
+if not exist "%PYCHARM_PROJECTS%" (
+    echo Creating project directory: %PYCHARM_PROJECTS%...
+    mkdir "%PYCHARM_PROJECTS%"
 )
 
 :: Change to PyCharm Projects directory
-cd /d "%pycharm_projects%"
+cd /d "%PYCHARM_PROJECTS%"
 
-:: Check if MAVIS folder exists, if not, clone it
-if not exist "%pycharm_projects%\MAVIS" (
+:: Check if MAVIS folder exists
+if not exist "%MAVIS_DIR%" (
     echo Cloning MAVIS repository from GitHub...
-    git clone https://github.com/Peharge/MAVIS.git
+
+    :: Check if GitHub is reachable
+    ping -n 1 github.com >nul 2>&1
+    if %errorlevel% neq 0 (
+        echo ❌ Error: Cannot reach GitHub! Check your internet connection and firewall settings.
+        exit /b 1
+    )
+
+    git clone https://github.com/Peharge/MAVIS.git "%MAVIS_DIR%"
+
+    if %errorlevel% neq 0 (
+        echo ❌ Error: Cloning MAVIS repository failed! Make sure GitHub is accessible and the URL is correct.
+        exit /b 1
+    ) else (
+        echo ✅ MAVIS repository cloned successfully!
+    )
 ) else (
-    echo MAVIS already exists.
+    echo MAVIS repository already exists. Checking for updates...
+    cd /d "%MAVIS_DIR%"
+
+    git pull
+    if %errorlevel% neq 0 (
+        echo ❌ Error: Could not update MAVIS repository! Check your internet connection or Git configuration.
+        exit /b 1
+    ) else (
+        echo ✅ MAVIS repository is up-to-date!
+    )
+)
+
+:: Define MAVIS project path
+set "PYCHARM_PROJECTS=%USERPROFILE%\PycharmProjects"
+set "MAVIS_DIR=%PYCHARM_PROJECTS%\MAVIS"
+set "MAVIS_ENV_FILE=%MAVIS_DIR%\.env"
+set "MAVIS_RUN_FILE=%MAVIS_DIR%\run-mavis-4-all.bat"
+
+:: Ensure MAVIS directory exists
+if not exist "%MAVIS_DIR%" (
+    echo ❌ Error: MAVIS directory does not exist!
+    echo Make sure the repository was cloned correctly.
+    exit /b 1
 )
 
 :: Change to MAVIS directory
-cd /d "%pycharm_projects%\MAVIS"
-
-:: Create .env file if it doesn't exist
-if not exist ".env" (
-    echo Creating .env file...
-    echo # Environment variables for MAVIS > .env
-    echo PYTHONPATH=%pycharm_projects%\MAVIS >> .env
-) else (
-    echo .env file already exists.
+cd /d "%MAVIS_DIR%" || (
+    echo ❌ Error: Failed to access MAVIS directory!
+    exit /b 1
 )
 
-:: Execute run-mavis-3-all.bat if it exists
-if exist "%pycharm_projects%\MAVIS\run-mavis-4-all.bat" (
-    echo Starting run-mavis-3-all.bat...
-    call "%pycharm_projects%\MAVIS\run-mavis-4-all.bat"
+:: Ensure .env file exists and is correctly configured
+if not exist "%MAVIS_ENV_FILE%" (
+    echo Creating .env file...
+    (
+        echo # Environment variables for MAVIS
+        echo PYTHONPATH=%MAVIS_DIR%
+    ) > "%MAVIS_ENV_FILE%"
+
+    if %errorlevel% neq 0 (
+        echo ❌ Error: Could not create .env file!
+        exit /b 1
+    ) else (
+        echo ✅ .env file created successfully!
+    )
 ) else (
-    echo run-mavis-3-all.bat not found. Please ensure the file path is correct.
+    echo ✅ .env file already exists.
+)
+
+:: Check if Python is installed
+python --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo ❌ Error: Python is not installed or not found in PATH!
+    echo Please install Python 3.12 and make sure it is in your system PATH.
+    exit /b 1
+)
+
+:: Check if MAVIS run file exists
+if not exist "%MAVIS_RUN_FILE%" (
+    echo ❌ Error: run-mavis-4-all.bat not found!
+    echo Please verify that the file exists in: %MAVIS_DIR%
+    exit /b 1
+)
+
+:: Execute run-mavis-4-all.bat
+echo ✅ Starting MAVIS...
+call "%MAVIS_RUN_FILE%"
+
+:: Verify if execution was successful
+if %errorlevel% neq 0 (
+    echo ❌ Error: MAVIS did not start successfully!
+    exit /b 1
+) else (
+    echo ✅ MAVIS started successfully!
 )
 
 :: Completion
-echo All tasks have been completed.
+echo 🎉 All tasks have been completed successfully!
 pause
-exit
+exit /b
+
