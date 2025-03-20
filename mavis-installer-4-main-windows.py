@@ -239,7 +239,7 @@ def display_versions():
         "mavis-terminal-4": ("MAVIS Terminal 4 EAP", "The MAVIS Terminal is always available for you!!!", "")
     }
 
-    print(f"All MAVIS versions are available here:\n\n{green}I{reset} Required LLM model for this MAVIS version is already installed\n{orange}I{reset} Required LLM model for this MAVIS version is not yet installed\n{blue}I{reset} LLM model is available for you - you have all the permissions\n{red}I{reset} LLM model is not available for you - you do not have permission to install the model")
+    print(f"All MAVIS versions are available here:\n\n{green}III{reset} Required LLM model for this MAVIS version is already installed\n{orange}III{reset} Required LLM model for this MAVIS version is not yet installed\n{blue}III{reset} LLM model is available for you - you have all the permissions\n{red}III{reset} LLM model is not available for you - you do not have permission to install the model")
     categories = {}
     for batch_name, (version, description, model_name) in versions.items():
         categories.setdefault(version, []).append((batch_name, description, model_name))
