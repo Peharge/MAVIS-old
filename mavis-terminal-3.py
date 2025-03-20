@@ -63,11 +63,9 @@
 
 import sys
 import getpass
-import os
 import subprocess
 import threading
 import time
-from dotenv import load_dotenv
 import importlib.util
 import os
 from dotenv import load_dotenv

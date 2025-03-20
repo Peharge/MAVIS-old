@@ -61,11 +61,63 @@
 #
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
-import os
 import platform
-import subprocess
 import time
 import json
+import sys
+import getpass
+import os
+import subprocess
+import threading
+import time
+from dotenv import load_dotenv
+import importlib.util
+from dotenv import load_dotenv
+from subprocess import run
+
+print("")
+
+required_packages = ["requests", "ollama", "transformers", "python-dotenv", "PyQt6", "PyQt6-sip", "keyboard"]
+
+def activate_virtualenv(venv_path):
+    """Aktiviert eine bestehende virtuelle Umgebung."""
+    activate_script = os.path.join(venv_path, "Scripts", "activate") if os.name == "nt" else os.path.join(venv_path, "bin", "activate")
+
+    # Überprüfen, ob die virtuelle Umgebung existiert
+    if not os.path.exists(activate_script):
+        print(f"Error: The virtual environment could not be found at {venv_path}.")
+        sys.exit(1)
+
+    # Umgebungsvariable für die virtuelle Umgebung setzen
+    os.environ["VIRTUAL_ENV"] = venv_path
+    os.environ["PATH"] = os.path.join(venv_path, "Scripts") + os.pathsep + os.environ["PATH"]
+    print(f"Virtual environment {venv_path} enabled.")
+
+def ensure_packages_installed(packages):
+    """Stellt sicher, dass alle erforderlichen Pakete installiert sind."""
+    for package in packages:
+        if importlib.util.find_spec(package) is None:
+            print(f"Installing {package}...")
+            try:
+                subprocess.run([sys.executable, "-m", "pip", "install", package], check=True, stdout=subprocess.DEVNULL,
+                               stderr=subprocess.DEVNULL)
+                print(f"{package} installed successfully.")
+            except subprocess.CalledProcessError:
+                print(f"WARNING: Failed to install {package}. Please install it manually.")
+        else:
+            print(f"{package} is already installed.")
+
+# Pfad zur bestehenden virtuellen Umgebung
+venv_path = r"C:\Users\julia\PycharmProjects\MAVIS\.env"
+
+# Aktivieren der virtuellen Umgebung
+activate_virtualenv(venv_path)
+
+# Sicherstellen, dass alle erforderlichen Pakete installiert sind
+ensure_packages_installed(required_packages)
+
+sys.stdout.reconfigure(encoding='utf-8')
+user_name = getpass.getuser()
 
 # Farbcodes definieren
 red = "\033[91m"
@@ -270,7 +322,9 @@ def run_help_script():
     help_script_path = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "install", "help-models.py")
     if os.path.exists(help_script_path):
         print(f"{cyan}Running help script...{reset}")
-        subprocess.run(["python", help_script_path], check=True)
+        run([f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe",
+             f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\install\\help-models.py"],
+            shell=True)
     else:
         print(f"{red}Help script not found at {help_script_path}. Please check the path.{reset}")
 
