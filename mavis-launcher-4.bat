@@ -564,13 +564,93 @@ if not exist "%MAVIS_ENV_FILE%" (
     echo ✅ .env file already exists.
 )
 
-:: Check if Python is installed
-python --version >nul 2>&1
-if %errorlevel% neq 0 (
-    echo ❌ Error: Python is not installed or not found in PATH!
-    echo Please install Python 3.12 and make sure it is in your system PATH.
-    exit /b 1
-)
+:: Define the username variable dynamically
+:: set "username=%USERNAME%"
+
+:: Detect the OneDrive folder dynamically
+:: set "onedriveFolder="
+:: for /f "delims=" %%i in ('dir /ad /b "C:\Users\%username%" ^| findstr /i "OneDrive"') do (
+::     set "onedriveFolder=%%i"
+:: )
+
+:: If OneDrive folder is found, set the Desktop path
+:: if defined onedriveFolder (
+::     :: Handle paths with spaces in OneDrive folder names properly
+::     for /f "delims=" %%i in ('powershell -Command "try { (Get-ChildItem -Path 'C:\\Users\\%username%\\%onedriveFolder%' -Recurse | Where-Object {$_.Name -match 'Desktop'})[0].FullName } catch { '' }"') do set "desktop=%%i"
+:: )
+
+:: If Desktop path is not found under OneDrive, fall back to default Desktop path
+:: if not defined desktop (
+::     for /f "delims=" %%i in ('powershell -Command "[System.Environment]::GetFolderPath('Desktop')"') do set "desktop=%%i"
+:: )
+
+:: Check if Desktop path is found, if not skip step and continue
+:: if not defined desktop (
+::     echo ❌ Could not find Desktop path. Skipping step...
+::     set "desktop="
+::     goto :end
+:: )
+
+:: Print the Desktop path for verification
+:: echo Desktop Path: "!desktop!"
+
+:: Define the paths for the shortcut, target, and icon
+:: set "shortcut=!desktop!\MAVIS Installer 4.lnk"
+:: set "targetPath=C:\Users\%username%\PycharmProjects\MAVIS\mavis-launcher-4.bat"
+:: set "startIn=C:\Users\%username%\PycharmProjects\MAVIS"
+:: set "iconPath=C:\Users\%username%\PycharmProjects\MAVIS\icons\MAVIS-3-logo-1.ico"
+
+:: Check if the target files exist, if not skip
+:: if not exist "!targetPath!" (
+::     echo ❌ Target path (!targetPath!) does not exist. Skipping step...
+::     set "targetPath="
+:: )
+
+:: if not exist "!iconPath!" (
+::     echo ❌ Icon path (!iconPath!) does not exist. Skipping step...
+::     set "iconPath="
+:: )
+
+:: Check if the shortcut already exists
+:: if exist "!shortcut!" (
+::     echo ✅ Shortcut 'MAVIS Installer 4' already exists. No new shortcut will be created.
+:: ) else (
+::     if defined desktop if defined targetPath if defined iconPath (
+::         echo ❌ Shortcut 'MAVIS Installer 4' does not exist. Creating shortcut now...
+::
+::         :: Create the shortcut using PowerShell script file
+::         echo Set objShell = CreateObject("WScript.Shell") > "!desktop!\create_shortcut.vbs"
+::         echo Set objShortcut = objShell.CreateShortcut("!shortcut!") >> "!desktop!\create_shortcut.vbs"
+::         echo objShortcut.TargetPath = "!targetPath!" >> "!desktop!\create_shortcut.vbs"
+::         echo objShortcut.WorkingDirectory = "!startIn!" >> "!desktop!\create_shortcut.vbs"
+::         echo objShortcut.IconLocation = "!iconPath!" >> "!desktop!\create_shortcut.vbs"
+::         echo objShortcut.Save >> "!desktop!\create_shortcut.vbs"
+::
+::         :: Check if the VBS script was created successfully
+::         if not exist "!desktop!\create_shortcut.vbs" (
+::             echo ❌ Failed to create the VBS script. Skipping step...
+::             set "desktop="
+::             goto :end
+::         )
+::
+::         :: Run the VBS script to create the shortcut if VBS file exists
+::         if exist "!desktop!\create_shortcut.vbs" (
+::             cscript //nologo "!desktop!\create_shortcut.vbs"
+::             if errorlevel 1 (
+::                 echo ❌ Failed to create the shortcut. Skipping step...
+::                 set "desktop="
+::                 goto :end
+::             )
+::         )
+::
+::         :: Clean up the temporary VBS script
+::         if exist "!desktop!\create_shortcut.vbs" del "!desktop!\create_shortcut.vbs"
+::
+::         echo ✅ Shortcut 'MAVIS Installer 4' has been created successfully.
+::     ) else (
+::         echo ❌ Skipping shortcut creation due to missing paths.
+::     )
+:: )
 
 :: Check if MAVIS run file exists
 if not exist "%MAVIS_RUN_FILE%" (
