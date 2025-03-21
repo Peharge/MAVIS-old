@@ -111,26 +111,26 @@ If you are starting **MAVIS 3 for the first time**, please **do not select** the
 After entering the desired MAVIS version, such as `"mavis-3-code"`, the specified program will launch automatically.  
 
 ```bash
-Enter a MAVIS batch file (e.g. 'mavis-3-code'):mavis-3-code
-Executing file: C:\Users\julia\PycharmProjects\MAVIS\run-mavis-3-code.bat
+Enter a MAVIS batch file (e.g. 'mavis-4', 'mavis-3-code' or 'mavis-terminal-4'):mavis-4
+Start: C:\Users\julia\PycharmProjects\MAVIS\run-mavis-4.bat
 
       ██╗     █╗
-     ████╗   ███╗        ███╗   ███╗ █████╗ ██╗   ██╗██╗███████╗    ██████╗      ██████╗ ██████╗ ██████╗ ███████╗
-    ██████╗  ████╗       ████╗ ████║██╔══██╗██║   ██║██║██╔════╝    ╚════██╗    ██╔════╝██╔═══██╗██╔══██╗██╔════╝
-   ████████╗  ████╗      ██╔████╔██║███████║██║   ██║██║███████╗     █████╔╝    ██║     ██║   ██║██║  ██║█████╗
-  ████╔█████╗  ████╗     ██║╚██╔╝██║██╔══██║╚██╗ ██╔╝██║╚════██║     ╚═══██╗    ██║     ██║   ██║██║  ██║██╔══╝
- ████╔╝ █████╗  ████╗    ██║ ╚═╝ ██║██║  ██║ ╚████╔╝ ██║███████║    ██████╔╝    ╚██████╗╚██████╔╝██████╔╝███████╗
- ╚═══╝   ███╔╝  ╚═══╝    ╚═╝     ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚══════╝    ╚═════╝      ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝
+     ████╗   ███╗        ███╗   ███╗ █████╗ ██╗   ██╗██╗███████╗    ██╗  ██╗
+    ██████╗  ████╗       ████╗ ████║██╔══██╗██║   ██║██║██╔════╝    ██║  ██║
+   ████████╗  ████╗      ██╔████╔██║███████║██║   ██║██║███████╗    ███████║
+  ████╔█████╗  ████╗     ██║╚██╔╝██║██╔══██║╚██╗ ██╔╝██║╚════██║    ╚════██║
+ ████╔╝ █████╗  ████╗    ██║ ╚═╝ ██║██║  ██║ ╚████╔╝ ██║███████║         ██║
+ ╚═══╝   ███╔╝  ╚═══╝    ╚═╝     ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚══════╝         ╚═╝
           █╔╝
           ╚╝
 
-A warm welcome, Mr.X, to MAVIS (MAth Visual Intelligent System) - the most powerful calculator in the world!
+A warm welcome, julia, to MAVIS (MAth Visual Intelligent System) - the most powerful calculator in the world!
 Developed by Peharge and JK (Peharge Projects 2025)
 Thank you so much for using MAVIS. We truly appreciate your support ❤️
 
-MAVIS Version: 3
-MAVIS Installer Version: 3
-MAVIS Terminal Version: 3
+MAVIS Version: 4
+MAVIS Launcher Version: 4
+MAVIS Terminal Version: 4
 MAVIS License: MIT
 
 ████████
@@ -197,13 +197,240 @@ instead.
 MAVIS - Last update: 01/30/2025
 Would you like to perform an update? [y/n]:
 ```
+Sure! Here's a simplified and shorter version of the README.md, directly referring to the terminal in English:
 
-## 4. Installation of additional AI models
+```markdown
+# MAVIS Ultra Registration and Login
+
+You have three options:
+1. **Login** – For existing users to log in.
+2. **Register** – For new users to create an account.
+3. **Register as a MAVIS Ultra (Developer) user** – For developers to register with a special token.
+
+### Terminal output:
+```bash
+Options:
+ [1] Login
+ [2] Register
+ [3] Register as a MAVIS Ultra (Developer) user
+Selection [1/2/3]:3
+```
+
+Select option 3 to register as a developer. You need to enter your **MAVIS Ultra token**.
+
+### Terminal output:
+```bash
+MAVIS Ultra Registration
+------------------------
+Enter your MAVIS Ultra token:mavis-ist-cool
+Token verified successfully! Proceeding with registration...
+```
+
+After the token is verified, you’ll be asked to provide:
+- **Username**
+- **Email**
+- **Date of birth** (format: YYYY-MM-DD)
+- **Password**
+- **Confirm password**
+
+### Terminal output:
+```bash
+Registration
+------------
+Username:jk
+E-Mail:jk@jk.com
+Date of birth (YYYY-MM-DD):2007-01-01
+Password:qwer1234!
+Repeat password:qwer1234!
+Registration successful!
+```
+
+After registration, you can log in with your username or email and password.
+
+### Terminal output:
+```bash
+Options:
+ [1] Login
+ [2] Register
+ [3] Register as a MAVIS Ultra (Developer) user
+Selection [1/2/3]:1
+
+Login
+-----
+Username or Email:jk
+Password:qwer1234!
+Welcome MAVIS Ultra User: jk!
+```
+
+You're now successfully registered and logged in as a MAVIS Ultra user!
+
+## 5. Installation of additional AI models
+
+You now have the option to change the default models. To do so, you must confirm the changes with 'y' and then enter your preferred model! You can find all available models by typing 'help'! If you are satisfied with the models you can simply skip this with 'n'.
+
+```bash
+Virtual environment C:\Users\julia\PycharmProjects\MAVIS\.env enabled.
+requests is already installed.
+ollama is already installed.
+transformers is already installed.
+Installing python-dotenv...
+python-dotenv installed successfully.
+PyQt6 is already installed.
+Installing PyQt6-sip...
+PyQt6-sip installed successfully.
+keyboard is already installed.
+
+Ollama Information:
+-------------------
+Ollama is installed.
+Ollama is already running.
+
+Current models:
+   model1: gemma3:12b
+   model2: gemma3:12b
+   model3: gemma3:1b
+   model4: gemma3:1b
+
+Do you want to change the models? [y/n]:
+```
+
+```bash
+Do you want to change the models? [y/n]:y
+Please select Main model (Model 1) - this model is used for everything (e.g. gemma3:12b, deepseek-r1:14b, qwq, llama3.3, phi4, mistral etc.) or type 'help' for assistance:deepseek-r1:14b
+Please select Vision Model (Model 2) - this model is used only for image analysis (This should be a vision model, e.g. llama3.2-vision:11b, gemma3:12b, granite3.2-vision, minicpm-v etc.) or type 'help' for assistance:gemma3:12b
+Please select TTS Model (Model 3) - this model is only used for Voice A (This should be a smaller model, e.g. gemma3:1b, qwen2.5:1.5b, llama3.2:1b etc.) or type 'help' for assistance:gemma3:1b
+Please select Solution Model (Model 4) - this model is only used for Solution (This should be a very small vision model, e.g. gemma3:1b, granite3.2-vision, moondream etc.) or type 'help' for assistance:gemma3:
+1b
+Model selection saved to C:\Users\julia\PycharmProjects\MAVIS\model-mavis-4.json
+Final models: {'model1': 'deepseek-r1:14b', 'model2': 'gemma3:12b', 'model3': 'gemma3:1b', 'model4': 'gemma3:1b'}
+```
+
 After the update, two AI models must be installed. These must each be confirmed with `y` or `yes`.
 
 Some system information will then appear that does not necessarily need to be understood in order to use MAVIS.
 
-## 5. Starting Jupyter Notebook
+```bash
+Model information for deepseek-r1:14b:
+--------------------------------------
+  Model
+    architecture        qwen2
+    parameters          14.8B
+    context length      131072
+    embedding length    5120
+    quantization        Q4_K_M
+
+  Parameters
+    stop    "<｜begin▁of▁sentence｜>"
+    stop    "<｜end▁of▁sentence｜>"
+    stop    "<｜User｜>"
+    stop    "<｜Assistant｜>"
+
+  License
+    MIT License
+    Copyright (c) 2023 DeepSeek
+
+
+
+deepseek-r1:14b is installed.
+
+Model information for gemma3:12b:
+--------------------------------------
+  Model
+    architecture        gemma3
+    parameters          12.2B
+    context length      8192
+    embedding length    3840
+    quantization        Q4_K_M
+
+  Parameters
+    stop           "<end_of_turn>"
+    temperature    0.1
+
+  License
+    Gemma Terms of Use
+    Last modified: February 21, 2024
+
+
+
+gemma3:12b is installed.
+
+Model information for gemma3:1b:
+--------------------------------------
+  Model
+    architecture        gemma3
+    parameters          999.89M
+    context length      32768
+    embedding length    1152
+    quantization        Q4_K_M
+
+  Parameters
+    stop           "<end_of_turn>"
+    temperature    0.1
+
+  License
+    Gemma Terms of Use
+    Last modified: February 21, 2024
+
+
+
+gemma3:1b is installed.
+
+Model information for gemma3:1b:
+--------------------------------------
+  Model
+    architecture        gemma3
+    parameters          999.89M
+    context length      32768
+    embedding length    1152
+    quantization        Q4_K_M
+
+  Parameters
+    stop           "<end_of_turn>"
+    temperature    0.1
+
+  License
+    Gemma Terms of Use
+    Last modified: February 21, 2024
+
+
+
+gemma3:1b is installed.
+```
+
+Done!
+
+## 6. Security check
+
+You're probably starting to understand how to control the MAVIS Launcher. You can now run a security check to check the .env file for security vulnerabilities! You can now perform a security check that checks the .env for security vulnerabilities!
+
+```bash
+
+Security check Information:
+---------------------------
+Do you want to perform a security check? [y/n]:y
+INFO: .env file loaded successfully.
+Running Security Check: [███████████████████████████████████████████] 100%
+
+.env security variables:
+    
+OUTDATED PACKAGES CHECK:
+   {green}SUCCESS{reset}: All packages are up to date!
+   
+NETWORK SECURITY CHECK:
+   Connection from 192.168.1.5:12345 to 203.0.113.10:80
+   Connection from 192.168.1.5:23456 to 198.51.100.20:443
+   Connection from 192.168.1.5:34567 to 93.184.216.34:443
+   
+CODE SECURITY CHECK (Bandit){reset}:
+   SUCCESS: No security issues found.
+   
+.env FORMAT CHECK{reset}:
+   SUCCESS: No issues found with .env format.
+   
+SUCCESS: Security check complete!
+```
+
+## 7. Starting Jupyter Notebook
 After a short while, another terminal will open, asking you if you want to open Jupyter Notebook. Jupyter Notebook is a code editor that runs in the browser and is installed with MAVIS.
 
 ```bash
@@ -212,13 +439,31 @@ Do you want to start Jupyter Notebook? [y/n]:
 
 If you enter `y` or `yes`, Jupyter Notebook will open in the browser.
 
+## 8. Starting Grafana
+After a short while, another terminal will open, asking you if you want to open Grafana. Grafana is a cross-platform, open-source application for graphically displaying data from various data sources, such as InfluxDB, MySQL, PostgreSQL, Prometheus, and Graphite. The collected raw data can then be output in various display formats.
+
+```bash
+Do you want to start Grafana? [y/n]:
+```
+
+If you enter `y` or `yes`, Grafana will open in the browser.
+
+## 9. Starting Solution
+After a short while, another terminal will open, asking you if you want to open Solution. Solution is an AI-based live video chat assistant and is installed with MAVIS.
+
+```bash
+Do you want to start Solution? [y/n]:
+```
+
+If you enter `y` or `yes`, Solution will open in the browser.
+
 Regardless of this selection, MAVIS will automatically open in a browser tab. If the browser has not started, a connection error may be displayed. This is because the MAVIS server needs a little longer to start up than the browser. In this case, wait 15-30 seconds and refresh the tab. The first start may take a little longer depending on the PC performance.
 
 After the successful start, your browser should look like this:
 
 ![MAVIS](./readme-img/using-img-1.png)
 
-## 6. Using MAVIS
+## 10. Using MAVIS
 You can now send questions to the chatbot, upload images and use the control panel.
 
 ![Using MAVIS](./readme-img/using-img-2.png)

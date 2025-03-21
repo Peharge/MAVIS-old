@@ -1277,11 +1277,9 @@ Falls du weitere Hilfe benötigst, schau in die [Dokumentation](https://github.c
 
 ### English [new]:
 
-[Using](main-old/using-mavis-1-5-en.md)
+[Using](using-mavis-4-en.md)
 
-### Deutsch [new]:
-
-[Benutzen](main-old/using-mavis-1-5-de.md)
+### Deutsch [soon]:
 
 ## Xcpp
 
