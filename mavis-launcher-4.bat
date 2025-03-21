@@ -102,7 +102,7 @@ echo.
 python --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo Python 3.12 is not installed.
-    set /p install_python="Would you like to install Python 3.12? [y/n]: "
+    set /p install_python="Would you like to install Python 3.12? [y/n]:"
 
     if /i "%install_python%"=="y" (
         echo Downloading Python 3.12 installer...
@@ -172,7 +172,7 @@ if %errorlevel% neq 0 (
 git --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo Git is not installed.
-    set /p install_git="Would you like to install Git? [y/n]: "
+    set /p install_git="Would you like to install Git? [y/n]:"
 
     if /i "%install_git%"=="y" (
         echo Downloading Git installer...
@@ -242,7 +242,7 @@ if %errorlevel% neq 0 (
 ollama --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo Ollama is not installed.
-    set /p install_ollama="Would you like to install Ollama? [y/n]: "
+    set /p install_ollama="Would you like to install Ollama? [y/n]:"
 
     if /i "%install_ollama%"=="y" (
         echo Downloading Ollama installer...
@@ -312,7 +312,7 @@ if %errorlevel% neq 0 (
 ffmpeg -version >nul 2>&1
 if %errorlevel% neq 0 (
     echo FFmpeg is not installed.
-    set /p install_ffmpeg="Would you like to install FFmpeg? [y/n]: "
+    set /p install_ffmpeg="Would you like to install FFmpeg? [y/n]:"
 
     if /i "%install_ffmpeg%"=="y" (
         echo Downloading FFmpeg installer...
@@ -381,7 +381,7 @@ if %errorlevel% neq 0 (
 rustup --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo Rustup is not installed.
-    set /p install_rustup="Would you like to install Rustup? [y/n]: "
+    set /p install_rustup="Would you like to install Rustup? [y/n]:"
 
     if /i "%install_rustup%"=="y" (
         echo Downloading Rustup installer...
@@ -582,18 +582,25 @@ if not exist "%MAVIS_RUN_FILE%" (
 :: Execute run-mavis-4-all.bat
 echo ✅ Starting MAVIS...
 
-:: Verify if execution was successful
-call "%MAVIS_RUN_FILE%"
-if %errorlevel% neq 0 (
-    echo ❌ Error: MAVIS did not start successfully!
+:: Check if the file is executable (check for executable file)
+:: Test if the file is an .bat file
+if /I not "%MAVIS_RUN_FILE:~-4%"==".bat" (
+    echo ❌ Error: The file is not an executable file!
     exit /b 1
-) else (
-    echo ✅ MAVIS started successfully!
 )
 
-:: Completion
-echo ✅ All tasks have been completed successfully!
+:: Final report
+echo ✅ All tasks were completed successfully!
 echo.
+
+:: Try to start the file and check if it is successful
+call "%MAVIS_RUN_FILE%"
+if %errorlevel% neq 0 (
+    echo ❌ Error: MAVIS could not be started successfully!
+    exit /b 1
+) else (
+    echo ✅ MAVIS was successfully launched!
+)
 
 :: endlocal
 pause
