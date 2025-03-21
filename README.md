@@ -1218,22 +1218,21 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 
 </details>
 
-### Installation MAVIS 3 (Windows Only) - Englisch
+### Installation MAVIS 3 - 4 (Windows Only) - Englisch
 
 To install MAVIS 3 EAP on a Windows computer, please follow these steps:
 
-1. Download the installation file [`mavis-installer-3.bat`](https://github.com/Peharge/MAVIS/blob/main/mavis-installer-3.bat). 
-   MAVIS 4 EAP: [`mavis-launcher-4.bat`](https://github.com/Peharge/MAVIS/blob/main/mavis-launcher-4.bat).
+1. Download the installation file [Download mavis-launcher-4.bat](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.bat).
 
 3. Navigate to the folder where you saved the file.
 
 3. **Important:** Make sure you have administrator rights, as the installation process may require changes to your system.
 
-4. Double-click the `mavis-installer.bat` file to begin the installation.
+4. Double-click the `mavis-launcher-4.bat` file to begin the installation.
 
 5. Follow the on-screen instructions provided by the installation script. This may involve confirming multiple steps, such as installing dependencies or adjusting environment variables.
 
-6. Once the installation process is complete, MAVIS 3 EAP will be installed on your system and can be launched from running [`mavis-installer.bat`](https://github.com/Peharge/MAVIS/blob/main/run-mavis-installer-3.bat) again.
+6. Once the installation process is complete, MAVIS 4 EAP will be installed on your system and can be launched from running [`mavis-installer.bat`](https://github.com/Peharge/MAVIS/blob/main/run-mavis-installer-3.bat) again.
 
 ### Troubleshooting
 
@@ -1249,18 +1248,17 @@ If you need further assistance, refer to the [Dokumentation](https://github.com/
 
 Um MAVIS 3 EAP auf einem Windows-Computer zu installieren, folge bitte diesen Schritten:
 
-1. Lade die Installationsdatei [`mavis-installer-3.bat`](https://github.com/Peharge/MAVIS/blob/main/mavis-installer-3.bat) herunter.
-   MAVIS 4 EAP: [`mavis-launcher-4.bat`](https://github.com/Peharge/MAVIS/blob/main/mavis-launcher-4.bat).
+1. Lade die Installationsdatei [Download mavis-launcher-4.bat](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.bat) herunter.
    
 2. Navigiere zu dem Ordner, in dem du die Datei gespeichert hast.
 
 3. **Wichtiger Hinweis:** Stelle sicher, dass du über Administratorrechte verfügst, da der Installationsprozess Änderungen an deinem System vornehmen kann.
 
-4. Doppelklicke auf die Datei `mavis-installer.bat`, um die Installation zu starten.
+4. Doppelklicke auf die Datei `mavis-launcher-4.bat`, um die Installation zu starten.
 
 5. Folge den Anweisungen im Installationsskript. Dies kann die Bestätigung mehrerer Schritte umfassen, wie z.B. die Installation von Abhängigkeiten oder das Anpassen von Umgebungsvariablen.
 
-6. Wenn der Installationsprozess abgeschlossen ist, wird MAVIS 3 EAP auf deinem System installiert und kann über das Ausführen von [`mavis-installer.bat`](https://github.com/Peharge/MAVIS/blob/main/run-mavis-installer-3.bat) immer gestartet werden.
+6. Wenn der Installationsprozess abgeschlossen ist, wird MAVIS 4 EAP auf deinem System installiert und kann über das Ausführen von [`mavis-installer.bat`](https://github.com/Peharge/MAVIS/blob/main/run-mavis-installer-3.bat) immer gestartet werden.
 
 ### Troubleshooting
 

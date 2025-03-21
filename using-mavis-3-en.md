@@ -1,7 +1,7 @@
 # Using MAVIS 3  
 
 ## 1. Launching the MAVIS Installer  
-To begin the installation process, execute the appropriate [`mavis-installer.bat`](https://github.com/Peharge/MAVIS/blob/main/mavis-installer-3.bat) file for your desired MAVIS version. This will open a terminal window on your operating system, initiating the MAVIS Installer.
+To begin the installation process, execute the appropriate [`mavis-launcher-4.bat`](https://github.com/Peharge/MAVIS/blob/main/mavis-launcher-4.bat) file for your desired MAVIS version. This will open a terminal window on your operating system, initiating the MAVIS Installer.
 ```bash
 -------------------------------------------------
        Welcome to the MAVIS Installer 3

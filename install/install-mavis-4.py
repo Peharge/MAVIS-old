@@ -486,7 +486,7 @@ print(f"\nAll frameworks for {blue}MAVIS versions 4{reset} are currently being i
 
 # Paketlisten
 packages = [
-    "numpy", "Flask", "ollama", "jupyter", "jupyterlab", "Werkzeug", "markdown", "setuptools-rust",
+    "Flask", "ollama", "jupyter", "jupyterlab", "Werkzeug", "markdown", "setuptools-rust",
     "matplotlib", "plotly", "dash", "seaborn", "numpy", "sympy", "pandas", "geopandas", "scipy",
     "torch", "torchvision", "torchaudio", "tensorflow", "scikit-learn", "transformers",
     "altair", "vega_datasets", "altair_viewer", "ipython", "altair-saver", "kaleido",
