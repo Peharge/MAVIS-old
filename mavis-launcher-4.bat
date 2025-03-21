@@ -98,224 +98,340 @@ echo.
 echo Gooo...
 echo.
 
-:: Check if Python is installed
+:: Check if Python is already installed
 python --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo Python 3.12 is not installed.
-    set /p install_python="Would you like to install Python 3.12? [y/n]:"
+    set /p install_python="Would you like to install Python 3.12? [y/n]: "
 
     if /i "%install_python%"=="y" (
-        echo Downloading and installing Python 3.12...
+        echo Downloading Python 3.12 installer...
 
-        :: Define Python installer URL and download path
         set "PYTHON_URL=https://www.python.org/ftp/python/3.12.2/python-3.12.2-amd64.exe"
         set "PYTHON_INSTALLER=%TEMP%\python-3.12.2-installer.exe"
 
-        :: Securely download Python using PowerShell
-        powershell -Command "& {
-            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
-            Invoke-WebRequest -Uri '%PYTHON_URL%' -OutFile '%PYTHON_INSTALLER%'
-        }"
+        :: Securely download Python using PowerShell (TLS 1.2)
+        powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri '%PYTHON_URL%' -OutFile '%PYTHON_INSTALLER%'"
 
-        :: Verify if the installer was downloaded
         if exist "%PYTHON_INSTALLER%" (
-            echo Running the Python installer...
-
-            :: Install Python silently for all users and add to PATH
+            echo Running Python installer...
             start /wait %PYTHON_INSTALLER% /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
 
             :: Verify installation
             python --version >nul 2>&1
             if %errorlevel% neq 0 (
-                echo ❌ Error: Python installation failed!
+                echo ❌ Error: Installation failed! Retrying...
+                del "%PYTHON_INSTALLER%"
+                start /wait %PYTHON_INSTALLER% /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
+
+                python --version >nul 2>&1
+                if %errorlevel% neq 0 (
+                    echo ❌ Second installation attempt failed! Trying ZIP method...
+                    del "%PYTHON_INSTALLER%"
+                    set "PYTHON_ZIP_URL=https://www.python.org/ftp/python/3.12.2/python-3.12.2-embed-amd64.zip"
+                    set "PYTHON_ZIP=%TEMP%\python-3.12.2.zip"
+                    set "PYTHON_DIR=C:\Python312"
+
+                    powershell -Command "Invoke-WebRequest -Uri '%PYTHON_ZIP_URL%' -OutFile '%PYTHON_ZIP%'"
+
+                    if exist "%PYTHON_ZIP%" (
+                        mkdir "%PYTHON_DIR%"
+                        powershell -Command "Expand-Archive -Path '%PYTHON_ZIP%' -DestinationPath '%PYTHON_DIR%'"
+                        del "%PYTHON_ZIP%"
+
+                        setx PATH "%PYTHON_DIR%;%PATH%" /M
+
+                        "%PYTHON_DIR%\python.exe" --version >nul 2>&1
+                        if %errorlevel% neq 0 (
+                            echo ❌ ZIP installation failed! Cleaning up...
+                            rmdir /s /q "%PYTHON_DIR%"
+                            echo Manual installation required: https://www.python.org/downloads
+                        ) else (
+                            echo ✅ Python 3.12 successfully installed using ZIP method!
+                        )
+                    ) else (
+                        echo ❌ ZIP download failed! Manual installation required.
+                    )
+                ) else (
+                    echo ✅ Python 3.12 successfully installed!
+                )
             ) else (
-                echo ✅ Python 3.12 was successfully installed!
+                echo ✅ Python 3.12 successfully installed!
             )
         ) else (
             echo ❌ Error: Python installer could not be downloaded!
         )
     ) else (
-        echo Installation aborted. Please install Python 3.12 manually from: https://www.python.org/downloads
+        echo Installation aborted. Please install Python 3.12 manually: https://www.python.org/downloads
     )
 ) else (
     echo ✅ Python is already installed.
 )
 
-:: Check if Git is installed
+:: Check if Git is already installed
 git --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo Git is not installed.
-    set /p install_git="Would you like to install Git? [y/n]:"
+    set /p install_git="Would you like to install Git? [y/n]: "
 
     if /i "%install_git%"=="y" (
-        echo Downloading and installing Git...
+        echo Downloading Git installer...
 
-        :: Define Git installer URL and download path
         set "GIT_URL=https://github.com/git-for-windows/git/releases/latest/download/Git-2.44.0-64-bit.exe"
         set "GIT_INSTALLER=%TEMP%\git-installer.exe"
 
         :: Securely download Git using PowerShell
-        powershell -Command "& {
-            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
-            Invoke-WebRequest -Uri '%GIT_URL%' -OutFile '%GIT_INSTALLER%'
-        }"
+        powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri '%GIT_URL%' -OutFile '%GIT_INSTALLER%'"
 
-        :: Verify if the installer was downloaded
         if exist "%GIT_INSTALLER%" (
-            echo Running the Git installer...
-
-            :: Install Git silently with default options
+            echo Running Git installer...
             start /wait %GIT_INSTALLER% /VERYSILENT /NORESTART /CLOSEAPPLICATIONS
 
             :: Verify installation
             git --version >nul 2>&1
             if %errorlevel% neq 0 (
-                echo ❌ Error: Git installation failed!
+                echo ❌ Error: Installation failed! Retrying...
+                del "%GIT_INSTALLER%"
+                start /wait %GIT_INSTALLER% /VERYSILENT /NORESTART /CLOSEAPPLICATIONS
+
+                git --version >nul 2>&1
+                if %errorlevel% neq 0 (
+                    echo ❌ Second installation attempt failed! Trying ZIP method...
+                    del "%GIT_INSTALLER%"
+                    set "GIT_ZIP_URL=https://github.com/git-for-windows/git/releases/latest/download/PortableGit-2.44.0-64-bit.zip"
+                    set "GIT_ZIP=%TEMP%\git-portable.zip"
+                    set "GIT_DIR=C:\GitPortable"
+
+                    powershell -Command "Invoke-WebRequest -Uri '%GIT_ZIP_URL%' -OutFile '%GIT_ZIP%'"
+
+                    if exist "%GIT_ZIP%" (
+                        mkdir "%GIT_DIR%"
+                        powershell -Command "Expand-Archive -Path '%GIT_ZIP%' -DestinationPath '%GIT_DIR%'"
+                        del "%GIT_ZIP%"
+
+                        setx PATH "%GIT_DIR%\bin;%PATH%" /M
+
+                        "%GIT_DIR%\bin\git.exe" --version >nul 2>&1
+                        if %errorlevel% neq 0 (
+                            echo ❌ ZIP installation failed! Cleaning up...
+                            rmdir /s /q "%GIT_DIR%"
+                            echo Manual installation required: https://git-scm.com/downloads
+                        ) else (
+                            echo ✅ Git successfully installed using ZIP method!
+                        )
+                    ) else (
+                        echo ❌ ZIP download failed! Manual installation required.
+                    )
+                ) else (
+                    echo ✅ Git successfully installed!
+                )
             ) else (
-                echo ✅ Git was successfully installed!
+                echo ✅ Git successfully installed!
             )
         ) else (
             echo ❌ Error: Git installer could not be downloaded!
         )
     ) else (
-        echo Installation aborted. Please install Git manually from: https://git-scm.com/downloads
+        echo Installation aborted. Please install Git manually: https://git-scm.com/downloads
     )
 ) else (
     echo ✅ Git is already installed.
 )
 
-:: Check if Ollama is installed
+:: Check if Ollama is already installed
 ollama --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo Ollama is not installed.
-    set /p install_ollama="Would you like to install Ollama? [y/n]:"
+    set /p install_ollama="Would you like to install Ollama? [y/n]: "
 
     if /i "%install_ollama%"=="y" (
-        echo Downloading and installing Ollama...
+        echo Downloading Ollama installer...
 
-        :: Define Ollama installer URL and download path
         set "OLLAMA_URL=https://ollama.com/download/OllamaSetup.exe"
         set "OLLAMA_INSTALLER=%TEMP%\OllamaSetup.exe"
 
         :: Securely download Ollama using PowerShell
-        powershell -Command "& {
-            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
-            Invoke-WebRequest -Uri '%OLLAMA_URL%' -OutFile '%OLLAMA_INSTALLER%'
-        }"
+        powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri '%OLLAMA_URL%' -OutFile '%OLLAMA_INSTALLER%'"
 
-        :: Verify if the installer was downloaded
         if exist "%OLLAMA_INSTALLER%" (
-            echo Running the Ollama installer...
-
-            :: Install Ollama silently
+            echo Running Ollama installer...
             start /wait %OLLAMA_INSTALLER% /silent /norestart
 
             :: Verify installation
             ollama --version >nul 2>&1
             if %errorlevel% neq 0 (
-                echo ❌ Error: Ollama installation failed!
+                echo ❌ Error: Installation failed! Retrying...
+                del "%OLLAMA_INSTALLER%"
+                start /wait %OLLAMA_INSTALLER% /silent /norestart
+
+                ollama --version >nul 2>&1
+                if %errorlevel% neq 0 (
+                    echo ❌ Second installation attempt failed! Trying ZIP method...
+                    del "%OLLAMA_INSTALLER%"
+                    set "OLLAMA_ZIP_URL=https://ollama.com/download/OllamaPortable.zip"
+                    set "OLLAMA_ZIP=%TEMP%\OllamaPortable.zip"
+                    set "OLLAMA_DIR=C:\OllamaPortable"
+
+                    powershell -Command "Invoke-WebRequest -Uri '%OLLAMA_ZIP_URL%' -OutFile '%OLLAMA_ZIP%'"
+
+                    if exist "%OLLAMA_ZIP%" (
+                        mkdir "%OLLAMA_DIR%"
+                        powershell -Command "Expand-Archive -Path '%OLLAMA_ZIP%' -DestinationPath '%OLLAMA_DIR%'"
+                        del "%OLLAMA_ZIP%"
+
+                        setx PATH "%OLLAMA_DIR%;%PATH%" /M
+
+                        "%OLLAMA_DIR%\ollama.exe" --version >nul 2>&1
+                        if %errorlevel% neq 0 (
+                            echo ❌ ZIP installation failed! Cleaning up...
+                            rmdir /s /q "%OLLAMA_DIR%"
+                            echo Manual installation required: https://ollama.com/download
+                        ) else (
+                            echo ✅ Ollama successfully installed using ZIP method!
+                        )
+                    ) else (
+                        echo ❌ ZIP download failed! Manual installation required.
+                    )
+                ) else (
+                    echo ✅ Ollama successfully installed!
+                )
             ) else (
-                echo ✅ Ollama was successfully installed!
+                echo ✅ Ollama successfully installed!
             )
         ) else (
             echo ❌ Error: Ollama installer could not be downloaded!
         )
     ) else (
-        echo Installation aborted. Please install Ollama manually from: https://ollama.com/download
+        echo Installation aborted. Please install Ollama manually: https://ollama.com/download
     )
 ) else (
     echo ✅ Ollama is already installed.
 )
 
-:: Check if FFmpeg is installed
+:: Check if FFmpeg is already installed
 ffmpeg -version >nul 2>&1
 if %errorlevel% neq 0 (
     echo FFmpeg is not installed.
-    set /p install_ffmpeg="Would you like to install FFmpeg? [y/n]:"
+    set /p install_ffmpeg="Would you like to install FFmpeg? [y/n]: "
 
     if /i "%install_ffmpeg%"=="y" (
-        echo Downloading and installing FFmpeg...
+        echo Downloading FFmpeg installer...
 
-        :: Define FFmpeg installer URL and download path
         set "FFMPEG_URL=https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip"
         set "FFMPEG_ZIP=%TEMP%\ffmpeg.zip"
-        set "FFMPEG_EXTRACT=%TEMP%\ffmpeg"
+        set "FFMPEG_DIR=C:\ffmpeg"
 
         :: Securely download FFmpeg using PowerShell
-        powershell -Command "& {
-            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
-            Invoke-WebRequest -Uri '%FFMPEG_URL%' -OutFile '%FFMPEG_ZIP%'
-        }"
+        powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri '%FFMPEG_URL%' -OutFile '%FFMPEG_ZIP%'"
 
-        :: Verify if the zip file was downloaded
         if exist "%FFMPEG_ZIP%" (
             echo Extracting FFmpeg...
-
-            :: Extract FFmpeg (requires PowerShell 5+)
-            powershell -Command "Expand-Archive -Path '%FFMPEG_ZIP%' -DestinationPath '%FFMPEG_EXTRACT%' -Force"
-
-            :: Move FFmpeg to C:\ffmpeg (system-wide installation)
-            if not exist "C:\ffmpeg" mkdir "C:\ffmpeg"
-            xcopy "%FFMPEG_EXTRACT%\ffmpeg-*\" "C:\ffmpeg\" /E /Y >nul
+            powershell -Command "Expand-Archive -Path '%FFMPEG_ZIP%' -DestinationPath '%FFMPEG_DIR%' -Force"
+            del "%FFMPEG_ZIP%"
 
             :: Add FFmpeg to System PATH
-            setx PATH "C:\ffmpeg\bin;%PATH%" /M
+            setx PATH "%FFMPEG_DIR%\bin;%PATH%" /M
 
             :: Verify installation
             ffmpeg -version >nul 2>&1
             if %errorlevel% neq 0 (
-                echo ❌ Error: FFmpeg installation failed!
+                echo ❌ Error: Installation failed! Retrying...
+                rmdir /s /q "%FFMPEG_DIR%"
+                powershell -Command "Invoke-WebRequest -Uri '%FFMPEG_URL%' -OutFile '%FFMPEG_ZIP%'"
+                powershell -Command "Expand-Archive -Path '%FFMPEG_ZIP%' -DestinationPath '%FFMPEG_DIR%' -Force"
+                del "%FFMPEG_ZIP%"
+                setx PATH "%FFMPEG_DIR%\bin;%PATH%" /M
+
+                ffmpeg -version >nul 2>&1
+                if %errorlevel% neq 0 (
+                    echo ❌ Second installation attempt failed! Trying alternative ZIP source...
+                    rmdir /s /q "%FFMPEG_DIR%"
+                    set "FFMPEG_ALT_URL=https://github.com/BtbN/FFmpeg-Builds/releases/latest/download/ffmpeg-master-latest-win64-gpl.zip"
+                    set "FFMPEG_ZIP=%TEMP%\ffmpeg-alt.zip"
+                    powershell -Command "Invoke-WebRequest -Uri '%FFMPEG_ALT_URL%' -OutFile '%FFMPEG_ZIP%'"
+                    powershell -Command "Expand-Archive -Path '%FFMPEG_ZIP%' -DestinationPath '%FFMPEG_DIR%' -Force"
+                    del "%FFMPEG_ZIP%"
+                    setx PATH "%FFMPEG_DIR%\bin;%PATH%" /M
+
+                    ffmpeg -version >nul 2>&1
+                    if %errorlevel% neq 0 (
+                        echo ❌ Alternative ZIP installation failed! Cleaning up...
+                        rmdir /s /q "%FFMPEG_DIR%"
+                        echo Manual installation required: https://ffmpeg.org/download.html#build-windows
+                    ) else (
+                        echo ✅ FFmpeg successfully installed using alternative ZIP method!
+                    )
+                ) else (
+                    echo ✅ FFmpeg successfully installed!
+                )
             ) else (
-                echo ✅ FFmpeg was successfully installed and added to PATH!
+                echo ✅ FFmpeg successfully installed!
             )
         ) else (
-            echo ❌ Error: FFmpeg could not be downloaded!
+            echo ❌ Error: FFmpeg installer could not be downloaded!
         )
     ) else (
-        echo Installation aborted. Please install FFmpeg manually from: https://ffmpeg.org/download.html#build-windows
+        echo Installation aborted. Please install FFmpeg manually: https://ffmpeg.org/download.html#build-windows
     )
 ) else (
     echo ✅ FFmpeg is already installed.
 )
 
-:: Check if Rustup is installed
+:: Check if Rustup is already installed
 rustup --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo Rustup is not installed.
-    set /p install_rustup="Would you like to install Rustup? [y/n]:"
+    set /p install_rustup="Would you like to install Rustup? [y/n]: "
 
     if /i "%install_rustup%"=="y" (
-        echo Downloading and installing Rustup...
+        echo Downloading Rustup installer...
 
-        :: Define Rustup installer URL and download path
         set "RUSTUP_URL=https://win.rustup.rs"
         set "RUSTUP_INSTALLER=%TEMP%\rustup-init.exe"
 
         :: Securely download Rustup using PowerShell
-        powershell -Command "& {
-            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
-            Invoke-WebRequest -Uri '%RUSTUP_URL%' -OutFile '%RUSTUP_INSTALLER%'
-        }"
+        powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri '%RUSTUP_URL%' -OutFile '%RUSTUP_INSTALLER%'"
 
-        :: Verify if the installer was downloaded
         if exist "%RUSTUP_INSTALLER%" (
-            echo Running the Rustup installer...
-
-            :: Install Rustup silently
+            echo Running Rustup installer...
             start /wait %RUSTUP_INSTALLER% -y
 
             :: Verify installation
             rustup --version >nul 2>&1
             if %errorlevel% neq 0 (
-                echo ❌ Error: Rustup installation failed!
+                echo ❌ Error: Installation failed! Retrying...
+                del "%RUSTUP_INSTALLER%"
+                powershell -Command "Invoke-WebRequest -Uri '%RUSTUP_URL%' -OutFile '%RUSTUP_INSTALLER%'"
+                start /wait %RUSTUP_INSTALLER% -y
+
+                rustup --version >nul 2>&1
+                if %errorlevel% neq 0 (
+                    echo ❌ Second installation attempt failed! Trying alternative method...
+                    del "%RUSTUP_INSTALLER%"
+                    set "RUSTUP_ALT_URL=https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe"
+                    set "RUSTUP_INSTALLER=%TEMP%\rustup-alt.exe"
+                    powershell -Command "Invoke-WebRequest -Uri '%RUSTUP_ALT_URL%' -OutFile '%RUSTUP_INSTALLER%'"
+                    start /wait %RUSTUP_INSTALLER% -y
+
+                    rustup --version >nul 2>&1
+                    if %errorlevel% neq 0 (
+                        echo ❌ Alternative installation failed! Cleaning up...
+                        del "%RUSTUP_INSTALLER%"
+                        echo Manual installation required: https://rustup.rs/
+                    ) else (
+                        echo ✅ Rustup successfully installed using alternative method!
+                    )
+                ) else (
+                    echo ✅ Rustup successfully installed!
+                )
             ) else (
-                echo ✅ Rustup was successfully installed!
+                echo ✅ Rustup successfully installed!
             )
         ) else (
             echo ❌ Error: Rustup installer could not be downloaded!
         )
     ) else (
-        echo Installation aborted. Please install Rustup manually from: https://sh.rustup.rs
+        echo Installation aborted. Please install Rustup manually: https://rustup.rs/
     )
 ) else (
     echo ✅ Rustup is already installed.
@@ -324,71 +440,44 @@ if %errorlevel% neq 0 (
 :: Define project path
 set "PYCHARM_PROJECTS=%USERPROFILE%\PycharmProjects"
 set "MAVIS_DIR=%PYCHARM_PROJECTS%\MAVIS"
-
-:: Function to double-check whether Git is installed and working
-where git >nul 2>&1
-if %errorlevel% neq 0 (
-    echo ❌ Git is not installed or not in PATH. Installing Git first...
-
-    :: Set Git download URL and installer path
-    set "GIT_URL=https://github.com/git-for-windows/git/releases/latest/download/Git-2.44.0-64-bit.exe"
-    set "GIT_INSTALLER=%TEMP%\git-installer.exe"
-
-    :: Check if Internet is available before download
-    ping -n 1 google.com >nul 2>&1
-    if %errorlevel% neq 0 (
-        echo ❌ No internet connection! Please connect to the internet and try again.
-        exit /b 1
-    )
-
-    :: Securely download Git installer using PowerShell
-    powershell -Command "& {
-        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
-        Invoke-WebRequest -Uri '%GIT_URL%' -OutFile '%GIT_INSTALLER%'
-    }"
-
-    :: Verify if Git installer was downloaded successfully
-    if not exist "%GIT_INSTALLER%" (
-        echo ❌ Error: Could not download Git installer! Check your internet connection or download it manually from:
-        echo    https://git-scm.com/downloads
-        exit /b 1
-    )
-
-    :: Install Git silently
-    echo Installing Git silently...
-    start /wait %GIT_INSTALLER% /VERYSILENT /NORESTART /CLOSEAPPLICATIONS
-
-    :: Verify installation
-    where git >nul 2>&1
-    if %errorlevel% neq 0 (
-        echo ❌ Git installation failed! Please install it manually from:
-        echo    https://git-scm.com/downloads
-        exit /b 1
-    ) else (
-        echo ✅ Git was successfully installed and configured!
-    )
-)
+set "MAVIS_ENV_FILE=%MAVIS_DIR%\.env"
+set "MAVIS_RUN_FILE=%MAVIS_DIR%\run-mavis-4-all.bat"
 
 :: Ensure PyCharm Projects directory exists
 if not exist "%PYCHARM_PROJECTS%" (
     echo Creating project directory: %PYCHARM_PROJECTS%...
     mkdir "%PYCHARM_PROJECTS%"
+    if errorlevel 1 (
+        echo ❌ Error: Failed to create directory %PYCHARM_PROJECTS%. Exiting...
+        exit /b 1
+    )
 )
 
 :: Change to PyCharm Projects directory
 cd /d "%PYCHARM_PROJECTS%"
 
-:: Check if MAVIS folder exists
+:: Check if the MAVIS directory exists
 if not exist "%MAVIS_DIR%" (
     echo Cloning MAVIS repository from GitHub...
 
-    :: Check if GitHub is reachable
-    ping -n 1 github.com >nul 2>&1
+    :: Check if Git is installed
+    where git >nul 2>&1
     if %errorlevel% neq 0 (
-        echo ❌ Error: Cannot reach GitHub! Check your internet connection and firewall settings.
+        echo ❌ Error: Git is not installed. Please install Git first.
         exit /b 1
     )
 
+    :: Check if GitHub is reachable (with a timeout of 5 seconds)
+    echo Testing connection to GitHub...
+    for /f "delims=" %%i in ('ping -n 1 -w 5000 github.com ^| find "TTL"') do set REACHABLE=1
+    if not defined REACHABLE (
+        echo ❌ Error: Cannot reach GitHub! Check your internet connection or firewall settings.
+        exit /b 1
+    )
+    set REACHABLE=  :: Zurücksetzen der REACHABLE-Variable
+
+    :: GitHub is accessible, clone repository
+    echo Running git clone...
     git clone https://github.com/Peharge/MAVIS.git "%MAVIS_DIR%"
 
     if %errorlevel% neq 0 (
@@ -399,22 +488,50 @@ if not exist "%MAVIS_DIR%" (
     )
 ) else (
     echo MAVIS repository already exists. Checking for updates...
+
     cd /d "%MAVIS_DIR%"
 
-    git pull
+    :: Check if the repository is in the correct state (no uncommitted changes)
+    git diff-index --quiet HEAD --
     if %errorlevel% neq 0 (
-        echo ❌ Error: Could not update MAVIS repository! Check your internet connection or Git configuration.
+        echo ❌ Error: There are uncommitted changes! Please commit or discard them first.
         exit /b 1
+    )
+
+    :: Perform Git Fetch (with a timeout of 5 seconds)
+    echo Fetching latest changes...
+    git fetch --quiet
+    if %errorlevel% neq 0 (
+        echo ❌ Error: Could not fetch updates from the remote repository! Check your internet connection or Git configuration.
+        exit /b 1
+    )
+
+    :: Check the status of the repository to see if updates are available
+    git status | find "Your branch is behind" >nul
+    if %errorlevel% equ 0 (
+        echo Updates available, pulling changes...
+
+        :: Perform Git Pull (with timeout of 5 seconds)
+        git pull --quiet
+        if %errorlevel% neq 0 (
+            echo ❌ Error: Could not update MAVIS repository! Check your internet connection or Git configuration.
+            exit /b 1
+        ) else (
+            echo ✅ MAVIS repository updated successfully!
+        )
     ) else (
-        echo ✅ MAVIS repository is up-to-date!
+        echo ✅ MAVIS repository is already up-to-date!
     )
 )
 
-:: Define MAVIS project path
-set "PYCHARM_PROJECTS=%USERPROFILE%\PycharmProjects"
-set "MAVIS_DIR=%PYCHARM_PROJECTS%\MAVIS"
-set "MAVIS_ENV_FILE=%MAVIS_DIR%\.env"
-set "MAVIS_RUN_FILE=%MAVIS_DIR%\run-mavis-4-all.bat"
+:: Check Git status after pull (no merge conflicts)
+git status | find "Merge conflict" >nul
+if %errorlevel% equ 0 (
+    echo ❌ Error: Merge conflicts detected. Please resolve them manually.
+    exit /b 1
+)
+
+echo ✅ MAVIS update process completed successfully.
 
 :: Ensure MAVIS directory exists
 if not exist "%MAVIS_DIR%" (
@@ -466,6 +583,7 @@ if not exist "%MAVIS_RUN_FILE%" (
 echo ✅ Starting MAVIS...
 
 :: Verify if execution was successful
+call "%MAVIS_RUN_FILE%"
 if %errorlevel% neq 0 (
     echo ❌ Error: MAVIS did not start successfully!
     exit /b 1
@@ -477,7 +595,6 @@ if %errorlevel% neq 0 (
 echo ✅ All tasks have been completed successfully!
 echo.
 
-call "%MAVIS_RUN_FILE%"
-
+:: endlocal
 pause
 exit /b
