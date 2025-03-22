@@ -67,22 +67,9 @@ setlocal enabledelayedexpansion
 chcp 65001
 
 echo.
-echo       ██╗     █╗
-echo      ████╗   ███╗        ███╗   ███╗ █████╗ ██╗   ██╗██╗███████╗
-echo     ██████╗  ████╗       ████╗ ████║██╔══██╗██║   ██║██║██╔════╝
-echo    ████████╗  ████╗      ██╔████╔██║███████║██║   ██║██║███████╗
-echo   ████╔█████╗  ████╗     ██║╚██╔╝██║██╔══██║╚██╗ ██╔╝██║╚════██║
-echo  ████╔╝ █████╗  ████╗    ██║ ╚═╝ ██║██║  ██║ ╚████╔╝ ██║███████║
-echo  ╚═══╝   ███╔╝  ╚═══╝    ╚═╝     ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚══════╝
-echo           █╔╝
-echo           ╚╝
+powershell -Command "& {Write-Host '      ██╗     █╗' -ForegroundColor Blue; Write-Host '     ████╗   ███╗' -ForegroundColor Blue -NoNewline; Write-Host '        ███╗   ███╗ █████╗ ██╗   ██╗██╗███████╗' -ForegroundColor White; Write-Host '    ██████╗  ████╗' -ForegroundColor Blue -NoNewline; Write-Host '       ████╗ ████║██╔══██╗██║   ██║██║██╔════╝' -ForegroundColor White; Write-Host '   ████████╗  ████╗' -ForegroundColor Blue -NoNewline; Write-Host '      ██╔████╔██║███████║██║   ██║██║███████╗' -ForegroundColor White; Write-Host '  ████╔█████╗  ████╗' -ForegroundColor Blue -NoNewline; Write-Host '     ██║╚██╔╝██║██╔══██║╚██╗ ██╔╝██║╚════██║' -ForegroundColor White; Write-Host ' ████╔╝ █████╗  ████╗' -ForegroundColor Blue -NoNewline; Write-Host '    ██║ ╚═╝ ██║██║  ██║ ╚████╔╝ ██║███████║' -ForegroundColor White; Write-Host ' ╚═══╝   ███╔╝  ╚═══╝' -ForegroundColor Blue -NoNewline; Write-Host '    ╚═╝     ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚══════╝' -ForegroundColor White; Write-Host '          █╔╝' -ForegroundColor Blue; Write-Host '          ╚╝' -ForegroundColor Blue}"
 echo.
-echo ██╗      █████╗ ██╗   ██╗███╗   ██╗ ██████╗██╗  ██╗███████╗██████╗     ██╗  ██╗
-echo ██║     ██╔══██╗██║   ██║████╗  ██║██╔════╝██║  ██║██╔════╝██╔══██╗    ██║  ██║
-echo ██║     ███████║██║   ██║██╔██╗ ██║██║     ███████║█████╗  ██████╔╝    ███████║
-echo ██║     ██╔══██║██║   ██║██║╚██╗██║██║     ██╔══██║██╔══╝  ██╔══██╗    ╚════██║
-echo ███████╗██║  ██║╚██████╔╝██║ ╚████║╚██████╗██║  ██║███████╗██║  ██║         ██║
-echo ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝         ╚═╝
+powershell -Command "& {Write-Host '██╗      █████╗ ██╗   ██╗███╗   ██╗ ██████╗██╗  ██╗███████╗██████╗     ██╗  ██╗' -ForegroundColor White; Write-Host '██║     ██╔══██╗██║   ██║████╗  ██║██╔════╝██║  ██║██╔════╝██╔══██╗    ██║  ██║' -ForegroundColor White; Write-Host '██║     ███████║██║   ██║██╔██╗ ██║██║     ███████║█████╗  ██████╔╝    ███████║' -ForegroundColor White; Write-Host '██║     ██╔══██║██║   ██║██║╚██╗██║██║     ██╔══██║██╔══╝  ██╔══██╗    ╚════██║' -ForegroundColor White; Write-Host '███████╗██║  ██║╚██████╔╝██║ ╚████║╚██████╗██║  ██║███████╗██║  ██║         ██║' -ForegroundColor White; Write-Host '╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝         ╚═╝' -ForegroundColor White;}"
 echo.
 echo Initiating high-tech installation...
 echo Prepare for the next level!
