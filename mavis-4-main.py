@@ -94,6 +94,23 @@ import docx
 import json
 from werkzeug.utils import secure_filename
 
+import os
+import pygame
+import whisper
+import ollama
+import sounddevice as sd
+import numpy as np
+import wave
+from TTS.api import TTS
+from flask import Flask, jsonify
+import time
+
+import pyaudio
+import wave
+import webrtcvad
+import numpy as np
+import time
+
 #---für Physik/Chemie/Biologie(Medizin)/Erdkunde/Wirtschaft---
 
 # from astropy.coordinates import SkyCoord
@@ -477,17 +494,6 @@ def predict():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-import os
-import pygame
-import whisper
-import ollama
-import sounddevice as sd
-import numpy as np
-import wave
-from TTS.api import TTS
-from flask import Flask, jsonify
-import time
-
 # Stelle sicher, dass pygame korrekt initialisiert wird
 def init_pygame():
     try:
@@ -496,12 +502,6 @@ def init_pygame():
         print("Pygame mixer initialized.")
     except pygame.error as e:
         print(f"Error initializing Pygame: {e}")
-
-import pyaudio
-import wave
-import webrtcvad
-import numpy as np
-import time
 
 # Funktion zur Audioaufnahme mit pyaudio und webrtcvad
 def record_audio(filename="input.wav", samplerate=16000, frame_duration_ms=30, vad_mode=1):
