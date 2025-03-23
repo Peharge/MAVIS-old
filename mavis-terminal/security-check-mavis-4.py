@@ -63,7 +63,6 @@
 
 import subprocess
 import sys
-import os
 
 # Farbcodes definieren
 red = "\033[91m"
@@ -90,7 +89,7 @@ def get_user_input():
 
 def execute_installation():
     try:
-        subprocess.run(f"start cmd /k python C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\mavis-terminal\\run-security-check.py", check=True, shell=True)
+        subprocess.run(["start", "cmd", "/k", f"{sys.executable} mavis-terminal/run-security-check.py"], check=True, shell=True)
         print(f"{blue}{bold}MAVIS Security check completed successfully.{reset}")
     except subprocess.CalledProcessError:
         print(f"{red}{bold}An error occurred while running the Security check script.{reset}")

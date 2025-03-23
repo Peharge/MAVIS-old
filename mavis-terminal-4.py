@@ -457,7 +457,10 @@ def main():
     while True:
         try:
             # Den aktuellen Arbeitsordner anzeigen
+
             current_dir = os.getcwd()
+
+            # current_dir = default_dir
 
             # Eingabeaufforderung anzeigen, bevor der Benutzer etwas eingibt
             sys.stdout.write(f"\n{blue}┌──({reset}{red}root✨MAVIS{reset}{blue})-[{reset}{current_dir}{blue}]{reset}\n{blue}└─{reset}{red}#{reset}")
