@@ -63,7 +63,13 @@
 
 import os
 import subprocess
+import psutil
+import socket
 from dotenv import load_dotenv
+import logging
+import time
+from datetime import datetime
+import requests
 
 # Kritische Sicherheitsvariablen
 CRITICAL_VARS = [
@@ -74,7 +80,7 @@ CRITICAL_VARS = [
     'GITHUB_TOKEN', 'TWITTER_API_KEY', 'TWITTER_API_SECRET'
 ]
 
-# Farbcodes definieren
+# Farbcodes definieren (für Konsolenausgaben)
 red = "\033[91m"
 green = "\033[92m"
 yellow = "\033[93m"
@@ -87,20 +93,39 @@ orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
-# Lade .env Datei und alle relevanten Umgebungsvariablen
+# Logging konfigurieren: Protokollierung in "security_scan.log"
+logging.basicConfig(filename='security_scan.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger()
+
+# Bekannte bösartige IPs (Dummy-Werte, sollten durch echte Daten ersetzt werden)
+known_malicious_ips = ["192.168.1.100", "203.0.113.5"]
+
+# Überwachte Ports, die oft missbraucht werden
+suspicious_ports = [22, 23, 25, 3306, 3389]
+
+# Maximale Anzahl von Verbindungen von der gleichen IP (Schutz gegen DDoS)
+MAX_CONNECTIONS_FROM_SAME_IP = 10
+
+# Lädt die .env-Datei und relevante Umgebungsvariablen
 def load_env():
-    env_path = os.path.join(f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env")
-    if os.path.exists(env_path):
-        load_dotenv(dotenv_path=env_path)
-        print(f"{blue}INFO{reset}: .env file loaded successfully.")
-    else:
-        print(f"{yellow}WARNING{reset}: No .env file found.")
+    try:
+        env_path = os.path.join(f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env")
+        if os.path.exists(env_path):
+            load_dotenv(dotenv_path=env_path)
+            print(f"{blue}INFO{reset}: .env file loaded successfully.")
+            logger.info("Loaded .env file successfully.")
+        else:
+            print(f"{yellow}WARNING{reset}: No .env file found.")
+            logger.warning("No .env file found.")
+    except Exception as e:
+        print(f"{red}ERROR{reset}: Failed to load .env file - {e}")
+        logger.error(f"Failed to load .env file - {e}")
     return env_path
 
-
-# Zeigt an, welche Dateien im Scan überprüft werden
+# Zeigt alle Dateien an, die im Scan überprüft werden (nur Ausgabe und Zählung)
 def list_files_for_scan(directory):
-    file_count = 0  # Zähler für die Anzahl der Dateien
+    file_count = 0
     print("\nFiles to be scanned:")
     for root, dirs, files in os.walk(directory):
         for file in files:
@@ -109,62 +134,225 @@ def list_files_for_scan(directory):
             file_count += 1
     return file_count
 
-
-# Windows Defender Scan für alle Dateien im Verzeichnis
+# Führt einen Windows Defender Scan im angegebenen Verzeichnis aus
+# (Blockiert oder löscht keine Systemdateien)
 def scan_with_defender(directory):
     print("\nRunning Windows Defender Scan on all files in the directory...")
-    try:
-        # Zeigt die zu prüfenden Dateien an und zählt sie
-        total_files = list_files_for_scan(directory)
-
-        # Führe den Scan auf dem gesamten Verzeichnis durch
-        result = subprocess.run(
-            ["powershell", "-Command", f"Start-MpScan -ScanType CustomScan -ScanPath '{directory}'"],
-            capture_output=True, text=True, timeout=300, encoding="cp1252", errors="ignore"
-        )
-
-        # Ausgabe des Scan-Ergebnisses
-        if result.stdout:
-            print(result.stdout)
-        else:
-            print(f"   {green}No threats detected.{reset}")
-
-        # Rückgabe der Gesamtzahl der gescannten Dateien
-        return total_files
-    except Exception as e:
-        print(f"   {red}ERROR{reset}: Windows Defender scan failed - {e}")
+    if not os.path.isdir(directory):
+        print(f"{red}ERROR{reset}: The specified directory does not exist or is not a directory.")
+        logger.error("Invalid directory for scan: %s", directory)
         return 0
 
+    try:
+        total_files = list_files_for_scan(directory)
+        # Sichere Argumentliste für den Subprozess-Aufruf
+        ps_command = [
+            "powershell",
+            "-Command",
+            "Start-MpScan",
+            "-ScanType", "CustomScan",
+            "-ScanPath", directory
+        ]
+        result = subprocess.run(ps_command,
+                                capture_output=True,
+                                text=True,
+                                timeout=300,
+                                encoding="cp1252",
+                                errors="ignore")
+        if result.stdout:
+            print(result.stdout)
+            logger.info("Windows Defender scan result: %s", result.stdout)
+        else:
+            print(f"   {green}No threats detected.{reset}")
+            logger.info("No threats detected.")
+        return total_files
 
-# Überprüfen, ob eine Datei sicher ist (z.B. keine Bedrohung von Defender)
+    except subprocess.TimeoutExpired:
+        print(f"   {red}ERROR{reset}: Windows Defender scan timed out.")
+        logger.error("Windows Defender scan timed out for directory: %s", directory)
+        return 0
+    except Exception as e:
+        print(f"   {red}ERROR{reset}: Windows Defender scan failed - {e}")
+        logger.error("Windows Defender scan failed for directory %s: %s", directory, e)
+        return 0
+
+# Überprüft, ob eine Datei sicher ist (hier immer True, da Defender sie behandelt)
 def is_safe(file_path):
-    return True  # Grundannahme, dass der Defender die Dateien sicher behandelt
+    return True
 
-
-# Extrahieren von Pfaden und URLs aus den Variablen in .env
+# Extrahiert Pfade/URLs aus kritischen Umgebungsvariablen
 def extract_paths_from_env():
     paths = []
     for var in CRITICAL_VARS:
         value = os.getenv(var)
         if value:
-            # Füge nur Pfade hinzu, die existieren
             if os.path.exists(value):
                 paths.append(value)
-            elif value.startswith("http"):  # URLs zu externen Services
+            elif value.startswith("http"):
                 print(f"{blue}URL found{reset}: {var} -> {value}")
+                logger.info("URL found: %s -> %s", var, value)
     return paths
 
+# Überprüft den Status der Firewall
+def check_firewall_status():
+    print("\nChecking firewall status...")
+    try:
+        result = subprocess.run(
+            ["netsh", "advfirewall", "show", "allprofiles"],
+            capture_output=True, text=True, timeout=60
+        )
+        if "State" in result.stdout:
+            print(f"{green}Firewall is enabled{reset}")
+            logger.info("Firewall is enabled")
+        else:
+            print(f"{red}Firewall is not enabled{reset}")
+            logger.warning("Firewall is not enabled")
+    except Exception as e:
+        print(f"{red}ERROR{reset}: Failed to check firewall status - {e}")
+        logger.error("Failed to check firewall status - %s", e)
 
-# Dateien aus dem gesamten Verzeichnis und den angegebenen Pfaden scannen
+# Überprüft verdächtige Prozesse anhand von Namen und Ressourcennutzung
+def check_suspicious_processes():
+    print("\nChecking for suspicious processes...")
+    suspicious_processes = [
+        "cmd.exe", "powershell.exe", "netstat.exe", "whois.exe",
+        "python.exe", "java.exe", "wget.exe", "curl.exe", "nc.exe", "nmap.exe"
+    ]
+    suspicious_cpu_usage_threshold = 70  # 70% CPU usage threshold
+    suspicious_memory_usage_threshold = 1000000000  # 1 GB memory threshold
+
+    for proc in psutil.process_iter(['pid', 'name', 'cmdline', 'cpu_percent', 'memory_info', 'create_time', 'username']):
+        try:
+            if proc.info['name'].lower() in suspicious_processes:
+                cpu_usage = proc.info['cpu_percent']
+                memory_usage = proc.info['memory_info'].rss
+                create_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(proc.info['create_time']))
+                username = proc.info['username']
+                cmdline = ' '.join(proc.info['cmdline'])
+
+                if cpu_usage > suspicious_cpu_usage_threshold or memory_usage > suspicious_memory_usage_threshold:
+                    print(f"{red}Suspicious process detected with high resource usage{reset}: {proc.info['name']} (PID: {proc.info['pid']})")
+                    print(f"   CPU Usage: {cpu_usage}% | Memory Usage: {memory_usage / 1024 / 1024:.2f} MB")
+                    print(f"   Started at: {create_time} by {username}")
+                    print(f"   Command line: {cmdline}")
+                    logger.warning("Suspicious process detected with high resources: %s (PID: %s)", proc.info['name'], proc.info['pid'])
+                else:
+                    print(f"{yellow}Suspicious process detected (but normal resource usage){reset}: {proc.info['name']} (PID: {proc.info['pid']})")
+                    print(f"   Started at: {create_time} by {username}")
+                    print(f"   Command line: {cmdline}")
+                    logger.info("Suspicious process detected (normal resource usage): %s (PID: %s)", proc.info['name'], proc.info['pid'])
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            continue
+        except Exception as e:
+            logger.error("Error checking process: %s", e)
+            continue
+
+    print(f"{green}Suspicious process check complete.{reset}")
+
+# Überprüft offene Netzwerkverbindungen und erkennt verdächtige Aktivitäten
+def check_network_connections():
+    print("\nChecking active network connections...")
+    net_connections = psutil.net_connections(kind='inet')
+    ip_connection_count = {}  # Zählt Verbindungen von derselben IP
+
+    for conn in net_connections:
+        try:
+            if conn.status == 'ESTABLISHED':
+                local_address = f"{conn.laddr.ip}:{conn.laddr.port}"
+                remote_address = f"{conn.raddr.ip}:{conn.raddr.port}" if conn.raddr else "N/A"
+
+                # Zähle Verbindungen für DDoS-Schutz
+                if conn.raddr.ip not in ip_connection_count:
+                    ip_connection_count[conn.raddr.ip] = 0
+                ip_connection_count[conn.raddr.ip] += 1
+
+                if ip_connection_count[conn.raddr.ip] > MAX_CONNECTIONS_FROM_SAME_IP:
+                    print(f"{red}Potential DDoS attack detected: {conn.raddr.ip} has {ip_connection_count[conn.raddr.ip]} connections!{reset}")
+                    logger.warning("Potential DDoS attack detected: %s has %s connections.", conn.raddr.ip, ip_connection_count[conn.raddr.ip])
+                    continue
+
+                print(f"{cyan}Active connection found{reset}: {local_address} -> {remote_address}")
+                logger.info("Active connection found: %s -> %s", local_address, remote_address)
+
+                if conn.raddr.ip in known_malicious_ips:
+                    print(f"{red}WARNING: Connection to known malicious IP detected{reset}: {conn.raddr.ip}")
+                    logger.warning("Malicious IP detected in connection: %s", conn.raddr.ip)
+
+                if conn.laddr.port in suspicious_ports:
+                    print(f"{yellow}Suspicious local port detected{reset}: {conn.laddr.port}")
+                    logger.warning("Suspicious local port detected: %s", conn.laddr.port)
+
+                if conn.raddr.port in suspicious_ports:
+                    print(f"{yellow}Suspicious remote port detected{reset}: {conn.raddr.port}")
+                    logger.warning("Suspicious remote port detected: %s", conn.raddr.port)
+
+                # Optionale Prüfung auf SSL/TLS gesicherte Verbindungen (z.B. HTTPS)
+                if conn.raddr.port == 443:
+                    try:
+                        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                        s.connect((conn.raddr.ip, 443))
+                        s.send(b"HEAD / HTTP/1.0\r\n\r\n")
+                        response = s.recv(1024)
+                        if b"HTTP/1.1 200 OK" in response:
+                            print(f"{green}Secure connection (HTTPS) established{reset}: {conn.raddr.ip}:{conn.raddr.port}")
+                            logger.info("Secure connection (HTTPS) established: %s:%s", conn.raddr.ip, conn.raddr.port)
+                        else:
+                            print(f"{red}Potential insecure HTTPS connection detected{reset}: {conn.raddr.ip}:{conn.raddr.port}")
+                            logger.warning("Potential insecure HTTPS connection detected: %s:%s", conn.raddr.ip, conn.raddr.port)
+                    except Exception as e:
+                        print(f"{red}Error checking SSL/TLS connection{reset}: {e}")
+                        logger.error("Error checking SSL/TLS connection: %s", e)
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            continue
+
+    print(f"{green}Network connection check complete.{reset}")
+
+# Überprüft System-Logs auf potenzielle Sicherheitsvorfälle
+def check_security_logs():
+    print("\nChecking security-related system logs...")
+    log_file = "/var/log/auth.log"  # Beispiel für Linux; für Windows anpassen
+    if os.path.exists(log_file):
+        with open(log_file, "r") as f:
+            logs = f.readlines()
+            for line in logs[-50:]:
+                if "failed" in line.lower() or "error" in line.lower():
+                    print(f"{red}Potential security issue detected in logs{reset}: {line.strip()}")
+                    logger.warning("Potential security issue detected in logs: %s", line.strip())
+    else:
+        print(f"{yellow}Log file {log_file} not found.{reset}")
+        logger.warning("Log file %s not found.", log_file)
+
+# Überprüft Systemkonfiguration auf Benutzer- und Berechtigungslevel
+def check_system_permissions():
+    print("\nChecking system user permissions...")
+    for user in psutil.users():
+        print(f"{blue}User detected{reset}: {user.name}, {user.host}")
+        logger.info("User detected: %s, %s", user.name, user.host)
+
+    print(f"\n{blue}Checking system file permissions{reset}:")
+    for root, dirs, files in os.walk("C:\\Users\\julia\\PycharmProjects\\MAVIS"):  # Beispiel-Pfad, anpassen!
+        for name in files:
+            file_path = os.path.join(root, name)
+            try:
+                file_permissions = oct(os.stat(file_path).st_mode)[-3:]
+                if file_permissions != '777':  # Beispiel: Übermäßige Berechtigungen vermeiden
+                    print(f"File permissions for {file_path}: {file_permissions}")
+                    logger.info("File permissions for %s: %s", file_path, file_permissions)
+            except Exception as e:
+                logger.error("Error checking file permissions: %s", e)
+
+# Führt den gesamten Sicherheits-Scan durch
 def scan_all_files():
     env_path = load_env()
-    total_scanned_files = 0  # Zähler für die Gesamtzahl der gescannten Dateien
-    if env_path:
-        directory = os.path.dirname(env_path)  # Das Verzeichnis der .env-Datei
-        paths_to_scan = [
-            directory] + extract_paths_from_env()  # Alle Verzeichnisse und Pfade, die überprüft werden sollen
+    total_scanned_files = 0
 
-        # Scanne alle relevanten Pfade
+    # Systemkonfiguration prüfen
+    check_system_permissions()
+
+    if env_path:
+        directory = os.path.dirname(env_path)
+        paths_to_scan = [directory] + extract_paths_from_env()
+
         for path in paths_to_scan:
             if os.path.isdir(path):
                 print(f"\n{blue}Scanning directory{reset}: {path}")
@@ -175,16 +363,27 @@ def scan_all_files():
             else:
                 print(f"\n{blue}Skipping{reset}: {path} (not a valid file or directory)")
 
-        # Sicherheitsüberprüfung und Anzeige der Ergebnisse
         for path in paths_to_scan:
             if os.path.exists(path):
                 if is_safe(path):
                     print(f"{green}Safe{reset}: {path}")
+                    logger.info("Safe: %s", path)
                 else:
                     print(f"{red}Unsafe{reset}: {path}")
+                    logger.warning("Unsafe: %s", path)
 
         print(f"\n{green}Security check complete!{reset}")
-        print(f"{blue}Total files scanned{reset}: {total_scanned_files}")  # Ausgabe der Gesamtzahl der gescannten Dateien
+        print(f"{blue}Total files scanned{reset}: {total_scanned_files}")
+
+    # Zusätzliche sicherheitsrelevante Prüfungen
+    check_firewall_status()
+    check_suspicious_processes()
+    check_network_connections()
+    check_security_logs()
 
 if __name__ == '__main__':
-    scan_all_files()
+    try:
+        scan_all_files()
+    except Exception as e:
+        print(f"{red}Critical error occurred during security scan: {e}{reset}")
+        logger.critical("Critical error occurred during security scan: %s", e)
