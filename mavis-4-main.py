@@ -68,123 +68,20 @@ from PIL import Image
 from pix2tex.cli import LatexOCR
 import base64
 import io
-from werkzeug.utils import secure_filename
 import markdown
 import re
-import io
 import sys
-import base64
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objects as go
-import altair as alt
 import plotly.io as pio
 import seaborn as sns
-import pandas as pd
-import numpy as np
-import sympy as sp
+import altair as alt
 import datetime
-import dash
-from dash import Dash, html, dcc, callback, Output, Input
-import math
-from IPython.display import display
-# import scipy as sp (Problem mit sp)
 import PyPDF2
 import docx
 import json
 from werkzeug.utils import secure_filename
-
-import os
-import pygame
-import whisper
-import ollama
-import sounddevice as sd
-import numpy as np
-import wave
-from TTS.api import TTS
-from flask import Flask, jsonify
-import time
-
-import pyaudio
-import wave
-import webrtcvad
-import numpy as np
-import time
-
-#---für Physik/Chemie/Biologie(Medizin)/Erdkunde/Wirtschaft---
-
-# from astropy.coordinates import SkyCoord
-# import astropy.units as u
-# import astropy
-# import QuantLib as ql
-# import openmdao.api as om
-# import pybullet as p
-# import monai
-# import fenics (soon)
-# import pydy
-# import pycalculix
-# import solid
-# import pyomo.environ as pyo
-# from gekko import GEKKO
-# import casadi as ca
-# import control as ctrl
-# import rospy (soon)
-# import pybullet as p (soon)
-# import h2o
-# import pint
-# import CoolProp.CoolProp as CP
-# import pythermo
-# import geopandas as gpd
-# import Bio
-# import cv2
-# import SimpleITK as sitk
-# from nilearn import plotting
-# import deepchem
-# import pymedtermino
-# from lifelines import KaplanMeierFitter
-# from rdkit import Chem
-# from ase import Atoms
-# from chempy import Substance
-# from shapely.geometry import Point
-# import fiona
-# import cartopy.crs as ccrs
-# import statsmodels.api as sm
-# import yfinance as yf
-
-# import PySpice
-# import networkx as nx
-# from schematics.models import Model
-# import schemdraw
-# import ipywidgets as widgets
-# import pybullet as pb
-# import vtk
-# from diagrams import Diagram
-# import graphviz
-
-#---ultimate für Deep Learning etc.---
-
-# Importiere die wichtigsten Komponenten von PyTorch für Deep Learning (sehr mächtig)
-
-# from torch import *
-# from torch.nn import *
-# from torch.optim import *
-# from torch.autograd import *
-# from torch.utils.data import *
-
-# Importiere die wichtigsten Komponenten von TensorFlow für Deep Learning (sehr mächtig)
-
-# import tensorflow as tf
-# from tensorflow import keras
-# from tensorflow.keras import layers, models, optimizers
-# from tensorflow.data import Dataset
-
-# Importiere die wichtigsten Komponenten von Scikit-Learn für Deep Learning (sehr mächtig)
-
-# import sklearn as skl
-
-# Importiere die wichtigsten Komponenten von Transformers für Deep Learning (sehr mächtig)
-
-# from transformers import pipeline
 
 def extract_text_from_file(filepath):
     file_ext = filepath.rsplit('.', 1)[-1].lower()
@@ -240,11 +137,11 @@ file_path = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "m
 try:
     with open(file_path, 'r') as file:
         model_config = json.load(file)
-    print("Die JSON-Datei wurde erfolgreich geladen.")
+    print("The JSON file was loaded successfully.")
 except FileNotFoundError:
-    print(f"Die Datei {file_path} wurde nicht gefunden.")
+    print(f"The file {file_path} was not found.")
 except json.JSONDecodeError as e:
-    print(f"Fehler beim Parsen der JSON-Datei: {e}")
+    print(f"Error parsing JSON file: {e}")
 
 # Extrahiere die Modelle aus der Konfiguration
 model1 = model_config['mavis-4']['model1']
@@ -264,6 +161,90 @@ def allowed_text_file(filename):
 model = LatexOCR()
 
 def execute_python_code(md_content):
+
+    import pandas as pd
+    import numpy as np
+    import sympy as sp
+    import dash
+    from dash import Dash, html, dcc, callback, Output, Input
+    import math
+    from IPython.display import display
+    # import scipy as sp (Problem mit sp)
+
+    # ---für Physik/Chemie/Biologie(Medizin)/Erdkunde/Wirtschaft---
+
+    # from astropy.coordinates import SkyCoord
+    # import astropy.units as u
+    # import astropy
+    # import QuantLib as ql
+    # import openmdao.api as om
+    # import pybullet as p
+    # import monai
+    # import fenics (soon)
+    # import pydy
+    # import pycalculix
+    # import solid
+    # import pyomo.environ as pyo
+    # from gekko import GEKKO
+    # import casadi as ca
+    # import control as ctrl
+    # import rospy (soon)
+    # import pybullet as p (soon)
+    # import h2o
+    # import pint
+    # import CoolProp.CoolProp as CP
+    # import pythermo
+    # import geopandas as gpd
+    # import Bio
+    # import cv2
+    # import SimpleITK as sitk
+    # from nilearn import plotting
+    # import deepchem
+    # import pymedtermino
+    # from lifelines import KaplanMeierFitter
+    # from rdkit import Chem
+    # from ase import Atoms
+    # from chempy import Substance
+    # from shapely.geometry import Point
+    # import fiona
+    # import cartopy.crs as ccrs
+    # import statsmodels.api as sm
+    # import yfinance as yf
+
+    # import PySpice
+    # import networkx as nx
+    # from schematics.models import Model
+    # import schemdraw
+    # import ipywidgets as widgets
+    # import pybullet as pb
+    # import vtk
+    # from diagrams import Diagram
+    # import graphviz
+
+    # ---ultimate für Deep Learning etc.---
+
+    # Importiere die wichtigsten Komponenten von PyTorch für Deep Learning (sehr mächtig)
+
+    # from torch import *
+    # from torch.nn import *
+    # from torch.optim import *
+    # from torch.autograd import *
+    # from torch.utils.data import *
+
+    # Importiere die wichtigsten Komponenten von TensorFlow für Deep Learning (sehr mächtig)
+
+    # import tensorflow as tf
+    # from tensorflow import keras
+    # from tensorflow.keras import layers, models, optimizers
+    # from tensorflow.data import Dataset
+
+    # Importiere die wichtigsten Komponenten von Scikit-Learn für Deep Learning (sehr mächtig)
+
+    # import sklearn as skl
+
+    # Importiere die wichtigsten Komponenten von Transformers für Deep Learning (sehr mächtig)
+
+    # from transformers import pipeline
 
     # Sucht nach Python-Code im Markdown-Inhalt, führt ihn aus und fügt die Ausgaben (Text oder Bild) zum Markdown hinzu.
     # Unterstützt Matplotlib, Seaborn, Plotly und Altair.
@@ -496,6 +477,8 @@ def predict():
 
 # Stelle sicher, dass pygame korrekt initialisiert wird
 def init_pygame():
+    import pygame
+
     try:
         pygame.mixer.pre_init(frequency=22050, size=-16, channels=2, buffer=512)
         pygame.mixer.init()
@@ -505,6 +488,11 @@ def init_pygame():
 
 # Funktion zur Audioaufnahme mit pyaudio und webrtcvad
 def record_audio(filename="input.wav", samplerate=16000, frame_duration_ms=30, vad_mode=1):
+
+    import pyaudio
+    import wave
+    import webrtcvad
+
     # Initialisierung von VAD (Voice Activity Detection)
     vad = webrtcvad.Vad(vad_mode)  # VAD-Mode kann von 0 bis 3 gehen, wobei 3 am empfindlichsten ist
 
@@ -556,6 +544,9 @@ def record_audio(filename="input.wav", samplerate=16000, frame_duration_ms=30, v
 
 # Funktion zur Transkription der Audiodatei
 def transcribe_audio(file_path):
+
+    import whisper
+
     model = whisper.load_model("small")
 
     # Load audio and pad/trim it to fit the model
@@ -584,6 +575,11 @@ if not os.path.exists("static"):
 
 # Funktion für die TTS-Ausgabe (Text-to-Speech)
 def text_to_speech(text):
+
+    import pygame
+    from TTS.api import TTS
+    import time
+
     tts = TTS(model_name="tts_models/en/ljspeech/glow-tts")
 
     # Dynamischer Dateiname für jede Ausgabe
