@@ -234,7 +234,7 @@ def display_versions():
         "mavis-3-code-fast": ("MAVIS fast start", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}Qwen 2.5 Coder 14B{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "qwen2.5-code:14b"),
         "mavis-3-3-main-fast": ("MAVIS fast start", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}Gemma3 12B{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "gemma3:12b"),
         "mavis-3-3-math-fast": ("MAVIS fast start", f"With {red}Xc++ 3 11B{reset} or {blue}Llama3.2 11B{reset} + {blue}QwQ 32b{reset} + {blue}Qwen 2.5 1.5b{reset} + {blue}granite3.2-vision 2b{reset}", "qwq"),
-        "mavis-terminal-3": ("MAVIS Terminal 3 EAP", "The MAVIS Terminal is always available for you!!!", ""),
+        "mavis-terminal": ("MAVIS Terminal 3 EAP", "The MAVIS Terminal is always available for you!!!", ""),
         "mavis-4": ("MAVIS 4 EAP", "NEW - Development of MAVIS 4 has begun – featuring new Vision Models, a more powerful and faster MAVIS Terminal, and access to over 200 models.", ""),
         "mavis-terminal-4": ("MAVIS Terminal 4 EAP", "The MAVIS Terminal is always available for you!!!", "")
     }

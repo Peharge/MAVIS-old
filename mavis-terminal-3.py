@@ -213,27 +213,27 @@ def handle_special_commands(user_input):
     python_path = "C:\\Users\\julia\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
 
     commands = {
-        "env install": "mavis-terminal-3\\install-mavis-3.py",
-        "install env": "mavis-terminal-3\\install-mavis-3.py",
-        "mavis env install": "mavis-terminal-3\\install-mavis-3.py",
-        "install mavis env": "mavis-terminal-3\\install-mavis-3.py",
-        "env update": "mavis-terminal-3\\install-mavis-3.py",
-        "update env": "mavis-terminal-3\\install-mavis-3.py",
-        "mavis env update": "mavis-terminal-3\\install-mavis-3.py",
-        "update mavis env": "mavis-terminal-3\\install-mavis-3.py",
-        "update": "mavis-terminal-3\\update-repository-windows.py",
-        "mavis update": "mavis-terminal-3\\update-repository-windows.py",
-        "update mavis": "mavis-terminal-3\\update-repository-windows.py",
-        "security": "mavis-terminal-3\\security-check.py",
-        "mavis security": "mavis-terminal-3\\security-check.py",
-        "securitycheck": "mavis-terminal-3\\security-check.py",
-        "info": "mavis-terminal-3\\info.py",
-        "mavis info": "mavis-terminal-3\\info.py",
-        "info mavis": "mavis-terminal-3\\info.py",
-        "neofetch": "mavis-terminal-3\\neofetch.py",
-        "fastfetch": "mavis-terminal-3\\neofetch.py", # new
-        "jupyter": "mavis-terminal-3\\run-jup.py",
-        "run jupyter": "mavis-terminal-3\\run-jup.py",
+        "env install": "mavis-terminal\\install-mavis-3.py",
+        "install env": "mavis-terminal\\install-mavis-3.py",
+        "mavis env install": "mavis-terminal\\install-mavis-3.py",
+        "install mavis env": "mavis-terminal\\install-mavis-3.py",
+        "env update": "mavis-terminal\\install-mavis-3.py",
+        "update env": "mavis-terminal\\install-mavis-3.py",
+        "mavis env update": "mavis-terminal\\install-mavis-3.py",
+        "update mavis env": "mavis-terminal\\install-mavis-3.py",
+        "update": "mavis-terminal\\update-repository-windows.py",
+        "mavis update": "mavis-terminal\\update-repository-windows.py",
+        "update mavis": "mavis-terminal\\update-repository-windows.py",
+        "security": "mavis-terminal\\security-check.py",
+        "mavis security": "mavis-terminal\\security-check.py",
+        "securitycheck": "mavis-terminal\\security-check.py",
+        "info": "mavis-terminal\\info.py",
+        "mavis info": "mavis-terminal\\info.py",
+        "info mavis": "mavis-terminal\\info.py",
+        "neofetch": "mavis-terminal\\neofetch.py",
+        "fastfetch": "mavis-terminal\\neofetch.py", # new
+        "jupyter": "mavis-terminal\\run-jup.py",
+        "run jupyter": "mavis-terminal\\run-jup.py",
         "run mavis-1-5-main": "mavis-1-5-main-main.py",
         "run mavis-1-5-math": "mavis-1-5-math-math.py",
         "run mavis-1-5-math-pro": "mavis-1-5-math-math-pro.py",
@@ -323,111 +323,111 @@ def handle_special_commands(user_input):
         "run grafana": "run-grafana\\run-grafana.py",
         "install grafana": "run-grafana\\run-grafana.py",
         "account": "account\\account.py",
-        "run deepseek-r1:1.5b": "mavis-terminal-3\\deepseek-r1-1-5b.py",
-        "run deepseek-r1:7b": "mavis-terminal-3\\deepseek-r1-7b.py",
-        "run deepseek-r1:8b": "mavis-terminal-3\\deepseek-r1-8b.py",
-        "run deepseek-r1:14b": "mavis-terminal-3\\deepseek-r1-14b.py",
-        "run deepseek-r1:32b": "mavis-terminal-3\\deepseek-r1-32b.py",
-        "run deepseek-r1:70b": "mavis-terminal-3\\deepseek-r1-70b.py",
-        "run deepseek-r1:671b": "mavis-terminal-3\\deepseek-r1-671b.py",
-        "run deepscaler": "mavis-terminal-3\\deepscaler.py",
-        "run llama3.1:8b": "mavis-terminal-3\\llama-3-1-8b.py",
-        "run llama3.1:70b": "mavis-terminal-3\\llama-3-1-70b.py",
-        "run llama3.1:405": "mavis-terminal-3\\llama-3-1-405b.py",
-        "run llama3.2:1b": "mavis-terminal-3\\llama-3-2-1b.py",
-        "run llama3.2:3b": "mavis-terminal-3\\llama-3-2-3b.py",
-        "run llama3.3": "mavis-terminal-3\\llama-3-3.py",
-        "run llama3:8b": "mavis-terminal-3\\llama-3-8b.py",
-        "run llama3:70b": "mavis-terminal-3\\llama-3-70b.py",
-        "run mistral": "mavis-terminal-3\\mistral.py",
-        "run mistral-large": "mavis-terminal-3\\mistral-large.py", #new
-        "run mistral-nemo": "mavis-terminal-3\\mistral-nemo.py", #new
-        "run mistral-openorca": "mavis-terminal-3\\mistral-openorca.py", #new
-        "run mistral-small:22b": "mavis-terminal-3\\mistral-small-22b.py", #new
-        "run mistral-small:24b": "mavis-terminal-3\\mistral-small-24b.py", #new
-        "run phi4": "mavis-terminal-3\\phi-4.py",
-        "run qwen2.5:0.5b": "mavis-terminal-3\\qwen-2-5-0.5b.py",
-        "run qwen2.5:1.5b": "mavis-terminal-3\\qwen-2-5-1.5b.py",
-        "run qwen2.5:3b": "mavis-terminal-3\\qwen-2-5-3b.py",
-        "run qwen2.5:7b": "mavis-terminal-3\\qwen-2-5-7b.py",
-        "run qwen2.5:14b": "mavis-terminal-3\\qwen-2-5-14b.py",
-        "run qwen2.5:32b": "mavis-terminal-3\\qwen-2-5-32b.py",
-        "run qwen2.5:72b": "mavis-terminal-3\\qwen-2-5-72b.py",
-        "run qwen2.5-coder:0.5b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
-        "run qwen2.5-coder:1.5b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
-        "run qwen2.5-coder:3b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
-        "run qwen2.5-coder:7b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
-        "run qwen2.5-coder:14b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
-        "run qwen2.5-coder:32b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
-        "run gemma3:1b": "mavis-terminal-3\\gemma-3-1b.py", # new
-        "run gemma3:4b": "mavis-terminal-3\\gemma-3-4b.py", # new
-        "run gemma3:12b": "mavis-terminal-3\\gemma-3-12b.py", # new
-        "run gemma3:27b": "mavis-terminal-3\\gemma-3-27b.py", # new
-        "run qwq": "mavis-terminal-3\\qwq.py", # new
-        "run command-a": "mavis-terminal-3\\command-a.py", #new
-        "run phi4-mini": "mavis-terminal-3\\phi-4-mini.py", #new
-        "run granite3.2:8b": "mavis-terminal-3\\granite-3-2-8b.py", # new
-        "run granite3.2:2b": "mavis-terminal-3\\granite-3-2-2b.py", # new
-        "run granite3.2-vision:2b": "mavis-terminal-3\\granite-3-2-2b-vision.py", # new
-        "install deepseek-r1:1.5b": "mavis-terminal-3\\deepseek-r1-1-5b.py",
-        "install deepseek-r1:7b": "mavis-terminal-3\\deepseek-r1-7b.py",
-        "install deepseek-r1:8b": "mavis-terminal-3\\deepseek-r1-8b.py",
-        "install deepseek-r1:14b": "mavis-terminal-3\\deepseek-r1-14b.py",
-        "install deepseek-r1:32b": "mavis-terminal-3\\deepseek-r1-32b.py",
-        "install deepseek-r1:70b": "mavis-terminal-3\\deepseek-r1-70b.py",
-        "install deepseek-r1:671b": "mavis-terminal-3\\deepseek-r1-671b.py",
-        "install deepscaler": "mavis-terminal-3\\deepscaler.py",
-        "install llama3.1:8b": "mavis-terminal-3\\llama-3-1-8b.py",
-        "install llama3.1:70b": "mavis-terminal-3\\llama-3-1-70b.py",
-        "install llama3.1:405": "mavis-terminal-3\\llama-3-1-405b.py",
-        "install llama3.2:1b": "mavis-terminal-3\\llama-3-2-1b.py",
-        "install llama3.2:3b": "mavis-terminal-3\\llama-3-2-3b.py",
-        "install llama3.3": "mavis-terminal-3\\llama-3-3.py",
-        "install llama3:8b": "mavis-terminal-3\\llama-3-8b.py",
-        "install llama3:70b": "mavis-terminal-3\\llama-3-70b.py",
-        "install mistral": "mavis-terminal-3\\mistral.py",
-        "install mistral-large": "mavis-terminal-3\\mistral-large.py", #new
-        "install mistral-nemo": "mavis-terminal-3\\mistral-nemo.py", #new
-        "install mistral-openorca": "mavis-terminal-3\\mistral-openorca.py", #new
-        "install mistral-small:22b": "mavis-terminal-3\\mistral-small-22b.py", #new
-        "install mistral-small:24b": "mavis-terminal-3\\mistral-small-24b.py", #new
-        "install phi4": "mavis-terminal-3\\phi-4.py",
-        "install qwen2.5:0.5b": "mavis-terminal-3\\qwen-2-5-0.5b.py",
-        "install qwen2.5:1.5b": "mavis-terminal-3\\qwen-2-5-1.5b.py",
-        "install qwen2.5:3b": "mavis-terminal-3\\qwen-2-5-3b.py",
-        "install qwen2.5:7b": "mavis-terminal-3\\qwen-2-5-7b.py",
-        "install qwen2.5:14b": "mavis-terminal-3\\qwen-2-5-14b.py",
-        "install qwen2.5:32b": "mavis-terminal-3\\qwen-2-5-32b.py",
-        "install qwen2.5:72b": "mavis-terminal-3\\qwen-2-5-72b.py",
-        "install qwen2.5-coder:0.5b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
-        "install qwen2.5-coder:1.5b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
-        "install qwen2.5-coder:3b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
-        "install qwen2.5-coder:7b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
-        "install qwen2.5-coder:14b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
-        "install qwen2.5-coder:32b": "mavis-terminal-3\\qwen-2-5-coder-0.5b.py",
-        "install gemma3:1b": "mavis-terminal-3\\gemma-3-1b.py", # new
-        "install gemma3:4b": "mavis-terminal-3\\gemma-3-4b.py", # new
-        "install gemma3:12b": "mavis-terminal-3\\gemma-3-12b.py", # new
-        "install gemma3:27b": "mavis-terminal-3\\gemma-3-27b.py", # new
-        "install qwq": "mavis-terminal-3\\qwq.py", # new
-        "install command-a": "mavis-terminal-3\\command-a.py", # new
-        "install phi4-mini": "mavis-terminal-3\\phi-4-mini.py", # new
-        "install granite3.2:8b": "mavis-terminal-3\\granite-3-2-8b.py", # new
-        "install granite3.2:2b": "mavis-terminal-3\\granite-3-2-2b.py", # new
-        "install granite3.2-vision:2b": "mavis-terminal-3\\granite-3-2-2b-vision.py", # new
-        "help": "mavis-terminal-3\\help.py",
+        "run deepseek-r1:1.5b": "mavis-terminal\\deepseek-r1-1-5b.py",
+        "run deepseek-r1:7b": "mavis-terminal\\deepseek-r1-7b.py",
+        "run deepseek-r1:8b": "mavis-terminal\\deepseek-r1-8b.py",
+        "run deepseek-r1:14b": "mavis-terminal\\deepseek-r1-14b.py",
+        "run deepseek-r1:32b": "mavis-terminal\\deepseek-r1-32b.py",
+        "run deepseek-r1:70b": "mavis-terminal\\deepseek-r1-70b.py",
+        "run deepseek-r1:671b": "mavis-terminal\\deepseek-r1-671b.py",
+        "run deepscaler": "mavis-terminal\\deepscaler.py",
+        "run llama3.1:8b": "mavis-terminal\\llama-3-1-8b.py",
+        "run llama3.1:70b": "mavis-terminal\\llama-3-1-70b.py",
+        "run llama3.1:405": "mavis-terminal\\llama-3-1-405b.py",
+        "run llama3.2:1b": "mavis-terminal\\llama-3-2-1b.py",
+        "run llama3.2:3b": "mavis-terminal\\llama-3-2-3b.py",
+        "run llama3.3": "mavis-terminal\\llama-3-3.py",
+        "run llama3:8b": "mavis-terminal\\llama-3-8b.py",
+        "run llama3:70b": "mavis-terminal\\llama-3-70b.py",
+        "run mistral": "mavis-terminal\\mistral.py",
+        "run mistral-large": "mavis-terminal\\mistral-large.py", #new
+        "run mistral-nemo": "mavis-terminal\\mistral-nemo.py", #new
+        "run mistral-openorca": "mavis-terminal\\mistral-openorca.py", #new
+        "run mistral-small:22b": "mavis-terminal\\mistral-small-22b.py", #new
+        "run mistral-small:24b": "mavis-terminal\\mistral-small-24b.py", #new
+        "run phi4": "mavis-terminal\\phi-4.py",
+        "run qwen2.5:0.5b": "mavis-terminal\\qwen-2-5-0.5b.py",
+        "run qwen2.5:1.5b": "mavis-terminal\\qwen-2-5-1.5b.py",
+        "run qwen2.5:3b": "mavis-terminal\\qwen-2-5-3b.py",
+        "run qwen2.5:7b": "mavis-terminal\\qwen-2-5-7b.py",
+        "run qwen2.5:14b": "mavis-terminal\\qwen-2-5-14b.py",
+        "run qwen2.5:32b": "mavis-terminal\\qwen-2-5-32b.py",
+        "run qwen2.5:72b": "mavis-terminal\\qwen-2-5-72b.py",
+        "run qwen2.5-coder:0.5b": "mavis-terminal\\qwen-2-5-coder-0.5b.py",
+        "run qwen2.5-coder:1.5b": "mavis-terminal\\qwen-2-5-coder-0.5b.py",
+        "run qwen2.5-coder:3b": "mavis-terminal\\qwen-2-5-coder-0.5b.py",
+        "run qwen2.5-coder:7b": "mavis-terminal\\qwen-2-5-coder-0.5b.py",
+        "run qwen2.5-coder:14b": "mavis-terminal\\qwen-2-5-coder-0.5b.py",
+        "run qwen2.5-coder:32b": "mavis-terminal\\qwen-2-5-coder-0.5b.py",
+        "run gemma3:1b": "mavis-terminal\\gemma-3-1b.py", # new
+        "run gemma3:4b": "mavis-terminal\\gemma-3-4b.py", # new
+        "run gemma3:12b": "mavis-terminal\\gemma-3-12b.py", # new
+        "run gemma3:27b": "mavis-terminal\\gemma-3-27b.py", # new
+        "run qwq": "mavis-terminal\\qwq.py", # new
+        "run command-a": "mavis-terminal\\command-a.py", #new
+        "run phi4-mini": "mavis-terminal\\phi-4-mini.py", #new
+        "run granite3.2:8b": "mavis-terminal\\granite-3-2-8b.py", # new
+        "run granite3.2:2b": "mavis-terminal\\granite-3-2-2b.py", # new
+        "run granite3.2-vision:2b": "mavis-terminal\\granite-3-2-2b-vision.py", # new
+        "install deepseek-r1:1.5b": "mavis-terminal\\deepseek-r1-1-5b.py",
+        "install deepseek-r1:7b": "mavis-terminal\\deepseek-r1-7b.py",
+        "install deepseek-r1:8b": "mavis-terminal\\deepseek-r1-8b.py",
+        "install deepseek-r1:14b": "mavis-terminal\\deepseek-r1-14b.py",
+        "install deepseek-r1:32b": "mavis-terminal\\deepseek-r1-32b.py",
+        "install deepseek-r1:70b": "mavis-terminal\\deepseek-r1-70b.py",
+        "install deepseek-r1:671b": "mavis-terminal\\deepseek-r1-671b.py",
+        "install deepscaler": "mavis-terminal\\deepscaler.py",
+        "install llama3.1:8b": "mavis-terminal\\llama-3-1-8b.py",
+        "install llama3.1:70b": "mavis-terminal\\llama-3-1-70b.py",
+        "install llama3.1:405": "mavis-terminal\\llama-3-1-405b.py",
+        "install llama3.2:1b": "mavis-terminal\\llama-3-2-1b.py",
+        "install llama3.2:3b": "mavis-terminal\\llama-3-2-3b.py",
+        "install llama3.3": "mavis-terminal\\llama-3-3.py",
+        "install llama3:8b": "mavis-terminal\\llama-3-8b.py",
+        "install llama3:70b": "mavis-terminal\\llama-3-70b.py",
+        "install mistral": "mavis-terminal\\mistral.py",
+        "install mistral-large": "mavis-terminal\\mistral-large.py", #new
+        "install mistral-nemo": "mavis-terminal\\mistral-nemo.py", #new
+        "install mistral-openorca": "mavis-terminal\\mistral-openorca.py", #new
+        "install mistral-small:22b": "mavis-terminal\\mistral-small-22b.py", #new
+        "install mistral-small:24b": "mavis-terminal\\mistral-small-24b.py", #new
+        "install phi4": "mavis-terminal\\phi-4.py",
+        "install qwen2.5:0.5b": "mavis-terminal\\qwen-2-5-0.5b.py",
+        "install qwen2.5:1.5b": "mavis-terminal\\qwen-2-5-1.5b.py",
+        "install qwen2.5:3b": "mavis-terminal\\qwen-2-5-3b.py",
+        "install qwen2.5:7b": "mavis-terminal\\qwen-2-5-7b.py",
+        "install qwen2.5:14b": "mavis-terminal\\qwen-2-5-14b.py",
+        "install qwen2.5:32b": "mavis-terminal\\qwen-2-5-32b.py",
+        "install qwen2.5:72b": "mavis-terminal\\qwen-2-5-72b.py",
+        "install qwen2.5-coder:0.5b": "mavis-terminal\\qwen-2-5-coder-0.5b.py",
+        "install qwen2.5-coder:1.5b": "mavis-terminal\\qwen-2-5-coder-0.5b.py",
+        "install qwen2.5-coder:3b": "mavis-terminal\\qwen-2-5-coder-0.5b.py",
+        "install qwen2.5-coder:7b": "mavis-terminal\\qwen-2-5-coder-0.5b.py",
+        "install qwen2.5-coder:14b": "mavis-terminal\\qwen-2-5-coder-0.5b.py",
+        "install qwen2.5-coder:32b": "mavis-terminal\\qwen-2-5-coder-0.5b.py",
+        "install gemma3:1b": "mavis-terminal\\gemma-3-1b.py", # new
+        "install gemma3:4b": "mavis-terminal\\gemma-3-4b.py", # new
+        "install gemma3:12b": "mavis-terminal\\gemma-3-12b.py", # new
+        "install gemma3:27b": "mavis-terminal\\gemma-3-27b.py", # new
+        "install qwq": "mavis-terminal\\qwq.py", # new
+        "install command-a": "mavis-terminal\\command-a.py", # new
+        "install phi4-mini": "mavis-terminal\\phi-4-mini.py", # new
+        "install granite3.2:8b": "mavis-terminal\\granite-3-2-8b.py", # new
+        "install granite3.2:2b": "mavis-terminal\\granite-3-2-2b.py", # new
+        "install granite3.2-vision:2b": "mavis-terminal\\granite-3-2-2b-vision.py", # new
+        "help": "mavis-terminal\\help.py",
         "run mavis": "mavis-installer-3-main-windows.py",
-        "m run all": "mavis-terminal-3\\m-run-all.py", # new
-        "m htop": "mavis-terminal-3\\m-htop.py", # new
-        "m run gemma3": "mavis-terminal-3\\m-gemma-3.py", # new
-        "m run deepseek-r1": "mavis-terminal-3\\m-deepseek-r1.py", # new
-        "m run qwen2.5": "mavis-terminal-3\\m-qwen-2-5.py", # new
-        "m run qwen2.5-coder": "mavis-terminal-3\\m-qwen-2-5-coder.py", # new
-        "m python frameworks": "mavis-terminal-3\\m-python-frameworks.py", # new
-        "m pip list": "mavis-terminal-3\\m-python-frameworks.py", # new
-        "m pip ls": "mavis-terminal-3\\m-python-frameworks.py",  # new
-        "m git": "mavis-terminal-3\\m-git.py", # new
-        "m ls": "mavis-terminal-3\\m-ls.py" # new
+        "m run all": "mavis-terminal\\m-run-all.py", # new
+        "m htop": "mavis-terminal\\m-htop.py", # new
+        "m run gemma3": "mavis-terminal\\m-gemma-3.py", # new
+        "m run deepseek-r1": "mavis-terminal\\m-deepseek-r1.py", # new
+        "m run qwen2.5": "mavis-terminal\\m-qwen-2-5.py", # new
+        "m run qwen2.5-coder": "mavis-terminal\\m-qwen-2-5-coder.py", # new
+        "m python frameworks": "mavis-terminal\\m-python-frameworks.py", # new
+        "m pip list": "mavis-terminal\\m-python-frameworks.py", # new
+        "m pip ls": "mavis-terminal\\m-python-frameworks.py",  # new
+        "m git": "mavis-terminal\\m-git.py", # new
+        "m ls": "mavis-terminal\\m-ls.py" # new
     }
 
     if user_input in commands:

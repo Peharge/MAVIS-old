@@ -65,7 +65,7 @@ All MAVIS versions are available here:
    5. mavis-3-3-math-mini
 
 3. MAVIS Terminal 3 EAP:
-   1. mavis-terminal-3
+   1. mavis-terminal
 
 4. MAVIS 3 fast start:
    1. mavis-3-main-fast

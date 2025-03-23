@@ -88,7 +88,7 @@ III LLM model is not available for you - you do not have permission to install t
    - mavis-3-3-math-fast: With Xc++ 3 11B or Llama3.2 11B + QwQ 32b + Qwen 2.5 1.5b + granite3.2-vision 2b (qwq Not Installed)
 
 4. MAVIS Terminal 3 EAP:
-   - mavis-terminal-3: The MAVIS Terminal is always available for you!!! ( Installed)
+   - mavis-terminal: The MAVIS Terminal is always available for you!!! ( Installed)
 
 5. MAVIS 4 EAP:
    - mavis-4: NEW - Development of MAVIS 4 has begun – featuring new Vision Models, a more powerful and faster MAVIS Terminal, and access to over 200 models. ( Installed)
