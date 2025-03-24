@@ -1,3 +1,66 @@
+# Englisch | Peharge: This source code is released under the MIT License.
+#
+# Usage Rights:
+# The source code may be copied, modified, and adapted to individual requirements.
+# Users are permitted to use this code in their own projects, both for private and commercial purposes.
+# However, it is recommended to modify the code only if you have sufficient programming knowledge,
+# as changes could cause unintended errors or security risks.
+#
+# Dependencies and Additional Frameworks:
+# The code relies on the use of various frameworks and executes additional files.
+# Some of these files may automatically install further dependencies required for functionality.
+# It is strongly recommended to perform installation and configuration in an isolated environment
+# (e.g., a virtual environment) to avoid potential conflicts with existing software installations.
+#
+# Disclaimer:
+# Use of the code is entirely at your own risk.
+# Peharge assumes no liability for damages, data loss, system errors, or other issues
+# that may arise directly or indirectly from the use, modification, or redistribution of the code.
+#
+# Please read the full terms of the MIT License to familiarize yourself with your rights and obligations.
+
+# Deutsch | Peharge: Dieser Quellcode wird unter der MIT-Lizenz veröffentlicht.
+#
+# Nutzungsrechte:
+# Der Quellcode darf kopiert, bearbeitet und an individuelle Anforderungen angepasst werden.
+# Nutzer sind berechtigt, diesen Code in eigenen Projekten zu verwenden, sowohl für private als auch kommerzielle Zwecke.
+# Es wird jedoch empfohlen, den Code nur dann anzupassen, wenn Sie über ausreichende Programmierkenntnisse verfügen,
+# da Änderungen unbeabsichtigte Fehler oder Sicherheitsrisiken verursachen könnten.
+#
+# Abhängigkeiten und zusätzliche Frameworks:
+# Der Code basiert auf der Nutzung verschiedener Frameworks und führt zusätzliche Dateien aus.
+# Einige dieser Dateien könnten automatisch weitere Abhängigkeiten installieren, die für die Funktionalität erforderlich sind.
+# Es wird dringend empfohlen, die Installation und Konfiguration in einer isolierten Umgebung (z. B. einer virtuellen Umgebung) durchzuführen,
+# um mögliche Konflikte mit bestehenden Softwareinstallationen zu vermeiden.
+#
+# Haftungsausschluss:
+# Die Nutzung des Codes erfolgt vollständig auf eigene Verantwortung.
+# Peharge übernimmt keinerlei Haftung für Schäden, Datenverluste, Systemfehler oder andere Probleme,
+# die direkt oder indirekt durch die Nutzung, Modifikation oder Weitergabe des Codes entstehen könnten.
+#
+# Bitte lesen Sie die vollständigen Lizenzbedingungen der MIT-Lizenz, um sich mit Ihren Rechten und Pflichten vertraut zu machen.
+
+# Français | Peharge: Ce code source est publié sous la licence MIT.
+#
+# Droits d'utilisation:
+# Le code source peut être copié, édité et adapté aux besoins individuels.
+# Les utilisateurs sont autorisés à utiliser ce code dans leurs propres projets, à des fins privées et commerciales.
+# Il est cependant recommandé d'adapter le code uniquement si vous avez des connaissances suffisantes en programmation,
+# car les modifications pourraient provoquer des erreurs involontaires ou des risques de sécurité.
+#
+# Dépendances et frameworks supplémentaires:
+# Le code est basé sur l'utilisation de différents frameworks et exécute des fichiers supplémentaires.
+# Certains de ces fichiers peuvent installer automatiquement des dépendances supplémentaires requises pour la fonctionnalité.
+# Il est fortement recommandé d'effectuer l'installation et la configuration dans un environnement isolé (par exemple un environnement virtuel),
+# pour éviter d'éventuels conflits avec les installations de logiciels existantes.
+#
+# Clause de non-responsabilité:
+# L'utilisation du code est entièrement à vos propres risques.
+# Peharge n'assume aucune responsabilité pour tout dommage, perte de données, erreurs système ou autres problèmes,
+# pouvant découler directement ou indirectement de l'utilisation, de la modification ou de la diffusion du code.
+#
+# Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
+
 import sys
 import os
 import subprocess
@@ -40,22 +103,22 @@ def check_model_with_ollama(model_version: str) -> bool:
 def fetch_models():
     # Beispielhafte Modelle mit Name, Version, Kategorie und Bewertung
     return [
-        {"name": "Xc++ I 11b", "version": "xcpp:11b", "category": "Vision Tools", "rating": 5},
+        {"name": "Xc++ I 11b", "version": "xcpp:11b", "category": "Vision Tools", "rating": 4},
         {"name": "Xc++ II 11b", "version": "xcpp2:11b", "category": "Vision Tools", "rating": 5},
         {"name": "Xc++ III 11b", "version": "xcpp3:11b", "category": "Vision Tools", "rating": 5},
-        {"name": "Xc++ IV 11b", "version": "xcpp4:11b", "category": "Vision Tools", "rating": 5},
+        {"name": "Xc++ IV 11b", "version": "xcpp4:11b", "category": "Vision Tools", "rating": 6},
         {"name": "Gemma 3 1b", "version": "gemma3:1b", "category": "Vision Tools", "rating": 5},
         {"name": "Gemma 3 4b", "version": "gemma3:4b", "category": "Vision Tools", "rating": 5},
-        {"name": "Gemma 3 12b", "version": "gemma3:12b", "category": "Vision Tools", "rating": 5},
-        {"name": "Gemma 3 27b", "version": "gemma3:27b", "category": "Vision Tools", "rating": 5},
-        {"name": "QwQ", "version": "qwq", "category": "Language Model", "rating": 5},
+        {"name": "Gemma 3 12b", "version": "gemma3:12b", "category": "Vision Tools", "rating": 6},
+        {"name": "Gemma 3 27b", "version": "gemma3:27b", "category": "Vision Tools", "rating": 6},
+        {"name": "QwQ", "version": "qwq", "category": "Language Model", "rating": 6},
         {"name": "Llama 3.1 8b", "version": "llama3.1:8b", "category": "Language Model", "rating": 4},
         {"name": "Llama 3.1 70b", "version": "llama3.1:70b", "category": "Language Model", "rating": 4},
-        {"name": "Llama 3.1 405b", "version": "llama3.1:405b", "category": "Language Model", "rating": 4},
+        {"name": "Llama 3.1 405b", "version": "llama3.1:405b", "category": "Language Model", "rating": 5},
         {"name": "Llama 3.2 1b", "version": "llama3.2:1b", "category": "Language Model", "rating": 4},
         {"name": "Llama 3.2 3b", "version": "llama3.2:3b", "category": "Language Model", "rating": 4},
-        {"name": "Llama 3.2 Vision 11b", "version": "llama3.2-vision:11b", "category": "Vision Tools","rating": 4},
-        {"name": "Llama 3.2 Vision 90b", "version": "llama3.2-vision:90b", "category": "Vision Tools","rating": 4},
+        {"name": "Llama 3.2 Vision 11b", "version": "llama3.2-vision:11b", "category": "Vision Tools","rating": 5},
+        {"name": "Llama 3.2 Vision 90b", "version": "llama3.2-vision:90b", "category": "Vision Tools","rating": 5},
         {"name": "Llama 3.3 70b", "version": "llama3.3", "category": "Language Model", "rating": 5},
         {"name": "Phi 4 14b", "version": "phi4", "category": "Language Model", "rating": 5},
         {"name": "Phi 4 mini 3.8b", "version": "phi4-mini", "category": "Language Model", "rating": 4},
@@ -63,10 +126,10 @@ def fetch_models():
         {"name": "SeepSeek-r1 1.5b", "version": "deepseek-r1:1.5b", "category": "Language Model", "rating": 5},
         {"name": "SeepSeek-r1 7b", "version": "deepseek-r1:7b", "category": "Language Model", "rating": 5},
         {"name": "SeepSeek-r1 8b", "version": "deepseek-r1:8b", "category": "Language Model", "rating": 5},
-        {"name": "SeepSeek-r1 14b", "version": "deepseek-r1:14b", "category": "Language Model", "rating": 5},
-        {"name": "SeepSeek-r1 32b", "version": "deepseek-r1:32b", "category": "Language Model", "rating": 5},
-        {"name": "SeepSeek-r1 70b", "version": "deepseek-r1:70b", "category": "Language Model", "rating": 5},
-        {"name": "SeepSeek-r1 671b", "version": "deepseek-r1:671b", "category": "Language Model", "rating": 3},
+        {"name": "SeepSeek-r1 14b", "version": "deepseek-r1:14b", "category": "Language Model", "rating": 6},
+        {"name": "SeepSeek-r1 32b", "version": "deepseek-r1:32b", "category": "Language Model", "rating": 6},
+        {"name": "SeepSeek-r1 70b", "version": "deepseek-r1:70b", "category": "Language Model", "rating": 6},
+        {"name": "SeepSeek-r1 671b", "version": "deepseek-r1:671b", "category": "Language Model", "rating": 6},
         {"name": "Qwen 2.5 0.5b", "version": "qwen2.5:0.5b", "category": "Language Model", "rating": 4},
         {"name": "Qwen 2.5 1.5b", "version": "qwen2.5:1.5b", "category": "Language Model", "rating": 4},
         {"name": "Qwen 2.5 3b", "version": "qwen2.5:3b", "category": "Language Model", "rating": 4},
@@ -236,7 +299,7 @@ class ModelCard(QFrame):
         layout.addWidget(self.category_label)
 
         # Sternebewertung
-        stars = "★" * self.model["rating"] + "☆" * (5 - self.model["rating"])
+        stars = "★" * self.model["rating"] + "☆" * (6 - self.model["rating"])
         self.rating_label = QLabel(stars)
         self.rating_label.setFont(QFont("Segoe UI", 16))
         self.rating_label.setStyleSheet("color: #f1c40f;")

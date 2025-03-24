@@ -65,21 +65,22 @@ import sys
 import os
 import subprocess
 import logging
-from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QTreeWidget, QTreeWidgetItem, QLabel, QScrollArea
-from PyQt6.QtGui import QPalette, QColor, QIcon
-from PyQt6.QtCore import Qt
-import platform
 from concurrent.futures import ThreadPoolExecutor
+
+from PyQt6.QtWidgets import (
+    QApplication, QWidget, QVBoxLayout, QLabel, QScrollArea, QGridLayout,
+    QFrame, QSizePolicy, QGraphicsDropShadowEffect
+)
+from PyQt6.QtGui import QPalette, QColor, QIcon, QFont
+from PyQt6.QtCore import Qt, QPropertyAnimation, QEasingCurve
 
 # Logging konfigurieren
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+
 def check_model_with_ollama(model_version: str) -> bool:
     """
     Überprüft, ob ein Modell in Ollama verfügbar ist.
-
-    :param model_version: Der Name des zu prüfenden Modells.
-    :return: True, wenn das Modell verfügbar ist, andernfalls False.
     """
     try:
         result = subprocess.run(
@@ -88,9 +89,9 @@ def check_model_with_ollama(model_version: str) -> bool:
             stderr=subprocess.PIPE,
             text=True,
             encoding="utf-8",
-            check=True  # Wirf eine Ausnahme, wenn der Befehl fehlschlägt
+            check=True
         )
-        return result.returncode == 0  # Wenn der Rückgabewert 0 ist, wurde das Modell gefunden
+        return result.returncode == 0
     except subprocess.CalledProcessError as e:
         logging.error(f"Error checking model {model_version}: {e.stderr}")
         return False
@@ -98,173 +99,284 @@ def check_model_with_ollama(model_version: str) -> bool:
         logging.error(f"Unbekannter Fehler beim Überprüfen des Modells {model_version}: {e}")
         return False
 
-def fetch_models():
-    return {
-        "Gemma 3 1b": "gemma3:1b",
-        "Gemma 3 4b": "gemma3:4b",
-        "Gemma 3 12b": "gemma3:12b",
-        "Gemma 3 27b": "gemma3:27b",
-        "QwQ": "qwq",
-        "Llama 3.1 8b": "llama3.1:8b",
-        "Llama 3.1 70b": "llama3.1:70b",
-        "Llama 3.1 405b": "llama3.1:405b",
-        "Llama 3.2 1b": "llama3.2:1b",
-        "Llama 3.2 3b": "llama3.2:3b",
-        "Llama 3.2 Vision 11b": "llama3.2-vision:11b",
-        "Llama 3.2 Vision 90b": "llama3.2-vision:90b",
-        "Llama 3.3": "llama3.3",
-        "Phi 4 14b": "phi4",
-        "Phi 4 mini 3.8b": "phi4-mini",
-        "SeepSeek-v3 671": "deepseek-v3",
-        "SeepSeek-r1 1.5b": "deepseek-r1:1.5b",
-        "SeepSeek-r1 7b": "deepseek-r1:7b",
-        "SeepSeek-r1 8b": "deepseek-r1:8b",
-        "SeepSeek-r1 14b": "deepseek-r1:14b",
-        "SeepSeek-r1 32b": "deepseek-r1:32b",
-        "SeepSeek-r1 70b": "deepseek-r1:70b",
-        "SeepSeek-r1 671b": "deepseek-r1:671b",
-        "Qwen 2.5 0.5b": "qwen2.5:0.5b",
-        "Qwen 2.5 1.5b": "qwen2.5:1.5b",
-        "Qwen 2.5 3b": "qwen2.5:3b",
-        "Qwen 2.5 7b": "qwen2.5:7b",
-        "Qwen 2.5 14b": "qwen2.5:14b",
-        "Qwen 2.5 32b": "qwen2.5:32b",
-        "Qwen 2.5 72b": "qwen2.5:72b",
-        "Qwen 2.5 coder 0.5b": "qwen2.5-coder:0.5b",
-        "Qwen 2.5 coder 1.5b": "qwen2.5-coder:1.5b",
-        "Qwen 2.5 coder 3b": "qwen2.5-coder:3b",
-        "Qwen 2.5 coder 7b": "qwen2.5-coder:7b",
-        "Qwen 2.5 coder 14b": "qwen2.5-coder:14b",
-        "Qwen 2.5 coder 32b": "qwen2.5-coder:32b",
-        "EXAONE Deep 2.4b": "exaone-deep:2.4b",
-        "EXAONE Deep 7.8b": "exaone-deep:7.8b",
-        "EXAONE Deep 32b": "exaone-deep:32b",
-        "DeepScaleR 1.5b": "deepscaler",
-        "Mistral Large 123B": "mistral-large",
-        "Qwen 0.5b": "qwen:0.5b",
-        "Qwen 1.8b": "qwen:1.8b",
-        "Qwen 4b": "qwen:4b",
-        "Qwen 7b": "qwen:7b",
-        "Qwen 14b": "qwen:14b",
-        "Qwen 32b": "qwen:32b",
-        "Qwen 72b": "qwen:72b",
-        "Qwen 110b": "qwen:110b",
-        "Qwen 2 0.5b": "qwen2:0.5b",
-        "Qwen 2 1.5b": "qwen2:1.5b",
-        "Qwen 2 7b": "qwen2:7b",
-        "Qwen 2 110b": "qwen2:110b",
-        "Phi 3 3.8b": "phi3:14b",
-        "Phi 3 14b": "phi3:14b",
-        "Gemma 2b": "gemma:2b",
-        "Gemma 7b": "gemma:7b",
-        "Gemma 2 2b": "gemma3:2b",
-        "Gemma 2 9b": "gemma3:9b",
-        "Gemma 2 27b": "gemma3:27b",
-        "Code Llama 7b": "codellama:7b",
-        "Code Llama 13b": "codellama:13b",
-        "Code Llama 34b ": "codellama:32b",
-        "Code Llama 70b": "codellama:70b",
-        "Llama 2 7b": "llama2:8b",
-        "Llama 2 13b": "llama2:13b",
-        "Llama 2 70b": "llama2:70b",
-        "Llama 3 8b": "llama3:8b",
-        "Llama 3 70b": "llama3:70b",
-        "mistral 7b": "mistral",
-        "mistral-nemo 12b": "mistral-nemo",
-        "LlaVA 7b": "llava:7b",
-        "LlaVA 13b": "llava:13b",
-        "LlaVA 34b": "llava:34b",
-        "Tinyllama 1.1b": "tinyllama",
-        "StarCoder2 3b": "starcoder2:3b",
-        "StarCoder2 7b": "starcoder2:7b",
-        "StarCoder2 15b": "starcoder2:15b",
-        "Llama2 uncensored 7b": "llama2-uncensored:7b",
-        "Llama2 uncensored 70b": "llama2-uncensored:70b",
-        "deepseek-coder-v2 16b": "deepseek-coder-v2:16b",
-        "deepseek-coder-v2 236": "deepseek-coder-v2:236b",
-        "minicpm-v 8b": "minicpm-v",
-        "deepseek-coder 1.3b": "deepseek-coder:1.3b",
-        "deepseek-coder 6.7b": "deepseek-coder:6.7b",
-        "deepseek-coder 33b": "deepseek-coder:33b",
-        "mixtral 8x7b": "mixtral:8x7b",
-        "mixtral 8x22b": "mixtral:8x22b",
-        "codegemma 2b": "codegemma:2b",
-        "codegemma 7b": "codegemma:7b",
-        "dolphin-mixtral 8x7b": "dolphin-mixtral:8x7b",
-        "dolphin-mixtral 8x22b": "dolphin-mixtral:8x22b",
-        "openthinker 7b": "openthinker:7b",
-        "openthinker 32b": "openthinker:32b",
-        "phi 2.7b": "phi",
-        "llava-llama3 8b": "llava-llama3",
-        "dolphin3 8b": "dolphin3",
-        "olmo2 7b": "olmo2:7b",
-        "olmo2 13b": "olmo2:13b",
-        "smollm2 135m": "smollm2:135m",
-        "smollm2 360m": "smollm2:360m",
-        "smollm2 1.7b": "smollm2:1.7b",
-        "wizardlm2 7b": "wizardlm2:7b",
-        "wizardlm2 8x22b": "wizardlm2:8x22b",
-        "mistral-small 22b": "mistral-small:22b",
-        "mistral-small 24b": "mistral-small:24b",
-        "dolphin-mistral 7b": "dolphin-mistral:7b",
-        "dolphin-llama3 8b": "dolphin-llama3:8b",
-        "dolphin-llama3 70b": "dolphin-llama3:70b",
-        "command-r 35b": "command-r",
-        "orca-mini 3b": "orca-mini:3b",
-        "orca-mini 7b": "orca-mini:7b",
-        "orca-mini 13b": "orca-mini:13b",
-        "orca-mini 70b": "orca-mini:70b",
-        "yi 6b": "yi:6b",
-        "yi 9b": "yi:69b",
-        "yi 34b": "yi:34b",
-        "qwen2-math 1.5b": "qwen2-math:1.5b",
-        "qwen2-math 7b": "qwen2-math:7b",
-        "qwen2-math 72b": "qwen2-math:72b",
-        "hermes3 3b": "hermes3:3b",
-        "hermes3 8b": "hermes3:8b",
-        "hermes3 70b": "hermes3:70b",
-        "hermes3 405b": "hermes3:405b",
-        "phi3.5 3.8b": "phi3.5",
-        "smollm 125m": "smollm:135m",
-        "smollm 360m": "smollm:360m",
-        "smollm 1.7b": "smollm:1.7b",
-        "nuextract 3.8b": "nuextract",
-        "firefunction-v2 70b": "firefunction-v2",
-        "llama3-groq-tool-use 8b": "llama3-groq-tool-use:8b",
-        "llama3-groq-tool-use 70b": "llama3-groq-tool-use:70b",
-        "mathstral 7b": "mathstral",
-        "codegeex4 9b": "codegeex4",
-        "glm4 9b": "glm4",
-        "internlm2 1m": "internlm2:1m",
-        "internlm2 1.8b": "internlm2:1.8b",
-        "internlm2 7b": "internlm2:7b",
-        "internlm2 20b": "internlm2:20b",
-        "codestral 22b": "codestral",
-    }
 
-class FrameworkViewer(QWidget):
+def fetch_models():
+    # Beispielhafte Modelle mit Name, Version, Kategorie und Bewertung
+    return [
+        {"name": "Xc++ I 11b", "version": "xcpp:11b", "category": "Vision Tools", "rating": 4},
+        {"name": "Xc++ II 11b", "version": "xcpp2:11b", "category": "Vision Tools", "rating": 5},
+        {"name": "Xc++ III 11b", "version": "xcpp3:11b", "category": "Vision Tools", "rating": 5},
+        {"name": "Xc++ IV 11b", "version": "xcpp4:11b", "category": "Vision Tools", "rating": 6},
+        {"name": "Gemma 3 1b", "version": "gemma3:1b", "category": "Vision Tools", "rating": 5},
+        {"name": "Gemma 3 4b", "version": "gemma3:4b", "category": "Vision Tools", "rating": 5},
+        {"name": "Gemma 3 12b", "version": "gemma3:12b", "category": "Vision Tools", "rating": 6},
+        {"name": "Gemma 3 27b", "version": "gemma3:27b", "category": "Vision Tools", "rating": 6},
+        {"name": "QwQ", "version": "qwq", "category": "Language Model", "rating": 6},
+        {"name": "Llama 3.1 8b", "version": "llama3.1:8b", "category": "Language Model", "rating": 4},
+        {"name": "Llama 3.1 70b", "version": "llama3.1:70b", "category": "Language Model", "rating": 4},
+        {"name": "Llama 3.1 405b", "version": "llama3.1:405b", "category": "Language Model", "rating": 5},
+        {"name": "Llama 3.2 1b", "version": "llama3.2:1b", "category": "Language Model", "rating": 4},
+        {"name": "Llama 3.2 3b", "version": "llama3.2:3b", "category": "Language Model", "rating": 4},
+        {"name": "Llama 3.2 Vision 11b", "version": "llama3.2-vision:11b", "category": "Vision Tools","rating": 5},
+        {"name": "Llama 3.2 Vision 90b", "version": "llama3.2-vision:90b", "category": "Vision Tools","rating": 5},
+        {"name": "Llama 3.3 70b", "version": "llama3.3", "category": "Language Model", "rating": 5},
+        {"name": "Phi 4 14b", "version": "phi4", "category": "Language Model", "rating": 5},
+        {"name": "Phi 4 mini 3.8b", "version": "phi4-mini", "category": "Language Model", "rating": 4},
+        {"name": "SeepSeek-v3 671", "version": "deepseek-v3", "category": "Language Model", "rating": 4},
+        {"name": "SeepSeek-r1 1.5b", "version": "deepseek-r1:1.5b", "category": "Language Model", "rating": 5},
+        {"name": "SeepSeek-r1 7b", "version": "deepseek-r1:7b", "category": "Language Model", "rating": 5},
+        {"name": "SeepSeek-r1 8b", "version": "deepseek-r1:8b", "category": "Language Model", "rating": 5},
+        {"name": "SeepSeek-r1 14b", "version": "deepseek-r1:14b", "category": "Language Model", "rating": 6},
+        {"name": "SeepSeek-r1 32b", "version": "deepseek-r1:32b", "category": "Language Model", "rating": 6},
+        {"name": "SeepSeek-r1 70b", "version": "deepseek-r1:70b", "category": "Language Model", "rating": 6},
+        {"name": "SeepSeek-r1 671b", "version": "deepseek-r1:671b", "category": "Language Model", "rating": 6},
+        {"name": "Qwen 2.5 0.5b", "version": "qwen2.5:0.5b", "category": "Language Model", "rating": 4},
+        {"name": "Qwen 2.5 1.5b", "version": "qwen2.5:1.5b", "category": "Language Model", "rating": 4},
+        {"name": "Qwen 2.5 3b", "version": "qwen2.5:3b", "category": "Language Model", "rating": 4},
+        {"name": "Qwen 2.5 7b", "version": "qwen2.5:7b", "category": "Language Model", "rating": 4},
+        {"name": "Qwen 2.5 14b", "version": "qwen2.5:14b", "category": "Language Model", "rating": 4},
+        {"name": "Qwen 2.5 32b", "version": "qwen2.5:32b", "category": "Language Model", "rating": 4},
+        {"name": "Qwen 2.5 72b", "version": "qwen2.5:72b", "category": "Language Model", "rating": 4},
+        {"name": "Qwen 2.5 coder 0.5b", "version": "qwen2.5-coder:0.5b", "category": "Language Model", "rating": 5},
+        {"name": "Qwen 2.5 coder 1.5b", "version": "qwen2.5-coder:1.5b", "category": "Language Model", "rating": 5},
+        {"name": "Qwen 2.5 coder 3b", "version": "qwen2.5-coder:3b", "category": "Language Model", "rating": 5},
+        {"name": "Qwen 2.5 coder 7b", "version": "qwen2.5-coder:7b", "category": "Language Model", "rating": 5},
+        {"name": "Qwen 2.5 coder 14b", "version": "qwen2.5-coder:14b", "category": "Language Model", "rating": 5},
+        {"name": "Qwen 2.5 coder 32b", "version": "qwen2.5-coder:32b", "category": "Language Model", "rating": 5},
+        {"name": "EXAONE Deep 2.4b", "version": "exaone-deep:2.4b", "category": "Language Model", "rating": 3},
+        {"name": "EXAONE Deep 7.8b", "version": "exaone-deep:7.8b", "category": "Language Model", "rating": 3},
+        {"name": "EXAONE Deep 32b", "version": "exaone-deep:32b", "category": "Language Model", "rating": 3},
+        {"name": "DeepScaleR 1.5b", "version": "deepscaler", "category": "Language Model", "rating": 5},
+        {"name": "Mistral Large 123B", "version": "mistral-large", "category": "Language Model", "rating": 5},
+        {"name": "Qwen 0.5b", "version": "qwen:0.5b", "category": "Language Model", "rating": 3},
+        {"name": "Qwen 1.8b", "version": "qwen:1.8b", "category": "Language Model", "rating": 3},
+        {"name": "Qwen 4b", "version": "qwen:4b", "category": "Language Model", "rating": 3},
+        {"name": "Qwen 7b", "version": "qwen:7b", "category": "Language Model", "rating": 3},
+        {"name": "Qwen 14b", "version": "qwen:14b", "category": "Language Model", "rating": 3},
+        {"name": "Qwen 32b", "version": "qwen:32b", "category": "Language Model", "rating": 3},
+        {"name": "Qwen 72b", "version": "qwen:72b", "category": "Language Model", "rating": 3},
+        {"name": "Qwen 110b", "version": "qwen:110b", "category": "Language Model", "rating": 3},
+        {"name": "Qwen 2 0.5b", "version": "qwen2:0.5b", "category": "Language Model", "rating": 3},
+        {"name": "Qwen 2 1.5b", "version": "qwen2:1.5b", "category": "Language Model", "rating": 3},
+        {"name": "Qwen 2 7b", "version": "qwen2:7b", "category": "Language Model", "rating": 3},
+        {"name": "Qwen 2 110b", "version": "qwen2:110b", "category": "Language Model", "rating": 3},
+        {"name": "Phi 3 3.8b", "version": "phi3:14b", "category": "Language Model", "rating": 3},
+        {"name": "Phi 3 14b", "version": "phi3:14b", "category": "Language Model", "rating": 3},
+        {"name": "Gemma 2b", "version": "gemma:2b", "category": "Language Model", "rating": 3},
+        {"name": "Gemma 7b", "version": "gemma:7b", "category": "Language Model", "rating": 3},
+        {"name": "Gemma 2 2b", "version": "gemma3:2b", "category": "Language Model", "rating": 3},
+        {"name": "Gemma 2 9b", "version": "gemma3:9b", "category": "Language Model", "rating": 3},
+        {"name": "Gemma 2 27b", "version": "gemma3:27b", "category": "Language Model", "rating": 3},
+        {"name": "Code Llama 7b", "version": "codellama:7b", "category": "Language Model", "rating": 3},
+        {"name": "Code Llama 13b", "version": "codellama:13b", "category": "Language Model", "rating": 3},
+        {"name": "Code Llama 34b", "version": "codellama:32b", "category": "Language Model", "rating": 3},
+        {"name": "Code Llama 70b", "version": "codellama:70b", "category": "Language Model", "rating": 3},
+        {"name": "Llama 2 7b", "version": "llama2:8b", "category": "Language Model", "rating": 3},
+        {"name": "Llama 2 13b", "version": "llama2:13b", "category": "Language Model", "rating": 3},
+        {"name": "Llama 2 70b", "version": "llama2:70b", "category": "Language Model", "rating": 3},
+        {"name": "Llama 3 8b", "version": "llama3:8b", "category": "Language Model", "rating": 4},
+        {"name": "Llama 3 70b", "version": "llama3:70b", "category": "Language Model", "rating": 4},
+        {"name": "Mistral 7b", "version": "mistral", "category": "Language Model", "rating": 4},
+        {"name": "Mistral nemo 12b", "version": "mistral-nemo", "category": "Language Model", "rating": 4},
+        {"name": "LlaVA 7b", "version": "llava:7b", "category": "Vision Tools", "rating": 3},
+        {"name": "LlaVA 13b", "version": "llava:13b", "category": "Vision Tools", "rating": 3},
+        {"name": "LlaVA 34b", "version": "llava:34b", "category": "Vision Tools", "rating": 3},
+        {"name": "Tinyllama 1.1b", "version": "tinyllama", "category": "Language Model", "rating": 3},
+        {"name": "Star Coder 2 3b", "version": "starcoder2:3b", "category": "Language Model", "rating": 3},
+        {"name": "Star Coder 2 7b", "version": "starcoder2:7b", "category": "Language Model", "rating": 3},
+        {"name": "Star Coder 2 15b", "version": "starcoder2:15b", "category": "Language Model", "rating": 3},
+        {"name": "Llama 2 uncensored 7b", "version": "llama2-uncensored:7b", "category": "Language Model", "rating": 3},
+        {"name": "Llama 2 uncensored 70b", "version": "llama2-uncensored:70b", "category": "Language Model","rating": 3},
+        {"name": "DeepSeek coder v2 16b", "version": "deepseek-coder-v2:16b", "category": "Language Model","rating": 4},
+        {"name": "DeepSeek coder v2 236", "version": "deepseek-coder-v2:236b", "category": "Language Model","rating": 4},
+        {"name": "Minicpm v 8b", "version": "minicpm-v", "category": "Vision Tools", "rating": 3},
+        {"name": "Deepseek coder 1.3b", "version": "deepseek-coder:1.3b", "category": "Language Model", "rating": 3},
+        {"name": "Deepseek coder 6.7b", "version": "deepseek-coder:6.7b", "category": "Language Model", "rating": 3},
+        {"name": "Deepseek coder 33b", "version": "deepseek-coder:33b", "category": "Language Model", "rating": 3},
+        {"name": "Mixtral 8x7b", "version": "mixtral:8x7b", "category": "Language Model", "rating": 4},
+        {"name": "Mixtral 8x22b", "version": "mixtral:8x22b", "category": "Language Model", "rating": 5},
+        {"name": "codegemma 2b", "version": "codegemma:2b", "category": "Language Model", "rating": 3},
+        {"name": "codegemma 7b", "version": "codegemma:7b", "category": "Language Model", "rating": 3},
+        {"name": "Dolphin Mixtral 8x7b", "version": "dolphin-mixtral:8x7b", "category": "Language Model", "rating": 4},
+        {"name": "Dolphin Mixtral 8x22b", "version": "dolphin-mixtral:8x22b", "category": "Language Model","rating": 4},
+        {"name": "Open Thinker 7b", "version": "openthinker:7b", "category": "Language Model", "rating": 4},
+        {"name": "Open Thinker 32b", "version": "openthinker:32b", "category": "Language Model", "rating": 4},
+        {"name": "Phi 2.7b", "version": "phi", "category": "Language Model", "rating": 3},
+        {"name": "LlaVA Llama3 8b", "version": "llava-llama3", "category": "Vision Tools", "rating": 4},
+        {"name": "Dolphin 3 8b", "version": "dolphin3", "category": "Language Model", "rating": 3},
+        {"name": "Olmo 2 7b", "version": "olmo2:7b", "category": "Language Model", "rating": 3},
+        {"name": "Olmo 2 13b", "version": "olmo2:13b", "category": "Language Model", "rating": 3},
+        {"name": "Smollm 2 135m", "version": "smollm2:135m", "category": "Language Model", "rating": 3},
+        {"name": "Smollm 2 360m", "version": "smollm2:360m", "category": "Language Model", "rating": 3},
+        {"name": "Smollm 2 1.7b", "version": "smollm2:1.7b", "category": "Language Model", "rating": 3},
+        {"name": "Wizardlm 2 7b", "version": "wizardlm2:7b", "category": "Language Model", "rating": 3},
+        {"name": "Wizardlm 2 8x22b", "version": "wizardlm2:8x22b", "category": "Language Model", "rating": 4},
+        {"name": "Mistral small 22b", "version": "mistral-small:22b", "category": "Language Model", "rating": 4},
+        {"name": "Mistral small 24b", "version": "mistral-small:24b", "category": "Language Model", "rating": 4},
+        {"name": "Dolphin mistral 7b", "version": "dolphin-mistral:7b", "category": "Language Model", "rating": 3},
+        {"name": "Dolphin Llama 3 8b", "version": "dolphin-llama3:8b", "category": "Language Model", "rating": 3},
+        {"name": "Dolphin Llama 3 70b", "version": "dolphin-llama3:70b", "category": "Language Model", "rating": 3},
+        {"name": "Command r 35b", "version": "command-r", "category": "Language Model", "rating": 3},
+        {"name": "Orca mini 3b", "version": "orca-mini:3b", "category": "Language Model", "rating": 3},
+        {"name": "Orca mini 7b", "version": "orca-mini:7b", "category": "Language Model", "rating": 3},
+        {"name": "Orca mini 13b", "version": "orca-mini:13b", "category": "Language Model", "rating": 3},
+        {"name": "Orca mini 70b", "version": "orca-mini:70b", "category": "Language Model", "rating": 3},
+        {"name": "yi 6b", "version": "yi:6b", "category": "Language Model", "rating": 3},
+        {"name": "yi 9b", "version": "yi:69b", "category": "Language Model", "rating": 3},
+        {"name": "yi 34b", "version": "yi:34b", "category": "Language Model", "rating": 3},
+        {"name": "Qwen 2 math 1.5b", "version": "qwen2-math:1.5b", "category": "Language Model", "rating": 3},
+        {"name": "Qwen 2 math 7b", "version": "qwen2-math:7b", "category": "Language Model", "rating": 3},
+        {"name": "Qwen 2 math 72b", "version": "qwen2-math:72b", "category": "Language Model", "rating": 3},
+        {"name": "Hermes 3 3b", "version": "hermes3:3b", "category": "Language Model", "rating": 3},
+        {"name": "Hermes 3 8b", "version": "hermes3:8b", "category": "Language Model", "rating": 3},
+        {"name": "Hermes 3 70b", "version": "hermes3:70b", "category": "Language Model", "rating": 3},
+        {"name": "Hermes 3 405b", "version": "hermes3:405b", "category": "Language Model", "rating": 3},
+        {"name": "Phi 3.5 3.8b", "version": "phi3.5", "category": "Language Model", "rating": 4},
+        {"name": "Smollm 125m", "version": "smollm:135m", "category": "Language Model", "rating": 3},
+        {"name": "Smollm 360m", "version": "smollm:360m", "category": "Language Model", "rating": 3},
+        {"name": "Smollm 1.7b", "version": "smollm:1.7b", "category": "Language Model", "rating": 3},
+        {"name": "Nuextract 3.8b", "version": "nuextract", "category": "Language Model", "rating": 3},
+        {"name": "Firefunction v2 70b", "version": "firefunction-v2", "category": "Language Model", "rating": 3},
+        {"name": "Llama 3 groq tool use 8b", "version": "llama3-groq-tool-use:8b", "category": "Language Model","rating": 3},
+        {"name": "Llama 3 groq tool use 70b", "version": "llama3-groq-tool-use:70b", "category": "Language Model","rating": 3},
+        {"name": "Mathstral 7b", "version": "mathstral", "category": "Language Model", "rating": 3},
+        {"name": "Codegee x4 9b", "version": "codegeex4", "category": "Language Model", "rating": 3},
+        {"name": "glm4 9b", "version": "glm4", "category": "Language Model", "rating": 3},
+        {"name": "Internlm 2 1m", "version": "internlm2:1m", "category": "Language Model", "rating": 3},
+        {"name": "Internlm 2 1.8b", "version": "internlm2:1.8b", "category": "Language Model", "rating": 3},
+        {"name": "Internlm 2 7b", "version": "internlm2:7b", "category": "Language Model", "rating": 3},
+        {"name": "Internlm 2 20b", "version": "internlm2:20b", "category": "Language Model", "rating": 3},
+        {"name": "Codestral 22b", "version": "codestral", "category": "Language Model", "rating": 4},
+        {"name": "Granite 3.2 Vision 2b", "version": "granite3.2-vision", "category": "Vision Tools", "rating": 3},
+        {"name": "Moon Dream 1.8b", "version": "moondream", "category": "Vision Tools", "rating": 3},
+        {"name": "LlaVA Llama3 8b", "version": "llava-llama3", "category": "Vision Tools", "rating": 3},
+        {"name": "LlaVA Phi3 3.8b", "version": "llava-phi3", "category": "Vision Tools", "rating": 3},
+        {"name": "Bak LlaVA 7b", "version": "bakllava", "category": "Vision Tools", "rating": 3}
+    ]
+
+
+class ModelCard(QFrame):
+    def __init__(self, model: dict, is_installed: bool, parent=None):
+        super().__init__(parent)
+        self.model = model
+        self.is_installed = is_installed
+        self.setup_ui()
+        self.setup_shadow()
+        self.setMouseTracking(True)
+
+    def setup_ui(self):
+        self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        self.setStyleSheet("""
+            QFrame {
+                background-color: #3b3f44;
+                border-radius: 15px;
+                padding: 15px;
+            }
+            QLabel {
+                background: transparent;
+            }
+        """)
+        layout = QVBoxLayout()
+        layout.setSpacing(8)
+
+        # Name
+        self.name_label = QLabel(self.model["name"])
+        self.name_label.setFont(QFont("Segoe UI", 14, QFont.Weight.Bold))
+        self.name_label.setStyleSheet("color: #ffffff;")
+        layout.addWidget(self.name_label)
+
+        # Kategorie als Badge
+        self.category_label = QLabel(self.model["category"])
+        self.category_label.setFont(QFont("Segoe UI", 10))
+        self.category_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.category_label.setStyleSheet("""
+            background-color: #e67e22;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 10px;
+            max-width: 140px;
+        """)
+        layout.addWidget(self.category_label)
+
+        # Sternebewertung
+        stars = "★" * self.model["rating"] + "☆" * (6 - self.model["rating"])
+        self.rating_label = QLabel(stars)
+        self.rating_label.setFont(QFont("Segoe UI", 16))
+        self.rating_label.setStyleSheet("color: #f1c40f;")
+        layout.addWidget(self.rating_label)
+
+        # Version
+        self.version_label = QLabel(f"Name: {self.model['version']}")
+        self.version_label.setFont(QFont("Segoe UI", 12))
+        self.version_label.setStyleSheet("color: #bdc3c7;")
+        layout.addWidget(self.version_label)
+
+        # Installationsstatus
+        status_text = "Installed" if self.is_installed else "Not Installed"
+        status_color = "#27ae60" if self.is_installed else "#e74c3c"
+        self.status_label = QLabel(status_text)
+        self.status_label.setFont(QFont("Segoe UI", 10, QFont.Weight.Bold))
+        self.status_label.setStyleSheet(f"color: {status_color};")
+        layout.addWidget(self.status_label)
+
+        layout.addStretch()
+        self.setLayout(layout)
+
+    def setup_shadow(self):
+        # Initialer Schatteneffekt
+        self.shadow = QGraphicsDropShadowEffect(self)
+        self.shadow.setBlurRadius(15)
+        self.shadow.setXOffset(0)
+        self.shadow.setYOffset(0)
+        self.shadow.setColor(QColor(0, 0, 0, 150))
+        self.setGraphicsEffect(self.shadow)
+
+    def enterEvent(self, event):
+        # Animiert den Schatten beim Hover
+        self.anim = QPropertyAnimation(self.shadow, b"blurRadius")
+        self.anim.setDuration(200)
+        self.anim.setEasingCurve(QEasingCurve.Type.OutQuad)
+        self.anim.setStartValue(self.shadow.blurRadius())
+        self.anim.setEndValue(25)
+        self.anim.start()
+        super().enterEvent(event)
+
+    def leaveEvent(self, event):
+        # Rückkehr zum ursprünglichen Schatten
+        self.anim = QPropertyAnimation(self.shadow, b"blurRadius")
+        self.anim.setDuration(200)
+        self.anim.setEasingCurve(QEasingCurve.Type.OutQuad)
+        self.anim.setStartValue(self.shadow.blurRadius())
+        self.anim.setEndValue(15)
+        self.anim.start()
+        super().leaveEvent(event)
+
+
+class ModelShop(QWidget):
     def __init__(self):
         super().__init__()
-
-        self.setWindowTitle("Ollama Model Viewer")
-        self.setGeometry(100, 100, 1000, 800)
-
+        self.setWindowTitle("AI Model Shop")
+        self.setGeometry(100, 100, 1500, 800)
         self.set_dark_mode()
+        self.set_background_gradient()
 
+        # Optional: Icon setzen, falls vorhanden
         user = os.getenv("USERNAME") or os.getenv("USER")
         icon_path = os.path.join(f"C:/Users/{user}/PycharmProjects/MAVIS/icons", "mavis-logo.ico")
-        self.setWindowIcon(QIcon(icon_path))
+        if os.path.exists(icon_path):
+            self.setWindowIcon(QIcon(icon_path))
 
-        layout = QVBoxLayout()
+        main_layout = QVBoxLayout(self)
+        header = QLabel("Welcome to MAVIS Model Shop")
+        header.setFont(QFont("Segoe UI", 24, QFont.Weight.Bold))
+        header.setStyleSheet("color: #ecf0f1; padding: 20px;")
+        header.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        main_layout.addWidget(header)
 
+        # ScrollArea konfigurieren
         self.scroll_area = QScrollArea()
         self.scroll_area.setWidgetResizable(True)
-
-        self.scroll_area = QScrollArea()
-        self.scroll_area.setWidgetResizable(True)
-
-        # Dies wird jetzt auf die Instanz von QApplication angewendet
-        app.setStyleSheet("""
+        self.scroll_area.setStyleSheet("""
             QScrollArea {
                 border: none;
                 background-color: none;
@@ -313,66 +425,50 @@ class FrameworkViewer(QWidget):
             }
         """)
 
-        self.tree = QTreeWidget()
-        self.tree.setHeaderLabels(["Modell", "Name"])
-        layout.addWidget(self.tree)
-
-        self.status_label = QLabel("Lade...")  # Lade-Status-Label
-        layout.addWidget(self.status_label)
-
-        self.setLayout(layout)
+        self.content_widget = QWidget()
+        self.grid_layout = QGridLayout(self.content_widget)
+        self.grid_layout.setSpacing(25)
+        self.grid_layout.setContentsMargins(30, 30, 30, 30)
+        self.scroll_area.setWidget(self.content_widget)
+        main_layout.addWidget(self.scroll_area)
 
         self.load_models()
 
     def set_dark_mode(self):
-        """
-        Setzt die Anwendung in den Dark Mode.
-        """
         palette = self.palette()
-        palette.setColor(QPalette.ColorRole.Window, QColor(40, 40, 40))
-        palette.setColor(QPalette.ColorRole.WindowText, QColor(255, 255, 255))
-        palette.setColor(QPalette.ColorRole.Base, QColor(40, 40, 40))
+        palette.setColor(QPalette.ColorRole.Window, QColor(30, 30, 30))
+        palette.setColor(QPalette.ColorRole.WindowText, QColor(220, 220, 220))
+        palette.setColor(QPalette.ColorRole.Base, QColor(30, 30, 30))
+        palette.setColor(QPalette.ColorRole.AlternateBase, QColor(45, 45, 45))
+        palette.setColor(QPalette.ColorRole.ToolTipBase, QColor(220, 220, 220))
+        palette.setColor(QPalette.ColorRole.ToolTipText, QColor(30, 30, 30))
+        palette.setColor(QPalette.ColorRole.Text, QColor(220, 220, 220))
+        palette.setColor(QPalette.ColorRole.Button, QColor(45, 45, 45))
+        palette.setColor(QPalette.ColorRole.ButtonText, QColor(220, 220, 220))
+        palette.setColor(QPalette.ColorRole.BrightText, QColor(255, 0, 0))
         self.setPalette(palette)
 
+    def set_background_gradient(self):
+        # Setzt einen dezenten vertikalen Farbverlauf als Hintergrund
+        self.setStyleSheet("""
+            QWidget { 
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #000000, stop:1 #000000);
+            }
+        """)
+
     def load_models(self):
-        """
-        Lädt die Modelle und fügt sie dem Baum hinzu.
-        """
         models = fetch_models()
-        self.tree.clear()
-
-        # ThreadPoolExecutor verwenden, um Modelle asynchron zu überprüfen
         with ThreadPoolExecutor() as executor:
-            futures = {model_name: executor.submit(check_model_with_ollama, model_version)
-                       for model_name, model_version in models.items()}
-
-            for model_name, future in futures.items():
-                is_installed = future.result()  # Blockiert hier, bis das Ergebnis verfügbar ist
-                model_version = models[model_name]
-                item = QTreeWidgetItem([model_name, model_version])
-
-                # Setze die Farbe der Modellzeile basierend auf der Installation
-                if is_installed:
-                    item.setForeground(0, QColor(0, 255, 0))  # Grün für installierte Modelle
-                else:
-                    item.setForeground(0, QColor(255, 0, 0))  # Rot für nicht installierte Modelle
-
-                self.tree.addTopLevelItem(item)
-
-        self.status_label.setText("Models loaded successfully.")
-
-    def resizeEvent(self, event):
-        """
-        Setzt die Breite der Spalten, wenn das Fenster resized wird.
-        """
-        super().resizeEvent(event)
-        width = self.width()
-        self.tree.setColumnWidth(0, int(width * 0.50))
-        self.tree.setColumnWidth(1, int(width * 0.40))
+            futures = {model["name"]: executor.submit(check_model_with_ollama, model["version"]) for model in models}
+            for index, model in enumerate(models):
+                is_installed = futures[model["name"].strip()].result()
+                card = ModelCard(model, is_installed)
+                # Platziere die Karten in einem Grid (z.B. 3 Spalten pro Zeile)
+                self.grid_layout.addWidget(card, index // 4, index % 4)
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = FrameworkViewer()
+    window = ModelShop()
     window.show()
     sys.exit(app.exec())
