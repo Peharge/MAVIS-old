@@ -244,7 +244,7 @@ class ModelCard(QFrame):
 
         # Version
         self.version_label = QLabel(f"Name: {self.model['version']}")
-        self.version_label.setFont(QFont("Segoe UI", 9))
+        self.version_label.setFont(QFont("Segoe UI", 12))
         self.version_label.setStyleSheet("color: #bdc3c7;")
         layout.addWidget(self.version_label)
 
@@ -293,7 +293,7 @@ class ModelShop(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("AI Model Shop")
-        self.setGeometry(100, 100, 1200, 800)
+        self.setGeometry(100, 100, 1500, 800)
         self.set_dark_mode()
         self.set_background_gradient()
 
@@ -304,7 +304,7 @@ class ModelShop(QWidget):
             self.setWindowIcon(QIcon(icon_path))
 
         main_layout = QVBoxLayout(self)
-        header = QLabel("Willkommen im AI Model Shop")
+        header = QLabel("Welcome to MAVIS Model Shop")
         header.setFont(QFont("Segoe UI", 24, QFont.Weight.Bold))
         header.setStyleSheet("color: #ecf0f1; padding: 20px;")
         header.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -401,7 +401,7 @@ class ModelShop(QWidget):
                 is_installed = futures[model["name"].strip()].result()
                 card = ModelCard(model, is_installed)
                 # Platziere die Karten in einem Grid (z.B. 3 Spalten pro Zeile)
-                self.grid_layout.addWidget(card, index // 3, index % 3)
+                self.grid_layout.addWidget(card, index // 4, index % 4)
 
 
 if __name__ == "__main__":
