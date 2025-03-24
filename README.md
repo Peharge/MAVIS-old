@@ -5,33 +5,37 @@
 <br>
 
 <div align="center">
-<img alt="mavis" src="https://img.shields.io/badge/MAVIS-F7DF1E">
-<img alt="tg-loerrach" src="https://img.shields.io/badge/TG Lörrach-red">
-<img alt="peharge" src="https://img.shields.io/badge/Peharge-rgb(100, 100, 100)">
+<img alt="mavis" src="https://img.shields.io/badge/MAVIS-F7DF1E?style=flat">
+<img alt="tg-loerrach" src="https://img.shields.io/badge/TG Lörrach-red?style=flat">
+<img alt="peharge" src="https://img.shields.io/badge/Peharge-rgb(100, 100, 100)?style=flat">
 <br>
 <br>
 
-<img alt="python" src="https://img.shields.io/badge/Python-3.11 / 3.12 / (3.13)-blue?&logo=Python&logoColor=white%5BPython">
-<img alt="c++" src="https://img.shields.io/badge/-C++-blue?logo=cplusplus">
+<img alt="python" src="https://img.shields.io/badge/Python-3.11 / 3.12 / (3.13)-blue?&style=flat&logo=Python&logoColor=white%5BPython">
+<img alt="c++" src="https://img.shields.io/badge/-C++-blue?style=flat&logo=cplusplus">
 <img alt="javascript++" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=black"><br>
-<img alt="batch" src="https://img.shields.io/badge/Bat-31369E?logo=bat">
-<img alt="bash" src="https://img.shields.io/badge/Shell-4EAA25?&style=plastic&logo=gnu-bash&logoColor=white">
+<img alt="batch" src="https://img.shields.io/badge/Bat-31369E?style=flat&logo=bat">
+<img alt="bash" src="https://img.shields.io/badge/Shell-4EAA25?&style=flat&logo=gnu-bash&logoColor=white">
 <img alt="html" src="https://img.shields.io/badge/HTML5-%23E34F26.svg?logo=html5&logoColor=white">
 <img alt="css" src="https://img.shields.io/badge/CSS3-%231572B6.svg?logo=css3&logoColor=white">
+<img alt="qt" src="https://img.shields.io/badge/-Qt-004400?style=flat&logo=Qt">
 <br>
 <br>
 
 <img alt="flask" src="https://img.shields.io/badge/FLask-F7DF1E?style=flat&logo=flask&logoColor=black">
 <img alt="ollama" src="https://img.shields.io/badge/Ollama-%2300A98F.svg?logoColor=white">
-<img alt="jupyter" src="https://img.shields.io/badge/Jupyter-%23F37626.svg?logo=jupyter&logoColor=white"><br>
-<img alt="pycharm" src="https://img.shields.io/badge/PyCharm-black?logo=PyCharm&logoColor=white">
-<img alt="github" src="https://img.shields.io/badge/GitHub-black?logo=github">
-<img alt="huggingface" src="https://img.shields.io/badge/HuggingFace-%23FFCC00.svg?logo=huggingface&logoColor=black"><br>
+<img alt="jupyter" src="https://img.shields.io/badge/Jupyter-%23F37626.svg?logo=jupyter&logoColor=white">
+<img alt="Grafana" src="https://img.shields.io/badge/Grafana-black?style=flat&logo=Grafana">
+<img alt="pycharm" src="https://img.shields.io/badge/PyCharm-black?style=flat&logo=PyCharm&logoColor=white"><br>
+<img alt="github" src="https://img.shields.io/badge/GitHub-black?style=flat&logo=github">
+<img alt="huggingface" src="https://img.shields.io/badge/HuggingFace-%23FFCC00.svg?logo=huggingface&logoColor=black">
 <img alt="llama.cpp" src="https://img.shields.io/badge/Llama.cpp-%2300A9FF.svg?logo=llama&logoColor=black">
 <br>
 <br>
 
-<img alt="os" src="https://img.shields.io/badge/os-Windows%20%7C%20Linux%20%7C%20MacOS-blue">
+<img alt="windows" src="https://img.shields.io/badge/Windows-informational?style=flat&logo=windows&logoColor=white&color=blue">
+<img alt="debian" src="https://img.shields.io/badge/Debian-red?style=flat&logo=debian&logoColor=orange&color=darkred">
+<img alt="arch" src="https://img.shields.io/badge/-Arch%20Linux-grey?logo=archlinux">
 <br>
 <br>
 
