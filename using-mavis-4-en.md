@@ -426,7 +426,7 @@ Running Security Check: [██████████████████�
 .env security variables:
     
 OUTDATED PACKAGES CHECK:
-   {green}SUCCESS{reset}: All packages are up to date!
+   SUCCESS: All packages are up to date!
    
 NETWORK SECURITY CHECK:
    Connection from 192.168.1.5:12345 to 203.0.113.10:80
