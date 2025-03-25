@@ -487,7 +487,9 @@ print(f"\nAll frameworks for {blue}MAVIS versions 4{reset} are currently being i
 # Paketlisten
 packages = [
     "Flask", "ollama", "jupyter", "jupyterlab", "Werkzeug", "markdown", "setuptools-rust",
-    "matplotlib", "plotly", "dash", "seaborn", "numpy", "sympy", "pandas", "geopandas", "scipy",
+    "matplotlib", "plotly", "dash", "seaborn", "numpy", "sympy", "pandas", "bokeh",
+    "mayavi", "configobj", "manim", "geopandas", "scipy", "requests", "python-dotenv",
+    "PyQt6", "PyQt6-sip", "keyboard", "PyQt6", "PyQt6-sip", "keyboard",
     "torch", "torchvision", "torchaudio", "tensorflow", "scikit-learn", "transformers",
     "altair", "vega_datasets", "altair_viewer", "ipython", "altair-saver", "kaleido",
     "vl-convert-python", "py-cpuinfo", "GPUtil", "requests", "astropy", "QuantLib",

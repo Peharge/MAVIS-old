@@ -172,7 +172,7 @@ def execute_python_code(md_content):
     import os
     import datetime
     from bokeh.plotting import figure
-    from mayavi import mlab # pip install configobj
+    from mayavi import mlab
     from manim import Scene, Square, Create, Mobject
 
     # import scipy as sp (Problem mit sp)
