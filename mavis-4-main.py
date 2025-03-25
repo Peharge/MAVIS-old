@@ -345,25 +345,29 @@ def execute_python_code(md_content):
                         break  # Nur das erste Bokeh-Diagramm verarbeiten
 
                     except Exception as e:
-                        print(f"Fehler beim Speichern der Bokeh-Grafik: {e}")
+                        print(f"Error saving the bokeh graphic: {e}")
 
             for var_name, var_value in exec_locals.items():
                 if hasattr(var_value, "scene") and callable(getattr(var_value.scene, "save", None)):
-                    # Prüfen, ob die Variable eine Mayavi-Figur ist
-                    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-                    img_filename = f"fig_mayavi_{timestamp}.png"  # Bild-Datei
-                    img_path = os.path.join(image_dir, img_filename)
+                    try:
+                        # Prüfen, ob die Variable eine Mayavi-Figur ist
+                        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+                        img_filename = f"fig_mayavi_{timestamp}.png"  # Bild-Datei
+                        img_path = os.path.join(image_dir, img_filename)
 
-                    # Diagramm als Bild speichern
-                    mlab.savefig(img_path, figure=var_value)
-                    mlab.close(var_value)  # Schließe die Szene nach dem Speichern
+                        # Diagramm als Bild speichern
+                        mlab.savefig(img_path, figure=var_value)
+                        mlab.close(var_value)  # Schließe die Szene nach dem Speichern
 
-                    # Relativer Pfad für HTML (basierend auf Flask-Static-Serving)
-                    image_url = f"/static/image/{img_filename}"
+                        # Relativer Pfad für HTML (basierend auf Flask-Static-Serving)
+                        image_url = f"/static/image/{img_filename}"
 
-                    # Füge das Bild in den HTML-Output ein
-                    img_html += f'<img src="{image_url}" width="800px" height="500px" />'
-                    break  # Nur das erste Mayavi-Diagramm verarbeiten!
+                        # Füge das Bild in den HTML-Output ein
+                        img_html += f'<img src="{image_url}" width="800px" height="500px" />'
+                        break  # Nur das erste Mayavi-Diagramm verarbeiten!
+
+                    except Exception as e:
+                        print(f"Error saving the mayavi graphic: {e}")
 
             for var_name, var_value in exec_locals.items():
                 if isinstance(var_value, Mobject):  # Prüfen, ob es ein Manim-Mobject ist
@@ -396,7 +400,7 @@ def execute_python_code(md_content):
 
                         break  # Nur das erste Manim-Objekt verarbeiten
                     except Exception as e:
-                        print(f"Fehler beim Rendern des Mobject '{var_name}': {e}")
+                        print(f"Error rendering the object '{var_name}': {e}")
                         continue  # Weiter mit dem nächsten Objekt, falls ein Fehler auftritt
 
             for var_name, var_value in exec_locals.items():
@@ -414,7 +418,7 @@ def execute_python_code(md_content):
                         img_html += f'<img class="img-out" src="{image_url}" width="600px" height="400px" />'
 
                     except Exception as e:
-                        print(f"Fehler beim Speichern des Altair-Diagramms: {e}")
+                        print(f"Error saving Altair diagram: {e}")
                         # Alternativ: Als PNG speichern
                         try:
                             png_filename = f"fig_altair_{timestamp}.png"
@@ -423,7 +427,7 @@ def execute_python_code(md_content):
                             png_url = f"/static/image/{png_filename}"
                             img_html += f'<img class="img-out" src="{png_url}" width="600px" height="400px" />'
                         except Exception as png_error:
-                            print(f"Fehler beim Fallback auf PNG: {png_error}")
+                            print(f"Error when falling back to PNG: {png_error}")
                             img_html += f"<div class='error'>Fehler: Altair-Diagramm konnte weder als SVG noch als PNG gespeichert werden.</div>"
 
             # Ersetze den Codeblock im Markdown durch den Ausgabeblock (Text oder Bild)
