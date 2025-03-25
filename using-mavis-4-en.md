@@ -5,15 +5,29 @@ To begin the installation process, execute the appropriate [`mavis-launcher-4.ba
 ```bash
 Aktive Codepage: 65001.
 
--------------------------------------------------
-       Welcome to the MAVIS Launcher 4
--------------------------------------------------
-     Initiating high-tech installation...
-          Prepare for the next level
+      ██╗     █╗
+     ████╗   ███╗        ███╗   ███╗ █████╗ ██╗   ██╗██╗███████╗
+    ██████╗  ████╗       ████╗ ████║██╔══██╗██║   ██║██║██╔════╝
+   ████████╗  ████╗      ██╔████╔██║███████║██║   ██║██║███████╗
+  ████╔█████╗  ████╗     ██║╚██╔╝██║██╔══██║╚██╗ ██╔╝██║╚════██║
+ ████╔╝ █████╗  ████╗    ██║ ╚═╝ ██║██║  ██║ ╚████╔╝ ██║███████║
+ ╚═══╝   ███╔╝  ╚═══╝    ╚═╝     ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚══════╝
+          █╔╝
+          ╚╝
 
-                 MIT License
-             Copyright (c) 2024
-                   Peharge
+██╗      █████╗ ██╗   ██╗███╗   ██╗ ██████╗██╗  ██╗███████╗██████╗     ██╗  ██╗
+██║     ██╔══██╗██║   ██║████╗  ██║██╔════╝██║  ██║██╔════╝██╔══██╗    ██║  ██║
+██║     ███████║██║   ██║██╔██╗ ██║██║     ███████║█████╗  ██████╔╝    ███████║
+██║     ██╔══██║██║   ██║██║╚██╗██║██║     ██╔══██║██╔══╝  ██╔══██╗    ╚════██║
+███████╗██║  ██║╚██████╔╝██║ ╚████║╚██████╗██║  ██║███████╗██║  ██║         ██║
+╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝         ╚═╝
+
+Initiating high-tech installation...
+Prepare for the next level
+
+MIT License
+Copyright (c) 2024
+Peharge
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -50,14 +64,15 @@ Updates available, pulling changes...
 ✅ All tasks were completed successfully
 
 Ollama is installed.
-Ollama is already running.
+Ollama is not running. Starting Ollama...
+Ollama started successfully.
 
 All MAVIS versions are available here:
 
-III Required LLM model for this MAVIS version is already installed
-III Required LLM model for this MAVIS version is not yet installed
-III LLM model is available for you - you have all the permissions
-III LLM model is not available for you - you do not have permission to install the model
+█ Required LLM model for this MAVIS version is already installed
+█ Required LLM model for this MAVIS version is not yet installed
+█ LLM model is available for you - you have all the permissions
+█ LLM model is not available for you - you do not have permission to install the model
 
 1. MAVIS 3:
    - mavis-3-main: With Xc++ 3 11B or Llama3.2 11B + Phi4 14b + Qwen 2.5 1.5b + granite3.2-vision 2b (phi4 Not Installed)
@@ -87,14 +102,11 @@ III LLM model is not available for you - you do not have permission to install t
    - mavis-3-3-main-fast: With Xc++ 3 11B or Llama3.2 11B + Gemma3 12B + Qwen 2.5 1.5b + granite3.2-vision 2b (gemma3:12b Installed)
    - mavis-3-3-math-fast: With Xc++ 3 11B or Llama3.2 11B + QwQ 32b + Qwen 2.5 1.5b + granite3.2-vision 2b (qwq Not Installed)
 
-4. MAVIS Terminal 3 EAP:
-   - mavis-terminal: The MAVIS Terminal is always available for you!!! ( Installed)
+4. MAVIS Terminal 4 EAP:
+   - mavis-terminal-4: The MAVIS Terminal is always available for you!!! ( Installed)
 
 5. MAVIS 4 EAP:
    - mavis-4: NEW - Development of MAVIS 4 has begun – featuring new Vision Models, a more powerful and faster MAVIS Terminal, and access to over 200 models. ( Installed)
-
-6. MAVIS Terminal 4 EAP:
-   - mavis-terminal-4: The MAVIS Terminal is always available for you!!! ( Installed)
 
 Enter a MAVIS batch file (e.g. 'mavis-4', 'mavis-3-code' or 'mavis-terminal-4'):
 ```
@@ -105,14 +117,14 @@ Regardless of the installation state, the system will always perform a **complet
 
 If you are starting **MAVIS 3 for the first time**, please **do not select** the **"3. MAVIS 3 EAP Fast Start"** option. Instead, choose one of the following:  
 
-- **"1. MAVIS 3 EAP"**  
-- **"2. MAVIS Terminal 3 EAP"** *(Recommended for experienced users only. More information: [MAVIS Terminal Guide](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/learn-mavis-terminal-3.md))*
+- **"1. MAVIS 4 EAP"**  
+- **"2. MAVIS Terminal 4 EAP"** *(Recommended for experienced users only. More information: [MAVIS Terminal Guide](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/learn-mavis-terminal-3.md))*
 
-After entering the desired MAVIS version, such as `"mavis-3-code"`, the specified program will launch automatically.  
+After entering the desired MAVIS version, such as `"mavis-4"`, the specified program will launch automatically.  
 
 ```bash
 Enter a MAVIS batch file (e.g. 'mavis-4', 'mavis-3-code' or 'mavis-terminal-4'):mavis-4
-Start: C:\Users\julia\PycharmProjects\MAVIS\run-mavis-4.bat
+Start: C:\Users\User\PycharmProjects\MAVIS\run-mavis-4.bat
 
       ██╗     █╗
      ████╗   ███╗        ███╗   ███╗ █████╗ ██╗   ██╗██╗███████╗    ██╗  ██╗
@@ -124,7 +136,7 @@ Start: C:\Users\julia\PycharmProjects\MAVIS\run-mavis-4.bat
           █╔╝
           ╚╝
 
-A warm welcome, julia, to MAVIS (MAth Visual Intelligent System) - the most powerful calculator in the world!
+A warm welcome, User, to MAVIS (MAth Visual Intelligent System) - the most powerful calculator in the world!
 Developed by Peharge and JK (Peharge Projects 2025)
 Thank you so much for using MAVIS. We truly appreciate your support ❤️
 
@@ -269,7 +281,7 @@ You're now successfully registered and logged in as a MAVIS Ultra user!
 You now have the option to change the default models. To do so, you must confirm the changes with 'y' and then enter your preferred model! You can find all available models by typing 'help'! If you are satisfied with the models you can simply skip this with 'n'.
 
 ```bash
-Virtual environment C:\Users\julia\PycharmProjects\MAVIS\.env enabled.
+Virtual environment C:\Users\User\PycharmProjects\MAVIS\.env enabled.
 requests is already installed.
 ollama is already installed.
 transformers is already installed.
@@ -461,12 +473,12 @@ Regardless of this selection, MAVIS will automatically open in a browser tab. If
 
 After the successful start, your browser should look like this:
 
-![MAVIS](./readme-img/using-img-1.png)
+![MAVIS](https://github.com/Peharge/MAVIS/blob/main/readme-img/using-img-1.png)
 
 ## 10. Using MAVIS
 You can now send questions to the chatbot, upload images and use the control panel.
 
-![Using MAVIS](./readme-img/using-img-2.png)
+![Using MAVIS](https://github.com/Peharge/MAVIS/blob/main/readme-img/using-img-2.png)
 
 Once you have uploaded an image, a small window will appear with the image. Simply click on the window to close it.
 
@@ -480,34 +492,34 @@ MAVIS also supports LaTeX for mathematical formulas and can perform calculations
 
 Here is an example of MAVIS in operation:
 
-![MAVIS example](./readme-img/mavis-1-5-demo-3.png)
+![MAVIS example](https://github.com/Peharge/MAVIS/blob/main/readme-img/mavis-1-5-demo-3.png)
 
-![MAVIS example](./readme-img/mavis-1-5-demo-4.png)
+![MAVIS example](https://github.com/Peharge/MAVIS/blob/main/readme-img/mavis-1-5-demo-4.png)
 
-![MAVIS example](./readme-img/mavis-1-5-demo-5.png)
+![MAVIS example](https://github.com/Peharge/MAVIS/blob/main/readme-img/mavis-1-5-demo-5.png)
 
 By default, the formula editor is open, which you can use to draw formulas. The drawn formulas are converted to LaTeX code in the input box below and displayed correctly rendered directly below. To convert the formula, simply press the black play button in the drawing box.
 
 The input box in which the LaTeX code is written is connected to the lower input box in the taskbar and can be used as input for the AI-Chatbot.
 
-![Formula editor use](./readme-img/mavis-1-5-use-gif-1.gif)
+![Formula editor use](https://github.com/Peharge/MAVIS/blob/main/readme-img/mavis-1-5-use-gif-1.gif)
 
 To close the formula editor, press the pen button in the main taskbar.
 
-![Formula editor usage](./readme-img/mavis-1-5-use-gif-2.gif)
+![Formula editor usage](https://github.com/Peharge/MAVIS/blob/main/readme-img/mavis-1-5-use-gif-2.gif)
 
 You can also use the graph editor to display formulas in a 2D or 3D coordinate system.
 
-![Graph editor](./readme-img/using-img-4.png)
+![Graph editor](https://github.com/Peharge/MAVIS/blob/main/readme-img/using-img-4.png)
 
 Enter your formula and use the "Select" function to select special characters, pre-defined formulas, operations (derivation and integration) and the display as a 2D or 3D diagram (2D by default). The formula is displayed in real time.
 
-![Formula display](./readme-img/using-img-5.png)
+![Formula display](https://github.com/Peharge/MAVIS/blob/main/readme-img/using-img-5.png)
 
 You can close this window at any time by clicking on the corresponding icon in the taskbar again.
 
 <div align="center">
-<img src="./readme-img/using-img-6.png" alt="pen-button" width="600">
+<img src="https://github.com/Peharge/MAVIS/blob/main/readme-img/using-img-6.png" alt="pen-button" width="600">
 </div>
 
 Have fun with MAVIS! Over time, you will get used to using the chatbot. Always give the chatbot a clear role, e.g.: "You are a professional programmer and your job is [...] - get to work!"
