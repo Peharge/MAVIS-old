@@ -320,7 +320,7 @@ def execute_python_code(md_content):
                     image_url = f"/static/image/{html_filename}"
 
                     # Füge das HTML-Dokument in den HTML-Output ein
-                    img_html += f'<iframe src="{image_url}" width="800px" height="500px" frameborder="0"></iframe>'
+                    img_html += f'<iframe src="{image_url}" width="900px" height="550px" frameborder="0"></iframe>'
                     break  # Nur das erste Plotly-Diagramm verarbeiten
 
             # Verarbeitung von Bokeh-Grafiken
@@ -341,7 +341,7 @@ def execute_python_code(md_content):
                         image_url = f"/static/image/{html_filename}"
 
                         # Füge das HTML-Dokument in den HTML-Output ein
-                        img_html += f'<iframe src="{image_url}" width="800px" height="500px" frameborder="0"></iframe>'
+                        img_html += f'<iframe src="{image_url}" width="900px" height="550px" frameborder="0"></iframe>'
                         break  # Nur das erste Bokeh-Diagramm verarbeiten
 
                     except Exception as e:
@@ -363,7 +363,7 @@ def execute_python_code(md_content):
                         image_url = f"/static/image/{img_filename}"
 
                         # Füge das Bild in den HTML-Output ein
-                        img_html += f'<img src="{image_url}" width="800px" height="500px" />'
+                        img_html += f'<img src="{image_url}" width="900px" height="550px" />'
                         break  # Nur das erste Mayavi-Diagramm verarbeiten!
 
                     except Exception as e:
@@ -396,7 +396,7 @@ def execute_python_code(md_content):
                         image_url = f"/static/image/{image_filename}"
 
                         # Bild in den HTML-Output einfügen
-                        img_html += f'<img src="{image_url}" width="800px" height="500px">'
+                        img_html += f'<img src="{image_url}" width="900px" height="550px">'
 
                         break  # Nur das erste Manim-Objekt verarbeiten
                     except Exception as e:
