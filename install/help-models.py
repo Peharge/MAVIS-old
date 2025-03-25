@@ -68,8 +68,8 @@ import logging
 from concurrent.futures import ThreadPoolExecutor
 
 from PyQt6.QtWidgets import (
-    QApplication, QWidget, QVBoxLayout, QLabel, QScrollArea, QGridLayout,
-    QFrame, QSizePolicy, QGraphicsDropShadowEffect
+    QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QScrollArea,
+    QFrame, QSizePolicy, QPushButton, QGraphicsDropShadowEffect
 )
 from PyQt6.QtGui import QPalette, QColor, QIcon, QFont
 from PyQt6.QtCore import Qt, QPropertyAnimation, QEasingCurve
@@ -117,8 +117,8 @@ def fetch_models():
         {"name": "Llama 3.1 405b", "version": "llama3.1:405b", "category": "Language Model", "rating": 5},
         {"name": "Llama 3.2 1b", "version": "llama3.2:1b", "category": "Language Model", "rating": 4},
         {"name": "Llama 3.2 3b", "version": "llama3.2:3b", "category": "Language Model", "rating": 4},
-        {"name": "Llama 3.2 Vision 11b", "version": "llama3.2-vision:11b", "category": "Vision Tools","rating": 5},
-        {"name": "Llama 3.2 Vision 90b", "version": "llama3.2-vision:90b", "category": "Vision Tools","rating": 5},
+        {"name": "Llama 3.2 Vision 11b", "version": "llama3.2-vision:11b", "category": "Vision Tools", "rating": 5},
+        {"name": "Llama 3.2 Vision 90b", "version": "llama3.2-vision:90b", "category": "Vision Tools", "rating": 5},
         {"name": "Llama 3.3 70b", "version": "llama3.3", "category": "Language Model", "rating": 5},
         {"name": "Phi 4 14b", "version": "phi4", "category": "Language Model", "rating": 5},
         {"name": "Phi 4 mini 3.8b", "version": "phi4-mini", "category": "Language Model", "rating": 4},
@@ -186,9 +186,12 @@ def fetch_models():
         {"name": "Star Coder 2 7b", "version": "starcoder2:7b", "category": "Language Model", "rating": 3},
         {"name": "Star Coder 2 15b", "version": "starcoder2:15b", "category": "Language Model", "rating": 3},
         {"name": "Llama 2 uncensored 7b", "version": "llama2-uncensored:7b", "category": "Language Model", "rating": 3},
-        {"name": "Llama 2 uncensored 70b", "version": "llama2-uncensored:70b", "category": "Language Model","rating": 3},
-        {"name": "DeepSeek coder v2 16b", "version": "deepseek-coder-v2:16b", "category": "Language Model","rating": 4},
-        {"name": "DeepSeek coder v2 236", "version": "deepseek-coder-v2:236b", "category": "Language Model","rating": 4},
+        {"name": "Llama 2 uncensored 70b", "version": "llama2-uncensored:70b", "category": "Language Model",
+         "rating": 3},
+        {"name": "DeepSeek coder v2 16b", "version": "deepseek-coder-v2:16b", "category": "Language Model",
+         "rating": 4},
+        {"name": "DeepSeek coder v2 236", "version": "deepseek-coder-v2:236b", "category": "Language Model",
+         "rating": 4},
         {"name": "Minicpm v 8b", "version": "minicpm-v", "category": "Vision Tools", "rating": 3},
         {"name": "Deepseek coder 1.3b", "version": "deepseek-coder:1.3b", "category": "Language Model", "rating": 3},
         {"name": "Deepseek coder 6.7b", "version": "deepseek-coder:6.7b", "category": "Language Model", "rating": 3},
@@ -198,7 +201,8 @@ def fetch_models():
         {"name": "codegemma 2b", "version": "codegemma:2b", "category": "Language Model", "rating": 3},
         {"name": "codegemma 7b", "version": "codegemma:7b", "category": "Language Model", "rating": 3},
         {"name": "Dolphin Mixtral 8x7b", "version": "dolphin-mixtral:8x7b", "category": "Language Model", "rating": 4},
-        {"name": "Dolphin Mixtral 8x22b", "version": "dolphin-mixtral:8x22b", "category": "Language Model","rating": 4},
+        {"name": "Dolphin Mixtral 8x22b", "version": "dolphin-mixtral:8x22b", "category": "Language Model",
+         "rating": 4},
         {"name": "Open Thinker 7b", "version": "openthinker:7b", "category": "Language Model", "rating": 4},
         {"name": "Open Thinker 32b", "version": "openthinker:32b", "category": "Language Model", "rating": 4},
         {"name": "Phi 2.7b", "version": "phi", "category": "Language Model", "rating": 3},
@@ -237,8 +241,10 @@ def fetch_models():
         {"name": "Smollm 1.7b", "version": "smollm:1.7b", "category": "Language Model", "rating": 3},
         {"name": "Nuextract 3.8b", "version": "nuextract", "category": "Language Model", "rating": 3},
         {"name": "Firefunction v2 70b", "version": "firefunction-v2", "category": "Language Model", "rating": 3},
-        {"name": "Llama 3 groq tool use 8b", "version": "llama3-groq-tool-use:8b", "category": "Language Model","rating": 3},
-        {"name": "Llama 3 groq tool use 70b", "version": "llama3-groq-tool-use:70b", "category": "Language Model","rating": 3},
+        {"name": "Llama 3 groq tool use 8b", "version": "llama3-groq-tool-use:8b", "category": "Language Model",
+         "rating": 3},
+        {"name": "Llama 3 groq tool use 70b", "version": "llama3-groq-tool-use:70b", "category": "Language Model",
+         "rating": 3},
         {"name": "Mathstral 7b", "version": "mathstral", "category": "Language Model", "rating": 3},
         {"name": "Codegee x4 9b", "version": "codegeex4", "category": "Language Model", "rating": 3},
         {"name": "glm4 9b", "version": "glm4", "category": "Language Model", "rating": 3},
@@ -263,91 +269,113 @@ class ModelCard(QFrame):
         self.setup_ui()
         self.setup_shadow()
         self.setMouseTracking(True)
+        # Feste Höhe für Listendarstellung
+        self.setMaximumHeight(100)
+        self.setMinimumHeight(100)
 
     def setup_ui(self):
-        self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
         self.setStyleSheet("""
             QFrame {
                 background-color: #3b3f44;
-                border-radius: 15px;
-                padding: 15px;
+                border-radius: 10px;
             }
             QLabel {
                 background: transparent;
             }
         """)
-        layout = QVBoxLayout()
-        layout.setSpacing(8)
+        # Horizontales Layout für eine kompakte Listendarstellung
+        layout = QHBoxLayout()
+        layout.setContentsMargins(10, 5, 10, 5)
+        layout.setSpacing(15)
 
-        # Name
+        # Name Label
         self.name_label = QLabel(self.model["name"])
-        self.name_label.setFont(QFont("Segoe UI", 14, QFont.Weight.Bold))
+        self.name_label.setFont(QFont("Segoe UI", 16, QFont.Weight.Bold))
         self.name_label.setStyleSheet("color: #ffffff;")
-        layout.addWidget(self.name_label)
+        layout.addWidget(self.name_label, 2)
 
         # Kategorie als Badge
         self.category_label = QLabel(self.model["category"])
-        self.category_label.setFont(QFont("Segoe UI", 10))
+        self.category_label.setFont(QFont("Segoe UI", 11))
         self.category_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.category_label.setStyleSheet("""
-            background-color: #e67e22;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 10px;
-            max-width: 140px;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 2px 8px;
+            border-radius: 8px;
         """)
-        layout.addWidget(self.category_label)
+        self.category_label.setFixedHeight(35)
+        layout.addWidget(self.category_label, 1)
 
         # Sternebewertung
         stars = "★" * self.model["rating"] + "☆" * (6 - self.model["rating"])
         self.rating_label = QLabel(stars)
-        self.rating_label.setFont(QFont("Segoe UI", 16))
+        self.rating_label.setFont(QFont("Segoe UI", 12))
         self.rating_label.setStyleSheet("color: #f1c40f;")
-        layout.addWidget(self.rating_label)
+        layout.addWidget(self.rating_label, 1)
 
         # Version
-        self.version_label = QLabel(f"Name: {self.model['version']}")
-        self.version_label.setFont(QFont("Segoe UI", 12))
+        self.version_label = QLabel(f"V: {self.model['version']}")
+        self.version_label.setFont(QFont("Segoe UI", 11))
         self.version_label.setStyleSheet("color: #bdc3c7;")
-        layout.addWidget(self.version_label)
+        layout.addWidget(self.version_label, 1)
 
         # Installationsstatus
         status_text = "Installed" if self.is_installed else "Not Installed"
-        status_color = "#27ae60" if self.is_installed else "#e74c3c"
+        status_color = "green" if self.is_installed else "red"
         self.status_label = QLabel(status_text)
-        self.status_label.setFont(QFont("Segoe UI", 10, QFont.Weight.Bold))
+        self.status_label.setFont(QFont("Segoe UI", 11, QFont.Weight.Bold))
         self.status_label.setStyleSheet(f"color: {status_color};")
-        layout.addWidget(self.status_label)
+        layout.addWidget(self.status_label, 1)
 
-        layout.addStretch()
+        # Optional: Ein Button für weitere Informationen
+        self.info_button = QPushButton("Details")
+        self.info_button.setFont(QFont("Segoe UI", 11))
+        self.info_button.setStyleSheet("""
+            QPushButton {
+                background-color: #ffffff;
+                color: #000000;
+                border: none;
+                padding: 4px 8px;
+                border-radius: 8px;
+            }
+            QPushButton:hover {
+                background-color: #3498db;
+            }
+        """)
+        self.info_button.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.info_button.setFixedHeight(35)
+        layout.addWidget(self.info_button, 1)
+
         self.setLayout(layout)
 
     def setup_shadow(self):
-        # Initialer Schatteneffekt
+        # Schatteneffekt für 3D-Optik
         self.shadow = QGraphicsDropShadowEffect(self)
-        self.shadow.setBlurRadius(15)
+        self.shadow.setBlurRadius(10)
         self.shadow.setXOffset(0)
         self.shadow.setYOffset(0)
         self.shadow.setColor(QColor(0, 0, 0, 150))
         self.setGraphicsEffect(self.shadow)
 
     def enterEvent(self, event):
-        # Animiert den Schatten beim Hover
+        # Schatten wird beim Hover animiert
         self.anim = QPropertyAnimation(self.shadow, b"blurRadius")
         self.anim.setDuration(200)
         self.anim.setEasingCurve(QEasingCurve.Type.OutQuad)
         self.anim.setStartValue(self.shadow.blurRadius())
-        self.anim.setEndValue(25)
+        self.anim.setEndValue(20)
         self.anim.start()
         super().enterEvent(event)
 
     def leaveEvent(self, event):
-        # Rückkehr zum ursprünglichen Schatten
+        # Schatten kehrt zurück
         self.anim = QPropertyAnimation(self.shadow, b"blurRadius")
         self.anim.setDuration(200)
         self.anim.setEasingCurve(QEasingCurve.Type.OutQuad)
         self.anim.setStartValue(self.shadow.blurRadius())
-        self.anim.setEndValue(15)
+        self.anim.setEndValue(10)
         self.anim.start()
         super().leaveEvent(event)
 
@@ -356,7 +384,7 @@ class ModelShop(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("AI Model Shop")
-        self.setGeometry(100, 100, 1500, 800)
+        self.setGeometry(100, 100, 1200, 600)
         self.set_dark_mode()
         self.set_background_gradient()
 
@@ -368,12 +396,12 @@ class ModelShop(QWidget):
 
         main_layout = QVBoxLayout(self)
         header = QLabel("Welcome to MAVIS Model Shop")
-        header.setFont(QFont("Segoe UI", 24, QFont.Weight.Bold))
+        header.setFont(QFont("Segoe UI", 26, QFont.Weight.Bold))
         header.setStyleSheet("color: #ecf0f1; padding: 20px;")
         header.setAlignment(Qt.AlignmentFlag.AlignCenter)
         main_layout.addWidget(header)
 
-        # ScrollArea konfigurieren
+        # ScrollArea konfigurieren für die Listendarstellung
         self.scroll_area = QScrollArea()
         self.scroll_area.setWidgetResizable(True)
         self.scroll_area.setStyleSheet("""
@@ -426,9 +454,10 @@ class ModelShop(QWidget):
         """)
 
         self.content_widget = QWidget()
-        self.grid_layout = QGridLayout(self.content_widget)
-        self.grid_layout.setSpacing(25)
-        self.grid_layout.setContentsMargins(30, 30, 30, 30)
+        # Verwende ein vertikales Layout für die Listendarstellung
+        self.vbox_layout = QVBoxLayout(self.content_widget)
+        self.vbox_layout.setSpacing(15)
+        self.vbox_layout.setContentsMargins(30, 30, 30, 30)
         self.scroll_area.setWidget(self.content_widget)
         main_layout.addWidget(self.scroll_area)
 
@@ -449,7 +478,7 @@ class ModelShop(QWidget):
         self.setPalette(palette)
 
     def set_background_gradient(self):
-        # Setzt einen dezenten vertikalen Farbverlauf als Hintergrund
+        # Dezenter vertikaler Farbverlauf als Hintergrund
         self.setStyleSheet("""
             QWidget { 
                 background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #000000, stop:1 #000000);
@@ -460,11 +489,11 @@ class ModelShop(QWidget):
         models = fetch_models()
         with ThreadPoolExecutor() as executor:
             futures = {model["name"]: executor.submit(check_model_with_ollama, model["version"]) for model in models}
-            for index, model in enumerate(models):
-                is_installed = futures[model["name"].strip()].result()
+            for model in models:
+                is_installed = futures[model["name"]].result()
                 card = ModelCard(model, is_installed)
-                # Platziere die Karten in einem Grid (z.B. 3 Spalten pro Zeile)
-                self.grid_layout.addWidget(card, index // 4, index % 4)
+                # Jedes Card-Widget wird untereinander im V-Layout eingefügt
+                self.vbox_layout.addWidget(card)
 
 
 if __name__ == "__main__":
