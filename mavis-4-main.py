@@ -169,6 +169,12 @@ def execute_python_code(md_content):
     from dash import Dash, html, dcc, callback, Output, Input
     import math
     from IPython.display import display
+    import os
+    import datetime
+    from bokeh.plotting import figure
+    from mayavi import mlab # pip install configobj
+    from manim import Scene, Square, Create, Mobject
+
     # import scipy as sp (Problem mit sp)
 
     # ---für Physik/Chemie/Biologie(Medizin)/Erdkunde/Wirtschaft---
@@ -316,6 +322,82 @@ def execute_python_code(md_content):
                     # Füge das HTML-Dokument in den HTML-Output ein
                     img_html += f'<iframe src="{image_url}" width="800px" height="500px" frameborder="0"></iframe>'
                     break  # Nur das erste Plotly-Diagramm verarbeiten
+
+            # Verarbeitung von Bokeh-Grafiken
+            for var_name, var_value in exec_locals.items():
+                if isinstance(var_value, figure):  # Richtige Prüfung auf Bokeh-Figur
+                    try:
+                        # Generiere einzigartigen Dateinamen mit Zeitstempel
+                        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+                        html_filename = f"fig_bokeh_{timestamp}.html"
+                        html_path = os.path.join(image_dir, html_filename)
+
+                        # Diagramm als interaktive HTML-Datei speichern
+                        var_value.output_backend = "webgl"  # Performance-Optimierung
+                        var_value.output_backend = "canvas"  # Alternativ für bessere Kompatibilität
+                        var_value.write_html(html_path)
+
+                        # Relativer Pfad für HTML (z.B. für Flask-Static-Serving)
+                        image_url = f"/static/image/{html_filename}"
+
+                        # Füge das HTML-Dokument in den HTML-Output ein
+                        img_html += f'<iframe src="{image_url}" width="800px" height="500px" frameborder="0"></iframe>'
+                        break  # Nur das erste Bokeh-Diagramm verarbeiten
+
+                    except Exception as e:
+                        print(f"Fehler beim Speichern der Bokeh-Grafik: {e}")
+
+            for var_name, var_value in exec_locals.items():
+                if hasattr(var_value, "scene") and callable(getattr(var_value.scene, "save", None)):
+                    # Prüfen, ob die Variable eine Mayavi-Figur ist
+                    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+                    img_filename = f"fig_mayavi_{timestamp}.png"  # Bild-Datei
+                    img_path = os.path.join(image_dir, img_filename)
+
+                    # Diagramm als Bild speichern
+                    mlab.savefig(img_path, figure=var_value)
+                    mlab.close(var_value)  # Schließe die Szene nach dem Speichern
+
+                    # Relativer Pfad für HTML (basierend auf Flask-Static-Serving)
+                    image_url = f"/static/image/{img_filename}"
+
+                    # Füge das Bild in den HTML-Output ein
+                    img_html += f'<img src="{image_url}" width="800px" height="500px" />'
+                    break  # Nur das erste Mayavi-Diagramm verarbeiten!
+
+            for var_name, var_value in exec_locals.items():
+                if isinstance(var_value, Mobject):  # Prüfen, ob es ein Manim-Mobject ist
+                    try:
+                        # Timestamp für die Dateinamen
+                        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+                        image_filename = f"fig_manim_{timestamp}.png"
+                        image_path = os.path.join(image_dir, image_filename)
+
+                        # Sicherstellen, dass das Verzeichnis existiert
+                        os.makedirs(image_dir, exist_ok=True)
+
+                        # Szene erstellen und Mobject rendern
+                        scene = Scene()
+                        scene.add(var_value)
+                        scene.wait(1)  # Kurzes Warten für das Rendern
+
+                        # Kamera-Einstellungen für hohe Auflösung
+                        scene.renderer.camera.pixel_height = 1080
+                        scene.renderer.camera.pixel_width = 1920
+
+                        # Bild speichern
+                        scene.renderer.save_image(image_path)
+
+                        # Relativer Pfad für HTML (basierend auf Flask-Static-Serving)
+                        image_url = f"/static/image/{image_filename}"
+
+                        # Bild in den HTML-Output einfügen
+                        img_html += f'<img src="{image_url}" width="800px" height="500px">'
+
+                        break  # Nur das erste Manim-Objekt verarbeiten
+                    except Exception as e:
+                        print(f"Fehler beim Rendern des Mobject '{var_name}': {e}")
+                        continue  # Weiter mit dem nächsten Objekt, falls ein Fehler auftritt
 
             for var_name, var_value in exec_locals.items():
                 if isinstance(var_value, alt.Chart):  # Prüfen, ob es sich um ein Altair-Diagramm handelt
