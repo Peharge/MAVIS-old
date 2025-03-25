@@ -407,7 +407,7 @@ def send_message():
 
         try:
             response = ollama.chat(
-                model='llama3.2-vision',
+                model=model2,
                 messages=[{
                     'role': 'user',
                     'content': user_message,
@@ -433,7 +433,7 @@ def send_message():
         # Verarbeite die Nachricht ohne Bild, benutze das Standardbild
         try:
             response = ollama.chat(
-                model='gemma3:12b',
+                model=model1,
                 messages=[{
                     'role': 'user',
                     'content': user_message
@@ -623,7 +623,7 @@ def text_to_speech(text):
 def chat_response(message):
     try:
         response = ollama.chat(
-            model='model3',
+            model=model3,
             messages=[{
                 'role': 'user',
                 'content': message
