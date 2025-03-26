@@ -72,11 +72,10 @@ from PyQt6.QtWidgets import (
     QFrame, QSizePolicy, QPushButton, QGraphicsDropShadowEffect
 )
 from PyQt6.QtGui import QPalette, QColor, QIcon, QFont
-from PyQt6.QtCore import Qt, QPropertyAnimation, QEasingCurve
+from PyQt6.QtCore import Qt, QPropertyAnimation, QEasingCurve, QObject, pyqtSignal, QThread
 
 # Logging konfigurieren
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
 
 def check_model_with_ollama(model_version: str) -> bool:
     """
@@ -93,32 +92,30 @@ def check_model_with_ollama(model_version: str) -> bool:
         )
         return result.returncode == 0
     except subprocess.CalledProcessError as e:
-        logging.error(f"Error checking model {model_version}: {e.stderr}")
         return False
     except Exception as e:
-        logging.error(f"Unbekannter Fehler beim Überprüfen des Modells {model_version}: {e}")
+        logging.error(f"Unknown error while validating the model {model_version}: {e}")
         return False
-
 
 def fetch_models():
     # Beispielhafte Modelle mit Name, Version, Kategorie und Bewertung
     return [
-        {"name": "Xc++ I 11b", "version": "xcpp:11b", "category": "Vision Tools", "rating": 4},
-        {"name": "Xc++ II 11b", "version": "xcpp2:11b", "category": "Vision Tools", "rating": 5},
-        {"name": "Xc++ III 11b", "version": "xcpp3:11b", "category": "Vision Tools", "rating": 5},
-        {"name": "Xc++ IV 11b", "version": "xcpp4:11b", "category": "Vision Tools", "rating": 6},
-        {"name": "Gemma 3 1b", "version": "gemma3:1b", "category": "Vision Tools", "rating": 5},
-        {"name": "Gemma 3 4b", "version": "gemma3:4b", "category": "Vision Tools", "rating": 5},
-        {"name": "Gemma 3 12b", "version": "gemma3:12b", "category": "Vision Tools", "rating": 6},
-        {"name": "Gemma 3 27b", "version": "gemma3:27b", "category": "Vision Tools", "rating": 6},
+        {"name": "Xc++ I 11b", "version": "xcpp:11b", "category": "Vision Tool", "rating": 4},
+        {"name": "Xc++ II 11b", "version": "xcpp2:11b", "category": "Vision Tool", "rating": 5},
+        {"name": "Xc++ III 11b", "version": "xcpp3:11b", "category": "Vision Tool", "rating": 5},
+        {"name": "Xc++ IV 11b", "version": "xcpp4:11b", "category": "Vision Tool", "rating": 6},
+        {"name": "Gemma 3 1b", "version": "gemma3:1b", "category": "Vision Tool", "rating": 5},
+        {"name": "Gemma 3 4b", "version": "gemma3:4b", "category": "Vision Tool", "rating": 5},
+        {"name": "Gemma 3 12b", "version": "gemma3:12b", "category": "Vision Tool", "rating": 6},
+        {"name": "Gemma 3 27b", "version": "gemma3:27b", "category": "Vision Tool", "rating": 6},
         {"name": "QwQ", "version": "qwq", "category": "Language Model", "rating": 6},
         {"name": "Llama 3.1 8b", "version": "llama3.1:8b", "category": "Language Model", "rating": 4},
         {"name": "Llama 3.1 70b", "version": "llama3.1:70b", "category": "Language Model", "rating": 4},
         {"name": "Llama 3.1 405b", "version": "llama3.1:405b", "category": "Language Model", "rating": 5},
         {"name": "Llama 3.2 1b", "version": "llama3.2:1b", "category": "Language Model", "rating": 4},
         {"name": "Llama 3.2 3b", "version": "llama3.2:3b", "category": "Language Model", "rating": 4},
-        {"name": "Llama 3.2 Vision 11b", "version": "llama3.2-vision:11b", "category": "Vision Tools", "rating": 5},
-        {"name": "Llama 3.2 Vision 90b", "version": "llama3.2-vision:90b", "category": "Vision Tools", "rating": 5},
+        {"name": "Llama 3.2 Vision 11b", "version": "llama3.2-vision:11b", "category": "Vision Tool", "rating": 5},
+        {"name": "Llama 3.2 Vision 90b", "version": "llama3.2-vision:90b", "category": "Vision Tool", "rating": 5},
         {"name": "Llama 3.3 70b", "version": "llama3.3", "category": "Language Model", "rating": 5},
         {"name": "Phi 4 14b", "version": "phi4", "category": "Language Model", "rating": 5},
         {"name": "Phi 4 mini 3.8b", "version": "phi4-mini", "category": "Language Model", "rating": 4},
@@ -178,9 +175,9 @@ def fetch_models():
         {"name": "Llama 3 70b", "version": "llama3:70b", "category": "Language Model", "rating": 4},
         {"name": "Mistral 7b", "version": "mistral", "category": "Language Model", "rating": 4},
         {"name": "Mistral nemo 12b", "version": "mistral-nemo", "category": "Language Model", "rating": 4},
-        {"name": "LlaVA 7b", "version": "llava:7b", "category": "Vision Tools", "rating": 3},
-        {"name": "LlaVA 13b", "version": "llava:13b", "category": "Vision Tools", "rating": 3},
-        {"name": "LlaVA 34b", "version": "llava:34b", "category": "Vision Tools", "rating": 3},
+        {"name": "LlaVA 7b", "version": "llava:7b", "category": "Vision Tool", "rating": 3},
+        {"name": "LlaVA 13b", "version": "llava:13b", "category": "Vision Tool", "rating": 3},
+        {"name": "LlaVA 34b", "version": "llava:34b", "category": "Vision Tool", "rating": 3},
         {"name": "Tinyllama 1.1b", "version": "tinyllama", "category": "Language Model", "rating": 3},
         {"name": "Star Coder 2 3b", "version": "starcoder2:3b", "category": "Language Model", "rating": 3},
         {"name": "Star Coder 2 7b", "version": "starcoder2:7b", "category": "Language Model", "rating": 3},
@@ -189,7 +186,7 @@ def fetch_models():
         {"name": "Llama 2 uncensored 70b", "version": "llama2-uncensored:70b", "category": "Language Model", "rating": 3},
         {"name": "DeepSeek coder v2 16b", "version": "deepseek-coder-v2:16b", "category": "Language Model", "rating": 4},
         {"name": "DeepSeek coder v2 236", "version": "deepseek-coder-v2:236b", "category": "Language Model", "rating": 4},
-        {"name": "Minicpm v 8b", "version": "minicpm-v", "category": "Vision Tools", "rating": 3},
+        {"name": "Minicpm v 8b", "version": "minicpm-v", "category": "Vision Tool", "rating": 3},
         {"name": "Deepseek coder 1.3b", "version": "deepseek-coder:1.3b", "category": "Language Model", "rating": 3},
         {"name": "Deepseek coder 6.7b", "version": "deepseek-coder:6.7b", "category": "Language Model", "rating": 3},
         {"name": "Deepseek coder 33b", "version": "deepseek-coder:33b", "category": "Language Model", "rating": 3},
@@ -202,7 +199,7 @@ def fetch_models():
         {"name": "Open Thinker 7b", "version": "openthinker:7b", "category": "Language Model", "rating": 4},
         {"name": "Open Thinker 32b", "version": "openthinker:32b", "category": "Language Model", "rating": 4},
         {"name": "Phi 2.7b", "version": "phi", "category": "Language Model", "rating": 3},
-        {"name": "LlaVA Llama3 8b", "version": "llava-llama3", "category": "Vision Tools", "rating": 4},
+        {"name": "LlaVA Llama3 8b", "version": "llava-llama3", "category": "Vision Tool", "rating": 4},
         {"name": "Dolphin 3 8b", "version": "dolphin3", "category": "Language Model", "rating": 3},
         {"name": "Olmo 2 7b", "version": "olmo2:7b", "category": "Language Model", "rating": 3},
         {"name": "Olmo 2 13b", "version": "olmo2:13b", "category": "Language Model", "rating": 3},
@@ -247,102 +244,174 @@ def fetch_models():
         {"name": "Internlm 2 7b", "version": "internlm2:7b", "category": "Language Model", "rating": 3},
         {"name": "Internlm 2 20b", "version": "internlm2:20b", "category": "Language Model", "rating": 3},
         {"name": "Codestral 22b", "version": "codestral", "category": "Language Model", "rating": 4},
-        {"name": "Granite 3.2 Vision 2b", "version": "granite3.2-vision", "category": "Vision Tools", "rating": 3},
-        {"name": "Moon Dream 1.8b", "version": "moondream", "category": "Vision Tools", "rating": 3},
-        {"name": "LlaVA Llama3 8b", "version": "llava-llama3", "category": "Vision Tools", "rating": 3},
-        {"name": "LlaVA Phi3 3.8b", "version": "llava-phi3", "category": "Vision Tools", "rating": 3},
-        {"name": "Bak LlaVA 7b", "version": "bakllava", "category": "Vision Tools", "rating": 3}
+        {"name": "Granite 3.2 Vision 2b", "version": "granite3.2-vision", "category": "Vision Tool", "rating": 3},
+        {"name": "Moon Dream 1.8b", "version": "moondream", "category": "Vision Tool", "rating": 3},
+        {"name": "LlaVA Llama3 8b", "version": "llava-llama3", "category": "Vision Tool", "rating": 3},
+        {"name": "LlaVA Phi3 3.8b", "version": "llava-phi3", "category": "Vision Tool", "rating": 3},
+        {"name": "Bak LlaVA 7b", "version": "bakllava", "category": "Vision Tool", "rating": 3}
     ]
 
+class CommandWorker(QObject):
+    finished = pyqtSignal(str)
+    error = pyqtSignal(str)
+
+    def __init__(self, command: list):
+        super().__init__()
+        self.command = command
+
+    def run(self):
+        try:
+            result = subprocess.run(
+                self.command,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                encoding="utf-8"
+            )
+            # Nutze stdout, falls vorhanden, sonst stderr
+            output = result.stdout.strip() if result.stdout.strip() else result.stderr.strip()
+            self.finished.emit(output)
+        except Exception as e:
+            self.error.emit(str(e))
 
 class ModelCard(QFrame):
     def __init__(self, model: dict, is_installed: bool, parent=None):
         super().__init__(parent)
         self.model = model
         self.is_installed = is_installed
+        self.details_shown = False  # Status, ob der Detailbereich ein- oder ausgeblendet ist
         self.setup_ui()
         self.setup_shadow()
         self.setMouseTracking(True)
-        # Feste Höhe für Listendarstellung
-        self.setMaximumHeight(100)
-        self.setMinimumHeight(100)
 
     def setup_ui(self):
-        self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
-        self.setStyleSheet("""
-            QFrame {
-                background-color: #3b3f44;
-                border-radius: 10px;
-            }
-            QLabel {
-                background: transparent;
-            }
-        """)
-        # Horizontales Layout für eine kompakte Listendarstellung
-        layout = QHBoxLayout()
-        layout.setContentsMargins(10, 5, 10, 5)
-        layout.setSpacing(15)
+        # Gesamtlayout: Header (fester Bereich) + Details-Bereich (ausklappbar)
+        self.main_layout = QVBoxLayout(self)
+        self.main_layout.setContentsMargins(5, 5, 5, 5)
+        self.main_layout.setSpacing(5)
+
+        # Header-Bereich (fixe Höhe für Listendarstellung)
+        self.header_widget = QWidget()
+        self.header_widget.setFixedHeight(100)
+        self.header_widget.setStyleSheet("background: transparent")
+        header_layout = QHBoxLayout(self.header_widget)
+        header_layout.setContentsMargins(10, 5, 10, 5)
+        header_layout.setSpacing(15)
 
         # Name Label
         self.name_label = QLabel(self.model["name"])
         self.name_label.setFont(QFont("Segoe UI", 16, QFont.Weight.Bold))
         self.name_label.setStyleSheet("color: #ffffff;")
-        layout.addWidget(self.name_label, 2)
+        header_layout.addWidget(self.name_label, 2)
 
         # Kategorie als Badge
         self.category_label = QLabel(self.model["category"])
         self.category_label.setFont(QFont("Segoe UI", 11))
         self.category_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.category_label.setStyleSheet("""
-            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ffffff, stop:1 #dff9fb);
+            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ffffff, stop:1 #bbdefb);
             color: #000000;
             padding: 2px 8px;
             border-radius: 8px;
         """)
         self.category_label.setFixedHeight(35)
-        layout.addWidget(self.category_label, 1)
+        header_layout.addWidget(self.category_label, 1)
+
+        # Version
+        self.version_label = QLabel("Version: '" + self.model["version"] + "'")
+        self.version_label.setFont(QFont("Segoe UI", 11))
+        self.version_label.setStyleSheet("""
+            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ffffff, stop:1 #bbdefb);
+            color: #000000;
+            padding: 2px 8px;
+            border-radius: 8px;
+        """)
+        self.version_label.setFixedHeight(35)
+        header_layout.addWidget(self.version_label, 1)
+
+        # Installationsstatus
+        status_text = "Installed" if self.is_installed else "Not Installed"
+        status_color = "stop:0 #81c784, stop:1 #43a047" if self.is_installed else "stop:0 #ec7063, stop:1 #b03a2e"
+        self.status_label = QLabel(status_text)
+        self.status_label.setFont(QFont("Segoe UI", 11))
+        self.status_label.setStyleSheet(f"""
+            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, {status_color});
+            color: #000000;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 8px;
+        """)
+        self.status_label.setFixedHeight(35)
+        header_layout.addWidget(self.status_label, 1)
 
         # Sternebewertung
         stars = "★" * self.model["rating"] + "☆" * (6 - self.model["rating"])
         self.rating_label = QLabel(stars)
         self.rating_label.setFont(QFont("Segoe UI", 12))
         self.rating_label.setStyleSheet("color: #f1c40f;")
-        layout.addWidget(self.rating_label, 1)
+        header_layout.addWidget(self.rating_label, 1)
 
-        # Version
-        self.version_label = QLabel(f"V: {self.model['version']}")
-        self.version_label.setFont(QFont("Segoe UI", 11))
-        self.version_label.setStyleSheet("color: #bdc3c7;")
-        layout.addWidget(self.version_label, 1)
-
-        # Installationsstatus
-        status_text = "Installed" if self.is_installed else "Not Installed"
-        status_color = "green" if self.is_installed else "red"
-        self.status_label = QLabel(status_text)
-        self.status_label.setFont(QFont("Segoe UI", 11, QFont.Weight.Bold))
-        self.status_label.setStyleSheet(f"color: {status_color};")
-        layout.addWidget(self.status_label, 1)
-
-        # Optional: Ein Button für weitere Informationen
-        self.info_button = QPushButton("Details")
-        self.info_button.setFont(QFont("Segoe UI", 11))
-        self.info_button.setStyleSheet("""
+        # Neuer Show-Info-Button
+        self.show_info_button = QPushButton("Show Info")
+        self.show_info_button.setFont(QFont("Segoe UI", 11))
+        self.show_info_button.setStyleSheet("""
             QPushButton {
-                background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ffffff, stop:1 #dff9fb);
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ffffff, stop:1 #bbdefb);
                 color: #000000;
                 border: none;
                 padding: 4px 8px;
                 border-radius: 8px;
             }
             QPushButton:hover {
-                background-color: #3498db;
+                background-color: #90caf9;
             }
         """)
-        self.info_button.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.info_button.setFixedHeight(35)
-        layout.addWidget(self.info_button, 1)
+        self.show_info_button.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.show_info_button.setFixedHeight(35)
+        self.show_info_button.clicked.connect(self.on_show_info_clicked)
+        header_layout.addWidget(self.show_info_button, 1)
 
-        self.setLayout(layout)
+        # Neuer Delete-Button
+        self.delete_button = QPushButton("Delete")
+        self.delete_button.setFont(QFont("Segoe UI", 11))
+        self.delete_button.setStyleSheet("""
+            QPushButton {
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ec7063, stop:1 #b03a2e);
+                color: #ffffff;
+                border: none;
+                padding: 4px 8px;
+                border-radius: 8px;
+            }
+            QPushButton:hover {
+                background-color: #943126;
+            }
+        """)
+        self.delete_button.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.delete_button.setFixedHeight(35)
+        self.delete_button.clicked.connect(self.on_delete_clicked)
+        header_layout.addWidget(self.delete_button, 1)
+
+        self.main_layout.addWidget(self.header_widget)
+
+        # Details-Bereich: hier wird die Ausgabe von "ollama show" angezeigt
+        self.details_label = QLabel("")
+        self.details_label.setFont(QFont("Segoe UI", 10))
+        self.details_label.setStyleSheet("color: #ecf0f1; padding: 5px; border-radius: 5px;")
+        self.details_label.setWordWrap(True)
+        self.details_label.setVisible(False)
+        self.main_layout.addWidget(self.details_label)
+
+        # Gesamte Card-Styles
+        self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+        self.setStyleSheet("""
+            QFrame {
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #515a5a, stop:1 #424949);
+                border-radius: 10px;
+            }
+            QLabel {
+                background: transparent;
+            }
+        """)
 
     def setup_shadow(self):
         # Schatteneffekt für 3D-Optik
@@ -373,11 +442,90 @@ class ModelCard(QFrame):
         self.anim.start()
         super().leaveEvent(event)
 
+    def on_delete_clicked(self):
+        """ Führt 'ollama rm {model["version"]}' asynchron aus und aktualisiert den Status. """
+        command = ["ollama", "rm", self.model["version"]]
+        self.delete_button.setEnabled(False)
+        self.run_command(command, self.handle_delete_result)
+
+    def on_show_info_clicked(self):
+        """ Führt 'ollama show {model["version"]}' aus, zeigt die Ausgabe an,
+            oder klappt die Details wieder zusammen, wenn sie schon angezeigt werden.
+        """
+        if self.details_shown:
+            # Animation zum Zusammenklappen auf die ursprüngliche Höhe (Header-Höhe: 100)
+            self.animate_contraction()
+            return
+
+        command = ["ollama", "show", self.model["version"]]
+        self.show_info_button.setEnabled(False)
+        self.run_command(command, self.handle_show_info_result)
+
+    def run_command(self, command: list, callback):
+        """ Führt einen Kommando in einem separaten Thread aus. """
+        self.thread = QThread()
+        self.worker = CommandWorker(command)
+        self.worker.moveToThread(self.thread)
+        self.thread.started.connect(self.worker.run)
+        self.worker.finished.connect(callback)
+        self.worker.finished.connect(self.thread.quit)
+        self.worker.finished.connect(self.worker.deleteLater)
+        self.thread.finished.connect(self.thread.deleteLater)
+        self.worker.error.connect(lambda err: logging.error(f"Error: {err}"))
+        self.worker.error.connect(self.thread.quit)
+        self.thread.start()
+
+    def handle_delete_result(self, output: str):
+        logging.info(f"Delete Output for {self.model['version']}: {output}")
+        # Nach erfolgreicher Löschung den Status aktualisieren
+        self.is_installed = False
+        self.status_label.setText("Not Installed")
+        self.status_label.setStyleSheet("color: red;")
+        self.delete_button.setEnabled(True)
+
+    def handle_show_info_result(self, output: str):
+        logging.info(f"Show Output for {self.model['version']}: {output}")
+        # Ausgabe in den Details-Bereich schreiben und diesen einblenden
+        self.details_label.setText(output)
+        self.details_label.setVisible(True)
+        self.details_shown = True
+        self.show_info_button.setText("Hide Info")
+        self.show_info_button.setEnabled(True)
+        self.animate_expansion()
+
+    def animate_expansion(self):
+        """ Animiert die Box beim Ausklappen. """
+        start_height = self.height()  # Aktuelle Höhe der Box
+        # Neue Höhe berechnen, basierend auf den Details
+        new_height = start_height + self.details_label.sizeHint().height() + 20  # Extra Puffer
+        self.anim_height = QPropertyAnimation(self, b"fixedHeight")
+        self.anim_height.setDuration(300)
+        self.anim_height.setStartValue(start_height)
+        self.anim_height.setEndValue(new_height)
+        self.anim_height.setEasingCurve(QEasingCurve.Type.OutQuad)
+        self.anim_height.start()
+
+    def animate_contraction(self):
+        """ Animiert die Box beim Zusammenklappen auf die ursprüngliche Höhe. """
+        current_height = self.height()
+        target_height = 100  # Ursprüngliche Höhe (z. B. 100)
+        self.anim_height = QPropertyAnimation(self, b"fixedHeight")
+        self.anim_height.setDuration(300)
+        self.anim_height.setStartValue(current_height)
+        self.anim_height.setEndValue(target_height)
+        self.anim_height.setEasingCurve(QEasingCurve.Type.OutQuad)
+        self.anim_height.finished.connect(self.on_contraction_finished)
+        self.anim_height.start()
+
+    def on_contraction_finished(self):
+        self.details_label.setVisible(False)  # Details ausblenden
+        self.details_shown = False
+        self.show_info_button.setText("Show Info")  # Button-Text zurücksetzen
 
 class ModelShop(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("AI Model Shop")
+        self.setWindowTitle("MAVIS Model Shop")
         self.setGeometry(100, 100, 1200, 600)
         self.set_dark_mode()
         self.set_background_gradient()
@@ -391,7 +539,7 @@ class ModelShop(QWidget):
         main_layout = QVBoxLayout(self)
         header = QLabel("Welcome to MAVIS Model Shop")
         header.setFont(QFont("Segoe UI", 26, QFont.Weight.Bold))
-        header.setStyleSheet("color: #ecf0f1; padding: 20px;")
+        header.setStyleSheet("color: #fffff; padding: 20px;")
         header.setAlignment(Qt.AlignmentFlag.AlignCenter)
         main_layout.addWidget(header)
 
@@ -403,44 +551,36 @@ class ModelShop(QWidget):
                 border: none;
                 background-color: none;
             }
-
             QScrollBar:vertical {
                 background-color: none;
                 width: 10px;
                 border-radius: 5px;
             }
-
             QScrollBar::handle:vertical {
                 background-color: #ffffff;
                 min-height: 20px;
                 border-radius: 5px;
             }
-
             QScrollBar::add-line:vertical,
             QScrollBar::sub-line:vertical {
                 background: none;
             }
-
             QScrollBar::up-arrow:vertical,
             QScrollBar::down-arrow:vertical {
                 background: none;
             }
-
             QScrollBar::add-page:vertical,
             QScrollBar::sub-page:vertical {
                 background: none;
             }
-
             QScrollBar::add-line:horizontal,
             QScrollBar::sub-line:horizontal {
                 background: none;
             }
-
             QScrollBar::left-arrow:horizontal,
             QScrollBar::right-arrow:horizontal {
                 background: none;
             }
-
             QScrollBar::add-page:horizontal,
             QScrollBar::sub-page:horizontal {
                 background: none;
@@ -488,7 +628,6 @@ class ModelShop(QWidget):
                 card = ModelCard(model, is_installed)
                 # Jedes Card-Widget wird untereinander im V-Layout eingefügt
                 self.vbox_layout.addWidget(card)
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

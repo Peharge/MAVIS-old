@@ -94,7 +94,6 @@ def check_model_with_ollama(model_version: str) -> bool:
         )
         return result.returncode == 0
     except subprocess.CalledProcessError as e:
-        logging.error(f"Error checking model {model_version}: {e.stderr}")
         return False
     except Exception as e:
         logging.error(f"Unknown error checking model {model_version}: {e}")
@@ -104,22 +103,22 @@ def fetch_models():
     # Example models with name, version, category, and rating.
     # Notice that the model identifier "xcpp:11b" is the one that users should always use.
     return [
-        {"name": "Xc++ I 11b", "version": "xcpp:11b", "category": "Vision Tools", "rating": 4},
-        {"name": "Xc++ II 11b", "version": "xcpp2:11b", "category": "Vision Tools", "rating": 5},
-        {"name": "Xc++ III 11b", "version": "xcpp3:11b", "category": "Vision Tools", "rating": 5},
-        {"name": "Xc++ IV 11b", "version": "xcpp4:11b", "category": "Vision Tools", "rating": 6},
-        {"name": "Gemma 3 1b", "version": "gemma3:1b", "category": "Vision Tools", "rating": 5},
-        {"name": "Gemma 3 4b", "version": "gemma3:4b", "category": "Vision Tools", "rating": 5},
-        {"name": "Gemma 3 12b", "version": "gemma3:12b", "category": "Vision Tools", "rating": 6},
-        {"name": "Gemma 3 27b", "version": "gemma3:27b", "category": "Vision Tools", "rating": 6},
+        {"name": "Xc++ I 11b", "version": "xcpp:11b", "category": "Vision Tool", "rating": 4},
+        {"name": "Xc++ II 11b", "version": "xcpp2:11b", "category": "Vision Tool", "rating": 5},
+        {"name": "Xc++ III 11b", "version": "xcpp3:11b", "category": "Vision Tool", "rating": 5},
+        {"name": "Xc++ IV 11b", "version": "xcpp4:11b", "category": "Vision Tool", "rating": 6},
+        {"name": "Gemma 3 1b", "version": "gemma3:1b", "category": "Vision Tool", "rating": 5},
+        {"name": "Gemma 3 4b", "version": "gemma3:4b", "category": "Vision Tool", "rating": 5},
+        {"name": "Gemma 3 12b", "version": "gemma3:12b", "category": "Vision Tool", "rating": 6},
+        {"name": "Gemma 3 27b", "version": "gemma3:27b", "category": "Vision Tool", "rating": 6},
         {"name": "QwQ", "version": "qwq", "category": "Language Model", "rating": 6},
         {"name": "Llama 3.1 8b", "version": "llama3.1:8b", "category": "Language Model", "rating": 4},
         {"name": "Llama 3.1 70b", "version": "llama3.1:70b", "category": "Language Model", "rating": 4},
         {"name": "Llama 3.1 405b", "version": "llama3.1:405b", "category": "Language Model", "rating": 5},
         {"name": "Llama 3.2 1b", "version": "llama3.2:1b", "category": "Language Model", "rating": 4},
         {"name": "Llama 3.2 3b", "version": "llama3.2:3b", "category": "Language Model", "rating": 4},
-        {"name": "Llama 3.2 Vision 11b", "version": "llama3.2-vision:11b", "category": "Vision Tools", "rating": 5},
-        {"name": "Llama 3.2 Vision 90b", "version": "llama3.2-vision:90b", "category": "Vision Tools", "rating": 5},
+        {"name": "Llama 3.2 Vision 11b", "version": "llama3.2-vision:11b", "category": "Vision Tool", "rating": 5},
+        {"name": "Llama 3.2 Vision 90b", "version": "llama3.2-vision:90b", "category": "Vision Tool", "rating": 5},
         {"name": "Llama 3.3 70b", "version": "llama3.3", "category": "Language Model", "rating": 5},
         {"name": "Phi 4 14b", "version": "phi4", "category": "Language Model", "rating": 5},
         {"name": "Phi 4 mini 3.8b", "version": "phi4-mini", "category": "Language Model", "rating": 4},
@@ -179,9 +178,9 @@ def fetch_models():
         {"name": "Llama 3 70b", "version": "llama3:70b", "category": "Language Model", "rating": 4},
         {"name": "Mistral 7b", "version": "mistral", "category": "Language Model", "rating": 4},
         {"name": "Mistral nemo 12b", "version": "mistral-nemo", "category": "Language Model", "rating": 4},
-        {"name": "LlaVA 7b", "version": "llava:7b", "category": "Vision Tools", "rating": 3},
-        {"name": "LlaVA 13b", "version": "llava:13b", "category": "Vision Tools", "rating": 3},
-        {"name": "LlaVA 34b", "version": "llava:34b", "category": "Vision Tools", "rating": 3},
+        {"name": "LlaVA 7b", "version": "llava:7b", "category": "Vision Tool", "rating": 3},
+        {"name": "LlaVA 13b", "version": "llava:13b", "category": "Vision Tool", "rating": 3},
+        {"name": "LlaVA 34b", "version": "llava:34b", "category": "Vision Tool", "rating": 3},
         {"name": "Tinyllama 1.1b", "version": "tinyllama", "category": "Language Model", "rating": 3},
         {"name": "Star Coder 2 3b", "version": "starcoder2:3b", "category": "Language Model", "rating": 3},
         {"name": "Star Coder 2 7b", "version": "starcoder2:7b", "category": "Language Model", "rating": 3},
@@ -190,7 +189,7 @@ def fetch_models():
         {"name": "Llama 2 uncensored 70b", "version": "llama2-uncensored:70b", "category": "Language Model", "rating": 3},
         {"name": "DeepSeek coder v2 16b", "version": "deepseek-coder-v2:16b", "category": "Language Model", "rating": 4},
         {"name": "DeepSeek coder v2 236", "version": "deepseek-coder-v2:236b", "category": "Language Model", "rating": 4},
-        {"name": "Minicpm v 8b", "version": "minicpm-v", "category": "Vision Tools", "rating": 3},
+        {"name": "Minicpm v 8b", "version": "minicpm-v", "category": "Vision Tool", "rating": 3},
         {"name": "Deepseek coder 1.3b", "version": "deepseek-coder:1.3b", "category": "Language Model", "rating": 3},
         {"name": "Deepseek coder 6.7b", "version": "deepseek-coder:6.7b", "category": "Language Model", "rating": 3},
         {"name": "Deepseek coder 33b", "version": "deepseek-coder:33b", "category": "Language Model", "rating": 3},
@@ -203,7 +202,7 @@ def fetch_models():
         {"name": "Open Thinker 7b", "version": "openthinker:7b", "category": "Language Model", "rating": 4},
         {"name": "Open Thinker 32b", "version": "openthinker:32b", "category": "Language Model", "rating": 4},
         {"name": "Phi 2.7b", "version": "phi", "category": "Language Model", "rating": 3},
-        {"name": "LlaVA Llama3 8b", "version": "llava-llama3", "category": "Vision Tools", "rating": 4},
+        {"name": "LlaVA Llama3 8b", "version": "llava-llama3", "category": "Vision Tool", "rating": 4},
         {"name": "Dolphin 3 8b", "version": "dolphin3", "category": "Language Model", "rating": 3},
         {"name": "Olmo 2 7b", "version": "olmo2:7b", "category": "Language Model", "rating": 3},
         {"name": "Olmo 2 13b", "version": "olmo2:13b", "category": "Language Model", "rating": 3},
@@ -248,11 +247,11 @@ def fetch_models():
         {"name": "Internlm 2 7b", "version": "internlm2:7b", "category": "Language Model", "rating": 3},
         {"name": "Internlm 2 20b", "version": "internlm2:20b", "category": "Language Model", "rating": 3},
         {"name": "Codestral 22b", "version": "codestral", "category": "Language Model", "rating": 4},
-        {"name": "Granite 3.2 Vision 2b", "version": "granite3.2-vision", "category": "Vision Tools", "rating": 3},
-        {"name": "Moon Dream 1.8b", "version": "moondream", "category": "Vision Tools", "rating": 3},
-        {"name": "LlaVA Llama3 8b", "version": "llava-llama3", "category": "Vision Tools", "rating": 3},
-        {"name": "LlaVA Phi3 3.8b", "version": "llava-phi3", "category": "Vision Tools", "rating": 3},
-        {"name": "Bak LlaVA 7b", "version": "bakllava", "category": "Vision Tools", "rating": 3}
+        {"name": "Granite 3.2 Vision 2b", "version": "granite3.2-vision", "category": "Vision Tool", "rating": 3},
+        {"name": "Moon Dream 1.8b", "version": "moondream", "category": "Vision Tool", "rating": 3},
+        {"name": "LlaVA Llama3 8b", "version": "llava-llama3", "category": "Vision Tool", "rating": 3},
+        {"name": "LlaVA Phi3 3.8b", "version": "llava-phi3", "category": "Vision Tool", "rating": 3},
+        {"name": "Bak LlaVA 7b", "version": "bakllava", "category": "Vision Tool", "rating": 3}
     ]
 
 def main():
