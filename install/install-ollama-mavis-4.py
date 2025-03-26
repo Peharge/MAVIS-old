@@ -376,10 +376,14 @@ if __name__ == "__main__":
 
         # Model 1: Beliebiges Modell
         while True:
-            models["model1"] = input(f"\nPlease select Main model (Model 1)\n - this model is used for everything (e.g. gemma3:12b, deepseek-r1:14b, qwq, llama3.3, phi4, mistral etc.)\nor type 'help' or 'm help' for assistance:").strip()
+            models["model1"] = input(f"\nPlease select Main model (Model 1)\n - this model is used for everything (e.g. gemma3:12b, deepseek-r1:14b, qwq, llama3.3, phi4, mistral etc.)\nor type 'help', 'models ls', 'm help' or 'm models ls' for assistance:").strip()
             if models["model1"].lower() == "help":
                 run_help_script()
+            elif models["model1"].lower() == "models ls":
+                run_help_script()
             elif models["model1"].lower() == "m help":
+                m_run_help_script()
+            elif models["model1"].lower() == "m models ls":
                 m_run_help_script()
             elif models["model1"].lower() == "exit":
                 sys.exit(0)
@@ -388,10 +392,14 @@ if __name__ == "__main__":
 
         # Model 2: Vision-Modell
         while True:
-            models["model2"] = input(f"\nPlease select Vision Model (Model 2)\n - this model is used only for image analysis (This should be a vision model, e.g. llama3.2-vision:11b, gemma3:12b, granite3.2-vision, minicpm-v etc.)\nor type 'help' or 'm help' for assistance:").strip()
+            models["model2"] = input(f"\nPlease select Vision Model (Model 2)\n - this model is used only for image analysis (This should be a vision model, e.g. llama3.2-vision:11b, gemma3:12b, granite3.2-vision, minicpm-v etc.)\nor type 'help', 'models ls', 'm help' or 'm models ls' for assistance:").strip()
             if models["model2"].lower() == "help":
                 run_help_script()
+            elif models["model2"].lower() == "models ls":
+                run_help_script()
             elif models["model2"].lower() == "m help":
+                m_run_help_script()
+            elif models["model2"].lower() == "m models ls":
                 m_run_help_script()
             elif models["model2"].lower() == "exit":
                 sys.exit(0)
@@ -400,10 +408,14 @@ if __name__ == "__main__":
 
         # Model 3: Kleineren Modell auswählen
         while True:
-            models["model3"] = input(f"\nPlease select TTS Model (Model 3)\n - this model is only used for Voice A (This should be a smaller model, e.g. gemma3:1b, qwen2.5:1.5b, llama3.2:1b etc.)\nor type 'help' or 'm help' for assistance:").strip()
+            models["model3"] = input(f"\nPlease select TTS Model (Model 3)\n - this model is only used for Voice A (This should be a smaller model, e.g. gemma3:1b, qwen2.5:1.5b, llama3.2:1b etc.)\nor type 'help', 'models ls', 'm help' or 'm models ls' for assistance:").strip()
             if models["model3"].lower() == "help":
                 run_help_script()
+            elif models["model3"].lower() == "models ls":
+                run_help_script()
             elif models["model3"].lower() == "m help":
+                m_run_help_script()
+            elif models["model3"].lower() == "m models ls":
                 m_run_help_script()
             elif models["model3"].lower() == "exit":
                 sys.exit(0)
@@ -412,10 +424,14 @@ if __name__ == "__main__":
 
         # Model 4: Sehr kleines Vision-Modell auswählen
         while True:
-            models["model4"] = input(f"\nPlease select Solution Model (Model 4)\n - this model is only used for Solution (This should be a very small vision model, e.g. gemma3:1b, granite3.2-vision, moondream etc.)\nor type 'help' or 'm help' for assistance:").strip()
+            models["model4"] = input(f"\nPlease select Solution Model (Model 4)\n - this model is only used for Solution (This should be a very small vision model, e.g. gemma3:1b, granite3.2-vision, moondream etc.)\nor type 'help', 'models ls', 'm help' or 'm models ls' for assistance:").strip()
             if models["model4"].lower() == "help":
                 run_help_script()
+            elif models["model4"].lower() == "models ls":
+                run_help_script()
             elif models["model4"].lower() == "m help":
+                m_run_help_script()
+            elif models["model4"].lower() == "m models ls":
                 m_run_help_script()
             elif models["model4"].lower() == "exit":
                 sys.exit(0)
