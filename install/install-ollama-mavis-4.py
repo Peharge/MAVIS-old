@@ -380,7 +380,9 @@ if __name__ == "__main__":
             if models["model1"].lower() == "help":
                 run_help_script()
             elif models["model1"].lower() == "m help":
-                    m_run_help_script()
+                m_run_help_script()
+            elif models["model1"].lower() == "exit":
+                sys.exit(0)
             else:
                 break
 
@@ -390,7 +392,9 @@ if __name__ == "__main__":
             if models["model2"].lower() == "help":
                 run_help_script()
             elif models["model2"].lower() == "m help":
-                    m_run_help_script()
+                m_run_help_script()
+            elif models["model2"].lower() == "exit":
+                sys.exit(0)
             else:
                 break
 
@@ -400,7 +404,9 @@ if __name__ == "__main__":
             if models["model3"].lower() == "help":
                 run_help_script()
             elif models["model3"].lower() == "m help":
-                    m_run_help_script()
+                m_run_help_script()
+            elif models["model3"].lower() == "exit":
+                sys.exit(0)
             else:
                 break
 
@@ -410,7 +416,9 @@ if __name__ == "__main__":
             if models["model4"].lower() == "help":
                 run_help_script()
             elif models["model4"].lower() == "m help":
-                    m_run_help_script()
+                m_run_help_script()
+            elif models["model4"].lower() == "exit":
+                sys.exit(0)
             else:
                 break
 
