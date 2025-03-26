@@ -308,10 +308,10 @@ Do you want to change the models? [y/n]:
 
 ```bash
 Do you want to change the models? [y/n]:y
-Please select Main model (Model 1) - this model is used for everything (e.g. gemma3:12b, deepseek-r1:14b, qwq, llama3.3, phi4, mistral etc.) or type 'help' for assistance:deepseek-r1:14b
-Please select Vision Model (Model 2) - this model is used only for image analysis (This should be a vision model, e.g. llama3.2-vision:11b, gemma3:12b, granite3.2-vision, minicpm-v etc.) or type 'help' for assistance:gemma3:12b
-Please select TTS Model (Model 3) - this model is only used for Voice A (This should be a smaller model, e.g. gemma3:1b, qwen2.5:1.5b, llama3.2:1b etc.) or type 'help' for assistance:gemma3:1b
-Please select Solution Model (Model 4) - this model is only used for Solution (This should be a very small vision model, e.g. gemma3:1b, granite3.2-vision, moondream etc.) or type 'help' for assistance:gemma3:
+Please select Main model (Model 1) - this model is used for everything (e.g. gemma3:12b, deepseek-r1:14b, qwq, llama3.3, phi4, mistral etc.) or type 'm help' for assistance:deepseek-r1:14b
+Please select Vision Model (Model 2) - this model is used only for image analysis (This should be a vision model, e.g. llama3.2-vision:11b, gemma3:12b, granite3.2-vision, minicpm-v etc.) or type 'm help' for assistance:gemma3:12b
+Please select TTS Model (Model 3) - this model is only used for Voice A (This should be a smaller model, e.g. gemma3:1b, qwen2.5:1.5b, llama3.2:1b etc.) or type 'm help' for assistance:gemma3:1b
+Please select Solution Model (Model 4) - this model is only used for Solution (This should be a very small vision model, e.g. gemma3:1b, granite3.2-vision, moondream etc.) or type 'm help' for assistance:gemma3:
 1b
 Model selection saved to C:\Users\julia\PycharmProjects\MAVIS\model-mavis-4.json
 Final models: {'model1': 'deepseek-r1:14b', 'model2': 'gemma3:12b', 'model3': 'gemma3:1b', 'model4': 'gemma3:1b'}
