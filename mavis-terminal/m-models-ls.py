@@ -539,7 +539,7 @@ class ModelShop(QWidget):
         main_layout = QVBoxLayout(self)
         header = QLabel("Welcome to MAVIS Model Shop")
         header.setFont(QFont("Segoe UI", 26, QFont.Weight.Bold))
-        header.setStyleSheet("color: #fffff; padding: 20px;")
+        header.setStyleSheet("color: #ffffff; padding: 20px;")
         header.setAlignment(Qt.AlignmentFlag.AlignCenter)
         main_layout.addWidget(header)
 
