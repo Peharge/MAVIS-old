@@ -186,12 +186,9 @@ def fetch_models():
         {"name": "Star Coder 2 7b", "version": "starcoder2:7b", "category": "Language Model", "rating": 3},
         {"name": "Star Coder 2 15b", "version": "starcoder2:15b", "category": "Language Model", "rating": 3},
         {"name": "Llama 2 uncensored 7b", "version": "llama2-uncensored:7b", "category": "Language Model", "rating": 3},
-        {"name": "Llama 2 uncensored 70b", "version": "llama2-uncensored:70b", "category": "Language Model",
-         "rating": 3},
-        {"name": "DeepSeek coder v2 16b", "version": "deepseek-coder-v2:16b", "category": "Language Model",
-         "rating": 4},
-        {"name": "DeepSeek coder v2 236", "version": "deepseek-coder-v2:236b", "category": "Language Model",
-         "rating": 4},
+        {"name": "Llama 2 uncensored 70b", "version": "llama2-uncensored:70b", "category": "Language Model", "rating": 3},
+        {"name": "DeepSeek coder v2 16b", "version": "deepseek-coder-v2:16b", "category": "Language Model", "rating": 4},
+        {"name": "DeepSeek coder v2 236", "version": "deepseek-coder-v2:236b", "category": "Language Model", "rating": 4},
         {"name": "Minicpm v 8b", "version": "minicpm-v", "category": "Vision Tools", "rating": 3},
         {"name": "Deepseek coder 1.3b", "version": "deepseek-coder:1.3b", "category": "Language Model", "rating": 3},
         {"name": "Deepseek coder 6.7b", "version": "deepseek-coder:6.7b", "category": "Language Model", "rating": 3},
@@ -201,8 +198,7 @@ def fetch_models():
         {"name": "codegemma 2b", "version": "codegemma:2b", "category": "Language Model", "rating": 3},
         {"name": "codegemma 7b", "version": "codegemma:7b", "category": "Language Model", "rating": 3},
         {"name": "Dolphin Mixtral 8x7b", "version": "dolphin-mixtral:8x7b", "category": "Language Model", "rating": 4},
-        {"name": "Dolphin Mixtral 8x22b", "version": "dolphin-mixtral:8x22b", "category": "Language Model",
-         "rating": 4},
+        {"name": "Dolphin Mixtral 8x22b", "version": "dolphin-mixtral:8x22b", "category": "Language Model", "rating": 4},
         {"name": "Open Thinker 7b", "version": "openthinker:7b", "category": "Language Model", "rating": 4},
         {"name": "Open Thinker 32b", "version": "openthinker:32b", "category": "Language Model", "rating": 4},
         {"name": "Phi 2.7b", "version": "phi", "category": "Language Model", "rating": 3},
@@ -241,10 +237,8 @@ def fetch_models():
         {"name": "Smollm 1.7b", "version": "smollm:1.7b", "category": "Language Model", "rating": 3},
         {"name": "Nuextract 3.8b", "version": "nuextract", "category": "Language Model", "rating": 3},
         {"name": "Firefunction v2 70b", "version": "firefunction-v2", "category": "Language Model", "rating": 3},
-        {"name": "Llama 3 groq tool use 8b", "version": "llama3-groq-tool-use:8b", "category": "Language Model",
-         "rating": 3},
-        {"name": "Llama 3 groq tool use 70b", "version": "llama3-groq-tool-use:70b", "category": "Language Model",
-         "rating": 3},
+        {"name": "Llama 3 groq tool use 8b", "version": "llama3-groq-tool-use:8b", "category": "Language Model", "rating": 3},
+        {"name": "Llama 3 groq tool use 70b", "version": "llama3-groq-tool-use:70b", "category": "Language Model", "rating": 3},
         {"name": "Mathstral 7b", "version": "mathstral", "category": "Language Model", "rating": 3},
         {"name": "Codegee x4 9b", "version": "codegeex4", "category": "Language Model", "rating": 3},
         {"name": "glm4 9b", "version": "glm4", "category": "Language Model", "rating": 3},
@@ -300,7 +294,7 @@ class ModelCard(QFrame):
         self.category_label.setFont(QFont("Segoe UI", 11))
         self.category_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.category_label.setStyleSheet("""
-            background-color: #ffffff;
+            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ffffff, stop:1 #dff9fb);
             color: #000000;
             padding: 2px 8px;
             border-radius: 8px;
@@ -334,7 +328,7 @@ class ModelCard(QFrame):
         self.info_button.setFont(QFont("Segoe UI", 11))
         self.info_button.setStyleSheet("""
             QPushButton {
-                background-color: #ffffff;
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ffffff, stop:1 #dff9fb);
                 color: #000000;
                 border: none;
                 padding: 4px 8px;
