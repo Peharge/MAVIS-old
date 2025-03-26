@@ -61,28 +61,27 @@
 #
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
+import sys
+import os
 import subprocess
 import logging
-from tabulate import tabulate  # pip install tabulate
+from concurrent.futures import ThreadPoolExecutor
 
-# Configure logging
+from PyQt6.QtWidgets import (
+    QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QScrollArea,
+    QFrame, QSizePolicy, QPushButton, QGraphicsDropShadowEffect
+)
+from PyQt6.QtGui import QPalette, QColor, QIcon, QFont
+from PyQt6.QtCore import Qt, QPropertyAnimation, QEasingCurve
+
+# Logging konfigurieren
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Farbcodes definieren
-red = "\033[91m"
-green = "\033[92m"
-yellow = "\033[93m"
-blue = "\033[94m"
-magenta = "\033[95m"
-cyan = "\033[96m"
-white = "\033[97m"
-black = "\033[30m"
-orange = "\033[38;5;214m"
-reset = "\033[0m"
-bold = "\033[1m"
 
 def check_model_with_ollama(model_version: str) -> bool:
-
+    """
+    Überprüft, ob ein Modell in Ollama verfügbar ist.
+    """
     try:
         result = subprocess.run(
             ["ollama", "show", model_version],
@@ -97,12 +96,12 @@ def check_model_with_ollama(model_version: str) -> bool:
         logging.error(f"Error checking model {model_version}: {e.stderr}")
         return False
     except Exception as e:
-        logging.error(f"Unknown error checking model {model_version}: {e}")
+        logging.error(f"Unbekannter Fehler beim Überprüfen des Modells {model_version}: {e}")
         return False
 
+
 def fetch_models():
-    # Example models with name, version, category, and rating.
-    # Notice that the model identifier "xcpp:11b" is the one that users should always use.
+    # Beispielhafte Modelle mit Name, Version, Kategorie und Bewertung
     return [
         {"name": "Xc++ I 11b", "version": "xcpp:11b", "category": "Vision Tools", "rating": 4},
         {"name": "Xc++ II 11b", "version": "xcpp2:11b", "category": "Vision Tools", "rating": 5},
@@ -255,28 +254,244 @@ def fetch_models():
         {"name": "Bak LlaVA 7b", "version": "bakllava", "category": "Vision Tools", "rating": 3}
     ]
 
-def main():
-    models = fetch_models()
-    table_data = []
 
-    # Table headers
-    headers = ["Name", "Version", "Category", "Rating", "Status"]
+class ModelCard(QFrame):
+    def __init__(self, model: dict, is_installed: bool, parent=None):
+        super().__init__(parent)
+        self.model = model
+        self.is_installed = is_installed
+        self.setup_ui()
+        self.setup_shadow()
+        self.setMouseTracking(True)
+        # Feste Höhe für Listendarstellung
+        self.setMaximumHeight(100)
+        self.setMinimumHeight(100)
 
-    for model in models:
-        installed = check_model_with_ollama(model["version"])
-        status = f"{green}Installed{reset}" if installed else f"{red}Not Installed{reset}"
+    def setup_ui(self):
+        self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+        self.setStyleSheet("""
+            QFrame {
+                background-color: #3b3f44;
+                border-radius: 10px;
+            }
+            QLabel {
+                background: transparent;
+            }
+        """)
+        # Horizontales Layout für eine kompakte Listendarstellung
+        layout = QHBoxLayout()
+        layout.setContentsMargins(10, 5, 10, 5)
+        layout.setSpacing(15)
 
-        table_data.append([
-            model["name"],
-            model["version"],
-            model["category"],
-            model["rating"],
-            status
-        ])
+        # Name Label
+        self.name_label = QLabel(self.model["name"])
+        self.name_label.setFont(QFont("Segoe UI", 16, QFont.Weight.Bold))
+        self.name_label.setStyleSheet("color: #ffffff;")
+        layout.addWidget(self.name_label, 2)
 
-    # Print the table
-    print(tabulate(table_data, headers=headers, tablefmt="grid"))
-    print("")
+        # Kategorie als Badge
+        self.category_label = QLabel(self.model["category"])
+        self.category_label.setFont(QFont("Segoe UI", 11))
+        self.category_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.category_label.setStyleSheet("""
+            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ffffff, stop:1 #dff9fb);
+            color: #000000;
+            padding: 2px 8px;
+            border-radius: 8px;
+        """)
+        self.category_label.setFixedHeight(35)
+        layout.addWidget(self.category_label, 1)
+
+        # Sternebewertung
+        stars = "★" * self.model["rating"] + "☆" * (6 - self.model["rating"])
+        self.rating_label = QLabel(stars)
+        self.rating_label.setFont(QFont("Segoe UI", 12))
+        self.rating_label.setStyleSheet("color: #f1c40f;")
+        layout.addWidget(self.rating_label, 1)
+
+        # Version
+        self.version_label = QLabel(f"V: {self.model['version']}")
+        self.version_label.setFont(QFont("Segoe UI", 11))
+        self.version_label.setStyleSheet("color: #bdc3c7;")
+        layout.addWidget(self.version_label, 1)
+
+        # Installationsstatus
+        status_text = "Installed" if self.is_installed else "Not Installed"
+        status_color = "green" if self.is_installed else "red"
+        self.status_label = QLabel(status_text)
+        self.status_label.setFont(QFont("Segoe UI", 11, QFont.Weight.Bold))
+        self.status_label.setStyleSheet(f"color: {status_color};")
+        layout.addWidget(self.status_label, 1)
+
+        # Optional: Ein Button für weitere Informationen
+        self.info_button = QPushButton("Details")
+        self.info_button.setFont(QFont("Segoe UI", 11))
+        self.info_button.setStyleSheet("""
+            QPushButton {
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ffffff, stop:1 #dff9fb);
+                color: #000000;
+                border: none;
+                padding: 4px 8px;
+                border-radius: 8px;
+            }
+            QPushButton:hover {
+                background-color: #3498db;
+            }
+        """)
+        self.info_button.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.info_button.setFixedHeight(35)
+        layout.addWidget(self.info_button, 1)
+
+        self.setLayout(layout)
+
+    def setup_shadow(self):
+        # Schatteneffekt für 3D-Optik
+        self.shadow = QGraphicsDropShadowEffect(self)
+        self.shadow.setBlurRadius(10)
+        self.shadow.setXOffset(0)
+        self.shadow.setYOffset(0)
+        self.shadow.setColor(QColor(0, 0, 0, 150))
+        self.setGraphicsEffect(self.shadow)
+
+    def enterEvent(self, event):
+        # Schatten wird beim Hover animiert
+        self.anim = QPropertyAnimation(self.shadow, b"blurRadius")
+        self.anim.setDuration(200)
+        self.anim.setEasingCurve(QEasingCurve.Type.OutQuad)
+        self.anim.setStartValue(self.shadow.blurRadius())
+        self.anim.setEndValue(20)
+        self.anim.start()
+        super().enterEvent(event)
+
+    def leaveEvent(self, event):
+        # Schatten kehrt zurück
+        self.anim = QPropertyAnimation(self.shadow, b"blurRadius")
+        self.anim.setDuration(200)
+        self.anim.setEasingCurve(QEasingCurve.Type.OutQuad)
+        self.anim.setStartValue(self.shadow.blurRadius())
+        self.anim.setEndValue(10)
+        self.anim.start()
+        super().leaveEvent(event)
+
+
+class ModelShop(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("AI Model Shop")
+        self.setGeometry(100, 100, 1200, 600)
+        self.set_dark_mode()
+        self.set_background_gradient()
+
+        # Optional: Icon setzen, falls vorhanden
+        user = os.getenv("USERNAME") or os.getenv("USER")
+        icon_path = os.path.join(f"C:/Users/{user}/PycharmProjects/MAVIS/icons", "mavis-logo.ico")
+        if os.path.exists(icon_path):
+            self.setWindowIcon(QIcon(icon_path))
+
+        main_layout = QVBoxLayout(self)
+        header = QLabel("Welcome to MAVIS Model Shop")
+        header.setFont(QFont("Segoe UI", 26, QFont.Weight.Bold))
+        header.setStyleSheet("color: #ecf0f1; padding: 20px;")
+        header.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        main_layout.addWidget(header)
+
+        # ScrollArea konfigurieren für die Listendarstellung
+        self.scroll_area = QScrollArea()
+        self.scroll_area.setWidgetResizable(True)
+        self.scroll_area.setStyleSheet("""
+            QScrollArea {
+                border: none;
+                background-color: none;
+            }
+
+            QScrollBar:vertical {
+                background-color: none;
+                width: 10px;
+                border-radius: 5px;
+            }
+
+            QScrollBar::handle:vertical {
+                background-color: #ffffff;
+                min-height: 20px;
+                border-radius: 5px;
+            }
+
+            QScrollBar::add-line:vertical,
+            QScrollBar::sub-line:vertical {
+                background: none;
+            }
+
+            QScrollBar::up-arrow:vertical,
+            QScrollBar::down-arrow:vertical {
+                background: none;
+            }
+
+            QScrollBar::add-page:vertical,
+            QScrollBar::sub-page:vertical {
+                background: none;
+            }
+
+            QScrollBar::add-line:horizontal,
+            QScrollBar::sub-line:horizontal {
+                background: none;
+            }
+
+            QScrollBar::left-arrow:horizontal,
+            QScrollBar::right-arrow:horizontal {
+                background: none;
+            }
+
+            QScrollBar::add-page:horizontal,
+            QScrollBar::sub-page:horizontal {
+                background: none;
+            }
+        """)
+
+        self.content_widget = QWidget()
+        # Verwende ein vertikales Layout für die Listendarstellung
+        self.vbox_layout = QVBoxLayout(self.content_widget)
+        self.vbox_layout.setSpacing(15)
+        self.vbox_layout.setContentsMargins(30, 30, 30, 30)
+        self.scroll_area.setWidget(self.content_widget)
+        main_layout.addWidget(self.scroll_area)
+
+        self.load_models()
+
+    def set_dark_mode(self):
+        palette = self.palette()
+        palette.setColor(QPalette.ColorRole.Window, QColor(30, 30, 30))
+        palette.setColor(QPalette.ColorRole.WindowText, QColor(220, 220, 220))
+        palette.setColor(QPalette.ColorRole.Base, QColor(30, 30, 30))
+        palette.setColor(QPalette.ColorRole.AlternateBase, QColor(45, 45, 45))
+        palette.setColor(QPalette.ColorRole.ToolTipBase, QColor(220, 220, 220))
+        palette.setColor(QPalette.ColorRole.ToolTipText, QColor(30, 30, 30))
+        palette.setColor(QPalette.ColorRole.Text, QColor(220, 220, 220))
+        palette.setColor(QPalette.ColorRole.Button, QColor(45, 45, 45))
+        palette.setColor(QPalette.ColorRole.ButtonText, QColor(220, 220, 220))
+        palette.setColor(QPalette.ColorRole.BrightText, QColor(255, 0, 0))
+        self.setPalette(palette)
+
+    def set_background_gradient(self):
+        # Dezenter vertikaler Farbverlauf als Hintergrund
+        self.setStyleSheet("""
+            QWidget { 
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #000000, stop:1 #000000);
+            }
+        """)
+
+    def load_models(self):
+        models = fetch_models()
+        with ThreadPoolExecutor() as executor:
+            futures = {model["name"]: executor.submit(check_model_with_ollama, model["version"]) for model in models}
+            for model in models:
+                is_installed = futures[model["name"]].result()
+                card = ModelCard(model, is_installed)
+                # Jedes Card-Widget wird untereinander im V-Layout eingefügt
+                self.vbox_layout.addWidget(card)
+
 
 if __name__ == "__main__":
-    main()
+    app = QApplication(sys.argv)
+    window = ModelShop()
+    window.show()
+    sys.exit(app.exec())

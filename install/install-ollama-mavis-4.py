@@ -312,18 +312,28 @@ def save_model_selection(models):
     except Exception as e:
         print(f"{red}Error saving model selection: {e}{reset}")
 
-import os
-import subprocess
-
 def run_help_script():
     """
     Führt das Hilfe-Skript aus, wenn der Benutzer 'help' eingibt.
     """
     help_script_path = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "install", "help-models.py")
     if os.path.exists(help_script_path):
-        print(f"{cyan}Running help script...{reset}")
+        print(f"{blue}Running help script...{reset}")
         run([f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe",
              f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\install\\help-models.py"],
+            shell=True)
+    else:
+        print(f"{red}Help script not found at {help_script_path}. Please check the path.{reset}")
+
+def m_run_help_script():
+    """
+    Führt das Hilfe-Skript aus, wenn der Benutzer 'help' eingibt.
+    """
+    help_script_path = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "install", "help-models.py")
+    if os.path.exists(help_script_path):
+        print(f"{blue}Running help script...{reset}")
+        run([f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe",
+             f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\install\\m-help-models.py"],
             shell=True)
     else:
         print(f"{red}Help script not found at {help_script_path}. Please check the path.{reset}")
@@ -366,33 +376,41 @@ if __name__ == "__main__":
 
         # Model 1: Beliebiges Modell
         while True:
-            models["model1"] = input(f"Please select Main model (Model 1) - this model is used for everything (e.g. gemma3:12b, deepseek-r1:14b, qwq, llama3.3, phi4, mistral etc.) or type 'm help' for assistance:").strip()
-            if models["model1"].lower() == "m help":
+            models["model1"] = input(f"Please select Main model (Model 1) - this model is used for everything (e.g. gemma3:12b, deepseek-r1:14b, qwq, llama3.3, phi4, mistral etc.) or type 'help' or 'm help' for assistance:").strip()
+            if models["model1"].lower() == "help":
                 run_help_script()
+            elif models["model1"].lower() == "m help":
+                    m_run_help_script()
             else:
                 break
 
         # Model 2: Vision-Modell
         while True:
-            models["model2"] = input(f"Please select Vision Model (Model 2) - this model is used only for image analysis (This should be a vision model, e.g. llama3.2-vision:11b, gemma3:12b, granite3.2-vision, minicpm-v etc.) or type 'm help' for assistance:").strip()
-            if models["model2"].lower() == "m help":
+            models["model2"] = input(f"Please select Vision Model (Model 2) - this model is used only for image analysis (This should be a vision model, e.g. llama3.2-vision:11b, gemma3:12b, granite3.2-vision, minicpm-v etc.) or type 'help' or 'm help' for assistance:").strip()
+            if models["model2"].lower() == "help":
                 run_help_script()
+            elif models["model2"].lower() == "m help":
+                    m_run_help_script()
             else:
                 break
 
         # Model 3: Kleineren Modell auswählen
         while True:
-            models["model3"] = input(f"Please select TTS Model (Model 3) - this model is only used for Voice A (This should be a smaller model, e.g. gemma3:1b, qwen2.5:1.5b, llama3.2:1b etc.) or type 'm help' for assistance:").strip()
-            if models["model3"].lower() == "m help":
+            models["model3"] = input(f"Please select TTS Model (Model 3) - this model is only used for Voice A (This should be a smaller model, e.g. gemma3:1b, qwen2.5:1.5b, llama3.2:1b etc.) or type 'help' or 'm help' for assistance:").strip()
+            if models["model3"].lower() == "help":
                 run_help_script()
+            elif models["model3"].lower() == "m help":
+                    m_run_help_script()
             else:
                 break
 
         # Model 4: Sehr kleines Vision-Modell auswählen
         while True:
-            models["model4"] = input(f"Please select Solution Model (Model 4) - this model is only used for Solution (This should be a very small vision model, e.g. gemma3:1b, granite3.2-vision, moondream etc.) or type 'm help' for assistance:").strip()
-            if models["model4"].lower() == "m help":
+            models["model4"] = input(f"Please select Solution Model (Model 4) - this model is only used for Solution (This should be a very small vision model, e.g. gemma3:1b, granite3.2-vision, moondream etc.) or type 'help' or 'm help' for assistance:").strip()
+            if models["model4"].lower() == "help":
                 run_help_script()
+            elif models["model4"].lower() == "m help":
+                    m_run_help_script()
             else:
                 break
 
