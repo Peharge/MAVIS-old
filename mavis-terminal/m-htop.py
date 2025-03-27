@@ -194,52 +194,53 @@ class AdvancedSystemMonitor(QWidget):
             padding: 4px;
             border: 1px solid #566573;
         }
-            QScrollArea {
-                border: none;
-                background-color: none;
-            }
+        
+        QScrollArea {
+            border: none;
+            background-color: transparent;
+        }
 
-            QScrollBar:vertical {
-                background-color: none;
-                width: 10px;
-                border-radius: 5px;
-            }
+        QScrollBar:vertical {
+            background-color: transparent;
+            width: 10px;
+            border-radius: 5px;
+        }
 
-            QScrollBar::handle:vertical {
-                background-color: #ffffff;
-                min-height: 20px;
-                border-radius: 5px;
-            }
+        QScrollBar::handle:vertical {
+            background-color: #ffffff;
+            min-height: 20px;
+            border-radius: 5px;
+        }
 
-            QScrollBar::add-line:vertical,
-            QScrollBar::sub-line:vertical {
-                background: none;
-            }
+        QScrollBar::add-line:vertical,
+        QScrollBar::sub-line:vertical {
+            background: transparent;
+        }
 
-            QScrollBar::up-arrow:vertical,
-            QScrollBar::down-arrow:vertical {
-                background: none;
-            }
+        QScrollBar::up-arrow:vertical,
+        QScrollBar::down-arrow:vertical {
+            background: transparent;
+        }
 
-            QScrollBar::add-page:vertical,
-            QScrollBar::sub-page:vertical {
-                background: none;
-            }
+        QScrollBar::add-page:vertical,
+        QScrollBar::sub-page:vertical {
+            background: transparent;
+        }
 
-            QScrollBar::add-line:horizontal,
-            QScrollBar::sub-line:horizontal {
-                background: none;
-            }
+        QScrollBar::add-line:horizontal,
+        QScrollBar::sub-line:horizontal {
+            background: transparent;
+        }
 
-            QScrollBar::left-arrow:horizontal,
-            QScrollBar::right-arrow:horizontal {
-                background: none;
-            }
+        QScrollBar::left-arrow:horizontal,
+        QScrollBar::right-arrow:horizontal {
+            background: transparent;
+        }
 
-            QScrollBar::add-page:horizontal,
-            QScrollBar::sub-page:horizontal {
-                background: none;
-            }
+        QScrollBar::add-page:horizontal,
+        QScrollBar::sub-page:horizontal {
+            background: transparent;
+        }
         """
 
     def create_metric_card(self, title, color):

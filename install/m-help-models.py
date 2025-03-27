@@ -613,41 +613,49 @@ class ModelShop(QWidget):
         self.scroll_area.setStyleSheet("""
             QScrollArea {
                 border: none;
-                background-color: none;
+                background-color: transparent;
             }
+    
             QScrollBar:vertical {
-                background-color: none;
+                background-color: transparent;
                 width: 10px;
                 border-radius: 5px;
             }
+    
             QScrollBar::handle:vertical {
                 background-color: #ffffff;
                 min-height: 20px;
                 border-radius: 5px;
             }
+    
             QScrollBar::add-line:vertical,
             QScrollBar::sub-line:vertical {
-                background: none;
+                background: transparent;
             }
+    
             QScrollBar::up-arrow:vertical,
             QScrollBar::down-arrow:vertical {
-                background: none;
+                background: transparent;
             }
+    
             QScrollBar::add-page:vertical,
             QScrollBar::sub-page:vertical {
-                background: none;
+                background: transparent;
             }
+    
             QScrollBar::add-line:horizontal,
             QScrollBar::sub-line:horizontal {
-                background: none;
+                background: transparent;
             }
+    
             QScrollBar::left-arrow:horizontal,
             QScrollBar::right-arrow:horizontal {
-                background: none;
+                background: transparent;
             }
+    
             QScrollBar::add-page:horizontal,
             QScrollBar::sub-page:horizontal {
-                background: none;
+                background: transparent;
             }
         """)
 
