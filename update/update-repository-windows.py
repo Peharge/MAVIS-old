@@ -85,6 +85,7 @@ DATA_FILE = os.path.join(os.path.dirname(__file__), "last_update.json")
 image_dir = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "update")
 batch_file = os.path.join(image_dir, "update-mavis-repository.bat")
 python_file = os.path.join(image_dir, "m-git.py")
+python_env = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", ".env", "Scripts", "python.exe")
 
 def read_last_update():
     """Liest das letzte gespeicherte Datum aus der JSON-Datei."""
@@ -112,10 +113,10 @@ def prompt_for_update():
             return True
         elif choice in {"n", "no"}:
             return False
-        elif choice == "m help":
-            subprocess.run(f"python {python_file}", shell=True)
+        if choice == "m help":
+            subprocess.run(f'"{python_env}" {python_file}', shell=True)
         elif choice == "m git":
-            subprocess.run(f"python {python_file}", shell=True)
+            subprocess.run(f'"{python_env}" {python_file}', shell=True)
         else:
             print(f"{yellow}Invalid input. Please enter 'y', 'n' or 'help'.{reset}")
 

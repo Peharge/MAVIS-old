@@ -74,7 +74,8 @@ def get_git_commits(repo_path):
     os.chdir(repo_path)
     try:
         # Retrieve local commits
-        local_commits = subprocess.check_output(["git", "log", "--pretty=format:%H %h %s %an %ar"], text=True).split("\n")
+        local_commits = subprocess.check_output(["git", "log", "--pretty=format:%H %h %s %an %ar"], text=True).split(
+            "\n")
 
         # Determine the main branch
         branches = subprocess.check_output(["git", "ls-remote", "--heads", "origin"], text=True).split("\n")
@@ -110,7 +111,7 @@ def get_git_commits(repo_path):
 def get_commit_diff(repo_path, commit_hash):
     os.chdir(repo_path)
     try:
-        diff = subprocess.check_output(["git", "show", commit_hash], text=True)
+        diff = subprocess.check_output(["git", "show", commit_hash], text=True, encoding='utf-8')
         return diff
     except subprocess.CalledProcessError:
         return "Failed to retrieve diff."
@@ -167,7 +168,7 @@ class CommitExplorer(QWidget):
                 font-family: 'Roboto', sans-serif;
                 font-size: 14px;
             }
-            
+
             QLineEdit {
                 background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
                 border: 1px solid #778899;
@@ -175,7 +176,7 @@ class CommitExplorer(QWidget):
                 padding: 5px;
                 color: #FFFFFF;
             }
-            
+
             QPushButton {
                 background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
                 border: none;
@@ -183,33 +184,33 @@ class CommitExplorer(QWidget):
                 padding: 5px 10px;
                 color: #FFFFFF;
             }
-            
+
             QPushButton:hover {
                 background-color: #1c2833;
             }
-            
+
             QTreeWidget {
                 background-color: transparent;
                 border: 1px solid #778899;
                 border-radius: 8px;
             }
-            
+
             QTreeWidget::item {
                 padding: 8px;
                 border-bottom: 1px solid #778899;
             }
-            
+
             QTreeWidget::item:selected {
                 background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #34495e, stop:1 #1c2833);
                 color: #FFFFFF;
             }
-            
+
             QHeaderView::section {
                 background-color: transparent;
                 padding: 8px;
                 border: none;
             }
-            
+
             QScrollArea {
                 border: none;
                 background-color: transparent;
@@ -256,12 +257,12 @@ class CommitExplorer(QWidget):
             QScrollBar::sub-page:horizontal {
                 background: transparent;
             }
-            
+
             QLabel {
                 background: transparent;
                 font-size: 16px;
             }
-            
+
             QTextEdit {
                 background-color: transparent;
                 color: #FFFFFF;

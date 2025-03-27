@@ -110,7 +110,7 @@ def get_git_commits(repo_path):
 def get_commit_diff(repo_path, commit_hash):
     os.chdir(repo_path)
     try:
-        diff = subprocess.check_output(["git", "show", commit_hash], text=True)
+        diff = subprocess.check_output(["git", "show", commit_hash], text=True, encoding='utf-8')
         return diff
     except subprocess.CalledProcessError:
         return "Failed to retrieve diff."
