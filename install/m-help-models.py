@@ -305,8 +305,7 @@ class ModelCard(QFrame):
             QFrame {
                 background: transparent;
                 border: none;
-                box-shadow: none;
-                color: #fffff;
+                color: #ffffff;
             }
         """)
         header_layout.addWidget(self.name_label, 2)
@@ -359,7 +358,6 @@ class ModelCard(QFrame):
             QFrame {
                 background: transparent;
                 border: none;
-                box-shadow: none;
                 color: #f1c40f;
             }
         """)
@@ -443,7 +441,6 @@ class ModelCard(QFrame):
                 background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
                 border-radius: 12px;
                 border: 1px solid #566573;
-                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
             }
             QFrame:hover {
                 background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #34495e, stop:1 #1c2833);
