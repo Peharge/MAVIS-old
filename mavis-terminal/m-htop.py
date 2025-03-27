@@ -194,23 +194,52 @@ class AdvancedSystemMonitor(QWidget):
             padding: 4px;
             border: 1px solid #566573;
         }
-        QScrollArea {
-            border: none;
-        }
-        QScrollBar:vertical {
-            background-color: transparent;
-            width: 10px;
-            border-radius: 5px;
-        }
-        QScrollBar::handle:vertical {
-            background-color: #ecf0f1;
-            min-height: 20px;
-            border-radius: 5px;
-        }
-        QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical,
-        QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
-            background: none;
-        }
+            QScrollArea {
+                border: none;
+                background-color: none;
+            }
+
+            QScrollBar:vertical {
+                background-color: none;
+                width: 10px;
+                border-radius: 5px;
+            }
+
+            QScrollBar::handle:vertical {
+                background-color: #ffffff;
+                min-height: 20px;
+                border-radius: 5px;
+            }
+
+            QScrollBar::add-line:vertical,
+            QScrollBar::sub-line:vertical {
+                background: none;
+            }
+
+            QScrollBar::up-arrow:vertical,
+            QScrollBar::down-arrow:vertical {
+                background: none;
+            }
+
+            QScrollBar::add-page:vertical,
+            QScrollBar::sub-page:vertical {
+                background: none;
+            }
+
+            QScrollBar::add-line:horizontal,
+            QScrollBar::sub-line:horizontal {
+                background: none;
+            }
+
+            QScrollBar::left-arrow:horizontal,
+            QScrollBar::right-arrow:horizontal {
+                background: none;
+            }
+
+            QScrollBar::add-page:horizontal,
+            QScrollBar::sub-page:horizontal {
+                background: none;
+            }
         """
 
     def create_metric_card(self, title, color):
