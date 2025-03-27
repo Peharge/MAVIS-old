@@ -107,14 +107,14 @@ def write_last_update():
 def prompt_for_update():
     """Fragt den Benutzer, ob ein Update durchgeführt werden soll."""
     while True:
-        choice = input(f"Would you like to perform an update? [y/n/help/more]:").strip().lower()
+        choice = input(f"Would you like to perform an update? For more information, type 'm help' or 'm git' [y/n]:").strip().lower()
         if choice in {"y", "yes"}:
             return True
         elif choice in {"n", "no"}:
             return False
-        elif choice == "help":
+        elif choice == "m help":
             subprocess.run(f"python {python_file}", shell=True)
-        elif choice == "more":
+        elif choice == "m git":
             subprocess.run(f"python {python_file}", shell=True)
         else:
             print(f"{yellow}Invalid input. Please enter 'y', 'n' or 'help'.{reset}")
