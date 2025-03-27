@@ -77,6 +77,7 @@ from PyQt6.QtCore import Qt, QPropertyAnimation, QEasingCurve, QObject, pyqtSign
 # Logging konfigurieren
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+
 def check_model_with_ollama(model_version: str) -> bool:
     """
     Überprüft, ob ein Modell in Ollama verfügbar ist.
@@ -96,6 +97,7 @@ def check_model_with_ollama(model_version: str) -> bool:
     except Exception as e:
         logging.error(f"Unknown error while validating the model {model_version}: {e}")
         return False
+
 
 def fetch_models():
     # Beispielhafte Modelle mit Name, Version, Kategorie und Bewertung
@@ -183,9 +185,12 @@ def fetch_models():
         {"name": "Star Coder 2 7b", "version": "starcoder2:7b", "category": "Language Model", "rating": 3},
         {"name": "Star Coder 2 15b", "version": "starcoder2:15b", "category": "Language Model", "rating": 3},
         {"name": "Llama 2 uncensored 7b", "version": "llama2-uncensored:7b", "category": "Language Model", "rating": 3},
-        {"name": "Llama 2 uncensored 70b", "version": "llama2-uncensored:70b", "category": "Language Model", "rating": 3},
-        {"name": "DeepSeek coder v2 16b", "version": "deepseek-coder-v2:16b", "category": "Language Model", "rating": 4},
-        {"name": "DeepSeek coder v2 236", "version": "deepseek-coder-v2:236b", "category": "Language Model", "rating": 4},
+        {"name": "Llama 2 uncensored 70b", "version": "llama2-uncensored:70b", "category": "Language Model",
+         "rating": 3},
+        {"name": "DeepSeek coder v2 16b", "version": "deepseek-coder-v2:16b", "category": "Language Model",
+         "rating": 4},
+        {"name": "DeepSeek coder v2 236", "version": "deepseek-coder-v2:236b", "category": "Language Model",
+         "rating": 4},
         {"name": "Minicpm v 8b", "version": "minicpm-v", "category": "Vision Tool", "rating": 3},
         {"name": "Deepseek coder 1.3b", "version": "deepseek-coder:1.3b", "category": "Language Model", "rating": 3},
         {"name": "Deepseek coder 6.7b", "version": "deepseek-coder:6.7b", "category": "Language Model", "rating": 3},
@@ -195,7 +200,8 @@ def fetch_models():
         {"name": "codegemma 2b", "version": "codegemma:2b", "category": "Language Model", "rating": 3},
         {"name": "codegemma 7b", "version": "codegemma:7b", "category": "Language Model", "rating": 3},
         {"name": "Dolphin Mixtral 8x7b", "version": "dolphin-mixtral:8x7b", "category": "Language Model", "rating": 4},
-        {"name": "Dolphin Mixtral 8x22b", "version": "dolphin-mixtral:8x22b", "category": "Language Model", "rating": 4},
+        {"name": "Dolphin Mixtral 8x22b", "version": "dolphin-mixtral:8x22b", "category": "Language Model",
+         "rating": 4},
         {"name": "Open Thinker 7b", "version": "openthinker:7b", "category": "Language Model", "rating": 4},
         {"name": "Open Thinker 32b", "version": "openthinker:32b", "category": "Language Model", "rating": 4},
         {"name": "Phi 2.7b", "version": "phi", "category": "Language Model", "rating": 3},
@@ -234,8 +240,10 @@ def fetch_models():
         {"name": "Smollm 1.7b", "version": "smollm:1.7b", "category": "Language Model", "rating": 3},
         {"name": "Nuextract 3.8b", "version": "nuextract", "category": "Language Model", "rating": 3},
         {"name": "Firefunction v2 70b", "version": "firefunction-v2", "category": "Language Model", "rating": 3},
-        {"name": "Llama 3 groq tool use 8b", "version": "llama3-groq-tool-use:8b", "category": "Language Model", "rating": 3},
-        {"name": "Llama 3 groq tool use 70b", "version": "llama3-groq-tool-use:70b", "category": "Language Model", "rating": 3},
+        {"name": "Llama 3 groq tool use 8b", "version": "llama3-groq-tool-use:8b", "category": "Language Model",
+         "rating": 3},
+        {"name": "Llama 3 groq tool use 70b", "version": "llama3-groq-tool-use:70b", "category": "Language Model",
+         "rating": 3},
         {"name": "Mathstral 7b", "version": "mathstral", "category": "Language Model", "rating": 3},
         {"name": "Codegee x4 9b", "version": "codegeex4", "category": "Language Model", "rating": 3},
         {"name": "glm4 9b", "version": "glm4", "category": "Language Model", "rating": 3},
@@ -250,6 +258,7 @@ def fetch_models():
         {"name": "LlaVA Phi3 3.8b", "version": "llava-phi3", "category": "Vision Tool", "rating": 3},
         {"name": "Bak LlaVA 7b", "version": "bakllava", "category": "Vision Tool", "rating": 3}
     ]
+
 
 class CommandWorker(QObject):
     finished = pyqtSignal(str)
@@ -273,6 +282,7 @@ class CommandWorker(QObject):
             self.finished.emit(output)
         except Exception as e:
             self.error.emit(str(e))
+
 
 class ModelCard(QFrame):
     def __init__(self, model: dict, is_installed: bool, parent=None):
@@ -586,6 +596,7 @@ class ModelCard(QFrame):
         self.details_shown = False
         self.show_info_button.setText("Show Info")  # Button-Text zurücksetzen
 
+
 class ModelShop(QWidget):
     def __init__(self):
         super().__init__()
@@ -603,7 +614,14 @@ class ModelShop(QWidget):
         main_layout = QVBoxLayout(self)
         header = QLabel("Welcome to MAVIS Model Shop")
         header.setFont(QFont("Segoe UI", 26, QFont.Weight.Bold))
-        header.setStyleSheet("color: #ffffff; padding: 20px;")
+        header.setStyleSheet("""
+            QFrame {
+                background: transparent;
+                border: none;
+                color: #ffffff; 
+                padding: 20px;
+            }
+        """)
         header.setAlignment(Qt.AlignmentFlag.AlignCenter)
         main_layout.addWidget(header)
 
@@ -615,44 +633,44 @@ class ModelShop(QWidget):
                 border: none;
                 background-color: transparent;
             }
-    
+
             QScrollBar:vertical {
                 background-color: transparent;
                 width: 10px;
                 border-radius: 5px;
             }
-    
+
             QScrollBar::handle:vertical {
                 background-color: #ffffff;
                 min-height: 20px;
                 border-radius: 5px;
             }
-    
+
             QScrollBar::add-line:vertical,
             QScrollBar::sub-line:vertical {
                 background: transparent;
             }
-    
+
             QScrollBar::up-arrow:vertical,
             QScrollBar::down-arrow:vertical {
                 background: transparent;
             }
-    
+
             QScrollBar::add-page:vertical,
             QScrollBar::sub-page:vertical {
                 background: transparent;
             }
-    
+
             QScrollBar::add-line:horizontal,
             QScrollBar::sub-line:horizontal {
                 background: transparent;
             }
-    
+
             QScrollBar::left-arrow:horizontal,
             QScrollBar::right-arrow:horizontal {
                 background: transparent;
             }
-    
+
             QScrollBar::add-page:horizontal,
             QScrollBar::sub-page:horizontal {
                 background: transparent;
@@ -700,6 +718,7 @@ class ModelShop(QWidget):
                 card = ModelCard(model, is_installed)
                 # Jedes Card-Widget wird untereinander im V-Layout eingefügt
                 self.vbox_layout.addWidget(card)
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

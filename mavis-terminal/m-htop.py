@@ -74,7 +74,7 @@ from PyQt6.QtGui import QFont, QIcon
 class AdvancedSystemMonitor(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Advanced System Monitor")
+        self.setWindowTitle("MAVIS Advanced System Monitor")
         self.setGeometry(100, 100, 1000, 600)
         self.setStyleSheet(self.get_stylesheet())
 

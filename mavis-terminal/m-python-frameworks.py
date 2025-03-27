@@ -64,9 +64,11 @@
 import sys
 import os
 import subprocess
-from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QTreeWidget, QTreeWidgetItem, QLabel, QScrollArea, QTextEdit
+from PyQt6.QtWidgets import (QApplication, QWidget, QVBoxLayout, QTreeWidget, QTreeWidgetItem, QLabel,
+                             QScrollArea, QTextEdit, QPushButton, QHBoxLayout, QMessageBox)
 from PyQt6.QtGui import QPalette, QColor, QIcon
 from PyQt6.QtCore import Qt
+
 
 def get_installed_frameworks():
     env_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env"
@@ -86,6 +88,7 @@ def get_installed_frameworks():
     except Exception as e:
         return {"Error": str(e)}
 
+
 def get_framework_details(name):
     env_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env"
     pip_show_cmd = f"{env_path}\\Scripts\\python.exe -m pip show {name}"
@@ -96,10 +99,33 @@ def get_framework_details(name):
     except Exception as e:
         return f"Error retrieving details: {str(e)}"
 
+
+def install_framework(name):
+    env_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env"
+    pip_install_cmd = f"{env_path}\\Scripts\\python.exe -m pip install {name}"
+
+    try:
+        result = subprocess.run(pip_install_cmd, shell=True, capture_output=True, text=True, check=True)
+        return result.stdout.strip()
+    except Exception as e:
+        return f"Error installing framework: {str(e)}"
+
+
+def uninstall_framework(name):
+    env_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env"
+    pip_uninstall_cmd = f"{env_path}\\Scripts\\python.exe -m pip uninstall -y {name}"
+
+    try:
+        result = subprocess.run(pip_uninstall_cmd, shell=True, capture_output=True, text=True, check=True)
+        return result.stdout.strip()
+    except Exception as e:
+        return f"Error uninstalling framework: {str(e)}"
+
+
 class FrameworkViewer(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Python Framework Viewer")
+        self.setWindowTitle("Python Framework Viewer Deluxe")
         self.setGeometry(100, 100, 1000, 800)
 
         self.set_dark_mode()
@@ -113,58 +139,114 @@ class FrameworkViewer(QWidget):
         self.scroll_area = QScrollArea()
         self.scroll_area.setWidgetResizable(True)
 
-        # Dies wird jetzt auf die Instanz von QApplication angewendet
+        # Apply styles to the QApplication instance
         app.setStyleSheet("""
+            QWidget {
+                background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #1b2631, stop:1 #0f1626);
+                color: #FFFFFF;
+                font-family: 'Roboto', sans-serif;
+                font-size: 14px;
+            }
+
+            QLineEdit {
+                background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
+                border: 1px solid #778899;
+                border-radius: 5px;
+                padding: 5px;
+                color: #FFFFFF;
+            }
+
+            QTreeWidget {
+                background-color: transparent;
+                border: 1px solid #778899;
+                border-radius: 8px;
+            }
+
+            QTreeWidget::item {
+                background-color: transparent;
+                padding: 8px;
+                border-bottom: 1px solid #778899;
+            }
+
+            QTreeWidget::item:selected {
+                background-color: transparent;
+                color: #FFFFFF;
+            }
+
+            QHeaderView::section {
+                background-color: transparent;
+                padding: 8px;
+                border: none;
+            }
+
             QScrollArea {
                 border: none;
                 background-color: transparent;
             }
-    
+
             QScrollBar:vertical {
                 background-color: transparent;
                 width: 10px;
                 border-radius: 5px;
             }
-    
+
             QScrollBar::handle:vertical {
                 background-color: #ffffff;
                 min-height: 20px;
                 border-radius: 5px;
             }
-    
+
             QScrollBar::add-line:vertical,
             QScrollBar::sub-line:vertical {
                 background: transparent;
             }
-    
+
             QScrollBar::up-arrow:vertical,
             QScrollBar::down-arrow:vertical {
                 background: transparent;
             }
-    
+
             QScrollBar::add-page:vertical,
             QScrollBar::sub-page:vertical {
                 background: transparent;
             }
-    
+
             QScrollBar::add-line:horizontal,
             QScrollBar::sub-line:horizontal {
                 background: transparent;
             }
-    
+
             QScrollBar::left-arrow:horizontal,
             QScrollBar::right-arrow:horizontal {
                 background: transparent;
             }
-    
+
             QScrollBar::add-page:horizontal,
             QScrollBar::sub-page:horizontal {
                 background: transparent;
             }
+
+            QLabel {
+                background: transparent;
+                font-size: 16px;
+            }
+
+            QTextEdit {
+                background-color: transparent;
+                color: #FFFFFF;
+                border: 1px solid #778899;
+                border-radius: 8px;
+                font-family: 'Courier New', monospace;
+                font-size: 12px;
+            }
+
+            QHBoxLayout {
+                background-color: transparent;
+            }
         """)
 
         self.tree = QTreeWidget()
-        self.tree.setHeaderLabels(["Framework", "Version"])
+        self.tree.setHeaderLabels(["Framework", "Version", "Actions"])
         self.tree.itemExpanded.connect(self.load_details_on_expand)
         layout.addWidget(self.tree)
 
@@ -197,8 +279,58 @@ class FrameworkViewer(QWidget):
             item = QTreeWidgetItem([name, version])
             item.setChildIndicatorPolicy(QTreeWidgetItem.ChildIndicatorPolicy.ShowIndicator)
             self.tree.addTopLevelItem(item)
+            self.add_actions(item, name, version)
 
         self.status_label.setText("Frameworks loaded successfully.")
+
+    def add_actions(self, item, name, version):
+        # Add uninstall button if the framework is installed
+        if version:
+            uninstall_button = QPushButton("Uninstall")
+            uninstall_button.clicked.connect(lambda: self.uninstall_framework(name))
+            uninstall_button.setStyleSheet("""
+                QPushButton {
+                    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ec7063, stop:1 #b03a2e);
+                    color: #ffffff;
+                    border: none;
+                    padding: 4px 8px;
+                    border-radius: 8px;
+                    max-width: 90px;
+                    height: 40px;
+                }
+                QPushButton:hover {
+                    background-color: #b03a2e;
+                }
+            """)
+            actions_layout = QHBoxLayout()
+            actions_layout.addWidget(uninstall_button)
+        else:
+            install_button = QPushButton("Install")
+            install_button.clicked.connect(lambda: self.install_framework(name))
+            actions_layout = QHBoxLayout()
+            actions_layout.addWidget(install_button)
+
+        actions_widget = QWidget()
+        actions_widget.setStyleSheet("""
+            QWidget {
+                background-color: transparent;
+            }
+            QHBoxLayout {
+                background-color: transparent;
+            }
+        """)
+        actions_widget.setLayout(actions_layout)
+        self.tree.setItemWidget(item, 2, actions_widget)
+
+    def install_framework(self, name): # soon!!!
+        response = install_framework(name)
+        QMessageBox.information(self, "Install Framework", response)
+        self.load_frameworks()
+
+    def uninstall_framework(self, name):
+        response = uninstall_framework(name)
+        QMessageBox.information(self, "Uninstall Framework", response)
+        self.load_frameworks()
 
     def load_details_on_expand(self, item):
         if item.childCount() == 0:  # Load details only if not already loaded
@@ -206,7 +338,7 @@ class FrameworkViewer(QWidget):
             details_widget = QTextEdit()
             details_widget.setPlainText(details_text)
             details_widget.setReadOnly(True)
-            details_widget.setStyleSheet("background-color: sqrt(40, 40, 40); color: white; border: none; padding: 5px;")
+            details_widget.setStyleSheet("""background-color: transparent; color: white; border: none; padding: 5px;""")
             details_widget.setFixedHeight(200)
 
             container = QTreeWidgetItem()
@@ -217,15 +349,14 @@ class FrameworkViewer(QWidget):
     def resizeEvent(self, event):
         super().resizeEvent(event)
 
-        # 66% der Breite für die 'Framework' Spalte
+        # 50% der Breite für die 'Framework' Spalte
         width = self.width()
-        self.tree.setColumnWidth(0, int(width * 0.66))  # Erste Spalte (Framework) 66% der Fensterbreite
-        self.tree.setColumnWidth(1, int(width * 0.30))  # Zweite Spalte (Version) 34% der Fensterbreite
+        self.tree.setColumnWidth(0, int(width * 0.50))  # Erste Spalte (Framework) 50% der Fensterbreite
+        self.tree.setColumnWidth(1, int(width * 0.15))  # Zweite Spalte (Version) 15% der Fensterbreite
+        self.tree.setColumnWidth(2, int(width * 0.20))  # Dritte Spalte (Actions) 20% der Fensterbreite
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-
-    # Das Stylesheet wird hier auf die 'app' Instanz angewendet
     window = FrameworkViewer()
     window.show()
     sys.exit(app.exec())
