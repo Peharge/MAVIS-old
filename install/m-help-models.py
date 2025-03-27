@@ -301,7 +301,14 @@ class ModelCard(QFrame):
         # Name Label
         self.name_label = QLabel(self.model["name"])
         self.name_label.setFont(QFont("Segoe UI", 16, QFont.Weight.Bold))
-        self.name_label.setStyleSheet("color: #ffffff;")
+        self.name_label.setStyleSheet("""
+            QFrame {
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                color: #fffff;
+            }
+        """)
         header_layout.addWidget(self.name_label, 2)
 
         # Kategorie als Badge
@@ -348,48 +355,76 @@ class ModelCard(QFrame):
         stars = "★" * self.model["rating"] + "☆" * (6 - self.model["rating"])
         self.rating_label = QLabel(stars)
         self.rating_label.setFont(QFont("Segoe UI", 12))
-        self.rating_label.setStyleSheet("color: #f1c40f;")
+        self.rating_label.setStyleSheet("""
+            QFrame {
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                color: #f1c40f;
+            }
+        """)
         header_layout.addWidget(self.rating_label, 1)
 
-        # Neuer Show-Info-Button
-        self.show_info_button = QPushButton("Show Info")
-        self.show_info_button.setFont(QFont("Segoe UI", 11))
-        self.show_info_button.setStyleSheet("""
-            QPushButton {
-                background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ffffff, stop:1 #bbdefb);
-                color: #000000;
-                border: none;
-                padding: 4px 8px;
-                border-radius: 8px;
-            }
-            QPushButton:hover {
-                background-color: #90caf9;
-            }
-        """)
-        self.show_info_button.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.show_info_button.setFixedHeight(35)
-        self.show_info_button.clicked.connect(self.on_show_info_clicked)
-        header_layout.addWidget(self.show_info_button, 1)
+        # Buttons basierend auf Installationsstatus hinzufügen
+        if self.is_installed:
+            self.show_info_button = QPushButton("Show Info")
+            self.show_info_button.setFont(QFont("Segoe UI", 11))
+            self.show_info_button.setStyleSheet("""
+                QPushButton {
+                    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ffffff, stop:1 #bbdefb);
+                    color: #000000;
+                    border: none;
+                    padding: 4px 8px;
+                    border-radius: 8px;
+                }
+                QPushButton:hover {
+                    background-color: #90caf9;
+                }
+            """)
+            self.show_info_button.setCursor(Qt.CursorShape.PointingHandCursor)
+            self.show_info_button.setFixedHeight(35)
+            self.show_info_button.clicked.connect(self.on_show_info_clicked)
+            header_layout.addWidget(self.show_info_button, 1)
 
-        # Neuer Delete-Button
-        self.delete_button = QPushButton("Delete")
-        self.delete_button.setFont(QFont("Segoe UI", 11))
-        self.delete_button.setStyleSheet("""
-            QPushButton {
-                background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ec7063, stop:1 #b03a2e);
-                color: #ffffff;
-                border: none;
-                padding: 4px 8px;
-                border-radius: 8px;
-            }
-            QPushButton:hover {
-                background-color: #943126;
-            }
-        """)
-        self.delete_button.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.delete_button.setFixedHeight(35)
-        self.delete_button.clicked.connect(self.on_delete_clicked)
-        header_layout.addWidget(self.delete_button, 1)
+            # Neuer Delete-Button
+            self.delete_button = QPushButton("Delete")
+            self.delete_button.setFont(QFont("Segoe UI", 11))
+            self.delete_button.setStyleSheet("""
+                QPushButton {
+                    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ec7063, stop:1 #b03a2e);
+                    color: #ffffff;
+                    border: none;
+                    padding: 4px 8px;
+                    border-radius: 8px;
+                }
+                QPushButton:hover {
+                    background-color: #943126;
+                }
+            """)
+            self.delete_button.setCursor(Qt.CursorShape.PointingHandCursor)
+            self.delete_button.setFixedHeight(35)
+            self.delete_button.clicked.connect(self.on_delete_clicked)
+            header_layout.addWidget(self.delete_button, 1)
+
+        else:
+            self.install_button = QPushButton("Install")
+            self.install_button.setFont(QFont("Segoe UI", 11))
+            self.install_button.setStyleSheet("""
+                QPushButton {
+                    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #81c784, stop:1 #43a047);
+                    color: #ffffff;
+                    border: none;
+                    padding: 4px 8px;
+                    border-radius: 8px;
+                }
+                QPushButton:hover {
+                    background-color: #1e8449;
+                }
+            """)
+            self.install_button.setCursor(Qt.CursorShape.PointingHandCursor)
+            self.install_button.setFixedHeight(35)
+            self.install_button.clicked.connect(self.on_installed_clicked)
+            header_layout.addWidget(self.install_button, 1)
 
         self.main_layout.addWidget(self.header_widget)
 
@@ -405,8 +440,14 @@ class ModelCard(QFrame):
         self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
         self.setStyleSheet("""
             QFrame {
-                background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #515a5a, stop:1 #424949);
-                border-radius: 10px;
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
+                border-radius: 12px;
+                border: 1px solid #566573;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            }
+            QFrame:hover {
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #34495e, stop:1 #1c2833);
+                border: 1px solid #778899;
             }
             QLabel {
                 background: transparent;
@@ -445,6 +486,12 @@ class ModelCard(QFrame):
     def on_delete_clicked(self):
         """ Führt 'ollama rm {model["version"]}' asynchron aus und aktualisiert den Status. """
         command = ["ollama", "rm", self.model["version"]]
+        self.delete_button.setEnabled(False)
+        self.run_command(command, self.handle_delete_result)
+
+    def on_installed_clicked(self):
+        """ Führt 'ollama rm {model["version"]}' asynchron aus und aktualisiert den Status. """
+        command = ["ollama", "run", self.model["version"]]
         self.delete_button.setEnabled(False)
         self.run_command(command, self.handle_delete_result)
 
@@ -615,7 +662,7 @@ class ModelShop(QWidget):
         # Dezenter vertikaler Farbverlauf als Hintergrund
         self.setStyleSheet("""
             QWidget { 
-                background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #000000, stop:1 #000000);
+                background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #1b2631, stop:1 #0f1626);
             }
         """)
 
