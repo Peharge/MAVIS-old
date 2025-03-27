@@ -71,7 +71,7 @@ import os
 from dotenv import load_dotenv
 from subprocess import run
 
-required_packages = ["requests", "ollama", "transformers", "numpy", "pandas", "python-dotenv", "PyQt6", "PyQt6-sip", "keyboard"]
+required_packages = ["requests", "ollama", "transformers", "numpy", "pandas", "python-dotenv", "PyQt6", "PyQt6-sip", "keyboard", "PyQt6-Charts"]
 
 def activate_virtualenv(venv_path):
     """Aktiviert eine bestehende virtuelle Umgebung."""

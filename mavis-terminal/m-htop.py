@@ -63,171 +63,277 @@
 
 import sys
 import psutil
-import time
 import os
-from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QTableWidget, QTableWidgetItem, QProgressBar, \
-    QHeaderView, QScrollArea
-from PyQt6.QtCore import QTimer
+from PyQt6.QtWidgets import (
+    QApplication, QWidget, QVBoxLayout, QHBoxLayout, QFrame, QLabel, QProgressBar,
+    QTableWidget, QTableWidgetItem, QHeaderView, QScrollArea, QLineEdit, QPushButton, QMenu, QMessageBox
+)
+from PyQt6.QtCore import QTimer, Qt, QPoint
 from PyQt6.QtGui import QFont, QIcon
 
-
-class SystemMonitor(QWidget):
+class AdvancedSystemMonitor(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Advanced System Monitor")
-        self.setGeometry(100, 100, 800, 500)
-        self.setStyleSheet("background-color: black; color: white;")
+        self.setGeometry(100, 100, 1000, 600)
+        self.setStyleSheet(self.get_stylesheet())
 
-        # Set application icon dynamically
+        # Dynamically set the application icon
         user = os.getenv("USERNAME") or os.getenv("USER")
         icon_path = f"C:/Users/{user}/PycharmProjects/MAVIS/icons/mavis-logo.ico"
         if os.path.exists(icon_path):
             self.setWindowIcon(QIcon(icon_path))
 
+        # Main layout
         main_layout = QVBoxLayout()
+        main_layout.setContentsMargins(15, 15, 15, 15)
+        main_layout.setSpacing(10)
 
-        # CPU Progress Bar
-        self.cpu_label = QLabel("CPU Usage: 0%")
-        self.cpu_label.setFont(QFont("Arial", 14))
-        self.cpu_label.setStyleSheet("color: #94bfff;")
-        self.cpu_progress = QProgressBar()
-        self.cpu_progress.setStyleSheet(
-            "QProgressBar { background-color: #222; color: white; } QProgressBar::chunk { background-color: #94bfff; }")
-        main_layout.addWidget(self.cpu_label)
-        main_layout.addWidget(self.cpu_progress)
+        # Upper metrics in separate "cards"
+        metrics_layout = QHBoxLayout()
+        metrics_layout.setSpacing(20)
+        self.cpu_card = self.create_metric_card("CPU Usage", "#94bfff")
+        self.mem_card = self.create_metric_card("Memory Usage", "#94bfff")
+        self.disk_card = self.create_metric_card("Disk Usage", "#ffcc00")
+        self.net_card = self.create_metric_card("Network", "#7ed321")
+        metrics_layout.addWidget(self.cpu_card)
+        metrics_layout.addWidget(self.mem_card)
+        metrics_layout.addWidget(self.disk_card)
+        metrics_layout.addWidget(self.net_card)
+        main_layout.addLayout(metrics_layout)
 
-        # Memory Usage
-        self.memory_label = QLabel("Memory Usage: 0GB / 0GB")
-        self.memory_label.setFont(QFont("Arial", 14))
-        self.memory_label.setStyleSheet("color: white;")
-        self.memory_progress = QProgressBar()
-        self.memory_progress.setStyleSheet(
-            "QProgressBar { background-color: #222; color: white; } QProgressBar::chunk { background-color: #94bfff; }")
-        main_layout.addWidget(self.memory_label)
-        main_layout.addWidget(self.memory_progress)
+        # Process filter bar
+        filter_layout = QHBoxLayout()
+        self.filter_input = QLineEdit()
+        self.filter_input.setPlaceholderText("Filter process name...")
+        self.filter_input.textChanged.connect(self.filter_processes)
+        refresh_button = QPushButton("Refresh")
+        refresh_button.clicked.connect(self.update_metrics)
+        filter_layout.addWidget(self.filter_input)
+        filter_layout.addWidget(refresh_button)
+        main_layout.addLayout(filter_layout)
 
-        # Disk Usage
-        self.disk_label = QLabel("Disk Usage: 0GB / 0GB")
-        self.disk_label.setFont(QFont("Arial", 14))
-        self.disk_label.setStyleSheet("color: #94bfff;")
-        self.disk_progress = QProgressBar()
-        self.disk_progress.setStyleSheet(
-            "QProgressBar { background-color: #222; color: white; } QProgressBar::chunk { background-color: #ffcc00; }")
-        main_layout.addWidget(self.disk_label)
-        main_layout.addWidget(self.disk_progress)
-
-        # Network Usage
-        self.network_label = QLabel("Network: Sent 0MB / Received 0MB")
-        self.network_label.setFont(QFont("Arial", 14))
-        self.network_label.setStyleSheet("color: white;")
-        main_layout.addWidget(self.network_label)
-
-        # Process Table with Scrollbar
+        # Process table with scroll area
         self.process_table = QTableWidget()
         self.process_table.setColumnCount(4)
         self.process_table.setHorizontalHeaderLabels(["PID", "Name", "CPU %", "Mem %"])
-        self.process_table.setStyleSheet("color: white; background-color: #222;")
         self.process_table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        self.process_table.setSortingEnabled(True)
+        self.process_table.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
+        self.process_table.customContextMenuRequested.connect(self.process_table_menu)
 
-        # Adding Scroll Area
-        self.scroll_area = QScrollArea()
-        self.scroll_area.setWidgetResizable(True)
-        self.scroll_area.setWidget(self.process_table)
-        self.scroll_area.setStyleSheet("""
-            QScrollArea {
-                border: none;
-                background-color: none;
-            }
-            
-            QScrollBar:vertical {
-                background-color: none;
-                width: 10px;
-                border-radius: 5px;
-            }
-            
-            QScrollBar::handle:vertical {
-                background-color: #ffffff;
-                min-height: 20px;
-                border-radius: 5px;
-            }
-            
-            QScrollBar::add-line:vertical,
-            QScrollBar::sub-line:vertical {
-                background: none;
-            }
-            
-            QScrollBar::up-arrow:vertical,
-            QScrollBar::down-arrow:vertical {
-                background: none;
-            }
-            
-            QScrollBar::add-page:vertical,
-            QScrollBar::sub-page:vertical {
-                background: none;
-            }
-            
-            QScrollBar::add-line:horizontal,
-            QScrollBar::sub-line:horizontal {
-                background: none;
-            }
-            
-            QScrollBar::left-arrow:horizontal,
-            QScrollBar::right-arrow:horizontal {
-                background: none;
-            }
-            
-            QScrollBar::add-page:horizontal,
-            QScrollBar::sub-page:horizontal {
-                background: none;
-            }
-        """)
-        main_layout.addWidget(self.scroll_area)
+        scroll_area = QScrollArea()
+        scroll_area.setWidgetResizable(True)
+        scroll_area.setWidget(self.process_table)
+        main_layout.addWidget(scroll_area)
 
         self.setLayout(main_layout)
 
-        # Timer for updates
+        # Timer for updates (every second)
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_metrics)
-        self.timer.start(1000)  # Update every second
+        self.timer.start(1000)
+
+        self.all_processes = []  # for filtering
+
+    def get_stylesheet(self):
+        # Complete stylesheet with modern dark mode design
+        return """
+        QWidget {
+            background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #1b2631, stop:1 #0f1626);
+            color: #ecf0f1;
+            font-family: Arial;
+        }
+        QFrame.metricCard {
+            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
+            border: 1px solid #566573;
+            border-radius: 12px;
+            padding: 10px;
+        }
+        QFrame.metricCard:hover {
+            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #34495e, stop:1 #1c2833);
+            border: 1px solid #778899;
+        }
+        QLabel.title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        QProgressBar {
+            background-color: #222;
+            border: none;
+            height: 20px;
+            border-radius: 10px;
+        }
+        QProgressBar::chunk {
+            border-radius: 10px;
+        }
+        QLineEdit {
+            background-color: #222;
+            border: 1px solid #566573;
+            border-radius: 5px;
+            padding: 5px;
+            color: #ecf0f1;
+        }
+        QPushButton {
+            background-color: #34495e;
+            border: 1px solid #566573;
+            border-radius: 5px;
+            padding: 5px 10px;
+            color: #ecf0f1;
+        }
+        QPushButton:hover {
+            background-color: #3c5977;
+        }
+        QTableWidget {
+            background-color: #222;
+            gridline-color: #566573;
+        }
+        QHeaderView::section {
+            background-color: #2c3e50;
+            padding: 4px;
+            border: 1px solid #566573;
+        }
+        QScrollArea {
+            border: none;
+        }
+        QScrollBar:vertical {
+            background-color: transparent;
+            width: 10px;
+            border-radius: 5px;
+        }
+        QScrollBar::handle:vertical {
+            background-color: #ecf0f1;
+            min-height: 20px;
+            border-radius: 5px;
+        }
+        QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical,
+        QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
+            background: none;
+        }
+        """
+
+    def create_metric_card(self, title, color):
+        # Creates a QFrame containing a metric (label + progress bar)
+        card = QFrame()
+        card.setObjectName("metricCard")
+        card.setProperty("class", "metricCard")
+        layout = QVBoxLayout()
+        layout.setSpacing(5)
+
+        label = QLabel(title + ":")
+        label.setObjectName("title")
+        label.setProperty("class", "title")
+        layout.addWidget(label)
+
+        progress = QProgressBar()
+        progress.setStyleSheet(f"QProgressBar::chunk {{ background-color: {color}; }}")
+        layout.addWidget(progress)
+
+        # Additional detail label for numeric values
+        detail = QLabel("0")
+        layout.addWidget(detail)
+
+        card.setLayout(layout)
+        # Save references based on the title
+        if title.startswith("CPU"):
+            self.cpu_progress = progress
+            self.cpu_detail = detail
+        elif title.startswith("Memory"):
+            self.mem_progress = progress
+            self.mem_detail = detail
+        elif title.startswith("Disk"):
+            self.disk_progress = progress
+            self.disk_detail = detail
+        elif title.startswith("Network"):
+            self.net_detail = detail
+
+        return card
 
     def update_metrics(self):
-        # Update CPU Usage
+        # CPU
         cpu_usage = psutil.cpu_percent()
-        self.cpu_label.setText(f"CPU Usage: {cpu_usage}%")
         self.cpu_progress.setValue(int(cpu_usage))
+        self.cpu_detail.setText(f"{cpu_usage:.1f}%")
 
-        # Update Memory Usage
+        # Memory
         mem = psutil.virtual_memory()
-        mem_percent = int(mem.percent)
-        self.memory_label.setText(
-            f"Memory Usage: {mem.used / 1024 ** 3:.2f}GB / {mem.total / 1024 ** 3:.2f}GB ({mem_percent}%)")
-        self.memory_progress.setValue(mem_percent)
+        mem_percent = mem.percent
+        used_mem = mem.used / 1024**3
+        total_mem = mem.total / 1024**3
+        self.mem_progress.setValue(int(mem_percent))
+        self.mem_detail.setText(f"{used_mem:.2f}GB / {total_mem:.2f}GB ({mem_percent}%)")
 
-        # Update Disk Usage
+        # Disk
         disk = psutil.disk_usage('/')
-        disk_percent = int(disk.percent)
-        self.disk_label.setText(
-            f"Disk Usage: {disk.used / 1024 ** 3:.2f}GB / {disk.total / 1024 ** 3:.2f}GB ({disk_percent}%)")
-        self.disk_progress.setValue(disk_percent)
+        disk_percent = disk.percent
+        used_disk = disk.used / 1024**3
+        total_disk = disk.total / 1024**3
+        self.disk_progress.setValue(int(disk_percent))
+        self.disk_detail.setText(f"{used_disk:.2f}GB / {total_disk:.2f}GB ({disk_percent}%)")
 
-        # Update Network Usage
+        # Network
         net = psutil.net_io_counters()
-        self.network_label.setText(
-            f"Network: Sent {net.bytes_sent / 1024 ** 2:.2f}MB / Received {net.bytes_recv / 1024 ** 2:.2f}MB")
+        self.net_detail.setText(f"Sent {net.bytes_sent/1024**2:.2f}MB / Recv {net.bytes_recv/1024**2:.2f}MB")
 
-        # Update Process Table
-        processes = sorted(psutil.process_iter(['pid', 'name', 'cpu_percent', 'memory_percent']),
-                           key=lambda p: p.info['cpu_percent'], reverse=True)[:20]
-        self.process_table.setRowCount(len(processes))
-        for row, proc in enumerate(processes):
-            self.process_table.setItem(row, 0, QTableWidgetItem(str(proc.info['pid'])))
-            self.process_table.setItem(row, 1, QTableWidgetItem(proc.info['name']))
-            self.process_table.setItem(row, 2, QTableWidgetItem(f"{proc.info['cpu_percent']}%"))
-            self.process_table.setItem(row, 3, QTableWidgetItem(f"{proc.info['memory_percent']:.2f}%"))
+        # Update processes
+        self.all_processes = list(psutil.process_iter(['pid', 'name', 'cpu_percent', 'memory_percent']))
+        self.populate_process_table(self.all_processes)
 
+    def populate_process_table(self, process_list):
+        # Display the top 20 processes (by CPU usage) in the table
+        process_list = sorted(process_list, key=lambda p: p.info.get('cpu_percent', 0), reverse=True)[:20]
+        self.process_table.setRowCount(len(process_list))
+        for row, proc in enumerate(process_list):
+            pid_item = QTableWidgetItem(str(proc.info.get('pid')))
+            name_item = QTableWidgetItem(proc.info.get('name') or "N/A")
+            cpu_item = QTableWidgetItem(f"{proc.info.get('cpu_percent', 0)}%")
+            mem_item = QTableWidgetItem(f"{proc.info.get('memory_percent', 0):.2f}%")
+
+            # Center numeric values
+            for item in (pid_item, cpu_item, mem_item):
+                item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+
+            self.process_table.setItem(row, 0, pid_item)
+            self.process_table.setItem(row, 1, name_item)
+            self.process_table.setItem(row, 2, cpu_item)
+            self.process_table.setItem(row, 3, mem_item)
+
+    def filter_processes(self):
+        # Filters processes based on the entered text
+        filter_text = self.filter_input.text().lower()
+        if not filter_text:
+            filtered = self.all_processes
+        else:
+            filtered = [p for p in self.all_processes if filter_text in (p.info.get('name') or "").lower()]
+        self.populate_process_table(filtered)
+
+    def process_table_menu(self, pos: QPoint):
+        # Context menu to kill a process
+        index = self.process_table.indexAt(pos)
+        if not index.isValid():
+            return
+
+        menu = QMenu()
+        kill_action = menu.addAction("Kill Process")
+        action = menu.exec(self.process_table.viewport().mapToGlobal(pos))
+        if action == kill_action:
+            pid_item = self.process_table.item(index.row(), 0)
+            if pid_item:
+                pid = int(pid_item.text())
+                self.kill_process(pid)
+
+    def kill_process(self, pid):
+        try:
+            proc = psutil.Process(pid)
+            proc.terminate()
+            proc.wait(3)
+            QMessageBox.information(self, "Success", f"Process {pid} was terminated.")
+        except Exception as e:
+            QMessageBox.warning(self, "Error", f"Error terminating process {pid}:\n{str(e)}")
+        self.update_metrics()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = SystemMonitor()
+    window = AdvancedSystemMonitor()
     window.show()
     sys.exit(app.exec())
