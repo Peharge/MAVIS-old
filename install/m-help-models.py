@@ -376,7 +376,7 @@ class ModelCard(QFrame):
                     border-radius: 8px;
                 }
                 QPushButton:hover {
-                    background-color: #90caf9;
+                    background-color: #bbdefb;
                 }
             """)
             self.show_info_button.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -396,7 +396,7 @@ class ModelCard(QFrame):
                     border-radius: 8px;
                 }
                 QPushButton:hover {
-                    background-color: #943126;
+                    background-color: #b03a2e;
                 }
             """)
             self.delete_button.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -416,7 +416,7 @@ class ModelCard(QFrame):
                     border-radius: 8px;
                 }
                 QPushButton:hover {
-                    background-color: #1e8449;
+                    background-color: #43a047;
                 }
             """)
             self.install_button.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -489,8 +489,8 @@ class ModelCard(QFrame):
     def on_installed_clicked(self):
         """ Führt 'ollama rm {model["version"]}' asynchron aus und aktualisiert den Status. """
         command = ["ollama", "run", self.model["version"]]
-        self.delete_button.setEnabled(False)
-        self.run_command(command, self.handle_delete_result)
+        self.install_button.setEnabled(False)
+        self.run_command(command, self.handle_install_result)
 
     def on_show_info_clicked(self):
         """ Führt 'ollama show {model["version"]}' aus, zeigt die Ausgabe an,
@@ -524,8 +524,28 @@ class ModelCard(QFrame):
         # Nach erfolgreicher Löschung den Status aktualisieren
         self.is_installed = False
         self.status_label.setText("Not Installed")
-        self.status_label.setStyleSheet("color: red;")
+        self.status_label.setStyleSheet("""
+            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ec7063, stop:1 #b03a2e);
+            color: #000000;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 8px;
+        """)
         self.delete_button.setEnabled(True)
+
+    def handle_install_result(self, output: str):
+        logging.info(f"Delete Output for {self.model['version']}: {output}")
+        # Nach erfolgreicher Löschung den Status aktualisieren
+        self.is_installed = True
+        self.status_label.setText("Installed")
+        self.status_label.setStyleSheet("""
+            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #81c784, stop:1 #43a047);
+            color: #000000;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 8px;
+        """)
+        self.delete_button.setEnabled(False)
 
     def handle_show_info_result(self, output: str):
         logging.info(f"Show Output for {self.model['version']}: {output}")
