@@ -175,13 +175,13 @@ def execute_installation():
             ("NetworkX", "Python-Bibliothek zur Analyse und Erstellung \nvon Netzwerken und Graphen."),
             ("Schematics", "Bibliothek für die Definition und Validierung \nvon Datenstrukturen mit Typüberprüfung in Python."),
             ("Schemdraw", "Python library for creating electronic circuit \ndiagrams with standardized symbols and simplified representations."),
-            ("IPyWidgets", "Python library for creating interactive widgets \nin Jupyter Notebooks, enabling users to interact with data and visualizations."),
-            ("PyBullet", "Physics-based simulation library for 3D environments \nand robot simulations, accounting for collisions, forces, and movements."),
-            ("VTK", "Open-source library for 3D data visualization and processing, \nused in fields such as scientific visualization and medical image processing."),
-            ("diagrams", "Diagrams is a Python library for creating \ncloud architecture diagrams as code, allowing users to visually represent and design infrastructure components in a simple and customizable way."),
-            ("graphviz", "Graphviz is a Python library for creating and rendering \ngraph structures, enabling users to visualize relationships and hierarchies through directed and undirected graphs with customizable layouts."),
-            ("pix2tex[gui]", "pix2tex[gui] is a tool that allows converting \nmathematical expressions from images into LaTeX code, offering a user-friendly graphical interface for easy use."),
-            ("pillow", "Pillow is a powerful Python library for image processing, \nproviding numerous functions for opening, editing, and saving images in various formats.\n")
+            ("IPyWidgets", "Python library for creating interactive widgets \nin Jupyter Notebooks, enabling users to interact \nwith data and visualizations."),
+            ("PyBullet", "Physics-based simulation library for 3D environments \nand robot simulations, accounting for collisions, \nforces, and movements."),
+            ("VTK", "Open-source library for 3D data visualization and processing, \nused in fields such as scientific visualization \nand medical image processing."),
+            ("diagrams", "Diagrams is a Python library for creating \ncloud architecture diagrams as code, allowing users to visually \nrepresent and design infrastructure components in a \nsimple and customizable way."),
+            ("graphviz", "Graphviz is a Python library for creating and rendering \ngraph structures, enabling users to visualize \nrelationships and hierarchies through directed and undirected \ngraphs with customizable layouts."),
+            ("pix2tex[gui]", "pix2tex[gui] is a tool that allows converting \nmathematical expressions from images into LaTeX code, \noffering a user-friendly graphical interface for easy use."),
+            ("pillow", "Pillow is a powerful Python library for image processing, \nproviding numerous functions for opening, editing, \nand saving images in various formats.\n")
         ]
 
         # Installationsstatus prüfen
