@@ -157,6 +157,7 @@ class AdvancedSystemMonitor(QWidget):
         QLabel.title {
             font-size: 16px;
             font-weight: bold;
+            background: none;
         }
         QProgressBar {
             background-color: #222;
