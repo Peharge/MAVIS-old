@@ -63,6 +63,9 @@
 
 import subprocess
 import sys
+import subprocess
+import sys
+from tabulate import tabulate
 
 # Farbcodes definieren
 red = "\033[91m"
@@ -87,23 +90,31 @@ def get_user_input():
         print(f"{red}{bold}\nInput interrupted. Exiting the program.{reset}")
         sys.exit(1)
 
+import subprocess
+import sys
+import importlib.metadata
+from tabulate import tabulate
+
+def check_installed(package_name):
+    """Prüft, ob ein Paket installiert ist, und gibt die Version zurück."""
+    try:
+        version = importlib.metadata.version(package_name)
+        return f"{green}Installed{reset}", version
+    except importlib.metadata.PackageNotFoundError:
+        return f"{red}Not Installed{reset}", "-"
+
 def execute_installation():
     try:
         print(f"{blue}{bold}Starting the installation process for MAVIS...{reset}\n")
 
-        # Farbiges Drucken des Textes
-        print(
-            f"Don't forget to update {blue}pip{reset} with {yellow}python -m pip install --upgrade pip{reset} every now and then!!!\n")
-
-        # Funktion zum Ausgeben von Frameworks mit Beschreibung
-        def print_framework(title, description, color=blue):
-            print(f"{color}{title}{reset}: {description}")
+        print("\033[34m\033[1mStarting the installation process for MAVIS...\033[0m\n")
+        print("Don't forget to update \033[34mpip\033[0m with \033[33mpython -m pip install --upgrade pip\033[0m every now and then!!!\n")
 
         # Frameworks and their descriptions
         frameworks = [
             ("Flask", "Lightweight web framework for Python."),
             ("ollama", "Tool for integration with AI APIs."),
-            ("Jupyter", "Open-source web application for creating and sharing live code, equations, visualizations, and narrative text."),
+            ("Jupyter", "Open-source web application for creating \nand sharing live code, equations, visualizations, and narrative text."),
             ("Werkzeug", "Utility library for WSGI applications and web development."),
             ("markdown", "Library for converting Markdown to HTML."),
             ("matplotlib", "Powerful tool for data visualization."),
@@ -160,30 +171,37 @@ def execute_installation():
             ("statsmodels", "Statistical modeling and data analysis."),
             ("yfinance", "Fetching financial market data."),
             ("QuantLib", "Quantitative finance library."),
-            ("PySpice", "Bibliothek zur Simulation von elektronischen Schaltungen in Python."),
-            ("NetworkX", "Python-Bibliothek zur Analyse und Erstellung von Netzwerken und Graphen."),
-            ("Schematics", "Bibliothek für die Definition und Validierung von Datenstrukturen mit Typüberprüfung in Python."),
-            ("Schemdraw", "Python library for creating electronic circuit diagrams with standardized symbols and simplified representations."),
-            ("IPyWidgets", "Python library for creating interactive widgets in Jupyter Notebooks, enabling users to interact with data and visualizations."),
-            ("PyBullet", "Physics-based simulation library for 3D environments and robot simulations, accounting for collisions, forces, and movements."),
-            ("VTK", "Open-source library for 3D data visualization and processing, used in fields such as scientific visualization and medical image processing."),
-            ("diagrams", "Diagrams is a Python library for creating cloud architecture diagrams as code, allowing users to visually represent and design infrastructure components in a simple and customizable way."),
-            ("graphviz", "Graphviz is a Python library for creating and rendering graph structures, enabling users to visualize relationships and hierarchies through directed and undirected graphs with customizable layouts."),
-            ("pix2tex[gui]", "pix2tex[gui] is a tool that allows converting mathematical expressions from images into LaTeX code, offering a user-friendly graphical interface for easy use."),
-            ("pillow", "Pillow is a powerful Python library for image processing, providing numerous functions for opening, editing, and saving images in various formats.\n")
+            ("PySpice", "Bibliothek zur Simulation von elektronischen \nSchaltungen in Python."),
+            ("NetworkX", "Python-Bibliothek zur Analyse und Erstellung \nvon Netzwerken und Graphen."),
+            ("Schematics", "Bibliothek für die Definition und Validierung \nvon Datenstrukturen mit Typüberprüfung in Python."),
+            ("Schemdraw", "Python library for creating electronic circuit \ndiagrams with standardized symbols and simplified representations."),
+            ("IPyWidgets", "Python library for creating interactive widgets \nin Jupyter Notebooks, enabling users to interact with data and visualizations."),
+            ("PyBullet", "Physics-based simulation library for 3D environments \nand robot simulations, accounting for collisions, forces, and movements."),
+            ("VTK", "Open-source library for 3D data visualization and processing, \nused in fields such as scientific visualization and medical image processing."),
+            ("diagrams", "Diagrams is a Python library for creating \ncloud architecture diagrams as code, allowing users to visually represent and design infrastructure components in a simple and customizable way."),
+            ("graphviz", "Graphviz is a Python library for creating and rendering \ngraph structures, enabling users to visualize relationships and hierarchies through directed and undirected graphs with customizable layouts."),
+            ("pix2tex[gui]", "pix2tex[gui] is a tool that allows converting \nmathematical expressions from images into LaTeX code, offering a user-friendly graphical interface for easy use."),
+            ("pillow", "Pillow is a powerful Python library for image processing, \nproviding numerous functions for opening, editing, and saving images in various formats.\n")
         ]
 
-        # Frameworks ausgeben
-        for title, description in frameworks:
-            print_framework(title, description)
+        # Installationsstatus prüfen
+        table_data = []
+        for framework, description in frameworks:
+            installed, version = check_installed(framework)
+            table_data.append([framework, description, installed, version])
 
+        # Tabelle ausgeben
+        headers = ["Framework", "Description", "Installed", "Version"]
+        print(tabulate(table_data, headers=headers, tablefmt="grid"))
+
+        # Installationsskript ausführen
         subprocess.run([sys.executable, "install/install-mavis-4.py"], check=True)
-        print(f"{blue}{bold}MAVIS installation completed successfully.{reset}")
+        print("\033[34m\033[1mMAVIS installation completed successfully.\033[0m")
     except subprocess.CalledProcessError:
-        print(f"{red}{bold}An error occurred while running the installation script.{reset}")
+        print("\033[31m\033[1mAn error occurred while running the installation script.\033[0m")
         sys.exit(1)
     except FileNotFoundError:
-        print(f"{red}{bold}The installation script 'install-mavis-1-5.py' was not found.{reset}")
+        print("\033[31m\033[1mThe installation script 'install-mavis-1-5.py' was not found.\033[0m")
         sys.exit(1)
 
 def main():
