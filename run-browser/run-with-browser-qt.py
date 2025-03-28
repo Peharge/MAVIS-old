@@ -176,6 +176,19 @@ ensure_packages_installed(required_packages)
 sys.stdout.reconfigure(encoding='utf-8')
 user_name = getpass.getuser()
 
+# Farbcodes definieren
+red = "\033[91m"
+green = "\033[92m"
+yellow = "\033[93m"
+blue = "\033[94m"
+magenta = "\033[95m"
+cyan = "\033[96m"
+white = "\033[97m"
+black = "\033[30m"
+orange = "\033[38;5;214m"
+reset = "\033[0m"
+bold = "\033[1m"
+
 import sys
 from PyQt6.QtCore import Qt, QUrl
 from PyQt6.QtGui import QIcon
@@ -214,8 +227,14 @@ class BrowserWindow(QMainWindow):
         # Maximiert das Fenster, sodass es wie eine App aussieht
         self.showMaximized()
 
+def main():
+    print(f"{blue}Flask server is soon running at{reset}: http://127.0.0.1:5000/")
+    print("\nFlask Information:")
+    print("------------------")
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = BrowserWindow()
     window.show()
+    main()
     sys.exit(app.exec())
