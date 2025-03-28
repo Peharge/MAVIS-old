@@ -1269,6 +1269,10 @@ Um MAVIS 3 EAP auf einem Windows-Computer zu installieren, folge bitte diesen Sc
 
 Falls du weitere Hilfe benötigst, schau in die [Dokumentation](https://github.com/Peharge/MAVIS/blob/main/learn-mavis) - [Using MAVIS](https://github.com/Peharge/MAVIS/blob/main/using-mavis-3-en.md) oder stelle eine Frage im Issues-Bereich des Repositories.
 
+### Soon MAVIS 4 on Debina and Arch Linux
+
+Testing: [Download mavis-launcher-4.sh](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.sh).
+
 ## Using
 
 > [!WARNING]
