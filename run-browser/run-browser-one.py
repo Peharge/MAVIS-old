@@ -85,7 +85,8 @@ def start_mavis():
     print(f" [3] Brave Extension")
     print(f" [4] Opera Extension")
     print(f" [5] FireFox Extension")
-    print(f" [6] Your main Browser")
+    print(f" [6] MAVIS QT Browser")
+    print(f" [7] Your main Browser")
 
     while True:
         choice = input(f"Enter your choice [1/2/3/4/5/6]:").strip()
@@ -126,6 +127,13 @@ def start_mavis():
                 print(f"{red}Error running browser.py{reset}: {e}")
             break
         elif choice == '6':
+            print(f"{blue}Starting MAVIS as MAVIS QT Browser...{reset}")
+            try:
+                os.system('python run-browser/run-with-browser-qt.py')  # run-browser-qt.py wird ausgeführt
+            except Exception as e:
+                print(f"{red}Error running browser.py{reset}: {e}")
+            break
+        elif choice == '7':
             print(f"{blue}Starting MAVIS in Browser...{reset}")
             try:
                 os.system('python run-browser/run-with-browser.py')  # run-browser.py wird ausgeführt
