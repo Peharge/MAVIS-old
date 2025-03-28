@@ -445,7 +445,7 @@ def handle_special_commands(user_input):
         "m ls": "mavis-terminal\\m-ls.py", # new
         "models ls": "mavis-terminal\\models-ls.py",  # new
         "m models ls": "mavis-terminal\\m-models-ls.py",  # new
-        "m mavis": "mavis-terminal\\m-mavis.py"  # new
+        "m mavis": "mavis-terminal\\m-github-mavis.py"  # new
     }
 
     if user_input in commands:
