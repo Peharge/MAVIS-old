@@ -445,7 +445,15 @@ def handle_special_commands(user_input):
         "m ls": "mavis-terminal\\m-ls.py", # new
         "models ls": "mavis-terminal\\models-ls.py",  # new
         "m models ls": "mavis-terminal\\m-models-ls.py",  # new
-        "m mavis": "mavis-terminal\\m-github-mavis.py"  # new
+        "m github": "mavis-terminal\\m-github-mavis.py",  # new
+        "m github mavis": "mavis-terminal\\m-github-mavis.py",  # new
+        "m github commits": "mavis-terminal\\m-github-commits.py",  # new
+        "m github issues": "mavis-terminal\\m-github-issues.py",  # new
+        "m github peharge": "mavis-terminal\\m-github-peharge.py",  # new
+        "m github pulls": "mavis-terminal\\m-github-pulls.py",  # new
+        "m github readme": "mavis-terminal\\m-github-readme.py",  # new
+        "m github releases": "mavis-terminal\\m-github-releases.py"  # new
+
     }
 
     if user_input in commands:
