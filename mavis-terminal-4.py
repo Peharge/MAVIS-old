@@ -456,7 +456,11 @@ def handle_special_commands(user_input):
         "m search": "mavis-terminal\\m-search.py",  # new
         "m google": "mavis-terminal\\m-google.py",  # new
         "m ollama": "mavis-terminal\\m-ollama.py",  # new
-        "m huggingface": "mavis-terminal\\m-huggingface.py"  # new
+        "m huggingface": "mavis-terminal\\m-huggingface.py",  # new
+        "m github.com": "mavis-terminal\\m-github.py",  # new
+        "m google.com": "mavis-terminal\\m-google.py",  # new
+        "m ollama.com": "mavis-terminal\\m-ollama.py",  # new
+        "m huggingface.com": "mavis-terminal\\m-huggingface.py"  # new
     }
 
     if user_input in commands:
