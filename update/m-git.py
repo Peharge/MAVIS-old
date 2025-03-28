@@ -64,11 +64,10 @@
 import os
 import subprocess
 import sys
-from PyQt6.QtGui import QColor, QIcon, QPalette
-from PyQt6.QtWidgets import (QApplication, QLabel, QSizePolicy, QScrollArea,
-                             QTreeWidget, QTreeWidgetItem, QVBoxLayout, QWidget,
-                             QHeaderView, QLineEdit, QPushButton, QHBoxLayout, QTextEdit)
-
+from PyQt6.QtGui import QColor, QIcon, QPalette, QSyntaxHighlighter, QTextCharFormat
+from PyQt6.QtWidgets import (QApplication, QLabel, QSizePolicy, QTreeWidgetItem,
+                             QTreeWidget, QVBoxLayout, QWidget, QHeaderView,
+                             QLineEdit, QPushButton, QHBoxLayout, QTextEdit)
 
 def get_git_commits(repo_path):
     os.chdir(repo_path)
@@ -91,8 +90,7 @@ def get_git_commits(repo_path):
             return []  # No main branch found
 
         # Retrieve remote commits
-        remote_commits = subprocess.check_output(["git", "log", main_branch, "--pretty=format:%H"], text=True).split(
-            "\n")
+        remote_commits = subprocess.check_output(["git", "log", main_branch, "--pretty=format:%H"], text=True).split("\n")
         remote_hashes = set(remote_commits)
 
         commits = []
@@ -106,15 +104,32 @@ def get_git_commits(repo_path):
     except subprocess.CalledProcessError:
         return []
 
+from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QSyntaxHighlighter, QTextCharFormat, QColor, QTextDocument
+from PyQt6.QtWidgets import QApplication, QMainWindow, QTextEdit, QVBoxLayout, QWidget
+import subprocess
+
+class DiffHighlighter(QSyntaxHighlighter):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.format_addition = QTextCharFormat()
+        self.format_addition.setBackground(QColor(0, 255, 0, 100))  # Green with 0.4 opacity
+
+        self.format_deletion = QTextCharFormat()
+        self.format_deletion.setBackground(QColor(255, 0, 0, 100))  # Red with 0.4 opacity
+
+    def highlightBlock(self, text):
+        if text.startswith('+'):
+            self.setFormat(0, len(text), self.format_addition)
+        elif text.startswith('-'):
+            self.setFormat(0, len(text), self.format_deletion)
 
 def get_commit_diff(repo_path, commit_hash):
-    os.chdir(repo_path)
     try:
-        diff = subprocess.check_output(["git", "show", commit_hash], text=True, encoding='utf-8')
-        return diff
-    except subprocess.CalledProcessError:
-        return "Failed to retrieve diff."
-
+        result = subprocess.run(["git", "show", commit_hash], cwd=repo_path, text=True, encoding='utf-8', capture_output=True, check=True)
+        return result.stdout
+    except subprocess.CalledProcessError as e:
+        return f"Failed to retrieve diff. Error: {e.stderr}"
 
 class CommitExplorer(QWidget):
     def __init__(self):
@@ -146,17 +161,12 @@ class CommitExplorer(QWidget):
         self.tree.itemClicked.connect(self.display_commit_diff)
         main_layout.addWidget(self.tree)
 
-        """
-        self.scroll_area = QScrollArea()
-        self.scroll_area.setWidgetResizable(True)
-        main_layout.addWidget(self.scroll_area)
-        """
-
         self.status_label = QLabel("Loading...")
         main_layout.addWidget(self.status_label)
 
         self.diff_text = QTextEdit()
         self.diff_text.setReadOnly(True)
+        self.highlighter = DiffHighlighter(self.diff_text.document())
         main_layout.addWidget(self.diff_text)
 
         self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
@@ -167,7 +177,7 @@ class CommitExplorer(QWidget):
                 font-family: 'Roboto', sans-serif;
                 font-size: 14px;
             }
-            
+
             QLineEdit {
                 background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
                 border: 1px solid #778899;
@@ -175,7 +185,7 @@ class CommitExplorer(QWidget):
                 padding: 5px;
                 color: #FFFFFF;
             }
-            
+
             QPushButton {
                 background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
                 border: none;
@@ -183,33 +193,33 @@ class CommitExplorer(QWidget):
                 padding: 5px 10px;
                 color: #FFFFFF;
             }
-            
+
             QPushButton:hover {
                 background-color: #1c2833;
             }
-            
+
             QTreeWidget {
                 background-color: transparent;
                 border: 1px solid #778899;
                 border-radius: 8px;
             }
-            
+
             QTreeWidget::item {
                 padding: 8px;
                 border-bottom: 1px solid #778899;
             }
-            
+
             QTreeWidget::item:selected {
                 background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #34495e, stop:1 #1c2833);
                 color: #FFFFFF;
             }
-            
+
             QHeaderView::section {
                 background-color: transparent;
                 padding: 8px;
                 border: none;
             }
-            
+
             QScrollArea {
                 border: none;
                 background-color: transparent;
@@ -254,21 +264,20 @@ class CommitExplorer(QWidget):
 
             QScrollBar::add-page:horizontal,
             QScrollBar::sub-page:horizontal {
-                background: transparent;
+                background: transparent.
             }
-            
+
             QLabel {
                 background: transparent;
-                font-size: 16px;
+                font-size: 16px.
             }
-            
+
             QTextEdit {
                 background-color: transparent;
-                color: #FFFFFF;
                 border: 1px solid #778899;
                 border-radius: 8px;
                 font-family: 'Courier New', monospace;
-                font-size: 12px;
+                font-size: 12px.
             }
         """)
 
@@ -304,7 +313,6 @@ class CommitExplorer(QWidget):
         commit_hash = item.data(0, 1)
         diff = get_commit_diff(self.repo_path, commit_hash)
         self.diff_text.setPlainText(diff)
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
