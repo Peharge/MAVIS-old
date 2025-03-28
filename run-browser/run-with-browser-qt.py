@@ -187,7 +187,7 @@ class BrowserWindow(QMainWindow):
         super().__init__()
 
         # Setzt den Titel und die Größe des Fensters
-        self.setWindowTitle("MAVIS GitHub Repository")
+        self.setWindowTitle("MAVIS QT Browser")
         self.setGeometry(100, 100, 1024, 768)
 
         user = os.getenv("USERNAME") or os.getenv("USER")
