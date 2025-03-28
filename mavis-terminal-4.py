@@ -379,6 +379,8 @@ def handle_special_commands(user_input):
         "run granite3.2:8b": "mavis-terminal\\granite-3-2-8b.py", # new
         "run granite3.2:2b": "mavis-terminal\\granite-3-2-2b.py", # new
         "run granite3.2-vision:2b": "mavis-terminal\\granite-3-2-2b-vision.py", # new
+        "run qwen-2-5-omni-7b": "mavis-terminal\\qwen-2-5-omni-7b.py",  # new
+        "run qvq-72b": "mavis-terminal\\qvq-72b.py",  # new
         "install deepseek-r1:1.5b": "mavis-terminal\\deepseek-r1-1-5b.py",
         "install deepseek-r1:7b": "mavis-terminal\\deepseek-r1-7b.py",
         "install deepseek-r1:8b": "mavis-terminal\\deepseek-r1-8b.py",
@@ -425,6 +427,8 @@ def handle_special_commands(user_input):
         "install granite3.2:8b": "mavis-terminal\\granite-3-2-8b.py", # new
         "install granite3.2:2b": "mavis-terminal\\granite-3-2-2b.py", # new
         "install granite3.2-vision:2b": "mavis-terminal\\granite-3-2-2b-vision.py", # new
+        "install qwen-2-5-omni-7b": "mavis-terminal\\qwen-2-5-omni-7b.py",  # new
+        "install qvq-72b": "mavis-terminal\\qvq-72b.py",  # new
         "help": "mavis-terminal\\help.py",
         "run mavis": "mavis-installer-3-main-windows.py",
         "m run all": "mavis-terminal\\m-run-all.py", # new
