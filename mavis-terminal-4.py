@@ -175,16 +175,26 @@ Thank you so much for using MAVIS. We truly appreciate your support ❤️""")
 
     print("")
 
+
+import os
+import sys
+import subprocess
+import threading
+import time
+import readline
+
 def set_python_path():
     python_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
     os.environ["PYTHON_PATH"] = python_path
-    print(f"PYTHON_PATH set to {python_path}")
+
 
 def run_command(command, shell=False):
-    python_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
+    python_path = os.environ.get("PYTHON_PATH")
 
-    # Sicherstellen, dass pip-Befehle den richtigen Python-Pfad verwenden
-    if 'pip' in command:
+    if isinstance(command, str):
+        command = command.split()
+
+    if "pip" in command:
         command = [python_path, "-m", "pip"] + command[1:]
 
     process = subprocess.Popen(command, shell=shell, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
@@ -204,16 +214,25 @@ def run_command(command, shell=False):
             print(stdout_lines.pop(0), end='', flush=True)
         while stderr_lines:
             print(stderr_lines.pop(0), end='', flush=True, file=sys.stderr)
-        time.sleep(1 / 24)  # 24 FPS Aktualisierung
+        time.sleep(1 / 24)
 
-    # Letzte Zeile sicherstellen
     while stdout_lines:
         print(stdout_lines.pop(0), end='', flush=True)
     while stderr_lines:
         print(stderr_lines.pop(0), end='', flush=True, file=sys.stderr)
 
+
+def change_directory(path):
+    try:
+        os.chdir(path)
+    except FileNotFoundError:
+        print(f"Directory not found: {path}", file=sys.stderr)
+    except Exception as e:
+        print(f"Error: {str(e)}", file=sys.stderr)
+
+
 def handle_special_commands(user_input):
-    # Lade die .env-Datei
+
     load_dotenv(dotenv_path="C:\\Users\\julia\\PycharmProjects\\MAVIS\\.env")
 
     # Der Pfad zum Python-Interpreter in der .env
@@ -475,42 +494,78 @@ def handle_special_commands(user_input):
             run([script_path], shell=True)
 
         return True
+
+    if user_input.startswith("cd "):
+        path = user_input[3:].strip()
+        change_directory(path)
+        return True
+    elif user_input.lower() in ["cls", "clear"]:
+        os.system("cls" if os.name == "nt" else "clear")
+        return True
+    elif user_input.lower() in ["dir", "ls"]:
+        run_command("dir" if os.name == "nt" else "ls -la", shell=True)
+        return True
+    elif user_input.startswith("mkdir "):
+        os.makedirs(user_input[6:].strip(), exist_ok=True)
+        return True
+    elif user_input.startswith("rmdir "):
+        try:
+            os.rmdir(user_input[6:].strip())
+        except Exception as e:
+            print(f"Error: {str(e)}", file=sys.stderr)
+        return True
+    elif user_input.startswith("del ") or user_input.startswith("rm "):
+        try:
+            os.remove(user_input.split(maxsplit=1)[1].strip())
+        except Exception as e:
+            print(f"Error: {str(e)}", file=sys.stderr)
+        return True
+    elif user_input.startswith("echo "):
+        print(user_input[5:].strip())
+        return True
+    elif "=" in user_input:
+        var, value = map(str.strip, user_input.split("=", 1))
+        os.environ[var] = value
+        return True
+    elif user_input.startswith("type ") or user_input.startswith("cat "):
+        try:
+            with open(user_input.split(maxsplit=1)[1].strip(), "r", encoding="utf-8") as file:
+                print(file.read())
+        except Exception as e:
+            print(f"Error: {str(e)}", file=sys.stderr)
+        return True
+    elif user_input.lower() == "exit":
+        sys.exit(0)
     return False
+
+
+def setup_autocomplete():
+    commands = ["cd", "cls", "clear", "dir", "ls", "mkdir", "rmdir", "del", "rm", "echo", "type", "cat", "exit"]
+    readline.set_completer(lambda text, state: [cmd for cmd in commands if cmd.startswith(text)][state] if state < len(
+        [cmd for cmd in commands if cmd.startswith(text)]) else None)
+    readline.parse_and_bind("tab: complete")
+
 
 def main():
     print_banner()
     set_python_path()
-    default_dir = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\"
+    setup_autocomplete()
 
     while True:
         try:
-            # Den aktuellen Arbeitsordner anzeigen
-
             current_dir = os.getcwd()
-
-            # current_dir = default_dir
-
-            # Eingabeaufforderung anzeigen, bevor der Benutzer etwas eingibt
             sys.stdout.write(f"\n{blue}┌──({reset}{red}root✨MAVIS{reset}{blue})-[{reset}{current_dir}{blue}]{reset}\n{blue}└─{reset}{red}#{reset}")
             sys.stdout.flush()
 
-            # Benutzer-Eingabe erfassen
             user_input = input().strip()
 
-            if user_input.lower() == "exit":
-                run([f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe",
-                     f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\mavis-installer-4-main-windows.py"],
-                    shell=True)
-                break
-
-            elif handle_special_commands(user_input):
+            if handle_special_commands(user_input):
                 continue
-            elif user_input.startswith("powershell "):
+            elif user_input.startswith(("mp ", "powershell ")):
                 run_command(user_input, shell=True)
             else:
-                run_command(user_input.split())
+                run_command(user_input, shell=True)
 
-            # Sicherstellen, dass alle Ausgaben abgeschlossen sind, bevor die nächste Eingabeaufforderung erscheint
             sys.stdout.flush()
             sys.stderr.flush()
 
@@ -519,6 +574,7 @@ def main():
             break
         except Exception as e:
             print(f"Error: {str(e)}", file=sys.stderr)
+
 
 if __name__ == "__main__":
     main()
