@@ -1271,7 +1271,7 @@ Falls du weitere Hilfe benötigst, schau in die [Dokumentation](https://github.c
 
 ### Soon MAVIS 4 on Debina and Arch Linux
 
-Testing: [Download mavis-launcher-4.sh](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.sh).
+Testing (Don't work!!!): [Download mavis-launcher-4.sh](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.sh).
 
 ## Using
 
