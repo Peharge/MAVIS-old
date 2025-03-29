@@ -1560,3 +1560,7 @@ BERT is conceptually simple and empirically powerful. It obtains new state-of-th
 ## Lizenz
 
 This project is licensed under the MIT license – see the [LICENSE](LICENSE) file for details.
+
+## MAVIS Icons
+
+<img src="./readme-img/mavis-icons-history.png" alt="mavis" width="1400">
