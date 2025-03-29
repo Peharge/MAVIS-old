@@ -618,7 +618,7 @@ def main():
                 else:
                     try:
                         print(f"Executing the following command on Debian: {user_input}")
-                        result = run_command(f"wsl -d Ubuntu {user_input}", shell=True)
+                        result = run_command(f"wsl -d Ubuntu bash -c {user_input}", shell=True)
                         if result is None:
                             print("The command could not be executed successfully.")
                         else:
