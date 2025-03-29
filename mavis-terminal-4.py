@@ -184,6 +184,8 @@ import threading
 import time
 import readline
 import ctypes
+import shlex
+
 
 def set_python_path():
     python_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
@@ -194,7 +196,7 @@ def run_command(command, shell=False):
     python_path = os.environ.get("PYTHON_PATH")
 
     if isinstance(command, str):
-        command = command.split()
+        command = shlex.split(command)
 
     if "pip" in command:
         command = [python_path, "-m", "pip"] + command[1:]
@@ -208,8 +210,10 @@ def run_command(command, shell=False):
 
     stdout_lines = []
     stderr_lines = []
-    threading.Thread(target=read_stream, args=(process.stdout, stdout_lines), daemon=True).start()
-    threading.Thread(target=read_stream, args=(process.stderr, stderr_lines), daemon=True).start()
+    stdout_thread = threading.Thread(target=read_stream, args=(process.stdout, stdout_lines), daemon=True)
+    stderr_thread = threading.Thread(target=read_stream, args=(process.stderr, stderr_lines), daemon=True)
+    stdout_thread.start()
+    stderr_thread.start()
 
     while process.poll() is None or stdout_lines or stderr_lines:
         while stdout_lines:
@@ -217,6 +221,9 @@ def run_command(command, shell=False):
         while stderr_lines:
             print(stderr_lines.pop(0), end='', flush=True, file=sys.stderr)
         time.sleep(1 / 24)
+
+    stdout_thread.join()
+    stderr_thread.join()
 
     while stdout_lines:
         print(stdout_lines.pop(0), end='', flush=True)
@@ -234,7 +241,9 @@ def change_directory(path):
 
 
 def handle_special_commands(user_input):
+    user_input = user_input.strip()
 
+    # Lade die .env-Datei
     load_dotenv(dotenv_path="C:\\Users\\julia\\PycharmProjects\\MAVIS\\.env")
 
     # Der Pfad zum Python-Interpreter in der .env
@@ -541,8 +550,15 @@ def handle_special_commands(user_input):
     return False
 
 
+def is_tool_installed(tool_name):
+    """Check if a tool is installed."""
+    result = subprocess.run(["which", tool_name], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    return result.returncode == 0
+
+
 def setup_autocomplete():
-    commands = ["cd", "cls", "clear", "dir", "ls", "mkdir", "rmdir", "del", "rm", "echo", "type", "cat", "exit"]
+    commands = ["cd", "cls", "clear", "dir", "ls", "mkdir", "rmdir", "del", "rm", "echo", "type", "cat", "exit",
+                "ubuntu"]
     readline.set_completer(lambda text, state: [cmd for cmd in commands if cmd.startswith(text)][state] if state < len(
         [cmd for cmd in commands if cmd.startswith(text)]) else None)
     readline.parse_and_bind("tab: complete")
@@ -550,19 +566,32 @@ def setup_autocomplete():
 
 def run_command_with_admin_privileges(command):
     if sys.platform == "win32":
-        # Überprüfe, ob das Skript als Administrator läuft
         if ctypes.windll.shell32.IsUserAnAdmin() == 0:
-            # Wenn der Befehl nicht als Administrator ausgeführt wird, versuchen wir, den Befehl in PowerShell als Administrator zu starten
-            # PowerShell-Befehl, um den Befehl mit Administratorrechten auszuführen
-            # Achte darauf, den Befehl direkt als Argument zu übergeben und sicherzustellen, dass alle Eingabeaufforderungen unterdrückt werden.
             powershell_command = f"Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -Command \"{command}\"' -Verb RunAs"
             subprocess.run(["powershell", "-Command", powershell_command], shell=True)
         else:
-            # Wenn bereits Administratorrechte vorhanden sind, führe den Befehl aus
             subprocess.run(command, shell=True)
     else:
-        # Für Linux/macOS: Befehl mit 'sudo' ausführen
         subprocess.run(['sudo', '-S', command], input="password", text=True, shell=True)
+
+def is_wsl_installed():
+    """Check if WSL is installed by attempting to run a basic wsl command."""
+    try:
+        # Try running 'wsl --list' which lists installed WSL distributions
+        subprocess.check_call(["wsl", "--list"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        return True
+    except FileNotFoundError:
+        # WSL executable not found, meaning WSL is not installed
+        print("Error: WSL is not installed or not found on the system.")
+        return False
+    except subprocess.CalledProcessError:
+        # WSL is found, but something went wrong while running the command
+        print("Error: WSL is installed, but an error occurred while executing the command.")
+        return False
+    except Exception as e:
+        # Catch any unexpected exceptions
+        print(f"Unexpected error occurred while checking if WSL is installed: {e}")
+        return False
 
 def main():
     print_banner()
@@ -572,19 +601,144 @@ def main():
     while True:
         try:
             current_dir = os.getcwd()
-            sys.stdout.write(f"\n{blue}┌──({reset}{red}root✨MAVIS{reset}{blue})-[{reset}{current_dir}{blue}]{reset}\n{blue}└─{reset}{red}#{reset}")
-            sys.stdout.flush()
-
-            user_input = input().strip()
+            prompt = f"\n{blue}┌──({reset}{red}root✨MAVIS{reset}{blue})-[{reset}{current_dir}{blue}]{reset}\n{blue}└─{reset}{red}#{reset}"
+            user_input = input(prompt).strip()
 
             if handle_special_commands(user_input):
                 continue
-            elif user_input.startswith("mp "):  # Wenn der Befehl mit "mp " beginnt
-                # Entferne "mp " und führe den restlichen Befehl aus
-                user_input = user_input[3:]  # Entferne "mp " (3 Zeichen)
+            elif user_input.startswith("mp "):
+                user_input = user_input[3:]
                 run_command_with_admin_privileges(user_input)
-            elif user_input.startswith("powershell "):  # Wenn der Befehl mit "powershell" beginnt
-                run_command(user_input, shell=True)  # Powershell-Befehl ausführen
+            elif user_input.startswith("powershell "):
+                run_command(user_input, shell=True)
+            elif user_input.startswith("ubuntu "):
+                user_input = user_input[7:].strip()  # Remove the "debian " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    try:
+                        print(f"Executing the following command on Debian: {user_input}")
+                        result = run_command(f"wsl -d Debian {user_input}", shell=True)
+                        if result is None:
+                            print("The command could not be executed successfully.")
+                        else:
+                            print("Command output:")
+                            print(result)
+                    except Exception as e:
+                        print(f"An error occurred while executing the command: {e}")
+
+            elif user_input.startswith("debian "):
+                user_input = user_input[7:].strip()  # Remove the "debian " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    try:
+                        print(f"Executing the following command on Debian: {user_input}")
+                        result = run_command(f"wsl -d Debian {user_input}", shell=True)
+                        if result is None:
+                            print("The command could not be executed successfully.")
+                        else:
+                            print("Command output:")
+                            print(result)
+                    except Exception as e:
+                        print(f"An error occurred while executing the command: {e}")
+
+            elif user_input.startswith("kali "):
+                user_input = user_input[5:].strip()  # Remove the "kali " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    try:
+                        print(f"Executing the following command on Kali Linux: {user_input}")
+                        result = run_command(f"wsl -d Kali-Linux {user_input}", shell=True)
+                        if result is None:
+                            print("The command could not be executed successfully.")
+                        else:
+                            print("Command output:")
+                            print(result)
+                    except Exception as e:
+                        print(f"An error occurred while executing the command: {e}")
+
+            elif user_input.startswith("arch "):
+                user_input = user_input[5:].strip()  # Remove the "arch " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    try:
+                        print(f"Executing the following command on Arch Linux: {user_input}")
+                        result = run_command(f"wsl -d Arch {user_input}", shell=True)
+                        if result is None:
+                            print("The command could not be executed successfully.")
+                        else:
+                            print("Command output:")
+                            print(result)
+                    except Exception as e:
+                        print(f"An error occurred while executing the command: {e}")
+
+            elif user_input.startswith("openSUSE "):
+                user_input = user_input[9:].strip()  # Remove the "openSUSE " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    try:
+                        print(f"Executing the following command on openSUSE: {user_input}")
+                        result = run_command(f"wsl -d openSUSE-Leap {user_input}", shell=True)
+                        if result is None:
+                            print("The command could not be executed successfully.")
+                        else:
+                            print("Command output:")
+                            print(result)
+                    except Exception as e:
+                        print(f"An error occurred while executing the command: {e}")
+
+            elif user_input.startswith("mint "):
+                user_input = user_input[5:].strip()  # Remove the "mint " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    try:
+                        print(f"Executing the following command on Linux Mint: {user_input}")
+                        result = run_command(f"wsl -d LinuxMint {user_input}", shell=True)
+                        if result is None:
+                            print("The command could not be executed successfully.")
+                        else:
+                            print("Command output:")
+                            print(result)
+                    except Exception as e:
+                        print(f"An error occurred while executing the command: {e}")
+
+            elif user_input.startswith("fedora "):
+                user_input = user_input[7:].strip()  # Remove the "fedora " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    try:
+                        print(f"Executing the following command on Fedora: {user_input}")
+                        result = run_command(f"wsl -d Fedora-Remix {user_input}", shell=True)
+                        if result is None:
+                            print("The command could not be executed successfully.")
+                        else:
+                            print("Command output:")
+                            print(result)
+                    except Exception as e:
+                        print(f"An error occurred while executing the command: {e}")
+
+            elif user_input.startswith("redhat "):
+                user_input = user_input[7:].strip()  # Remove the "redhat " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    try:
+                        print(f"Executing the following command on Red Hat: {user_input}")
+                        result = run_command(f"wsl -d RedHat {user_input}", shell=True)
+                        if result is None:
+                            print("The command could not be executed successfully.")
+                        else:
+                            print("Command output:")
+                            print(result)
+                    except Exception as e:
+                        print(f"An error occurred while executing the command: {e}")
+
             else:
                 run_command(user_input, shell=True)
 
