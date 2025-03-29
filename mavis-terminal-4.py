@@ -612,7 +612,7 @@ def main():
             elif user_input.startswith("powershell "):
                 run_command(user_input, shell=True)
             elif user_input.startswith("ubuntu "):
-                user_input = user_input[7:].strip()  # Remove the "debian " prefix
+                user_input = user_input[7:].strip()  # Remove the "ubuntu " prefix
                 if not is_wsl_installed():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
