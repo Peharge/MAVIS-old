@@ -1563,4 +1563,4 @@ This project is licensed under the MIT license – see the [LICENSE](LICENSE) fi
 
 ## MAVIS Icons
 
-<img src="./readme-img/mavis-icons-history.png" alt="mavis" width="1400">
+<img src="./readme-img/mavis-icons-history.svg" alt="mavis" width="1400">
