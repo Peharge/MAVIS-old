@@ -71,47 +71,48 @@ import os
 from dotenv import load_dotenv
 from subprocess import run
 
-required_packages = ["requests", "ollama", "transformers", "numpy", "pandas", "python-dotenv", "PyQt6", "PyQt6-sip", "PyQt6-Charts", "PyQt6-WebEngine", "keyboard"]
+required_packages = [
+    "requests", "ollama", "transformers", "numpy", "pandas", "python-dotenv",
+    "PyQt6", "PyQt6-sip", "PyQt6-Charts", "PyQt6-WebEngine", "keyboard"
+]
+
 
 def activate_virtualenv(venv_path):
     """Aktiviert eine bestehende virtuelle Umgebung."""
-    activate_script = os.path.join(venv_path, "Scripts", "activate") if os.name == "nt" else os.path.join(venv_path, "bin", "activate")
+    activate_script = os.path.join(venv_path, "Scripts", "activate") if os.name == "nt" else os.path.join(venv_path,
+                                                                                                          "bin",
+                                                                                                          "activate")
 
-    # Überprüfen, ob die virtuelle Umgebung existiert
     if not os.path.exists(activate_script):
-        print(f"Error: The virtual environment could not be found at {venv_path}.")
+        print(f"Error: Virtual environment not found at {venv_path}.")
         sys.exit(1)
 
-    # Umgebungsvariable für die virtuelle Umgebung setzen
     os.environ["VIRTUAL_ENV"] = venv_path
     os.environ["PATH"] = os.path.join(venv_path, "Scripts") + os.pathsep + os.environ["PATH"]
-    print(f"Virtual environment {venv_path} enabled.")
+    print(f"Virtual environment {venv_path} activated.")
+
 
 def ensure_packages_installed(packages):
-    """Stellt sicher, dass alle erforderlichen Pakete installiert sind."""
-    for package in packages:
-        if importlib.util.find_spec(package) is None:
-            print(f"Installing {package}...")
-            try:
-                subprocess.run([sys.executable, "-m", "pip", "install", package], check=True, stdout=subprocess.DEVNULL,
-                               stderr=subprocess.DEVNULL)
-                print(f"{package} installed successfully.")
-            except subprocess.CalledProcessError:
-                print(f"WARNING: Failed to install {package}. Please install it manually.")
-        else:
-            print(f"{package} is already installed.")
+    """Installiert fehlende Pakete effizient."""
+    to_install = [pkg for pkg in packages if importlib.util.find_spec(pkg) is None]
 
-# Pfad zur bestehenden virtuellen Umgebung
+    if to_install:
+        print(f"Installing missing packages: {', '.join(to_install)}...")
+        subprocess.run([sys.executable, "-m", "pip", "install"] + to_install, check=True, stdout=subprocess.DEVNULL,
+                       stderr=subprocess.DEVNULL)
+        print("All missing packages installed.")
+    else:
+        print("All required packages are already installed.")
+
+
+# Virtuelle Umgebung aktivieren und Pakete sicherstellen
 venv_path = r"C:\Users\julia\PycharmProjects\MAVIS\.env"
-
-# Aktivieren der virtuellen Umgebung
 activate_virtualenv(venv_path)
-
-# Sicherstellen, dass alle erforderlichen Pakete installiert sind
 ensure_packages_installed(required_packages)
 
-sys.stdout.reconfigure(encoding='utf-8')
 user_name = getpass.getuser()
+
+sys.stdout.reconfigure(encoding='utf-8')
 
 # Farbcodes definieren (kleingeschrieben)
 red = "\033[91m"
@@ -182,6 +183,7 @@ import subprocess
 import threading
 import time
 import readline
+import ctypes
 
 def set_python_path():
     python_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
@@ -546,6 +548,22 @@ def setup_autocomplete():
     readline.parse_and_bind("tab: complete")
 
 
+def run_command_with_admin_privileges(command):
+    if sys.platform == "win32":
+        # Überprüfe, ob das Skript als Administrator läuft
+        if ctypes.windll.shell32.IsUserAnAdmin() == 0:
+            # Wenn der Befehl nicht als Administrator ausgeführt wird, versuchen wir, den Befehl in PowerShell als Administrator zu starten
+            # PowerShell-Befehl, um den Befehl mit Administratorrechten auszuführen
+            # Achte darauf, den Befehl direkt als Argument zu übergeben und sicherzustellen, dass alle Eingabeaufforderungen unterdrückt werden.
+            powershell_command = f"Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -Command \"{command}\"' -Verb RunAs"
+            subprocess.run(["powershell", "-Command", powershell_command], shell=True)
+        else:
+            # Wenn bereits Administratorrechte vorhanden sind, führe den Befehl aus
+            subprocess.run(command, shell=True)
+    else:
+        # Für Linux/macOS: Befehl mit 'sudo' ausführen
+        subprocess.run(['sudo', '-S', command], input="password", text=True, shell=True)
+
 def main():
     print_banner()
     set_python_path()
@@ -561,8 +579,12 @@ def main():
 
             if handle_special_commands(user_input):
                 continue
-            elif user_input.startswith(("mp ", "powershell ")):
-                run_command(user_input, shell=True)
+            elif user_input.startswith("mp "):  # Wenn der Befehl mit "mp " beginnt
+                # Entferne "mp " und führe den restlichen Befehl aus
+                user_input = user_input[3:]  # Entferne "mp " (3 Zeichen)
+                run_command_with_admin_privileges(user_input)
+            elif user_input.startswith("powershell "):  # Wenn der Befehl mit "powershell" beginnt
+                run_command(user_input, shell=True)  # Powershell-Befehl ausführen
             else:
                 run_command(user_input, shell=True)
 
