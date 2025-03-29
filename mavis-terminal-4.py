@@ -201,7 +201,7 @@ def run_command(command, shell=False):
     if "pip" in command:
         command = [python_path, "-m", "pip"] + command[1:]
 
-    process = subprocess.Popen(command, shell=shell, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    process = subprocess.Popen(command, shell=shell, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8')
 
     def read_stream(stream, output_list):
         for line in iter(stream.readline, ''):
