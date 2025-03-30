@@ -286,12 +286,53 @@ def show_help():
         "m pip list": "Lists all installed Python packages (pip list), in a graphic window!",
         "m pip ls": "Lists all installed Python packages (pip ls), in a graphic window!",
         "m git": "Lists all install Commits and not install Commits, in a graphic window!",
-        "m ls": "Displays a filesystem overview from MAVIS folder (ls), in a graphic window!"
+        "m ls": "Displays a filesystem overview from MAVIS folder (ls), in a graphic window!",
+        "m models ls": "Lists all LLM models fpr MAVIS 4, in a graphic window!",
+        "m search": "Open Duckduckgo search engine",
+        "m ollama": "Open ollama.com",
+        "m huggingface.": "Open huggingface.co",
+        "m github": "Open github.com",
+        "m github mavis": "Open github MAVIS",
+        "m google": "Open google.com"
     }
 
     # Drucken der Befehle in einem übersichtlichen, tabellenähnlichen Format
     for command, description in commands.items():
         print(f"{blue}{command}{reset}: {description}")
+
+    # How to use the terminal command execution script
+    print("\nHow to Use the Linux Command Executor")
+    print("-------------------------------------")
+
+    # Instructions for the terminal command execution
+    print(f"1. To execute a Linux command on a specific distribution, use the following format:")
+    print(f"  {blue}lx <command>{reset}, {blue}ubuntu <command>{reset}, {blue}debian <command>{reset},")
+    print(f"  {blue}kali <command>{reset}, {blue}arch <command>{reset}, {blue}mint <command>{reset},")
+    print(f"  {blue}redhat <command>{reset}")
+    print(f"  Example: {blue}lx neofetch{reset} will execute 'neofetch' on the default Linux distro (WSL).")
+    print(f"  Example: {blue}ubuntu sudo apt update{reset} will run 'sudo apt update' on an Ubuntu system.")
+    print(f"  Example: {blue}arch pacman -Syu{reset} will update Arch Linux with the command 'pacman -Syu'.\n")
+
+    # Example of how each distribution works
+    print(f"2. Example Commands (You can replace <command> with any Linux command):")
+    print(f" - To execute a command on {blue}Linux (WSL){reset}:")
+    print(f"  {blue}lx <command>{reset} (e.g., {blue}lx neofetch{reset})")
+    print(f" - To execute a command on {blue}Ubuntu{reset}:")
+    print(f"  {blue}ubuntu <command>{reset} (e.g., {blue}ubuntu sudo apt update{reset})")
+    print(f" - To execute a command on {blue}Debian{reset}:")
+    print(f"  {blue}debian <command>{reset} (e.g., {blue}debian sudo apt upgrade{reset})")
+    print(f" - To execute a command on {blue}Kali Linux{reset}:")
+    print(f"  {blue}kali <command>{reset} (e.g., {blue}kali apt-get install nmap{reset})")
+    print(f" - To execute a command on {blue}Arch Linux{reset}:")
+    print(f"  {blue}arch <command>{reset} (e.g., {blue}arch pacman -Syu{reset})")
+    print(f" - To execute a command on {blue}Mint{reset}:")
+    print(f"  {blue}mint <command>{reset} (e.g., {blue}mint sudo apt install vlc{reset})")
+    print(f" - To execute a command on {blue}Red Hat{reset}:")
+    print(f"  {blue}redhat <command>{reset} (e.g., {blue}redhat sudo yum install git{reset})")
+
+    print(f"\n3. Notes:")
+    print(f" - You can replace <command> with any valid Linux command, e.g., {blue}lx neofetch{reset}, {blue}ubuntu ls -l{reset}, {blue}kali sudo apt install nmap{reset}.")
+    print(f" - The distribution alias (e.g., lx, ubuntu, debian) determines which environment the command will be executed in.\n")
 
     # How to use pip and PowerShell
     print("\nHow to Use pip and PowerShell")
