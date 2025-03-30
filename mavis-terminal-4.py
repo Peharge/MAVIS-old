@@ -664,6 +664,14 @@ def main():
                     print(f"Executing the following command on Ubuntu: {user_input}")
                     run_ubuntu_command(user_input)
 
+            elif user_input.startswith("ub "):
+                user_input = user_input[3:].strip()
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    print(f"Executing the following command on Ubuntu: {user_input}")
+                    run_ubuntu_command(user_input)
+
             elif user_input.startswith("debian "):
                 user_input = user_input[7:].strip()  # Remove the "debian " prefix
                 if not is_wsl_installed():
