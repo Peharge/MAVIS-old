@@ -73,6 +73,10 @@ from cgitb import strong
 from dotenv import load_dotenv
 from subprocess import run
 
+import readline
+import ctypes
+import shlex
+
 required_packages = [
     "requests", "ollama", "transformers", "numpy", "pandas", "python-dotenv",
     "PyQt6", "PyQt6-sip", "PyQt6-Charts", "PyQt6-WebEngine", "keyboard"
@@ -177,17 +181,6 @@ Thank you so much for using MAVIS. We truly appreciate your support ❤️""")
     show_color_palette()
 
     print("")
-
-
-import os
-import sys
-import subprocess
-import threading
-import time
-import readline
-import ctypes
-import shlex
-
 
 def set_python_path():
     python_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
