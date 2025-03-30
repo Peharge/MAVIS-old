@@ -595,7 +595,7 @@ def is_wsl_installed():
 
 def run_ubuntu_command(command):
     if isinstance(command, str):
-        command = f"wsl -e {command}"
+        command = f"wsl -e Ubuntu {command}"
 
     process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
 
@@ -606,7 +606,7 @@ def run_ubuntu_command(command):
 
 def run_debian_command(command):
     if isinstance(command, str):
-        command = f"wsl -e debian {command}"
+        command = f"wsl -e Debian {command}"
 
     process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
 
@@ -617,7 +617,7 @@ def run_debian_command(command):
 
 def run_kali_command(command):
     if isinstance(command, str):
-        command = f"wsl -e kali {command}"
+        command = f"wsl -e Kali {command}"
 
     process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
 
@@ -628,7 +628,7 @@ def run_kali_command(command):
 
 def run_arch_command(command):
     if isinstance(command, str):
-        command = f"wsl -e arch {command}"
+        command = f"wsl -e Arch {command}"
 
     process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
 
@@ -662,7 +662,6 @@ def main():
                 else:
                     print(f"Executing the following command on Ubuntu: {user_input}")
                     run_ubuntu_command(user_input)
-
 
             elif user_input.startswith("debian "):
                 user_input = user_input[7:].strip()  # Remove the "debian " prefix
