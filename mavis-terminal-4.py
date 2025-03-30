@@ -596,7 +596,7 @@ def is_wsl_installed():
 
 def run_ubuntu_command(command):
     if isinstance(command, str):
-        command = f"wsl -e ubuntu {command}"
+        command = f"wsl -e {command}"
 
     process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
 
@@ -607,7 +607,7 @@ def run_ubuntu_command(command):
 
 def run_debian_command(command):
     if isinstance(command, str):
-        command = f"wsl -e debian {command}"
+        command = f"wsl -d debian {command}"
 
     process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
 
@@ -618,7 +618,7 @@ def run_debian_command(command):
 
 def run_kali_command(command):
     if isinstance(command, str):
-        command = f"wsl -e Kali-linux {command}"
+        command = f"wsl -d kali-linux {command}"
 
     process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
 
@@ -629,7 +629,7 @@ def run_kali_command(command):
 
 def run_arch_command(command):
     if isinstance(command, str):
-        command = f"wsl -e arch-linux {command}"
+        command = f"wsl -d arch-linux {command}"
 
     process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
 
