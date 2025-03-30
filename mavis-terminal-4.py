@@ -269,6 +269,7 @@ def handle_special_commands(user_input):
         "info mavis": "mavis-terminal\\info.py",
         "neofetch": "mavis-terminal\\neofetch.py",
         "fastfetch": "mavis-terminal\\neofetch.py", # new
+        "screenfetch": "mavis-terminal\\neofetch.py", # new
         "jupyter": "mavis-terminal\\run-jup.py",
         "run jupyter": "mavis-terminal\\run-jup.py",
         "run mavis-1-5-main": "mavis-1-5-main-main.py",
@@ -595,7 +596,7 @@ def is_wsl_installed():
 
 def run_ubuntu_command(command):
     if isinstance(command, str):
-        command = f"wsl -e Ubuntu {command}"
+        command = f"wsl -e ubuntu {command}"
 
     process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
 
@@ -606,7 +607,7 @@ def run_ubuntu_command(command):
 
 def run_debian_command(command):
     if isinstance(command, str):
-        command = f"wsl -e Debian {command}"
+        command = f"wsl -e debian {command}"
 
     process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
 
@@ -617,7 +618,7 @@ def run_debian_command(command):
 
 def run_kali_command(command):
     if isinstance(command, str):
-        command = f"wsl -e Kali {command}"
+        command = f"wsl -e Kali-linux {command}"
 
     process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
 
@@ -628,7 +629,7 @@ def run_kali_command(command):
 
 def run_arch_command(command):
     if isinstance(command, str):
-        command = f"wsl -e Arch {command}"
+        command = f"wsl -e arch-linux {command}"
 
     process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
 
