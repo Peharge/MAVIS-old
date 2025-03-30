@@ -5,7 +5,9 @@
 <br>
 
 <div align="center">
-<img alt="mavis" src="https://img.shields.io/badge/MAVIS-F7DF1E?style=flat">
+<img alt="mavis" src="./readme-img/MAVIS-icon-banner-3.svg"><br>
+<img alt="mavis" src="./readme-img/MAVIS-launcher-icon-banner-3.svg">
+<img alt="mavis" src="./readme-img/MAVIS-terminal-icon-banner-3.svg"><br>
 <img alt="tg-loerrach" src="https://img.shields.io/badge/TG Lörrach-red?style=flat">
 <img alt="peharge" src="https://img.shields.io/badge/Peharge-rgb(100, 100, 100)?style=flat">
 <br>
