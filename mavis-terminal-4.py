@@ -201,7 +201,7 @@ def run_command(command, shell=False):
     if "pip" in command:
         command = [python_path, "-m", "pip"] + command[1:]
 
-    process = subprocess.Popen(command, shell=shell, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8')
+    process = subprocess.Popen(command, shell=shell, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True) # encoding='utf-8'
 
     def read_stream(stream, output_list):
         for line in iter(stream.readline, ''):
@@ -669,7 +669,7 @@ def main():
                 if not is_wsl_installed():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
-                    print(f"Executing the following command on Ubuntu: {user_input}")
+                    print(f"Executing the following command on Debian: {user_input}")
                     run_debian_command(user_input)
 
             elif user_input.startswith("kali "):
@@ -677,7 +677,7 @@ def main():
                 if not is_wsl_installed():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
-                    print(f"Executing the following command on Ubuntu: {user_input}")
+                    print(f"Executing the following command on Kali: {user_input}")
                     run_kali_command(user_input)
 
             elif user_input.startswith("arch "):
@@ -685,7 +685,7 @@ def main():
                 if not is_wsl_installed():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
-                    print(f"Executing the following command on Ubuntu: {user_input}")
+                    print(f"Executing the following command on Arch: {user_input}")
                     run_arch_command(user_input)
 
             elif user_input.startswith("openSUSE "):
