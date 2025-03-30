@@ -300,6 +300,8 @@ def show_help():
     for command, description in commands.items():
         print(f"{blue}{command}{reset}: {description}")
 
+    print("end more...")
+
     # How to use the terminal command execution script
     print("\nHow to Use the Linux Command Executor")
     print("-------------------------------------")
