@@ -604,6 +604,39 @@ def run_ubuntu_command(command):
     except KeyboardInterrupt:
         process.terminate()
 
+def run_debian_command(command):
+    if isinstance(command, str):
+        command = f"wsl -e debian {command}"
+
+    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+
+    try:
+        process.wait()
+    except KeyboardInterrupt:
+        process.terminate()
+
+def run_kali_command(command):
+    if isinstance(command, str):
+        command = f"wsl -e kali {command}"
+
+    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+
+    try:
+        process.wait()
+    except KeyboardInterrupt:
+        process.terminate()
+
+def run_arch_command(command):
+    if isinstance(command, str):
+        command = f"wsl -e arch {command}"
+
+    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+
+    try:
+        process.wait()
+    except KeyboardInterrupt:
+        process.terminate()
+
 def main():
     print_banner()
     set_python_path()
@@ -636,48 +669,24 @@ def main():
                 if not is_wsl_installed():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
-                    try:
-                        print(f"Executing the following command on Debian: {user_input}")
-                        result = run_command(f"wsl -d Debian {user_input}", shell=True)
-                        if result is None:
-                            print("The command could not be executed successfully.")
-                        else:
-                            print("Command output:")
-                            print(result)
-                    except Exception as e:
-                        print(f"An error occurred while executing the command: {e}")
+                    print(f"Executing the following command on Ubuntu: {user_input}")
+                    run_debian_command(user_input)
 
             elif user_input.startswith("kali "):
                 user_input = user_input[5:].strip()  # Remove the "kali " prefix
                 if not is_wsl_installed():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
-                    try:
-                        print(f"Executing the following command on Kali Linux: {user_input}")
-                        result = run_command(f"wsl -d Kali-Linux {user_input}", shell=True)
-                        if result is None:
-                            print("The command could not be executed successfully.")
-                        else:
-                            print("Command output:")
-                            print(result)
-                    except Exception as e:
-                        print(f"An error occurred while executing the command: {e}")
+                    print(f"Executing the following command on Ubuntu: {user_input}")
+                    run_kali_command(user_input)
 
             elif user_input.startswith("arch "):
                 user_input = user_input[5:].strip()  # Remove the "arch " prefix
                 if not is_wsl_installed():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
-                    try:
-                        print(f"Executing the following command on Arch Linux: {user_input}")
-                        result = run_command(f"wsl -d Arch {user_input}", shell=True)
-                        if result is None:
-                            print("The command could not be executed successfully.")
-                        else:
-                            print("Command output:")
-                            print(result)
-                    except Exception as e:
-                        print(f"An error occurred while executing the command: {e}")
+                    print(f"Executing the following command on Ubuntu: {user_input}")
+                    run_arch_command(user_input)
 
             elif user_input.startswith("openSUSE "):
                 user_input = user_input[9:].strip()  # Remove the "openSUSE " prefix
