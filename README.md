@@ -1,15 +1,15 @@
 <p align="center">
-    <img src="./readme-img/mavis-logo-new-3d-2.png" width="450">
+    <img src="./readme-img/mavis-4-icon-3.png" width="450">
 </p>
 
 <br>
 
 <div align="center">
 <img alt="mavis" src="./readme-img/MAVIS-icon-banner-3.svg"><br>
-<img alt="mavis" src="./readme-img/MAVIS-launcher-icon-banner-3.svg">
-<img alt="mavis" src="./readme-img/MAVIS-terminal-icon-banner-3.svg"><br>
+<img alt="mavis-launcher" src="./readme-img/MAVIS-launcher-icon-banner-3.svg">
+<img alt="mavis-terminal" src="./readme-img/MAVIS-terminal-icon-banner-3.svg"><br>
 <img alt="tg-loerrach" src="https://img.shields.io/badge/TG Lörrach-red?style=flat">
-<img alt="peharge" src="https://img.shields.io/badge/Peharge-rgb(100, 100, 100)?style=flat">
+<img alt="peharge" src="https://img.shields.io/badge/Peharge-gray?style=flat">
 <br>
 <br>
 
