@@ -596,9 +596,20 @@ def is_wsl_installed():
         print(f"Unexpected error occurred while checking if WSL is installed: {e}")
         return False
 
-def run_ubuntu_command(command):
+def run_linux_command(command):
     if isinstance(command, str):
         command = f"wsl -e {command}"
+
+    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+
+    try:
+        process.wait()
+    except KeyboardInterrupt:
+        process.terminate()
+
+def run_ubuntu_command(command):
+    if isinstance(command, str):
+        command = f"wsl -d ubuntu {command}"
 
     process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
 
@@ -660,16 +671,25 @@ def main():
                 run_command_with_admin_privileges(user_input)
             elif user_input.startswith("powershell "):
                 run_command(user_input, shell=True)
-            elif user_input.startswith("ubuntu "):
-                user_input = user_input[7:].strip()
+
+            elif user_input.startswith("lx "):
+                user_input = user_input[3:].strip()
                 if not is_wsl_installed():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
-                    print(f"Executing the following command on Ubuntu: {user_input}")
-                    run_ubuntu_command(user_input)
+                    print(f"Executing the following command on Linux: {user_input}")
+                    run_linux_command(user_input)
 
-            elif user_input.startswith("ub "):
-                user_input = user_input[3:].strip()
+            elif user_input.startswith("linux "):
+                user_input = user_input[6:].strip()
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    print(f"Executing the following command on Linux: {user_input}")
+                    run_linux_command(user_input)
+
+            elif user_input.startswith("ubuntu "):
+                user_input = user_input[7:].strip()
                 if not is_wsl_installed():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
