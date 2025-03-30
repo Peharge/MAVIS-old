@@ -593,6 +593,17 @@ def is_wsl_installed():
         print(f"Unexpected error occurred while checking if WSL is installed: {e}")
         return False
 
+def run_ubuntu_command(command):
+    if isinstance(command, str):
+        command = f"wsl -e {command}"
+
+    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+
+    try:
+        process.wait()
+    except KeyboardInterrupt:
+        process.terminate()
+
 def main():
     print_banner()
     set_python_path()
@@ -612,20 +623,13 @@ def main():
             elif user_input.startswith("powershell "):
                 run_command(user_input, shell=True)
             elif user_input.startswith("ubuntu "):
-                user_input = user_input[7:].strip()  # Remove the "ubuntu " prefix
+                user_input = user_input[7:].strip()
                 if not is_wsl_installed():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
-                    try:
-                        print(f"Executing the following command on Debian: {user_input}")
-                        result = run_command(f"wsl -d Ubuntu bash -c {user_input}", shell=True)
-                        if result is None:
-                            print("The command could not be executed successfully.")
-                        else:
-                            print("Command output:")
-                            print(result)
-                    except Exception as e:
-                        print(f"An error occurred while executing the command: {e}")
+                    print(f"Executing the following command on Ubuntu: {user_input}")
+                    run_ubuntu_command(user_input)
+
 
             elif user_input.startswith("debian "):
                 user_input = user_input[7:].strip()  # Remove the "debian " prefix
