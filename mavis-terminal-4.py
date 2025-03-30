@@ -68,6 +68,8 @@ import threading
 import time
 import importlib.util
 import os
+from cgitb import strong
+
 from dotenv import load_dotenv
 from subprocess import run
 
@@ -646,8 +648,10 @@ def main():
     while True:
         try:
             current_dir = os.getcwd()
-            prompt = f"\n{blue}┌──({reset}{red}root✨MAVIS{reset}{blue})-[{reset}{current_dir}{blue}]{reset}\n{blue}└─{reset}{red}#{reset}"
-            user_input = input(prompt).strip()
+            prompt = f"\n{blue}┌──({reset}{red}root{reset}✨{red}MAVIS{reset}{blue})-[{reset}{current_dir}{blue}]{reset}\n{blue}└─{reset}{red}#{reset}"
+
+            print(prompt, end='')
+            user_input = input().strip()
 
             if handle_special_commands(user_input):
                 continue
