@@ -15,7 +15,7 @@
 
 <img alt="python" src="https://img.shields.io/badge/Python-3.11 / 3.12 / (3.13)-blue?&style=flat&logo=Python&logoColor=white%5BPython">
 <img alt="c++" src="https://img.shields.io/badge/-C++-blue?style=flat&logo=cplusplus">
-<img alt="javascript++" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=black">
+<img alt="javascript++" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=black"><br>
 <img alt="batch" src="https://img.shields.io/badge/Bat-31369E?style=flat&logo=bat">
 <img alt="bash" src="https://img.shields.io/badge/Shell-4EAA25?&style=flat&logo=gnu-bash&logoColor=white">
 <img alt="html" src="https://img.shields.io/badge/HTML5-%23E34F26.svg?logo=html5&logoColor=white">
@@ -46,9 +46,9 @@
 <img alt="plotly" src="https://img.shields.io/badge/-Plotly-3F4F75?&logo=plotly">
 <img alt="seaborn" src="https://img.shields.io/badge/-Seaborn-4C72B0?&logo=seaborn">
 <img alt="numpy" src="https://img.shields.io/badge/-Numpy-013243?&logo=NumPy">
-<img alt="sympy" src="https://img.shields.io/badge/-SymPy-3B5526?&logo=sympy&logoColor=white"><br>
+<img alt="sympy" src="https://img.shields.io/badge/-SymPy-3B5526?&logo=sympy&logoColor=white">
 <img alt="pandas" src="https://img.shields.io/badge/-Pandas-150458?&logo=pandas">
-<img alt="scipy" src="https://img.shields.io/badge/-SciPy-8CAAE6?&logo=scipy&logoColor=white">
+<img alt="scipy" src="https://img.shields.io/badge/-SciPy-8CAAE6?&logo=scipy&logoColor=white"><br>
 <img alt="pytorch" src="https://img.shields.io/badge/-PyTorch-EE4C2C?&logo=pytorch&logoColor=white">
 <img alt="tensorflow" src="https://img.shields.io/badge/-TensorFlow-FF6F00?&logo=tensorflow&logoColor=white">
 <img alt="scikit-learn" src="https://img.shields.io/badge/-Scikit--Learn-F7931E?&logo=scikitlearn&logoColor=white">
