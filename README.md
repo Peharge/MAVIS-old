@@ -9,7 +9,7 @@
 <img alt="mavis-launcher" src="./readme-img/MAVIS-launcher-icon-banner-3.svg">
 <img alt="mavis-terminal" src="./readme-img/MAVIS-terminal-icon-banner-3.svg"><br>
 <img alt="tg-loerrach" src="https://img.shields.io/badge/TG Lörrach-red?style=flat">
-<img alt="peharge" src="https://img.shields.io/badge/Peharge-gray?style=flat">
+<img alt="peharge" src="./readme-img/Peharge-icon-banner-3.svg">
 <br>
 <br>
 
