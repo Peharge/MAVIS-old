@@ -414,7 +414,7 @@ And more...
 ## Benchmark
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-banner28.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-banner28.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 <br>
