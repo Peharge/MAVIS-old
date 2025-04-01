@@ -268,8 +268,8 @@ def get_dxcore_version():
 def print_system_info(system_info: dict):
     """Funktion, um die Systeminformationen im Terminal auszugeben"""
     print(f"""
-{blue}                    ===                   **                    {reset}{blue}MAVIS Terminal{reset}
-{blue}                   =====                 +***                   {reset}--------------
+{blue}                     =                    **                    {reset}{blue}MAVIS Terminal{reset}
+{blue}                    ===                  +***                   {reset}--------------
 {blue}                   =====                +++**                   {reset}{blue}MAVIS Version{reset}: 4
 {blue}                  =======              ++++***                  {reset}{blue}MAVIS Installer Version{reset}: 4
 {blue}                  ========             ++++****                 {reset}{blue}MAVIS Terminal Version{reset}: 4
