@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-terminal-3-banner.png" alt="mavis" width="400" style="margin: 10px;">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-4-icon-3.png" alt="mavis" width="400" style="margin: 10px;">
 </p>
 
 # _**Mavis Terminal - Command Reference and Setup Guide**_
@@ -95,82 +95,279 @@ The following are commands to run or install various models like DeepSeek, Llama
   - **`run gemma3:1b`**: Runs the Gemma3 model version 1b.
   - **`install gemma3:27b`**: Installs the Gemma3 model version 27b.
 
+and more...
+
 ### Additional Tools and Applications
 
 - **`grafana`**: Runs the Grafana application.
 - **`run deepseek-r1:1.5b`**: Runs the DeepSeek model version 1.5b.
 - **`install deepseek-r1:70b`**: Installs the DeepSeek model version 70b.
 
-### Miscellaneous
+### Script Execution
+- `m run all` - Runs all available scripts in a graphical window.
+- `m run gemma3` - Runs the Gemma3 script in a graphical window.
+- `m run deepseek-r1` - Runs all Deepseek-R1 versions in a graphical window.
+- `m run qwen2.5` - Runs all Qwen 2.5 versions in a graphical window.
+- `m run qwen2.5-coder` - Runs the Qwen 2.5 Coder versions in a graphical window.
+- `m python frameworks` - Runs the Python frameworks versions in a graphical window.
 
-- **`m run all`**: Runs all available scripts in a graphic window.
-- **`m htop`**: Displays a system resource overview (htop) in a graphic window.
-- **`m pip list`**: Lists all installed Python packages (pip list), in a graphic window.
-- **`m git`**: Lists git repositories.
+### System Monitoring
+- `m htop` - Displays a system resource overview (htop) in a graphical window.
+
+### Package Management
+- `m pip list` - Lists all installed Python packages (pip list) in a graphical window.
+- `m pip ls` - Lists all installed Python packages (pip ls) in a graphical window.
+
+### Git Management
+- `m git` - Lists all installed and uninstalled commits in a graphical window.
+
+### Filesystem Overview
+- `m ls` - Displays a filesystem overview from the MAVIS folder (ls) in a graphical window.
+- `m models ls` - Lists all LLM models for MAVIS 4 in a graphical window.
+
+### Web Search & Online Platforms
+- `m search` - Opens the DuckDuckGo search engine.
+- `m ollama` - Opens ollama.com.
+- `m huggingface` - Opens huggingface.co.
+- `m github` - Opens github.com.
+- `m github mavis` - Opens the MAVIS GitHub repository.
+- `m google` - Opens google.com.
+
+### How to Use the Linux Command Executor
+
+#### Instructions
+1. To execute a Linux command on a specific distribution, use the following format:
+   - `lx <command>`, `ubuntu <command>`, `debian <command>`, `kali <command>`, `arch <command>`, `mint <command>`, `redhat <command>`
+   - Example: `lx neofetch` will execute 'neofetch' on the default Linux distro (WSL).
+   - Example: `ubuntu sudo apt update` will run 'sudo apt update' on an Ubuntu system.
+   - Example: `arch pacman -Syu` will update Arch Linux using 'pacman -Syu'.
+
+#### Example Commands
+- **Linux (WSL):** `lx <command>` (e.g., `lx neofetch`)
+- **Ubuntu:** `ubuntu <command>` (e.g., `ubuntu sudo apt update`)
+- **Debian:** `debian <command>` (e.g., `debian sudo apt upgrade`)
+- **Kali Linux:** `kali <command>` (e.g., `kali apt-get install nmap`)
+- **Arch Linux:** `arch <command>` (e.g., `arch pacman -Syu`)
+- **Mint:** `mint <command>` (e.g., `mint sudo apt install vlc`)
+- **Red Hat:** `redhat <command>` (e.g., `redhat sudo yum install git`)
+
+#### Notes
+- You can replace `<command>` with any valid Linux command, e.g., `lx neofetch`, `ubuntu ls -l`, `kali sudo apt install nmap`.
+- The distribution alias (e.g., `lx`, `ubuntu`, `debian`) determines which environment the command will be executed in.
 
 ---
 
-## **Using `pip` for Package Management**  
+## Using pip (Python Package Installer)
 
-`pip` (Python Package Installer) is the standard package manager for Python. It allows users to install and manage dependencies required by Python applications.  
+1. To install a Python package, execute the following command in your terminal or command prompt:
+   ```sh
+   pip install <package_name>
+   ```
+   Example:
+   ```sh
+   pip install numpy
+   ```
+2. To upgrade pip itself, run:
+   ```sh
+   python -m pip install --upgrade pip
+   ```
+3. Note: In some environments, you may need to use `pip3` instead of `pip`.
 
-### **Basic Commands**  
-- **Check if `pip` is installed:**  
+## Using PowerShell
+
+1. To run Python scripts in PowerShell, navigate to the script directory and execute the command:
+   ```sh
+   python <script_name>.py
+   ```
+   Example:
+   ```sh
+   python my_script.py
+   ```
+2. To install Python packages in PowerShell using pip, run:
+   ```sh
+   pip install <package_name>
+   ```
+   Example:
+   ```sh
+   pip install requests
+   ```
+3. If you're using PowerShell as an administrator and face any permission issues, try running it as Administrator.
+
+## How to Use Ollama
+
+1. To use Ollama in PowerShell, you first need to have Ollama installed. If it's not installed, run:
+   ```sh
+   pip install ollama
+   ```
+2. After installation, you can use the following commands to interact with Ollama:
+   
+   **Available Ollama Commands:**
+   - `ollama serve` - Start Ollama server
+   - `ollama create` - Create a model from a Modelfile
+   - `ollama show` - Show information for a model
+   - `ollama run` - Run a model
+   - `ollama stop` - Stop a running model
+   - `ollama pull` - Pull a model from a registry
+   - `ollama push` - Push a model to a registry
+   - `ollama list` - List available models
+   - `ollama ps` - List running models
+   - `ollama cp` - Copy a model
+   - `ollama rm` - Remove a model
+   - `ollama help` - Get help for any command
+
+3. To see version information, use the command:
+   ```sh
+   ollama --version
+   ```
+   Example:
+   ```sh
+   ollama --version
+   ```
+4. For additional help on any command, type:
+   ```sh
+   ollama [command] --help
+   ```
+   Example:
+   ```sh
+   ollama run --help
+   ```
+
+## PowerShell Basics
+
+### File and Directory Management
+- List contents of the current directory:
   ```sh
-  python -m pip --version
+  dir
   ```
-- **Upgrade `pip` to the latest version:**  
+- Change directories:
   ```sh
-  python -m pip install --upgrade pip
+  cd <path>
   ```
-- **Install a package:**  
+  Example:
   ```sh
-  pip install <package_name>
+  cd C:\Users\UserName\Documents
   ```
-- **Uninstall a package:**  
+- Go back to the previous directory:
   ```sh
-  pip uninstall <package_name>
+  cd ..
   ```
-- **List installed packages:**  
+- Go to the root of the current drive:
   ```sh
-  pip list
+  cd \
   ```
-- **Check for outdated packages:**  
+- Create a new directory:
   ```sh
-  pip list --outdated
+  mkdir <folder_name>
   ```
-- **Update all outdated packages:**  
+  Example:
   ```sh
-  pip install --upgrade $(pip list --outdated | awk 'NR>2 {print $1}')
+  mkdir NewFolder
+  ```
+- Remove a file:
+  ```sh
+  rm <file_name>
+  ```
+  Example:
+  ```sh
+  rm file.txt
+  ```
+- Remove an empty folder:
+  ```sh
+  rmdir <folder_name>
+  ```
+  Example:
+  ```sh
+  rmdir EmptyFolder
+  ```
+- View the contents of a file:
+  ```sh
+  cat <file_name>
+  ```
+  Example:
+  ```sh
+  cat file.txt
   ```
 
----
+### Process Management
+- List running processes:
+  ```sh
+  Get-Process
+  ```
+- Stop a process:
+  ```sh
+  Stop-Process -Name <process_name>
+  ```
+  Example:
+  ```sh
+  Stop-Process -Name notepad
+  ```
 
-## **Introduction to PowerShell**  
+### System Information
+- View system information:
+  ```sh
+  Get-ComputerInfo
+  ```
+- Get help on a specific command:
+  ```sh
+  Get-Help <command>
+  ```
+  Example:
+  ```sh
+  Get-Help dir
+  ```
+- View command history:
+  ```sh
+  Get-History
+  ```
+- Clear the screen:
+  ```sh
+  Clear
+  ```
+- Get the current working directory:
+  ```sh
+  Get-Location
+  ```
 
-PowerShell is a powerful scripting language and command-line shell designed for system administration and automation on Windows.  
+### Running PowerShell Scripts
+- Set execution policy to allow scripts to run:
+  ```sh
+  Set-ExecutionPolicy RemoteSigned
+  ```
+- Run a script:
+  ```sh
+  .\script.ps1
+  ```
 
-### **Common PowerShell Commands**  
-| Command | Description |
-|---------|-------------|
-| `Get-Help` | Displays help information about PowerShell commands. |
-| `Get-Process` | Lists currently running processes. |
-| `Get-Service` | Shows the status of system services. |
-| `Get-Command` | Displays all available PowerShell commands. |
-| `Set-ExecutionPolicy RemoteSigned` | Allows running scripts on the system. |
-| `Start-Process` | Launches a new process. |
-| `Stop-Process -Name <process_name>` | Terminates a running process. |
-| `New-Item -ItemType File -Path "C:\example.txt"` | Creates a new file. |
-| `Remove-Item "C:\example.txt"` | Deletes a specified file. |
+### Environment Variables
+- See all environment variables:
+  ```sh
+  Get-ChildItem Env:
+  ```
+- Add a new environment variable:
+  ```sh
+  $env:VariableName = "Value"
+  ```
+  Example:
+  ```sh
+  $env:MyVar = "Hello"
+  ```
+- Display the contents of an environment variable:
+  ```sh
+  echo $env:VariableName
+  ```
 
-### **Running a Python Script in PowerShell**  
-To execute a Python script using PowerShell, navigate to the script's directory and run:  
-```powershell
-python script_name.py
-```
+### PowerShell Scripting Basics
+- Create a loop:
+  ```sh
+  foreach ($item in 1..5) { Write-Output $item }
+  ```
+- Use an `if` statement:
+  ```sh
+  if ($a -gt $b) { Write-Output "a is greater than b" }
+  ```
+- Use pipelines to filter data:
+  ```sh
+  Get-Process | Where-Object {$_.CPU -gt 100}
+  ```
 
-### **Running Mavis in PowerShell**  
-Navigate to the Mavis directory and execute:  
-```powershell
-python mavis-installer-3-main-windows.py
-```
+and more...
