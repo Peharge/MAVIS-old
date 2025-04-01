@@ -336,7 +336,7 @@ And more...
 ### MAVIS 4 release
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis2.3-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-4-banner-5.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 <br>
@@ -344,10 +344,22 @@ And more...
 > [!IMPORTANT]
 > Release: 01.05.2025
 
+<details>
+  <summary>MAVIS Terminal 4</summary>
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-4-banner-4.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+</details>
+
+<details>
+  <summary>MAVIS Installer 4</summary>
+</details>
+
 ## Versions
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-banner42.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="https://github.com/Peharge/MAVIS-images/raw/main/mavis-img-main/mavis-banner42.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 <br>
