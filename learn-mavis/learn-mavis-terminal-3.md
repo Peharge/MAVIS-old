@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/Peharge/MAVIS/blob/main/readme-img/mavis-terminal-3-banner.png" alt="mavis" width="400" style="margin: 10px;">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-terminal-3-banner.png" alt="mavis" width="400" style="margin: 10px;">
 </p>
 
 # _**Mavis Terminal - Command Reference and Setup Guide**_

@@ -80,12 +80,12 @@ Regardless of this selection, MAVIS will automatically open in a browser tab. If
 
 After the successful start, your browser should look like this:
 
-![MAVIS](https://github.com/Peharge/MAVIS/tree/main/readme-img/using-img-1.png)
+![MAVIS](https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/using-img-1.png)
 
 ## 6. Using MAVIS
 You can now send questions to the chatbot, upload images and use the control panel.
 
-![Using MAVIS](https://github.com/Peharge/MAVIS/tree/main/readme-img/using-img-2.png)
+![Using MAVIS](https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/using-img-2.png)
 
 Once you have uploaded an image, a small window will appear with the image. Simply click on the window to close it.
 
@@ -99,34 +99,34 @@ MAVIS also supports LaTeX for mathematical formulas and can perform calculations
 
 Here is an example of MAVIS in operation:
 
-![MAVIS example](https://github.com/Peharge/MAVIS/tree/main/readme-img/mavis-1-5-demo-3.png)
+![MAVIS example](https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-3.png)
 
-![MAVIS example](https://github.com/Peharge/MAVIS/tree/main/readme-img/mavis-1-5-demo-4.png)
+![MAVIS example](https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-4.png)
 
-![MAVIS example](https://github.com/Peharge/MAVIS/tree/main/readme-img/mavis-1-5-demo-5.png)
+![MAVIS example](https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-5.png)
 
 By default, the formula editor is open, which you can use to draw formulas. The drawn formulas are converted to LaTeX code in the input box below and displayed correctly rendered directly below. To convert the formula, simply press the black play button in the drawing box.
 
 The input box in which the LaTeX code is written is connected to the lower input box in the taskbar and can be used as input for the AI-Chatbot.
 
-![Formula editor use](https://github.com/Peharge/MAVIS/tree/main/readme-img/mavis-1-5-use-gif-1.gif)
+![Formula editor use](https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-use-gif-1.gif)
 
 To close the formula editor, press the pen button in the main taskbar.
 
-![Formula editor usage](https://github.com/Peharge/MAVIS/tree/main/readme-img/mavis-1-5-use-gif-2.gif)
+![Formula editor usage](https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-use-gif-2.gif)
 
 You can also use the graph editor to display formulas in a 2D or 3D coordinate system.
 
-![Graph editor](https://github.com/Peharge/MAVIS/tree/main/readme-img/using-img-4.png)
+![Graph editor](https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/using-img-4.png)
 
 Enter your formula and use the "Select" function to select special characters, pre-defined formulas, operations (derivation and integration) and the display as a 2D or 3D diagram (2D by default). The formula is displayed in real time.
 
-![Formula display](https://github.com/Peharge/MAVIS/tree/main/readme-img/using-img-5.png)
+![Formula display](https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/using-img-5.png)
 
 You can close this window at any time by clicking on the corresponding icon in the taskbar again.
 
 <div align="center">
-<img src="https://github.com/Peharge/MAVIS/tree/main/readme-img/using-img-6.png" alt="pen-button" width="600">
+<img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/using-img-6.png" alt="pen-button" width="600">
 </div>
 
 Have fun with MAVIS! Over time, you will get used to using the chatbot. Always give the chatbot a clear role, e.g.: "You are a professional programmer and your job is [...] - get to work!"
