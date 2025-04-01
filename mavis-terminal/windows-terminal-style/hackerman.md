@@ -1,5 +1,9 @@
+![Hackerman](https://github.com/rjcarneiro/windows-terminals/blob/master/images/erzx78vez1051.png)
+
+# Hackerman
+
 ```json
-"defaults": 
+"defaults":
 {
     "colorScheme": "One Half Dark",
     "useAcrylic": true,
