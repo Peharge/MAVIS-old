@@ -711,7 +711,7 @@ def main():
                 else:
                     print(f"Executing the following command on Kali: {user_input}")
                     run_kali_command(user_input)
-                    
+
             elif user_input.startswith("hack "):
                 user_input = user_input[5:].strip()  # Remove the "kali " prefix
                 if not is_wsl_installed():
