@@ -196,7 +196,8 @@ def run_command(command, shell=False):
     if "pip" in command:
         command = [python_path, "-m", "pip"] + command[1:]
 
-    """elif "python" in command:
+    """
+    elif "python" in command:
         command = [python_path] + command[1:]
     """
 
