@@ -167,14 +167,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 
 ## Updates
 
-### MAVIS 3 [NEW]
-<p align="center">
-    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-3-banner-ads.png" alt="mavis" width="800" style="margin: 10px;">
-</p>
-
-### Demo
-
-### MAVIS 4 release
+### MAVIS 4 [soon]
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-4-banner-5.png" alt="mavis" width="1400" style="margin: 10px;">
@@ -200,6 +193,13 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 <details>
   <summary>MAVIS Installer 4</summary>
 </details>
+
+### MAVIS 3 [NEW]
+<p align="center">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-3-banner-ads.png" alt="mavis" width="800" style="margin: 10px;">
+</p>
+
+### Demo
 
 <details>
   <summary>more</summary>
