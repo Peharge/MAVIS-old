@@ -1,15 +1,15 @@
 <p align="center">
-    <img src="./readme-img/mavis-4-icon-3.png" width="350">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-4-icon-3.png" width="350">
 </p>
 
 <br>
 
 <div align="center">
-<img alt="mavis" src="./readme-img/MAVIS-icon-banner-3.svg"><br>
-<img alt="mavis-launcher" src="./readme-img/MAVIS-launcher-icon-banner-3.svg">
-<img alt="mavis-terminal" src="./readme-img/MAVIS-terminal-icon-banner-3.svg"><br>
+<img alt="mavis" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-icon-banner-3.svg"><br>
+<img alt="mavis-launcher" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-launcher-icon-banner-3.svg">
+<img alt="mavis-terminal" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-terminal-icon-banner-3.svg"><br>
 <img alt="tg-loerrach" src="https://img.shields.io/badge/TG Lörrach-red?style=flat">
-<img alt="peharge" src="./readme-img/Peharge-icon-banner-3.svg">
+<img alt="peharge" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/Peharge-icon-banner-3.svg">
 <br>
 <br>
 
@@ -71,7 +71,7 @@ _Do you think you're better at math than an AI? Prove it! Show that there are in
 </details>
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner27-3.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-banner27-3.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 > [!WARNING]  
@@ -124,7 +124,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 <br>
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/MAVIS-ads11.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-ads11.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 ## Table of contents
@@ -173,7 +173,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 ### MAVIS 1.1 EAP release (with Llama 3.2) [old]
 
 <p align="center">
-    <img src="./readme-img/MAVIS-ads13.png" alt="mavis" width="1400" style="margin: 10px;">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-ads13.png" alt="mavis" width="1400" style="margin: 10px;">
 </p>
 
 ### Demo
@@ -182,7 +182,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
   <summary>more</summary>
 
 <div>
-    <img src="./readme-img/mavis-demo91.gif" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-demo91.gif" alt="mavis" width="1400">
 </div>
 
 And more...
@@ -194,7 +194,7 @@ And more...
 ### MAVIS 1.2 release [no more updates in the areas of graphics, frameworks and security]
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis1.4-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis1.4-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 ### Demo
@@ -203,7 +203,7 @@ And more...
   <summary>more</summary>
 
 <div>
-    <img src="./readme-img/mavis-demo123.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-demo123.png" alt="mavis" width="1400">
 </div>
 
 And more...
@@ -215,7 +215,7 @@ And more...
 ### MAVIS 1.3 EAP release [experimental]
 
 <p align="center">
-  <img src="./readme-img/mavis1.3-banner-ads2.png" alt="mavis" width="650" style="margin: 10px;">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis1.3-banner-ads2.png" alt="mavis" width="650" style="margin: 10px;">
 </p>
 
 ### Demo
@@ -224,9 +224,9 @@ And more...
   <summary>more</summary>
 
 <div>
-    <img src="./readme-img/mavis-demo93.png" alt="mavis" width="1400">
-    <img src="./readme-img/mavis-demo92.png" alt="mavis" width="1400">
-    <img src="./readme-img/mavis-demo91.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-demo93.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-demo92.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-demo91.png" alt="mavis" width="1400">
 </div>
 
 And more...
@@ -244,7 +244,7 @@ And more...
   <summary>MAVIS 1.4 EAP</summary>
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis1.6-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis1.6-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 ### Demo
@@ -263,7 +263,7 @@ And more...
 > 01.03.2025 - ultimate stabel!!!
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-ads-new1.3.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-ads-new1.3.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 > 27.02.2025
@@ -271,7 +271,7 @@ And more...
 ### MAVIS 1.6 EAP release
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis1.5-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis1.5-ads-new.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 <br>
@@ -282,7 +282,7 @@ And more...
 
 ### MAVIS 3 [NEW]
 <p align="center">
-    <img src="./readme-img/mavis-3-banner-ads.png" alt="mavis" width="800" style="margin: 10px;">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-3-banner-ads.png" alt="mavis" width="800" style="margin: 10px;">
 </p>
 
 ### Demo
@@ -291,67 +291,67 @@ And more...
   <summary>more</summary>
 
 <div>
-    <img src="./readme-img/mavis-3-demo-3.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-3-demo-3.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-3-demo-4.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-3-demo-4.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-3-demo-1.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-3-demo-1.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-3-demo-2.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-3-demo-2.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-use-gif-1.gif" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-use-gif-1.gif" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/using-img-5.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/using-img-5.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-3-demo-5.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-3-demo-5.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-3-demo-7.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-3-demo-7.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-3-demo-6.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-3-demo-6.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-3.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-3.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-4.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-4.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-5.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-5.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-6.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-6.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-7.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-7.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-8.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-8.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-9.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-9.png" alt="mavis" width="1400">
 </div>
 
 And more...
@@ -365,7 +365,7 @@ And more...
 
 ### MAVIS 3.3 [NEW]
 <p align="center">
-    <img src="./readme-img/mavis-3-3-banner-ads.png" alt="mavis" width="800" style="margin: 10px;">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-3-3-banner-ads.png" alt="mavis" width="800" style="margin: 10px;">
 </p>
 
 ### Demo
@@ -374,67 +374,67 @@ And more...
   <summary>more</summary>
 
 <div>
-    <img src="./readme-img/mavis-3-demo-3.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-3-demo-3.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-3-demo-4.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-3-demo-4.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-3-demo-1.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-3-demo-1.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-3-demo-2.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-3-demo-2.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-use-gif-1.gif" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-use-gif-1.gif" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/using-img-5.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/using-img-5.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-3-demo-5.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-3-demo-5.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-3-demo-7.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-3-demo-7.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-3-demo-6.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-3-demo-6.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-3.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-3.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-4.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-4.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-5.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-5.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-6.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-6.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-7.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-7.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-8.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-8.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-9.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-9.png" alt="mavis" width="1400">
 </div>
 
 And more...
@@ -449,7 +449,7 @@ And more...
 ### MAVIS 4 release
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis2.3-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis2.3-banner-ads.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 <br>
@@ -460,7 +460,7 @@ And more...
 ## Versions
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner42.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-banner42.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 <br>
@@ -527,7 +527,7 @@ And more...
 ## Benchmark
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="./readme-img/mavis-banner28.png" alt="mavis" width="1400" style="margin: 10px;">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-banner28.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
 
 <br>
@@ -1299,34 +1299,34 @@ Testing (Don't work!!!): [Download mavis-launcher-4.sh](https://github.com/Pehar
 ### Demo 15
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-3.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-3.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-4.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-4.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-5.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-5.png" alt="mavis" width="1400">
 </div>
 
 <details>
   <summary>more</summary>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-6.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-6.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-7.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-7.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-8.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-8.png" alt="mavis" width="1400">
 </div>
 
 <div>
-    <img src="./readme-img/mavis-1-5-demo-9.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-1-5-demo-9.png" alt="mavis" width="1400">
 </div>
 
 </details>
@@ -1334,13 +1334,13 @@ Testing (Don't work!!!): [Download mavis-launcher-4.sh](https://github.com/Pehar
 ### Demo 14
 
 <div>
-    <img src="./readme-img/mavis1.4-demo3.gif" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis1.4-demo3.gif" alt="mavis" width="1400">
 </div>
 
 ### Demo 13
 
 <div>
-    <img src="./readme-img/MAVIS-demo121.gif" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-demo121.gif" alt="mavis" width="1400">
 </div>
 
 - Make sure Mavis is always told to use **fig.update_layout(mapbox_style="open-street-map")** in Python code!
@@ -1350,7 +1350,7 @@ Testing (Don't work!!!): [Download mavis-launcher-4.sh](https://github.com/Pehar
   <summary>more</summary>
 
 <div>
-    <img src="./readme-img/mavis-demo123.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-demo123.png" alt="mavis" width="1400">
 </div>
 
 </details>
@@ -1358,7 +1358,7 @@ Testing (Don't work!!!): [Download mavis-launcher-4.sh](https://github.com/Pehar
 ### Demo 12
 
 <div>
-    <img src="./readme-img/mavis-demo101.gif" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-demo101.gif" alt="mavis" width="1400">
 </div>
 
 <details>
@@ -1367,8 +1367,8 @@ Testing (Don't work!!!): [Download mavis-launcher-4.sh](https://github.com/Pehar
 ### Demo 11
 
 <div>
-    <img src="./readme-img/mavis-demo81.gif" alt="mavis" width="1400">
-    <img src="./readme-img/mavis-demo83.gif" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-demo81.gif" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-demo83.gif" alt="mavis" width="1400">
 </div>
 
 ### Demo 10
@@ -1376,9 +1376,9 @@ Testing (Don't work!!!): [Download mavis-launcher-4.sh](https://github.com/Pehar
 **Aufgabe:** _Du bist ein Professioneller Thermodynamik Lehrer. Fasse mir die Übersicht zusammen in einer Tabelle (Formelsammlung) und lege dich ins Zeug!_
 
 <div>
-    <img src="./readme-img/mavis-demo93.png" alt="mavis" width="1400">
-    <img src="./readme-img/mavis-demo92.png" alt="mavis" width="1400">
-    <img src="./readme-img/mavis-demo91.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-demo93.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-demo92.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-demo91.png" alt="mavis" width="1400">
 </div>
 
 Grafik: https://www.ulrich-rapp.de/stoff/thermodynamik/Gasgesetz_AB.pdf
@@ -1417,64 +1417,64 @@ _**For component B**:_
 _Good luck!_
 
 <div>
-    <img src="./readme-img/mavis-demo73.png" alt="mavis" width="1400">
-    <img src="./readme-img/mavis-demo74.png" alt="mavis" width="1400">
-    <img src="./readme-img/mavis-demo75.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-demo73.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-demo74.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-demo75.png" alt="mavis" width="1400">
 </div>
 
 ### Demo 8
 
 <div>
-    <img src="./readme-img/mavis-demo76.png" alt="mavis" width="1400">
-    <img src="./readme-img/mavis-demo71.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-demo76.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-demo71.png" alt="mavis" width="1400">
 </div>
 
 ### Demo 7
 
 <div>
-    <img src="./readme-img/mavis-demo55.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-demo55.png" alt="mavis" width="1400">
 </div>
 
 ### Demo 6
 
 <div>
-    <img src="./readme-img/demo6-1.png" alt="mavis" width="1400">
-    <img src="./readme-img/demo6-5.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/demo6-1.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/demo6-5.png" alt="mavis" width="1400">
 </div>
 
 ### Demo 5
 
 <div>
-    <img src="./readme-img/demo5-1.png" alt="mavis" width="1400">
-    <img src="./readme-img/demo5-2.png" alt="mavis" width="1400">
-    <img src="./readme-img/demo5-3.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/demo5-1.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/demo5-2.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/demo5-3.png" alt="mavis" width="1400">
 </div>
 
 ### Demo 4
 
 <div>
-  <img src="./readme-img/demo4-2.png" alt="mavis" width="1400">
-  <img src="./readme-img/demo4-1.png" alt="mavis" width="1400">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/demo4-2.png" alt="mavis" width="1400">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/demo4-1.png" alt="mavis" width="1400">
 </div>
 
 ### Demo 3
 
 <div>
-    <img src="./readme-img/demo3-2.png" alt="mavis" width="1400">
-    <img src="./readme-img/demo3-1.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/demo3-2.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/demo3-1.png" alt="mavis" width="1400">
 </div>
 
 ### Demo 2
 
 <div>
-    <img src="./readme-img/demo3-5.png" alt="mavis" width="1400">
-    <img src="./readme-img/demo3-4.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/demo3-5.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/demo3-4.png" alt="mavis" width="1400">
 </div>
 
 ### Demo 1
 
 <div>
-    <img src="./readme-img/demo3-6.png" alt="mavis" width="1400">
+    <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/demo3-6.png" alt="mavis" width="1400">
 </div>
 
 </details>
@@ -1566,4 +1566,4 @@ This project is licensed under the MIT license – see the [LICENSE](LICENSE) fi
 
 ## MAVIS Icons
 
-<img src="./readme-img/mavis-icons-history.svg" alt="mavis" width="1400">
+<img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-icons-history.svg" alt="mavis" width="1400">
