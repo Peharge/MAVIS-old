@@ -456,6 +456,8 @@ def handle_special_commands(user_input):
         "install granite3.2:2b": "mavis-terminal\\granite-3-2-2b.py", # new
         "install granite3.2-vision:2b": "mavis-terminal\\granite-3-2-2b-vision.py", # new
         "help": "mavis-terminal\\help.py",
+        "image generation": "mavis-terminal\\stable-diffusion-3-5-large-turbo.py",
+        "video generation": "mavis-terminal\\wan-2-1-t2v-14b.py",
         "run mavis": "mavis-installer-3-main-windows.py",
         "m run all": "mavis-terminal\\m-run-all.py", # new
         "m htop": "mavis-terminal\\m-htop.py", # new

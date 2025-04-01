@@ -68,10 +68,10 @@ import threading
 import time
 import importlib.util
 import os
-from dotenv import load_dotenv
-from subprocess import run
 import select
-import soundfile as sf
+
+import imageio  # Für das Speichern von Videos
+from transformers import pipeline
 
 # Farbcodes definieren
 red = "\033[91m"
@@ -86,18 +86,15 @@ orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
-required_packages = ["qwen-omni-utils[decord]"]
+# Erforderliche Pakete (sicherstellen, dass imageio und transformers installiert sind)
+required_packages = ["imageio", "transformers"]
 
 def activate_virtualenv(venv_path):
     """Aktiviert eine bestehende virtuelle Umgebung."""
     activate_script = os.path.join(venv_path, "Scripts", "activate") if os.name == "nt" else os.path.join(venv_path, "bin", "activate")
-
-    # Überprüfen, ob die virtuelle Umgebung existiert
     if not os.path.exists(activate_script):
         print(f"Error: The virtual environment could not be found at {venv_path}.")
         sys.exit(1)
-
-    # Umgebungsvariable für die virtuelle Umgebung setzen
     os.environ["VIRTUAL_ENV"] = venv_path
     os.environ["PATH"] = os.path.join(venv_path, "Scripts") + os.pathsep + os.environ["PATH"]
     print(f"Virtual environment {venv_path} enabled.")
@@ -105,31 +102,24 @@ def activate_virtualenv(venv_path):
 def ensure_packages_installed(packages):
     """Stellt sicher, dass alle erforderlichen Pakete installiert sind."""
     for package in packages:
-        if importlib.util.find_spec(package) is None:
+        try:
+            importlib.import_module(package)
+            print(f"{package} is already installed.")
+        except ImportError:
             print(f"Installing {package}...")
             try:
-                subprocess.run([sys.executable, "-m", "pip", "install", package], check=True, stdout=subprocess.DEVNULL,
-                               stderr=subprocess.DEVNULL)
+                subprocess.run([sys.executable, "-m", "pip", "install", package], check=True)
                 print(f"{package} installed successfully.")
             except subprocess.CalledProcessError:
                 print(f"WARNING: Failed to install {package}. Please install it manually.")
-        else:
-            print(f"{package} is already installed.")
 
-# Pfad zur bestehenden virtuellen Umgebung
+# Pfad zur bestehenden virtuellen Umgebung (anpassen, falls erforderlich)
 venv_path = r"C:\Users\julia\PycharmProjects\MAVIS\.env"
-
-# Aktivieren der virtuellen Umgebung
 activate_virtualenv(venv_path)
-
-# Sicherstellen, dass alle erforderlichen Pakete installiert sind
 ensure_packages_installed(required_packages)
 
 sys.stdout.reconfigure(encoding='utf-8')
 user_name = getpass.getuser()
-
-from transformers import Qwen2_5OmniModel, Qwen2_5OmniProcessor
-from qwen_omni_utils import process_mm_info
 
 def check_command_installed(command):
     """Überprüft, ob ein Befehlszeilentool installiert ist."""
@@ -141,48 +131,6 @@ def check_command_installed(command):
     except Exception as e:
         print(f"{red}Error checking command {command}{reset}: {e}")
         return False
-
-def prompt_user_for_installation(model_name):
-    """Fragt den Benutzer, ob das Modell installiert werden soll."""
-    while True:
-        user_input = input_with_timeout(f"Do you want to install the model {model_name}? [y/n]:", 10)
-        if user_input is None:
-            print(f"{yellow}Timeout reached. No input received. Defaulting to 'no'.{reset}")
-            return False
-        elif user_input in ["y", "yes"]:
-            return True
-        elif user_input in ["n", "no"]:
-            return False
-        else:
-            print(f"{yellow}Invalid input. Please enter 'y' for yes or 'n' for no.{reset}")
-
-def get_response_from_huggingface(user_message, model, processor):
-    """Fragt das Huggingface Modell nach einer Antwort auf die Benutzereingabe."""
-    conversation = [
-        {
-            "role": "system",
-            "content": "You are Qwen, a virtual human developed by the Qwen Team, Alibaba Group, capable of perceiving auditory and visual inputs, as well as generating text and speech.",
-        },
-        {
-            "role": "user",
-            "content": user_message,
-        },
-    ]
-
-    # set use audio in video
-    USE_AUDIO_IN_VIDEO = True
-
-    # Preparation for inference
-    text = processor.apply_chat_template(conversation, add_generation_prompt=True, tokenize=False)
-    audios, images, videos = process_mm_info(conversation, use_audio_in_video=USE_AUDIO_IN_VIDEO)
-    inputs = processor(text=text, audios=audios, images=images, videos=videos, return_tensors="pt", padding=True, use_audio_in_video=USE_AUDIO_IN_VIDEO)
-    inputs = inputs.to(model.device).to(model.dtype)
-
-    # Inference: Generation of the output text and audio
-    text_ids, audio = model.generate(**inputs, use_audio_in_video=USE_AUDIO_IN_VIDEO)
-
-    text = processor.batch_decode(text_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
-    return text, audio
 
 def input_with_timeout(prompt, timeout=10):
     """Fragt den Benutzer nach einer Eingabe mit Timeout."""
@@ -201,35 +149,50 @@ def type_out_text(text, delay=0.05):
         time.sleep(delay)
     print()
 
+def get_video_from_huggingface(prompt, video_pipeline):
+    """
+    Generiert ein Video basierend auf dem Benutzereingabe-Prompt.
+    Hier wird das Text-zu-Video Modell von Wan-AI verwendet.
+    """
+    print(f"{cyan}Generiere Video für den Prompt: {prompt}{reset}")
+    # Aufruf des Pipelines mit dem eingegebenen Prompt
+    video_output = video_pipeline(prompt)
+    # Es wird angenommen, dass video_output eine Liste von Frames (als NumPy-Arrays) ist.
+    return video_output
+
+def save_video(video_frames, output_path="output.mp4", fps=8):
+    """
+    Speichert die generierten Video-Frames als MP4-Datei.
+    Die Bildrate (fps) kann nach Bedarf angepasst werden.
+    """
+    print(f"{green}Speichere das Video in {output_path}{reset}")
+    imageio.mimwrite(output_path, video_frames, fps=fps, quality=8)
+    print(f"{green}Video gespeichert.{reset}")
+
 def main():
     """Hauptfunktion."""
     if check_command_installed("huggingface"):
         print(f"{green}Huggingface CLI is installed.{reset}")
 
-        # Load the model and processor
-        model = Qwen2_5OmniModel.from_pretrained("Qwen/Qwen2.5-Omni-7B", torch_dtype="auto", device_map="auto")
-        processor = Qwen2_5OmniProcessor.from_pretrained("Qwen/Qwen2.5-Omni-7B")
+        # Lade die Text-zu-Video Pipeline mit dem Wan2.1 Modell
+        video_pipeline = pipeline("text-to-video", model="Wan-AI/Wan2.1-T2V-14B")
 
         while True:
-            user_input = input("\nEnter a prompt (or 'exit' to exit):\n")
-
+            user_input = input("\nGib einen Prompt ein (oder 'exit' zum Beenden):\n")
             if user_input.lower() == "exit":
-                print("Exit the program...")
+                print("Beende das Programm...")
                 break
 
-            response, audio = get_response_from_huggingface(user_input, model, processor)
+            video_frames = get_video_from_huggingface(user_input, video_pipeline)
 
-            print("Response from the model:", end=" ")
-            type_out_text(response)
-
-            sf.write(
-                "output.wav",
-                audio.reshape(-1).detach().cpu().numpy(),
-                samplerate=24000,
-            )
+            # Hier wird angenommen, dass video_frames eine Liste von NumPy-Arrays darstellt.
+            if isinstance(video_frames, list):
+                save_video(video_frames, "output.mp4")
+            else:
+                print(f"{yellow}Unerwartetes Video-Output-Format erhalten: {type(video_frames)}{reset}")
 
     else:
-        print(f"{red}Huggingface CLI is not installed. Please install it to proceed.{reset}")
+        print(f"{red}Huggingface CLI ist nicht installiert. Bitte installiere es, um fortzufahren.{reset}")
         sys.exit(1)
 
 if __name__ == "__main__":

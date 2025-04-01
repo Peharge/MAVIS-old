@@ -68,10 +68,6 @@ import threading
 import time
 import importlib.util
 import os
-from dotenv import load_dotenv
-from subprocess import run
-import select
-import soundfile as sf
 
 # Farbcodes definieren
 red = "\033[91m"
@@ -86,7 +82,7 @@ orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
-required_packages = ["qwen-omni-utils[decord]"]
+required_packages = ["bitsandbytes"]
 
 def activate_virtualenv(venv_path):
     """Aktiviert eine bestehende virtuelle Umgebung."""
@@ -128,109 +124,101 @@ ensure_packages_installed(required_packages)
 sys.stdout.reconfigure(encoding='utf-8')
 user_name = getpass.getuser()
 
-from transformers import Qwen2_5OmniModel, Qwen2_5OmniProcessor
-from qwen_omni_utils import process_mm_info
+import sys
+from diffusers import BitsAndBytesConfig, SD3Transformer2DModel, StableDiffusion3Pipeline
+from transformers import T5EncoderModel
+import torch
 
-def check_command_installed(command):
-    """Überprüft, ob ein Befehlszeilentool installiert ist."""
+
+def load_pipeline(model_id="stabilityai/stable-diffusion-3.5-large-turbo"):
+    """
+    Loads the Stable Diffusion 3 pipeline with 4-bit quantization and CPU offloading.
+
+    Returns:
+        pipeline: The loaded Stable Diffusion 3 pipeline.
+    """
     try:
-        result = subprocess.run(["which" if os.name != "nt" else "where", command],
-                                stdout=subprocess.PIPE,
-                                stderr=subprocess.PIPE)
-        return result.returncode == 0
+        # Configuration for 4-bit quantization using nf4
+        nf4_config = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_compute_dtype=torch.bfloat16
+        )
+
+        # Load the transformer component of the model
+        model_nf4 = SD3Transformer2DModel.from_pretrained(
+            model_id,
+            subfolder="transformer",
+            quantization_config=nf4_config,
+            torch_dtype=torch.bfloat16
+        )
+
+        # Load the T5 encoder needed for text processing
+        t5_nf4 = T5EncoderModel.from_pretrained("diffusers/t5-nf4", torch_dtype=torch.bfloat16)
+
+        # Create the pipeline using the loaded transformer and text encoder
+        pipeline = StableDiffusion3Pipeline.from_pretrained(
+            model_id,
+            transformer=model_nf4,
+            text_encoder_3=t5_nf4,
+            torch_dtype=torch.bfloat16
+        )
+
+        # Enable CPU offloading to reduce memory usage
+        pipeline.enable_model_cpu_offload()
+
+        print("Pipeline loaded successfully.")
+        return pipeline
+
     except Exception as e:
-        print(f"{red}Error checking command {command}{reset}: {e}")
-        return False
+        print(f"Error loading pipeline: {e}")
+        sys.exit(1)
 
-def prompt_user_for_installation(model_name):
-    """Fragt den Benutzer, ob das Modell installiert werden soll."""
-    while True:
-        user_input = input_with_timeout(f"Do you want to install the model {model_name}? [y/n]:", 10)
-        if user_input is None:
-            print(f"{yellow}Timeout reached. No input received. Defaulting to 'no'.{reset}")
-            return False
-        elif user_input in ["y", "yes"]:
-            return True
-        elif user_input in ["n", "no"]:
-            return False
-        else:
-            print(f"{yellow}Invalid input. Please enter 'y' for yes or 'n' for no.{reset}")
 
-def get_response_from_huggingface(user_message, model, processor):
-    """Fragt das Huggingface Modell nach einer Antwort auf die Benutzereingabe."""
-    conversation = [
-        {
-            "role": "system",
-            "content": "You are Qwen, a virtual human developed by the Qwen Team, Alibaba Group, capable of perceiving auditory and visual inputs, as well as generating text and speech.",
-        },
-        {
-            "role": "user",
-            "content": user_message,
-        },
-    ]
+def generate_image(pipeline, prompt, output_filename="generated_image.png", num_inference_steps=4, guidance_scale=0.0,
+                   max_sequence_length=512):
+    """
+    Generates an image based on the given prompt using the provided pipeline and saves it.
 
-    # set use audio in video
-    USE_AUDIO_IN_VIDEO = True
+    Args:
+        pipeline: The loaded Stable Diffusion 3 pipeline.
+        prompt (str): The user-provided text prompt.
+        output_filename (str): The filename for the saved image.
+        num_inference_steps (int): Number of inference steps.
+        guidance_scale (float): Guidance scale for the generation.
+        max_sequence_length (int): Maximum sequence length for the text prompt.
+    """
+    try:
+        print("Generating image... Please wait.")
+        result = pipeline(
+            prompt=prompt,
+            num_inference_steps=num_inference_steps,
+            guidance_scale=guidance_scale,
+            max_sequence_length=max_sequence_length,
+        )
+        image = result.images[0]
+        image.save(output_filename)
+        print(f"Image successfully saved as '{output_filename}'.")
+    except Exception as e:
+        print(f"Error generating image: {e}")
+        sys.exit(1)
 
-    # Preparation for inference
-    text = processor.apply_chat_template(conversation, add_generation_prompt=True, tokenize=False)
-    audios, images, videos = process_mm_info(conversation, use_audio_in_video=USE_AUDIO_IN_VIDEO)
-    inputs = processor(text=text, audios=audios, images=images, videos=videos, return_tensors="pt", padding=True, use_audio_in_video=USE_AUDIO_IN_VIDEO)
-    inputs = inputs.to(model.device).to(model.dtype)
-
-    # Inference: Generation of the output text and audio
-    text_ids, audio = model.generate(**inputs, use_audio_in_video=USE_AUDIO_IN_VIDEO)
-
-    text = processor.batch_decode(text_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
-    return text, audio
-
-def input_with_timeout(prompt, timeout=10):
-    """Fragt den Benutzer nach einer Eingabe mit Timeout."""
-    print(prompt, end=": ", flush=True)
-    i, _, _ = select.select([sys.stdin], [], [], timeout)
-    if i:
-        return sys.stdin.readline().strip()
-    else:
-        return None  # Timeout erreicht
-
-def type_out_text(text, delay=0.05):
-    """Tippt den Text langsam aus."""
-    for char in text:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(delay)
-    print()
 
 def main():
-    """Hauptfunktion."""
-    if check_command_installed("huggingface"):
-        print(f"{green}Huggingface CLI is installed.{reset}")
+    """
+    Main function for the image generation script.
+    Prompts the user for an image prompt and generates an image using the Stable Diffusion 3 pipeline.
+    """
+    pipeline = load_pipeline()
 
-        # Load the model and processor
-        model = Qwen2_5OmniModel.from_pretrained("Qwen/Qwen2.5-Omni-7B", torch_dtype="auto", device_map="auto")
-        processor = Qwen2_5OmniProcessor.from_pretrained("Qwen/Qwen2.5-Omni-7B")
+    # Get the user prompt and ensure it's not empty
+    prompt = input("Please enter your image prompt: ").strip()
+    if not prompt:
+        print("No prompt provided. Exiting.")
+        sys.exit(0)
 
-        while True:
-            user_input = input("\nEnter a prompt (or 'exit' to exit):\n")
+    generate_image(pipeline, prompt)
 
-            if user_input.lower() == "exit":
-                print("Exit the program...")
-                break
-
-            response, audio = get_response_from_huggingface(user_input, model, processor)
-
-            print("Response from the model:", end=" ")
-            type_out_text(response)
-
-            sf.write(
-                "output.wav",
-                audio.reshape(-1).detach().cpu().numpy(),
-                samplerate=24000,
-            )
-
-    else:
-        print(f"{red}Huggingface CLI is not installed. Please install it to proceed.{reset}")
-        sys.exit(1)
 
 if __name__ == "__main__":
     main()

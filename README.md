@@ -174,6 +174,33 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 
 ### Demo
 
+### MAVIS 4 release
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-4-banner-5.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+<br>
+
+> [!IMPORTANT]
+> Release: 01.05.2025
+
+<details>
+  <summary>MAVIS Terminal 4</summary>
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-4-banner-4.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+<br>
+
+[MAVIS Terminal](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/learn-mavis-terminal-4.md): Harness the power of MAVIS, Python, PIP, Ollama, Git, vLLM, PowerShell, and a vast array of Linux distributions—including Ubuntu, Debian, Arch Linux, Kali Linux, openSUSE, Mint, Fedora, and Red Hat—all within a single terminal on Windows!
+</details>
+
+<details>
+  <summary>MAVIS Installer 4</summary>
+</details>
+
 <details>
   <summary>more</summary>
 
@@ -332,33 +359,6 @@ And more...
 > Release: 15.03.2025
 
 <br>
-
-### MAVIS 4 release
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-4-banner-5.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-
-<br>
-
-> [!IMPORTANT]
-> Release: 01.05.2025
-
-<details>
-  <summary>MAVIS Terminal 4</summary>
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-4-banner-4.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-
-<br>
-
-[MAVIS Terminal](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/learn-mavis-terminal-4.md): Harness the power of MAVIS, Python, PIP, Ollama, Git, vLLM, PowerShell, and a vast array of Linux distributions—including Ubuntu, Debian, Arch Linux, Kali Linux, openSUSE, Mint, Fedora, and Red Hat—all within a single terminal on Windows!
-</details>
-
-<details>
-  <summary>MAVIS Installer 4</summary>
-</details>
 
 ## Versions
 
@@ -1123,7 +1123,7 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 
 </details>
 
-### Installation MAVIS 3 - 4 (Windows Only) - Englisch
+### Installation MAVIS 3 and 4 EAP (Windows Only) - Englisch
 
 To install MAVIS 3 EAP on a Windows computer, please follow these steps:
 
@@ -1149,7 +1149,7 @@ To install MAVIS 3 EAP on a Windows computer, please follow these steps:
 
 If you need further assistance, refer to the [Dokumentation](https://github.com/Peharge/MAVIS/blob/main/learn-mavis) - [Using MAVIS](https://github.com/Peharge/MAVIS/blob/main/using-mavis-3-en.md) or ask a question in the Issues section of the repository.
 
-### Installation MAVIS 3 (Nur Windows) - Deutsch
+### Installation MAVIS 3 und 4 EAP (Nur Windows) - Deutsch
 
 Um MAVIS 3 EAP auf einem Windows-Computer zu installieren, folge bitte diesen Schritten:
 
