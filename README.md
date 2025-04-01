@@ -350,6 +350,8 @@ And more...
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-4-banner-4.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
+
+[MAVIS Terminal](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/learn-mavis-terminal-4.md): Harness the power of MAVIS, Python, PIP, Ollama, Git, vLLM, PowerShell, and a vast array of Linux distributions—including Ubuntu, Debian, Arch Linux, Kali Linux, openSUSE, Mint, Fedora, and Red Hat—all within a single terminal on Windows!
 </details>
 
 <details>
