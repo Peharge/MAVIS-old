@@ -164,6 +164,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 - **[16.03.2025]** MAVIS 3.3 release !!!
 - **[19.03.2025]** Development of MAVIS 4 has begun – featuring new Vision Models, a more powerful and faster MAVIS Terminal, and access to over 200 models. No separate main, math, or code versions – ensuring greater usability.
 - **[31.03.2025]** MAVIS 4 EAP release !!!
+- **[02.04.2025]** MAVIS Terminal 4 EAP release !!!
 
 ## Updates
 
