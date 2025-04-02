@@ -438,6 +438,51 @@ if %errorlevel% neq 0 (
     echo ✅ Rustup is already installed.
 )
 
+:: Check if PowerShell 7 is already installed
+powershell -Command "$PSVersionTable.PSVersion" >nul 2>&1
+if %errorlevel% neq 0 (
+    echo PowerShell 7 is not installed.
+    set /p install_powershell="Would you like to install PowerShell 7? [y/n]:"
+
+    if /i "%install_powershell%"=="y" (
+        echo Downloading PowerShell 7 installer...
+
+        set "POWERSHELL_URL=https://github.com/PowerShell/PowerShell/releases/download/v7.2.9/PowerShell-7.2.9-win-x64.msi"
+        set "POWERSHELL_INSTALLER=%TEMP%\PowerShell-7.2.9-installer.msi"
+
+        :: Securely download PowerShell using PowerShell (TLS 1.2)
+        powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri '%POWERSHELL_URL%' -OutFile '%POWERSHELL_INSTALLER%'"
+
+        if exist "%POWERSHELL_INSTALLER%" (
+            echo Running PowerShell installer...
+            start /wait msiexec.exe /i "%POWERSHELL_INSTALLER%" /quiet /norestart
+
+            :: Verify installation
+            powershell -Command "$PSVersionTable.PSVersion" >nul 2>&1
+            if %errorlevel% neq 0 (
+                echo ❌ Error: Installation failed! Retrying...
+                del "%POWERSHELL_INSTALLER%"
+                start /wait msiexec.exe /i "%POWERSHELL_INSTALLER%" /quiet /norestart
+
+                powershell -Command "$PSVersionTable.PSVersion" >nul 2>&1
+                if %errorlevel% neq 0 (
+                    echo ❌ Second installation attempt failed! Manual installation required: https://github.com/PowerShell/PowerShell/releases
+                ) else (
+                    echo ✅ PowerShell 7 successfully installed!
+                )
+            ) else (
+                echo ✅ PowerShell 7 successfully installed!
+            )
+        ) else (
+            echo ❌ Error: PowerShell installer could not be downloaded!
+        )
+    ) else (
+        echo Installation aborted. Please install PowerShell 7 manually: https://github.com/PowerShell/PowerShell/releases
+    )
+) else (
+    echo ✅ PowerShell 7 is already installed.
+)
+
 :: Funktion zur Überprüfung, ob WSL installiert ist
 :CheckWSLInstalled
 wsl --list >nul 2>&1
