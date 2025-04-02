@@ -2,8 +2,6 @@
     <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-terminal-3-banner.png" alt="mavis" width="400" style="margin: 10px;">
 </p>
 
-# _**Mavis Terminal - Command Reference and Setup Guide**_
-
 <div align="center">
    <img alt="mavis" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-icon-banner-3.svg">
    <img alt="mavis-launcher" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-launcher-icon-banner-3.svg">
@@ -11,6 +9,8 @@
    <img alt="tg-loerrach" src="https://img.shields.io/badge/TG Lörrach-red?style=flat">
    <img alt="peharge" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/Peharge-icon-banner-3.svg">
 </div>
+
+# _**Mavis Terminal - Command Reference and Setup Guide**_
 
 ## **Overview**  
 Mavis Terminal is a powerful command-line interface designed to streamline development, system monitoring, and AI model execution. This document provides a comprehensive list of available commands, along with usage guidelines for `pip` and PowerShell.  
