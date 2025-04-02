@@ -651,40 +651,6 @@ def run_arch_command(command):
     except KeyboardInterrupt:
         process.terminate()
 
-def run_scoop_command(command):
-    if isinstance(command, str):
-        command = f"scoop {command}"
-
-    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
-
-    try:
-        process.wait()
-    except KeyboardInterrupt:
-        process.terminate()
-
-def run_choco_command(command):
-    if isinstance(command, str):
-        command = f"choco {command}"
-
-    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
-
-    try:
-        process.wait()
-    except KeyboardInterrupt:
-        process.terminate()
-
-def run_winget_command(command):
-    if isinstance(command, str):
-        command = f"winget {command}"
-
-    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
-
-    try:
-        process.wait()
-    except KeyboardInterrupt:
-        process.terminate()
-
-
 def main():
     print_banner()
     set_python_path()
@@ -825,30 +791,6 @@ def main():
                             print(result)
                     except Exception as e:
                         print(f"An error occurred while executing the command: {e}")
-
-            elif user_input.startswith("sc "):
-                user_input = user_input[6:].strip()
-                if not is_wsl_installed():
-                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
-                else:
-                    print(f"Executing the following command with scoop: {user_input}")
-                    run_scoop_command(user_input)
-
-            elif user_input.startswith("cho "):
-                user_input = user_input[6:].strip()
-                if not is_wsl_installed():
-                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
-                else:
-                    print(f"Executing the following command with choco: {user_input}")
-                    run_choco_command(user_input)
-
-            elif user_input.startswith("winget "):
-                user_input = user_input[6:].strip()
-                if not is_wsl_installed():
-                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
-                else:
-                    print(f"Executing the following command with winget : {user_input}")
-                    run_winget_command(user_input)
 
             else:
                 run_command(user_input, shell=True)
