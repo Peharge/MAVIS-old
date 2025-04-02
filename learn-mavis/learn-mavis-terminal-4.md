@@ -17,6 +17,105 @@ Mavis Terminal is a powerful command-line interface designed to streamline devel
 
 ---
 
+If you start MAVIS Terminal 4 out of [mavis-launcher-4.bat](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.bat), and if you do, it looks like this:
+
+```bash
+Aktive Codepage: 65001.
+
+      ██╗     █╗
+     ████╗   ███╗        ███╗   ███╗ █████╗ ██╗   ██╗██╗███████╗
+    ██████╗  ████╗       ████╗ ████║██╔══██╗██║   ██║██║██╔════╝
+   ████████╗  ████╗      ██╔████╔██║███████║██║   ██║██║███████╗
+  ████╔█████╗  ████╗     ██║╚██╔╝██║██╔══██║╚██╗ ██╔╝██║╚════██║
+ ████╔╝ █████╗  ████╗    ██║ ╚═╝ ██║██║  ██║ ╚████╔╝ ██║███████║
+ ╚═══╝   ███╔╝  ╚═══╝    ╚═╝     ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚══════╝
+          █╔╝
+          ╚╝
+
+██╗      █████╗ ██╗   ██╗███╗   ██╗ ██████╗██╗  ██╗███████╗██████╗     ██╗  ██╗
+██║     ██╔══██╗██║   ██║████╗  ██║██╔════╝██║  ██║██╔════╝██╔══██╗    ██║  ██║
+██║     ███████║██║   ██║██╔██╗ ██║██║     ███████║█████╗  ██████╔╝    ███████║
+██║     ██╔══██║██║   ██║██║╚██╗██║██║     ██╔══██║██╔══╝  ██╔══██╗    ╚════██║
+███████╗██║  ██║╚██████╔╝██║ ╚████║╚██████╗██║  ██║███████╗██║  ██║         ██║
+╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝         ╚═╝
+
+Initiating high-tech installation...
+Prepare for the next level
+
+MIT License
+Copyright (c) 2024
+Peharge
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Gooo...
+
+✅ Python is already installed.
+✅ Git is already installed.
+✅ Ollama is already installed.
+✅ Rustup is already installed.
+✅ PowerShell 7 is already installed.
+✅ WSL is already set up with the distribution "U".
+MAVIS repository already exists. Checking for updates...
+Fetching latest changes...
+Updates available, pulling changes...
+✅ MAVIS repository updated successfully
+✅ MAVIS update process completed successfully.
+✅ .env file already exists.
+✅ Starting MAVIS...
+✅ All tasks were completed successfully
+
+Virtual environment C:\Users\julia\PycharmProjects\MAVIS\.env activated.
+
+      ██╗     █╗
+     ████╗   ███╗        ███╗   ███╗ █████╗ ██╗   ██╗██╗███████╗
+    ██████╗  ████╗       ████╗ ████║██╔══██╗██║   ██║██║██╔════╝
+   ████████╗  ████╗      ██╔████╔██║███████║██║   ██║██║███████╗
+  ████╔█████╗  ████╗     ██║╚██╔╝██║██╔══██║╚██╗ ██╔╝██║╚════██║
+ ████╔╝ █████╗  ████╗    ██║ ╚═╝ ██║██║  ██║ ╚████╔╝ ██║███████║
+ ╚═══╝   ███╔╝  ╚═══╝    ╚═╝     ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚══════╝
+          █╔╝
+          ╚╝
+
+ ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗         ██╗  ██╗
+ ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║         ██║  ██║
+    ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║         ███████║
+    ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══██║██║         ╚════██║
+    ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗         ██║
+    ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝         ╚═╝
+
+A warm welcome, julia, to MAVIS (MAth Visual Intelligent System) - the most powerful calculator in the world!
+Developed by Peharge and JK (Peharge Projects 2025)
+Thank you so much for using MAVIS. We truly appreciate your support ❤️
+
+MAVIS Version: 4
+MAVIS Launcher Version: 4
+MAVIS Terminal Version: 4
+MAVIS License: MIT
+
+████████
+████████
+
+┌──(root✨MAVIS)-[C:\Users\julia\PycharmProjects\MAVIS]
+└─#
+```
+
 ## **Command Reference**  
 
 Below is a structured list of available commands and their corresponding functions:  
