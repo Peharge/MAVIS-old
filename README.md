@@ -40,11 +40,11 @@
 <img alt="wsl" src="https://img.shields.io/badge/WSL-4E9A06?style=flat&logo=linux&logoColor=white">
 <img alt="windows" src="https://img.shields.io/badge/Windows-informational?style=flat&logo=windows&logoColor=white&color=blue">
 <img alt="debian" src="https://img.shields.io/badge/Debian-red?style=flat&logo=debian&logoColor=orange&color=darkred">
-<img alt="arch" src="https://img.shields.io/badge/-Arch%20Linux-grey?logo=archlinux">
+<img alt="arch" src="https://img.shields.io/badge/-Arch%20Linux-grey?logo=archlinux"><br>
 <img alt="kali" src="https://img.shields.io/badge/-Kali%20Linux-%23557C94?style=flat&logo=kalilinux&logoColor=white">
 <img alt="opensuse" src="https://img.shields.io/badge/openSUSE-73BA25?style=flat&logo=SUSE&logoColor=white">
 <img alt="mint" src="https://img.shields.io/badge/Linux_Mint-87CF3E?style=flat&logo=linux-mint&logoColor=white">
-<img alt="fedora" src="https://img.shields.io/badge/Fedora-294172?style=flat&logo=fedora&logoColor=white">
+<img alt="fedora" src="https://img.shields.io/badge/Fedora-294172?style=flat&logo=fedora&logoColor=white"><br>
 <img alt="red_hat" src="https://img.shields.io/badge/Red_Hat-EE0000?style=flat&logo=redhat&logoColor=white">
 <br>
 <br>
