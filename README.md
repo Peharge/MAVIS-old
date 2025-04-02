@@ -16,6 +16,7 @@
 <img alt="python" src="https://img.shields.io/badge/Python-3.11 / 3.12 / (3.13)-blue?&style=flat&logo=Python&logoColor=white%5BPython">
 <img alt="c++" src="https://img.shields.io/badge/-C++-blue?style=flat&logo=cplusplus">
 <img alt="javascript++" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=black"><br>
+<img alt="batch" src="https://img.shields.io/badge/Rust-000000?logo=rust&logoColor=white">
 <img alt="batch" src="https://img.shields.io/badge/Bat-31369E?style=flat&logo=bat">
 <img alt="bash" src="https://img.shields.io/badge/Shell-4EAA25?&style=flat&logo=gnu-bash&logoColor=white">
 <img alt="html" src="https://img.shields.io/badge/HTML5-%23E34F26.svg?logo=html5&logoColor=white">
@@ -29,15 +30,22 @@
 <img alt="jupyter" src="https://img.shields.io/badge/Jupyter-%23F37626.svg?logo=jupyter&logoColor=white">
 <img alt="Grafana" src="https://img.shields.io/badge/Grafana-black?style=flat&logo=Grafana">
 <img alt="pycharm" src="https://img.shields.io/badge/PyCharm-black?style=flat&logo=PyCharm&logoColor=white"><br>
+<img alt="powershell" src="https://img.shields.io/badge/PowerShell-003B57?style=flat&logo=gnome-terminal&logoColor=white">
 <img alt="github" src="https://img.shields.io/badge/GitHub-black?style=flat&logo=github">
 <img alt="huggingface" src="https://img.shields.io/badge/HuggingFace-%23FFCC00.svg?logo=huggingface&logoColor=black">
 <img alt="llama.cpp" src="https://img.shields.io/badge/Llama.cpp-%2300A9FF.svg?logo=llama&logoColor=black">
 <br>
 <br>
 
+<img alt="wsl" src="https://img.shields.io/badge/WSL-4E9A06?style=flat&logo=linux&logoColor=white">
 <img alt="windows" src="https://img.shields.io/badge/Windows-informational?style=flat&logo=windows&logoColor=white&color=blue">
 <img alt="debian" src="https://img.shields.io/badge/Debian-red?style=flat&logo=debian&logoColor=orange&color=darkred">
 <img alt="arch" src="https://img.shields.io/badge/-Arch%20Linux-grey?logo=archlinux">
+<img alt="kali" src="https://img.shields.io/badge/-Kali%20Linux-%23557C94?style=flat&logo=kalilinux&logoColor=white">
+<img alt="opensuse" src="https://img.shields.io/badge/openSUSE-73BA25?style=flat&logo=SUSE&logoColor=white">
+<img alt="mint" src="https://img.shields.io/badge/Linux_Mint-87CF3E?style=flat&logo=linux-mint&logoColor=white">
+<img alt="fedora" src="https://img.shields.io/badge/Fedora-294172?style=flat&logo=fedora&logoColor=white">
+<img alt="red_hat" src="https://img.shields.io/badge/Red_Hat-EE0000?style=flat&logo=redhat&logoColor=white">
 <br>
 <br>
 
