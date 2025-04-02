@@ -491,15 +491,20 @@ if /I "%install_choice%"=="J" (
     goto :Continue
 )
 
-:: Auswahl der gewünschten Linux-Distribution
-:SelectDistro
-echo Please select a distribution for installation:
-echo   [1] Ubuntu
-echo   [2] Debian
-echo   [3] Kali Linux
-echo   [4] openSUSE
-set /p choice="Your choice [1/2/3/4]:"
+REM -- Auswahl der Distribution mit CHOICE --
+choice /c 12345678 /n /m "Please select a distribution for installation:
+  [1] Ubuntu
+  [2] Debian
+  [3] Kali Linux
+  [4] Arch Linux
+  [5] openSUSE
+  [6] Linux Mint
+  [7] Fedora
+  [8] Red Hat Enterprise Linux
+Your choice [1/2/3/4/5/6/7/8]:"
+set "choice=%errorlevel%"
 
+REM -- Setze Distributionen anhand der Auswahl --
 if "%choice%"=="1" (
     set "DISTRO_NAME=Ubuntu"
     set "DISTRO_PACKAGE=Ubuntu"
@@ -510,46 +515,79 @@ if "%choice%"=="1" (
     set "DISTRO_NAME=Kali Linux"
     set "DISTRO_PACKAGE=kali-linux"
 ) else if "%choice%"=="4" (
+    set "DISTRO_NAME=Arch Linux"
+    REM Hinweis: Für Arch Linux gibt es offizielle inoffizielle Projekte wie "ArchWSL".
+    set "DISTRO_PACKAGE=ArchLinux"
+) else if "%choice%"=="5" (
     set "DISTRO_NAME=openSUSE"
     set "DISTRO_PACKAGE=openSUSE-Leap-15-3"
+) else if "%choice%"=="6" (
+    set "DISTRO_NAME=Linux Mint"
+    REM Hinweis: Linux Mint ist aktuell nicht offiziell im Microsoft Store,
+    REM eventuell muss hier eine alternative Installationsmethode genutzt werden.
+    set "DISTRO_PACKAGE=LinuxMint"
+) else if "%choice%"=="7" (
+    set "DISTRO_NAME=Fedora"
+    REM Fedora wird über "Fedora Remix for WSL" angeboten
+    set "DISTRO_PACKAGE=FedoraRemix"
+) else if "%choice%"=="8" (
+    set "DISTRO_NAME=Red Hat Enterprise Linux"
+    REM Beachte: RHEL für WSL erfordert unter Umständen zusätzliche Lizenzen
+    set "DISTRO_PACKAGE=RHEL"
 ) else (
-    echo ❌ Invalid selection. The script is waiting for input.
+    echo ❌ Invalid selection. The program will terminate.
     pause
-    goto :Continue
+    exit /b 1
 )
-echo You have selected "!DISTRO_NAME!"
 
-:: Installation der gewünschten Distribution mit mehreren Versuchen
+echo.
+echo You have selected: "!DISTRO_NAME!"
+echo.
+
+REM -- Prüfe, ob WSL installiert und aktiviert ist --
+wsl -l >nul 2>&1
+if errorlevel 1 (
+    echo ❌ WSL is either not installed or not enabled.
+    echo Please enable WSL via "Turn Windows features on and off" and restart the computer.
+    pause
+    exit /b 1
+)
+
+REM -- Versuche die Installation mehrfach (max. 3 Versuche) --
 set /a attempts=0
 :InstallLoop
 set /a attempts+=1
-echo [Attempt !attempts!] Starting installation of !DISTRO_NAME!...
-wsl --install -d !DISTRO_PACKAGE! >nul 2>&1
+echo [Attempt !attempts!] Starting the installation of "!DISTRO_NAME!"...
+wsl --install -d "!DISTRO_PACKAGE!" >nul 2>&1
 
-:: Kurze Wartezeit, damit sich der Installationsprozess stabilisieren kann
+REM Kurze Pause, damit sich der Installationsprozess stabilisieren kann
 timeout /t 5 >nul
 
-:: Überprüfen, ob die Distribution installiert wurde
-set "installed_distro="
-for /f "usebackq delims=" %%a in (`wsl --list --quiet 2^>nul`) do (
-    set "installed_distro=%%a"
-    goto :CheckInstalled
+REM -- Überprüfe, ob die Distribution in der WSL-Liste erscheint --
+set "installed="
+for /f "usebackq delims=" %%i in (`wsl --list --quiet`) do (
+    echo %%i | findstr /i /c:"!DISTRO_PACKAGE!" >nul && set "installed=1"
 )
-:CheckInstalled
-if defined installed_distro (
-    echo ✅ !DISTRO_NAME! was successfully installed!
+if defined installed (
+    echo.
+    echo ✅ "!DISTRO_NAME!" was successfully installed!
+    goto :EOF
 ) else (
-    echo ❌ Installation of !DISTRO_NAME! failed.
+    echo.
+    echo ❌ Installation of "!DISTRO_NAME!" failed (attempt !attempts!).
     if !attempts! lss 3 (
         echo Try again in 3 seconds...
         timeout /t 3 >nul
         goto :InstallLoop
     ) else (
-        echo ❌ All attempts to install !DISTRO_NAME! failed.
-        echo Please install !DISTRO_NAME! manually.
+        echo ❌ All installation attempts failed.
+        echo Please install "!DISTRO_NAME!" manually via the Microsoft Store or an alternative method.
+        pause
+        exit /b 1
     )
 )
-goto :Continue
+
+endlocal
 
 :Continue
 :: Hier folgt der restliche Code
