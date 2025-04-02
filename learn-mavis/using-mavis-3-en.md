@@ -1,5 +1,13 @@
 # Using MAVIS 3  
 
+<div align="center">
+   <img alt="mavis" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-icon-banner-3.svg">
+   <img alt="mavis-launcher" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-launcher-icon-banner-3.svg">
+   <img alt="mavis-terminal" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-terminal-icon-banner-3.svg">
+   <img alt="tg-loerrach" src="https://img.shields.io/badge/TG Lörrach-red?style=flat">
+   <img alt="peharge" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/Peharge-icon-banner-3.svg">
+</div>
+
 ## 1. Launching the MAVIS Installer  
 To begin the installation process, execute the appropriate [`mavis-launcher-4.bat`](https://github.com/Peharge/MAVIS/blob/main/mavis-launcher-4.bat) file for your desired MAVIS version. This will open a terminal window on your operating system, initiating the MAVIS Installer.
 ```bash

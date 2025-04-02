@@ -1,5 +1,13 @@
 # _Using MAVIS 1.5_
 
+<div align="center">
+   <img alt="mavis" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-icon-banner-3.svg">
+   <img alt="mavis-launcher" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-launcher-icon-banner-3.svg">
+   <img alt="mavis-terminal" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-terminal-icon-banner-3.svg">
+   <img alt="tg-loerrach" src="https://img.shields.io/badge/TG Lörrach-red?style=flat">
+   <img alt="peharge" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/Peharge-icon-banner-3.svg">
+</div>
+
 ## 1. Starting the MAVIS Installer
 After you have run the appropriate `.bat` or `.sh` file for the desired MAVIS version, a terminal will open on your operating system. This is the MAVIS Installer.
 

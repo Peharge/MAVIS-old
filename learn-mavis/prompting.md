@@ -1,5 +1,13 @@
 # Mastering the Art of Prompting
 
+<div align="center">
+   <img alt="mavis" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-icon-banner-3.svg">
+   <img alt="mavis-launcher" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-launcher-icon-banner-3.svg">
+   <img alt="mavis-terminal" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-terminal-icon-banner-3.svg">
+   <img alt="tg-loerrach" src="https://img.shields.io/badge/TG Lörrach-red?style=flat">
+   <img alt="peharge" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/Peharge-icon-banner-3.svg">
+</div>
+
 ## Introduction
 Prompting is the key to effective interaction with AI models. A well-structured prompt ensures that you get relevant, precise, and high-quality responses. This guide will help you master the art of writing prompts that maximize the potential of AI tools.
 

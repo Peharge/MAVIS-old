@@ -1,5 +1,13 @@
 # Code of Conduct for MAVIS
 
+<div align="center">
+   <img alt="mavis" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-icon-banner-3.svg">
+   <img alt="mavis-launcher" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-launcher-icon-banner-3.svg">
+   <img alt="mavis-terminal" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-terminal-icon-banner-3.svg">
+   <img alt="tg-loerrach" src="https://img.shields.io/badge/TG Lörrach-red?style=flat">
+   <img alt="peharge" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/Peharge-icon-banner-3.svg">
+</div>
+
 ## Our Pledge
 As contributors and maintainers of the MAVIS project, we pledge to foster an environment where researchers, scientists, and collaborators can engage, innovate, and contribute freely without fear of discrimination, harassment, or intimidation. MAVIS is committed to providing an inclusive, accessible, and bias-free platform that empowers individuals to advance scientific discovery and knowledge.
 

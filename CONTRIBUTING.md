@@ -1,5 +1,13 @@
 # Contributing to MAVIS
 
+<div align="center">
+   <img alt="mavis" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-icon-banner-3.svg">
+   <img alt="mavis-launcher" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-launcher-icon-banner-3.svg">
+   <img alt="mavis-terminal" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-terminal-icon-banner-3.svg">
+   <img alt="tg-loerrach" src="https://img.shields.io/badge/TG Lörrach-red?style=flat">
+   <img alt="peharge" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/Peharge-icon-banner-3.svg">
+</div>
+
 Thank you for your interest in MAVIS! While we do not currently accept code contributions, we greatly value feedback and suggestions from the community to help improve MAVIS. Your insights and suggestions will play a key role in making MAVIS even better for researchers and scientists.
 
 ## How You Can Help
