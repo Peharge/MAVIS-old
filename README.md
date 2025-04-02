@@ -70,7 +70,7 @@
 </div>
 
 # _MAVIS_
-**MA**_th_ **V**_isual_ **I**_ntelligent_ **S**_ystem (Strongest calculator in the world)._
+**MA**_th_ **V**_isual_ **I**_ntelligent_ **S**_ystem (Strongest calculator in the world). - More: [MAVIS.com](https://peharge.github.io/MAVIS-web/)_
 
 _Do you think you're better at math than an AI? Prove it! Show that there are infinitely many pairs of prime numbers that are exactly 2 apart. No proof? No answer? Well – maybe it can't be done without AI after all! What are you waiting for? Ask [MAVIS - install](#installation)!_
 <details>
