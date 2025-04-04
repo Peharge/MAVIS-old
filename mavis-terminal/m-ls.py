@@ -240,14 +240,23 @@ class FileExplorer(QWidget):
 
         for item in items:
             item_path = os.path.join(path, item)
+
+            if "doom.run" in item_path:
+                continue
+
             item_type = "Directory" if os.path.isdir(item_path) else "File"
             item_size = os.path.getsize(item_path) if os.path.isfile(item_path) else ""
-            item_mtime = os.path.getmtime(item_path)
 
-            tree_item = QTreeWidgetItem([item, item_type, str(item_size), self.format_date(item_mtime)])
+            try:
+                item_mtime = os.path.getmtime(item_path)  # Fehlerquelle
+                formatted_date = self.format_date(item_mtime)
+            except OSError:
+                formatted_date = "N/A"
+
+            tree_item = QTreeWidgetItem([item, item_type, str(item_size), formatted_date])
 
             if os.path.isdir(item_path):
-                self.add_directory_to_tree(item_path, tree_item)  # Recursive call for directories
+                self.add_directory_to_tree(item_path, tree_item)
 
             if parent:
                 parent.addChild(tree_item)
