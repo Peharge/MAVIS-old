@@ -693,7 +693,7 @@ def main():
     while True:
         try:
             current_dir = os.getcwd()
-            prompt = f"\n{green}┌──({reset}{blue}{getpass.getuser()}❖ MAVIS{reset}{green})-[{reset}{current_dir}{green}]{reset}\n{green}└─{reset}{blue}#{reset}"
+            prompt = f"\n{green}┌──({reset}{blue}{getpass.getuser()}㉿MAVIS{reset}{green})-[{reset}{current_dir}{green}]{reset}\n{green}└─{reset}{blue}#{reset}"
 
             print(prompt, end='')
             user_input = input().strip()
