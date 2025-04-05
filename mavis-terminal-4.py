@@ -493,7 +493,8 @@ def handle_special_commands(user_input):
         "m github.com": "mavis-terminal\\m-github.py",  # new
         "m google.com": "mavis-terminal\\m-google.py",  # new
         "m ollama.com": "mavis-terminal\\m-ollama.py",  # new
-        "m huggingface.com": "mavis-terminal\\m-huggingface.py"  # new
+        "m huggingface.com": "mavis-terminal\\m-huggingface.py",  # new
+        "m mavis.com": "mavis-terminal\\m-mavis.py"  # new
     }
 
     if user_input in commands:
