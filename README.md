@@ -186,7 +186,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 <br>
 
 > [!IMPORTANT]
-> Release: 01.05.2025
+> Release: 01.06.2025
 
 <details>
   <summary>MAVIS Terminal 4</summary>
