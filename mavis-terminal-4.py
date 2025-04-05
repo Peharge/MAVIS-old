@@ -68,14 +68,6 @@ import threading
 import time
 import importlib.util
 import os
-from cgitb import strong
-
-from dotenv import load_dotenv
-from subprocess import run
-
-import readline
-import ctypes
-import shlex
 
 required_packages = [
     "requests", "ollama", "transformers", "numpy", "pandas", "python-dotenv",
@@ -115,6 +107,14 @@ def ensure_packages_installed(packages):
 venv_path = r"C:\Users\julia\PycharmProjects\MAVIS\.env"
 activate_virtualenv(venv_path)
 ensure_packages_installed(required_packages)
+
+from cgitb import strong
+from dotenv import load_dotenv
+from subprocess import run
+
+import readline
+import ctypes
+import shlex
 
 user_name = getpass.getuser()
 
