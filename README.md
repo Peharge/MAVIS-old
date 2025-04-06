@@ -179,6 +179,9 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 
 ### MAVIS 4 [soon]
 
+Get ready for a massive update! With MAVIS IDE 1, MAVIS Terminal 4, MAVIS Installer 4, a completely redesigned UI, and so much more, this release is set to blow your mind. See you in a few months!
+Start of development: 10.04.2025
+
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-4-banner-5.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
@@ -186,7 +189,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 <br>
 
 > [!IMPORTANT]
-> Release: 01.06.2025
+> Release: 01.06.2025 - 01.07.2025
 
 <details>
   <summary>MAVIS Terminal 4</summary>
