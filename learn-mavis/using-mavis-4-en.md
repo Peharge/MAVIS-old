@@ -486,7 +486,7 @@ After the successful start, your browser should look like this:
 ## 10. Using MAVIS
 You can now send questions to the chatbot, upload images and use the control panel.
 
-![Using MAVIS](https://github.com/Peharge/MAVIS/blob/maihttps://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/using-img-2.png)
+![Using MAVIS](https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/using-img-2.png)
 
 Once you have uploaded an image, a small window will appear with the image. Simply click on the window to close it.
 
