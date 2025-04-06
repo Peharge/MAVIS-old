@@ -2,7 +2,7 @@
     <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-terminal-3-banner.png" alt="mavis" width="400" style="margin: 10px;">
 </p>
 
-<div align="center">
+<div align="left">
    <img alt="mavis" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-icon-banner-3.svg">
    <img alt="mavis-launcher" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-launcher-icon-banner-3.svg">
    <img alt="mavis-terminal" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-terminal-icon-banner-3.svg">
