@@ -597,11 +597,146 @@ def is_wsl_installed():
         print(f"Unexpected error occurred while checking if WSL is installed: {e}")
         return False
 
-def run_linux_command(command):
-    if isinstance(command, str):
-        command = f"wsl -e {command}"
+import subprocess
+import sys
+import os
+import shutil
 
-    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+def check_winget():
+    """Check if winget is installed and accessible."""
+    try:
+        subprocess.run(["winget", "--version"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        return True
+    except subprocess.CalledProcessError:
+        print("winget is not installed or not accessible. Please install winget to proceed.")
+        return False
+
+def update_winget_sources():
+    """Update winget sources to ensure we have the latest package information."""
+    try:
+        subprocess.run(["winget", "source", "update"], check=True)
+        print("winget sources updated successfully.")
+        return True
+    except subprocess.CalledProcessError as e:
+        print(f"Error updating winget sources: {e}")
+        return False
+
+def install_visual_studio_build_tools():
+    """Install Visual Studio Build Tools automatically."""
+    print("Check for Visual Studio Build Tools...")
+    try:
+        # Check if 'cl.exe' is available
+        subprocess.run(["where", "cl.exe"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        print("Visual Studio Build Tools are already installed.")
+        return True
+    except subprocess.CalledProcessError:
+        print("Visual Studio Build Tools not found. Starting installation...")
+
+        # Plan A: Install using winget
+        install_command = [
+            "winget", "install", "--id", "Microsoft.VisualStudio.2022.BuildTools", "--source", "winget",
+            "--exact", "--silent", "--accept-package-agreements", "--accept-source-agreements"
+        ]
+        try:
+            subprocess.run(install_command, check=True)
+            print("Visual Studio Build Tools were successfully installed.")
+            return True
+        except subprocess.CalledProcessError as e:
+            print(f"Error installing Visual Studio Build Tools: {e}")
+            print("Try Plan B...")
+
+            # Plan B: Update winget sources and try again
+            if update_winget_sources():
+                try:
+                    subprocess.run(install_command, check=True)
+                    print("Visual Studio Build Tools were successfully installed.")
+                    return True
+                except subprocess.CalledProcessError as e:
+                    print(f"Error installing Visual Studio Build Tools after updating sources: {e}")
+                    print("Try Plan C...")
+
+                    # Plan C: Manual download and installation
+                    manual_download_url = "https://aka.ms/vs/17/release/vs_buildtools.exe"
+                    local_installer_path = os.path.join(os.getcwd(), "vs_buildtools.exe")
+                    try:
+                        subprocess.run(["curl", "-L", manual_download_url, "-o", local_installer_path], check=True)
+                        subprocess.run([local_installer_path, "--quiet", "--wait", "--norestart", "--nocache",
+                                        "--add", "Microsoft.VisualStudio.Workload.VCTools"], check=True)
+                        print("Visual Studio Build Tools were successfully installed manually.")
+                        return True
+                    except subprocess.CalledProcessError as e:
+                        print(f"Error when manually installing Visual Studio Build Tools: {e}")
+                        print("Try Plan D...")
+
+                        # Plan D: Use Chocolatey as an alternative package manager
+                        try:
+                            subprocess.run(["choco", "install", "visualstudio2019buildtools", "-y"], check=True)
+                            print("Visual Studio Build Tools were successfully installed via Chocolatey.")
+                            return True
+                        except subprocess.CalledProcessError as e:
+                            print(f"Error installing Visual Studio Build Tools via Chocolatey: {e}")
+                            print("Try Plan E...")
+
+                            # Plan E: Use Visual Studio Installer Bootstrapper
+                            try:
+                                visual_studio_installer_url = "https://aka.ms/vs/16/release/vs_installer.exe"
+                                local_installer_path = os.path.join(os.getcwd(), "vs_installer.exe")
+                                subprocess.run(["curl", "-L", visual_studio_installer_url, "-o", local_installer_path], check=True)
+                                subprocess.run([local_installer_path, "--quiet", "--wait", "--norestart", "--nocache",
+                                                "--add", "Microsoft.VisualStudio.Workload.VCTools"], check=True)
+                                print("Visual Studio Build Tools were successfully installed using the Visual Studio Installer Bootstrapper.")
+                                return True
+                            except subprocess.CalledProcessError as e:
+                                print(f"Error installing Visual Studio Build Tools using the Visual Studio Installer Bootstrapper: {e}")
+                                return False
+            else:
+                return False
+
+def compile_c_program():
+    """Compile the C program with 'cl.exe'."""
+    source_file = os.path.join(os.getcwd(), "mavis-terminal", "run_command.c")
+    output_file = os.path.join(os.getcwd(), "mavis-terminal", "run_command.exe")
+    if not os.path.exists(source_file):
+        print(f"Source file '{source_file}' not found.")
+        return False
+    # Compilation command
+    compile_command = ["cl", "/EHsc", source_file, "/Fe" + output_file]
+    try:
+        subprocess.run(compile_command, check=True)
+        print(f"Compilation successful. Output file: {output_file}")
+        return True
+    except subprocess.CalledProcessError as e:
+        print(f"Compilation error: {e}")
+        return False
+
+def ensure_dependencies():
+    """Ensure all dependencies for compiling C programs are installed."""
+    if not check_winget():
+        return False
+
+    if not install_visual_studio_build_tools():
+        return False
+
+    return True
+
+def run_linux_command(command):
+    """Run a Linux command using the compiled C program."""
+    # Ensure all dependencies are installed
+    if not ensure_dependencies():
+        return
+
+    # Check if the compiled C program exists, if not, compile it
+    exe_path = os.path.join(os.getcwd(), "mavis-terminal", "run_command.exe")
+    if not os.path.exists(exe_path):
+        if not compile_c_program():
+            return
+
+    if isinstance(command, str):
+        command = [exe_path, command]
+    else:
+        command = [exe_path] + command
+
+    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, text=True)
 
     try:
         process.wait()
