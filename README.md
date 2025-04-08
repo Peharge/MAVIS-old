@@ -174,6 +174,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 - **[31.03.2025]** MAVIS 4 EAP release !!!
 - **[02.04.2025]** MAVIS Terminal 4 EAP release !!!
 - **[05.04.2025]** Development of MAVIS 4 can be completed after May 1, 2025! Starting April 10, 2025, development will resume at a new level, featuring a completely restructured UI for MAVIS, and all LLM models will be able to run much faster and more reliably! MAVIS 4 will reach a whole new level!
+- **[07.04.2025]** Soon Mavis 4 EAP with Llama 4
 
 ## Updates
 
