@@ -28,9 +28,9 @@
 
 <img alt="flask" src="https://img.shields.io/badge/FLask-F7DF1E?style=flat&logo=flask&logoColor=black">
 <img alt="ollama" src="https://img.shields.io/badge/Ollama-%2300A98F.svg?logoColor=white">
-<img alt="jupyter" src="https://img.shields.io/badge/Jupyter-%23F37626.svg?logo=jupyter&logoColor=white">
-<img alt="Grafana" src="https://img.shields.io/badge/Grafana-black?style=flat&logo=Grafana">
-<img alt="pycharm" src="https://img.shields.io/badge/PyCharm-black?style=flat&logo=PyCharm&logoColor=white"><br>
+<img alt="pycharm" src="https://img.shields.io/badge/PyCharm-black?style=flat&logo=PyCharm&logoColor=white">
+<img alt="rustrover" src="https://img.shields.io/badge/RustRover-black?style=flat&logo=RustRover&logoColor=white">
+<img alt="visualstudio" src="https://img.shields.io/badge/Visual%20Studio-5C2D91?style=flat&logo=visualstudio&logoColor=white"><br>
 <img alt="powershell" src="https://img.shields.io/badge/PowerShell-003B57?style=flat&logo=gnome-terminal&logoColor=white">
 <img alt="github" src="https://img.shields.io/badge/GitHub-black?style=flat&logo=github">
 <img alt="huggingface" src="https://img.shields.io/badge/HuggingFace-%23FFCC00.svg?logo=huggingface&logoColor=black">
@@ -51,6 +51,8 @@
 <br>
 
 <img alt="latex" src="https://img.shields.io/badge/-LaTeX-008080?style=flat&logo=latex&logoColor=white">
+<img alt="jupyter" src="https://img.shields.io/badge/Jupyter-%23F37626.svg?logo=jupyter&logoColor=white">
+<img alt="Grafana" src="https://img.shields.io/badge/Grafana-black?style=flat&logo=Grafana">
 <img alt="matplotlib" src="https://img.shields.io/badge/-Matplotlib-11557C?&logo=matplotlib">
 <img alt="plotly" src="https://img.shields.io/badge/-Plotly-3F4F75?&logo=plotly">
 <img alt="seaborn" src="https://img.shields.io/badge/-Seaborn-4C72B0?&logo=seaborn">
