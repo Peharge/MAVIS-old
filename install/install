@@ -139,3 +139,7 @@ pip install --upgrade jupyterlab jupyter_server notebook
 pip install --upgrade notebook
 pip uninstall jupyterlab
 pip install jupyterlab
+
+--- 4.3
+
+pip install flask flask-socketio eventlet
