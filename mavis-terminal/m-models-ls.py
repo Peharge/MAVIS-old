@@ -111,7 +111,7 @@ def fetch_models():
         {"name": "Gemma 3 12b", "version": "gemma3:12b", "category": "Vision Tool", "rating": 6},
         {"name": "Gemma 3 27b", "version": "gemma3:27b", "category": "Vision Tool", "rating": 6},
         {"name": "QwQ", "version": "qwq", "category": "Language Model", "rating": 6},
-        {"name": "Mistral Small 3.1 24b", "version": "mistral-small3.1", "category": "Language Model", "rating": 6},
+        {"name": "Mistral Small 3.1 24b", "version": "mistral-small3.1", "category": "Vision Tool", "rating": 6},
         {"name": "Llama 3.1 8b", "version": "llama3.1:8b", "category": "Language Model", "rating": 4},
         {"name": "Llama 3.1 70b", "version": "llama3.1:70b", "category": "Language Model", "rating": 4},
         {"name": "Llama 3.1 405b", "version": "llama3.1:405b", "category": "Language Model", "rating": 5},
