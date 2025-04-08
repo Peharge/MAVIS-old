@@ -89,7 +89,6 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 <details>
   <summary>Deutsch</summary>
 
-> [!WARNING]  
 > Wichtiger Hinweis: Vorsicht vor Fake-Accounts!<br>
 > Es gibt Hinweise darauf, dass Fake-Accounts versuchen könnten, dieses Projekt falsch darzustellen. Bitte geben Sie keine persönlichen Daten an Unbekannte weiter und verlassen Sie sich nur auf Inhalte, die direkt aus diesem Repository stammen. Melden Sie umfangreiche Aktivitäten oder Accounts umgehend an GitHub oder das Projektteam.
 
