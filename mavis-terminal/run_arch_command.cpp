@@ -81,7 +81,7 @@ int main(int argc, char* argv[]) {
     // Baue den WSL-Befehl zusammen.
     // Jeder Parameter wird einzeln angehängt; falls ein Parameter Leerzeichen enthält, wird er nicht explizit in zusätzliche Anführungszeichen eingeschlossen,
     // da wir hier einen einfachen Befehl erwarten (z. B. nano test.py).
-    std::string wslCommand = "wsl.exe -d ubuntu";
+    std::string wslCommand = "wsl.exe -d arch-linux";
     for (int i = 1; i < argc; ++i) {
         wslCommand += " " + std::string(argv[i]);
     }
