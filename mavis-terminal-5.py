@@ -619,7 +619,7 @@ def get_project_paths_lx():
     base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
     terminal_dir = os.path.join(base_dir, "mavis-terminal")
     cpp_file = os.path.join(terminal_dir, "run_lx_command.cpp")
-    exe_file = os.path.join(terminal_dir, "run_command.exe")
+    exe_file = os.path.join(terminal_dir, "run_lx_command.exe")
     return cpp_file, exe_file, terminal_dir
 
 def get_project_paths_ubuntu():
@@ -631,7 +631,7 @@ def get_project_paths_ubuntu():
     base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
     terminal_dir = os.path.join(base_dir, "mavis-terminal")
     cpp_file = os.path.join(terminal_dir, "run_ubuntu_command.cpp")
-    exe_file = os.path.join(terminal_dir, "run_command.exe")
+    exe_file = os.path.join(terminal_dir, "run_ubuntu_command.exe")
     return cpp_file, exe_file, terminal_dir
 
 def get_project_paths_debian():
@@ -643,7 +643,7 @@ def get_project_paths_debian():
     base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
     terminal_dir = os.path.join(base_dir, "mavis-terminal")
     cpp_file = os.path.join(terminal_dir, "run_debian_command.cpp")
-    exe_file = os.path.join(terminal_dir, "run_command.exe")
+    exe_file = os.path.join(terminal_dir, "run_debian_command.exe")
     return cpp_file, exe_file, terminal_dir
 
 def get_project_paths_kali():
@@ -655,7 +655,7 @@ def get_project_paths_kali():
     base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
     terminal_dir = os.path.join(base_dir, "mavis-terminal")
     cpp_file = os.path.join(terminal_dir, "run_kali_command.cpp")
-    exe_file = os.path.join(terminal_dir, "run_command.exe")
+    exe_file = os.path.join(terminal_dir, "run_kali_command.exe")
     return cpp_file, exe_file, terminal_dir
 
 def get_project_paths_arch():
@@ -667,7 +667,7 @@ def get_project_paths_arch():
     base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
     terminal_dir = os.path.join(base_dir, "mavis-terminal")
     cpp_file = os.path.join(terminal_dir, "run_arch_command.cpp")
-    exe_file = os.path.join(terminal_dir, "run_command.exe")
+    exe_file = os.path.join(terminal_dir, "run_arch_command.exe")
     return cpp_file, exe_file, terminal_dir
 
 def find_vcvarsall():
