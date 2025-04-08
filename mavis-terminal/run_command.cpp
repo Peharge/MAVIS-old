@@ -70,45 +70,50 @@
 #include <windows.h>
 #include <iostream>
 #include <string>
+#include <vector>
 
 int main(int argc, char* argv[]) {
     if (argc < 2) {
-        std::cerr << "[ERROR] No command provided.\n";
+        std::cerr << "[ERROR] No command provided." << std::endl;
         return 1;
     }
 
-    // Construct the full WSL command
-    std::string command = "wsl.exe";
+    // Baue den WSL-Befehl zusammen.
+    // Jeder Parameter wird einzeln angehängt; falls ein Parameter Leerzeichen enthält, wird er nicht explizit in zusätzliche Anführungszeichen eingeschlossen,
+    // da wir hier einen einfachen Befehl erwarten (z. B. nano test.py).
+    std::string wslCommand = "wsl.exe";
     for (int i = 1; i < argc; ++i) {
-        command += " " + std::string(argv[i]);
+        wslCommand += " " + std::string(argv[i]);
     }
 
-    // Prepare process startup info
-    STARTUPINFOA si;
-    PROCESS_INFORMATION pi;
-    ZeroMemory(&si, sizeof(si));
+    // Erzeuge ein Terminalfenster, in dem das WSL-Programm interaktiv gestartet wird.
+    // "cmd.exe /k" startet das Terminal und hält es offen, nachdem der Befehl ausgeführt wurde.
+    std::string fullCommand = "cmd.exe /k " + wslCommand;
+
+    // Ausgabe des Befehls (optional zu Debug-Zwecken)
+    std::cout << "Executing the following command on Linux: " << fullCommand << std::endl;
+
+    // Prozessstart konfigurieren
+    STARTUPINFOA si = { 0 };
+    PROCESS_INFORMATION pi = { 0 };
     si.cb = sizeof(si);
-    si.dwFlags = STARTF_USESTDHANDLES;
-    si.hStdInput  = GetStdHandle(STD_INPUT_HANDLE);
-    si.hStdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-    si.hStdError  = GetStdHandle(STD_ERROR_HANDLE);
-    ZeroMemory(&pi, sizeof(pi));
 
-    // Make the command mutable (required by CreateProcessA)
-    std::vector<char> commandBuffer(command.begin(), command.end());
-    commandBuffer.push_back('\0');
+    // Erstelle einen modifizierbaren Puffer für den Befehl
+    std::vector<char> buffer(fullCommand.begin(), fullCommand.end());
+    buffer.push_back('\0');
 
+    // Starte den Prozess in einem neuen Konsolenfenster, damit wir eine voll interaktive Session bekommen.
     BOOL success = CreateProcessA(
-        NULL,                     // No module name (use command line)
-        commandBuffer.data(),     // Command line
-        NULL,                     // Process handle not inheritable
-        NULL,                     // Thread handle not inheritable
-        TRUE,                     // Inherit handles
-        0,                        // No creation flags
-        NULL,                     // Use parent's environment block
-        NULL,                     // Use parent's starting directory
-        &si,                      // Pointer to STARTUPINFO
-        &pi                       // Pointer to PROCESS_INFORMATION
+        NULL,                   // Keine Modulname, nur Commandline
+        buffer.data(),          // Commandline-Puffer
+        NULL,                   // Standardprozesseigenschaften
+        NULL,                   // Standardthread-Eigenschaften
+        FALSE,                  // Handle nicht erben
+        CREATE_NEW_CONSOLE,     // Neues Konsolenfenster
+        NULL,                   // Standardumgebungsblock
+        NULL,                   // Aktuelles Verzeichnis verwenden
+        &si,                    // STARTUPINFO
+        &pi                     // PROCESS_INFORMATION
     );
 
     if (!success) {
@@ -116,12 +121,11 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    // Wait until child process exits
+    // Warte auf Beendigung des gestarteten Prozesses
     WaitForSingleObject(pi.hProcess, INFINITE);
 
     DWORD exitCode = 0;
     GetExitCodeProcess(pi.hProcess, &exitCode);
-
     CloseHandle(pi.hProcess);
     CloseHandle(pi.hThread);
 
