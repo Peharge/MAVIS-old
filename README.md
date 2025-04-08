@@ -15,6 +15,7 @@
 
 <img alt="python" src="https://img.shields.io/badge/Python-3.11 / 3.12 / (3.13)-blue?&style=flat&logo=Python&logoColor=white%5BPython">
 <img alt="c++" src="https://img.shields.io/badge/-C++-blue?style=flat&logo=cplusplus">
+<img alt="c" src="https://img.shields.io/badge/C-A8B9CC?logo=C&logoColor=white">
 <img alt="javascript++" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=black"><br>
 <img alt="batch" src="https://img.shields.io/badge/Rust-000000?logo=rust&logoColor=white">
 <img alt="batch" src="https://img.shields.io/badge/Bat-31369E?style=flat&logo=bat">
