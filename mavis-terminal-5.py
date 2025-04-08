@@ -634,6 +634,41 @@ def get_project_paths_ubuntu():
     exe_file = os.path.join(terminal_dir, "run_command.exe")
     return cpp_file, exe_file, terminal_dir
 
+def get_project_paths_debian():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C++-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    cpp_file = os.path.join(terminal_dir, "run_debian_command.cpp")
+    exe_file = os.path.join(terminal_dir, "run_command.exe")
+    return cpp_file, exe_file, terminal_dir
+
+def get_project_paths_kali():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C++-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    cpp_file = os.path.join(terminal_dir, "run_kali_command.cpp")
+    exe_file = os.path.join(terminal_dir, "run_command.exe")
+    return cpp_file, exe_file, terminal_dir
+
+def get_project_paths_arch():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C++-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    cpp_file = os.path.join(terminal_dir, "run_arch_command.cpp")
+    exe_file = os.path.join(terminal_dir, "run_command.exe")
+    return cpp_file, exe_file, terminal_dir
 
 def find_vcvarsall():
     """
@@ -742,37 +777,103 @@ def run_ubuntu_command(command):
         logging.warning("Cancellation by user.")
 
 def run_debian_command(command):
-    if isinstance(command, str):
-        command = f"wsl -d debian {command}"
+    """
+    Führt einen Linux-Befehl interaktiv über den C++-Wrapper aus.
 
-    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+    Falls run_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
+    Der C++-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
+    """
+    cpp_file, exe_file, _ = get_project_paths_debian()
+
+    if not os.path.isfile(exe_file):
+        if not compile_cpp_with_vs(cpp_file, exe_file):
+            logging.error("Abort: C++ compilation was unsuccessful.")
+            return
+
+    # Erstelle die Befehlsliste. Bei mehreren Argumenten werden diese getrennt übertragen.
+    if isinstance(command, str):
+        # Zerlege die Eingabe (z.B. "nano test.py") in Parameter, falls möglich
+        args = command.split()  # Achtung: Bei komplexen Befehlen mit Leerzeichen evtl. anders behandeln!
+    else:
+        args = command
+
+    # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C++-Code
+    cmd = [exe_file] + args
 
     try:
-        process.wait()
+        logging.info(f"Execute: {' '.join(cmd)}")
+        # Der C++-Wrapper startet ein neues Terminalfenster, in dem der Befehl interaktiv ausgeführt wird.
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Command failed: {e}")
     except KeyboardInterrupt:
-        process.terminate()
+        logging.warning("Cancellation by user.")
 
 def run_kali_command(command):
-    if isinstance(command, str):
-        command = f"wsl -d kali-linux {command}"
+    """
+    Führt einen Linux-Befehl interaktiv über den C++-Wrapper aus.
 
-    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+    Falls run_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
+    Der C++-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
+    """
+    cpp_file, exe_file, _ = get_project_paths_kali()
+
+    if not os.path.isfile(exe_file):
+        if not compile_cpp_with_vs(cpp_file, exe_file):
+            logging.error("Abort: C++ compilation was unsuccessful.")
+            return
+
+    # Erstelle die Befehlsliste. Bei mehreren Argumenten werden diese getrennt übertragen.
+    if isinstance(command, str):
+        # Zerlege die Eingabe (z.B. "nano test.py") in Parameter, falls möglich
+        args = command.split()  # Achtung: Bei komplexen Befehlen mit Leerzeichen evtl. anders behandeln!
+    else:
+        args = command
+
+    # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C++-Code
+    cmd = [exe_file] + args
 
     try:
-        process.wait()
+        logging.info(f"Execute: {' '.join(cmd)}")
+        # Der C++-Wrapper startet ein neues Terminalfenster, in dem der Befehl interaktiv ausgeführt wird.
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Command failed: {e}")
     except KeyboardInterrupt:
-        process.terminate()
+        logging.warning("Cancellation by user.")
 
 def run_arch_command(command):
-    if isinstance(command, str):
-        command = f"wsl -d arch-linux {command}"
+    """
+    Führt einen Linux-Befehl interaktiv über den C++-Wrapper aus.
 
-    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+    Falls run_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
+    Der C++-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
+    """
+    cpp_file, exe_file, _ = get_project_paths_arch()
+
+    if not os.path.isfile(exe_file):
+        if not compile_cpp_with_vs(cpp_file, exe_file):
+            logging.error("Abort: C++ compilation was unsuccessful.")
+            return
+
+    # Erstelle die Befehlsliste. Bei mehreren Argumenten werden diese getrennt übertragen.
+    if isinstance(command, str):
+        # Zerlege die Eingabe (z.B. "nano test.py") in Parameter, falls möglich
+        args = command.split()  # Achtung: Bei komplexen Befehlen mit Leerzeichen evtl. anders behandeln!
+    else:
+        args = command
+
+    # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C++-Code
+    cmd = [exe_file] + args
 
     try:
-        process.wait()
+        logging.info(f"Execute: {' '.join(cmd)}")
+        # Der C++-Wrapper startet ein neues Terminalfenster, in dem der Befehl interaktiv ausgeführt wird.
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Command failed: {e}")
     except KeyboardInterrupt:
-        process.terminate()
+        logging.warning("Cancellation by user.")
 
 def run_scoop_command(command):
     if isinstance(command, str):
