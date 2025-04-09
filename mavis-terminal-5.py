@@ -588,10 +588,10 @@ def get_project_paths_mp():
 
 def compile_mp_cpp_with_vs(mp_cpp_file, mp_exe_file):
     """
-    Kompiliert run_command.cpp mit cl.exe über die Visual Studio-Umgebung.
+    Kompiliert run_mp_command.cpp mit cl.exe über die Visual Studio-Umgebung.
     Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
     """
-    logging.info("Compile run_lx_command.cpp with Visual Studio C++...")
+    logging.info("Compile run_mp_command.cpp with Visual Studio C++...")
     vcvarsall = find_vcvarsall()
     # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
     command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{mp_cpp_file}" /Fe:"{mp_exe_file}"'
@@ -613,7 +613,6 @@ def compile_mp_cpp_with_vs(mp_cpp_file, mp_exe_file):
 
     logging.info("Compilation successful.")
     return True
-
 
 def run_command_with_admin_privileges(command):
     """
