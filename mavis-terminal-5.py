@@ -763,6 +763,18 @@ def get_project_paths_fedora():
     fedora_exe_file = os.path.join(terminal_dir, "run_fedora_command.exe")
     return fedora_cpp_file, fedora_exe_file, terminal_dir
 
+def get_project_paths_redhat():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C++-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    redhat_cpp_file = os.path.join(terminal_dir, "run_redhat_command.cpp")
+    redhat_exe_file = os.path.join(terminal_dir, "run_redhat_command.exe")
+    return redhat_cpp_file, redhat_exe_file, terminal_dir
+
 def find_vcvarsall():
     """
     Sucht nach der Visual Studio-Initialisierungsdatei (vcvarsall.bat).
@@ -978,6 +990,34 @@ def compile_fedora_cpp_with_vs(fedora_cpp_file, fedora_exe_file):
     vcvarsall = find_vcvarsall()
     # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
     command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{fedora_cpp_file}" /Fe:"{fedora_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+def compile_redhat_cpp_with_vs(redhat_cpp_file, redhat_exe_file):
+    """
+    Kompiliert run_redhat_command.cpp mit cl.exe über die Visual Studio-Umgebung.
+    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
+    """
+    logging.info("Compile run_redhat_command.cpp with Visual Studio C++...")
+    vcvarsall = find_vcvarsall()
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{redhat_cpp_file}" /Fe:"{redhat_exe_file}"'
 
     result = subprocess.run(
         command,
@@ -1252,6 +1292,39 @@ def run_fedora_command(command):
 
     # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C++-Code
     cmd = [fedora_exe_file] + args
+
+    try:
+        logging.info(f"Execute: {' '.join(cmd)}")
+        # Der C++-Wrapper startet ein neues Terminalfenster, in dem der Befehl interaktiv ausgeführt wird.
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Command failed: {e}")
+    except KeyboardInterrupt:
+        logging.warning("Cancellation by user.")
+
+def run_redhat_command(command):
+    """
+    Führt einen Linux-Befehl interaktiv über den C++-Wrapper aus.
+
+    Falls run_redhat_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
+    Der C++-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
+    """
+    redhat_cpp_file, redhat_exe_file, _ = get_project_paths_redhat()
+
+    if not os.path.isfile(redhat_exe_file):
+        if not compile_redhat_cpp_with_vs(redhat_cpp_file, redhat_exe_file):
+            logging.error("Abort: C++ compilation was unsuccessful.")
+            return
+
+    # Erstelle die Befehlsliste. Bei mehreren Argumenten werden diese getrennt übertragen.
+    if isinstance(command, str):
+        # Zerlege die Eingabe (z.B. "nano test.py") in Parameter, falls möglich
+        args = command.split()  # Achtung: Bei komplexen Befehlen mit Leerzeichen evtl. anders behandeln!
+    else:
+        args = command
+
+    # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C++-Code
+    cmd = [redhat_exe_file] + args
 
     try:
         logging.info(f"Execute: {' '.join(cmd)}")
