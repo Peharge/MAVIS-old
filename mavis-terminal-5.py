@@ -115,6 +115,13 @@ from subprocess import run
 import readline
 import ctypes
 import shlex
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[logging.StreamHandler()]
+)
 
 user_name = getpass.getuser()
 
@@ -597,19 +604,6 @@ def is_wsl_installed():
         print(f"Unexpected error occurred while checking if WSL is installed: {e}")
         return False
 
-
-import os
-import subprocess
-import getpass
-import logging
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[logging.StreamHandler()]
-)
-
-
 def get_project_paths_lx():
     """
     Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
@@ -618,9 +612,9 @@ def get_project_paths_lx():
     username = getpass.getuser()
     base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
     terminal_dir = os.path.join(base_dir, "mavis-terminal")
-    cpp_file = os.path.join(terminal_dir, "run_lx_command.cpp")
-    exe_file = os.path.join(terminal_dir, "run_lx_command.exe")
-    return cpp_file, exe_file, terminal_dir
+    lx_cpp_file = os.path.join(terminal_dir, "run_command.cpp")
+    lx_exe_file = os.path.join(terminal_dir, "run_command.exe")
+    return lx_cpp_file, lx_exe_file, terminal_dir
 
 def get_project_paths_ubuntu():
     """
@@ -642,9 +636,9 @@ def get_project_paths_debian():
     username = getpass.getuser()
     base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
     terminal_dir = os.path.join(base_dir, "mavis-terminal")
-    cpp_file = os.path.join(terminal_dir, "run_debian_command.cpp")
-    exe_file = os.path.join(terminal_dir, "run_debian_command.exe")
-    return cpp_file, exe_file, terminal_dir
+    debian_cpp_file = os.path.join(terminal_dir, "run_debian_command.cpp")
+    debian_exe_file = os.path.join(terminal_dir, "run_debian_command.exe")
+    return debian_cpp_file, debian_exe_file, terminal_dir
 
 def get_project_paths_kali():
     """
@@ -654,9 +648,9 @@ def get_project_paths_kali():
     username = getpass.getuser()
     base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
     terminal_dir = os.path.join(base_dir, "mavis-terminal")
-    cpp_file = os.path.join(terminal_dir, "run_kali_command.cpp")
-    exe_file = os.path.join(terminal_dir, "run_kali_command.exe")
-    return cpp_file, exe_file, terminal_dir
+    kali_cpp_file = os.path.join(terminal_dir, "run_kali_command.cpp")
+    kali_exe_file = os.path.join(terminal_dir, "run_kali_command.exe")
+    return kali_cpp_file, kali_exe_file, terminal_dir
 
 def get_project_paths_arch():
     """
@@ -666,9 +660,9 @@ def get_project_paths_arch():
     username = getpass.getuser()
     base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
     terminal_dir = os.path.join(base_dir, "mavis-terminal")
-    cpp_file = os.path.join(terminal_dir, "run_arch_command.cpp")
-    exe_file = os.path.join(terminal_dir, "run_arch_command.exe")
-    return cpp_file, exe_file, terminal_dir
+    arch_cpp_file = os.path.join(terminal_dir, "run_arch_command.cpp")
+    arch_exe_file = os.path.join(terminal_dir, "run_arch_command.exe")
+    return arch_cpp_file, arch_exe_file, terminal_dir
 
 def find_vcvarsall():
     """
@@ -680,15 +674,15 @@ def find_vcvarsall():
     raise FileNotFoundError("vcvarsall.bat not found. Please make sure Visual Studio is installed.")
 
 
-def compile_cpp_with_vs(cpp_file, exe_file):
+def compile_lx_cpp_with_vs(lx_cpp_file, lx_exe_file):
     """
     Kompiliert run_command.cpp mit cl.exe über die Visual Studio-Umgebung.
     Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
     """
-    logging.info("Compile run_command.cpp with Visual Studio C++...")
+    logging.info("Compile run_lx_command.cpp with Visual Studio C++...")
     vcvarsall = find_vcvarsall()
     # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
-    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{cpp_file}" /Fe:"{exe_file}"'
+    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{lx_cpp_file}" /Fe:"{lx_exe_file}"'
 
     result = subprocess.run(
         command,
@@ -708,6 +702,117 @@ def compile_cpp_with_vs(cpp_file, exe_file):
     logging.info("Compilation successful.")
     return True
 
+def compile_ubuntu_cpp_with_vs(ubuntu_cpp_file, ubuntu_exe_file):
+    """
+    Kompiliert run_command.cpp mit cl.exe über die Visual Studio-Umgebung.
+    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
+    """
+    logging.info("Compile run_ubuntu_command.cpp with Visual Studio C++...")
+    vcvarsall = find_vcvarsall()
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{ubuntu_cpp_file}" /Fe:"{ubuntu_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+def compile_debian_cpp_with_vs(debian_cpp_file, debian_exe_file):
+    """
+    Kompiliert run_command.cpp mit cl.exe über die Visual Studio-Umgebung.
+    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
+    """
+    logging.info("Compile run_debian_command.cpp with Visual Studio C++...")
+    vcvarsall = find_vcvarsall()
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{debian_cpp_file}" /Fe:"{debian_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+def compile_kali_cpp_with_vs(kali_cpp_file, kali_exe_file):
+    """
+    Kompiliert run_command.cpp mit cl.exe über die Visual Studio-Umgebung.
+    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
+    """
+    logging.info("Compile run_kali_command.cpp with Visual Studio C++...")
+    vcvarsall = find_vcvarsall()
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{kali_cpp_file}" /Fe:"{kali_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+def compile_arch_cpp_with_vs(arch_cpp_file, arch_exe_file):
+    """
+    Kompiliert run_command.cpp mit cl.exe über die Visual Studio-Umgebung.
+    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
+    """
+    logging.info("Compile run_arch_command.cpp with Visual Studio C++...")
+    vcvarsall = find_vcvarsall()
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{arch_cpp_file}" /Fe:"{arch_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
 
 def run_linux_command(command):
     """
@@ -716,10 +821,10 @@ def run_linux_command(command):
     Falls run_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
     Der C++-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
     """
-    cpp_file, exe_file, _ = get_project_paths_lx()
+    lx_cpp_file, lx_exe_file, _ = get_project_paths_lx()
 
-    if not os.path.isfile(exe_file):
-        if not compile_cpp_with_vs(cpp_file, exe_file):
+    if not os.path.isfile(lx_exe_file):
+        if not compile_lx_cpp_with_vs(lx_cpp_file, lx_exe_file):
             logging.error("Abort: C++ compilation was unsuccessful.")
             return
 
@@ -731,7 +836,7 @@ def run_linux_command(command):
         args = command
 
     # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C++-Code
-    cmd = [exe_file] + args
+    cmd = [lx_exe_file] + args
 
     try:
         logging.info(f"Execute: {' '.join(cmd)}")
@@ -750,10 +855,10 @@ def run_ubuntu_command(command):
     Falls run_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
     Der C++-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
     """
-    cpp_file, exe_file, _ = get_project_paths_ubuntu()
+    ubuntu_cpp_file, ubuntu_exe_file, _ = get_project_paths_ubuntu()
 
-    if not os.path.isfile(exe_file):
-        if not compile_cpp_with_vs(cpp_file, exe_file):
+    if not os.path.isfile(ubuntu_exe_file):
+        if not compile_ubuntu_cpp_with_vs(ubuntu_cpp_file, ubuntu_exe_file):
             logging.error("Abort: C++ compilation was unsuccessful.")
             return
 
@@ -765,7 +870,7 @@ def run_ubuntu_command(command):
         args = command
 
     # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C++-Code
-    cmd = [exe_file] + args
+    cmd = [ubuntu_exe_file] + args
 
     try:
         logging.info(f"Execute: {' '.join(cmd)}")
@@ -783,10 +888,10 @@ def run_debian_command(command):
     Falls run_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
     Der C++-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
     """
-    cpp_file, exe_file, _ = get_project_paths_debian()
+    debian_cpp_file, debian_exe_file, _ = get_project_paths_debian()
 
-    if not os.path.isfile(exe_file):
-        if not compile_cpp_with_vs(cpp_file, exe_file):
+    if not os.path.isfile(debian_exe_file):
+        if not compile_debian_cpp_with_vs(debian_cpp_file, debian_exe_file):
             logging.error("Abort: C++ compilation was unsuccessful.")
             return
 
@@ -798,7 +903,7 @@ def run_debian_command(command):
         args = command
 
     # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C++-Code
-    cmd = [exe_file] + args
+    cmd = [debian_exe_file] + args
 
     try:
         logging.info(f"Execute: {' '.join(cmd)}")
@@ -816,10 +921,10 @@ def run_kali_command(command):
     Falls run_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
     Der C++-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
     """
-    cpp_file, exe_file, _ = get_project_paths_kali()
+    kali_cpp_file, kali_exe_file, _ = get_project_paths_kali()
 
-    if not os.path.isfile(exe_file):
-        if not compile_cpp_with_vs(cpp_file, exe_file):
+    if not os.path.isfile(kali_exe_file):
+        if not compile_kali_cpp_with_vs(kali_cpp_file, kali_exe_file):
             logging.error("Abort: C++ compilation was unsuccessful.")
             return
 
@@ -831,7 +936,7 @@ def run_kali_command(command):
         args = command
 
     # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C++-Code
-    cmd = [exe_file] + args
+    cmd = [kali_exe_file] + args
 
     try:
         logging.info(f"Execute: {' '.join(cmd)}")
@@ -849,10 +954,10 @@ def run_arch_command(command):
     Falls run_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
     Der C++-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
     """
-    cpp_file, exe_file, _ = get_project_paths_arch()
+    arch_cpp_file, arch_exe_file, _ = get_project_paths_arch()
 
-    if not os.path.isfile(exe_file):
-        if not compile_cpp_with_vs(cpp_file, exe_file):
+    if not os.path.isfile(arch_exe_file):
+        if not compile_arch_cpp_with_vs(arch_cpp_file, arch_exe_file):
             logging.error("Abort: C++ compilation was unsuccessful.")
             return
 
@@ -864,7 +969,7 @@ def run_arch_command(command):
         args = command
 
     # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C++-Code
-    cmd = [exe_file] + args
+    cmd = [arch_exe_file] + args
 
     try:
         logging.info(f"Execute: {' '.join(cmd)}")
