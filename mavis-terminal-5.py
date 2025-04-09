@@ -574,16 +574,79 @@ def setup_autocomplete():
         [cmd for cmd in commands if cmd.startswith(text)]) else None)
     readline.parse_and_bind("tab: complete")
 
+def get_project_paths_mp():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C++-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    mp_cpp_file = os.path.join(terminal_dir, "run_mp_command.cpp")
+    mp_exe_file = os.path.join(terminal_dir, "run_mp_command.exe")
+    return mp_cpp_file, mp_exe_file, terminal_dir
+
+def compile_mp_cpp_with_vs(mp_cpp_file, mp_exe_file):
+    """
+    Kompiliert run_command.cpp mit cl.exe über die Visual Studio-Umgebung.
+    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
+    """
+    logging.info("Compile run_lx_command.cpp with Visual Studio C++...")
+    vcvarsall = find_vcvarsall()
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{mp_cpp_file}" /Fe:"{mp_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
 
 def run_command_with_admin_privileges(command):
-    if sys.platform == "win32":
-        if ctypes.windll.shell32.IsUserAnAdmin() == 0:
-            powershell_command = f"Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -Command \"{command}\"' -Verb RunAs"
-            subprocess.run(["powershell", "-Command", powershell_command], shell=True)
-        else:
-            subprocess.run(command, shell=True)
+    """
+    Führt einen Powershell interaktiv über den C++-Wrapper aus.
+
+    Falls run_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
+    Der C++-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
+    """
+    mp_cpp_file, mp_exe_file, _ = get_project_paths_mp()
+
+    if not os.path.isfile(mp_exe_file):
+        if not compile_mp_cpp_with_vs(mp_cpp_file, mp_exe_file):
+            logging.error("Abort: C++ compilation was unsuccessful.")
+            return
+
+    # Erstelle die Befehlsliste. Bei mehreren Argumenten werden diese getrennt übertragen.
+    if isinstance(command, str):
+        # Zerlege die Eingabe (z.B. "nano test.py") in Parameter, falls möglich
+        args = command.split()  # Achtung: Bei komplexen Befehlen mit Leerzeichen evtl. anders behandeln!
     else:
-        subprocess.run(['sudo', '-S', command], input="password", text=True, shell=True)
+        args = command
+
+    # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C++-Code
+    cmd = [mp_exe_file] + args
+
+    try:
+        logging.info(f"Execute: {' '.join(cmd)}")
+        # Der C++-Wrapper startet ein neues Terminalfenster, in dem der Befehl interaktiv ausgeführt wird.
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Command failed: {e}")
+    except KeyboardInterrupt:
+        logging.warning("Cancellation by user.")
 
 def is_wsl_installed():
     """Check if WSL is installed by attempting to run a basic wsl command."""
