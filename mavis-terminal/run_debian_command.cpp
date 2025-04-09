@@ -74,46 +74,42 @@
 
 int main(int argc, char* argv[]) {
     if (argc < 2) {
-        std::cerr << "[ERROR] No command provided." << std::endl;
+        std::cerr << "[ERROR] No command provided.\n";
         return 1;
     }
 
-    // Baue den WSL-Befehl zusammen.
-    // Jeder Parameter wird einzeln angehängt; falls ein Parameter Leerzeichen enthält, wird er nicht explizit in zusätzliche Anführungszeichen eingeschlossen,
-    // da wir hier einen einfachen Befehl erwarten (z. B. nano test.py).
-    std::string wslCommand = "wsl.exe -d debian";
+    // Build WSL command line
+    std::string command = "wsl.exe -d debian";
     for (int i = 1; i < argc; ++i) {
-        wslCommand += " " + std::string(argv[i]);
+        command += " \"" + std::string(argv[i]) + "\"";
     }
 
-    // Erzeuge ein Terminalfenster, in dem das WSL-Programm interaktiv gestartet wird.
-    // "cmd.exe /k" startet das Terminal und hält es offen, nachdem der Befehl ausgeführt wurde.
-    std::string fullCommand = "cmd.exe /k " + wslCommand;
-
-    // Ausgabe des Befehls (optional zu Debug-Zwecken)
-    std::cout << "Executing the following command on Linux: " << fullCommand << std::endl;
-
-    // Prozessstart konfigurieren
-    STARTUPINFOA si = { 0 };
-    PROCESS_INFORMATION pi = { 0 };
+    // Setup process startup info
+    STARTUPINFOA si;
+    PROCESS_INFORMATION pi;
+    ZeroMemory(&si, sizeof(si));
     si.cb = sizeof(si);
+    si.dwFlags = STARTF_USESTDHANDLES;
+    si.hStdInput = GetStdHandle(STD_INPUT_HANDLE);
+    si.hStdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+    si.hStdError = GetStdHandle(STD_ERROR_HANDLE);
+    ZeroMemory(&pi, sizeof(pi));
 
-    // Erstelle einen modifizierbaren Puffer für den Befehl
-    std::vector<char> buffer(fullCommand.begin(), fullCommand.end());
-    buffer.push_back('\0');
+    // Convert to mutable char array
+    std::vector<char> commandBuffer(command.begin(), command.end());
+    commandBuffer.push_back('\0');
 
-    // Starte den Prozess in einem neuen Konsolenfenster, damit wir eine voll interaktive Session bekommen.
     BOOL success = CreateProcessA(
-        NULL,                   // Keine Modulname, nur Commandline
-        buffer.data(),          // Commandline-Puffer
-        NULL,                   // Standardprozesseigenschaften
-        NULL,                   // Standardthread-Eigenschaften
-        FALSE,                  // Handle nicht erben
-        CREATE_NEW_CONSOLE,     // Neues Konsolenfenster
-        NULL,                   // Standardumgebungsblock
-        NULL,                   // Aktuelles Verzeichnis verwenden
-        &si,                    // STARTUPINFO
-        &pi                     // PROCESS_INFORMATION
+        NULL,
+        commandBuffer.data(),
+        NULL,
+        NULL,
+        TRUE,
+        0,
+        NULL,
+        NULL,
+        &si,
+        &pi
     );
 
     if (!success) {
@@ -121,11 +117,12 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    // Warte auf Beendigung des gestarteten Prozesses
+    // Wait for process to complete
     WaitForSingleObject(pi.hProcess, INFINITE);
 
     DWORD exitCode = 0;
     GetExitCodeProcess(pi.hProcess, &exitCode);
+
     CloseHandle(pi.hProcess);
     CloseHandle(pi.hThread);
 

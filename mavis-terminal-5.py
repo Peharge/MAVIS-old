@@ -612,8 +612,8 @@ def get_project_paths_lx():
     username = getpass.getuser()
     base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
     terminal_dir = os.path.join(base_dir, "mavis-terminal")
-    lx_cpp_file = os.path.join(terminal_dir, "run_command.cpp")
-    lx_exe_file = os.path.join(terminal_dir, "run_command.exe")
+    lx_cpp_file = os.path.join(terminal_dir, "run_lx_command.cpp")
+    lx_exe_file = os.path.join(terminal_dir, "run_lx_command.exe")
     return lx_cpp_file, lx_exe_file, terminal_dir
 
 def get_project_paths_ubuntu():
