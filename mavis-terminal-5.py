@@ -153,12 +153,12 @@ def print_banner():
 {blue}          █╔╝         {reset}
 {blue}          ╚╝          {reset}
 
-{white} ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗         ██╗  ██╗{reset}
-{white} ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║         ██║  ██║{reset}
-{white}    ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║         ███████║{reset}
+{white} ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗         ███████╗{reset}
+{white} ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║         ██╔════╝{reset}
+{white}    ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║         ███████╗{reset}
 {white}    ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══██║██║         ╚════██║{reset}
-{white}    ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗         ██║{reset}
-{white}    ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝         ╚═╝{reset}
+{white}    ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗    ███████║{reset}
+{white}    ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝    ╚══════╝{reset}
 """)
     print(f"""A warm welcome, {blue}{user_name}{reset}, to MAVIS (MAth Visual Intelligent System) Terminal 4
 Developed by Peharge and JK (Peharge Projects 2025)
@@ -167,7 +167,7 @@ Thank you so much for using MAVIS. We truly appreciate your support ❤️""")
     print(f"""
 {blue}MAVIS Version{reset}: 4
 {blue}MAVIS Launcher Version{reset}: 4
-{blue}MAVIS Terminal Version{reset}: 4
+{blue}MAVIS Terminal Version{reset}: 5
 {blue}MAVIS License{reset}: MIT
     """)
 
@@ -881,7 +881,7 @@ def run_linux_command(command):
     """
     Führt einen Linux-Befehl interaktiv über den C++-Wrapper aus.
 
-    Falls run_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
+    Falls run_lx_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
     Der C++-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
     """
     lx_cpp_file, lx_exe_file, _ = get_project_paths_lx()
@@ -915,7 +915,7 @@ def run_ubuntu_command(command):
     """
     Führt einen Linux-Befehl interaktiv über den C++-Wrapper aus.
 
-    Falls run_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
+    Falls run_ubuntu_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
     Der C++-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
     """
     ubuntu_cpp_file, ubuntu_exe_file, _ = get_project_paths_ubuntu()
@@ -948,7 +948,7 @@ def run_debian_command(command):
     """
     Führt einen Linux-Befehl interaktiv über den C++-Wrapper aus.
 
-    Falls run_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
+    Falls run_debian_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
     Der C++-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
     """
     debian_cpp_file, debian_exe_file, _ = get_project_paths_debian()
@@ -981,7 +981,7 @@ def run_kali_command(command):
     """
     Führt einen Linux-Befehl interaktiv über den C++-Wrapper aus.
 
-    Falls run_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
+    Falls run_kali_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
     Der C++-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
     """
     kali_cpp_file, kali_exe_file, _ = get_project_paths_kali()
@@ -1014,7 +1014,7 @@ def run_arch_command(command):
     """
     Führt einen Linux-Befehl interaktiv über den C++-Wrapper aus.
 
-    Falls run_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
+    Falls run_arch_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
     Der C++-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
     """
     arch_cpp_file, arch_exe_file, _ = get_project_paths_arch()
@@ -1085,7 +1085,17 @@ def main():
     while True:
         try:
             current_dir = os.getcwd()
-            prompt = f"\n{green}┌──({reset}{blue}{getpass.getuser()}㉿MAVIS{reset}{green})-[{reset}{current_dir}{green}]{reset}\n{green}└─{reset}{blue}#{reset}"
+            # Prüfen, ob eine .env-Datei existiert und geladen ist
+            env_active = os.getenv('VIRTUAL_ENV') or os.path.exists('.env')
+
+            # .env-Indikator
+            env_indicator = f"{green}[{reset}.env{green}]{reset}" if env_active else f"{green}[{reset}{red}.env{reset}{green}]{reset}"
+
+            # Prompt-Design
+            prompt = (
+                f"\n{green}┌──({reset}{blue}{getpass.getuser()}㉿MAVIS{reset}{green})-[{reset}{current_dir}{green}]-{reset}{env_indicator}"
+                f"\n{green}└─{reset}{blue}#{reset}"
+            )
 
             print(prompt, end='')
             user_input = input().strip()
