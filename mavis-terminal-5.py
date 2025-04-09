@@ -739,6 +739,30 @@ def get_project_paths_opensuse():
     opensuse_exe_file = os.path.join(terminal_dir, "run_opensuse_command.exe")
     return opensuse_cpp_file, opensuse_exe_file, terminal_dir
 
+def get_project_paths_mint():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C++-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    mint_cpp_file = os.path.join(terminal_dir, "run_mint_command.cpp")
+    mint_exe_file = os.path.join(terminal_dir, "run_mint_command.exe")
+    return mint_cpp_file, mint_exe_file, terminal_dir
+
+def get_project_paths_fedora():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C++-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    fedora_cpp_file = os.path.join(terminal_dir, "run_fedora_command.cpp")
+    fedora_exe_file = os.path.join(terminal_dir, "run_fedora_command.exe")
+    return fedora_cpp_file, fedora_exe_file, terminal_dir
+
 def find_vcvarsall():
     """
     Sucht nach der Visual Studio-Initialisierungsdatei (vcvarsall.bat).
@@ -898,6 +922,62 @@ def compile_opensuse_cpp_with_vs(opensuse_cpp_file, opensuse_exe_file):
     vcvarsall = find_vcvarsall()
     # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
     command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{opensuse_cpp_file}" /Fe:"{opensuse_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+def compile_mint_cpp_with_vs(mint_cpp_file, mint_exe_file):
+    """
+    Kompiliert run_mint_command.cpp mit cl.exe über die Visual Studio-Umgebung.
+    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
+    """
+    logging.info("Compile run_mint_command.cpp with Visual Studio C++...")
+    vcvarsall = find_vcvarsall()
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{mint_cpp_file}" /Fe:"{mint_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+def compile_fedora_cpp_with_vs(fedora_cpp_file, fedora_exe_file):
+    """
+    Kompiliert run_fedora_command.cpp mit cl.exe über die Visual Studio-Umgebung.
+    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
+    """
+    logging.info("Compile run_fedora_command.cpp with Visual Studio C++...")
+    vcvarsall = find_vcvarsall()
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{fedora_cpp_file}" /Fe:"{fedora_exe_file}"'
 
     result = subprocess.run(
         command,
@@ -1116,6 +1196,72 @@ def run_opensuse_command(command):
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
 
+def run_mint_command(command):
+    """
+    Führt einen Linux-Befehl interaktiv über den C++-Wrapper aus.
+
+    Falls run_arch_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
+    Der C++-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
+    """
+    mint_cpp_file, mint_exe_file, _ = get_project_paths_mint()
+
+    if not os.path.isfile(mint_exe_file):
+        if not compile_mint_cpp_with_vs(mint_cpp_file, mint_exe_file):
+            logging.error("Abort: C++ compilation was unsuccessful.")
+            return
+
+    # Erstelle die Befehlsliste. Bei mehreren Argumenten werden diese getrennt übertragen.
+    if isinstance(command, str):
+        # Zerlege die Eingabe (z.B. "nano test.py") in Parameter, falls möglich
+        args = command.split()  # Achtung: Bei komplexen Befehlen mit Leerzeichen evtl. anders behandeln!
+    else:
+        args = command
+
+    # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C++-Code
+    cmd = [mint_exe_file] + args
+
+    try:
+        logging.info(f"Execute: {' '.join(cmd)}")
+        # Der C++-Wrapper startet ein neues Terminalfenster, in dem der Befehl interaktiv ausgeführt wird.
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Command failed: {e}")
+    except KeyboardInterrupt:
+        logging.warning("Cancellation by user.")
+
+def run_fedora_command(command):
+    """
+    Führt einen Linux-Befehl interaktiv über den C++-Wrapper aus.
+
+    Falls run_arch_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
+    Der C++-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
+    """
+    fedora_cpp_file, fedora_exe_file, _ = get_project_paths_fedora()
+
+    if not os.path.isfile(fedora_exe_file):
+        if not compile_fedora_cpp_with_vs(fedora_cpp_file, fedora_exe_file):
+            logging.error("Abort: C++ compilation was unsuccessful.")
+            return
+
+    # Erstelle die Befehlsliste. Bei mehreren Argumenten werden diese getrennt übertragen.
+    if isinstance(command, str):
+        # Zerlege die Eingabe (z.B. "nano test.py") in Parameter, falls möglich
+        args = command.split()  # Achtung: Bei komplexen Befehlen mit Leerzeichen evtl. anders behandeln!
+    else:
+        args = command
+
+    # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C++-Code
+    cmd = [fedora_exe_file] + args
+
+    try:
+        logging.info(f"Execute: {' '.join(cmd)}")
+        # Der C++-Wrapper startet ein neues Terminalfenster, in dem der Befehl interaktiv ausgeführt wird.
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Command failed: {e}")
+    except KeyboardInterrupt:
+        logging.warning("Cancellation by user.")
+
 def run_scoop_command(command):
     if isinstance(command, str):
         command = f"scoop {command}"
@@ -1245,54 +1391,29 @@ def main():
                     print(f"Executing the following command on openSUSE: {user_input}")
                     run_opensuse_command(user_input)
 
-
             elif user_input.startswith("mint "):
                 user_input = user_input[5:].strip()  # Remove the "mint " prefix
                 if not is_wsl_installed():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
-                    try:
-                        print(f"Executing the following command on Linux Mint: {user_input}")
-                        result = run_command(f"wsl -d LinuxMint {user_input}", shell=True)
-                        if result is None:
-                            print("The command could not be executed successfully.")
-                        else:
-                            print("Command output:")
-                            print(result)
-                    except Exception as e:
-                        print(f"An error occurred while executing the command: {e}")
+                    print(f"Executing the following command on openSUSE: {user_input}")
+                    run_mint_command(user_input)
 
             elif user_input.startswith("fedora "):
                 user_input = user_input[7:].strip()  # Remove the "fedora " prefix
                 if not is_wsl_installed():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
-                    try:
-                        print(f"Executing the following command on Fedora: {user_input}")
-                        result = run_command(f"wsl -d Fedora-Remix {user_input}", shell=True)
-                        if result is None:
-                            print("The command could not be executed successfully.")
-                        else:
-                            print("Command output:")
-                            print(result)
-                    except Exception as e:
-                        print(f"An error occurred while executing the command: {e}")
+                    print(f"Executing the following command on openSUSE: {user_input}")
+                    run_fedora_command(user_input)
 
             elif user_input.startswith("redhat "):
                 user_input = user_input[7:].strip()  # Remove the "redhat " prefix
                 if not is_wsl_installed():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
-                    try:
-                        print(f"Executing the following command on Red Hat: {user_input}")
-                        result = run_command(f"wsl -d RedHat {user_input}", shell=True)
-                        if result is None:
-                            print("The command could not be executed successfully.")
-                        else:
-                            print("Command output:")
-                            print(result)
-                    except Exception as e:
-                        print(f"An error occurred while executing the command: {e}")
+                    print(f"Executing the following command on openSUSE: {user_input}")
+                    run_redhat_command(user_input)
 
             elif user_input.startswith("sc "):
                 user_input = user_input[6:].strip()
