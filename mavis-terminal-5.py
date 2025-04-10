@@ -257,14 +257,14 @@ def handle_special_commands(user_input):
     python_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
 
     commands = {
-        "env install": "mavis-terminal\\install-mavis-3.py",
-        "install env": "mavis-terminal\\install-mavis-3.py",
-        "mavis env install": "mavis-terminal\\install-mavis-3.py",
-        "install mavis env": "mavis-terminal\\install-mavis-3.py",
-        "env update": "mavis-terminal\\install-mavis-3.py",
-        "update env": "mavis-terminal\\install-mavis-3.py",
-        "mavis env update": "mavis-terminal\\install-mavis-3.py",
-        "update mavis env": "mavis-terminal\\install-mavis-3.py",
+        "env install": "mavis-terminal\\install-info-mavis-4.py",
+        "install env": "mavis-terminal\\install-info-mavis-4.py",
+        "mavis env install": "mavis-terminal\\install-info-mavis-4.py",
+        "install mavis env": "mavis-terminal\\install-info-mavis-4.py",
+        "env update": "mavis-terminal\\install-info-mavis-4.py",
+        "update env": "mavis-terminal\\install-info-mavis-4.py",
+        "mavis env update": "mavis-terminal\\install-info-mavis-4.py",
+        "update mavis env": "mavis-terminal\\install-info-mavis-4.py",
         "update": "mavis-terminal\\update-repository-windows.py",
         "mavis update": "mavis-terminal\\update-repository-windows.py",
         "update mavis": "mavis-terminal\\update-repository-windows.py",
@@ -337,6 +337,7 @@ def handle_special_commands(user_input):
         "run ollama mavis-3-3-main-mini-mini": "install\\install-ollama-mavis-3-3-main-mini-mini.py",  # new
         "run ollama mavis-3-3-math": "install\\install-ollama-mavis-3-3-math.py",  # new
         "run ollama mavis-3-3-math-mini": "install\\install-ollama-mavis-3-3-math-mini.py",  # new
+        "run ollama mavis-4": "install\\install-ollama-mavis-4.py",  # new
         "install ollama mavis-1-5-main": "install\\install-ollama-mavis-1-5-main.py",
         "install ollama mavis-1-5-math": "install\\install-ollama-mavis-1-5-math.py",
         "install ollama mavis-1-5-math-pro": "install\\install-ollama-mavis-1-5-math-pro.py",

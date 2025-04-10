@@ -195,7 +195,7 @@ def execute_installation():
         print(tabulate(table_data, headers=headers, tablefmt="grid"))
 
         # Installationsskript ausführen
-        subprocess.run([sys.executable, "install/install-mavis-4.py"], check=True)
+        subprocess.run([sys.executable, "mavis-terminal/install-mavis-4.py"], check=True)
         print("\033[34m\033[1mMAVIS installation completed successfully.\033[0m")
     except subprocess.CalledProcessError:
         print("\033[31m\033[1mAn error occurred while running the installation script.\033[0m")
