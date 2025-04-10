@@ -79,7 +79,7 @@ int main(int argc, char* argv[]) {
     }
 
     // Build WSL command line
-    std::string command = "wsl.exe -d debian";
+    std::string command = "wsl.exe -d Arch";
     for (int i = 1; i < argc; ++i) {
         command += " \"" + std::string(argv[i]) + "\"";
     }
