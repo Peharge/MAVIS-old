@@ -78,8 +78,8 @@ if not exist "%PYTHON_PATH%" (
 if not exist "%VCVARS_PATH%" (
     echo ❌ MAVIS Compiler: vcvarsall.bat not found. Please ensure Visual Studio is correctly installed.
 
-    if not exist "%SCRIPT_PATH_1%" (
-        echo Error: Script not found: %SCRIPT_PATH_1%
+    if not exist "%SCRIPT_install_vs%" (
+        echo Error: Script not found: %SCRIPT_install_vs%
         exit /B 1
     )
 
@@ -89,8 +89,8 @@ if not exist "%VCVARS_PATH%" (
 if not exist "%MAVIS_PATH%" (
     echo ❌ MAVIS Compiler: The MAVIS folder "%MAVIS_PATH%" does not exist. Please ensure it is set up correctly.
 
-    if not exist "%SCRIPT_PATH_1%" (
-        echo Error: Script not found: %SCRIPT_PATH_1%
+    if not exist "%SCRIPT_install_vs%" (
+        echo Error: Script not found: %SCRIPT_install_vs%
         exit /B 1
     )
 

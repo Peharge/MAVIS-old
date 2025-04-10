@@ -484,6 +484,18 @@ if %errorlevel% neq 0 (
     echo ✅ PowerShell 7 is already installed.
 )
 
+set USERNAME=%USERNAME%
+set PYTHON_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe
+set SCRIPT_install_wsl=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-wsl.py
+set SCRIPT_install_wsl_ubuntu=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-ubuntu-wsl.py
+set SCRIPT_install_wsl_debian=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-debian-wsl.py
+set SCRIPT_install_wsl_kali=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-kali-wsl.py
+set SCRIPT_install_wsl_arch=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-arch-wsl.py
+set SCRIPT_install_wsl_opensuse=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-opensuse-wsl.py
+set SCRIPT_install_wsl_mint=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-arch-mint.py
+set SCRIPT_install_wsl_fedora=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-arch-fedora.py
+set SCRIPT_install_wsl_redhat=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-arch-redhat.py
+
 :: Funktion zur Überprüfung, ob WSL installiert ist
 :CheckWSLInstalled
 wsl --list >nul 2>&1
@@ -498,7 +510,14 @@ if %errorlevel% neq 0 (
             echo ❌ Error: WSL feature could not be enabled.
             echo Please enable WSL manually and restart the script.
             pause
-            exit /b 1
+
+            if not exist "%SCRIPT_install_wsl%" (
+                echo Error: Script not found: %SCRIPT_install_wsl%
+                exit /B 1
+            )
+
+            "%PYTHON_PATH%" "%SCRIPT_install_wsl%"
+
         )
         echo ✅ WSL feature was successfully activated.
         echo Please restart your computer and run the script again.
@@ -554,32 +573,96 @@ REM -- Setze Distributionen anhand der Auswahl --
 if "%choice%"=="1" (
     set "DISTRO_NAME=Ubuntu"
     set "DISTRO_PACKAGE=Ubuntu"
+
+    if not exist "%SCRIPT_install_wsl_ubuntu%" (
+       echo Error: Script not found: %SCRIPT_install_wsl_ubuntu%
+       exit /B 1
+    )
+
+    "%PYTHON_PATH%" "%SCRIPT_install_wsl_ubuntu%"
+
 ) else if "%choice%"=="2" (
     set "DISTRO_NAME=Debian"
     set "DISTRO_PACKAGE=Debian"
+
+    if not exist "%SCRIPT_install_wsl_debian%" (
+       echo Error: Script not found: %SCRIPT_install_wsl_debian%
+       exit /B 1
+    )
+
+    "%PYTHON_PATH%" "%SCRIPT_install_wsl_debian%"
+
 ) else if "%choice%"=="3" (
     set "DISTRO_NAME=Kali Linux"
     set "DISTRO_PACKAGE=kali-linux"
+
+    if not exist "%SCRIPT_install_wsl_kali%" (
+       echo Error: Script not found: %SCRIPT_install_wsl_kali%
+       exit /B 1
+    )
+
+    "%PYTHON_PATH%" "%SCRIPT_install_wsl_kali%"
+
 ) else if "%choice%"=="4" (
     set "DISTRO_NAME=Arch Linux"
     REM Hinweis: Für Arch Linux gibt es offizielle inoffizielle Projekte wie "ArchWSL".
     set "DISTRO_PACKAGE=ArchLinux"
+
+    if not exist "%SCRIPT_install_wsl_ubuntu%" (
+       echo Error: Script not found: %SCRIPT_install_wsl_ubuntu%
+       exit /B 1
+    )
+
+    "%PYTHON_PATH%" "%SCRIPT_install_wsl_ubuntu%"
+
 ) else if "%choice%"=="5" (
     set "DISTRO_NAME=openSUSE"
     set "DISTRO_PACKAGE=openSUSE-Leap-15-3"
+
+    if not exist "%SCRIPT_install_wsl_opensuse%" (
+       echo Error: Script not found: %SCRIPT_install_wsl_opensuse%
+       exit /B 1
+    )
+
+    "%PYTHON_PATH%" "%SCRIPT_install_wsl_opensuse%"
+
 ) else if "%choice%"=="6" (
     set "DISTRO_NAME=Linux Mint"
     REM Hinweis: Linux Mint ist aktuell nicht offiziell im Microsoft Store,
     REM eventuell muss hier eine alternative Installationsmethode genutzt werden.
     set "DISTRO_PACKAGE=LinuxMint"
+
+    if not exist "%SCRIPT_install_wsl_mint%" (
+       echo Error: Script not found: %SCRIPT_install_wsl_mint%
+       exit /B 1
+    )
+
+    "%PYTHON_PATH%" "%SCRIPT_install_wsl_mint%"
+
 ) else if "%choice%"=="7" (
     set "DISTRO_NAME=Fedora"
     REM Fedora wird über "Fedora Remix for WSL" angeboten
     set "DISTRO_PACKAGE=FedoraRemix"
+
+    if not exist "%SCRIPT_install_wsl_fedora%" (
+       echo Error: Script not found: %SCRIPT_install_wsl_fedora%
+       exit /B 1
+    )
+
+    "%PYTHON_PATH%" "%SCRIPT_install_wsl_fedora%"
+
 ) else if "%choice%"=="8" (
     set "DISTRO_NAME=Red Hat Enterprise Linux"
     REM Beachte: RHEL für WSL erfordert unter Umständen zusätzliche Lizenzen
     set "DISTRO_PACKAGE=RHEL"
+
+    if not exist "%SCRIPT_install_wsl_redhat%" (
+       echo Error: Script not found: %SCRIPT_install_wsl_redhat%
+       exit /B 1
+    )
+
+    "%PYTHON_PATH%" "%SCRIPT_install_wsl_redhat%"
+
 ) else (
     echo ❌ Invalid selection. The program will terminate.
     pause
