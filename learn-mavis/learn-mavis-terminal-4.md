@@ -64,11 +64,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+Initializing MAVIS Terminal 5
 Gooo...
 
 ✅ Python is already installed.
 ✅ Git is already installed.
 ✅ Ollama is already installed.
+✅ FFmpeg is already installed.
 ✅ Rustup is already installed.
 ✅ PowerShell 7 is already installed.
 ✅ WSL is already set up with the distribution "U".
@@ -80,12 +82,15 @@ Updates available, pulling changes...
 ✅ .env file already exists.
 ✅ Starting MAVIS...
 ✅ All tasks were completed successfully
-
+✅ MAVIS Compiler available and the folder "C:\Users\julia\PycharmProjects\MAVIS\mavis-cpp-compier" exists.
 Virtual environment C:\Users\julia\PycharmProjects\MAVIS\.env activated.
+Installing missing packages: python-dotenv, PyQt6-sip, PyQt6-Charts, PyQt6-WebEngine...
+All missing packages installed.
+C:\Users\julia\PycharmProjects\MAVIS\mavis-terminal-5.py:111: DeprecationWarning: 'cgitb' is deprecated and slated for removal in Python 3.13
+  from cgitb import strong
 
       ██╗     █╗
      ████╗   ███╗        ███╗   ███╗ █████╗ ██╗   ██╗██╗███████╗
-    ██████╗  ████╗       ████╗ ████║██╔══██╗██║   ██║██║██╔════╝
    ████████╗  ████╗      ██╔████╔██║███████║██║   ██║██║███████╗
   ████╔█████╗  ████╗     ██║╚██╔╝██║██╔══██║╚██╗ ██╔╝██║╚════██║
  ████╔╝ █████╗  ████╗    ██║ ╚═╝ ██║██║  ██║ ╚████╔╝ ██║███████║
@@ -93,28 +98,126 @@ Virtual environment C:\Users\julia\PycharmProjects\MAVIS\.env activated.
           █╔╝
           ╚╝
 
- ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗         ██╗  ██╗
- ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║         ██║  ██║
-    ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║         ███████║
+ ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗         ███████╗
+ ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║         ██╔════╝
+    ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║         ███████╗
     ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══██║██║         ╚════██║
-    ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗         ██║
-    ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝         ╚═╝
+    ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗    ███████║
+    ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝    ╚══════╝
 
-A warm welcome, julia, to MAVIS (MAth Visual Intelligent System) - the most powerful calculator in the world!
+A warm welcome, julia, to MAVIS (MAth Visual Intelligent System) Terminal 4
 Developed by Peharge and JK (Peharge Projects 2025)
 Thank you so much for using MAVIS. We truly appreciate your support ❤️
 
 MAVIS Version: 4
 MAVIS Launcher Version: 4
-MAVIS Terminal Version: 4
+MAVIS Terminal Version: 5
 MAVIS License: MIT
 
-████████
-████████
 
-┌──(root✨MAVIS)-[C:\Users\julia\PycharmProjects\MAVIS]
+
+
+
+┌──(julia㉿MAVIS)-[C:\Users\julia\PycharmProjects\MAVIS]-[.env]
 └─#
 ```
+
+## Problems with Installing the MAVIS Terminal
+
+The MAVIS Terminal should generally install automatically. However, issues may arise during installation, which might make it necessary to manually install specific dependencies.
+
+Typically, all required dependencies are included in the automatic installation. However, if a dependency is not installed correctly, you only need to install that specific dependency afterward.
+
+### 1. **Git**
+   Git is required to clone the code and track changes. 
+   Download Git from the official website:
+   [Download Git](https://git-scm.com/downloads)
+
+### 2. **Python**
+   It is recommended to use **Python 3.12** (Python 3.11 is also supported, but not Python 3.13).
+   Download Python from the official website:
+   [Download Python](https://www.python.org/downloads/) or directly from the Microsoft Store.
+
+### 3. **Ollama**
+   Ollama is a required tool for MAVIS. Install Ollama from the official website:
+   [Download Ollama](https://ollama.com/download)
+
+### 4. **FFmpeg**
+   FFmpeg is another important dependency for the MAVIS Terminal. Make sure it is installed on your system. More information can be found on the official website: [FFmpeg](https://ffmpeg.org/)
+
+### 5. **Rustup**
+   Rustup is required to install Rust and related tools. You can download it from the official Rust website:
+   [Download Rustup](https://rustup.rs/)
+
+### 6. **PowerShell 7**
+   PowerShell 7 is a modern version of PowerShell and is recommended for using the MAVIS Terminal. Download PowerShell 7 from the official Microsoft site:
+   [Download PowerShell 7](https://github.com/PowerShell/PowerShell/releases)
+
+### 7. **Windows Subsystem for Linux (WSL)**  
+   To use the MAVIS Terminal optimally, you need the Windows Subsystem for Linux (WSL). Supported distributions are:
+
+   - **Ubuntu**  
+     Install Ubuntu from the Microsoft Store:  
+     [Ubuntu in Microsoft Store](https://aka.ms/wslubuntu)  
+     Or use the WSL installation command:
+     ```bash
+     wsl --install -d Ubuntu
+     ```
+
+   - **Debian**  
+     Install Debian from the Microsoft Store:  
+     [Debian in Microsoft Store](https://aka.ms/wsldebian)  
+     Or use the WSL installation command:
+     ```bash
+     wsl --install -d Debian
+     ```
+
+   - **Kali Linux**  
+     Install Kali Linux from the Microsoft Store:  
+     [Kali Linux in Microsoft Store](https://aka.ms/wslkali)  
+     Or use the WSL installation command:
+     ```bash
+     wsl --install -d Kali-Linux
+     ```
+
+   - **Arch Linux**  
+     Arch Linux is not directly available in the Microsoft Store, but you can install it using [WSL installation scripts](https://github.com/yuk7/wsldl):  
+     [Arch Linux WSL Script](https://github.com/yuk7/wsldl)  
+     Alternatively, you can manually install Arch through the AUR (Arch User Repository).
+
+   - **openSUSE**  
+     Install openSUSE from the Microsoft Store:  
+     [openSUSE in Microsoft Store](https://aka.ms/wslsuse)  
+     Or use the WSL installation command:
+     ```bash
+     wsl --install -d openSUSE
+     ```
+
+   - **Linux Mint**  
+     Linux Mint is also not directly available in the Microsoft Store, but you can install it via [WSL2](https://www.linuxmint.com/) and follow the installation instructions.
+
+   - **Fedora**  
+     Fedora is directly available in the Microsoft Store:  
+     [Fedora in Microsoft Store](https://aka.ms/wslfedora)  
+     Or use the WSL installation command:
+     ```bash
+     wsl --install -d Fedora
+     ```
+
+   - **Red Hat**  
+     Red Hat Enterprise Linux (RHEL) is available from the Red Hat website. More information on installation can be found here:  
+     [Install RHEL on WSL](https://developers.redhat.com/blog/2020/06/25/introducing-red-hat-enterprise-linux-on-wsl)
+
+   More information on installing WSL can be found here:
+   [Install WSL](https://docs.microsoft.com/en-us/windows/wsl/install)
+
+### 8. **MAVIS Repository**
+   Clone the MAVIS repository from GitHub:
+   [MAVIS GitHub Repository](https://github.com/Peharge/MAVIS)
+
+### 9. **C++ Extensions for Desktop Development**
+   For the development and execution of MAVIS, you will also need the C++ extensions for Visual Studio. You can download them here:
+   [Download C++ Extensions](https://visualstudio.microsoft.com/de/downloads/)
 
 ## **Command Reference**  
 
