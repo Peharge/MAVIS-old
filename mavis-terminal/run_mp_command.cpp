@@ -73,6 +73,9 @@
 #include <string>
 #include <vector>
 
+// Füge diese Zeile ein, um die Shell32-Bibliothek zu verlinken
+#pragma comment(lib, "shell32.lib")
+
 int main(int argc, char* argv[]) {
     if (argc < 2) {
         std::cerr << "[ERROR] No command specified.\n";
@@ -80,44 +83,30 @@ int main(int argc, char* argv[]) {
     }
 
     // Baue den Powershell-Befehl zusammen.
-    // Hier werden alle Parameter, die an das Programm übergeben wurden, als Befehlsargument an Powershell übergeben.
     std::string psCommand;
     for (int i = 1; i < argc; ++i) {
-        // Falls Argumente Leerzeichen enthalten, in doppelte Anführungszeichen einschließen.
         psCommand += "\"" + std::string(argv[i]) + "\" ";
     }
 
-    // Erzeuge den vollständigen Parameter-String für Powershell:
-    // "-NoProfile": Startet Powershell ohne das Laden des Benutzerprofils
-    // "-ExecutionPolicy Bypass": Umgeht eventuelle Skript-Execution-Policies
-    // "-Command": Gibt an, dass ein Befehl ausgeführt werden soll
     std::string parameters = "-NoProfile -ExecutionPolicy Bypass -Command " + psCommand;
 
-    // Erstelle die SHELLEXECUTEINFO-Struktur zum Starten eines Prozesses mit erhöhten Rechten.
     SHELLEXECUTEINFOA sei = {0};
     sei.cbSize = sizeof(SHELLEXECUTEINFOA);
     sei.fMask = SEE_MASK_NOCLOSEPROCESS;
     sei.hwnd = NULL;
-    // Das Verb "runas" löst eine UAC-Abfrage aus, um den Prozess mit administrativen Rechten zu starten.
     sei.lpVerb = "runas";
-    // Die auszuführende Datei (hier Powershell)
     sei.lpFile = "powershell.exe";
-    // Die zusammengebauten Parameter, die an Powershell übergeben werden.
     sei.lpParameters = parameters.c_str();
     sei.nShow = SW_SHOWDEFAULT;
 
-    // Starte den Prozess.
     if (!ShellExecuteExA(&sei)) {
         std::cerr << "[ERROR] Process start failed. Error code: " << GetLastError() << std::endl;
         return 1;
     }
 
-    // Warte, bis der Powershell-Prozess beendet wurde.
     WaitForSingleObject(sei.hProcess, INFINITE);
-
     DWORD exitCode = 0;
     GetExitCodeProcess(sei.hProcess, &exitCode);
-
     CloseHandle(sei.hProcess);
 
     return static_cast<int>(exitCode);
