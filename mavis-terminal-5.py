@@ -251,10 +251,10 @@ def handle_special_commands(user_input):
     user_input = user_input.strip()
 
     # Lade die .env-Datei
-    load_dotenv(dotenv_path="C:\\Users\\julia\\PycharmProjects\\MAVIS\\.env")
+    load_dotenv(dotenv_path=f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env")
 
     # Der Pfad zum Python-Interpreter in der .env
-    python_path = "C:\\Users\\julia\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
+    python_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
 
     commands = {
         "env install": "mavis-terminal\\install-mavis-3.py",
