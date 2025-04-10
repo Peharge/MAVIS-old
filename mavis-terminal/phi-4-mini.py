@@ -253,7 +253,7 @@ def main():
                     install_model_with_ollama(model)
 
         while True:
-            user_input = input("\nEnter a prompt (or 'exit' to exit):\n")
+            user_input = input("\nEnter a prompt (or 'exit' to exit):")
 
             if user_input.lower() == "exit":
                 print("Exit the program...")

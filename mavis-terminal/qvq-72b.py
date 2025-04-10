@@ -228,7 +228,7 @@ def main():
         processor = AutoProcessor.from_pretrained("Qwen/QVQ-72B-Preview")
 
         while True:
-            user_input = input("\nEnter a prompt (or 'exit' to exit):\n")
+            user_input = input("\nEnter a prompt (or 'exit' to exit):")
 
             if user_input.lower() == "exit":
                 print("Exit the program...")

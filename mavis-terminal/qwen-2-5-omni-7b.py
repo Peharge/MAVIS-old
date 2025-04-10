@@ -211,7 +211,7 @@ def main():
         processor = Qwen2_5OmniProcessor.from_pretrained("Qwen/Qwen2.5-Omni-7B")
 
         while True:
-            user_input = input("\nEnter a prompt (or 'exit' to exit):\n")
+            user_input = input("\nEnter a prompt (or 'exit' to exit):")
 
             if user_input.lower() == "exit":
                 print("Exit the program...")

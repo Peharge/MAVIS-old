@@ -109,7 +109,7 @@ bold = "\033[1m"
 def confirm_action(message: str) -> bool:
     """Fordert den Benutzer zur Bestätigung auf."""
     while True:
-        response = input(f"{message} [y/n]:\n").strip().lower()
+        response = input(f"{message} [y/n]:").strip().lower()
         if response in ["y", "yes"]:
             return True
         elif response in ["n", "no"]:

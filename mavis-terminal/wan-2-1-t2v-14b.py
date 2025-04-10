@@ -178,7 +178,7 @@ def main():
         video_pipeline = pipeline("text-to-video", model="Wan-AI/Wan2.1-T2V-14B")
 
         while True:
-            user_input = input("\nGib einen Prompt ein (oder 'exit' zum Beenden):\n")
+            user_input = input("\nGib einen Prompt ein (oder 'exit' zum Beenden):")
             if user_input.lower() == "exit":
                 print("Beende das Programm...")
                 break

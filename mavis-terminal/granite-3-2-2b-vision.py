@@ -270,8 +270,8 @@ def main():
                     install_model_with_ollama(model)
 
         while True:
-            user_input = input("\nEnter a prompt (or 'exit' to exit):\n")
-            image_path = input("Enter image path (optional):\n")
+            user_input = input("\nEnter a prompt (or 'exit' to exit):")
+            image_path = input("Enter image path (optional):")
 
             if user_input.lower() == "exit":
                 print("Exit the program...")
