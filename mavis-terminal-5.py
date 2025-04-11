@@ -160,7 +160,7 @@ def print_banner():
 {white}    ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗    ███████║{reset}
 {white}    ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝    ╚══════╝{reset}
 """)
-    print(f"""A warm welcome, {blue}{user_name}{reset}, to MAVIS (MAth Visual Intelligent System) Terminal 4
+    print(f"""A warm welcome, {blue}{user_name}{reset}, to MAVIS (MAth Visual Intelligent System) Terminal 5
 Developed by Peharge and JK (Peharge Projects 2025)
 Thank you so much for using MAVIS. We truly appreciate your support ❤️""")
 
