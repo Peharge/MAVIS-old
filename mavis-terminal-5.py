@@ -948,6 +948,19 @@ def run_linux_rust_command(command):
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
 
+# --- lx-p command---
+
+def run_linux_python_command(command):
+    if isinstance(command, str):
+        command = f"wsl -e {command}"
+
+    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+
+    try:
+        process.wait()
+    except KeyboardInterrupt:
+        process.terminate()
+
 # --- ubuntu command---
 
 def get_project_paths_ubuntu():
@@ -1098,6 +1111,19 @@ def run_ubuntu_c_command(command):
         logging.error(f"Command failed: {e}")
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
+
+# --- ubuntu-p command---
+
+def run_ubuntu_python_command(command):
+    if isinstance(command, str):
+        command = f"wsl -d ubuntu {command}"
+
+    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+
+    try:
+        process.wait()
+    except KeyboardInterrupt:
+        process.terminate()
 
 # --- debian command---
 
@@ -1250,6 +1276,19 @@ def run_debian_c_command(command):
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
 
+# --- debian-p command---
+
+def run_debian_python_command(command):
+    if isinstance(command, str):
+        command = f"wsl -d debian {command}"
+
+    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+
+    try:
+        process.wait()
+    except KeyboardInterrupt:
+        process.terminate()
+
 # --- kali command---
 
 def get_project_paths_kali():
@@ -1400,6 +1439,19 @@ def run_kali_c_command(command):
         logging.error(f"Command failed: {e}")
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
+
+# --- kali-p command---
+
+def run_kali_python_command(command):
+    if isinstance(command, str):
+        command = f"wsl -d kali-linux {command}"
+
+    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+
+    try:
+        process.wait()
+    except KeyboardInterrupt:
+        process.terminate()
 
 # --- arch command---
 
@@ -1553,6 +1605,19 @@ def run_arch_c_command(command):
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
 
+# --- arch-p command---
+
+def run_arch_python_command(command):
+    if isinstance(command, str):
+        command = f"wsl -d Arch {command}"
+
+    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+
+    try:
+        process.wait()
+    except KeyboardInterrupt:
+        process.terminate()
+
 # --- opensuse command---
 
 def get_project_paths_opensuse():
@@ -1703,6 +1768,19 @@ def run_opensuse_c_command(command):
         logging.error(f"Command failed: {e}")
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
+
+# --- opensuse-p command---
+
+def run_opensuse_python_command(command):
+    if isinstance(command, str):
+        command = f"wsl -d openSUSE-Leap {command}"
+
+    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+
+    try:
+        process.wait()
+    except KeyboardInterrupt:
+        process.terminate()
 
 # --- mint command---
 
@@ -1855,6 +1933,19 @@ def run_mint_c_command(command):
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
 
+# --- mint-p command---
+
+def run_mint_python_command(command):
+    if isinstance(command, str):
+        command = f"wsl -d mint {command}"
+
+    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+
+    try:
+        process.wait()
+    except KeyboardInterrupt:
+        process.terminate()
+
 # --- fedora command---
 
 def get_project_paths_fedora():
@@ -2006,6 +2097,19 @@ def run_fedora_c_command(command):
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
 
+# --- fedora-p command---
+
+def run_fedora_python_command(command):
+    if isinstance(command, str):
+        command = f"wsl -d -d Fedora-Remix {command}"
+
+    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+
+    try:
+        process.wait()
+    except KeyboardInterrupt:
+        process.terminate()
+
 # --- redhat command---
 
 def get_project_paths_redhat():
@@ -2156,6 +2260,19 @@ def run_redhat_c_command(command):
         logging.error(f"Command failed: {e}")
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
+
+# --- redhat-p command---
+
+def run_mint_redhat_command(command):
+    if isinstance(command, str):
+        command = f"wsl -d RedHat {command}"
+
+    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+
+    try:
+        process.wait()
+    except KeyboardInterrupt:
+        process.terminate()
 
 def run_scoop_command(command):
     if isinstance(command, str):
