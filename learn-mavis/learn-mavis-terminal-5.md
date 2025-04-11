@@ -17,7 +17,7 @@ Mavis Terminal is a powerful command-line interface designed to streamline devel
 
 ---
 
-If you start MAVIS Terminal 4 out of [mavis-launcher-4.bat](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.bat), and if you do, it looks like this:
+If you start MAVIS Terminal 5 out of [mavis-launcher-4.bat](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.bat), and if you do, it looks like this:
 
 ```bash
 Aktive Codepage: 65001.
@@ -106,7 +106,7 @@ C:\Users\julia\PycharmProjects\MAVIS\mavis-terminal-5.py:111: DeprecationWarning
     ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗    ███████║
     ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝    ╚══════╝
 
-A warm welcome, julia, to MAVIS (MAth Visual Intelligent System) Terminal 4
+A warm welcome, julia, to MAVIS (MAth Visual Intelligent System) Terminal 5
 Developed by Peharge and JK (Peharge Projects 2025)
 Thank you so much for using MAVIS. We truly appreciate your support ❤️
 
