@@ -143,3 +143,5 @@ pip install jupyterlab
 --- 4.3
 
 pip install flask flask-socketio eventlet
+pip install Flask flask-socketio
+pip install PyQt6 websockets
