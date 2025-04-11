@@ -272,7 +272,7 @@ def print_system_info(system_info: dict):
 {blue}                    ===                  +***                   {reset}--------------
 {blue}                   =====                +++**-                  {reset}{blue}MAVIS Version{reset}: 4
 {blue}                  =======              ++++***                  {reset}{blue}MAVIS Installer Version{reset}: 4
-{blue}                 -========            -++++****                 {reset}{blue}MAVIS Terminal Version{reset}: 4
+{blue}                 -========            -++++****                 {reset}{blue}MAVIS Terminal Version{reset}: 5
 {blue}                 =========-          -+++++*****                {reset}{blue}MAVIS License{reset}: MIT
 {blue}                ===========          ++++++*****-               {reset}{blue}OS{reset}: {system_info['os_name']} {system_info['os_release']}
 {blue}               =============        #*+++++******               {reset}{blue}Version{reset}: {system_info['os_version']}
