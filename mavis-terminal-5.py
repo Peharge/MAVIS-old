@@ -257,29 +257,29 @@ def handle_special_commands(user_input):
     python_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
 
     commands = {
-        "env install": "mavis-terminal\\install-info-mavis-4.py",
-        "install env": "mavis-terminal\\install-info-mavis-4.py",
-        "mavis env install": "mavis-terminal\\install-info-mavis-4.py",
-        "install mavis env": "mavis-terminal\\install-info-mavis-4.py",
-        "env update": "mavis-terminal\\install-info-mavis-4.py",
-        "update env": "mavis-terminal\\install-info-mavis-4.py",
-        "mavis env update": "mavis-terminal\\install-info-mavis-4.py",
-        "update mavis env": "mavis-terminal\\install-info-mavis-4.py",
-        "update": "mavis-terminal\\update-repository-windows.py",
-        "mavis update": "mavis-terminal\\update-repository-windows.py",
-        "update mavis": "mavis-terminal\\update-repository-windows.py",
-        "security": "mavis-terminal\\security-check-mavis-4.py",
-        "mavis security": "mavis-terminal\\security-check-mavis-4.py",
-        "securitycheck": "mavis-terminal\\security-check-mavis-4.py",
+        "env install": "install\\install-info-mavis-4.py",
+        "install env": "install\\install-info-mavis-4.py",
+        "mavis env install": "install\\install-info-mavis-4.py",
+        "install mavis env": "install\\install-info-mavis-4.py",
+        "env update": "install\\install-info-mavis-4.py",
+        "update env": "install\\install-info-mavis-4.py",
+        "mavis env update": "install\\install-info-mavis-4.py",
+        "update mavis env": "install\\install-info-mavis-4.py",
+        "update": "update\\update-repository-windows.py",
+        "mavis update": "update\\update-repository-windows.py",
+        "update mavis": "update\\update-repository-windows.py",
+        "security": "security\\security-check-mavis-4.py",
+        "mavis security": "security\\security-check-mavis-4.py",
+        "securitycheck": "security\\security-check-mavis-4.py",
         "info": "mavis-terminal\\info.py",
         "mavis info": "mavis-terminal\\info.py",
         "info mavis": "mavis-terminal\\info.py",
         "neofetch": "mavis-terminal\\neofetch.py",
         "fastfetch": "mavis-terminal\\neofetch.py", # new
         "screenfetch": "mavis-terminal\\neofetch.py", # new
-        "jupyter": "mavis-terminal\\run-jup.py",
-        "run jupyter": "mavis-terminal\\run-jup.py",
-        "run ju": "mavis-terminal\\run-jup.py", # new
+        "jupyter": "run-jup\\run-jup.py",
+        "run jupyter": "run-jup\\run-jup.py",
+        "run ju": "run-jup\\run-jup.py", # new
         "run mavis-1-5-main": "mavis-1-5-main-main.py",
         "run mavis-1-5-math": "mavis-1-5-math-math.py",
         "run mavis-1-5-math-pro": "mavis-1-5-math-math-pro.py",
@@ -507,7 +507,7 @@ def handle_special_commands(user_input):
         "install 3d-slicer": "run\\simon\\3d-slicer\\install-3d-slicer.py", # new
         "run 3d-slicer": "run\\simon\\3d-slicer\\run-3d-slicer.py",  # new
         "install simon": "run\\simon\\install-simon-1.py",  # new
-        "run simon": "mavis-terminal\\run-jup.py"  # new
+        "run simon": "run-jup\\run-jup.py"  # new
     }
 
     if user_input in commands:
