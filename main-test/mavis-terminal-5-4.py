@@ -2263,7 +2263,7 @@ def run_redhat_c_command(command):
 
 # --- redhat-p command---
 
-def run_mint_redhat_command(command):
+def run_redhat_python_command(command):
     if isinstance(command, str):
         command = f"wsl -d RedHat {command}"
 
@@ -2371,6 +2371,14 @@ def main():
                     print(f"Executing the following command on Linux: {user_input}")
                     run_linux_rust_command(user_input)
 
+            elif user_input.startswith("lx-p "):
+                user_input = user_input[5:].strip()
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    print(f"Executing the following command on Linux: {user_input}")
+                    run_linux_python_command(user_input)
+
             elif user_input.startswith("linux "):
                 user_input = user_input[6:].strip()
                 if not is_wsl_installed():
@@ -2395,6 +2403,14 @@ def main():
                     print(f"Executing the following command on Ubuntu: {user_input}")
                     run_ubuntu_c_command(user_input)
 
+            elif user_input.startswith("ubuntu-p "):
+                user_input = user_input[7:].strip()
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    print(f"Executing the following command on Ubuntu: {user_input}")
+                    run_ubuntu_python_command(user_input)
+
             elif user_input.startswith("debian "):
                 user_input = user_input[7:].strip()  # Remove the "debian " prefix
                 if not is_wsl_installed():
@@ -2411,6 +2427,14 @@ def main():
                     print(f"Executing the following command on Debian: {user_input}")
                     run_debian_c_command(user_input)
 
+            elif user_input.startswith("debian-p "):
+                user_input = user_input[9:].strip()  # Remove the "debian " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    print(f"Executing the following command on Debian: {user_input}")
+                    run_debian_python_command(user_input)
+
             elif user_input.startswith("kali "):
                 user_input = user_input[5:].strip()  # Remove the "kali " prefix
                 if not is_wsl_installed():
@@ -2426,6 +2450,14 @@ def main():
                 else:
                     print(f"Executing the following command on Kali: {user_input}")
                     run_kali_c_command(user_input)
+
+            elif user_input.startswith("kali-p "):
+                user_input = user_input[7:].strip()  # Remove the "kali " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    print(f"Executing the following command on Kali: {user_input}")
+                    run_kali_python_command(user_input)
 
             elif user_input.startswith("hack "):
                 user_input = user_input[5:].strip()  # Remove the "kali " prefix
@@ -2451,6 +2483,14 @@ def main():
                     print(f"Executing the following command on Arch: {user_input}")
                     run_arch_c_command(user_input)
 
+            elif user_input.startswith("arch-p "):
+                user_input = user_input[7:].strip()  # Remove the "arch " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    print(f"Executing the following command on Arch: {user_input}")
+                    run_arch_python_command(user_input)
+
             elif user_input.startswith("openSUSE "):
                 user_input = user_input[9:].strip()  # Remove the "openSUSE " prefix
                 if not is_wsl_installed():
@@ -2466,6 +2506,14 @@ def main():
                 else:
                     print(f"Executing the following command on openSUSE: {user_input}")
                     run_opensuse_c_command(user_input)
+                    
+            elif user_input.startswith("openSUSE-p "):
+                user_input = user_input[11:].strip()  # Remove the "openSUSE " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    print(f"Executing the following command on openSUSE: {user_input}")
+                    run_opensuse_python_command(user_input)
 
             elif user_input.startswith("mint "):
                 user_input = user_input[5:].strip()  # Remove the "mint " prefix
@@ -2482,13 +2530,21 @@ def main():
                 else:
                     print(f"Executing the following command on openSUSE: {user_input}")
                     run_mint_c_command(user_input)
+                    
+            elif user_input.startswith("mint-p "):
+                user_input = user_input[7:].strip()  # Remove the "mint " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    print(f"Executing the following command on openSUSE: {user_input}")
+                    run_mint_python_command(user_input)
 
             elif user_input.startswith("fedora "):
                 user_input = user_input[7:].strip()  # Remove the "fedora " prefix
                 if not is_wsl_installed():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
-                    print(f"Executing the following command on openSUSE: {user_input}")
+                    print(f"Executing the following command on Fedora: {user_input}")
                     run_fedora_command(user_input)
 
             elif user_input.startswith("fedora-c "):
@@ -2496,15 +2552,23 @@ def main():
                 if not is_wsl_installed():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
-                    print(f"Executing the following command on openSUSE: {user_input}")
+                    print(f"Executing the following command on Fedora: {user_input}")
                     run_fedora_c_command(user_input)
+
+            elif user_input.startswith("fedora-p "):
+                user_input = user_input[9:].strip()  # Remove the "fedora " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    print(f"Executing the following command on Fedora: {user_input}")
+                    run_fedora_python_command(user_input)
 
             elif user_input.startswith("redhat "):
                 user_input = user_input[7:].strip()  # Remove the "redhat " prefix
                 if not is_wsl_installed():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
-                    print(f"Executing the following command on openSUSE: {user_input}")
+                    print(f"Executing the following command on RedHat: {user_input}")
                     run_redhat_command(user_input)
 
             elif user_input.startswith("redhat-c "):
@@ -2512,8 +2576,16 @@ def main():
                 if not is_wsl_installed():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
-                    print(f"Executing the following command on openSUSE: {user_input}")
+                    print(f"Executing the following command on RedHat: {user_input}")
                     run_redhat_c_command(user_input)
+
+            elif user_input.startswith("redhat-p "):
+                user_input = user_input[9:].strip()  # Remove the "redhat " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    print(f"Executing the following command on RedHat: {user_input}")
+                    run_redhat_python_command(user_input)
 
             elif user_input.startswith("sc "):
                 user_input = user_input[6:].strip()
