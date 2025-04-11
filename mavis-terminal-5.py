@@ -2296,7 +2296,7 @@ def main():
                     run_ubuntu_c_command(user_input)
 
             elif user_input.startswith("ubuntu-p "):
-                user_input = user_input[7:].strip()
+                user_input = user_input[9:].strip()
                 if not is_wsl_installed():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
