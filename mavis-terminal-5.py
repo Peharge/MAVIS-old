@@ -843,6 +843,111 @@ def run_linux_c_command(command):
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
 
+# --- lx-r command---
+
+def get_project_paths_lx_rust():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur Rust-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    lx_r_file = os.path.join(terminal_dir, "run_lx_command.rs")
+    lx_r_exe_file = os.path.join(terminal_dir, "run_lx_r_command.exe")
+    return lx_r_file, lx_r_exe_file, terminal_dir
+
+def compile_lx_rust_with_cargo(lx_r_file, lx_r_exe_file):
+    """
+    Kompiliert die Rust-Datei run_lx_command.rs mit Cargo.
+    """
+    logging.info("Compiling run_lx_command.rs with Cargo...")
+    # Überprüfen, ob rustup und cargo installiert sind
+    try:
+        subprocess.run(["rustup", "--version"], check=True, capture_output=True)
+        subprocess.run(["cargo", "--version"], check=True, capture_output=True)
+    except FileNotFoundError:
+        logging.error("Rustup or Cargo is not installed. Please install Rust.")
+        return False
+
+    # Erstelle ein temporäres Cargo-Projekt
+    project_dir = os.path.dirname(lx_r_file)
+    cargo_toml_path = os.path.join(project_dir, "Cargo.toml")
+    src_dir = os.path.join(project_dir, "src")
+    os.makedirs(src_dir, exist_ok=True)
+
+    # Verschiebe die Rust-Datei in den src-Ordner
+    main_rs_path = os.path.join(src_dir, "main.rs")
+    if not os.path.isfile(cargo_toml_path):
+        with open(cargo_toml_path, "w") as cargo_toml:
+            cargo_toml.write(f"""
+[package]
+name = "run_lx_command"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+""")
+        logging.info("Created Cargo.toml.")
+
+    os.rename(lx_r_file, main_rs_path)
+
+    # Kompiliere das Projekt mit Cargo
+    command = f"cargo build --release --manifest-path \"{cargo_toml_path}\""
+    result = subprocess.run(
+        command,
+        shell=True,
+        cwd=project_dir,
+        capture_output=True,
+        text=True
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    # Bewege die kompilierte Datei an den Zielort
+    compiled_file = os.path.join(project_dir, "target", "release", "run_lx_command.exe")
+    os.rename(compiled_file, lx_r_exe_file)
+
+    logging.info("Compilation successful.")
+    return True
+
+def run_linux_rust_command(command):
+    """
+    Führt einen Linux-Befehl interaktiv über den Rust-Wrapper aus.
+
+    Falls run_lx_command.exe noch nicht existiert, wird das Rust-Programm kompiliert.
+    Der Rust-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
+    """
+    lx_r_file, lx_r_exe_file, _ = get_project_paths_lx_rust()
+
+    if not os.path.isfile(lx_r_exe_file):
+        if not compile_lx_rust_with_cargo(lx_r_file, lx_r_exe_file):
+            logging.error("Abort: Rust compilation was unsuccessful.")
+            return
+
+    # Erstelle die Befehlsliste. Bei mehreren Argumenten werden diese getrennt übertragen.
+    if isinstance(command, str):
+        # Zerlege die Eingabe (z.B. "nano test.py") in Parameter, falls möglich
+        args = command.split()  # Achtung: Bei komplexen Befehlen mit Leerzeichen evtl. anders behandeln!
+    else:
+        args = command
+
+    # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der Rust-Code
+    cmd = [lx_r_exe_file] + args
+
+    try:
+        logging.info(f"Execute: {' '.join(cmd)}")
+        # Der Rust-Wrapper startet ein neues Terminalfenster, in dem der Befehl interaktiv ausgeführt wird.
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Command failed: {e}")
+    except KeyboardInterrupt:
+        logging.warning("Cancellation by user.")
+
 # --- ubuntu command---
 
 def get_project_paths_ubuntu():
@@ -1069,6 +1174,82 @@ def run_debian_command(command):
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
 
+# --- debian-c command---
+
+def get_project_paths_debian_c():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    debian_c_file = os.path.join(terminal_dir, "run_debian_command.c")
+    debian_c_exe_file = os.path.join(terminal_dir, "run_debian_c_command.exe")
+    return debian_c_file, debian_c_exe_file, terminal_dir
+
+def compile_debian_c_with_vs(debian_c_file, debian_c_exe_file):
+    """
+    Kompiliert run_debian_command.c mit cl.exe über die Visual Studio-Umgebung.
+    """
+    logging.info("Compiling run_debian_command.c with Visual Studio...")
+    vcvarsall = find_vcvarsall_c()
+
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe "{debian_c_file}" /Fe:"{debian_c_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+
+def run_debian_c_command(command):
+    """
+    Führt einen Linux-Befehl interaktiv über den C-Wrapper aus.
+
+    Falls run_lx_command.exe noch nicht existiert, wird das C-Programm kompiliert.
+    Der C-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
+    """
+    debian_c_file, debian_c_exe_file, _ = get_project_paths_debian_c()
+
+    if not os.path.isfile(debian_c_exe_file):
+        if not compile_lx_c_with_vs(debian_c_file, debian_c_exe_file):
+            logging.error("Abort: C compilation was unsuccessful.")
+            return
+
+    # Erstelle die Befehlsliste. Bei mehreren Argumenten werden diese getrennt übertragen.
+    if isinstance(command, str):
+        # Zerlege die Eingabe (z.B. "nano test.py") in Parameter, falls möglich
+        args = command.split()  # Achtung: Bei komplexen Befehlen mit Leerzeichen evtl. anders behandeln!
+    else:
+        args = command
+
+    # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C-Code
+    cmd = [debian_c_exe_file] + args
+
+    try:
+        logging.info(f"Execute: {' '.join(cmd)}")
+        # Der C-Wrapper startet ein neues Terminalfenster, in dem der Befehl interaktiv ausgeführt wird.
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Command failed: {e}")
+    except KeyboardInterrupt:
+        logging.warning("Cancellation by user.")
+
 # --- kali command---
 
 def get_project_paths_kali():
@@ -1138,6 +1319,82 @@ def run_kali_command(command):
     try:
         logging.info(f"Execute: {' '.join(cmd)}")
         # Der C++-Wrapper startet ein neues Terminalfenster, in dem der Befehl interaktiv ausgeführt wird.
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Command failed: {e}")
+    except KeyboardInterrupt:
+        logging.warning("Cancellation by user.")
+
+# --- ubuntu-c command---
+
+def get_project_paths_kali_c():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    ubuntu_c_file = os.path.join(terminal_dir, "run_ubuntu_command.c")
+    ubuntu_c_exe_file = os.path.join(terminal_dir, "run_ubuntu_c_command.exe")
+    return ubuntu_c_file, ubuntu_c_exe_file, terminal_dir
+
+def compile_ubuntu_c_with_vs(ubuntu_c_file, ubuntu_c_exe_file):
+    """
+    Kompiliert run_ubuntu_command.c mit cl.exe über die Visual Studio-Umgebung.
+    """
+    logging.info("Compiling run_ubuntu_command.c with Visual Studio...")
+    vcvarsall = find_vcvarsall_c()
+
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe "{ubuntu_c_file}" /Fe:"{ubuntu_c_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+
+def run_ubuntu_c_command(command):
+    """
+    Führt einen Linux-Befehl interaktiv über den C-Wrapper aus.
+
+    Falls run_lx_command.exe noch nicht existiert, wird das C-Programm kompiliert.
+    Der C-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
+    """
+    ubuntu_c_file, ubuntu_c_exe_file, _ = get_project_paths_ubuntu_c()
+
+    if not os.path.isfile(ubuntu_c_exe_file):
+        if not compile_lx_c_with_vs(ubuntu_c_file, ubuntu_c_exe_file):
+            logging.error("Abort: C compilation was unsuccessful.")
+            return
+
+    # Erstelle die Befehlsliste. Bei mehreren Argumenten werden diese getrennt übertragen.
+    if isinstance(command, str):
+        # Zerlege die Eingabe (z.B. "nano test.py") in Parameter, falls möglich
+        args = command.split()  # Achtung: Bei komplexen Befehlen mit Leerzeichen evtl. anders behandeln!
+    else:
+        args = command
+
+    # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C-Code
+    cmd = [ubuntu_c_exe_file] + args
+
+    try:
+        logging.info(f"Execute: {' '.join(cmd)}")
+        # Der C-Wrapper startet ein neues Terminalfenster, in dem der Befehl interaktiv ausgeführt wird.
         subprocess.run(cmd, check=True)
     except subprocess.CalledProcessError as e:
         logging.error(f"Command failed: {e}")
@@ -1647,6 +1904,14 @@ def main():
                 else:
                     print(f"Executing the following command on Debian: {user_input}")
                     run_debian_command(user_input)
+
+            elif user_input.startswith("debian-c "):
+                user_input = user_input[9:].strip()  # Remove the "debian " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    print(f"Executing the following command on Debian: {user_input}")
+                    run_debian_c_command(user_input)
 
             elif user_input.startswith("kali "):
                 user_input = user_input[5:].strip()  # Remove the "kali " prefix
