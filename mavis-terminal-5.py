@@ -983,7 +983,7 @@ def run_ubuntu_c_command(command):
     """
     Führt einen Linux-Befehl interaktiv über den C-Wrapper aus.
 
-    Falls run_lx_command.exe noch nicht existiert, wird das C-Programm kompiliert.
+    Falls run_ubuntu_command.exe noch nicht existiert, wird das C-Programm kompiliert.
     Der C-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
     """
     ubuntu_c_file, ubuntu_c_exe_file, _ = get_project_paths_ubuntu_c()
@@ -1147,13 +1147,13 @@ def run_debian_c_command(command):
     """
     Führt einen Linux-Befehl interaktiv über den C-Wrapper aus.
 
-    Falls run_lx_command.exe noch nicht existiert, wird das C-Programm kompiliert.
+    Falls run_debian_command.exe noch nicht existiert, wird das C-Programm kompiliert.
     Der C-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
     """
     debian_c_file, debian_c_exe_file, _ = get_project_paths_debian_c()
 
     if not os.path.isfile(debian_c_exe_file):
-        if not compile_lx_c_with_vs(debian_c_file, debian_c_exe_file):
+        if not compile_debian_c_with_vs(debian_c_file, debian_c_exe_file):
             logging.error("Abort: C compilation was unsuccessful.")
             return
 
@@ -1317,7 +1317,7 @@ def run_kali_c_command(command):
     kali_c_file, kali_c_exe_file, _ = get_project_paths_kali_c()
 
     if not os.path.isfile(kali_c_exe_file):
-        if not compile_lx_c_with_vs(kali_c_file, kali_c_exe_file):
+        if not compile_kali_c_with_vs(kali_c_file, kali_c_exe_file):
             logging.error("Abort: C compilation was unsuccessful.")
             return
 
@@ -1482,7 +1482,7 @@ def run_arch_c_command(command):
     arch_c_file, arch_c_exe_file, _ = get_project_paths_arch_c()
 
     if not os.path.isfile(arch_c_exe_file):
-        if not compile_lx_c_with_vs(arch_c_file, arch_c_exe_file):
+        if not compile_arch_c_with_vs(arch_c_file, arch_c_exe_file):
             logging.error("Abort: C compilation was unsuccessful.")
             return
 
@@ -1640,13 +1640,13 @@ def run_opensuse_c_command(command):
     """
     Führt einen Linux-Befehl interaktiv über den C-Wrapper aus.
 
-    Falls run_lx_command.exe noch nicht existiert, wird das C-Programm kompiliert.
+    Falls run_opensuse_command.exe noch nicht existiert, wird das C-Programm kompiliert.
     Der C-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
     """
     opensuse_c_file, opensuse_c_exe_file, _ = get_project_paths_opensuse_c()
 
     if not os.path.isfile(opensuse_c_exe_file):
-        if not compile_lx_c_with_vs(opensuse_c_file, opensuse_c_exe_file):
+        if not compile_opensuse_c_with_vs(opensuse_c_file, opensuse_c_exe_file):
             logging.error("Abort: C compilation was unsuccessful.")
             return
 
@@ -1804,13 +1804,13 @@ def run_mint_c_command(command):
     """
     Führt einen Linux-Befehl interaktiv über den C-Wrapper aus.
 
-    Falls run_lx_command.exe noch nicht existiert, wird das C-Programm kompiliert.
+    Falls run_mint_command.exe noch nicht existiert, wird das C-Programm kompiliert.
     Der C-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
     """
     mint_c_file, mint_c_exe_file, _ = get_project_paths_mint_c()
 
     if not os.path.isfile(mint_c_exe_file):
-        if not compile_lx_c_with_vs(mint_c_file, mint_c_exe_file):
+        if not compile_mint_c_with_vs(mint_c_file, mint_c_exe_file):
             logging.error("Abort: C compilation was unsuccessful.")
             return
 
@@ -1968,13 +1968,13 @@ def run_fedora_c_command(command):
     """
     Führt einen Linux-Befehl interaktiv über den C-Wrapper aus.
 
-    Falls run_lx_command.exe noch nicht existiert, wird das C-Programm kompiliert.
+    Falls run_fedora_command.exe noch nicht existiert, wird das C-Programm kompiliert.
     Der C-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
     """
     fedora_c_file, fedora_c_exe_file, _ = get_project_paths_fedora_c()
 
     if not os.path.isfile(fedora_c_exe_file):
-        if not compile_lx_c_with_vs(fedora_c_file, fedora_c_exe_file):
+        if not compile_fedora_c_with_vs(fedora_c_file, fedora_c_exe_file):
             logging.error("Abort: C compilation was unsuccessful.")
             return
 
@@ -2132,13 +2132,13 @@ def run_redhat_c_command(command):
     """
     Führt einen Linux-Befehl interaktiv über den C-Wrapper aus.
 
-    Falls run_lx_command.exe noch nicht existiert, wird das C-Programm kompiliert.
+    Falls run_redhat_command.exe noch nicht existiert, wird das C-Programm kompiliert.
     Der C-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
     """
     redhat_c_file, redhat_c_exe_file, _ = get_project_paths_redhat_c()
 
     if not os.path.isfile(redhat_c_exe_file):
-        if not compile_lx_c_with_vs(redhat_c_file, redhat_c_exe_file):
+        if not compile_redhat_c_with_vs(redhat_c_file, redhat_c_exe_file):
             logging.error("Abort: C compilation was unsuccessful.")
             return
 
