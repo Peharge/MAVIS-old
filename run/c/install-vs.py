@@ -62,12 +62,10 @@
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
 # -*- coding: utf-8 -*-
+
 """
-Installationsskript für die Visual Studio C++ Build Tools Umgebung.
-Dieses Skript ermittelt das Projektverzeichnis (basierend auf dem aktuellen Benutzer) und
-erstellt darin den Ordner "mavis-cpp-compier". In diesem Ordner wird nach erfolgreichem
-Test der Visual Studio Umgebung (über vcvarsall.bat und cl.exe) ein Batch-Skript abgelegt,
-das die Umgebung initialisiert und ein Beispiel-Kompilierungskommando ausführt.
+Installation script for the mavis-c-compiler environment.
+Automatically sets up a build system for C projects using Visual Studio's cl.exe.
 """
 
 import os
@@ -79,7 +77,7 @@ import platform
 import shutil
 import logging
 
-# Logging-Konfiguration
+# Logging configuration
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -90,13 +88,6 @@ logger = logging.getLogger(__name__)
 
 
 def find_vcvarsall():
-    """
-    Sucht rekursiv nach der Datei 'vcvarsall.bat', die zur Initialisierung der Visual Studio
-    Entwicklungsumgebung benötigt wird.
-
-    Returns:
-        str: Vollständiger Pfad zu 'vcvarsall.bat' oder None, wenn nicht gefunden.
-    """
     possible_paths = [
         os.environ.get("VSINSTALLDIR", ""),
         os.path.join(os.environ.get("ProgramFiles(x86)", ""), "Microsoft Visual Studio"),
@@ -108,59 +99,37 @@ def find_vcvarsall():
         for root, dirs, files in os.walk(base):
             if "vcvarsall.bat" in files:
                 path_found = os.path.join(root, "vcvarsall.bat")
-                logger.info("Found vcvarsall.bat: %s", path_found)
+                logger.info("Found: vcvarsall.bat -> %s", path_found)
                 return path_found
     return None
 
 
 def write_logfile(target_dir, vcvarsall_path):
-    """
-    Schreibt eine Log-Datei mit Informationen zur gefundenen Visual Studio Umgebung.
-
-    Args:
-        target_dir (str): Zielverzeichnis, in dem die Log-Datei abgelegt werden soll.
-        vcvarsall_path (str): Pfad zur Datei 'vcvarsall.bat'.
-    """
-    log_file = os.path.join(target_dir, "compiler_installed.txt")
     try:
-        with open(log_file, "w", encoding="utf-8") as f:
-            f.write("Visual Studio C++ Build Tools detected and ready.\n")
+        with open(os.path.join(target_dir, "c_compiler_ready.txt"), "w", encoding="utf-8") as f:
+            f.write("Visual Studio C Build Tools ready.\n")
             f.write(f"vcvarsall.bat path: {vcvarsall_path}\n")
-        logger.info("Installation status logged in: %s", log_file)
+        logger.info("Log file successfully written.")
     except Exception as e:
-        logger.warning("Log file could not be written: %s", e)
+        logger.warning("Error writing log file: %s", e)
 
 
-def verify_compiler(vcvarsall_path, temp_dir):
-    """
-    Erstellt eine temporäre Test-C++-Datei und kompiliert sie mit cl.exe, um sicherzustellen,
-    dass die Visual Studio-Umgebung korrekt eingerichtet ist.
-
-    Args:
-        vcvarsall_path (str): Pfad zur Initialisierungsdatei der Visual Studio Umgebung.
-        temp_dir (str): Temporäres Verzeichnis für den Kompilierungstest.
-
-    Returns:
-        bool: True, wenn der Test erfolgreich war, sonst False.
-    """
-    logger.info("Test compiler availability...")
-    test_cpp = os.path.join(temp_dir, "test.cpp")
+def verify_c_compiler(vcvarsall_path, temp_dir):
+    logger.info("Performing C compiler test run...")
+    test_c = os.path.join(temp_dir, "test.c")
     exe_output = os.path.join(temp_dir, "test.exe")
 
-    # Erstelle Test-CPP-Datei
     try:
-        with open(test_cpp, "w", encoding="utf-8") as f:
-            f.write("#include <iostream>\nint main() { std::cout << \"Hello from cl.exe!\" << std::endl; return 0; }")
+        with open(test_c, "w", encoding="utf-8") as f:
+            f.write('#include <stdio.h>\nint main() { printf("Hello from cl.exe (C)!\\n"); return 0; }')
     except Exception as e:
         logger.error("Error creating test file: %s", e)
         return False
 
-    # Erstelle ein Batch-Skript zur Initialisierung der Umgebung und Kompilierung der Testdatei.
-    bat_script = os.path.join(temp_dir, "compile_test.bat")
+    bat_script = os.path.join(temp_dir, "compile_test_c.bat")
     try:
         with open(bat_script, "w", encoding="utf-8") as f:
-            # "x64" ist hier als Ziel gesetzt; bei Bedarf anpassen (z.B. x86)
-            f.write(f'"{vcvarsall_path}" x64 && cl.exe /EHsc "{test_cpp}" /Fe"{exe_output}"\n')
+            f.write(f'call "{vcvarsall_path}" x64 && cl.exe /TC "{test_c}" /Fe"{exe_output}"\n')
     except Exception as e:
         logger.error("Error creating batch script: %s", e)
         return False
@@ -171,101 +140,72 @@ def verify_compiler(vcvarsall_path, temp_dir):
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,
-            encoding='cp850',  # Windows-Konsolen-Encoding
+            encoding='cp850',
             errors='replace',
             check=False
         )
-        logger.info("Output of the compilation test:\n%s", result.stdout)
+        logger.info("Compiler output:\n%s", result.stdout)
     except Exception as e:
-        logger.error("Error running compilation test: %s", e)
+        logger.error("Error executing batch script: %s", e)
         return False
 
     if os.path.exists(exe_output):
-        logger.info("Compilation successful. cl.exe works perfectly.")
+        logger.info("C compilation successful. cl.exe is working.")
         return True
     else:
-        logger.error(
-            "Compilation failed. Please ensure that Visual Studio C++ Build Tools are correctly installed.")
+        logger.error("Compilation failed. Is Visual Studio installed and configured correctly?")
         return False
 
 
-def create_compiler_folder(target_dir, vcvarsall_path):
-    """
-    Erstellt im angegebenen Zielverzeichnis ('mavis-cpp-compier') eine Batch-Datei, die
-    die Visual Studio Umgebung initialisiert und ein Beispiel-Kompilierungskommando ausführt.
-
-    Args:
-        target_dir (str): Das Verzeichnis, in dem der "Compiler" abgelegt werden soll.
-        vcvarsall_path (str): Pfad zur Datei 'vcvarsall.bat'.
-    """
-    # Erstelle den Ordner falls nicht existent (target_dir sollte z. B. "mavis-cpp-compier" sein)
+def create_c_compiler_folder(target_dir, vcvarsall_path):
     os.makedirs(target_dir, exist_ok=True)
-
-    batch_file = os.path.join(target_dir, "build_mavis.bat")
+    batch_file = os.path.join(target_dir, "build_mavis_c.bat")
     try:
         with open(batch_file, "w", encoding="utf-8") as f:
             f.write("@echo off\n")
             f.write(f'call "{vcvarsall_path}" x64\n')
-            f.write("echo Visual Studio Compiler Environment enabled.\n")
-            # Beispiel: Wechsle in das Projektverzeichnis und kompiliere ein bestimmtes Quellfile.
-            f.write('cd /d "%~dp0\\..\\..\\MAVIS"\n')
-            f.write("echo Start compiling the MAVIS project...\n")
-            # Platzhalter: Passe den cl.exe Aufruf an deine Projektstruktur an
-            f.write('cl.exe /EHsc main.cpp /Fe:mavis_project.exe\n')
+            f.write("echo Visual Studio C compiler environment activated.\n")
+            f.write('cd /d "%~dp0\\..\\..\\MAVIS_C"\n')
+            f.write("echo Starting C compilation...\n")
+            f.write('cl.exe /TC main.c /Fe:mavis_c.exe\n')
             f.write("pause\n")
-        logger.info("Batch file created for the compiler: %s", batch_file)
+        logger.info("Batch file for C compiler created: %s", batch_file)
     except Exception as e:
-        logger.error("Error creating compiler batch file: %s", e)
+        logger.error("Error creating batch file: %s", e)
 
 
 def main():
-    """
-    Hauptfunktion, die den Ablauf steuert:
-      - Ermitteln des Projektverzeichnisses.
-      - Suchen der Visual Studio Umgebung.
-      - Testen des Compilers.
-      - Erstellen des speziellen Ordners 'mavis-cpp-compier' mit einer Batch-Datei,
-        die zum Kompilieren des MAVIS-Projektes verwendet werden kann.
-      - Schreiben einer Log-Datei im Zielordner.
-    """
     try:
         if platform.system() != "Windows":
-            raise EnvironmentError("This installation script is intended for Windows only.")
+            raise EnvironmentError("This script is intended for Windows only (requires Visual Studio cl.exe).")
 
         username = getpass.getuser()
         project_root = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
-        # Der Zielordner für den "Compiler" wird hier angelegt:
-        compiler_dir = os.path.join(project_root, "mavis-cpp-compier")
+        compiler_dir = os.path.join(project_root, "mavis-c-compiler")
         os.makedirs(compiler_dir, exist_ok=True)
-        logger.info("Project directory: %s", project_root)
-
-        # Temporäres Verzeichnis für den Kompilierungstest
-        temp_dir = os.path.join(project_root, "vs_test")
+        temp_dir = os.path.join(project_root, "vs_test_c")
         os.makedirs(temp_dir, exist_ok=True)
 
-        logger.info("Search for the Visual Studio C++ development environment...")
+        logger.info("Project directory: %s", project_root)
+
         vcvarsall_path = find_vcvarsall()
         if not vcvarsall_path:
-            raise FileNotFoundError("Visual Studio environment could not be found."
-                                    "Please make sure that Visual Studio with the C++ Build Tools is installed.")
+            raise FileNotFoundError("vcvarsall.bat not found. Make sure Visual Studio is properly installed.")
 
-        # Teste den Compiler (cl.exe)
-        if verify_compiler(vcvarsall_path, temp_dir):
+        if verify_c_compiler(vcvarsall_path, temp_dir):
             write_logfile(compiler_dir, vcvarsall_path)
-            create_compiler_folder(compiler_dir, vcvarsall_path)
-            logger.info("Visual Studio C++ Build Tools successfully detected and tested.")
+            create_c_compiler_folder(compiler_dir, vcvarsall_path)
+            logger.info("mavis-c-compiler successfully set up.")
         else:
-            raise Exception("The compilation test failed.")
+            raise Exception("C compilation test failed.")
 
-        # Aufräumen: Entferne das temporäre Verzeichnis
         shutil.rmtree(temp_dir, ignore_errors=True)
-        logger.info("Temporary files have been removed.")
+        logger.info("Temporary files removed.")
 
     except Exception as e:
-        logger.error("An error occurred during installation:")
+        logger.error("An error occurred during setup:")
         logger.error(str(e))
         logger.error("Stacktrace:\n%s", traceback.format_exc())
-        logger.error("Please make sure that Visual Studio is installed with the required C++ components.")
         sys.exit(1)
 
 

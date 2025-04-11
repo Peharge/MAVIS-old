@@ -65,9 +65,11 @@ REM Veuillez lire l'intégralité des termes et conditions de la licence MIT pou
 
 set USERNAME=%USERNAME%
 set PYTHON_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe
-set SCRIPT_install_vs=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\cpp\install-vs.py
+set SCRIPT_install_vs_cpp=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\cpp\install-vs.py
+set SCRIPT_install_vs_c=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\c\install-vs.py
 set "VCVARS_PATH=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat"
-set "MAVIS_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\mavis-cpp-compier"
+set "MAVIS_PATH_CPP=C:\Users\%USERNAME%\PycharmProjects\MAVIS\mavis-cpp-compier"
+set "MAVIS_PATH_C=C:\Users\%USERNAME%\PycharmProjects\MAVIS\mavis-c-compiler"
 set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\mavis-terminal-5.py
 
 if not exist "%PYTHON_PATH%" (
@@ -78,26 +80,39 @@ if not exist "%PYTHON_PATH%" (
 if not exist "%VCVARS_PATH%" (
     echo ❌ MAVIS Compiler: vcvarsall.bat not found. Please ensure Visual Studio is correctly installed.
 
-    if not exist "%SCRIPT_install_vs%" (
-        echo Error: Script not found: %SCRIPT_install_vs%
+    if not exist "%SCRIPT_install_vs_cpp%" (
+        echo Error: Script not found: %SCRIPT_install_vs_cpp%
         exit /B 1
     )
 
-    "%PYTHON_PATH%" "%SCRIPT_install_vs%"
+    "%PYTHON_PATH%" "%SCRIPT_install_vs_cpp%"
 )
 
-if not exist "%MAVIS_PATH%" (
-    echo ❌ MAVIS Compiler: The MAVIS folder "%MAVIS_PATH%" does not exist. Please ensure it is set up correctly.
+if not exist "%MAVIS_PATH_CPP%" (
+    echo ❌ MAVIS Compiler: The MAVIS folder "%MAVIS_PATH_CPP%" does not exist. Please ensure it is set up correctly.
 
-    if not exist "%SCRIPT_install_vs%" (
-        echo Error: Script not found: %SCRIPT_install_vs%
+    if not exist "%SCRIPT_install_vs_cpp%" (
+        echo Error: Script not found: %SCRIPT_install_vs_cpp%
         exit /B 1
     )
 
-    "%PYTHON_PATH%" "%SCRIPT_install_vs%"
+    "%PYTHON_PATH%" "%SCRIPT_install_vs_cpp%"
 )
 
-echo ✅ MAVIS Compiler available and the folder "%MAVIS_PATH%" exists.
+echo ✅ MAVIS C++ Compiler available and the folder "%MAVIS_PATH_CPP%" exists.
+
+if not exist "%MAVIS_PATH_C%" (
+    echo ❌ MAVIS Compiler: The MAVIS folder "%MAVIS_PATH_C%" does not exist. Please ensure it is set up correctly.
+
+    if not exist "%SCRIPT_install_vs_c%" (
+        echo Error: Script not found: %SCRIPT_install_vs_c%
+        exit /B 1
+    )
+
+    "%PYTHON_PATH%" "%SCRIPT_install_vs_c%"
+)
+
+echo ✅ MAVIS C Compiler available and the folder "%MAVIS_PATH_C%" exists.
 
 if not exist "%SCRIPT_PATH_1%" (
     echo Error: Script not found: %SCRIPT_PATH_1%
