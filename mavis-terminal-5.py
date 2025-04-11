@@ -756,6 +756,95 @@ def run_linux_command(command):
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
 
+# --- lx-c command---
+
+def get_project_paths_lx_c():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    lx_c_file = os.path.join(terminal_dir, "run_lx_command.c")
+    lx_c_exe_file = os.path.join(terminal_dir, "run_lx_c_command.exe")
+    return lx_c_file, lx_c_exe_file, terminal_dir
+
+
+def find_vcvarsall_c():
+    """
+    Sucht nach der Visual Studio Entwicklungsumgebung (vcvarsall.bat).
+    """
+    # Visual Studio Installationspfad (Standardort für VS 2022)
+    vs_path = r"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat"
+    if not os.path.isfile(vs_path):
+        logging.error("Visual Studio vcvarsall.bat file not found.")
+        raise FileNotFoundError("vcvarsall.bat not found. Please ensure Visual Studio is installed.")
+    return vs_path
+
+
+def compile_lx_c_with_vs(lx_c_file, lx_c_exe_file):
+    """
+    Kompiliert run_lx_command.c mit cl.exe über die Visual Studio-Umgebung.
+    """
+    logging.info("Compiling run_lx_command.c with Visual Studio...")
+    vcvarsall = find_vcvarsall_c()
+
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe "{lx_c_file}" /Fe:"{lx_c_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+
+def run_linux_c_command(command):
+    """
+    Führt einen Linux-Befehl interaktiv über den C-Wrapper aus.
+
+    Falls run_lx_command.exe noch nicht existiert, wird das C-Programm kompiliert.
+    Der C-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
+    """
+    lx_c_file, lx_c_exe_file, _ = get_project_paths_lx_c()
+
+    if not os.path.isfile(lx_c_exe_file):
+        if not compile_lx_c_with_vs(lx_c_file, lx_c_exe_file):
+            logging.error("Abort: C compilation was unsuccessful.")
+            return
+
+    # Erstelle die Befehlsliste. Bei mehreren Argumenten werden diese getrennt übertragen.
+    if isinstance(command, str):
+        # Zerlege die Eingabe (z.B. "nano test.py") in Parameter, falls möglich
+        args = command.split()  # Achtung: Bei komplexen Befehlen mit Leerzeichen evtl. anders behandeln!
+    else:
+        args = command
+
+    # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C-Code
+    cmd = [lx_c_exe_file] + args
+
+    try:
+        logging.info(f"Execute: {' '.join(cmd)}")
+        # Der C-Wrapper startet ein neues Terminalfenster, in dem der Befehl interaktiv ausgeführt wird.
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Command failed: {e}")
+    except KeyboardInterrupt:
+        logging.warning("Cancellation by user.")
+
 # --- ubuntu command---
 
 def get_project_paths_ubuntu():
@@ -1443,7 +1532,7 @@ def main():
                     print("WSL is not installed or could not be found. Please install WSL to use this feature.")
                 else:
                     print(f"Executing the following command on Linux: {user_input}")
-                    run_linux_command-c(user_input)
+                    run_linux_c_command(user_input)
 
             elif user_input.startswith("lx-r "):
                 user_input = user_input[5:].strip()
