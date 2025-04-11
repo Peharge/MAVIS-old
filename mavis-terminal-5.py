@@ -1325,7 +1325,7 @@ def run_kali_command(command):
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
 
-# --- ubuntu-c command---
+# --- kali-c command---
 
 def get_project_paths_kali_c():
     """
@@ -1335,19 +1335,19 @@ def get_project_paths_kali_c():
     username = getpass.getuser()
     base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
     terminal_dir = os.path.join(base_dir, "mavis-terminal")
-    ubuntu_c_file = os.path.join(terminal_dir, "run_ubuntu_command.c")
-    ubuntu_c_exe_file = os.path.join(terminal_dir, "run_ubuntu_c_command.exe")
-    return ubuntu_c_file, ubuntu_c_exe_file, terminal_dir
+    kali_c_file = os.path.join(terminal_dir, "run_kali_command.c")
+    kali_c_exe_file = os.path.join(terminal_dir, "run_kali_c_command.exe")
+    return kali_c_file, kali_c_exe_file, terminal_dir
 
-def compile_ubuntu_c_with_vs(ubuntu_c_file, ubuntu_c_exe_file):
+def compile_kali_c_with_vs(kali_c_file, kali_c_exe_file):
     """
-    Kompiliert run_ubuntu_command.c mit cl.exe über die Visual Studio-Umgebung.
+    Kompiliert run_kali_command.c mit cl.exe über die Visual Studio-Umgebung.
     """
-    logging.info("Compiling run_ubuntu_command.c with Visual Studio...")
+    logging.info("Compiling run_kali_command.c with Visual Studio...")
     vcvarsall = find_vcvarsall_c()
 
     # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
-    command = f'"{vcvarsall}" x64 && cl.exe "{ubuntu_c_file}" /Fe:"{ubuntu_c_exe_file}"'
+    command = f'"{vcvarsall}" x64 && cl.exe "{kali_c_file}" /Fe:"{kali_c_exe_file}"'
 
     result = subprocess.run(
         command,
@@ -1368,17 +1368,17 @@ def compile_ubuntu_c_with_vs(ubuntu_c_file, ubuntu_c_exe_file):
     return True
 
 
-def run_ubuntu_c_command(command):
+def run_kali_c_command(command):
     """
     Führt einen Linux-Befehl interaktiv über den C-Wrapper aus.
 
     Falls run_lx_command.exe noch nicht existiert, wird das C-Programm kompiliert.
     Der C-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
     """
-    ubuntu_c_file, ubuntu_c_exe_file, _ = get_project_paths_ubuntu_c()
+    kali_c_file, kali_c_exe_file, _ = get_project_paths_kali_c()
 
-    if not os.path.isfile(ubuntu_c_exe_file):
-        if not compile_lx_c_with_vs(ubuntu_c_file, ubuntu_c_exe_file):
+    if not os.path.isfile(kali_c_exe_file):
+        if not compile_lx_c_with_vs(kali_c_file, kali_c_exe_file):
             logging.error("Abort: C compilation was unsuccessful.")
             return
 
@@ -1390,7 +1390,7 @@ def run_ubuntu_c_command(command):
         args = command
 
     # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C-Code
-    cmd = [ubuntu_c_exe_file] + args
+    cmd = [kali_c_exe_file] + args
 
     try:
         logging.info(f"Execute: {' '.join(cmd)}")
@@ -1470,6 +1470,83 @@ def run_arch_command(command):
     try:
         logging.info(f"Execute: {' '.join(cmd)}")
         # Der C++-Wrapper startet ein neues Terminalfenster, in dem der Befehl interaktiv ausgeführt wird.
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Command failed: {e}")
+    except KeyboardInterrupt:
+        logging.warning("Cancellation by user.")
+
+
+# --- arch-c command---
+
+def get_project_paths_arch_c():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    arch_c_file = os.path.join(terminal_dir, "run_arch_command.c")
+    arch_c_exe_file = os.path.join(terminal_dir, "run_arch_c_command.exe")
+    return arch_c_file, arch_c_exe_file, terminal_dir
+
+def compile_arch_c_with_vs(arch_c_file, arch_c_exe_file):
+    """
+    Kompiliert run_arch_command.c mit cl.exe über die Visual Studio-Umgebung.
+    """
+    logging.info("Compiling run_arch_command.c with Visual Studio...")
+    vcvarsall = find_vcvarsall_c()
+
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe "{arch_c_file}" /Fe:"{arch_c_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+
+def run_arch_c_command(command):
+    """
+    Führt einen Linux-Befehl interaktiv über den C-Wrapper aus.
+
+    Falls run_lx_command.exe noch nicht existiert, wird das C-Programm kompiliert.
+    Der C-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
+    """
+    arch_c_file, arch_c_exe_file, _ = get_project_paths_arch_c()
+
+    if not os.path.isfile(arch_c_exe_file):
+        if not compile_lx_c_with_vs(arch_c_file, arch_c_exe_file):
+            logging.error("Abort: C compilation was unsuccessful.")
+            return
+
+    # Erstelle die Befehlsliste. Bei mehreren Argumenten werden diese getrennt übertragen.
+    if isinstance(command, str):
+        # Zerlege die Eingabe (z.B. "nano test.py") in Parameter, falls möglich
+        args = command.split()  # Achtung: Bei komplexen Befehlen mit Leerzeichen evtl. anders behandeln!
+    else:
+        args = command
+
+    # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C-Code
+    cmd = [arch_c_exe_file] + args
+
+    try:
+        logging.info(f"Execute: {' '.join(cmd)}")
+        # Der C-Wrapper startet ein neues Terminalfenster, in dem der Befehl interaktiv ausgeführt wird.
         subprocess.run(cmd, check=True)
     except subprocess.CalledProcessError as e:
         logging.error(f"Command failed: {e}")
