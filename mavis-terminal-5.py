@@ -1476,7 +1476,7 @@ def run_arch_c_command(command):
     """
     Führt einen Linux-Befehl interaktiv über den C-Wrapper aus.
 
-    Falls run_lx_command.exe noch nicht existiert, wird das C-Programm kompiliert.
+    Falls run_larch_c_command.exe noch nicht existiert, wird das C-Programm kompiliert.
     Der C-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
     """
     arch_c_file, arch_c_exe_file, _ = get_project_paths_arch_c()
