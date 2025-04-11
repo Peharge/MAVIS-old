@@ -80,7 +80,7 @@ int main(int argc, char* argv[]) {
 
     // Kommandozeile für WSL aufbauen
     // Wir brauchen Platz für "wsl.exe" + alle Argumente + Leerzeichen + Anführungszeichen + Nullterminator
-    size_t bufferSize = strlen("wsl.exe") + 1;
+    size_t bufferSize = strlen("wsl.exe -d RedHat") + 1;
     for (int i = 1; i < argc; ++i) {
         bufferSize += strlen(argv[i]) + 3; // 2 für Anführungszeichen, 1 für Leerzeichen
     }

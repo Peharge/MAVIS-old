@@ -91,7 +91,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    strcpy(commandLine, "wsl.exe");
+    strcpy(commandLine, "wsl.exe -d Fedora-Remix");
     for (int i = 1; i < argc; ++i) {
         strcat(commandLine, " \"");
         strcat(commandLine, argv[i]);
