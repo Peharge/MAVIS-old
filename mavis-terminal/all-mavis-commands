@@ -21,6 +21,7 @@
         "screenfetch": "mavis-terminal\\neofetch.py", # new
         "jupyter": "mavis-terminal\\run-jup.py",
         "run jupyter": "mavis-terminal\\run-jup.py",
+        "run ju": "mavis-terminal\\run-jup.py", # new
         "run mavis-1-5-main": "mavis-1-5-main-main.py",
         "run mavis-1-5-math": "mavis-1-5-math-math.py",
         "run mavis-1-5-math-pro": "mavis-1-5-math-math-pro.py",
@@ -247,5 +248,6 @@
         "m mavis.com": "mavis-terminal\\m-mavis.py",  # new
         "install 3d-slicer": "run\\simon\\3d-slicer\\install-3d-slicer.py", # new
         "run 3d-slicer": "run\\simon\\3d-slicer\\run-3d-slicer.py",  # new
-        "install simon": "run\\simon\\install-simon-1.py"  # new
+        "install simon": "run\\simon\\install-simon-1.py",  # new
+        "run simon": "mavis-terminal\\run-jup.py"  # new
     }
