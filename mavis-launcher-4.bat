@@ -378,6 +378,10 @@ if %errorlevel% neq 0 (
     echo ✅ FFmpeg is already installed.
 )
 
+set USERNAME=%USERNAME%
+set PYTHON_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe
+set SCRIPT_install_rustup=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\rust\install-rustup.py
+
 :: Check if Rustup is already installed
 rustup --version >nul 2>&1
 if %errorlevel% neq 0 (
@@ -418,6 +422,14 @@ if %errorlevel% neq 0 (
                     if %errorlevel% neq 0 (
                         echo ❌ Alternative installation failed! Cleaning up...
                         del "%RUSTUP_INSTALLER%"
+
+                        if not exist "%SCRIPT_install_rustup%" (
+                            echo Error: Script not found: %SCRIPT_install_rustup%
+                            exit /B 1
+                        )
+
+                        "%PYTHON_PATH%" "%SCRIPT_install_rustup%"
+
                         echo Manual installation required: https://rustup.rs/
                     ) else (
                         echo ✅ Rustup successfully installed using alternative method!
