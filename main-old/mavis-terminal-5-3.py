@@ -580,15 +580,6 @@ def setup_autocomplete():
         [cmd for cmd in commands if cmd.startswith(text)]) else None)
     readline.parse_and_bind("tab: complete")
 
-def find_vcvarsall():
-    """
-    Sucht nach der Visual Studio-Initialisierungsdatei (vcvarsall.bat).
-    """
-    path = r"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat"
-    if os.path.isfile(path):
-        return path
-    raise FileNotFoundError("vcvarsall.bat not found. Please make sure Visual Studio is installed.")
-
 def get_project_paths_mp():
     """
     Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
@@ -681,8 +672,6 @@ def is_wsl_installed():
         print(f"Unexpected error occurred while checking if WSL is installed: {e}")
         return False
 
-# --- lx command---
-
 def get_project_paths_lx():
     """
     Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
@@ -695,6 +684,112 @@ def get_project_paths_lx():
     lx_exe_file = os.path.join(terminal_dir, "run_lx_command.exe")
     return lx_cpp_file, lx_exe_file, terminal_dir
 
+def get_project_paths_ubuntu():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C++-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    cpp_file = os.path.join(terminal_dir, "run_ubuntu_command.cpp")
+    exe_file = os.path.join(terminal_dir, "run_ubuntu_command.exe")
+    return cpp_file, exe_file, terminal_dir
+
+def get_project_paths_debian():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C++-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    debian_cpp_file = os.path.join(terminal_dir, "run_debian_command.cpp")
+    debian_exe_file = os.path.join(terminal_dir, "run_debian_command.exe")
+    return debian_cpp_file, debian_exe_file, terminal_dir
+
+def get_project_paths_kali():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C++-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    kali_cpp_file = os.path.join(terminal_dir, "run_kali_command.cpp")
+    kali_exe_file = os.path.join(terminal_dir, "run_kali_command.exe")
+    return kali_cpp_file, kali_exe_file, terminal_dir
+
+def get_project_paths_arch():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C++-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    arch_cpp_file = os.path.join(terminal_dir, "run_arch_command.cpp")
+    arch_exe_file = os.path.join(terminal_dir, "run_arch_command.exe")
+    return arch_cpp_file, arch_exe_file, terminal_dir
+
+def get_project_paths_opensuse():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C++-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    opensuse_cpp_file = os.path.join(terminal_dir, "run_opensuse_command.cpp")
+    opensuse_exe_file = os.path.join(terminal_dir, "run_opensuse_command.exe")
+    return opensuse_cpp_file, opensuse_exe_file, terminal_dir
+
+def get_project_paths_mint():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C++-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    mint_cpp_file = os.path.join(terminal_dir, "run_mint_command.cpp")
+    mint_exe_file = os.path.join(terminal_dir, "run_mint_command.exe")
+    return mint_cpp_file, mint_exe_file, terminal_dir
+
+def get_project_paths_fedora():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C++-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    fedora_cpp_file = os.path.join(terminal_dir, "run_fedora_command.cpp")
+    fedora_exe_file = os.path.join(terminal_dir, "run_fedora_command.exe")
+    return fedora_cpp_file, fedora_exe_file, terminal_dir
+
+def get_project_paths_redhat():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C++-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    redhat_cpp_file = os.path.join(terminal_dir, "run_redhat_command.cpp")
+    redhat_exe_file = os.path.join(terminal_dir, "run_redhat_command.exe")
+    return redhat_cpp_file, redhat_exe_file, terminal_dir
+
+def find_vcvarsall():
+    """
+    Sucht nach der Visual Studio-Initialisierungsdatei (vcvarsall.bat).
+    """
+    path = r"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat"
+    if os.path.isfile(path):
+        return path
+    raise FileNotFoundError("vcvarsall.bat not found. Please make sure Visual Studio is installed.")
+
+
 def compile_lx_cpp_with_vs(lx_cpp_file, lx_exe_file):
     """
     Kompiliert run_command.cpp mit cl.exe über die Visual Studio-Umgebung.
@@ -704,6 +799,230 @@ def compile_lx_cpp_with_vs(lx_cpp_file, lx_exe_file):
     vcvarsall = find_vcvarsall()
     # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
     command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{lx_cpp_file}" /Fe:"{lx_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+def compile_ubuntu_cpp_with_vs(ubuntu_cpp_file, ubuntu_exe_file):
+    """
+    Kompiliert run_command.cpp mit cl.exe über die Visual Studio-Umgebung.
+    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
+    """
+    logging.info("Compile run_ubuntu_command.cpp with Visual Studio C++...")
+    vcvarsall = find_vcvarsall()
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{ubuntu_cpp_file}" /Fe:"{ubuntu_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+def compile_debian_cpp_with_vs(debian_cpp_file, debian_exe_file):
+    """
+    Kompiliert run_command.cpp mit cl.exe über die Visual Studio-Umgebung.
+    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
+    """
+    logging.info("Compile run_debian_command.cpp with Visual Studio C++...")
+    vcvarsall = find_vcvarsall()
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{debian_cpp_file}" /Fe:"{debian_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+def compile_kali_cpp_with_vs(kali_cpp_file, kali_exe_file):
+    """
+    Kompiliert run_command.cpp mit cl.exe über die Visual Studio-Umgebung.
+    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
+    """
+    logging.info("Compile run_kali_command.cpp with Visual Studio C++...")
+    vcvarsall = find_vcvarsall()
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{kali_cpp_file}" /Fe:"{kali_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+def compile_arch_cpp_with_vs(arch_cpp_file, arch_exe_file):
+    """
+    Kompiliert run_command.cpp mit cl.exe über die Visual Studio-Umgebung.
+    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
+    """
+    logging.info("Compile run_arch_command.cpp with Visual Studio C++...")
+    vcvarsall = find_vcvarsall()
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{arch_cpp_file}" /Fe:"{arch_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+def compile_opensuse_cpp_with_vs(opensuse_cpp_file, opensuse_exe_file):
+    """
+    Kompiliert run_command.cpp mit cl.exe über die Visual Studio-Umgebung.
+    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
+    """
+    logging.info("Compile run_opensuse_command.cpp with Visual Studio C++...")
+    vcvarsall = find_vcvarsall()
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{opensuse_cpp_file}" /Fe:"{opensuse_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+def compile_mint_cpp_with_vs(mint_cpp_file, mint_exe_file):
+    """
+    Kompiliert run_mint_command.cpp mit cl.exe über die Visual Studio-Umgebung.
+    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
+    """
+    logging.info("Compile run_mint_command.cpp with Visual Studio C++...")
+    vcvarsall = find_vcvarsall()
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{mint_cpp_file}" /Fe:"{mint_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+def compile_fedora_cpp_with_vs(fedora_cpp_file, fedora_exe_file):
+    """
+    Kompiliert run_fedora_command.cpp mit cl.exe über die Visual Studio-Umgebung.
+    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
+    """
+    logging.info("Compile run_fedora_command.cpp with Visual Studio C++...")
+    vcvarsall = find_vcvarsall()
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{fedora_cpp_file}" /Fe:"{fedora_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+def compile_redhat_cpp_with_vs(redhat_cpp_file, redhat_exe_file):
+    """
+    Kompiliert run_redhat_command.cpp mit cl.exe über die Visual Studio-Umgebung.
+    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
+    """
+    logging.info("Compile run_redhat_command.cpp with Visual Studio C++...")
+    vcvarsall = find_vcvarsall()
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{redhat_cpp_file}" /Fe:"{redhat_exe_file}"'
 
     result = subprocess.run(
         command,
@@ -756,47 +1075,6 @@ def run_linux_command(command):
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
 
-# --- ubuntu command---
-
-def get_project_paths_ubuntu():
-    """
-    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
-    sowie die Pfade zur C++-Quelle und zur Executable.
-    """
-    username = getpass.getuser()
-    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
-    terminal_dir = os.path.join(base_dir, "mavis-terminal")
-    ubuntu_cpp_file = os.path.join(terminal_dir, "run_ubuntu_command.cpp")
-    ubuntu_exe_file = os.path.join(terminal_dir, "run_ubuntu_command.exe")
-    return ubuntu_cpp_file, ubuntu_exe_file, terminal_dir
-
-def compile_ubuntu_cpp_with_vs(ubuntu_cpp_file, ubuntu_exe_file):
-    """
-    Kompiliert run_command.cpp mit cl.exe über die Visual Studio-Umgebung.
-    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
-    """
-    logging.info("Compile run_ubuntu_command.cpp with Visual Studio C++...")
-    vcvarsall = find_vcvarsall()
-    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
-    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{ubuntu_cpp_file}" /Fe:"{ubuntu_exe_file}"'
-
-    result = subprocess.run(
-        command,
-        shell=True,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        errors="replace"
-    )
-
-    if result.returncode != 0:
-        logging.error("Compilation failed.")
-        logging.error(result.stdout)
-        logging.error(result.stderr)
-        return False
-
-    logging.info("Compilation successful.")
-    return True
 
 def run_ubuntu_command(command):
     """
@@ -831,48 +1109,6 @@ def run_ubuntu_command(command):
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
 
-# --- debian command---
-
-def get_project_paths_debian():
-    """
-    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
-    sowie die Pfade zur C++-Quelle und zur Executable.
-    """
-    username = getpass.getuser()
-    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
-    terminal_dir = os.path.join(base_dir, "mavis-terminal")
-    debian_cpp_file = os.path.join(terminal_dir, "run_debian_command.cpp")
-    debian_exe_file = os.path.join(terminal_dir, "run_debian_command.exe")
-    return debian_cpp_file, debian_exe_file, terminal_dir
-
-def compile_debian_cpp_with_vs(debian_cpp_file, debian_exe_file):
-    """
-    Kompiliert run_command.cpp mit cl.exe über die Visual Studio-Umgebung.
-    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
-    """
-    logging.info("Compile run_debian_command.cpp with Visual Studio C++...")
-    vcvarsall = find_vcvarsall()
-    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
-    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{debian_cpp_file}" /Fe:"{debian_exe_file}"'
-
-    result = subprocess.run(
-        command,
-        shell=True,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        errors="replace"
-    )
-
-    if result.returncode != 0:
-        logging.error("Compilation failed.")
-        logging.error(result.stdout)
-        logging.error(result.stderr)
-        return False
-
-    logging.info("Compilation successful.")
-    return True
-
 def run_debian_command(command):
     """
     Führt einen Linux-Befehl interaktiv über den C++-Wrapper aus.
@@ -905,48 +1141,6 @@ def run_debian_command(command):
         logging.error(f"Command failed: {e}")
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
-
-# --- kali command---
-
-def get_project_paths_kali():
-    """
-    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
-    sowie die Pfade zur C++-Quelle und zur Executable.
-    """
-    username = getpass.getuser()
-    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
-    terminal_dir = os.path.join(base_dir, "mavis-terminal")
-    kali_cpp_file = os.path.join(terminal_dir, "run_kali_command.cpp")
-    kali_exe_file = os.path.join(terminal_dir, "run_kali_command.exe")
-    return kali_cpp_file, kali_exe_file, terminal_dir
-
-def compile_kali_cpp_with_vs(kali_cpp_file, kali_exe_file):
-    """
-    Kompiliert run_command.cpp mit cl.exe über die Visual Studio-Umgebung.
-    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
-    """
-    logging.info("Compile run_kali_command.cpp with Visual Studio C++...")
-    vcvarsall = find_vcvarsall()
-    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
-    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{kali_cpp_file}" /Fe:"{kali_exe_file}"'
-
-    result = subprocess.run(
-        command,
-        shell=True,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        errors="replace"
-    )
-
-    if result.returncode != 0:
-        logging.error("Compilation failed.")
-        logging.error(result.stdout)
-        logging.error(result.stderr)
-        return False
-
-    logging.info("Compilation successful.")
-    return True
 
 def run_kali_command(command):
     """
@@ -981,48 +1175,6 @@ def run_kali_command(command):
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
 
-# --- arch command---
-
-def get_project_paths_arch():
-    """
-    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
-    sowie die Pfade zur C++-Quelle und zur Executable.
-    """
-    username = getpass.getuser()
-    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
-    terminal_dir = os.path.join(base_dir, "mavis-terminal")
-    arch_cpp_file = os.path.join(terminal_dir, "run_arch_command.cpp")
-    arch_exe_file = os.path.join(terminal_dir, "run_arch_command.exe")
-    return arch_cpp_file, arch_exe_file, terminal_dir
-
-def compile_arch_cpp_with_vs(arch_cpp_file, arch_exe_file):
-    """
-    Kompiliert run_command.cpp mit cl.exe über die Visual Studio-Umgebung.
-    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
-    """
-    logging.info("Compile run_arch_command.cpp with Visual Studio C++...")
-    vcvarsall = find_vcvarsall()
-    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
-    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{arch_cpp_file}" /Fe:"{arch_exe_file}"'
-
-    result = subprocess.run(
-        command,
-        shell=True,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        errors="replace"
-    )
-
-    if result.returncode != 0:
-        logging.error("Compilation failed.")
-        logging.error(result.stdout)
-        logging.error(result.stderr)
-        return False
-
-    logging.info("Compilation successful.")
-    return True
-
 def run_arch_command(command):
     """
     Führt einen Linux-Befehl interaktiv über den C++-Wrapper aus.
@@ -1055,48 +1207,6 @@ def run_arch_command(command):
         logging.error(f"Command failed: {e}")
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
-
-# --- opensuse command---
-
-def get_project_paths_opensuse():
-    """
-    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
-    sowie die Pfade zur C++-Quelle und zur Executable.
-    """
-    username = getpass.getuser()
-    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
-    terminal_dir = os.path.join(base_dir, "mavis-terminal")
-    opensuse_cpp_file = os.path.join(terminal_dir, "run_opensuse_command.cpp")
-    opensuse_exe_file = os.path.join(terminal_dir, "run_opensuse_command.exe")
-    return opensuse_cpp_file, opensuse_exe_file, terminal_dir
-
-def compile_opensuse_cpp_with_vs(opensuse_cpp_file, opensuse_exe_file):
-    """
-    Kompiliert run_command.cpp mit cl.exe über die Visual Studio-Umgebung.
-    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
-    """
-    logging.info("Compile run_opensuse_command.cpp with Visual Studio C++...")
-    vcvarsall = find_vcvarsall()
-    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
-    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{opensuse_cpp_file}" /Fe:"{opensuse_exe_file}"'
-
-    result = subprocess.run(
-        command,
-        shell=True,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        errors="replace"
-    )
-
-    if result.returncode != 0:
-        logging.error("Compilation failed.")
-        logging.error(result.stdout)
-        logging.error(result.stderr)
-        return False
-
-    logging.info("Compilation successful.")
-    return True
 
 def run_opensuse_command(command):
     """
@@ -1131,48 +1241,6 @@ def run_opensuse_command(command):
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
 
-# --- mint command---
-
-def get_project_paths_mint():
-    """
-    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
-    sowie die Pfade zur C++-Quelle und zur Executable.
-    """
-    username = getpass.getuser()
-    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
-    terminal_dir = os.path.join(base_dir, "mavis-terminal")
-    mint_cpp_file = os.path.join(terminal_dir, "run_mint_command.cpp")
-    mint_exe_file = os.path.join(terminal_dir, "run_mint_command.exe")
-    return mint_cpp_file, mint_exe_file, terminal_dir
-
-def compile_mint_cpp_with_vs(mint_cpp_file, mint_exe_file):
-    """
-    Kompiliert run_mint_command.cpp mit cl.exe über die Visual Studio-Umgebung.
-    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
-    """
-    logging.info("Compile run_mint_command.cpp with Visual Studio C++...")
-    vcvarsall = find_vcvarsall()
-    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
-    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{mint_cpp_file}" /Fe:"{mint_exe_file}"'
-
-    result = subprocess.run(
-        command,
-        shell=True,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        errors="replace"
-    )
-
-    if result.returncode != 0:
-        logging.error("Compilation failed.")
-        logging.error(result.stdout)
-        logging.error(result.stderr)
-        return False
-
-    logging.info("Compilation successful.")
-    return True
-
 def run_mint_command(command):
     """
     Führt einen Linux-Befehl interaktiv über den C++-Wrapper aus.
@@ -1206,48 +1274,6 @@ def run_mint_command(command):
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
 
-# --- fedora command---
-
-def get_project_paths_fedora():
-    """
-    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
-    sowie die Pfade zur C++-Quelle und zur Executable.
-    """
-    username = getpass.getuser()
-    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
-    terminal_dir = os.path.join(base_dir, "mavis-terminal")
-    fedora_cpp_file = os.path.join(terminal_dir, "run_fedora_command.cpp")
-    fedora_exe_file = os.path.join(terminal_dir, "run_fedora_command.exe")
-    return fedora_cpp_file, fedora_exe_file, terminal_dir
-
-def compile_fedora_cpp_with_vs(fedora_cpp_file, fedora_exe_file):
-    """
-    Kompiliert run_fedora_command.cpp mit cl.exe über die Visual Studio-Umgebung.
-    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
-    """
-    logging.info("Compile run_fedora_command.cpp with Visual Studio C++...")
-    vcvarsall = find_vcvarsall()
-    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
-    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{fedora_cpp_file}" /Fe:"{fedora_exe_file}"'
-
-    result = subprocess.run(
-        command,
-        shell=True,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        errors="replace"
-    )
-
-    if result.returncode != 0:
-        logging.error("Compilation failed.")
-        logging.error(result.stdout)
-        logging.error(result.stderr)
-        return False
-
-    logging.info("Compilation successful.")
-    return True
-
 def run_fedora_command(command):
     """
     Führt einen Linux-Befehl interaktiv über den C++-Wrapper aus.
@@ -1280,48 +1306,6 @@ def run_fedora_command(command):
         logging.error(f"Command failed: {e}")
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
-
-# --- redhat command---
-
-def get_project_paths_redhat():
-    """
-    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
-    sowie die Pfade zur C++-Quelle und zur Executable.
-    """
-    username = getpass.getuser()
-    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
-    terminal_dir = os.path.join(base_dir, "mavis-terminal")
-    redhat_cpp_file = os.path.join(terminal_dir, "run_redhat_command.cpp")
-    redhat_exe_file = os.path.join(terminal_dir, "run_redhat_command.exe")
-    return redhat_cpp_file, redhat_exe_file, terminal_dir
-
-def compile_redhat_cpp_with_vs(redhat_cpp_file, redhat_exe_file):
-    """
-    Kompiliert run_redhat_command.cpp mit cl.exe über die Visual Studio-Umgebung.
-    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
-    """
-    logging.info("Compile run_redhat_command.cpp with Visual Studio C++...")
-    vcvarsall = find_vcvarsall()
-    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
-    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{redhat_cpp_file}" /Fe:"{redhat_exe_file}"'
-
-    result = subprocess.run(
-        command,
-        shell=True,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        errors="replace"
-    )
-
-    if result.returncode != 0:
-        logging.error("Compilation failed.")
-        logging.error(result.stdout)
-        logging.error(result.stderr)
-        return False
-
-    logging.info("Compilation successful.")
-    return True
 
 def run_redhat_command(command):
     """
@@ -1428,30 +1412,6 @@ def main():
                 else:
                     print(f"Executing the following command on Linux: {user_input}")
                     run_linux_command(user_input)
-
-            elif user_input.startswith("lx-cpp "):
-                user_input = user_input[7:].strip()
-                if not is_wsl_installed():
-                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
-                else:
-                    print(f"Executing the following command on Linux: {user_input}")
-                    run_linux_command(user_input)
-
-            elif user_input.startswith("lx-c "):
-                user_input = user_input[5:].strip()
-                if not is_wsl_installed():
-                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
-                else:
-                    print(f"Executing the following command on Linux: {user_input}")
-                    run_linux_command-c(user_input)
-
-            elif user_input.startswith("lx-r "):
-                user_input = user_input[5:].strip()
-                if not is_wsl_installed():
-                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
-                else:
-                    print(f"Executing the following command on Linux: {user_input}")
-                    run_linux_command-rust(user_input)
 
             elif user_input.startswith("linux "):
                 user_input = user_input[6:].strip()
