@@ -61,73 +61,121 @@
 #
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
-# !/usr/bin/env python3
-"""
-3D Slicer Launcher Script
-
-This professional script checks if the 3D Slicer executable is available
-and then launches it. It is assumed that after installation a symbolic link
-to 3D Slicer exists (e.g., at /usr/local/bin/slicer).
-
-Usage: Run the script directly:
-    python3 launch_3dslicer.py
-
-Author: Your Name
-Date: 2025-04-11
-License: MIT License
-"""
-
 import os
 import sys
 import shutil
 import subprocess
+import logging
+import argparse
+import string
+from ctypes import windll
+
+
+def get_all_drives():
+    drives = []
+    bitmask = windll.kernel32.GetLogicalDrives()
+    for letter in string.ascii_uppercase:
+        if bitmask & 1:
+            drives.append(letter + ":\\")
+        bitmask >>= 1
+    return drives
+
+
+def search_entire_pc(filename):
+    drives = get_all_drives()
+    logging.info(f"Searching for {filename} on all drives: {drives}")
+    for drive in drives:
+        for root, dirs, files in os.walk(drive, topdown=True):
+            if filename in files:
+                found_path = os.path.join(root, filename)
+                logging.info(f"Found {filename} at {found_path}")
+                return found_path
+    return None
 
 
 def find_slicer_executable():
-    """
-    Search for the 3D Slicer executable in the system PATH.
-    Returns the path if found, otherwise None.
-    """
-    slicer_path = shutil.which("slicer")
+    # 1. Check the default installation path:
+    try:
+        username = os.getlogin()
+    except Exception as e:
+        logging.error(f"Unable to determine the username: {e}")
+        sys.exit(1)
+
+    default_path = rf"C:\Users\{username}\AppData\Local\slicer.org\Slicer 5.6.2\Slicer.exe"
+    if os.path.isfile(default_path):
+        logging.info(f"Found 3D Slicer at default location: {default_path}")
+        return default_path
+
+    # 2. Check if Slicer.exe is in the PATH.
+    slicer_path = shutil.which("slicer.exe")
+    if slicer_path is None:
+        slicer_path = shutil.which("slicer")
+    if slicer_path:
+        logging.info(f"Found 3D Slicer via PATH: {slicer_path}")
+        return slicer_path
+
+    # 3. Perform full PC search.
+    logging.info("3D Slicer not found in default location or PATH. Starting full PC search. This may take a while...")
+    slicer_path = search_entire_pc("Slicer.exe")
     return slicer_path
 
 
-def launch_slicer(slicer_executable):
-    """
-    Launch 3D Slicer using the given executable path.
+def launch_slicer(slicer_executable, slicer_args):
+    command = [slicer_executable] + slicer_args
+    logging.info(f"Launching 3D Slicer with command: {command}")
 
-    Parameters:
-        slicer_executable (str): The full path to the 3D Slicer executable.
-
-    Returns when 3D Slicer terminates.
-    """
-    print(f"Launching 3D Slicer from: {slicer_executable}")
     try:
-        # You can add additional command line arguments to the command list if needed.
-        # For example: command = [slicer_executable, "--some-flag", "value"]
-        command = [slicer_executable]
-        # Running slicer and waiting for it to exit.
         subprocess.run(command, check=True)
+    except subprocess.TimeoutExpired:
+        logging.error("Error: 3D Slicer launch timed out.")
+        sys.exit(1)
     except subprocess.CalledProcessError as error:
-        print("Error: 3D Slicer did not exit normally.")
-        print(f"Details: {error}")
+        logging.error(f"Error: 3D Slicer exited with an error.\nDetails: {error}")
         sys.exit(1)
     except KeyboardInterrupt:
-        print("Execution interrupted by the user.")
+        logging.info("Execution interrupted by the user.")
         sys.exit(0)
+    except Exception as e:
+        logging.error(f"Unexpected error occurred: {e}")
+        sys.exit(1)
+
+
+def parse_arguments():
+    parser = argparse.ArgumentParser(
+        description="Launcher script for 3D Slicer on Windows. "
+                    "Attempts to run Slicer from the default location first, then searches the entire PC if not found."
+    )
+    parser.add_argument(
+        "slicer_args",
+        nargs=argparse.REMAINDER,
+        help="Optional arguments to pass directly to 3D Slicer."
+    )
+    return parser.parse_args()
 
 
 def main():
-    # Find the Slicer executable
-    slicer_executable = find_slicer_executable()
-    if not slicer_executable:
-        print("Error: 3D Slicer executable not found in your PATH.")
-        print("Please ensure that 3D Slicer is installed and that a symbolic link "
-              "to the executable (typically 'slicer') exists in /usr/local/bin or your PATH.")
+    # Configure logging with timestamped messages.
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+
+    # Ensure the script is executed on Windows.
+    if os.name != "nt":
+        logging.error("This launcher script is intended to run on Windows.")
         sys.exit(1)
 
-    # Launch 3D Slicer
-    launch_slicer(slicer_executable)
+    # Parse command-line arguments.
+    args = parse_arguments()
+
+    # Locate the 3D Slicer executable.
+    slicer_executable = find_slicer_executable()
+    if not slicer_executable:
+        logging.error("Error: 3D Slicer executable (Slicer.exe) not found on your system.")
+        logging.error("Please ensure that 3D Slicer is installed.")
+        sys.exit(1)
+
+    logging.info(f"Using 3D Slicer executable at: {slicer_executable}")
+
+    # Launch 3D Slicer with any provided additional arguments.
+    launch_slicer(slicer_executable, args.slicer_args)
 
 
 if __name__ == '__main__':
