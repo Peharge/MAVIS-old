@@ -2263,7 +2263,7 @@ def run_redhat_c_command(command):
 
 # --- redhat-p command---
 
-def run_redhat_redhat_command(command):
+def run_redhat_python_command(command):
     if isinstance(command, str):
         command = f"wsl -d RedHat {command}"
 

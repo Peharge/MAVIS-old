@@ -2506,7 +2506,7 @@ def main():
                 else:
                     print(f"Executing the following command on openSUSE: {user_input}")
                     run_opensuse_c_command(user_input)
-                    
+
             elif user_input.startswith("openSUSE-p "):
                 user_input = user_input[11:].strip()  # Remove the "openSUSE " prefix
                 if not is_wsl_installed():
@@ -2530,7 +2530,7 @@ def main():
                 else:
                     print(f"Executing the following command on openSUSE: {user_input}")
                     run_mint_c_command(user_input)
-                    
+
             elif user_input.startswith("mint-p "):
                 user_input = user_input[7:].strip()  # Remove the "mint " prefix
                 if not is_wsl_installed():
