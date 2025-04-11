@@ -91,6 +91,7 @@ C:\Users\julia\PycharmProjects\MAVIS\mavis-terminal-5.py:111: DeprecationWarning
 
       ██╗     █╗
      ████╗   ███╗        ███╗   ███╗ █████╗ ██╗   ██╗██╗███████╗
+    ██████╗  ████╗       ████╗ ████║██╔══██╗██║   ██║██║██╔════╝
    ████████╗  ████╗      ██╔████╔██║███████║██║   ██║██║███████╗
   ████╔█████╗  ████╗     ██║╚██╔╝██║██╔══██║╚██╗ ██╔╝██║╚════██║
  ████╔╝ █████╗  ████╗    ██║ ╚═╝ ██║██║  ██║ ╚████╔╝ ██║███████║
@@ -114,9 +115,8 @@ MAVIS Launcher Version: 4
 MAVIS Terminal Version: 5
 MAVIS License: MIT
 
-
-
-
+████████
+████████
 
 ┌──(julia㉿MAVIS)-[C:\Users\julia\PycharmProjects\MAVIS]-[.env]
 └─#

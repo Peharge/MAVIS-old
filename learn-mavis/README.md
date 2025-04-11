@@ -10,8 +10,8 @@
 
 - [Install MAVIS](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/installation.md)
 - [Using MAVIS Installer + UI](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/using-mavis-4-en.md)
-- [Using MAVIS Terminal 4](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/learn-mavis-terminal-4.md)
-  - [Problems with MAVIS Terminal 4](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/learn-mavis-terminal-4.md#problems-with-installing-the-mavis-terminal)
+- [Using MAVIS Terminal 5](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/learn-mavis-terminal-5.md)
+  - [Problems with MAVIS Terminal 5](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/learn-mavis-terminal-5.md#problems-with-installing-the-mavis-terminal)
 - [Learn Prompting](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/prompting.md)
 - [Latex Formula Collection](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/Latex-info.md)
 - [Matplotlib Formula Collection](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/using-matplotlib.rst)
