@@ -102,7 +102,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 >  
 > **MAVIS** (_Math Visual Intelligent System_) is a powerful AI-powered assistant that can solve complex math problems, generate precise visualizations, and explain abstract concepts with clarity. It supports analysis of multiple input formats — including **images (PNG, JPG, JPEG, GIF)** and **text/code documents (TXT, PY, DOC, DOCX)** — and returns **interactive, insightful answers** in real time.
 >  
-> MAVIS was created with one goal: to make advanced mathematical and scientific tools accessible to everyone — no paywalls, no licenses, no limits. It’s completely **free**, **open to contributions**, and developed for the **good of humanity**.
+> MAVIS was created with one goal: to make advanced mathematical and scientific tools accessible to everyone — no paywalls, no limits. It’s completely **free**, **open to contributions**, and developed for the **good of humanity**.
 >  
 > ---
 > To get the most out of MAVIS, keep in mind:
@@ -126,7 +126,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 >
 > **MAVIS** (_Math Visual Intelligent System_) ist ein leistungsstarker KI-gestützter Assistent, der komplexe mathematische Probleme lösen, präzise Visualisierungen erstellen und abstrakte Konzepte verständlich erklären kann. Er unterstützt die Analyse verschiedener Eingabeformate – darunter **Bilder (PNG, JPG, JPEG, GIF)** und **Text-/Code-Dokumente (TXT, PY, DOC, DOCX)** – und liefert **interaktive, aufschlussreiche Antworten** in Echtzeit.
 >
-> MAVIS wurde mit einem Ziel entwickelt: fortschrittliche mathematische und wissenschaftliche Werkzeuge für alle zugänglich zu machen – ohne Paywalls, ohne Lizenzen, ohne Einschränkungen. Es ist völlig **kostenlos**, **offen für Beiträge** und wird zum **Wohl der Menschheit** entwickelt.
+> MAVIS wurde mit einem Ziel entwickelt: fortschrittliche mathematische und wissenschaftliche Werkzeuge für alle zugänglich zu machen – ohne Paywalls, ohne Einschränkungen. Es ist völlig **kostenlos**, **offen für Beiträge** und wird zum **Wohl der Menschheit** entwickelt.
 >
 > ---
 > Um MAVIS optimal zu nutzen, beachten Sie:
