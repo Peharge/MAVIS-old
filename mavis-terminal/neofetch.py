@@ -276,19 +276,19 @@ def print_system_info(system_info: dict):
 {blue}                ===========           +++++******                   {reset}{blue}MAVIS License{reset}: MIT
 {blue}               =============         ++++++*******                  {reset}{blue}OS{reset}: {system_info['os_name']} {system_info['os_release']}
 {blue}              ===============       #*+++++********                 {reset}{blue}Version{reset}: {system_info['os_version']}
-{blue}             =================     %#*++++*********#                {reset}{blue}Architecture{reset}: {system_info['os_arch']}
-{blue}            ===================     %#*+++*******####               {reset}{blue}Hostname{reset}: {system_info['hostname']}
-{blue}           =====================     %#*+********#####              {reset}{blue}IP Address{reset}: {system_info['ip_address']}
-{blue}          ======================+     %#********#######             {reset}{blue}CPU{reset}: {system_info['cpu_model']}
-{blue}         +=====================+++     %#*******########            {reset}{blue}Architecture{reset}: {system_info['cpu_arch']}
-{blue}        +++++================++++++     %#*****##########           {reset}{blue}Max Frequency{reset}: {system_info['cpu_freq']} MHz
-{blue}       *++++++++++++++++++++++++++++     %#****###########          {reset}{blue}RAM Usage{reset}: {system_info['ram_usage']}%
-{blue}      ***++++++++++++++++++++++++++++     %#*##############         {reset}{blue}RAM Total{reset}: {system_info['ram_total']} GB
-{blue}     ****+++++++++++*%++++++++++++*+++     %###############%        {reset}{blue}PIP Version{reset}: {pip.__version__}
-{blue}    ********++++++*%  +++++++**********     %#############%%%       {reset}{blue}PowerShell-Version{reset}: {get_powershell_version()}
-{blue}   ***************%    ****************#     %############%%%%      {reset}{blue}WSL-Version{reset}: {get_wsl_version()}
-{blue}  ###***********#%      *************####     %##########%%%%%%     {reset}{blue}Kernelversion{reset}: {get_kernel_version()}
-{blue} ########******#%        **********#######     %########%%%%%%%%    {reset}{blue}WSLg-Version{reset}: {get_wslg_version()}
+{blue}             =================     ##*++++*********#                {reset}{blue}Architecture{reset}: {system_info['os_arch']}
+{blue}            ===================     ##*+++*******####               {reset}{blue}Hostname{reset}: {system_info['hostname']}
+{blue}           =====================     ##*+********#####              {reset}{blue}IP Address{reset}: {system_info['ip_address']}
+{blue}          ======================+     ##********#######             {reset}{blue}CPU{reset}: {system_info['cpu_model']}
+{blue}         +=====================+++     ##*******########            {reset}{blue}Architecture{reset}: {system_info['cpu_arch']}
+{blue}        +++++================++++++     ##*****##########           {reset}{blue}Max Frequency{reset}: {system_info['cpu_freq']} MHz
+{blue}       *++++++++++++++++++++++++++++     ##****###########          {reset}{blue}RAM Usage{reset}: {system_info['ram_usage']}%
+{blue}      ***++++++++++++++++++++++++++++     ##*##############         {reset}{blue}RAM Total{reset}: {system_info['ram_total']} GB
+{blue}     ****+++++++++++**++++++++++++*+++     ################%        {reset}{blue}PIP Version{reset}: {pip.__version__}
+{blue}    ********+++++*##  +++++++**********     ##############%%%       {reset}{blue}PowerShell-Version{reset}: {get_powershell_version()}
+{blue}   *************###    ****************#     #############%%%%      {reset}{blue}WSL-Version{reset}: {get_wsl_version()}
+{blue}  ####********####      *************####     ###########%%%%%%     {reset}{blue}Kernelversion{reset}: {get_kernel_version()}
+{blue} ################        **********#######     #########%%%%%%%%    {reset}{blue}WSLg-Version{reset}: {get_wslg_version()}
 {blue}                          ***############                           {reset}{blue}MSRDC-Version{reset}: {get_msrpc_version()}
 {blue}                           *############                            {reset}{blue}Direct3D-Version{reset}: {get_direct3d_version()}
 {blue}                            ###########                             {reset}{blue}DXCore-Version{reset}: {get_dxcore_version()}
