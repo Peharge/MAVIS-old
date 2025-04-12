@@ -81,7 +81,7 @@ def get_user_input():
     try:
         print("\nSecurity check Information:")
         print("---------------------------")
-        user_input = input(f"Do you want to perform a security check on Windows? [y/n]:").strip().lower()
+        user_input = input(f"Do you want to perform a security check on Windows - dont work jet!!!? [y/n]:").strip().lower()
         return user_input
     except (EOFError, KeyboardInterrupt):
         print(f"{red}{bold}\nInput interrupted. Exiting the program.{reset}")
