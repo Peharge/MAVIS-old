@@ -67,80 +67,144 @@
    Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 */
 
-#include <windows.h>
-#include <shellapi.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <windows.h>
 
-#pragma comment(lib, "shell32.lib")
+// Hilfsfunktion zur Fehlerausgabe mit GetLastError-Code
+void printError(const char* msg) {
+    fprintf(stderr, "[ERROR] %s Fehlercode: %lu\n", msg, GetLastError());
+}
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
     if (argc < 2) {
-        fprintf(stderr, "[ERROR] No command specified.\n");
+        fprintf(stderr, "[ERROR] Kein Befehl angegeben.\n");
+        printf("\nDrücken Sie eine beliebige Taste, um zu beenden...\n");
+        system("pause");
         return 1;
     }
 
-    // Kommandozeile für PowerShell-Befehl bauen
+    // Gesamtlänge des Befehls aus den Programmparametern ermitteln
     size_t totalLen = 0;
-    for (int i = 1; i < argc; ++i) {
-        totalLen += strlen(argv[i]) + 3; // Für Anführungszeichen und Leerzeichen
+    for (int i = 1; i < argc; i++) {
+        totalLen += strlen(argv[i]) + 1; // +1 für das Leerzeichen oder Nullterminator
     }
 
-    char* psCommand = (char*)malloc(totalLen + 1);
-    if (!psCommand) {
-        fprintf(stderr, "[ERROR] Memory allocation failed.\n");
+    // Präfix, damit cmd.exe den Befehl ausführt
+    const char *prefix = "cmd.exe /c ";
+    size_t prefixLen = strlen(prefix);
+
+    // Dynamisch genügend Speicher reservieren
+    char *cmdLine = (char *)malloc(prefixLen + totalLen + 1);
+    if (cmdLine == NULL) {
+        printError("Speicherallokation fehlgeschlagen");
         return 1;
     }
 
-    psCommand[0] = '\0';
-    for (int i = 1; i < argc; ++i) {
-        strcat(psCommand, "\"");
-        strcat(psCommand, argv[i]);
-        strcat(psCommand, "\" ");
+    // Befehlskette aufbauen: "cmd.exe /c <Befehl>"
+    strcpy(cmdLine, prefix);
+    for (int i = 1; i < argc; i++) {
+        strcat(cmdLine, argv[i]);
+        if (i < argc - 1) {
+            strcat(cmdLine, " ");
+        }
     }
 
-    // Komplette Parameterzeile vorbereiten
-    const char* prefix = "-NoProfile -ExecutionPolicy Bypass -Command ";
-    size_t parametersLen = strlen(prefix) + strlen(psCommand) + 1;
+    // Sicherheitsattribute für die Pipe erstellen
+    SECURITY_ATTRIBUTES sa;
+    sa.nLength = sizeof(SECURITY_ATTRIBUTES);
+    sa.lpSecurityDescriptor = NULL;
+    sa.bInheritHandle = TRUE;  // Erlaubt die Vererbung an Kindprozesse
 
-    char* parameters = (char*)malloc(parametersLen);
-    if (!parameters) {
-        fprintf(stderr, "[ERROR] Memory allocation failed.\n");
-        free(psCommand);
+    // Pipe für die Ausgabe des Kindprozesses erstellen
+    HANDLE hStdOutRead = NULL, hStdOutWrite = NULL;
+    if (!CreatePipe(&hStdOutRead, &hStdOutWrite, &sa, 0)) {
+        printError("CreatePipe fehlgeschlagen");
+        free(cmdLine);
+        printf("\nDrücken Sie eine beliebige Taste, um zu beenden...\n");
+        system("pause");
         return 1;
     }
 
-    strcpy(parameters, prefix);
-    strcat(parameters, psCommand);
-    free(psCommand);
-
-    // SHELLEXECUTEINFOA Struktur initialisieren
-    SHELLEXECUTEINFOA sei;
-    ZeroMemory(&sei, sizeof(sei));
-    sei.cbSize = sizeof(SHELLEXECUTEINFOA);
-    sei.fMask = SEE_MASK_NOCLOSEPROCESS;
-    sei.hwnd = NULL;
-    sei.lpVerb = "runas";                  // Start as administrator
-    sei.lpFile = "powershell.exe";
-    sei.lpParameters = parameters;
-    sei.nShow = SW_SHOWDEFAULT;
-
-    if (!ShellExecuteExA(&sei)) {
-        DWORD errorCode = GetLastError();
-        fprintf(stderr, "[ERROR] Process start failed. Error code: %lu\n", errorCode);
-        free(parameters);
+    // Den Lese-Handle so einstellen, dass er nicht vererbt wird
+    if (!SetHandleInformation(hStdOutRead, HANDLE_FLAG_INHERIT, 0)) {
+        printError("SetHandleInformation fehlgeschlagen");
+        CloseHandle(hStdOutRead);
+        CloseHandle(hStdOutWrite);
+        free(cmdLine);
+        printf("\nDrücken Sie eine beliebige Taste, um zu beenden...\n");
+        system("pause");
         return 1;
     }
 
-    // Auf Prozess warten
-    WaitForSingleObject(sei.hProcess, INFINITE);
+    // STARTUPINFOA konfigurieren, damit der Kindprozess unsere Pipe als Standardausgabe erhält
+    STARTUPINFOA si;
+    ZeroMemory(&si, sizeof(si));
+    si.cb = sizeof(si);
+    si.dwFlags |= STARTF_USESTDHANDLES;
+    si.hStdOutput = hStdOutWrite;
+    si.hStdError  = hStdOutWrite;
 
-    DWORD exitCode = 0;
-    GetExitCodeProcess(sei.hProcess, &exitCode);
+    PROCESS_INFORMATION pi;
+    ZeroMemory(&pi, sizeof(pi));
 
-    CloseHandle(sei.hProcess);
-    free(parameters);
+    // Kindprozess erstellen
+    if (!CreateProcessA(
+            NULL,
+            cmdLine,   // modifizierbarer String (muss beschreibbar sein)
+            NULL,
+            NULL,
+            TRUE,      // Handles vererben erlauben
+            0,
+            NULL,
+            NULL,
+            &si,
+            &pi)) {
+        printError("CreateProcess fehlgeschlagen");
+        CloseHandle(hStdOutRead);
+        CloseHandle(hStdOutWrite);
+        free(cmdLine);
+        printf("\nDrücken Sie eine beliebige Taste, um zu beenden...\n");
+        system("pause");
+        return 1;
+    }
+
+    // Schreibenden Teil der Pipe im Elternprozess schließen
+    CloseHandle(hStdOutWrite);
+
+    // Ausgabe des Kindprozesses über die Pipe lesen und in die Konsole schreiben
+    char buffer[4096];
+    DWORD bytesRead;
+    while (1) {
+        BOOL success = ReadFile(hStdOutRead, buffer, sizeof(buffer) - 1, &bytesRead, NULL);
+        if (!success || bytesRead == 0) {
+            break;
+        }
+        buffer[bytesRead] = '\0';
+        printf("%s", buffer);
+    }
+
+    // Warten, bis der Kindprozess beendet wird
+    WaitForSingleObject(pi.hProcess, INFINITE);
+
+    DWORD exitCode;
+    if (GetExitCodeProcess(pi.hProcess, &exitCode) == 0) {
+        printError("GetExitCodeProcess fehlgeschlagen");
+    } else {
+        printf("\nProzess beendete mit Exit-Code: %lu\n", exitCode);
+    }
+
+    // Alle Handles freigeben
+    CloseHandle(hStdOutRead);
+    CloseHandle(pi.hProcess);
+    CloseHandle(pi.hThread);
+
+    free(cmdLine);
+
+    // Terminal offen halten, damit der Benutzer die Ausgabe lesen kann
+    printf("\nDrücken Sie eine beliebige Taste, um zu beenden...\n");
+    system("pause");
 
     return (int)exitCode;
 }

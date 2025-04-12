@@ -68,64 +68,105 @@
 */
 
 use std::env;
-use std::ffi::{CString, OsStr};
-use std::os::windows::ffi::OsStrExt;
-use std::ptr;
-use windows_sys::Win32::Foundation::*;
-use windows_sys::Win32::Shell::*;
-use windows_sys::Win32::System::Threading::*;
-use windows_sys::Win32::UI::WindowsAndMessaging::*;
+use std::io::{self, BufReader, Read, Write};
+use std::process::{Command, Stdio};
+use std::thread;
 
 fn main() {
+    // Kommandozeilenargumente einlesen
     let args: Vec<String> = env::args().collect();
-
     if args.len() < 2 {
-        eprintln!("[ERROR] No command specified.");
+        eprintln!("[ERROR] Kein Befehl angegeben.");
+        println!("\nDrücken Sie eine beliebige Taste, um zu beenden...");
+        wait_for_enter();
         std::process::exit(1);
     }
 
-    // PowerShell-Befehl zusammenbauen
-    let mut ps_command = String::new();
-    for arg in &args[1..] {
-        ps_command.push('"');
-        ps_command.push_str(arg);
-        ps_command.push_str("\" ");
-    }
+    // Befehl aus den Argumenten zusammenfügen
+    let command = args[1..].join(" ");
 
-    let parameters = format!("-NoProfile -ExecutionPolicy Bypass -Command {}", ps_command);
+    // Kindprozess starten: cmd.exe /c <Befehl>
+    // Wir leiten Standardausgabe (stdout) und Fehlerausgabe (stderr) in Pipes um.
+    let mut child = match Command::new("cmd.exe")
+        .args(&["/c", &command])
+        .stdout(Stdio::piped())
+        .stderr(Stdio::piped())
+        .spawn() {
+            Err(e) => {
+                eprintln!("[ERROR] CreateProcess fehlgeschlagen: {}", e);
+                println!("\nDrücken Sie eine beliebige Taste, um zu beenden...");
+                wait_for_enter();
+                std::process::exit(1);
+            }
+            Ok(child) => child,
+        };
 
-    // Konvertiere Rust-Strings zu null-terminierten UTF-16-WideStrings (für Windows-API)
-    let file = widestring("powershell.exe");
-    let verb = widestring("runas");
-    let params = widestring(&parameters);
+    // Auslesen der Standardausgabe (stdout) in einem eigenen Thread
+    let stdout_handle = {
+        let stdout = child.stdout.take().expect("Kein Handle für stdout");
+        thread::spawn(move || {
+            let mut reader = BufReader::new(stdout);
+            let mut buffer = [0u8; 4096];
+            loop {
+                match reader.read(&mut buffer) {
+                    Ok(0) => break,
+                    Ok(n) => {
+                        // Ausgabe direkt an stdout weiterleiten
+                        print!("{}", String::from_utf8_lossy(&buffer[..n]));
+                        io::stdout().flush().unwrap();
+                    },
+                    Err(e) => {
+                        eprintln!("[ERROR] Fehler beim Lesen der stdout: {}", e);
+                        break;
+                    }
+                }
+            }
+        })
+    };
 
-    let mut sei: SHELLEXECUTEINFOW = unsafe { std::mem::zeroed() };
-    sei.cbSize = std::mem::size_of::<SHELLEXECUTEINFOW>() as u32;
-    sei.fMask = SEE_MASK_NOCLOSEPROCESS;
-    sei.lpVerb = verb.as_ptr();
-    sei.lpFile = file.as_ptr();
-    sei.lpParameters = params.as_ptr();
-    sei.nShow = SW_SHOWDEFAULT;
+    // Auslesen der Fehlerausgabe (stderr) in einem separaten Thread
+    let stderr_handle = {
+        let stderr = child.stderr.take().expect("Kein Handle für stderr");
+        thread::spawn(move || {
+            let mut reader = BufReader::new(stderr);
+            let mut buffer = [0u8; 4096];
+            loop {
+                match reader.read(&mut buffer) {
+                    Ok(0) => break,
+                    Ok(n) => {
+                        // Fehlerausgabe direkt an stderr weiterleiten
+                        eprint!("{}", String::from_utf8_lossy(&buffer[..n]));
+                        io::stderr().flush().unwrap();
+                    },
+                    Err(e) => {
+                        eprintln!("[ERROR] Fehler beim Lesen der stderr: {}", e);
+                        break;
+                    }
+                }
+            }
+        })
+    };
 
-    let success = unsafe { ShellExecuteExW(&mut sei) };
-    if success == 0 {
-        let error_code = unsafe { GetLastError() };
-        eprintln!("[ERROR] Process start failed. Error code: {}", error_code);
-        std::process::exit(1);
-    }
+    // Warten, bis der Kindprozess beendet wird
+    let exit_status = match child.wait() {
+        Ok(status) => status.code().unwrap_or(-1),
+        Err(e) => {
+            eprintln!("[ERROR] Fehler beim Warten auf den Kindprozess: {}", e);
+            -1
+        }
+    };
 
-    unsafe {
-        WaitForSingleObject(sei.hProcess, INFINITE);
+    // Auf die Beendigung der Auslesethreads warten
+    let _ = stdout_handle.join();
+    let _ = stderr_handle.join();
 
-        let mut exit_code: u32 = 0;
-        GetExitCodeProcess(sei.hProcess, &mut exit_code);
-        CloseHandle(sei.hProcess);
-
-        std::process::exit(exit_code as i32);
-    }
+    println!("\nProzess beendete mit Exit-Code: {}", exit_status);
+    println!("\nDrücken Sie eine beliebige Taste, um zu beenden...");
+    wait_for_enter();
 }
 
-/// Hilfsfunktion: Wandelt &str in nullterminierten UTF-16 WideString
-fn widestring(s: &str) -> Vec<u16> {
-    OsStr::new(s).encode_wide().chain(std::iter::once(0)).collect()
+/// Liest eine Zeile von der Standardeingabe, um das Programm anzuhalten.
+fn wait_for_enter() {
+    let mut dummy = String::new();
+    let _ = io::stdin().read_line(&mut dummy);
 }

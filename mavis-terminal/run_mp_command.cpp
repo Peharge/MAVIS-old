@@ -69,58 +69,125 @@
 
 #include <iostream>
 #include <windows.h>
-#include <vector>
 #include <string>
+
+// Hilfsfunktion zur Fehlerausgabe inklusive GetLastError-Code
+void printError(const std::string& msg) {
+    std::cerr << "[ERROR] " << msg << " Fehlercode: " << GetLastError() << std::endl;
+}
 
 int main(int argc, char* argv[]) {
     if (argc < 2) {
-        std::cerr << "[ERROR] No command specified.\n";
+        std::cerr << "[ERROR] Kein Befehl angegeben.\n";
+        std::cout << "\nDrücken Sie eine beliebige Taste, um zu beenden..." << std::endl;
+        system("pause");
         return 1;
     }
 
+    // Befehl aus den Programmparametern zusammensetzen
     std::string command;
     for (int i = 1; i < argc; ++i) {
-        if (i > 1) command += " ";
+        if (i > 1) {
+            command += " ";
+        }
         command += argv[i];
     }
 
-    // Pipe-Ausgabe
-    SECURITY_ATTRIBUTES sa = { sizeof(SECURITY_ATTRIBUTES), NULL, TRUE };
-    HANDLE hStdOutRead, hStdOutWrite;
-    CreatePipe(&hStdOutRead, &hStdOutWrite, &sa, 0);
-    SetHandleInformation(hStdOutRead, HANDLE_FLAG_INHERIT, 0);
+    // Sicherheitsattribute für den Pipe-Handle
+    SECURITY_ATTRIBUTES sa;
+    sa.nLength = sizeof(SECURITY_ATTRIBUTES);
+    sa.bInheritHandle = TRUE;  // Erlaubt Vererbung an untergeordnete Prozesse
+    sa.lpSecurityDescriptor = NULL;
 
-    PROCESS_INFORMATION pi;
-    STARTUPINFOA si = { sizeof(si) };
-    si.dwFlags |= STARTF_USESTDHANDLES;
-    si.hStdOutput = hStdOutWrite;
-    si.hStdError  = hStdOutWrite;
-
-    std::string cmdLine = "cmd.exe /c " + command;
-
-    if (!CreateProcessA(NULL, &cmdLine[0], NULL, NULL, TRUE, 0, NULL, NULL, &si, &pi)) {
-        std::cerr << "[ERROR] Failed to start process: " << GetLastError() << std::endl;
+    // Pipe für die Ausgabe des Kindprozesses erstellen
+    HANDLE hStdOutRead = NULL, hStdOutWrite = NULL;
+    if (!CreatePipe(&hStdOutRead, &hStdOutWrite, &sa, 0)) {
+        printError("Pipe konnte nicht erstellt werden.");
+        std::cout << "\nDrücken Sie eine beliebige Taste, um zu beenden..." << std::endl;
+        system("pause");
         return 1;
     }
 
-    CloseHandle(hStdOutWrite); // Writeseite schließen (wird vom Child verwendet)
+    // Den Lese-Handle vom Kindprozess unzugänglich machen (d.h. er soll nicht erben)
+    if (!SetHandleInformation(hStdOutRead, HANDLE_FLAG_INHERIT, 0)) {
+        printError("SetHandleInformation schlug fehl.");
+        CloseHandle(hStdOutRead);
+        CloseHandle(hStdOutWrite);
+        std::cout << "\nDrücken Sie eine beliebige Taste, um zu beenden..." << std::endl;
+        system("pause");
+        return 1;
+    }
 
-    // Output lesen
+    // STARTUPINFOA konfigurieren, damit der Kindprozess unseren Pipe-Handle nutzt
+    STARTUPINFOA si;
+    ZeroMemory(&si, sizeof(si));
+    si.cb = sizeof(si);
+    si.dwFlags |= STARTF_USESTDHANDLES;
+    si.hStdOutput = hStdOutWrite;
+    si.hStdError = hStdOutWrite;
+
+    PROCESS_INFORMATION pi;
+    ZeroMemory(&pi, sizeof(pi));
+
+    // Erstellen der Befehlszeile: "cmd.exe /c <Befehl>" führt den Befehl aus,
+    // /c sorgt dafür, dass cmd.exe nach Ausführung beendet wird (danach wird über system("pause") das Fenster offen gehalten)
+    std::string cmdLine = "cmd.exe /c " + command;
+
+    // Kindprozess erstellen
+    if (!CreateProcessA(
+            NULL,
+            &cmdLine[0], // modifizierbarer String
+            NULL,
+            NULL,
+            TRUE,       // Handles vererben
+            0,
+            NULL,
+            NULL,
+            &si,
+            &pi)) {
+        printError("Kindprozess konnte nicht gestartet werden.");
+        CloseHandle(hStdOutRead);
+        CloseHandle(hStdOutWrite);
+        std::cout << "\nDrücken Sie eine beliebige Taste, um zu beenden..." << std::endl;
+        system("pause");
+        return 1;
+    }
+
+    // Schreibende Seite der Pipe kann im Elternprozess geschlossen werden,
+    // da sie vom Kindprozess benötigt wurde und nun seine Ausgabe an den Lese-Handle gesendet wird.
+    CloseHandle(hStdOutWrite);
+
+    // Ausgabe des Kindprozesses lesen und an die Konsole weiterleiten
     char buffer[4096];
-    DWORD bytesRead;
-    while (ReadFile(hStdOutRead, buffer, sizeof(buffer)-1, &bytesRead, NULL)) {
-        if (bytesRead == 0) break;
+    DWORD bytesRead = 0;
+    while (true) {
+        BOOL success = ReadFile(hStdOutRead, buffer, sizeof(buffer) - 1, &bytesRead, NULL);
+        if (!success || bytesRead == 0) {
+            break;
+        }
         buffer[bytesRead] = '\0';
         std::cout << buffer;
     }
 
+    // Warten auf den Abschluss des Kindprozesses (bei /c wird er nun beendet sein)
     WaitForSingleObject(pi.hProcess, INFINITE);
-    DWORD exitCode;
-    GetExitCodeProcess(pi.hProcess, &exitCode);
 
+    // Optional: Exit-Code des Kindprozesses ermitteln (für weiterführende Logik oder Fehleranalyse)
+    DWORD exitCode;
+    if (GetExitCodeProcess(pi.hProcess, &exitCode) == 0) {
+        printError("Exit-Code konnte nicht ermittelt werden.");
+    } else {
+        std::cout << "\nProzess beendete mit Exit-Code: " << exitCode << std::endl;
+    }
+
+    // Handles freigeben
     CloseHandle(hStdOutRead);
     CloseHandle(pi.hProcess);
     CloseHandle(pi.hThread);
+
+    // Terminal offen halten, damit der Benutzer die Ausgabe lesen kann
+    std::cout << "\nDrücken Sie eine beliebige Taste, um zu beenden..." << std::endl;
+    system("pause");
 
     return static_cast<int>(exitCode);
 }
