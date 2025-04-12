@@ -98,37 +98,50 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 </details>
 
 > [!TIP]
-> MAVIS is an AI-driven application that allows you to analyze visual data such as images formats: PNG, JPG, JPEG, GIF, Text, PNG, Py, doc and docx and generate interactive answers based on them. With MAVIS you can perform complex mathematical calculations, solve programming tasks and create professional graphics.
+> **Meet MAVIS – your free and open-source math sidekick, built for the benefit of all.**  
+>  
+> **MAVIS** (_Math Visual Intelligent System_) is a powerful AI-powered assistant that can solve complex math problems, generate precise visualizations, and explain abstract concepts with clarity. It supports analysis of multiple input formats — including **images (PNG, JPG, JPEG, GIF)** and **text/code documents (TXT, PY, DOC, DOCX)** — and returns **interactive, insightful answers** in real time.
+>  
+> MAVIS was created with one goal: to make advanced mathematical and scientific tools accessible to everyone — no paywalls, no licenses, no limits. It’s completely **free**, **open to contributions**, and developed for the **good of humanity**.
+>  
+> ---
+> To get the most out of MAVIS, keep in mind:
 > 
-> To achieve optimal results, please note the following:
+> - Always use **LaTeX** to format formulas clearly and professionally.
+> - All code should be written in **Python**, the only supported language in the current UI.
+> - For visualizations, ask MAVIS to use:  
+>   **Matplotlib**, **Plotly**, **Seaborn**, or **Altair** — the UI supports rendering via **HTML**, **LaTeX**, and **Python 3.12**.
+> - Available scientific libraries include:  
+>   `NumPy`, `Math`, `SymPy`, `Pandas`, `AstroPy`, `QuantLib`, `OpenMDAO`, `pybullet`, `MONAI`  
+>   *(and soon: PyTorch, TensorFlow, Keras, Scikit-Learn, Hugging Face Transformers, JAX, and more).*
 > 
-> - Always display formulas in LaTeX to ensure precise and attractive formatting.
-> 
-> 
-> - Ask MAVIS to always write code in Python, as this is the only language supported by the user interface.
-> 
-> 
-> - Ask MAVIS to create graphics using Matplotlib, Plotly, Seaborn and Altair, as the user interface only supports HTML, LaTeX and Python (version 3.12 with the frameworks Matplotlib, Plotly, Seaborn, Altair, NumPy, Math, SymPy, Pandas, AstroPy, QuantLib, OpenMDAO, pybullet, MONAI (if needed soon: PyTorch, TensorFlow, Keras, Scikit-Learn and Hugging Face Transformers etc. (maybe JAX)).
-> 
-> Use the powerful features of MAVIS to make your projects more efficient and professional.
+> ---
+> Use MAVIS to elevate your projects — faster results, better visuals, deeper insight.  
+> Because powerful knowledge tools should belong to everyone.
 
 <details>
   <summary>Deutsch</summary>
 
->MAVIS ist eine KI-basierte Anwendung, mit der Sie visuelle Daten wie Bildformate wie PNG, JPG, JPEG, GIF, Text, PNG, Py, doc und docx analysieren und daraus interaktive Antworten generieren kann. Mit MAVIS können Sie komplexe mathematische Berechnungen durchführen, Programmieraufgaben lösen und professionelle Grafiken erstellen.
+> **Lernen Sie MAVIS kennen – Ihren kostenlosen Open-Source-Mathematik-Assistenten, der zum Nutzen aller entwickelt wurde.**
 >
->Für optimale Ergebnisse beachten Sie bitte Folgendes:
+> **MAVIS** (_Math Visual Intelligent System_) ist ein leistungsstarker KI-gestützter Assistent, der komplexe mathematische Probleme lösen, präzise Visualisierungen erstellen und abstrakte Konzepte verständlich erklären kann. Er unterstützt die Analyse verschiedener Eingabeformate – darunter **Bilder (PNG, JPG, JPEG, GIF)** und **Text-/Code-Dokumente (TXT, PY, DOC, DOCX)** – und liefert **interaktive, aufschlussreiche Antworten** in Echtzeit.
 >
-> - Formeln sollten immer in LaTeX dargestellt werden, um eine präzise und ansprechende Formatierung zu gewährleisten.
+> MAVIS wurde mit einem Ziel entwickelt: fortschrittliche mathematische und wissenschaftliche Werkzeuge für alle zugänglich zu machen – ohne Paywalls, ohne Lizenzen, ohne Einschränkungen. Es ist völlig **kostenlos**, **offen für Beiträge** und wird zum **Wohl der Menschheit** entwickelt.
 >
+> ---
+> Um MAVIS optimal zu nutzen, beachten Sie:
 >
-> - Mavis soll Code immer in Python schreiben, da die Benutzeroberfläche nur Python unterstützt.
+> - Verwenden Sie immer **LaTeX**, um Formeln klar und professionell zu formatieren.
+> - Der gesamte Code sollte in **Python** geschrieben sein, der einzigen unterstützten Sprache in der aktuellen Benutzeroberfläche.
+> - Für Visualisierungen verwenden Sie bitte MAVIS:
+> **Matplotlib**, **Plotly**, **Seaborn** oder **Altair** – die Benutzeroberfläche unterstützt die Darstellung über **HTML**, **LaTeX** und **Python 3.12**.
+Zu den verfügbaren wissenschaftlichen Bibliotheken gehören:
+> `NumPy`, `Math`, `SymPy`, `Pandas`, `AstroPy`, `QuantLib`, `OpenMDAO`, `pybullet`, `MONAI`
+> *(und bald: PyTorch, TensorFlow, Keras, Scikit-Learn, Hugging Face Transformers, JAX und mehr).*
 >
->
-> - MAVIS erstellt Grafiken mit Matplotlib, Plotly, Seaborn und Altair da die Benutzeroberfläche nur HTML, LaTeX und Python unterstützt (Version 3.12 mit den Frameworks Matplotlib, Plotly, Seaborn, Altair, NumPy, Math, SymPy, Pandas, AstroPy, QuantLib, OpenMDAO, Pybullet, MONAI (bei Bedarf auch PyTorch, TensorFlow, Keras, Scikit-Learn und Hugging Face Transformers etc. (ggf. JAX)).
->
-> Nutzen Sie die leistungsstarken Funktionen von MAVIS, um Ihre Projekte effizienter und professioneller zu gestalten.
-
+> ---
+> Nutzen Sie MAVIS, um Ihre Projekte zu optimieren – schnellere Ergebnisse, bessere Visualisierungen, tiefere Einblicke.
+> Weil leistungsstarke Wissenstools jedem zur Verfügung stehen sollten.
 </details>
 
 <br>
