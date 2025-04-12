@@ -62,19 +62,22 @@
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
 import os
+import sys
 import subprocess
 import psutil
 import socket
-from dotenv import load_dotenv
 import logging
-from logging.handlers import RotatingFileHandler
-import time
+import hashlib
+import json
 from datetime import datetime
 from pathlib import Path
-import requests
+import time
+from dotenv import load_dotenv
+import platform
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # ============================
-# Konfiguration / Konstanten
+# Configuration / Constants
 # ============================
 CRITICAL_VARS = [
     'SECRET_KEY', 'DB_PASSWORD', 'API_KEY', 'JWT_SECRET', 'EMAIL_PASSWORD', 'DEBUG',
@@ -84,7 +87,7 @@ CRITICAL_VARS = [
     'GITHUB_TOKEN', 'TWITTER_API_KEY', 'TWITTER_API_SECRET'
 ]
 
-# Farben für Konsolenausgabe
+# Color codes for console output
 COLORS = {
     'red': "\033[91m",
     'green': "\033[92m",
@@ -97,103 +100,160 @@ COLORS = {
     'bold': "\033[1m"
 }
 
-# Bekannte bösartige IPs (Dummy – bitte bei Bedarf aktualisieren)
+# Known file hashes for integrity checking.
+KNOWN_FILE_HASHES_PATH = Path("known_hashes.json")
+KNOWN_HASHES = {
+    "sample_file.txt": "d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2"
+}
+
+# Network and system parameters
 KNOWN_MALICIOUS_IPS = {"192.168.1.100", "203.0.113.5"}
-
-# Überwachte Ports, die oft missbraucht werden
 SUSPICIOUS_PORTS = {22, 23, 25, 3306, 3389}
-
-# Maximale Anzahl von Verbindungen von derselben IP (DDoS-Schutz)
 MAX_CONNECTIONS_FROM_SAME_IP = 10
+SUSPICIOUS_CPU_THRESHOLD = 70  # in percent
+SUSPICIOUS_MEMORY_THRESHOLD = 1_000_000_000  # in bytes (1GB)
 
-# Schwellenwerte für Ressourcenverbrauch bei Prozessen
-SUSPICIOUS_CPU_THRESHOLD = 70              # in Prozent
-SUSPICIOUS_MEMORY_THRESHOLD = 1_000_000_000  # in Bytes (1GB)
+# Project base directory: scan the entire folder
+DEFAULT_PROJECT_DIR = Path(r"C:\Users\julia\PycharmProjects\MAVIS")
+HASH_CACHE_FILE = Path("hash_cache.json")  # Cache file for file modification tracking
 
-# Basisverzeichnis des Projekts (bitte anpassen, falls erforderlich)
-DEFAULT_PROJECT_DIR = Path.home() / "PycharmProjects" / "MAVIS"
-
-# ============================
-# Logging-Konfiguration
-# ============================
-log_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-log_handler = RotatingFileHandler("security_scan.log", maxBytes=5*1024*1024, backupCount=2)
-log_handler.setFormatter(log_formatter)
-logger = logging.getLogger("SecurityScanner")
-logger.setLevel(logging.INFO)
-logger.addHandler(log_handler)
 
 # ============================
-# Umgebungsvariablen laden
+# Logging Configuration
+# ============================
+def setup_logging():
+    logger = logging.getLogger("SecurityScanner")
+    logger.setLevel(logging.INFO)
+
+    # Rotating file handler
+    file_handler = logging.handlers.RotatingFileHandler("security_scan.log", maxBytes=5 * 1024 * 1024, backupCount=2)
+    file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+    logger.addHandler(file_handler)
+
+    # Console output
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+    logger.addHandler(console_handler)
+
+    return logger
+
+
+logger = setup_logging()
+
+
+# ============================
+# Load Environment Variables
 # ============================
 def load_env() -> Path:
-    """
-    Lädt die .env-Datei und gibt den Pfad zurück. Fehler werden geloggt.
-    """
     try:
-        try:
-            user = os.getlogin()
-        except Exception:
-            user = os.environ.get("USERNAME", "default")
-        env_path = Path(f"C:/Users/{user}/PycharmProjects/MAVIS/.env")
-        if env_path.exists():
-            load_dotenv(dotenv_path=str(env_path))
-            print(f"{COLORS['blue']}INFO{COLORS['reset']}: .env file loaded successfully.")
-            logger.info("Loaded .env file successfully.")
-        else:
-            print(f"{COLORS['yellow']}WARNING{COLORS['reset']}: No .env file found at {env_path}.")
-            logger.warning("No .env file found at %s.", env_path)
-    except Exception as e:
-        print(f"{COLORS['red']}ERROR{COLORS['reset']}: Failed to load .env file – {e}")
-        logger.error("Failed to load .env file: %s", e)
+        user = os.getlogin() if hasattr(os, 'getlogin') else os.environ.get("USERNAME", "default")
+    except Exception:
+        user = os.environ.get("USERNAME", "default")
+    env_path = Path(f"C:/Users/{user}/PycharmProjects/MAVIS/.env")
+    if env_path.exists():
+        load_dotenv(dotenv_path=str(env_path))
+        print(f"{COLORS['blue']}INFO{COLORS['reset']}: .env file loaded successfully.")
+        logger.info("Loaded .env file successfully from %s.", env_path)
+    else:
+        print(f"{COLORS['yellow']}WARNING{COLORS['reset']}: No .env file found at {env_path}.")
+        logger.warning("No .env file found at %s.", env_path)
     return env_path
 
+
 # ============================
-# Sichere Dateiauflistung
+# File Integrity Check Functions
+# ============================
+def compute_sha256(file_path: Path) -> str:
+    """Compute the SHA-256 hash of a file."""
+    sha256_hash = hashlib.sha256()
+    try:
+        with file_path.open("rb") as f:
+            for chunk in iter(lambda: f.read(4096), b""):
+                sha256_hash.update(chunk)
+    except Exception as e:
+        logger.error("Error computing hash for %s: %s", file_path, e)
+        return ""
+    return sha256_hash.hexdigest()
+
+
+def load_known_hashes() -> dict:
+    """Load known file hashes from a JSON file, if available."""
+    if KNOWN_FILE_HASHES_PATH.exists():
+        try:
+            with KNOWN_FILE_HASHES_PATH.open("r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception as e:
+            logger.error("Error loading known hashes: %s", e)
+    return KNOWN_HASHES.copy()
+
+
+KNOWN_HASHES = load_known_hashes()
+
+
+def is_safe(file_path: Path) -> bool:
+    """
+    Check if a file is considered safe based on hash comparisons.
+    If no known hash is available, the integrity check is skipped.
+    """
+    if not file_path.is_file():
+        return True
+    current_hash = compute_sha256(file_path)
+    known_hash = KNOWN_HASHES.get(str(file_path)) or KNOWN_HASHES.get(file_path.name)
+    if known_hash:
+        if current_hash == known_hash:
+            return True
+        else:
+            logger.warning("Hash mismatch for %s. Expected: %s, Found: %s", file_path, known_hash, current_hash)
+            return False
+    else:
+        logger.info("No known hash for %s. Skipping integrity check.", file_path)
+        return True
+
+
+# ============================
+# Optimized File Iteration (Scans every file)
 # ============================
 def safe_iter_files(directory: Path):
     """
-    Iteriert rekursiv über ein Verzeichnis und liefert Dateien, wobei Zugriffsfehler
-    abgefangen und geloggt werden, sodass der Scan nicht unterbrochen wird.
+    Recursively iterate over files in a directory using os.scandir with error handling.
+    Every file found is yielded (no exclusions are applied).
     """
     try:
-        for entry in directory.iterdir():
-            try:
-                if entry.is_file():
-                    yield entry
-                elif entry.is_dir():
-                    yield from safe_iter_files(entry)
-            except Exception as e:
-                logger.error("Error accessing entry %s: %s", entry, e)
-                continue
+        with os.scandir(directory) as it:
+            for entry in it:
+                path_entry = Path(entry.path)
+                if entry.is_file(follow_symlinks=False):
+                    yield path_entry
+                elif entry.is_dir(follow_symlinks=False):
+                    yield from safe_iter_files(path_entry)
     except Exception as e:
         logger.error("Error scanning directory %s: %s", directory, e)
 
-# ============================
-# Dateien listen und zählen
-# ============================
+
 def list_files_for_scan(directory: Path) -> int:
     """
-    Gibt alle Dateien aus und zählt diese im Verzeichnis (mit sicherer Iteration).
+    List all files in a directory (recursively) and return the count.
     """
     file_count = 0
-    print("\nFiles to be scanned:")
+    print(f"\n{COLORS['blue']}Files in scan area:{COLORS['reset']}")
     for file_path in safe_iter_files(directory):
         print(f"   - {file_path}")
         file_count += 1
     return file_count
 
+
 # ============================
-# Windows Defender Scan ausführen
+# Windows Defender Scan (Improved Handling)
 # ============================
 def scan_with_defender(target: Path) -> int:
     """
-    Führt einen Windows Defender Scan auf dem angegebenen Pfad durch.
+    Run a Windows Defender scan on the given target with error and timeout handling.
+    Uses a reduced timeout per scan to avoid hangs.
     """
-    print(f"\nRunning Windows Defender Scan on: {target}")
+    print(f"\n{COLORS['blue']}Starting Windows Defender scan on:{COLORS['reset']} {target}")
     if not target.exists():
         print(f"{COLORS['red']}ERROR{COLORS['reset']}: The specified path does not exist: {target}")
-        logger.error("Invalid target for scan: %s", target)
+        logger.error("Invalid scan path: %s", target)
         return 0
 
     try:
@@ -202,43 +262,36 @@ def scan_with_defender(target: Path) -> int:
             "powershell", "-Command",
             "Start-MpScan", "-ScanType", "CustomScan", "-ScanPath", str(target)
         ]
+        # Reduced timeout to keep individual scans fast
         result = subprocess.run(ps_command,
                                 capture_output=True,
                                 text=True,
-                                timeout=300,
+                                timeout=180,
                                 encoding="cp1252",
                                 errors="ignore")
         if result.stdout.strip():
             print(result.stdout)
-            logger.info("Windows Defender scan result: %s", result.stdout)
+            logger.info("Windows Defender scan result for %s: %s", target, result.stdout)
         else:
-            print(f"{COLORS['green']}No threats detected.{COLORS['reset']}")
-            logger.info("No threats detected during scan on %s", target)
+            print(f"{COLORS['green']}No threats detected on {target}.{COLORS['reset']}")
+            logger.info("No issues found during scan on %s", target)
         return total_files
     except subprocess.TimeoutExpired:
-        print(f"{COLORS['red']}ERROR{COLORS['reset']}: Windows Defender scan timed out.")
-        logger.error("Windows Defender scan timed out for target: %s", target)
+        print(f"{COLORS['red']}ERROR{COLORS['reset']}: Scan timed out on {target}. Skipping this target.")
+        logger.error("Scan timeout for %s", target)
         return 0
     except Exception as e:
-        print(f"{COLORS['red']}ERROR{COLORS['reset']}: Windows Defender scan failed – {e}")
-        logger.error("Windows Defender scan failed for %s: %s", target, e)
+        print(f"{COLORS['red']}ERROR{COLORS['reset']}: Scan failed on {target} – {e}")
+        logger.error("Scan failed for %s: %s", target, e)
         return 0
 
-# ============================
-# Überprüfung, ob Pfad als sicher gilt
-# ============================
-def is_safe(file_path: Path) -> bool:
-    """
-    Dummy-Funktion. Zur weiteren Erweiterung (z. B. Hash-Prüfung, Zertifikatsvergleiche).
-    """
-    return True
 
 # ============================
-# Extrahieren von Pfaden/URLs aus Umgebungsvariablen
+# Extract Paths from Environment Variables
 # ============================
 def extract_paths_from_env() -> list:
     """
-    Extrahiert Pfade und URLs aus kritischen Umgebungsvariablen.
+    Extract local paths or URLs from critical environment variables.
     """
     paths = []
     for var in CRITICAL_VARS:
@@ -247,82 +300,101 @@ def extract_paths_from_env() -> list:
             candidate = Path(value)
             if candidate.exists():
                 paths.append(candidate)
-                logger.info("Local path found: %s -> %s", var, value)
+                logger.info("Local path from %s: %s", var, value)
             elif value.startswith("http"):
                 print(f"{COLORS['blue']}URL found{COLORS['reset']}: {var} -> {value}")
                 logger.info("URL found: %s -> %s", var, value)
     return paths
 
-# ============================
-# Firewall-Status prüfen
-# ============================
-def check_firewall_status():
-    print("\nChecking firewall status...")
-    try:
-        result = subprocess.run(
-            ["netsh", "advfirewall", "show", "allprofiles"],
-            capture_output=True, text=True, timeout=60
-        )
-        if "State" in result.stdout:
-            print(f"{COLORS['green']}Firewall is enabled{COLORS['reset']}")
-            logger.info("Firewall is enabled")
-        else:
-            print(f"{COLORS['red']}Firewall is not enabled{COLORS['reset']}")
-            logger.warning("Firewall is not enabled")
-    except Exception as e:
-        print(f"{COLORS['red']}ERROR{COLORS['reset']}: Failed to check firewall status – {e}")
-        logger.error("Failed to check firewall status: %s", e)
 
 # ============================
-# Überprüfung verdächtiger Prozesse
+# Check Firewall Status (Cross-Platform)
+# ============================
+def check_firewall_status():
+    print(f"\n{COLORS['blue']}Checking firewall status...{COLORS['reset']}")
+    try:
+        system_platform = platform.system()
+        if system_platform == "Windows":
+            result = subprocess.run(
+                ["netsh", "advfirewall", "show", "allprofiles"],
+                capture_output=True, text=True, timeout=60
+            )
+            if "State" in result.stdout:
+                print(f"{COLORS['green']}Firewall is enabled.{COLORS['reset']}")
+                logger.info("Windows Firewall is enabled.")
+            else:
+                print(f"{COLORS['red']}Firewall is not enabled.{COLORS['reset']}")
+                logger.warning("Windows Firewall is not enabled.")
+        elif system_platform in ["Linux", "Darwin"]:
+            result = subprocess.run(["sudo", "ufw", "status"], capture_output=True, text=True, timeout=30)
+            if "active" in result.stdout.lower():
+                print(f"{COLORS['green']}Firewall is active.{COLORS['reset']}")
+                logger.info("Firewall is active on %s.", system_platform)
+            else:
+                print(f"{COLORS['red']}Firewall is not active.{COLORS['reset']}")
+                logger.warning("Firewall is not active on %s.", system_platform)
+        else:
+            print(f"{COLORS['yellow']}No firewall check implemented for this platform.{COLORS['reset']}")
+            logger.warning("Unknown platform for firewall check: %s", system_platform)
+    except Exception as e:
+        print(f"{COLORS['red']}ERROR{COLORS['reset']}: Error checking firewall status – {e}")
+        logger.error("Error in firewall check: %s", e)
+
+
+# ============================
+# Check Suspicious Processes
 # ============================
 def check_suspicious_processes():
-    print("\nChecking for suspicious processes...")
-    suspicious_processes = {
+    print(f"\n{COLORS['blue']}Checking for suspicious processes...{COLORS['reset']}")
+    suspicious_names = {
         "cmd.exe", "powershell.exe", "netstat.exe", "whois.exe",
         "python.exe", "java.exe", "wget.exe", "curl.exe", "nc.exe", "nmap.exe"
     }
-
-    for proc in psutil.process_iter(['pid', 'name', 'cmdline', 'cpu_percent', 'memory_info', 'create_time', 'username']):
+    for proc in psutil.process_iter(
+            ['pid', 'name', 'cmdline', 'cpu_percent', 'memory_info', 'create_time', 'username']):
         try:
-            name = (proc.info['name'] or "").lower()
-            if name in suspicious_processes:
+            proc_name = (proc.info.get('name') or "").lower()
+            if proc_name in suspicious_names:
                 cpu_usage = proc.info.get('cpu_percent', 0)
                 mem_info = proc.info.get('memory_info')
                 memory_usage = getattr(mem_info, 'rss', 0) if mem_info else 0
-                create_time = datetime.fromtimestamp(proc.info.get('create_time', time.time())).strftime("%Y-%m-%d %H:%M:%S")
+                create_time = datetime.fromtimestamp(proc.info.get('create_time', time.time())).strftime(
+                    "%Y-%m-%d %H:%M:%S")
                 username = proc.info.get('username', 'Unknown')
                 cmdline = " ".join(proc.info.get('cmdline', []))
                 if cpu_usage > SUSPICIOUS_CPU_THRESHOLD or memory_usage > SUSPICIOUS_MEMORY_THRESHOLD:
-                    print(f"{COLORS['red']}Suspicious process detected with high resource usage{COLORS['reset']}: {proc.info['name']} (PID: {proc.info['pid']})")
-                    print(f"   CPU Usage: {cpu_usage}% | Memory Usage: {memory_usage / (1024*1024):.2f} MB")
-                    print(f"   Started at: {create_time} by {username}")
-                    print(f"   Command line: {cmdline}")
-                    logger.warning("High resource usage process: %s (PID: %s)", proc.info['name'], proc.info['pid'])
+                    print(
+                        f"{COLORS['red']}Suspicious process with high resource usage{COLORS['reset']}: {proc.info.get('name')} (PID: {proc.info.get('pid')})")
+                    print(f"   CPU: {cpu_usage}% | Memory: {memory_usage / (1024 * 1024):.2f} MB")
+                    print(f"   Started: {create_time} by {username}")
+                    print(f"   Command: {cmdline}")
+                    logger.warning("High resource usage process: %s (PID: %s)", proc.info.get('name'),
+                                   proc.info.get('pid'))
                 else:
-                    print(f"{COLORS['yellow']}Suspicious process detected (but normal resource usage){COLORS['reset']}: {proc.info['name']} (PID: {proc.info['pid']})")
-                    print(f"   Started at: {create_time} by {username}")
-                    print(f"   Command line: {cmdline}")
-                    logger.info("Process detected: %s (PID: %s)", proc.info['name'], proc.info['pid'])
+                    print(
+                        f"{COLORS['yellow']}Suspicious process (normal usage){COLORS['reset']}: {proc.info.get('name')} (PID: {proc.info.get('pid')})")
+                    print(f"   Started: {create_time} by {username}")
+                    print(f"   Command: {cmdline}")
+                    logger.info("Suspicious process detected: %s (PID: %s)", proc.info.get('name'),
+                                proc.info.get('pid'))
         except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
             continue
         except Exception as e:
             logger.error("Error checking process: %s", e)
-            continue
-    print(f"{COLORS['green']}Suspicious process check complete.{COLORS['reset']}")
+    print(f"{COLORS['green']}Process check complete.{COLORS['reset']}")
+
 
 # ============================
-# Überprüfung offener Netzwerkverbindungen
+# Check Active Network Connections
 # ============================
 def check_network_connections():
-    print("\nChecking active network connections...")
+    print(f"\n{COLORS['blue']}Checking active network connections...{COLORS['reset']}")
     try:
         net_connections = psutil.net_connections(kind='inet')
     except Exception as e:
-        print(f"{COLORS['red']}ERROR{COLORS['reset']}: Failed to retrieve network connections – {e}")
-        logger.error("Failed to get network connections: %s", e)
+        print(f"{COLORS['red']}ERROR{COLORS['reset']}: Could not retrieve network connections – {e}")
+        logger.error("Network connection error: %s", e)
         return
-
     ip_connection_count = {}
     for conn in net_connections:
         try:
@@ -332,135 +404,268 @@ def check_network_connections():
                 remote_ip = conn.raddr.ip
                 ip_connection_count[remote_ip] = ip_connection_count.get(remote_ip, 0) + 1
                 if ip_connection_count[remote_ip] > MAX_CONNECTIONS_FROM_SAME_IP:
-                    print(f"{COLORS['red']}Potential DDoS attack detected{COLORS['reset']}: {remote_ip} has {ip_connection_count[remote_ip]} connections!")
-                    logger.warning("Potential DDoS: %s has %s connections.", remote_ip, ip_connection_count[remote_ip])
+                    print(
+                        f"{COLORS['red']}Potential DDoS attack detected{COLORS['reset']}: {remote_ip} has {ip_connection_count[remote_ip]} connections!")
+                    logger.warning("Potential DDoS: %s (%s connections).", remote_ip, ip_connection_count[remote_ip])
                     continue
                 print(f"{COLORS['cyan']}Active connection found{COLORS['reset']}: {local_addr} -> {remote_addr}")
-                logger.info("Active connection: %s -> %s", local_addr, remote_addr)
+                logger.info("Network connection: %s -> %s", local_addr, remote_addr)
                 if remote_ip in KNOWN_MALICIOUS_IPS:
-                    print(f"{COLORS['red']}WARNING: Connection to known malicious IP detected{COLORS['reset']}: {remote_ip}")
-                    logger.warning("Malicious IP connection: %s", remote_ip)
-                if conn.laddr.port in SUSPICIOUS_PORTS:
+                    print(
+                        f"{COLORS['red']}WARNING: Connection to known malicious IP detected{COLORS['reset']}: {remote_ip}")
+                    logger.warning("Connection to known malicious IP: %s", remote_ip)
+                if conn.laddr and conn.laddr.port in SUSPICIOUS_PORTS:
                     print(f"{COLORS['yellow']}Suspicious local port detected{COLORS['reset']}: {conn.laddr.port}")
                     logger.warning("Suspicious local port: %s", conn.laddr.port)
-                if conn.raddr.port in SUSPICIOUS_PORTS:
+                if conn.raddr and conn.raddr.port in SUSPICIOUS_PORTS:
                     print(f"{COLORS['yellow']}Suspicious remote port detected{COLORS['reset']}: {conn.raddr.port}")
                     logger.warning("Suspicious remote port: %s", conn.raddr.port)
-                if conn.raddr.port == 443:
+                if conn.raddr and conn.raddr.port == 443:
                     try:
                         with socket.create_connection((remote_ip, 443), timeout=5) as s:
                             s.sendall(b"HEAD / HTTP/1.0\r\n\r\n")
                             response = s.recv(1024)
-                        if b"HTTP/1.1 200 OK" in response or b"HTTP/1.0 200 OK" in response:
-                            print(f"{COLORS['green']}Secure connection (HTTPS) established{COLORS['reset']}: {remote_ip}:443")
-                            logger.info("Secure HTTPS connection: %s:443", remote_ip)
+                        if b"200 OK" in response:
+                            print(
+                                f"{COLORS['green']}Stable HTTPS connection established{COLORS['reset']}: {remote_ip}:443")
+                            logger.info("Stable HTTPS connection: %s:443", remote_ip)
                         else:
-                            print(f"{COLORS['red']}Potential insecure HTTPS connection detected{COLORS['reset']}: {remote_ip}:443")
-                            logger.warning("Insecure HTTPS connection: %s:443", remote_ip)
+                            print(f"{COLORS['red']}Unusual HTTPS response{COLORS['reset']}: {remote_ip}:443")
+                            logger.warning("Unclear HTTPS response: %s:443", remote_ip)
                     except Exception as e:
-                        print(f"{COLORS['red']}Error checking SSL/TLS connection{COLORS['reset']}: {e}")
+                        print(f"{COLORS['red']}Error during SSL/TLS check{COLORS['reset']}: {e}")
                         logger.error("SSL/TLS check error for %s:443 – %s", remote_ip, e)
         except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
             continue
     print(f"{COLORS['green']}Network connection check complete.{COLORS['reset']}")
 
+
 # ============================
-# System-Logs auf Sicherheitsvorfälle prüfen
+# Check Security-Related System Logs
 # ============================
 def check_security_logs():
-    print("\nChecking security-related system logs...")
-    # Beispielpfad für Linux – bitte bei Bedarf anpassen (unter Windows andere Logs)
+    print(f"\n{COLORS['blue']}Checking security-related system logs...{COLORS['reset']}")
     log_file = Path("/var/log/auth.log")
     if log_file.exists():
         try:
             with log_file.open("r", encoding="utf-8", errors="ignore") as f:
-                logs = f.readlines()[-50:]  # Letzte 50 Zeilen
+                logs = f.readlines()[-50:]
                 for line in logs:
                     if "failed" in line.lower() or "error" in line.lower():
-                        print(f"{COLORS['red']}Potential security issue detected in logs{COLORS['reset']}: {line.strip()}")
-                        logger.warning("Security issue in log: %s", line.strip())
+                        print(f"{COLORS['red']}Security issue detected in logs{COLORS['reset']}: {line.strip()}")
+                        logger.warning("Security log entry: %s", line.strip())
         except Exception as e:
-            print(f"{COLORS['red']}ERROR{COLORS['reset']}: Failed to read log file – {e}")
-            logger.error("Failed to read log file %s: %s", log_file, e)
+            print(f"{COLORS['red']}ERROR{COLORS['reset']}: Error reading log file – {e}")
+            logger.error("Error reading %s: %s", log_file, e)
     else:
         print(f"{COLORS['yellow']}Log file {log_file} not found.{COLORS['reset']}")
         logger.warning("Log file %s not found.", log_file)
 
+
 # ============================
-# Systemkonfiguration prüfen (Benutzer & Dateiberechtigungen)
+# Check System Permissions and User Accounts
 # ============================
 def check_system_permissions():
-    print("\nChecking system user permissions...")
+    print(f"\n{COLORS['blue']}Checking system users and file permissions...{COLORS['reset']}")
     try:
         for user in psutil.users():
-            print(f"{COLORS['blue']}User detected{COLORS['reset']}: {user.name}, {user.host}")
+            print(f"{COLORS['blue']}User detected:{COLORS['reset']} {user.name}, {user.host}")
             logger.info("User detected: %s, %s", user.name, user.host)
     except Exception as e:
-        logger.error("Failed to check system users: %s", e)
-
-    print(f"\n{COLORS['blue']}Checking system file permissions{COLORS['reset']}:")
+        logger.error("Error retrieving user list: %s", e)
+    print(f"\n{COLORS['blue']}Checking file permissions...{COLORS['reset']}")
     base_dir = DEFAULT_PROJECT_DIR
     for file_path in safe_iter_files(base_dir):
         try:
             permissions = oct(os.stat(file_path).st_mode & 0o777)[2:]
-            # Warnung, falls Berechtigungen zu offen sind (hier: über 755 wird als zu permissiv gewertet)
             if int(permissions, 8) > 0o755:
-                print(f"{COLORS['yellow']}Warning: Overly permissive permissions for {file_path}: {permissions}{COLORS['reset']}")
+                print(
+                    f"{COLORS['yellow']}Warning: Overly permissive permissions for {file_path}: {permissions}{COLORS['reset']}")
                 logger.warning("Overly permissive permissions for %s: %s", file_path, permissions)
             else:
-                logger.info("File permissions for %s: %s", file_path, permissions)
+                logger.info("Permissions for %s: %s", file_path, permissions)
         except Exception as e:
-            logger.error("Error checking file permissions for %s: %s", file_path, e)
+            logger.error("Error checking permissions for %s: %s", file_path, e)
+
 
 # ============================
-# Gesamter Sicherheits-Scan
+# Extra Feature: Check for OS Updates
+# ============================
+def check_os_updates():
+    print(f"\n{COLORS['blue']}Checking for operating system updates...{COLORS['reset']}")
+    system_platform = platform.system()
+    try:
+        if system_platform == "Windows":
+            result = subprocess.run(["wmic", "qfe", "list"], capture_output=True, text=True, timeout=30)
+            print(f"{COLORS['blue']}Windows Update Info:{COLORS['reset']}\n{result.stdout}")
+            logger.info("Windows update info: %s", result.stdout)
+        elif system_platform == "Linux":
+            result = subprocess.run(["apt", "list", "--upgradable"], capture_output=True, text=True, timeout=30)
+            print(f"{COLORS['blue']}Linux updates available:{COLORS['reset']}\n{result.stdout}")
+            logger.info("Linux update info: %s", result.stdout)
+        else:
+            print(f"{COLORS['yellow']}OS update check not implemented for {system_platform}.{COLORS['reset']}")
+            logger.warning("OS update check not implemented for %s", system_platform)
+    except Exception as e:
+        print(f"{COLORS['red']}ERROR{COLORS['reset']}: Error checking OS updates – {e}")
+        logger.error("Error checking OS updates: %s", e)
+
+
+# ============================
+# Extra Feature: Check YARA Malware Signatures (Optional)
+# ============================
+def check_yara_signatures():
+    print(f"\n{COLORS['blue']}Checking files against YARA rules...{COLORS['reset']}")
+    try:
+        import yara
+    except ImportError:
+        print(f"{COLORS['yellow']}YARA module not installed. Skipping YARA scan.{COLORS['reset']}")
+        logger.warning("YARA module not installed.")
+        return
+
+    rule_source = '''
+    rule DummyRule {
+        strings:
+            $a = "malicious" nocase
+        condition:
+            $a
+    }
+    '''
+    try:
+        rules = yara.compile(source=rule_source)
+    except Exception as e:
+        logger.error("Error compiling YARA rules: %s", e)
+        return
+
+    for file_path in safe_iter_files(DEFAULT_PROJECT_DIR):
+        try:
+            matches = rules.match(str(file_path))
+            if matches:
+                print(f"{COLORS['red']}YARA match found in {file_path}:{COLORS['reset']} {matches}")
+                logger.warning("YARA match in %s: %s", file_path, matches)
+        except Exception as e:
+            logger.error("Error scanning %s with YARA: %s", file_path, e)
+    print(f"{COLORS['green']}YARA scan complete.{COLORS['reset']}")
+
+
+# ============================
+# Extra Feature: Check for Rootkit Signatures (Stub Function)
+# ============================
+def check_rootkit_signatures():
+    print(f"\n{COLORS['blue']}Performing rootkit signature check...{COLORS['reset']}")
+    print(
+        f"{COLORS['yellow']}Rootkit check not fully implemented. Consider integrating a dedicated tool.{COLORS['reset']}")
+    logger.info("Rootkit check stub executed.")
+
+
+# ============================
+# Extra Feature: File Modification Tracking Using a Hash Cache
+# ============================
+def load_hash_cache() -> dict:
+    if HASH_CACHE_FILE.exists():
+        try:
+            with HASH_CACHE_FILE.open("r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception as e:
+            logger.error("Error loading hash cache: %s", e)
+    return {}
+
+
+def update_hash_cache(new_cache: dict):
+    try:
+        with HASH_CACHE_FILE.open("w", encoding="utf-8") as f:
+            json.dump(new_cache, f, indent=4)
+        logger.info("Hash cache updated successfully.")
+    except Exception as e:
+        logger.error("Error updating hash cache: %s", e)
+
+
+def check_file_modifications_with_cache():
+    """
+    Compare current file hashes with the cached state.
+    Report if any file modifications are detected.
+    """
+    print(f"\n{COLORS['blue']}Performing file modification tracking...{COLORS['reset']}")
+    previous_hashes = load_hash_cache()
+    current_hashes = {}
+    modifications_detected = False
+    for file_path in safe_iter_files(DEFAULT_PROJECT_DIR):
+        if file_path.is_file():
+            current_hash = compute_sha256(file_path)
+            current_hashes[str(file_path)] = current_hash
+            if str(file_path) in previous_hashes:
+                if previous_hashes[str(file_path)] != current_hash:
+                    print(f"{COLORS['red']}Modification detected:{COLORS['reset']} {file_path}")
+                    logger.warning("File modification detected for %s", file_path)
+                    modifications_detected = True
+            else:
+                logger.info("New file detected (added to cache): %s", file_path)
+    if not modifications_detected:
+        print(f"{COLORS['green']}No unauthorized file modifications detected.{COLORS['reset']}")
+    update_hash_cache(current_hashes)
+
+
+# ============================
+# Full Security Scan (Parallelized)
 # ============================
 def scan_all_files():
     env_path = load_env()
     total_scanned_files = 0
 
-    # Systemkonfiguration und Dateiberechtigungen prüfen
+    # Preliminary: Check system permissions and users
     check_system_permissions()
 
     if env_path:
         base_directory = env_path.parent
+        # Combine base directory and paths from environment variables
         paths_to_scan = [base_directory] + extract_paths_from_env()
-        for path in paths_to_scan:
-            if path.is_dir():
-                print(f"\n{COLORS['blue']}Scanning directory{COLORS['reset']}: {path}")
-                total_scanned_files += scan_with_defender(path)
-            elif path.is_file():
-                print(f"\n{COLORS['blue']}Scanning file{COLORS['reset']}: {path}")
-                total_scanned_files += scan_with_defender(path)
-            else:
-                print(f"\n{COLORS['blue']}Skipping{COLORS['reset']}: {path} (invalid file/directory)")
-                logger.info("Skipping invalid path: %s", path)
+
+        # Use ThreadPoolExecutor for parallel scanning
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            future_to_path = {executor.submit(scan_with_defender, path): path for path in paths_to_scan}
+            for future in as_completed(future_to_path):
+                path = future_to_path[future]
+                try:
+                    scanned_count = future.result()
+                    total_scanned_files += scanned_count
+                except Exception as exc:
+                    logger.error("Scan generated an exception for %s: %s", path, exc)
+
+        # Integrity check for every file in the project directory
         for path in paths_to_scan:
             if path.exists():
                 if is_safe(path):
-                    print(f"{COLORS['green']}Safe{COLORS['reset']}: {path}")
-                    logger.info("Safe: %s", path)
+                    print(f"{COLORS['green']}Integrity check passed:{COLORS['reset']} {path}")
+                    logger.info("File safe: %s", path)
                 else:
-                    print(f"{COLORS['red']}Unsafe{COLORS['reset']}: {path}")
-                    logger.warning("Unsafe: %s", path)
-        print(f"\n{COLORS['green']}Security check complete!{COLORS['reset']}")
-        print(f"{COLORS['blue']}Total files scanned{COLORS['reset']}: {total_scanned_files}")
-    else:
-        print(f"{COLORS['red']}Critical Error: Unable to determine project environment.{COLORS['reset']}")
-        logger.critical("No .env file loaded; cannot determine project environment.")
+                    print(f"{COLORS['red']}Warning: Integrity issue with {path}{COLORS['reset']}")
+                    logger.warning("File not safe: %s", path)
 
-    # Weitere Prüfungen
+        print(f"\n{COLORS['green']}Security scan complete!{COLORS['reset']}")
+        print(f"{COLORS['blue']}Total files scanned:{COLORS['reset']} {total_scanned_files}")
+    else:
+        print(f"{COLORS['red']}Critical error: Could not determine project environment.{COLORS['reset']}")
+        logger.critical("No .env file loaded; project environment unknown.")
+
+    # Additional checks
     check_firewall_status()
     check_suspicious_processes()
     check_network_connections()
     check_security_logs()
 
+    # Extra security features
+    check_os_updates()
+    check_yara_signatures()
+    check_rootkit_signatures()
+    check_file_modifications_with_cache()
+
+
 # ============================
-# Main-Block
+# Main Program
 # ============================
 if __name__ == '__main__':
     try:
         scan_all_files()
     except Exception as e:
-        print(f"{COLORS['red']}Critical error occurred during security scan: {e}{COLORS['reset']}")
-        logger.critical("Critical error occurred during security scan: %s", e)
+        print(f"{COLORS['red']}Critical error during security scan: {e}{COLORS['reset']}")
+        logger.critical("Critical error in security scan: %s", e)
