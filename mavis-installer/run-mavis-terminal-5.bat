@@ -96,6 +96,7 @@ echo LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FRO
 echo OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 echo SOFTWARE.
 echo.
+echo Initializing MAVIS Terminal 5
 echo Gooo...
 echo.
 
@@ -450,11 +451,293 @@ if %errorlevel% neq 0 (
     echo ✅ Rustup is already installed.
 )
 
+:: Check if PowerShell 7 is already installed
+powershell -Command "$PSVersionTable.PSVersion" >nul 2>&1
+if %errorlevel% neq 0 (
+    echo PowerShell 7 is not installed.
+    set /p install_powershell="Would you like to install PowerShell 7? [y/n]:"
+
+    if /i "%install_powershell%"=="y" (
+        echo Downloading PowerShell 7 installer...
+
+        set "POWERSHELL_URL=https://github.com/PowerShell/PowerShell/releases/download/v7.2.9/PowerShell-7.2.9-win-x64.msi"
+        set "POWERSHELL_INSTALLER=%TEMP%\PowerShell-7.2.9-installer.msi"
+
+        :: Securely download PowerShell using PowerShell (TLS 1.2)
+        powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri '%POWERSHELL_URL%' -OutFile '%POWERSHELL_INSTALLER%'"
+
+        if exist "%POWERSHELL_INSTALLER%" (
+            echo Running PowerShell installer...
+            start /wait msiexec.exe /i "%POWERSHELL_INSTALLER%" /quiet /norestart
+
+            :: Verify installation
+            powershell -Command "$PSVersionTable.PSVersion" >nul 2>&1
+            if %errorlevel% neq 0 (
+                echo ❌ Error: Installation failed! Retrying...
+                del "%POWERSHELL_INSTALLER%"
+                start /wait msiexec.exe /i "%POWERSHELL_INSTALLER%" /quiet /norestart
+
+                powershell -Command "$PSVersionTable.PSVersion" >nul 2>&1
+                if %errorlevel% neq 0 (
+                    echo ❌ Second installation attempt failed! Manual installation required: https://github.com/PowerShell/PowerShell/releases
+                ) else (
+                    echo ✅ PowerShell 7 successfully installed!
+                )
+            ) else (
+                echo ✅ PowerShell 7 successfully installed!
+            )
+        ) else (
+            echo ❌ Error: PowerShell installer could not be downloaded!
+        )
+    ) else (
+        echo Installation aborted. Please install PowerShell 7 manually: https://github.com/PowerShell/PowerShell/releases
+    )
+) else (
+    echo ✅ PowerShell 7 is already installed.
+)
+
+set USERNAME=%USERNAME%
+set PYTHON_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe
+set SCRIPT_install_wsl=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-wsl.py
+set SCRIPT_install_wsl_ubuntu=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-ubuntu-wsl.py
+set SCRIPT_install_wsl_debian=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-debian-wsl.py
+set SCRIPT_install_wsl_kali=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-kali-wsl.py
+set SCRIPT_install_wsl_arch=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-arch-wsl.py
+set SCRIPT_install_wsl_opensuse=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-opensuse-wsl.py
+set SCRIPT_install_wsl_mint=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-arch-mint.py
+set SCRIPT_install_wsl_fedora=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-arch-fedora.py
+set SCRIPT_install_wsl_redhat=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-arch-redhat.py
+
+:: Funktion zur Überprüfung, ob WSL installiert ist
+:CheckWSLInstalled
+wsl --list >nul 2>&1
+if %errorlevel% neq 0 (
+    echo WSL is not installed.
+    set /p install_wsl="Would you like to install WSL? [y/n]:"
+
+    if /i "%install_wsl%"=="y" (
+        echo WSL feature is being enabled...
+        dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart >nul 2>&1
+        if %errorlevel% neq 0 (
+            echo ❌ Error: WSL feature could not be enabled.
+            echo Please enable WSL manually and restart the script.
+            pause
+
+            if not exist "%SCRIPT_install_wsl%" (
+                echo Error: Script not found: %SCRIPT_install_wsl%
+                exit /B 1
+            )
+
+            "%PYTHON_PATH%" "%SCRIPT_install_wsl%"
+
+        )
+        echo ✅ WSL feature was successfully activated.
+        echo Please restart your computer and run the script again.
+        pause
+    ) else (
+        echo Installation aborted. Please install WSL manually.
+        pause
+        exit /b 1
+    )
+)
+goto :CheckDistroInstalled
+
+:: Funktion zur Überprüfung, ob eine Distribution installiert ist
+:CheckDistroInstalled
+set "found_distro="
+for /f "usebackq delims=" %%i in (`wsl --list --quiet 2^>nul`) do (
+    set "found_distro=%%i"
+    goto :DistroFound
+)
+
+if not defined found_distro (
+    goto :AskInstall
+)
+
+:DistroFound
+echo ✅ WSL is already set up with the distribution "!found_distro!".
+goto :Continue
+
+:AskInstall
+echo No Linux distribution was found.
+set /p install_choice="Do you want to install a Linux distribution? [y/n]:"
+if /I "%install_choice%"=="J" (
+    goto :SelectDistro
+) else (
+    echo Installation is aborted.
+    goto :Continue
+)
+
+REM -- Auswahl der Distribution mit CHOICE --
+choice /c 12345678 /n /m "Please select a distribution for installation:
+  [1] Ubuntu
+  [2] Debian
+  [3] Kali Linux
+  [4] Arch Linux
+  [5] openSUSE
+  [6] Linux Mint
+  [7] Fedora
+  [8] Red Hat Enterprise Linux
+Your choice [1/2/3/4/5/6/7/8]:"
+set "choice=%errorlevel%"
+
+REM -- Setze Distributionen anhand der Auswahl --
+if "%choice%"=="1" (
+    set "DISTRO_NAME=Ubuntu"
+    set "DISTRO_PACKAGE=Ubuntu"
+
+    if not exist "%SCRIPT_install_wsl_ubuntu%" (
+       echo Error: Script not found: %SCRIPT_install_wsl_ubuntu%
+       exit /B 1
+    )
+
+    "%PYTHON_PATH%" "%SCRIPT_install_wsl_ubuntu%"
+
+) else if "%choice%"=="2" (
+    set "DISTRO_NAME=Debian"
+    set "DISTRO_PACKAGE=Debian"
+
+    if not exist "%SCRIPT_install_wsl_debian%" (
+       echo Error: Script not found: %SCRIPT_install_wsl_debian%
+       exit /B 1
+    )
+
+    "%PYTHON_PATH%" "%SCRIPT_install_wsl_debian%"
+
+) else if "%choice%"=="3" (
+    set "DISTRO_NAME=Kali Linux"
+    set "DISTRO_PACKAGE=kali-linux"
+
+    if not exist "%SCRIPT_install_wsl_kali%" (
+       echo Error: Script not found: %SCRIPT_install_wsl_kali%
+       exit /B 1
+    )
+
+    "%PYTHON_PATH%" "%SCRIPT_install_wsl_kali%"
+
+) else if "%choice%"=="4" (
+    set "DISTRO_NAME=Arch Linux"
+    REM Hinweis: Für Arch Linux gibt es offizielle inoffizielle Projekte wie "ArchWSL".
+    set "DISTRO_PACKAGE=ArchLinux"
+
+    if not exist "%SCRIPT_install_wsl_ubuntu%" (
+       echo Error: Script not found: %SCRIPT_install_wsl_ubuntu%
+       exit /B 1
+    )
+
+    "%PYTHON_PATH%" "%SCRIPT_install_wsl_ubuntu%"
+
+) else if "%choice%"=="5" (
+    set "DISTRO_NAME=openSUSE"
+    set "DISTRO_PACKAGE=openSUSE-Leap-15-3"
+
+    if not exist "%SCRIPT_install_wsl_opensuse%" (
+       echo Error: Script not found: %SCRIPT_install_wsl_opensuse%
+       exit /B 1
+    )
+
+    "%PYTHON_PATH%" "%SCRIPT_install_wsl_opensuse%"
+
+) else if "%choice%"=="6" (
+    set "DISTRO_NAME=Linux Mint"
+    REM Hinweis: Linux Mint ist aktuell nicht offiziell im Microsoft Store,
+    REM eventuell muss hier eine alternative Installationsmethode genutzt werden.
+    set "DISTRO_PACKAGE=LinuxMint"
+
+    if not exist "%SCRIPT_install_wsl_mint%" (
+       echo Error: Script not found: %SCRIPT_install_wsl_mint%
+       exit /B 1
+    )
+
+    "%PYTHON_PATH%" "%SCRIPT_install_wsl_mint%"
+
+) else if "%choice%"=="7" (
+    set "DISTRO_NAME=Fedora"
+    REM Fedora wird über "Fedora Remix for WSL" angeboten
+    set "DISTRO_PACKAGE=FedoraRemix"
+
+    if not exist "%SCRIPT_install_wsl_fedora%" (
+       echo Error: Script not found: %SCRIPT_install_wsl_fedora%
+       exit /B 1
+    )
+
+    "%PYTHON_PATH%" "%SCRIPT_install_wsl_fedora%"
+
+) else if "%choice%"=="8" (
+    set "DISTRO_NAME=Red Hat Enterprise Linux"
+    REM Beachte: RHEL für WSL erfordert unter Umständen zusätzliche Lizenzen
+    set "DISTRO_PACKAGE=RHEL"
+
+    if not exist "%SCRIPT_install_wsl_redhat%" (
+       echo Error: Script not found: %SCRIPT_install_wsl_redhat%
+       exit /B 1
+    )
+
+    "%PYTHON_PATH%" "%SCRIPT_install_wsl_redhat%"
+
+) else (
+    echo ❌ Invalid selection. The program will terminate.
+    pause
+    exit /b 1
+)
+
+echo.
+echo You have selected: "!DISTRO_NAME!"
+echo.
+
+REM -- Prüfe, ob WSL installiert und aktiviert ist --
+wsl -l >nul 2>&1
+if errorlevel 1 (
+    echo ❌ WSL is either not installed or not enabled.
+    echo Please enable WSL via "Turn Windows features on and off" and restart the computer.
+    pause
+    exit /b 1
+)
+
+REM -- Versuche die Installation mehrfach (max. 3 Versuche) --
+set /a attempts=0
+:InstallLoop
+set /a attempts+=1
+echo [Attempt !attempts!] Starting the installation of "!DISTRO_NAME!"...
+wsl --install -d "!DISTRO_PACKAGE!" >nul 2>&1
+
+REM Kurze Pause, damit sich der Installationsprozess stabilisieren kann
+timeout /t 5 >nul
+
+REM -- Überprüfe, ob die Distribution in der WSL-Liste erscheint --
+set "installed="
+for /f "usebackq delims=" %%i in (`wsl --list --quiet`) do (
+    echo %%i | findstr /i /c:"!DISTRO_PACKAGE!" >nul && set "installed=1"
+)
+if defined installed (
+    echo.
+    echo ✅ "!DISTRO_NAME!" was successfully installed!
+    goto :EOF
+) else (
+    echo.
+    echo ❌ Installation of "!DISTRO_NAME!" failed (attempt !attempts!).
+    if !attempts! lss 3 (
+        echo Try again in 3 seconds...
+        timeout /t 3 >nul
+        goto :InstallLoop
+    ) else (
+        echo ❌ All installation attempts failed.
+        echo Please install "!DISTRO_NAME!" manually via the Microsoft Store or an alternative method.
+        pause
+        exit /b 1
+    )
+)
+
+endlocal
+
+:Continue
+:: Hier folgt der restliche Code
+
 :: Define project path
 set "PYCHARM_PROJECTS=%USERPROFILE%\PycharmProjects"
 set "MAVIS_DIR=%PYCHARM_PROJECTS%\MAVIS"
 set "MAVIS_ENV_FILE=%MAVIS_DIR%\.env"
-set "MAVIS_RUN_FILE=%MAVIS_DIR%\run-mavis-4-all.bat"
+set "MAVIS_RUN_FILE=%MAVIS_DIR%\mavis-terminal-5.bat"
 
 :: Ensure PyCharm Projects directory exists
 if not exist "%PYCHARM_PROJECTS%" (
@@ -673,7 +956,7 @@ if not exist "%MAVIS_RUN_FILE%" (
 )
 
 :: Execute run-mavis-4-all.bat
-echo ✅ Starting MAVIS...
+echo ✅ Starting MAVIS Terminal...
 
 :: Check if the file is executable (check for executable file)
 :: Test if the file is an .bat file
@@ -684,7 +967,6 @@ if /I not "%MAVIS_RUN_FILE:~-4%"==".bat" (
 
 :: Final report
 echo ✅ All tasks were completed successfully!
-echo.
 
 :: Try to start the file and check if it is successful
 call "%MAVIS_RUN_FILE%"
