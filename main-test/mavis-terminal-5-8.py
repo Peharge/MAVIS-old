@@ -512,7 +512,10 @@ def handle_special_commands(user_input):
         "install 3d-slicer": "run\\simon\\3d-slicer\\install-3d-slicer.py", # new
         "run 3d-slicer": "run\\simon\\3d-slicer\\run-3d-slicer.py",  # new
         "install simon": "run\\simon\\install-simon-1.py",  # new
-        "run simon": "run-jup\\run-jup.py"  # new
+        "run simon": "run-jup\\run-jup.py",  # new
+        "jupyter --version": "mavis-terminal\\jupyter-version.py", # new
+        "grafana --version": "mavis-terminal\\grafana-version.py",  # new
+        "3d-slicer --version": "mavis-terminal\\3d-slicer-version.py"  # new
     }
 
     if user_input in commands:
