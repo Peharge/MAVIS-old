@@ -110,7 +110,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 > - Always use **LaTeX** to format formulas clearly and professionally.
 > - All code should be written in **Python**, the only supported language in the current UI.
 > - For visualizations, ask MAVIS to use:  
->   **Matplotlib**, **Plotly**, **Seaborn**, or **Altair** — the UI supports rendering via **HTML**, **LaTeX**, and **Python 3.12**.
+>   **Matplotlib**, **Plotly**, **Seaborn**, **Bokeh**, **Mayavi**, **Manim** or **Altair** — the UI supports rendering via **HTML**, **LaTeX**, and **Python 3.12**.
 > - Available scientific libraries include:  
 >   `NumPy`, `Math`, `SymPy`, `Pandas`, `AstroPy`, `QuantLib`, `OpenMDAO`, `pybullet`, `MONAI`  
 >   *(and soon: PyTorch, TensorFlow, Keras, Scikit-Learn, Hugging Face Transformers, JAX, and more).*
@@ -134,7 +134,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 > - Verwenden Sie immer **LaTeX**, um Formeln klar und professionell zu formatieren.
 > - Der gesamte Code sollte in **Python** geschrieben sein, der einzigen unterstützten Sprache in der aktuellen Benutzeroberfläche.
 > - Für Visualisierungen verwenden Sie bitte MAVIS:
-> **Matplotlib**, **Plotly**, **Seaborn** oder **Altair** – die Benutzeroberfläche unterstützt die Darstellung über **HTML**, **LaTeX** und **Python 3.12**.
+> **Matplotlib**, **Plotly**, **Seaborn**, **Bokeh**, **Mayavi**, **Manim** oder **Altair** – die Benutzeroberfläche unterstützt die Darstellung über **HTML**, **LaTeX** und **Python 3.12**.
 Zu den verfügbaren wissenschaftlichen Bibliotheken gehören:
 > `NumPy`, `Math`, `SymPy`, `Pandas`, `AstroPy`, `QuantLib`, `OpenMDAO`, `pybullet`, `MONAI`
 > *(und bald: PyTorch, TensorFlow, Keras, Scikit-Learn, Hugging Face Transformers, JAX und mehr).*
