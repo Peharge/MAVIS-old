@@ -605,6 +605,8 @@ def find_vcvarsall_c():
         raise FileNotFoundError("vcvarsall.bat not found. Please ensure Visual Studio is installed.")
     return vs_path
 
+# --- mp command---
+
 def get_project_paths_mp():
     """
     Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
@@ -677,6 +679,24 @@ def run_command_with_admin_privileges(command):
         logging.error(f"Command failed: {e}")
     except KeyboardInterrupt:
         logging.warning("Cancellation by user.")
+
+# --- mp-c command---
+
+def run_command_with_admin_c_privileges(command):
+    # soon
+    print("soon")
+
+# --- mp-p command---
+
+def run_command_with_admin_python_privileges(command):
+    if sys.platform == "win32":
+        if ctypes.windll.shell32.IsUserAnAdmin() == 0:
+            powershell_command = f"Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -Command \"{command}\"' -Verb RunAs"
+            subprocess.run(["powershell", "-Command", powershell_command], shell=True)
+        else:
+            subprocess.run(command, shell=True)
+    else:
+        subprocess.run(['sudo', '-S', command], input="password", text=True, shell=True)
 
 def is_wsl_installed():
     """Check if WSL is installed by attempting to run a basic wsl command."""
@@ -2236,6 +2256,12 @@ def main():
             elif user_input.startswith("mp "):
                 user_input = user_input[3:]
                 run_command_with_admin_privileges(user_input)
+            elif user_input.startswith("mp-c "):
+                user_input = user_input[5:]
+                run_command_with_admin_c_privileges(user_input)
+            elif user_input.startswith("mp "):
+                user_input = user_input[5:]
+                run_command_with_admin_python_privileges(user_input)
             elif user_input.startswith("powershell "):
                 run_command(user_input, shell=True)
 
