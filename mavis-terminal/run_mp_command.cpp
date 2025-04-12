@@ -67,14 +67,10 @@
    Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 */
 
-#include <windows.h>
-#include <shellapi.h>
 #include <iostream>
-#include <string>
+#include <windows.h>
 #include <vector>
-
-// Füge diese Zeile ein, um die Shell32-Bibliothek zu verlinken
-#pragma comment(lib, "shell32.lib")
+#include <string>
 
 int main(int argc, char* argv[]) {
     if (argc < 2) {
@@ -82,32 +78,49 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    // Baue den Powershell-Befehl zusammen.
-    std::string psCommand;
+    std::string command;
     for (int i = 1; i < argc; ++i) {
-        psCommand += "\"" + std::string(argv[i]) + "\" ";
+        if (i > 1) command += " ";
+        command += argv[i];
     }
 
-    std::string parameters = "-NoProfile -ExecutionPolicy Bypass -Command " + psCommand;
+    // Pipe-Ausgabe
+    SECURITY_ATTRIBUTES sa = { sizeof(SECURITY_ATTRIBUTES), NULL, TRUE };
+    HANDLE hStdOutRead, hStdOutWrite;
+    CreatePipe(&hStdOutRead, &hStdOutWrite, &sa, 0);
+    SetHandleInformation(hStdOutRead, HANDLE_FLAG_INHERIT, 0);
 
-    SHELLEXECUTEINFOA sei = {0};
-    sei.cbSize = sizeof(SHELLEXECUTEINFOA);
-    sei.fMask = SEE_MASK_NOCLOSEPROCESS;
-    sei.hwnd = NULL;
-    sei.lpVerb = "runas";
-    sei.lpFile = "powershell.exe";
-    sei.lpParameters = parameters.c_str();
-    sei.nShow = SW_SHOWDEFAULT;
+    PROCESS_INFORMATION pi;
+    STARTUPINFOA si = { sizeof(si) };
+    si.dwFlags |= STARTF_USESTDHANDLES;
+    si.hStdOutput = hStdOutWrite;
+    si.hStdError  = hStdOutWrite;
 
-    if (!ShellExecuteExA(&sei)) {
-        std::cerr << "[ERROR] Process start failed. Error code: " << GetLastError() << std::endl;
+    std::string cmdLine = "cmd.exe /c " + command;
+
+    if (!CreateProcessA(NULL, &cmdLine[0], NULL, NULL, TRUE, 0, NULL, NULL, &si, &pi)) {
+        std::cerr << "[ERROR] Failed to start process: " << GetLastError() << std::endl;
         return 1;
     }
 
-    WaitForSingleObject(sei.hProcess, INFINITE);
-    DWORD exitCode = 0;
-    GetExitCodeProcess(sei.hProcess, &exitCode);
-    CloseHandle(sei.hProcess);
+    CloseHandle(hStdOutWrite); // Writeseite schließen (wird vom Child verwendet)
+
+    // Output lesen
+    char buffer[4096];
+    DWORD bytesRead;
+    while (ReadFile(hStdOutRead, buffer, sizeof(buffer)-1, &bytesRead, NULL)) {
+        if (bytesRead == 0) break;
+        buffer[bytesRead] = '\0';
+        std::cout << buffer;
+    }
+
+    WaitForSingleObject(pi.hProcess, INFINITE);
+    DWORD exitCode;
+    GetExitCodeProcess(pi.hProcess, &exitCode);
+
+    CloseHandle(hStdOutRead);
+    CloseHandle(pi.hProcess);
+    CloseHandle(pi.hThread);
 
     return static_cast<int>(exitCode);
 }
