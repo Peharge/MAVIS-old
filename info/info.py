@@ -351,13 +351,13 @@ def mavis_compatibility(ram):
     ram_gb = ram.total / (1024 ** 3)  # ram.total gibt den Gesamt-RAM in Bytes
 
     if ram_gb < 8:
-        return f"{red}Xc++ III is not supported on this system{reset}\n"
+        return f"{red}Xc++ IV is not supported on this system{reset}\n"
     elif 8 <= ram_gb <= 14:
-        return f"{red}Xc++ III in limited mode is supported{reset}\n"
+        return f"{red}Xc++ IV in limited mode is supported{reset}\n"
     elif 15 <= ram_gb <= 64:
-        return f"{green}Xc++ III 11B is supported{reset}\n"
+        return f"{green}Xc++ IV 11B is supported{reset}\n"
     elif ram_gb > 64:
-        return f"{green}Xc++ III 90B is supported{reset}\n"
+        return f"{green}Xc++ IV 90B is supported{reset}\n"
 
 def remove_color_codes(text):
     return re.sub(r'\033\[[0-9;]*m', '', text)
