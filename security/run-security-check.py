@@ -67,6 +67,7 @@ import subprocess
 import psutil
 import socket
 import logging
+import logging.handlers  # Wichtig: expliziter Import von logging.handlers
 import hashlib
 import json
 from datetime import datetime
@@ -117,7 +118,6 @@ SUSPICIOUS_MEMORY_THRESHOLD = 1_000_000_000  # in bytes (1GB)
 DEFAULT_PROJECT_DIR = Path(r"C:\Users\julia\PycharmProjects\MAVIS")
 HASH_CACHE_FILE = Path("hash_cache.json")  # Cache file for file modification tracking
 
-
 # ============================
 # Logging Configuration
 # ============================
@@ -126,7 +126,7 @@ def setup_logging():
     logger.setLevel(logging.INFO)
 
     # Rotating file handler
-    file_handler = logging.handlers.RotatingFileHandler("security_scan.log", maxBytes=5 * 1024 * 1024, backupCount=2)
+    file_handler = logging.handlers.RotatingFileHandler("security_scan.log", maxBytes=5*1024*1024, backupCount=2)
     file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
     logger.addHandler(file_handler)
 
@@ -137,9 +137,7 @@ def setup_logging():
 
     return logger
 
-
 logger = setup_logging()
-
 
 # ============================
 # Load Environment Variables
@@ -159,7 +157,6 @@ def load_env() -> Path:
         logger.warning("No .env file found at %s.", env_path)
     return env_path
 
-
 # ============================
 # File Integrity Check Functions
 # ============================
@@ -175,7 +172,6 @@ def compute_sha256(file_path: Path) -> str:
         return ""
     return sha256_hash.hexdigest()
 
-
 def load_known_hashes() -> dict:
     """Load known file hashes from a JSON file, if available."""
     if KNOWN_FILE_HASHES_PATH.exists():
@@ -186,9 +182,7 @@ def load_known_hashes() -> dict:
             logger.error("Error loading known hashes: %s", e)
     return KNOWN_HASHES.copy()
 
-
 KNOWN_HASHES = load_known_hashes()
-
 
 def is_safe(file_path: Path) -> bool:
     """
@@ -209,14 +203,13 @@ def is_safe(file_path: Path) -> bool:
         logger.info("No known hash for %s. Skipping integrity check.", file_path)
         return True
 
-
 # ============================
 # Optimized File Iteration (Scans every file)
 # ============================
 def safe_iter_files(directory: Path):
     """
     Recursively iterate over files in a directory using os.scandir with error handling.
-    Every file found is yielded (no exclusions are applied).
+    Every file found is yielded.
     """
     try:
         with os.scandir(directory) as it:
@@ -229,7 +222,6 @@ def safe_iter_files(directory: Path):
     except Exception as e:
         logger.error("Error scanning directory %s: %s", directory, e)
 
-
 def list_files_for_scan(directory: Path) -> int:
     """
     List all files in a directory (recursively) and return the count.
@@ -240,7 +232,6 @@ def list_files_for_scan(directory: Path) -> int:
         print(f"   - {file_path}")
         file_count += 1
     return file_count
-
 
 # ============================
 # Windows Defender Scan (Improved Handling)
@@ -255,20 +246,18 @@ def scan_with_defender(target: Path) -> int:
         print(f"{COLORS['red']}ERROR{COLORS['reset']}: The specified path does not exist: {target}")
         logger.error("Invalid scan path: %s", target)
         return 0
-
     try:
         total_files = list_files_for_scan(target)
         ps_command = [
             "powershell", "-Command",
             "Start-MpScan", "-ScanType", "CustomScan", "-ScanPath", str(target)
         ]
-        # Reduced timeout to keep individual scans fast
         result = subprocess.run(ps_command,
-                                capture_output=True,
-                                text=True,
-                                timeout=180,
-                                encoding="cp1252",
-                                errors="ignore")
+                                  capture_output=True,
+                                  text=True,
+                                  timeout=180,
+                                  encoding="cp1252",
+                                  errors="ignore")
         if result.stdout.strip():
             print(result.stdout)
             logger.info("Windows Defender scan result for %s: %s", target, result.stdout)
@@ -284,7 +273,6 @@ def scan_with_defender(target: Path) -> int:
         print(f"{COLORS['red']}ERROR{COLORS['reset']}: Scan failed on {target} – {e}")
         logger.error("Scan failed for %s: %s", target, e)
         return 0
-
 
 # ============================
 # Extract Paths from Environment Variables
@@ -306,7 +294,6 @@ def extract_paths_from_env() -> list:
                 logger.info("URL found: %s -> %s", var, value)
     return paths
 
-
 # ============================
 # Check Firewall Status (Cross-Platform)
 # ============================
@@ -315,10 +302,8 @@ def check_firewall_status():
     try:
         system_platform = platform.system()
         if system_platform == "Windows":
-            result = subprocess.run(
-                ["netsh", "advfirewall", "show", "allprofiles"],
-                capture_output=True, text=True, timeout=60
-            )
+            result = subprocess.run(["netsh", "advfirewall", "show", "allprofiles"],
+                                      capture_output=True, text=True, timeout=60)
             if "State" in result.stdout:
                 print(f"{COLORS['green']}Firewall is enabled.{COLORS['reset']}")
                 logger.info("Windows Firewall is enabled.")
@@ -326,7 +311,8 @@ def check_firewall_status():
                 print(f"{COLORS['red']}Firewall is not enabled.{COLORS['reset']}")
                 logger.warning("Windows Firewall is not enabled.")
         elif system_platform in ["Linux", "Darwin"]:
-            result = subprocess.run(["sudo", "ufw", "status"], capture_output=True, text=True, timeout=30)
+            result = subprocess.run(["sudo", "ufw", "status"],
+                                      capture_output=True, text=True, timeout=30)
             if "active" in result.stdout.lower():
                 print(f"{COLORS['green']}Firewall is active.{COLORS['reset']}")
                 logger.info("Firewall is active on %s.", system_platform)
@@ -340,7 +326,6 @@ def check_firewall_status():
         print(f"{COLORS['red']}ERROR{COLORS['reset']}: Error checking firewall status – {e}")
         logger.error("Error in firewall check: %s", e)
 
-
 # ============================
 # Check Suspicious Processes
 # ============================
@@ -350,39 +335,32 @@ def check_suspicious_processes():
         "cmd.exe", "powershell.exe", "netstat.exe", "whois.exe",
         "python.exe", "java.exe", "wget.exe", "curl.exe", "nc.exe", "nmap.exe"
     }
-    for proc in psutil.process_iter(
-            ['pid', 'name', 'cmdline', 'cpu_percent', 'memory_info', 'create_time', 'username']):
+    for proc in psutil.process_iter(['pid', 'name', 'cmdline', 'cpu_percent', 'memory_info', 'create_time', 'username']):
         try:
             proc_name = (proc.info.get('name') or "").lower()
             if proc_name in suspicious_names:
                 cpu_usage = proc.info.get('cpu_percent', 0)
                 mem_info = proc.info.get('memory_info')
                 memory_usage = getattr(mem_info, 'rss', 0) if mem_info else 0
-                create_time = datetime.fromtimestamp(proc.info.get('create_time', time.time())).strftime(
-                    "%Y-%m-%d %H:%M:%S")
+                create_time = datetime.fromtimestamp(proc.info.get('create_time', time.time())).strftime("%Y-%m-%d %H:%M:%S")
                 username = proc.info.get('username', 'Unknown')
                 cmdline = " ".join(proc.info.get('cmdline', []))
                 if cpu_usage > SUSPICIOUS_CPU_THRESHOLD or memory_usage > SUSPICIOUS_MEMORY_THRESHOLD:
-                    print(
-                        f"{COLORS['red']}Suspicious process with high resource usage{COLORS['reset']}: {proc.info.get('name')} (PID: {proc.info.get('pid')})")
-                    print(f"   CPU: {cpu_usage}% | Memory: {memory_usage / (1024 * 1024):.2f} MB")
+                    print(f"{COLORS['red']}Suspicious process with high resource usage{COLORS['reset']}: {proc.info.get('name')} (PID: {proc.info.get('pid')})")
+                    print(f"   CPU: {cpu_usage}% | Memory: {memory_usage / (1024*1024):.2f} MB")
                     print(f"   Started: {create_time} by {username}")
                     print(f"   Command: {cmdline}")
-                    logger.warning("High resource usage process: %s (PID: %s)", proc.info.get('name'),
-                                   proc.info.get('pid'))
+                    logger.warning("High resource usage process: %s (PID: %s)", proc.info.get('name'), proc.info.get('pid'))
                 else:
-                    print(
-                        f"{COLORS['yellow']}Suspicious process (normal usage){COLORS['reset']}: {proc.info.get('name')} (PID: {proc.info.get('pid')})")
+                    print(f"{COLORS['yellow']}Suspicious process (normal usage){COLORS['reset']}: {proc.info.get('name')} (PID: {proc.info.get('pid')})")
                     print(f"   Started: {create_time} by {username}")
                     print(f"   Command: {cmdline}")
-                    logger.info("Suspicious process detected: %s (PID: %s)", proc.info.get('name'),
-                                proc.info.get('pid'))
+                    logger.info("Suspicious process detected: %s (PID: %s)", proc.info.get('name'), proc.info.get('pid'))
         except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
             continue
         except Exception as e:
             logger.error("Error checking process: %s", e)
     print(f"{COLORS['green']}Process check complete.{COLORS['reset']}")
-
 
 # ============================
 # Check Active Network Connections
@@ -404,15 +382,13 @@ def check_network_connections():
                 remote_ip = conn.raddr.ip
                 ip_connection_count[remote_ip] = ip_connection_count.get(remote_ip, 0) + 1
                 if ip_connection_count[remote_ip] > MAX_CONNECTIONS_FROM_SAME_IP:
-                    print(
-                        f"{COLORS['red']}Potential DDoS attack detected{COLORS['reset']}: {remote_ip} has {ip_connection_count[remote_ip]} connections!")
+                    print(f"{COLORS['red']}Potential DDoS attack detected{COLORS['reset']}: {remote_ip} has {ip_connection_count[remote_ip]} connections!")
                     logger.warning("Potential DDoS: %s (%s connections).", remote_ip, ip_connection_count[remote_ip])
                     continue
                 print(f"{COLORS['cyan']}Active connection found{COLORS['reset']}: {local_addr} -> {remote_addr}")
                 logger.info("Network connection: %s -> %s", local_addr, remote_addr)
                 if remote_ip in KNOWN_MALICIOUS_IPS:
-                    print(
-                        f"{COLORS['red']}WARNING: Connection to known malicious IP detected{COLORS['reset']}: {remote_ip}")
+                    print(f"{COLORS['red']}WARNING: Connection to known malicious IP detected{COLORS['reset']}: {remote_ip}")
                     logger.warning("Connection to known malicious IP: %s", remote_ip)
                 if conn.laddr and conn.laddr.port in SUSPICIOUS_PORTS:
                     print(f"{COLORS['yellow']}Suspicious local port detected{COLORS['reset']}: {conn.laddr.port}")
@@ -426,8 +402,7 @@ def check_network_connections():
                             s.sendall(b"HEAD / HTTP/1.0\r\n\r\n")
                             response = s.recv(1024)
                         if b"200 OK" in response:
-                            print(
-                                f"{COLORS['green']}Stable HTTPS connection established{COLORS['reset']}: {remote_ip}:443")
+                            print(f"{COLORS['green']}Stable HTTPS connection established{COLORS['reset']}: {remote_ip}:443")
                             logger.info("Stable HTTPS connection: %s:443", remote_ip)
                         else:
                             print(f"{COLORS['red']}Unusual HTTPS response{COLORS['reset']}: {remote_ip}:443")
@@ -438,7 +413,6 @@ def check_network_connections():
         except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
             continue
     print(f"{COLORS['green']}Network connection check complete.{COLORS['reset']}")
-
 
 # ============================
 # Check Security-Related System Logs
@@ -461,7 +435,6 @@ def check_security_logs():
         print(f"{COLORS['yellow']}Log file {log_file} not found.{COLORS['reset']}")
         logger.warning("Log file %s not found.", log_file)
 
-
 # ============================
 # Check System Permissions and User Accounts
 # ============================
@@ -479,14 +452,12 @@ def check_system_permissions():
         try:
             permissions = oct(os.stat(file_path).st_mode & 0o777)[2:]
             if int(permissions, 8) > 0o755:
-                print(
-                    f"{COLORS['yellow']}Warning: Overly permissive permissions for {file_path}: {permissions}{COLORS['reset']}")
+                print(f"{COLORS['yellow']}Warning: Overly permissive permissions for {file_path}: {permissions}{COLORS['reset']}")
                 logger.warning("Overly permissive permissions for %s: %s", file_path, permissions)
             else:
                 logger.info("Permissions for %s: %s", file_path, permissions)
         except Exception as e:
             logger.error("Error checking permissions for %s: %s", file_path, e)
-
 
 # ============================
 # Extra Feature: Check for OS Updates
@@ -510,7 +481,6 @@ def check_os_updates():
         print(f"{COLORS['red']}ERROR{COLORS['reset']}: Error checking OS updates – {e}")
         logger.error("Error checking OS updates: %s", e)
 
-
 # ============================
 # Extra Feature: Check YARA Malware Signatures (Optional)
 # ============================
@@ -522,7 +492,6 @@ def check_yara_signatures():
         print(f"{COLORS['yellow']}YARA module not installed. Skipping YARA scan.{COLORS['reset']}")
         logger.warning("YARA module not installed.")
         return
-
     rule_source = '''
     rule DummyRule {
         strings:
@@ -536,7 +505,6 @@ def check_yara_signatures():
     except Exception as e:
         logger.error("Error compiling YARA rules: %s", e)
         return
-
     for file_path in safe_iter_files(DEFAULT_PROJECT_DIR):
         try:
             matches = rules.match(str(file_path))
@@ -547,16 +515,13 @@ def check_yara_signatures():
             logger.error("Error scanning %s with YARA: %s", file_path, e)
     print(f"{COLORS['green']}YARA scan complete.{COLORS['reset']}")
 
-
 # ============================
 # Extra Feature: Check for Rootkit Signatures (Stub Function)
 # ============================
 def check_rootkit_signatures():
     print(f"\n{COLORS['blue']}Performing rootkit signature check...{COLORS['reset']}")
-    print(
-        f"{COLORS['yellow']}Rootkit check not fully implemented. Consider integrating a dedicated tool.{COLORS['reset']}")
+    print(f"{COLORS['yellow']}Rootkit check not fully implemented. Consider integrating a dedicated tool.{COLORS['reset']}")
     logger.info("Rootkit check stub executed.")
-
 
 # ============================
 # Extra Feature: File Modification Tracking Using a Hash Cache
@@ -570,7 +535,6 @@ def load_hash_cache() -> dict:
             logger.error("Error loading hash cache: %s", e)
     return {}
 
-
 def update_hash_cache(new_cache: dict):
     try:
         with HASH_CACHE_FILE.open("w", encoding="utf-8") as f:
@@ -578,7 +542,6 @@ def update_hash_cache(new_cache: dict):
         logger.info("Hash cache updated successfully.")
     except Exception as e:
         logger.error("Error updating hash cache: %s", e)
-
 
 def check_file_modifications_with_cache():
     """
@@ -604,7 +567,6 @@ def check_file_modifications_with_cache():
         print(f"{COLORS['green']}No unauthorized file modifications detected.{COLORS['reset']}")
     update_hash_cache(current_hashes)
 
-
 # ============================
 # Full Security Scan (Parallelized)
 # ============================
@@ -612,15 +574,14 @@ def scan_all_files():
     env_path = load_env()
     total_scanned_files = 0
 
-    # Preliminary: Check system permissions and users
+    # Preliminary: Check system permissions and user accounts
     check_system_permissions()
 
     if env_path:
         base_directory = env_path.parent
-        # Combine base directory and paths from environment variables
+        # Combine base directory and environment variable paths
         paths_to_scan = [base_directory] + extract_paths_from_env()
 
-        # Use ThreadPoolExecutor for parallel scanning
         with ThreadPoolExecutor(max_workers=10) as executor:
             future_to_path = {executor.submit(scan_with_defender, path): path for path in paths_to_scan}
             for future in as_completed(future_to_path):
@@ -629,9 +590,9 @@ def scan_all_files():
                     scanned_count = future.result()
                     total_scanned_files += scanned_count
                 except Exception as exc:
-                    logger.error("Scan generated an exception for %s: %s", path, exc)
+                    logger.error("Scan exception for %s: %s", path, exc)
 
-        # Integrity check for every file in the project directory
+        # Integrity check for each path
         for path in paths_to_scan:
             if path.exists():
                 if is_safe(path):
@@ -658,7 +619,6 @@ def scan_all_files():
     check_yara_signatures()
     check_rootkit_signatures()
     check_file_modifications_with_cache()
-
 
 # ============================
 # Main Program
