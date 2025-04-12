@@ -77,9 +77,7 @@ from dotenv import load_dotenv
 import platform
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-# ============================
 # Configuration / Constants
-# ============================
 CRITICAL_VARS = [
     'SECRET_KEY', 'DB_PASSWORD', 'API_KEY', 'JWT_SECRET', 'EMAIL_PASSWORD', 'DEBUG',
     'ALLOWED_HOSTS', 'DATABASE_URL', 'REDIS_URL', 'CELERY_BROKER_URL', 'LOG_LEVEL',
@@ -118,9 +116,7 @@ SUSPICIOUS_MEMORY_THRESHOLD = 1_000_000_000  # in bytes (1GB)
 DEFAULT_PROJECT_DIR = Path(r"C:\Users\julia\PycharmProjects\MAVIS")
 HASH_CACHE_FILE = Path("hash_cache.json")  # Cache file for file modification tracking
 
-# ============================
 # Logging Configuration
-# ============================
 def setup_logging():
     logger = logging.getLogger("SecurityScanner")
     logger.setLevel(logging.INFO)
@@ -139,9 +135,7 @@ def setup_logging():
 
 logger = setup_logging()
 
-# ============================
 # Load Environment Variables
-# ============================
 def load_env() -> Path:
     try:
         user = os.getlogin() if hasattr(os, 'getlogin') else os.environ.get("USERNAME", "default")
@@ -157,9 +151,7 @@ def load_env() -> Path:
         logger.warning("No .env file found at %s.", env_path)
     return env_path
 
-# ============================
 # File Integrity Check Functions
-# ============================
 def compute_sha256(file_path: Path) -> str:
     """Compute the SHA-256 hash of a file."""
     sha256_hash = hashlib.sha256()
@@ -203,9 +195,7 @@ def is_safe(file_path: Path) -> bool:
         logger.info("No known hash for %s. Skipping integrity check.", file_path)
         return True
 
-# ============================
 # Optimized File Iteration (Scans every file)
-# ============================
 def safe_iter_files(directory: Path):
     """
     Recursively iterate over files in a directory using os.scandir with error handling.
@@ -233,9 +223,7 @@ def list_files_for_scan(directory: Path) -> int:
         file_count += 1
     return file_count
 
-# ============================
 # Windows Defender Scan (Improved Handling)
-# ============================
 def scan_with_defender(target: Path) -> int:
     """
     Run a Windows Defender scan on the given target with error and timeout handling.
@@ -274,9 +262,7 @@ def scan_with_defender(target: Path) -> int:
         logger.error("Scan failed for %s: %s", target, e)
         return 0
 
-# ============================
 # Extract Paths from Environment Variables
-# ============================
 def extract_paths_from_env() -> list:
     """
     Extract local paths or URLs from critical environment variables.
@@ -294,9 +280,7 @@ def extract_paths_from_env() -> list:
                 logger.info("URL found: %s -> %s", var, value)
     return paths
 
-# ============================
 # Check Firewall Status (Cross-Platform)
-# ============================
 def check_firewall_status():
     print(f"\n{COLORS['blue']}Checking firewall status...{COLORS['reset']}")
     try:
@@ -326,9 +310,7 @@ def check_firewall_status():
         print(f"{COLORS['red']}ERROR{COLORS['reset']}: Error checking firewall status – {e}")
         logger.error("Error in firewall check: %s", e)
 
-# ============================
 # Check Suspicious Processes
-# ============================
 def check_suspicious_processes():
     print(f"\n{COLORS['blue']}Checking for suspicious processes...{COLORS['reset']}")
     suspicious_names = {
@@ -362,9 +344,7 @@ def check_suspicious_processes():
             logger.error("Error checking process: %s", e)
     print(f"{COLORS['green']}Process check complete.{COLORS['reset']}")
 
-# ============================
 # Check Active Network Connections
-# ============================
 def check_network_connections():
     print(f"\n{COLORS['blue']}Checking active network connections...{COLORS['reset']}")
     try:
@@ -414,9 +394,7 @@ def check_network_connections():
             continue
     print(f"{COLORS['green']}Network connection check complete.{COLORS['reset']}")
 
-# ============================
 # Check Security-Related System Logs
-# ============================
 def check_security_logs():
     print(f"\n{COLORS['blue']}Checking security-related system logs...{COLORS['reset']}")
     log_file = Path("/var/log/auth.log")
@@ -435,9 +413,7 @@ def check_security_logs():
         print(f"{COLORS['yellow']}Log file {log_file} not found.{COLORS['reset']}")
         logger.warning("Log file %s not found.", log_file)
 
-# ============================
 # Check System Permissions and User Accounts
-# ============================
 def check_system_permissions():
     print(f"\n{COLORS['blue']}Checking system users and file permissions...{COLORS['reset']}")
     try:
@@ -459,9 +435,7 @@ def check_system_permissions():
         except Exception as e:
             logger.error("Error checking permissions for %s: %s", file_path, e)
 
-# ============================
 # Extra Feature: Check for OS Updates
-# ============================
 def check_os_updates():
     print(f"\n{COLORS['blue']}Checking for operating system updates...{COLORS['reset']}")
     system_platform = platform.system()
@@ -481,9 +455,7 @@ def check_os_updates():
         print(f"{COLORS['red']}ERROR{COLORS['reset']}: Error checking OS updates – {e}")
         logger.error("Error checking OS updates: %s", e)
 
-# ============================
 # Extra Feature: Check YARA Malware Signatures (Optional)
-# ============================
 def check_yara_signatures():
     print(f"\n{COLORS['blue']}Checking files against YARA rules...{COLORS['reset']}")
     try:
@@ -515,17 +487,13 @@ def check_yara_signatures():
             logger.error("Error scanning %s with YARA: %s", file_path, e)
     print(f"{COLORS['green']}YARA scan complete.{COLORS['reset']}")
 
-# ============================
 # Extra Feature: Check for Rootkit Signatures (Stub Function)
-# ============================
 def check_rootkit_signatures():
     print(f"\n{COLORS['blue']}Performing rootkit signature check...{COLORS['reset']}")
     print(f"{COLORS['yellow']}Rootkit check not fully implemented. Consider integrating a dedicated tool.{COLORS['reset']}")
     logger.info("Rootkit check stub executed.")
 
-# ============================
 # Extra Feature: File Modification Tracking Using a Hash Cache
-# ============================
 def load_hash_cache() -> dict:
     if HASH_CACHE_FILE.exists():
         try:
@@ -567,9 +535,7 @@ def check_file_modifications_with_cache():
         print(f"{COLORS['green']}No unauthorized file modifications detected.{COLORS['reset']}")
     update_hash_cache(current_hashes)
 
-# ============================
 # Full Security Scan (Parallelized)
-# ============================
 def scan_all_files():
     env_path = load_env()
     total_scanned_files = 0
@@ -620,9 +586,7 @@ def scan_all_files():
     check_rootkit_signatures()
     check_file_modifications_with_cache()
 
-# ============================
 # Main Program
-# ============================
 if __name__ == '__main__':
     try:
         scan_all_files()
