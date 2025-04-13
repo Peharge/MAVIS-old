@@ -283,9 +283,9 @@ def print_system_info(system_info: dict):
          +=====================+++     {blue}##*******########{reset}            {blue}Architecture{reset}: {system_info['cpu_arch']}
         +++++================++++++     {blue}##*****##########{reset}           {blue}Max Frequency{reset}: {system_info['cpu_freq']} MHz
        {blue}*{reset}++++++++++++++++++++++++++++     {blue}##****###########{reset}          {blue}RAM Usage{reset}: {system_info['ram_usage']}%
-      {blue}***{reset}++++++++++++++++++++++++++++     {blue}##*##############{reset}         {blue}RAM Total{reset}: {system_info['ram_total']} GB
-     {blue}****{reset}+++++++++++{blue}**{reset}++++++++++++{blue}*{reset}+++     {blue}################%{reset}        {blue}PIP Version{reset}: {pip.__version__}
-    {blue}********{reset}+++++{blue}*##{reset}  {blue}*{reset}++++++{blue}**********{blue}     {blue}##############%%%{reset}       {blue}PowerShell-Version{reset}: {get_powershell_version()}
+      {blue}***{reset}+++++++++++++++++++++++++++{blue}*{reset}     {blue}##*##############{reset}         {blue}RAM Total{reset}: {system_info['ram_total']} GB
+     {blue}****{reset}+++++++++++{blue}***{reset}+++++++++++{blue}****{reset}     {blue}################%{reset}        {blue}PIP Version{reset}: {pip.__version__}
+    {blue}********{reset}+++++{blue}*##{reset}  {blue}***{reset}++++{blue}**********{blue}     {blue}##############%%%{reset}       {blue}PowerShell-Version{reset}: {get_powershell_version()}
    {blue}*************###{reset}    {blue}****************#{reset}     {blue}#############%%%%{reset}      {blue}WSL-Version{reset}: {get_wsl_version()}
   {blue}####********####{reset}      {blue}*************####{reset}     {blue}###########%%%%%%{reset}     {blue}Kernelversion{reset}: {get_kernel_version()}
  {blue}################{reset}        {blue}**********#######{reset}     {blue}#########%%%%%%%%{reset}    {blue}WSLg-Version{reset}: {get_wslg_version()}
