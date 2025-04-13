@@ -517,7 +517,8 @@ def handle_special_commands(user_input):
         "run simon": "run-jup\\run-jup.py",  # new
         "jupyter --version": "mavis-terminal\\jupyter-version.py", # new
         "grafana --version": "mavis-terminal\\grafana-version.py",  # new
-        "3d-slicer --version": "mavis-terminal\\3d-slicer-version.py"  # new
+        "3d-slicer --version": "mavis-terminal\\3d-slicer-version.py",  # new
+        "doctor": "mavis-terminal\\doctor.py" # new
     }
 
     if user_input in commands:

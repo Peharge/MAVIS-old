@@ -103,8 +103,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 > **MAVIS** (_Math Visual Intelligent System_) is a powerful AI-powered assistant that can solve complex math problems, generate precise visualizations, and explain abstract concepts with clarity. It supports analysis of multiple input formats — including **images (PNG, JPG, JPEG, GIF)** and **text/code documents (TXT, PDF, PY, DOC, DOCX)** — and returns **interactive, insightful answers** in real time.
 >  
 > MAVIS was created with one goal: to make advanced mathematical and scientific tools accessible to everyone — no paywalls, no limits. It’s completely **free**, **open to contributions**, and developed for the **good of humanity**.
->  
-> ---
+>
 > To get the most out of MAVIS, keep in mind:
 > 
 > - Always use **LaTeX** to format formulas clearly and professionally.
@@ -114,8 +113,7 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 > - Available scientific libraries include:  
 >   `NumPy`, `Math`, `SymPy`, `Pandas`, `AstroPy`, `QuantLib`, `OpenMDAO`, `pybullet`, `MONAI`  
 >   *(and soon: PyTorch, TensorFlow, Keras, Scikit-Learn, Hugging Face Transformers, JAX, and more).*
-> 
-> ---
+>
 > Use MAVIS to elevate your projects — faster results, better visuals, deeper insight.  
 > Because powerful knowledge tools should belong to everyone.
 
@@ -128,7 +126,6 @@ There is evidence that fake accounts may attempt to misrepresent this project. P
 >
 > MAVIS wurde mit einem Ziel entwickelt: fortschrittliche mathematische und wissenschaftliche Werkzeuge für alle zugänglich zu machen – ohne Paywalls, ohne Einschränkungen. Es ist völlig **kostenlos**, **offen für Beiträge** und wird zum **Wohl der Menschheit** entwickelt.
 >
-> ---
 > Um MAVIS optimal zu nutzen, beachten Sie:
 >
 > - Verwenden Sie immer **LaTeX**, um Formeln klar und professionell zu formatieren.
@@ -139,7 +136,6 @@ Zu den verfügbaren wissenschaftlichen Bibliotheken gehören:
 > `NumPy`, `Math`, `SymPy`, `Pandas`, `AstroPy`, `QuantLib`, `OpenMDAO`, `pybullet`, `MONAI`
 > *(und bald: PyTorch, TensorFlow, Keras, Scikit-Learn, Hugging Face Transformers, JAX und mehr).*
 >
-> ---
 > Nutzen Sie MAVIS, um Ihre Projekte zu optimieren – schnellere Ergebnisse, bessere Visualisierungen, tiefere Einblicke.
 > Weil leistungsstarke Wissenstools jedem zur Verfügung stehen sollten.
 </details>
