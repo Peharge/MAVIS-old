@@ -64,18 +64,39 @@
 import os
 import subprocess
 import sys
-from PyQt6.QtGui import QColor, QIcon, QPalette, QSyntaxHighlighter, QTextCharFormat
+from collections import Counter
+from datetime import datetime, timedelta
+
+from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QColor, QIcon, QPalette, QTextCharFormat, QSyntaxHighlighter
 from PyQt6.QtWidgets import (QApplication, QLabel, QSizePolicy, QTreeWidgetItem,
                              QTreeWidget, QVBoxLayout, QWidget, QHeaderView,
-                             QLineEdit, QPushButton, QHBoxLayout, QTextEdit)
+                             QLineEdit, QPushButton, QHBoxLayout, QTextEdit, QTabWidget, QMainWindow)
+
+# Matplotlib-Integration in PyQt6
+from matplotlib.figure import Figure
+try:
+    from matplotlib.backends.backend_qt6agg import FigureCanvasQTAgg as FigureCanvas
+except ImportError:
+    from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
 def get_git_commits(repo_path):
+    """
+    Liest lokale Git-Commits aus und liefert eine Liste von Tupeln:
+    (full_hash, short_hash, message, author, date, color)
+
+    - Datum im Format YYYY-MM-DD (ISO)
+    - Trenner '|' sorgt für korrektes Parsen auch bei Leerzeichen in der Commit-Message
+    """
     os.chdir(repo_path)
     try:
-        # Retrieve local commits
-        local_commits = subprocess.check_output(["git", "log", "--pretty=format:%H %h %s %an %ar"], text=True).split("\n")
+        # Lokale Commits abrufen, Datum im ISO-Format
+        local_commits = subprocess.check_output(
+            ["git", "log", "--date=short", "--pretty=format:%H|%h|%s|%an|%ad"],
+            text=True
+        ).split("\n")
 
-        # Determine the main branch
+        # Bestimme den Main-Branch
         branches = subprocess.check_output(["git", "ls-remote", "--heads", "origin"], text=True).split("\n")
         main_branch = None
         for branch in branches:
@@ -87,16 +108,19 @@ def get_git_commits(repo_path):
                 break
 
         if not main_branch:
-            return []  # No main branch found
+            return []  # Kein Main-Branch gefunden
 
-        # Retrieve remote commits
+        # Remote-Commits (nur deren Hashes)
         remote_commits = subprocess.check_output(["git", "log", main_branch, "--pretty=format:%H"], text=True).split("\n")
         remote_hashes = set(remote_commits)
 
         commits = []
         for commit in local_commits:
             if commit:
-                full_hash, short_hash, message, author, date = commit.split(" ", 4)
+                parts = commit.split("|")
+                if len(parts) != 5:
+                    continue
+                full_hash, short_hash, message, author, date = parts
                 color = "red" if full_hash not in remote_hashes else "green"
                 commits.append((full_hash, short_hash, message, author, date, color))
 
@@ -104,19 +128,17 @@ def get_git_commits(repo_path):
     except subprocess.CalledProcessError:
         return []
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QSyntaxHighlighter, QTextCharFormat, QColor, QTextDocument
-from PyQt6.QtWidgets import QApplication, QMainWindow, QTextEdit, QVBoxLayout, QWidget
-import subprocess
-
 class DiffHighlighter(QSyntaxHighlighter):
+    """
+    Hebt Zeilen im Diff hervor, die mit '+' (Hinzufügungen) oder '-' (Löschungen) beginnen.
+    """
     def __init__(self, parent):
         super().__init__(parent)
         self.format_addition = QTextCharFormat()
-        self.format_addition.setBackground(QColor(0, 255, 0, 100))  # Green with 0.4 opacity
+        self.format_addition.setBackground(QColor(0, 255, 0, 100))  # Grüner Hintergrund
 
         self.format_deletion = QTextCharFormat()
-        self.format_deletion.setBackground(QColor(255, 0, 0, 100))  # Red with 0.4 opacity
+        self.format_deletion.setBackground(QColor(255, 0, 0, 100))  # Roter Hintergrund
 
     def highlightBlock(self, text):
         if text.startswith('+'):
@@ -125,27 +147,33 @@ class DiffHighlighter(QSyntaxHighlighter):
             self.setFormat(0, len(text), self.format_deletion)
 
 def get_commit_diff(repo_path, commit_hash):
+    """
+    Gibt den Diff eines bestimmten Commits zurück.
+    """
     try:
-        result = subprocess.run(["git", "show", commit_hash], cwd=repo_path, text=True, encoding='utf-8', capture_output=True, check=True)
+        result = subprocess.run(["git", "show", commit_hash],
+                                cwd=repo_path,
+                                text=True,
+                                encoding='utf-8',
+                                capture_output=True,
+                                check=True)
         return result.stdout
     except subprocess.CalledProcessError as e:
         return f"Failed to retrieve diff. Error: {e.stderr}"
 
-class CommitExplorer(QWidget):
-    def __init__(self):
+class ExplorerTab(QWidget):
+    """
+    Enthält den Commit Explorer inklusive Suchleiste, Commit-Liste und Diff-Vorschau.
+    """
+    def __init__(self, repo_path):
         super().__init__()
-        self.setWindowTitle("MAVIS Commit Explorer Deluxe")
-        self.setGeometry(100, 100, 1200, 900)
-        self.set_dark_mode()
+        self.repo_path = repo_path
+        self.init_ui()
 
-        user = os.getenv("USERNAME") or os.getenv("USER")
-        self.repo_path = f"C:/Users/{user}/PycharmProjects/MAVIS"
-        icon_path = f"C:/Users/{user}/PycharmProjects/MAVIS/icons/mavis-logo.ico"
-        self.setWindowIcon(QIcon(icon_path))
+    def init_ui(self):
+        layout = QVBoxLayout()
 
-        main_layout = QVBoxLayout()
-
-        # Search bar
+        # Suchleiste
         search_layout = QHBoxLayout()
         self.search_bar = QLineEdit()
         self.search_bar.setPlaceholderText("Search commits...")
@@ -153,23 +181,144 @@ class CommitExplorer(QWidget):
         search_button.clicked.connect(self.search_commits)
         search_layout.addWidget(self.search_bar)
         search_layout.addWidget(search_button)
-        main_layout.addLayout(search_layout)
+        layout.addLayout(search_layout)
 
+        # Baumansicht der Commits
         self.tree = QTreeWidget()
         self.tree.setHeaderLabels(["Commit Hash", "Message", "Author", "Date", "Status"])
         self.tree.header().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         self.tree.itemClicked.connect(self.display_commit_diff)
-        main_layout.addWidget(self.tree)
+        layout.addWidget(self.tree)
 
         self.status_label = QLabel("Loading...")
-        main_layout.addWidget(self.status_label)
+        layout.addWidget(self.status_label)
 
+        # Diff-Vorschau
         self.diff_text = QTextEdit()
         self.diff_text.setReadOnly(True)
         self.highlighter = DiffHighlighter(self.diff_text.document())
-        main_layout.addWidget(self.diff_text)
+        layout.addWidget(self.diff_text)
 
-        self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        self.setLayout(layout)
+        self.load_commits()
+
+    def load_commits(self):
+        self.tree.clear()
+        commits = get_git_commits(self.repo_path)
+        for full_hash, short_hash, message, author, date, color in commits:
+            status = "Not Pulled" if color == "red" else "Pulled"
+            item = QTreeWidgetItem([short_hash, message, author, date, status])
+            # Speichere den vollständigen Commit-Hash als zusätzlichen Datenwert
+            item.setData(0, Qt.ItemDataRole.UserRole, full_hash)
+            item.setForeground(4, QColor(color))
+            self.tree.addTopLevelItem(item)
+
+        self.status_label.setText("Commits loaded successfully.")
+
+    def search_commits(self):
+        search_text = self.search_bar.text().lower()
+        for i in range(self.tree.topLevelItemCount()):
+            item = self.tree.topLevelItem(i)
+            is_visible = (search_text in item.text(1).lower() or
+                          search_text in item.text(2).lower() or
+                          search_text in item.text(3).lower())
+            item.setHidden(not is_visible)
+
+    def display_commit_diff(self, item, column):
+        commit_hash = item.data(0, Qt.ItemDataRole.UserRole)
+        diff = get_commit_diff(self.repo_path, commit_hash)
+        self.diff_text.setPlainText(diff)
+
+class StatisticsTab(QWidget):
+    """
+    Zeigt in einem Matplotlib-Diagramm (2D-Liniendiagramm mit verbundenen Punkten)
+    die Anzahl der Commits der letzten 30 Tage an.
+    """
+    def __init__(self, repo_path):
+        super().__init__()
+        self.repo_path = repo_path
+        self.init_ui()
+
+    def init_ui(self):
+        layout = QVBoxLayout()
+        self.canvas = FigureCanvas(Figure(figsize=(5, 3)))
+        layout.addWidget(self.canvas)
+        self.setLayout(layout)
+        self.ax = self.canvas.figure.subplots()
+        # Setze den Hintergrund des Diagramms auf den gewünschten Farbverlauf
+        self.ax.set_facecolor("none")
+        self.canvas.figure.patch.set_facecolor("none")
+        self.plot_statistics()
+
+    def plot_statistics(self):
+        commits = get_git_commits(self.repo_path)
+        # Filter: nur Commits der letzten 30 Tage
+        cutoff_date = datetime.today() - timedelta(days=30)
+        filtered_commits = []
+        for commit in commits:
+            try:
+                commit_date = datetime.strptime(commit[4], "%Y-%m-%d")
+            except ValueError:
+                continue
+            if commit_date >= cutoff_date:
+                filtered_commits.append(commit)
+
+        # Zähle die Commits pro Tag
+        date_counts = Counter(commit[4] for commit in filtered_commits)
+        # Sortiere die Daten chronologisch
+        dates = sorted(date_counts.keys())
+        counts = [date_counts[date] for date in dates]
+
+        self.ax.clear()
+        # Linienplot statt Balkendiagramm: Verbundene Punkte (keine 3D-Optik)
+        self.ax.plot(dates, counts, marker='o', linestyle='-', color='skyblue', linewidth=2)
+
+        # Achsenbeschriftungen & Titel
+        self.ax.set_xlabel("Date", color='white')
+        self.ax.set_ylabel("Number of commits", color='white')
+        self.ax.set_title("Commits per day (last 30 days)", color='white')
+
+        # Achsenticks auf weiß setzen
+        self.ax.tick_params(axis='x', colors='white', rotation=45)
+        self.ax.tick_params(axis='y', colors='white')
+
+        # Tick-Label-Farbe (optional, manchmal zusätzlich nötig je nach Matplotlib-Version/Themes)
+        for label in self.ax.get_xticklabels():
+            label.set_color('white')
+        for label in self.ax.get_yticklabels():
+            label.set_color('white')
+
+        self.canvas.draw()
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("MAVIS Commit Explorer Deluxe")
+        self.setGeometry(100, 100, 1200, 900)
+        self.set_dark_mode()
+
+        # Annahme: Das Repository befindet sich im MAVIS-Ordner des aktuellen Benutzers
+        user = os.getenv("USERNAME") or os.getenv("USER")
+        self.repo_path = f"C:/Users/{user}/PycharmProjects/MAVIS"
+        icon_path = f"C:/Users/{user}/PycharmProjects/MAVIS/icons/mavis-logo.ico"
+        self.setWindowIcon(QIcon(icon_path))
+
+        self.init_ui()
+
+    def init_ui(self):
+        # Erstelle ein Tab-Widget, um zwischen Explorer- und Statistik-Modus zu wechseln
+        tabs = QTabWidget()
+        self.setCentralWidget(tabs)
+
+        # Tab für Commit Explorer
+        explorer_tab = ExplorerTab(self.repo_path)
+        tabs.addTab(explorer_tab, "Commit Explorer")
+
+        # Tab für Commit Statistik (nur die letzten 30 Tage)
+        stats_tab = StatisticsTab(self.repo_path)
+        tabs.addTab(stats_tab, "Commit Statistik")
+
+        # Style für Hintergrund (globaler Verlauf)
         self.setStyleSheet("""
             QWidget {
                 background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #1b2631, stop:1 #0f1626);
@@ -220,56 +369,9 @@ class CommitExplorer(QWidget):
                 border: none;
             }
 
-            QScrollArea {
-                border: none;
-                background-color: transparent;
-            }
-
-            QScrollBar:vertical {
-                background-color: transparent;
-                width: 10px;
-                border-radius: 5px;
-            }
-
-            QScrollBar::handle:vertical {
-                background-color: #ffffff;
-                min-height: 20px;
-                border-radius: 5px;
-            }
-
-            QScrollBar::add-line:vertical,
-            QScrollBar::sub-line:vertical {
-                background: transparent;
-            }
-
-            QScrollBar::up-arrow:vertical,
-            QScrollBar::down-arrow:vertical {
-                background: transparent;
-            }
-
-            QScrollBar::add-page:vertical,
-            QScrollBar::sub-page:vertical {
-                background: transparent;
-            }
-
-            QScrollBar::add-line:horizontal,
-            QScrollBar::sub-line:horizontal {
-                background: transparent;
-            }
-
-            QScrollBar::left-arrow:horizontal,
-            QScrollBar::right-arrow:horizontal {
-                background: transparent;
-            }
-
-            QScrollBar::add-page:horizontal,
-            QScrollBar::sub-page:horizontal {
-                background: transparent.
-            }
-
             QLabel {
                 background: transparent;
-                font-size: 16px.
+                font-size: 16px;
             }
 
             QTextEdit {
@@ -277,12 +379,56 @@ class CommitExplorer(QWidget):
                 border: 1px solid #778899;
                 border-radius: 8px;
                 font-family: 'Courier New', monospace;
-                font-size: 12px.
+                font-size: 12px;
+            }
+            
+            QScrollArea {
+                border: none;
+                background-color: transparent;
+            }
+    
+            QScrollBar:vertical {
+                background-color: transparent;
+                width: 10px;
+                border-radius: 5px;
+            }
+    
+            QScrollBar::handle:vertical {
+                background-color: #ffffff;
+                min-height: 20px;
+                border-radius: 5px;
+            }
+    
+            QScrollBar::add-line:vertical,
+            QScrollBar::sub-line:vertical {
+                background: transparent;
+            }
+    
+            QScrollBar::up-arrow:vertical,
+            QScrollBar::down-arrow:vertical {
+                background: transparent;
+            }
+    
+            QScrollBar::add-page:vertical,
+            QScrollBar::sub-page:vertical {
+                background: transparent;
+            }
+    
+            QScrollBar::add-line:horizontal,
+            QScrollBar::sub-line:horizontal {
+                background: transparent;
+            }
+    
+            QScrollBar::left-arrow:horizontal,
+            QScrollBar::right-arrow:horizontal {
+                background: transparent;
+            }
+    
+            QScrollBar::add-page:horizontal,
+            QScrollBar::sub-page:horizontal {
+                background: transparent;
             }
         """)
-
-        self.setLayout(main_layout)
-        self.load_commits()
 
     def set_dark_mode(self):
         palette = self.palette()
@@ -290,32 +436,8 @@ class CommitExplorer(QWidget):
         palette.setColor(QPalette.ColorRole.WindowText, QColor(255, 255, 255))
         self.setPalette(palette)
 
-    def load_commits(self):
-        self.tree.clear()
-        commits = get_git_commits(self.repo_path)
-        for full_hash, short_hash, message, author, date, color in commits:
-            item = QTreeWidgetItem([short_hash, message, author, date, "Not Pulled" if color == "red" else "Pulled"])
-            item.setData(0, 1, full_hash)
-            item.setForeground(4, QColor(color))
-            self.tree.addTopLevelItem(item)
-
-        self.status_label.setText("Commits loaded successfully.")
-
-    def search_commits(self):
-        search_text = self.search_bar.text().lower()
-        for i in range(self.tree.topLevelItemCount()):
-            item = self.tree.topLevelItem(i)
-            item.setHidden(search_text not in item.text(1).lower() and
-                           search_text not in item.text(2).lower() and
-                           search_text not in item.text(3).lower())
-
-    def display_commit_diff(self, item):
-        commit_hash = item.data(0, 1)
-        diff = get_commit_diff(self.repo_path, commit_hash)
-        self.diff_text.setPlainText(diff)
-
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = CommitExplorer()
+    window = MainWindow()
     window.show()
     sys.exit(app.exec())
