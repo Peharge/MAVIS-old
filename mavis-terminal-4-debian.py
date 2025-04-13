@@ -101,7 +101,7 @@ def ensure_packages_installed(packages):
             print(f"{package} is already installed.")
 
 # Path to the existing virtual environment
-venv_path = "/home/julia/PycharmProjects/MAVIS/.env"
+venv_path = f"/home/{os.getlogin()}/PycharmProjects/MAVIS/.env"
 
 # Activate the virtual environment
 activate_virtualenv(venv_path)
@@ -211,10 +211,10 @@ def run_command(command, shell=False):
 
 def handle_special_commands(user_input):
     # Load the .env file
-    load_dotenv(dotenv_path="/home/julia/PycharmProjects/MAVIS/.env")
+    load_dotenv(dotenv_path=f"/home/{os.getlogin()}/PycharmProjects/MAVIS/.env")
 
     # The path to the Python interpreter in the .env
-    python_path = "/home/julia/PycharmProjects/MAVIS/.env/bin/python"
+    python_path = f"/home/{os.getlogin()}/PycharmProjects/MAVIS/.env/bin/python"
 
     commands = {
         "env install": "mavis-terminal\\install-mavis-3.py",

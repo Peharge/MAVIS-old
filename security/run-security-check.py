@@ -113,7 +113,7 @@ SUSPICIOUS_CPU_THRESHOLD = 70  # in percent
 SUSPICIOUS_MEMORY_THRESHOLD = 1_000_000_000  # in bytes (1GB)
 
 # Project base directory: scan the entire folder
-DEFAULT_PROJECT_DIR = Path(r"C:\Users\julia\PycharmProjects\MAVIS")
+DEFAULT_PROJECT_DIR = Path(rf"C:\Users\{os.getlogin()}\PycharmProjects\MAVIS")
 HASH_CACHE_FILE = Path("hash_cache.json")  # Cache file for file modification tracking
 
 # Logging Configuration

@@ -120,7 +120,7 @@ def ensure_packages_installed(packages):
             print(f"{package} is already installed.")
 
 # Pfad zur bestehenden virtuellen Umgebung
-venv_path = r"C:\Users\julia\PycharmProjects\MAVIS\.env"
+venv_path = rf"C:\Users\{os.getlogin()}\PycharmProjects\MAVIS\.env"
 
 # Aktivieren der virtuellen Umgebung
 activate_virtualenv(venv_path)

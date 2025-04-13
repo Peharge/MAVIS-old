@@ -114,7 +114,7 @@ def ensure_packages_installed(packages):
                 print(f"WARNING: Failed to install {package}. Please install it manually.")
 
 # Pfad zur bestehenden virtuellen Umgebung (anpassen, falls erforderlich)
-venv_path = r"C:\Users\julia\PycharmProjects\MAVIS\.env"
+venv_path = rf"C:\Users\{os.getlogin()}\PycharmProjects\MAVIS\.env"
 activate_virtualenv(venv_path)
 ensure_packages_installed(required_packages)
 
