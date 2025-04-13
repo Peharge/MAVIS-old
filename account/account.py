@@ -66,6 +66,7 @@ import bcrypt
 from datetime import datetime
 import re
 import os
+import getpass
 
 DATA_FILE = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "account", "users.json")
 TOKEN_FILE = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "account", "token.json")
@@ -172,7 +173,7 @@ def register(user_type="Standard"):
 
     # Passwort Eingabe
     while True:
-        password = input(f"{blue}Password{reset}:")
+        password = getpass.getpass(f"{blue}Password{reset}:")
         if validate_password(password):
             break
         print(
@@ -180,7 +181,7 @@ def register(user_type="Standard"):
 
     # Bestätigung des Passworts
     while True:
-        confirm_password = input(f"{blue}Repeat password{reset}:")
+        confirm_password =getpass.getpass(f"{blue}Repeat password{reset}:")
         if password == confirm_password:
             break
         print(f"{red}ERROR{reset}: Passwords do not match!")
@@ -232,7 +233,7 @@ def register_mavis_ultra():
 def login():
     print("\nLogin\n-----")
     username_or_email = input(f"{blue}Username or Email{reset}:")
-    password = input(f"{blue}Password{reset}:")
+    password = getpass.getpass(f"{blue}Password{reset}:")
     users = load_users()
 
     for username, data in users.items():
