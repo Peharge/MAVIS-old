@@ -8,7 +8,7 @@
    <img alt="peharge" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/Peharge-icon-banner-3.svg">
 </div>
 
-- [Install MAVIS](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/installation.md)
+- [Install MAVIS](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/using-mavis-4-en.md)
 - [Using MAVIS Installer + UI](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/using-mavis-4-en.md)
 - [Using MAVIS Terminal 5](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/learn-mavis-terminal-5.md)
   - [Problems with MAVIS Terminal 5](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/learn-mavis-terminal-5.md#problems-with-installing-the-mavis-terminal)
