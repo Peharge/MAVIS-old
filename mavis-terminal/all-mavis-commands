@@ -1,6 +1,10 @@
     commands = {
         "env install": "install\\install-info-mavis-4.py",
         "install env": "install\\install-info-mavis-4.py",
+        "install mavis3": "install\\install-info-mavis-4.py", # new
+        "install mavis3.3": "install\\install-info-mavis-4.py", # new
+        "install mavis4": "install\\install-info-mavis-4.py", # new
+        "install mavis4.3": "install\\install-info-mavis-4.py", # new
         "mavis env install": "install\\install-info-mavis-4.py",
         "install mavis env": "install\\install-info-mavis-4.py",
         "env update": "install\\install-info-mavis-4.py",
@@ -110,7 +114,8 @@
         "install ollama mavis-3-3-math": "install\\install-ollama-mavis-3-3-math.py", # new
         "install ollama mavis-3-3-math-mini": "install\\install-ollama-mavis-3-3-math-mini.py", # new
         "install ollama mavis-4": "install\\install-ollama-mavis-4.py",  # new
-        "install mavis-4": "install\\install-ollama-mavis-4.py",  # new
+        "change models mavis-4": "install\\install-ollama-mavis-4.py",  # new
+        "change models": "install\\install-ollama-mavis-4.py",  # new
         "grafana": "run-grafana\\run-grafana.py",
         "run grafana": "run-grafana\\run-grafana.py",
         "install grafana": "run-grafana\\run-grafana.py",
