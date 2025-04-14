@@ -941,7 +941,7 @@ if /I not "%MAVIS_RUN_FILE:~-4%"==".bat" (
 )
 
 :: Final report
-echo ✅ All tasks were completed successfully!
+:: echo ✅ All tasks were completed successfully!
 
 :: Try to start the file and check if it is successful
 call "%MAVIS_RUN_FILE%"
