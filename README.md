@@ -1415,7 +1415,9 @@ _Good luck!_
 
 ## Learn-MAVIS
 
-> [Learn to install \ use MAVIS Installer; use MAVIS UI; use Latex; use Matplotlib](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/README.md)<br>
+[Learn MAVIS](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/README.md)
+
+> Learn to install \ use MAVIS Installer; use MAVIS UI; use Latex; use Matplotlib
 > Soon: Use Plotly; Seaborn; Numpy; Sympy; PyTorch; Tensorflow; Sikit-Learn;  etc.
 
 ## Transformer
