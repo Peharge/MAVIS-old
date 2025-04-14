@@ -63,51 +63,54 @@ REM pouvant découler directement ou indirectement de l'utilisation, de la modif
 REM
 REM Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
+@echo off
+setlocal EnableExtensions EnableDelayedExpansion
+
 :: ====================================================================
 :: Configuration and Logging
 :: ====================================================================
 set "USERNAME=%USERNAME%"
-set "PYTHON_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe"
-set "SCRIPT_INSTALL_RUSTUP=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\rust\install-rustup.py"
-set "LOGFILE=%TEMP%\rustup_install_log.txt"
+set "OLLAMA_PATH=ollama"
+set "OLLAMA_INSTALLER=%TEMP%\ollama_installer.exe"
+set "LOGFILE=%TEMP%\ollama_install_log.txt"
 
 (
     echo ========================================================
-    echo [INFO] Starting Rustup installation script
+    echo [INFO] Starting Ollama installation script
     echo [INFO] User: %USERNAME%
     echo [INFO] Start time: %date% %time%
     echo ========================================================
 ) >> "%LOGFILE%"
 
 :: ====================================================================
-:: Check if Rustup is already installed
+:: Check if Ollama is already installed
 :: ====================================================================
-rustup --version >nul 2>&1
+%OLLAMA_PATH% --version >nul 2>&1
 if %errorlevel% equ 0 (
-    echo ✅ Rustup is already installed.
-    echo [INFO] Rustup already installed >> "%LOGFILE%"
+    echo ✅ Ollama is already installed.
+    echo [INFO] Ollama already installed >> "%LOGFILE%"
     goto End
 )
 
-echo Rustup is not installed.
-echo [INFO] Rustup not found >> "%LOGFILE%"
+echo Ollama is not installed.
+echo [INFO] Ollama not found >> "%LOGFILE%"
 
 :: ====================================================================
 :: User prompt to confirm installation
 :: ====================================================================
-set /p install_rustup="Would you like to install Rustup? [y/n]: "
-if /i not "%install_rustup%"=="y" (
-    echo Installation canceled. Please install Rustup manually: https://rustup.rs/
+set /p install_ollama="Would you like to install Ollama? [y/n]: "
+if /i not "%install_ollama%"=="y" (
+    echo Installation canceled. Please install Ollama manually from: https://ollama.com/
     echo [WARN] User canceled the installation >> "%LOGFILE%"
     goto End
 )
 
 :: ====================================================================
 :: Function: Download file using PowerShell
+:: Parameters: %1 = URL, %2 = Output file path
 :: ====================================================================
 :DownloadFile
-:: Parameter %1 = URL, %2 = Output file path
-echo [INFO] Attempting to download: %1 >> "%LOGFILE%"
+echo [INFO] Attempting to download: %~1 >> "%LOGFILE%"
 powershell -Command ^
    "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; " ^
    "Invoke-WebRequest -Uri '%~1' -OutFile '%~2'" 2>>"%LOGFILE%"
@@ -120,21 +123,20 @@ if exist "%~2" (
 )
 
 :: ====================================================================
-:: Attempt 1: Official installer from https://win.rustup.rs
+:: Attempt 1: Official installer from Ollama
 :: ====================================================================
-set "RUSTUP_URL=https://win.rustup.rs"
-set "RUSTUP_INSTALLER=%TEMP%\rustup-init.exe"
+set "OLLAMA_URL=https://ollama.com/ollama-installer.exe"
 echo [INFO] Attempt 1: Official installer >> "%LOGFILE%"
-call :DownloadFile "%RUSTUP_URL%" "%RUSTUP_INSTALLER%"
+call :DownloadFile "%OLLAMA_URL%" "%OLLAMA_INSTALLER%"
 if errorlevel 2 (
     echo [ERROR] Official download failed. Switching to alternative method.
     goto AlternativeDownload
 )
 echo [INFO] Running official installer >> "%LOGFILE%"
-start /wait "%RUSTUP_INSTALLER%" -y
-rustup --version >nul 2>&1
+start /wait "" "%OLLAMA_INSTALLER%" /SILENT /NORESTART
+%OLLAMA_PATH% --version >nul 2>&1
 if %errorlevel% equ 0 (
-    echo ✅ Rustup successfully installed using the official installer!
+    echo ✅ Ollama successfully installed using the official installer!
     echo [INFO] Installation successful in Attempt 1 >> "%LOGFILE%"
     goto Cleanup
 ) else (
@@ -146,18 +148,18 @@ if %errorlevel% equ 0 (
 :: Attempt 2: Retry official installer
 :: ====================================================================
 echo [INFO] Attempt 2: Retrying official installer >> "%LOGFILE%"
-if exist "%RUSTUP_INSTALLER%" (
-    del "%RUSTUP_INSTALLER%" >nul 2>&1
+if exist "%OLLAMA_INSTALLER%" (
+    del "%OLLAMA_INSTALLER%" >nul 2>&1
 )
-call :DownloadFile "%RUSTUP_URL%" "%RUSTUP_INSTALLER%"
+call :DownloadFile "%OLLAMA_URL%" "%OLLAMA_INSTALLER%"
 if errorlevel 2 (
     echo [ERROR] Retry download failed. Switching to alternative method.
     goto AlternativeDownload
 )
-start /wait "%RUSTUP_INSTALLER%" -y
-rustup --version >nul 2>&1
+start /wait "" "%OLLAMA_INSTALLER%" /SILENT /NORESTART
+%OLLAMA_PATH% --version >nul 2>&1
 if %errorlevel% equ 0 (
-    echo ✅ Rustup successfully installed on the second attempt!
+    echo ✅ Ollama successfully installed on the second attempt!
     echo [INFO] Installation successful in Attempt 2 >> "%LOGFILE%"
     goto Cleanup
 ) else (
@@ -170,18 +172,20 @@ if %errorlevel% equ 0 (
 :: ====================================================================
 :AlternativeDownload
 echo [INFO] Attempt 3: Alternative installer URL >> "%LOGFILE%"
-set "RUSTUP_ALT_URL=https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe"
-set "RUSTUP_INSTALLER=%TEMP%\rustup-alt.exe"
-call :DownloadFile "%RUSTUP_ALT_URL%" "%RUSTUP_INSTALLER%"
+set "OLLAMA_ALT_URL=https://static.ollama.com/ollama-installer.exe"
+if exist "%OLLAMA_INSTALLER%" (
+    del "%OLLAMA_INSTALLER%" >nul 2>&1
+)
+call :DownloadFile "%OLLAMA_ALT_URL%" "%OLLAMA_INSTALLER%"
 if errorlevel 2 (
     echo [ERROR] Alternative download failed.
-    goto PythonFallback
+    goto Fallback
 )
 echo [INFO] Running alternative installer >> "%LOGFILE%"
-start /wait "%RUSTUP_INSTALLER%" -y
-rustup --version >nul 2>&1
+start /wait "" "%OLLAMA_INSTALLER%" /SILENT /NORESTART
+%OLLAMA_PATH% --version >nul 2>&1
 if %errorlevel% equ 0 (
-    echo ✅ Rustup successfully installed using the alternative method!
+    echo ✅ Ollama successfully installed using the alternative method!
     echo [INFO] Installation successful in Attempt 3 >> "%LOGFILE%"
     goto Cleanup
 ) else (
@@ -190,44 +194,30 @@ if %errorlevel% equ 0 (
 )
 
 :: ====================================================================
-:: Attempt 4: Fallback using Python installation script
+:: Attempt 4: Fallback - instruct manual installation
 :: ====================================================================
-:PythonFallback
-echo [INFO] Attempt 4: Python installation script fallback >> "%LOGFILE%"
-if not exist "%SCRIPT_INSTALL_RUSTUP%" (
-    echo ❌ Error: Python script not found: %SCRIPT_INSTALL_RUSTUP%
-    echo [ERROR] Python script missing. >> "%LOGFILE%"
-    echo Installation canceled. Please install Rustup manually: https://rustup.rs/
-    goto End
-)
-echo [INFO] Running Python installation script >> "%LOGFILE%"
-"%PYTHON_PATH%" "%SCRIPT_INSTALL_RUSTUP%"
-rustup --version >nul 2>&1
-if %errorlevel% equ 0 (
-    echo ✅ Rustup successfully installed using the Python script!
-    echo [INFO] Installation successful via Python script >> "%LOGFILE%"
-    goto Cleanup
-) else (
-    echo ❌ Error: Python script installation attempt failed.
-    echo [ERROR] Python script did not work >> "%LOGFILE%"
-    echo Installation canceled. Please install Rustup manually: https://rustup.rs/
-    goto End
-)
+:Fallback
+echo [INFO] Attempt 4: Fallback to manual installation prompt >> "%LOGFILE%"
+echo ❌ Ollama installation failed. Please install Ollama manually from:
+echo https://ollama.com/
+echo [WARN] Fallback: Manual installation required >> "%LOGFILE%"
+goto Cleanup
 
 :: ====================================================================
 :: Cleanup temporary files
 :: ====================================================================
 :Cleanup
 echo [INFO] Cleaning up temporary files... >> "%LOGFILE%"
-if exist "%RUSTUP_INSTALLER%" (
-    del "%RUSTUP_INSTALLER%" >nul 2>&1
-    echo [INFO] Temporary file %RUSTUP_INSTALLER% removed >> "%LOGFILE%"
+if exist "%OLLAMA_INSTALLER%" (
+    del "%OLLAMA_INSTALLER%" >nul 2>&1
+    echo [INFO] Temporary file %OLLAMA_INSTALLER% removed >> "%LOGFILE%"
 )
-echo [INFO] Installation script completed. >> "%LOGFILE%"
+goto End
 
 :: ====================================================================
 :: End of script
 :: ====================================================================
 :End
-echo [INFO] End of installation script.
+echo [INFO] End of Ollama installation script.
 echo [INFO] Logfile: %LOGFILE%
+exit /b 0
