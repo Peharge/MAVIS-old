@@ -2930,6 +2930,170 @@ def run_alpine_python_command(command):
     except KeyboardInterrupt:
         process.terminate()
 
+# --- clear command---
+
+def get_project_paths_clear():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C++-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    clear_cpp_file = os.path.join(terminal_dir, "run_clear_command.cpp")
+    clear_exe_file = os.path.join(terminal_dir, "run_clear_command.exe")
+    return clear_cpp_file, clear_exe_file, terminal_dir
+
+def compile_clear_cpp_with_vs(clear_cpp_file, clear_exe_file):
+    """
+    Kompiliert run_clear_command.cpp mit cl.exe über die Visual Studio-Umgebung.
+    Die Ausgabe wird im UTF-8 Format eingelesen – ungültige Zeichen werden ersetzt.
+    """
+    logging.info("Compile run_clear_command.cpp with Visual Studio C++...")
+    vcvarsall = find_vcvarsall()
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe /EHsc "{clear_cpp_file}" /Fe:"{clear_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+def run_clear_command(command):
+    """
+    Führt einen Linux-Befehl interaktiv über den C++-Wrapper aus.
+
+    Falls run_clear_command.exe noch nicht existiert, wird das C++-Programm kompiliert.
+    Der C++-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
+    """
+    clear_cpp_file, clear_exe_file, _ = get_project_paths_clear()
+
+    if not os.path.isfile(clear_exe_file):
+        if not compile_clear_cpp_with_vs(clear_cpp_file, clear_exe_file):
+            logging.error("Abort: C++ compilation was unsuccessful.")
+            return
+
+    # Erstelle die Befehlsliste. Bei mehreren Argumenten werden diese getrennt übertragen.
+    if isinstance(command, str):
+        # Zerlege die Eingabe (z.B. "nano test.py") in Parameter, falls möglich
+        args = command.split()  # Achtung: Bei komplexen Befehlen mit Leerzeichen evtl. anders behandeln!
+    else:
+        args = command
+
+    # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C++-Code
+    cmd = [clear_exe_file] + args
+
+    try:
+        logging.info(f"Execute: {' '.join(cmd)}")
+        # Der C++-Wrapper startet ein neues Terminalfenster, in dem der Befehl interaktiv ausgeführt wird.
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Command failed: {e}")
+    except KeyboardInterrupt:
+        logging.warning("Cancellation by user.")
+
+# --- clear-c command---
+
+def get_project_paths_clear_c():
+    """
+    Ermittelt das MAVIS-Projektverzeichnis, den Ordner 'mavis-terminal',
+    sowie die Pfade zur C-Quelle und zur Executable.
+    """
+    username = getpass.getuser()
+    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
+    terminal_dir = os.path.join(base_dir, "mavis-terminal")
+    clear_c_file = os.path.join(terminal_dir, "run_clear_command.c")
+    clear_c_exe_file = os.path.join(terminal_dir, "run_clear_c_command.exe")
+    return clear_c_file, clear_c_exe_file, terminal_dir
+
+def compile_clear_c_with_vs(clear_c_file, clear_c_exe_file):
+    """
+    Kompiliert run_clear_command.c mit cl.exe über die Visual Studio-Umgebung.
+    """
+    logging.info("Compiling run_clear_command.c with Visual Studio...")
+    vcvarsall = find_vcvarsall_c()
+
+    # Initialisiere die VS-Umgebung (x64) und rufe cl.exe auf
+    command = f'"{vcvarsall}" x64 && cl.exe "{clear_c_file}" /Fe:"{clear_c_exe_file}"'
+
+    result = subprocess.run(
+        command,
+        shell=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    if result.returncode != 0:
+        logging.error("Compilation failed.")
+        logging.error(result.stdout)
+        logging.error(result.stderr)
+        return False
+
+    logging.info("Compilation successful.")
+    return True
+
+
+def run_clear_c_command(command):
+    """
+    Führt einen Linux-Befehl interaktiv über den C-Wrapper aus.
+
+    Falls run_clear_command.exe noch nicht existiert, wird das C-Programm kompiliert.
+    Der C-Code öffnet dann ein neues Terminalfenster, in dem WSL interaktiv gestartet wird.
+    """
+    clear_c_file, clear_c_exe_file, _ = get_project_paths_clear_c()
+
+    if not os.path.isfile(clear_c_exe_file):
+        if not compile_clear_c_with_vs(clear_c_file, clear_c_exe_file):
+            logging.error("Abort: C compilation was unsuccessful.")
+            return
+
+    # Erstelle die Befehlsliste. Bei mehreren Argumenten werden diese getrennt übertragen.
+    if isinstance(command, str):
+        # Zerlege die Eingabe (z.B. "nano test.py") in Parameter, falls möglich
+        args = command.split()  # Achtung: Bei komplexen Befehlen mit Leerzeichen evtl. anders behandeln!
+    else:
+        args = command
+
+    # Baue die Kommandozeile, ohne zusätzliche Anführungszeichen – das übernimmt der C-Code
+    cmd = [clear_c_exe_file] + args
+
+    try:
+        logging.info(f"Execute: {' '.join(cmd)}")
+        # Der C-Wrapper startet ein neues Terminalfenster, in dem der Befehl interaktiv ausgeführt wird.
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Command failed: {e}")
+    except KeyboardInterrupt:
+        logging.warning("Cancellation by user.")
+
+# --- clear-p command---
+
+def run_clear_python_command(command):
+    if isinstance(command, str):
+        command = f"wsl -d ClearLinux {command}"
+
+    process = subprocess.Popen(command, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=True, text=True)
+
+    try:
+        process.wait()
+    except KeyboardInterrupt:
+        process.terminate()
+
 def run_scoop_command(command):
     if isinstance(command, str):
         command = f"scoop {command}"
@@ -3336,6 +3500,30 @@ def main():
                 else:
                     print(f"Executing the following command on Alpine: {user_input}")
                     run_alpine_python_command(user_input)
+
+            elif user_input.startswith("clear "):
+                user_input = user_input[7:].strip()  # Remove the "clear " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    print(f"Executing the following command on Clear: {user_input}")
+                    run_clear_command(user_input)
+
+            elif user_input.startswith("clear-c "):
+                user_input = user_input[9:].strip()  # Remove the "clear " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    print(f"Executing the following command on Clear: {user_input}")
+                    run_clear_c_command(user_input)
+
+            elif user_input.startswith("clear-p "):
+                user_input = user_input[9:].strip()  # Remove the "clear " prefix
+                if not is_wsl_installed():
+                    print("WSL is not installed or could not be found. Please install WSL to use this feature.")
+                else:
+                    print(f"Executing the following command on Clear: {user_input}")
+                    run_clear_python_command(user_input)
 
             elif user_input.startswith("sc "):
                 user_input = user_input[6:].strip()
