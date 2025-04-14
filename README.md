@@ -433,26 +433,26 @@ And more...
 
 </details>
 
-| **Model**              | **Description**                                                                                 | **Requirements** (Works with one CPU) | **Parameters** |
-|------------------------|-------------------------------------------------------------------------------------------------|---------------------------------------|----------------|
-| MAVIS 3 main           | With **Xc++ 3 11B** or Llama3.2 11B + Phi4 14b + Qwen 2.5 1.5b + granite3.2-vision 2b           | +16GB RAM +23GB storage               | 28.5B          |
-| MAVIS 3 main mini      | With **Xc++ 3 11B** or Llama3.2 11B + Phi4-mini 3.8b + Qwen 2.5 1.5b + granite3.2-vision 2b     | +16GB RAM +18GB storage               | 18.3B          |
-| MAVIS 3 math           | With **Xc++ 3 11B** or Llama3.2 11B + DeepSeek R1 14b + Qwen 2.5 1.5b + granite3.2-vision 2b    | +16GB RAM +23GB storage               | 28.5B          |
-| MAVIS 3 math pro       | With **Xc++ 3 11B** or Llama3.2 11B + DeepSeek R1 32b + Qwen 2.5 1.5b + granite3.2-vision 2b    | +32GB RAM +33GB storage               | 46.5B          |
-| MAVIS 3 math ultra     | With **Xc++ 3 11B** or Llama3.2 90B + DeepSeek R1 671b + Qwen 2.5 1.5b + granite3.2-vision 2b   | +512GB RAM +469GB storage             | 764.5B         |
-| MAVIS 3 math mini      | With **Xc++ 3 11B** or Llama3.2 11B + DeepSeek R1 7b + Qwen 2.5 1.5b + granite3.2-vision 2b     | +16GB RAM +20GB storage               | 21.5B          |
-| MAVIS 3 math mini mini | With **Xc++ 3 11B** or Llama3.2 11B + DeepSeek R1 1.5b + Qwen 2.5 1.5b + granite3.2-vision 2b   | +16GB RAM +17GB storage               | 16B            |
-| MAVIS 3 code           | With **Xc++ 3 11B** or Llama3.2 11B + Qwen 2.5 Coder 14B +Qwen 2.5 1.5b + granite3.2-vision 2b  | +16GB RAM +23GB storage               | 28.5B          |
-| MAVIS 3 code pro       | With **Xc++ 3 11B** or Llama3.2 11B + Qwen 2.5 Coder 32B +Qwen 2.5 1.5b + granite3.2-vision 2b  | +32GB RAM +33GB storage               | 46.5B          |
-| MAVIS 3 code mini      | With **Xc++ 3 11B** or Llama3.2 11B + Qwen 2.5 Coder 7B +Qwen 2.5 1.5b + granite3.2-vision 2b   | +16GB RAM +20GB storage               | 21.5B          |
-| MAVIS 3 code mini      | With **Xc++ 3 11B** or Llama3.2 11B + Qwen 2.5 Coder 1.5B +Qwen 2.5 1.5b + granite3.2-vision 2b | +16GB RAM +17GB storage               | 16B            |
-| MAVIS 3.3 main         | With **Xc++ 3 11B** or Llama3.2 11B + Gemma3 12B + Qwen 2.5 1.5b + granite3.2-vision 2b         | +16GB RAM +23GB storage               | 26.5B          |
-| MAVIS 3.3 main pro     | With **Xc++ 3 11B** or Llama3.2 11B + Gemma3 27B + Qwen 2.5 1.5b + granite3.2-vision 2b         | +32GB RAM +23GB storage               | 41.5B          |
-| MAVIS 3.3 main mini    | With **Xc++ 3 11B** or Llama3.2 11B + Gemma3 4B + Qwen 2.5 1.5b + granite3.2-vision 2b          | +16GB RAM +18GB storage               | 18.5B          |
-| MAVIS 3.3 main mini    | With **Xc++ 3 11B** or Llama3.2 11B + Gemma3 1B + Qwen 2.5 1.5b + granite3.2-vision 2b          | +16GB RAM +17GB storage               | 15.5B          |
-| MAVIS 3.3 math         | With **Xc++ 3 11B** or Llama3.2 11B + QwQ 32b + Qwen 2.5 1.5b + granite3.2-vision 2b            | +32GB RAM +33GB storage               | 46.5B          |
-| MAVIS 3.3 math mini    | With **Xc++ 3 11B** or Llama3.2 11B + DeepScaleR 1.5b + Qwen 2.5 1.5b + granite3.2-vision 2b    | +16GB RAM +18GB storage               | 16B            |
-
+| **Model**              | **Description**                                                                                 | **Requirements** (Works with one CPU)  | **Parameters**                     |
+|------------------------|-------------------------------------------------------------------------------------------------|----------------------------------------|------------------------------------|
+| MAVIS 3 main           | With **Xc++ 3 11B** or Llama3.2 11B + Phi4 14b + Qwen 2.5 1.5b + granite3.2-vision 2b           | +16GB RAM +23GB storage                | 28.5B                              |
+| MAVIS 3 main mini      | With **Xc++ 3 11B** or Llama3.2 11B + Phi4-mini 3.8b + Qwen 2.5 1.5b + granite3.2-vision 2b     | +16GB RAM +18GB storage                | 18.3B                              |
+| MAVIS 3 math           | With **Xc++ 3 11B** or Llama3.2 11B + DeepSeek R1 14b + Qwen 2.5 1.5b + granite3.2-vision 2b    | +16GB RAM +23GB storage                | 28.5B                              |
+| MAVIS 3 math pro       | With **Xc++ 3 11B** or Llama3.2 11B + DeepSeek R1 32b + Qwen 2.5 1.5b + granite3.2-vision 2b    | +32GB RAM +33GB storage                | 46.5B                              |
+| MAVIS 3 math ultra     | With **Xc++ 3 11B** or Llama3.2 90B + DeepSeek R1 671b + Qwen 2.5 1.5b + granite3.2-vision 2b   | +512GB RAM +469GB storage              | 764.5B                             |
+| MAVIS 3 math mini      | With **Xc++ 3 11B** or Llama3.2 11B + DeepSeek R1 7b + Qwen 2.5 1.5b + granite3.2-vision 2b     | +16GB RAM +20GB storage                | 21.5B                              |
+| MAVIS 3 math mini mini | With **Xc++ 3 11B** or Llama3.2 11B + DeepSeek R1 1.5b + Qwen 2.5 1.5b + granite3.2-vision 2b   | +16GB RAM +17GB storage                | 16B                                |
+| MAVIS 3 code           | With **Xc++ 3 11B** or Llama3.2 11B + Qwen 2.5 Coder 14B +Qwen 2.5 1.5b + granite3.2-vision 2b  | +16GB RAM +23GB storage                | 28.5B                              |
+| MAVIS 3 code pro       | With **Xc++ 3 11B** or Llama3.2 11B + Qwen 2.5 Coder 32B +Qwen 2.5 1.5b + granite3.2-vision 2b  | +32GB RAM +33GB storage                | 46.5B                              |
+| MAVIS 3 code mini      | With **Xc++ 3 11B** or Llama3.2 11B + Qwen 2.5 Coder 7B +Qwen 2.5 1.5b + granite3.2-vision 2b   | +16GB RAM +20GB storage                | 21.5B                              |
+| MAVIS 3 code mini      | With **Xc++ 3 11B** or Llama3.2 11B + Qwen 2.5 Coder 1.5B +Qwen 2.5 1.5b + granite3.2-vision 2b | +16GB RAM +17GB storage                | 16B                                |
+| MAVIS 3.3 main         | With **Xc++ 3 11B** or Llama3.2 11B + Gemma3 12B + Qwen 2.5 1.5b + granite3.2-vision 2b         | +16GB RAM +23GB storage                | 26.5B                              |
+| MAVIS 3.3 main pro     | With **Xc++ 3 11B** or Llama3.2 11B + Gemma3 27B + Qwen 2.5 1.5b + granite3.2-vision 2b         | +32GB RAM +23GB storage                | 41.5B                              |
+| MAVIS 3.3 main mini    | With **Xc++ 3 11B** or Llama3.2 11B + Gemma3 4B + Qwen 2.5 1.5b + granite3.2-vision 2b          | +16GB RAM +18GB storage                | 18.5B                              |
+| MAVIS 3.3 main mini    | With **Xc++ 3 11B** or Llama3.2 11B + Gemma3 1B + Qwen 2.5 1.5b + granite3.2-vision 2b          | +16GB RAM +17GB storage                | 15.5B                              |
+| MAVIS 3.3 math         | With **Xc++ 3 11B** or Llama3.2 11B + QwQ 32b + Qwen 2.5 1.5b + granite3.2-vision 2b            | +32GB RAM +33GB storage                | 46.5B                              |
+| MAVIS 3.3 math mini    | With **Xc++ 3 11B** or Llama3.2 11B + DeepScaleR 1.5b + Qwen 2.5 1.5b + granite3.2-vision 2b    | +16GB RAM +18GB storage                | 16B                                |
+| MAVIS 4                | Access Over 200 Leading LLMs – All in One Platform.                                             | Depending on the LLM model you use     | Depending on the LLM model you use |
 ## Benchmark
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
