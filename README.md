@@ -453,6 +453,7 @@ And more...
 | MAVIS 3.3 math         | With **Xc++ 3 11B** or Llama3.2 11B + QwQ 32b + Qwen 2.5 1.5b + granite3.2-vision 2b            | +32GB RAM +33GB storage                | 46.5B                              |
 | MAVIS 3.3 math mini    | With **Xc++ 3 11B** or Llama3.2 11B + DeepScaleR 1.5b + Qwen 2.5 1.5b + granite3.2-vision 2b    | +16GB RAM +18GB storage                | 16B                                |
 | MAVIS 4                | Access Over 200 Leading LLMs – All in One Platform.                                             | Depending on the LLM model you use     | Depending on the LLM model you use |
+
 ## Benchmark
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
@@ -468,7 +469,10 @@ And more...
 |--------------------|------|------|----------|---------------|------------|-----------|
 | Xc++ III           | ...  | ...  | ...      | ...           | ...        | ...       |      
 | Gemma 3 12b        | 40.9 | ...  | 83.8     | 24.6          | ...        | ...       |      
-| Gemma 3 27b        | 42.4 | ...  | 89.0     | 29.7          | ...        | ...       |      
+| Gemma 3 27b        | 42.4 | ...  | 89.0     | 29.7          | ...        | ...       |
+| Llama 4 Maverick   | 69.8 | ...  | ...      | ...           | ...        | ...       |
+| Llama 4 Scout      | 57.2 | ...  | ...      | ...           | ...        | ...       |
+| Llama 4 Behemoth   | 73.7 | ...  | ...      | ...           | ...        | ...       |
 | DeepSeek R1 14b    | 59.1 | 69.7 | 93.9     | ...           | 90.6       | ...       |      
 | DeepSeek R1 32b    | 62.1 | 72.6 | 94.3     | ...           | ...        | ...       |      
 | DeepSeek R1 671b   | 71.5 | 79.8 | 97.3     | ...           | 96.3       | ...       |       
