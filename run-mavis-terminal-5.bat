@@ -931,7 +931,7 @@ if not exist "%MAVIS_RUN_FILE%" (
 )
 
 :: Execute run-mavis-4-all.bat
-echo ✅ Starting MAVIS Terminal...
+echo Starting MAVIS Terminal...
 
 :: Check if the file is executable (check for executable file)
 :: Test if the file is an .bat file
