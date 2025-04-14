@@ -565,7 +565,7 @@ if not defined found_distro (
 )
 
 :DistroFound
-echo ✅ success: WSL is already configured with the distribution: "!found_distro!".
+echo ✅ WSL is already configured with the distribution: "!found_distro!".
 goto :Continue
 
 :AskInstallDistro
