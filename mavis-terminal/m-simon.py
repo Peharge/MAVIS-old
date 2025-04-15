@@ -292,6 +292,11 @@ class MainWindow(QMainWindow):
         self.add_shadow_effect(run_button)
         button_layout.addWidget(run_button)
 
+        simon_button = QPushButton("SIMON GitHub")
+        simon_button.clicked.connect(self.simon_github)
+        self.add_shadow_effect(simon_button)
+        button_layout.addWidget(simon_button)
+
         self.main_layout.addLayout(button_layout)
         self.main_layout.addSpacing(30)
 
@@ -325,6 +330,22 @@ class MainWindow(QMainWindow):
             subprocess.Popen(["python", script_path])
         except Exception as e:
             print(f"Error executing {script_path}: {e}")
+
+    def simon_github(self):
+        try:
+            user_folder = os.path.expanduser("~")  # Plattformunabhängig
+            script_path = os.path.join(user_folder, "PycharmProjects", "MAVIS", "mavis-terminal", "m-simon-git.py")
+
+            if not os.path.exists(script_path):
+                print(f"Script nicht gefunden: {script_path}")
+                return
+
+            subprocess.Popen([sys.executable, script_path])
+            print(f"Starte Script: {script_path}")
+
+        except Exception as e:
+            print(f"Fehler beim Ausführen von {script_path}: {e}")
+
 
     def start_package_info_worker(self):
         packages = [
