@@ -171,7 +171,8 @@
         "run qvq:72b": "mavis-terminal\\qvq-72b.py",  # new
         "run qwen-2-5-vl:32b": "mavis-terminal\\qwen-2-5-vl-32b.py",  # new
         "run qwen-2-5-vl:72b": "mavis-terminal\\qwen-2-5-vl-72b.py",  # new
-        "run llama-4:17b": "mavis-terminal\\llama-4-17b.py",  # new
+        "run llama-4-maverick:17b": "mavis-terminal\\llama-4-maverick-17b.py",  # new
+        "run llama-4-scout:17b": "mavis-terminal\\llama-4-scout-17b.py",  # new
         "run deepcoder:1.5b": "mavis-terminal\\deepcoder-1-5b.py",  # new
         "run deepcoder:14b": "mavis-terminal\\deepcoder-14b.py", # new
         "run mistral-small3.1": "mavis-terminal\\mistral-small-3-1.py",  # new
@@ -225,7 +226,8 @@
         "install qvq:72b": "mavis-terminal\\qvq-72b.py",  # new
         "install qwen-2-5-vl:32b": "mavis-terminal\\qwen-2-5-vl-32b.py",  # new
         "install qwen-2-5-vl:72b": "mavis-terminal\\qwen-2-5-vl-72b.py",  # new
-        "install llama-4:17b": "mavis-terminal\\llama-4-17b.py",  # new
+        "install llama-4-maverick:17b": "mavis-terminal\\llama-4-maverick-17b.py",  # new
+        "install llama-4-scout:17b": "mavis-terminal\\llama-4-scout-17b.py",  # new
         "install deepcoder:1.5b": "mavis-terminal\\deepcoder-1-5b.py",  # new
         "install deepcoder:14b": "mavis-terminal\\deepcoder-14b.py",  # new
         "install mistral-small3.1": "mavis-terminal\\mistral-small-3-1.py",  # new
