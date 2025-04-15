@@ -73,16 +73,18 @@ Gooo...
 ✅ FFmpeg is already installed.
 ✅ Rustup is already installed.
 ✅ PowerShell 7 is already installed.
-✅ WSL is already set up with the distribution "U".
+Checking if WSL is installed...
+✅ WSL is already installed.
+✅ WSL is already configured with the distribution: "U".
 MAVIS repository already exists. Checking for updates...
-Fetching latest changes...
 Updates available, pulling changes...
 ✅ MAVIS repository updated successfully
 ✅ MAVIS update process completed successfully.
 ✅ .env file already exists.
-✅ Starting MAVIS...
+Starting MAVIS Terminal...
+✅ MAVIS C++ Compiler available and the folder "C:\Users\julia\PycharmProjects\MAVIS\mavis-cpp-compier" exists.
+✅ MAVIS C Compiler available and the folder "C:\Users\julia\PycharmProjects\MAVIS\mavis-c-compiler" exists.
 ✅ All tasks were completed successfully
-✅ MAVIS Compiler available and the folder "C:\Users\julia\PycharmProjects\MAVIS\mavis-cpp-compier" exists.
 Virtual environment C:\Users\julia\PycharmProjects\MAVIS\.env activated.
 Installing missing packages: python-dotenv, PyQt6-sip, PyQt6-Charts, PyQt6-WebEngine...
 All missing packages installed.
@@ -118,7 +120,7 @@ MAVIS License: MIT
 ████████
 ████████
 
-┌──(julia㉿MAVIS)-[C:\Users\julia\PycharmProjects\MAVIS]-[.env]
+┌──(julia㉿MAVIS)-[C:\Users\julia\PycharmProjects\MAVIS]-[.\MAVIS\.env]
 └─#
 ```
 
