@@ -3175,7 +3175,7 @@ def main():
             elif user_input.startswith("mp-c "):
                 user_input = user_input[5:]
                 run_command_with_admin_c_privileges(user_input)
-            elif user_input.startswith("mp "):
+            elif user_input.startswith("mp-p "):
                 user_input = user_input[5:]
                 run_command_with_admin_python_privileges(user_input)
             elif user_input.startswith("powershell "):
