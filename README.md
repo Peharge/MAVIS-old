@@ -1176,16 +1176,16 @@ To install MAVIS 3 EAP on a Windows computer, please follow these steps:
 
 3. **Important:** Make sure you have administrator rights, as the installation process may require changes to your system.
 
-4. Double-click the `mavis-launcher-4.bat` file to begin the installation.
+4. Double-click the `mavis-launcher-4.bat` or `mavis-terminal-5.bat` file to begin the installation.
 
 5. Follow the on-screen instructions provided by the installation script. This may involve confirming multiple steps, such as installing dependencies or adjusting environment variables.
 
-6. Once the installation process is complete, MAVIS 4 EAP will be installed on your system and can be launched from running [`mavis-installer-4.bat`](https://github.com/Peharge/MAVIS/blob/main/run-mavis-installer-4.bat) or [`Download mavis-terminal-5.bat`](https://github.com/Peharge/MAVIS/raw/main/run-mavis-terminal-5.bat) again.
+6. Once the installation process is complete, MAVIS 4 EAP will be installed on your system and can be launched from running [`mavis-installer-4.bat`](https://github.com/Peharge/MAVIS/blob/main/run-mavis-installer-4.bat) or [`mavis-terminal-5.bat`](https://github.com/Peharge/MAVIS/raw/main/run-mavis-terminal-5.bat) again.
 
 ### Troubleshooting
 
 - **Issue:** The script does not run.  
-  **Solution:** Ensure that you are running the script with administrator rights. Right-click on `mavis-installer.bat` or `Download mavis-terminal-5.bat` and select **"Run as Administrator"**.
+  **Solution:** Ensure that you are running the script with administrator rights. Right-click on `mavis-installer.bat` or `mavis-terminal-5.bat` and select **"Run as Administrator"**.
 
 - **Issue:** Missing permissions or errors during installation.  
   **Solution:** Check your user rights and ensure that you have the necessary permissions to install programs.
@@ -1202,16 +1202,16 @@ Um MAVIS 3 EAP auf einem Windows-Computer zu installieren, folge bitte diesen Sc
 
 3. **Wichtiger Hinweis:** Stelle sicher, dass du über Administratorrechte verfügst, da der Installationsprozess Änderungen an deinem System vornehmen kann.
 
-4. Doppelklicke auf die Datei `mavis-launcher-4.bat`, um die Installation zu starten.
+4. Doppelklicke auf die Datei `mavis-launcher-4.bat` oder `mavis-terminal-5.bat`, um die Installation zu starten.
 
 5. Folge den Anweisungen im Installationsskript. Dies kann die Bestätigung mehrerer Schritte umfassen, wie z.B. die Installation von Abhängigkeiten oder das Anpassen von Umgebungsvariablen.
 
-6. Wenn der Installationsprozess abgeschlossen ist, wird MAVIS 4 EAP auf deinem System installiert und kann über das Ausführen von [`mavis-installer-4.bat`](https://github.com/Peharge/MAVIS/blob/main/run-mavis-installer-4.bat) oder [`Download mavis-terminal-5.bat`](https://github.com/Peharge/MAVIS/raw/main/run-mavis-terminal-5.bat) immer gestartet werden.
+6. Wenn der Installationsprozess abgeschlossen ist, wird MAVIS 4 EAP auf deinem System installiert und kann über das Ausführen von [`mavis-installer-4.bat`](https://github.com/Peharge/MAVIS/blob/main/run-mavis-installer-4.bat) oder [`mavis-terminal-5.bat`](https://github.com/Peharge/MAVIS/raw/main/run-mavis-terminal-5.bat) immer gestartet werden.
 
 ### Troubleshooting
 
 - **Problem:** Das Skript lässt sich nicht ausführen.  
-  **Lösung:** Stelle sicher, dass du das Skript mit Administratorrechten ausführst. Klicke mit der rechten Maustaste auf `mavis-installer-4.bat` oder `Download mavis-terminal-5.bat` und wähle **"Als Administrator ausführen"**.
+  **Lösung:** Stelle sicher, dass du das Skript mit Administratorrechten ausführst. Klicke mit der rechten Maustaste auf `mavis-installer-4.bat` oder `mavis-terminal-5.bat` und wähle **"Als Administrator ausführen"**.
 
 - **Problem:** Fehlende Berechtigungen oder Fehler während der Installation.  
   **Lösung:** Überprüfe deine Benutzerrechte und stelle sicher, dass du über die erforderlichen Rechte zum Installieren von Programmen verfügst.
