@@ -282,12 +282,12 @@ class MainWindow(QMainWindow):
         button_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
         button_layout.setSpacing(40)
 
-        install_button = QPushButton("install 3d slicer")
+        install_button = QPushButton("install 3d Slicer")
         install_button.clicked.connect(self.run_install)
         self.add_shadow_effect(install_button)
         button_layout.addWidget(install_button)
 
-        run_button = QPushButton("run 3d-Slicer")
+        run_button = QPushButton("run 3d Slicer")
         run_button.clicked.connect(self.run_run)
         self.add_shadow_effect(run_button)
         button_layout.addWidget(run_button)
