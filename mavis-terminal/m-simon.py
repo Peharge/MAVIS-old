@@ -317,14 +317,14 @@ class MainWindow(QMainWindow):
         try:
             subprocess.Popen(["python", script_path])
         except Exception as e:
-            print(f"Fehler beim Ausführen von {script_path}: {e}")
+            print(f"Error executing {script_path}: {e}")
 
     def run_run(self):
         script_path = os.path.join("C:\\", "Users", os.getlogin(), "PycharmProjects", "MAVIS", "run", "simon", "3d-slicer", "run-3d-slicer.py")
         try:
             subprocess.Popen(["python", script_path])
         except Exception as e:
-            print(f"Fehler beim Ausführen von {script_path}: {e}")
+            print(f"Error executing {script_path}: {e}")
 
     def start_package_info_worker(self):
         packages = [
