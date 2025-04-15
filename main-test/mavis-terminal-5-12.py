@@ -435,6 +435,7 @@ def handle_special_commands(user_input):
         "run qwen-2-5-vl:32b": "mavis-terminal\\qwen-2-5-vl-32b.py",  # new
         "run qwen-2-5-vl:72b": "mavis-terminal\\qwen-2-5-vl-72b.py",  # new
         "run llama-4-maverick:17b": "mavis-terminal\\llama-4-maverick-17b.py",  # new
+        "run llama-4-scout:17b": "mavis-terminal\\llama-4-scout-17b.py",  # new
         "run deepcoder:1.5b": "mavis-terminal\\deepcoder-1-5b.py",  # new
         "run deepcoder:14b": "mavis-terminal\\deepcoder-14b.py", # new
         "run mistral-small3.1": "mavis-terminal\\mistral-small-3-1.py",  # new
@@ -489,6 +490,7 @@ def handle_special_commands(user_input):
         "install qwen-2-5-vl:32b": "mavis-terminal\\qwen-2-5-vl-32b.py",  # new
         "install qwen-2-5-vl:72b": "mavis-terminal\\qwen-2-5-vl-72b.py",  # new
         "install llama-4-maverick:17b": "mavis-terminal\\llama-4-maverick-17b.py",  # new
+        "install llama-4-scout:17b": "mavis-terminal\\llama-4-scout-17b.py",  # new
         "install deepcoder:1.5b": "mavis-terminal\\deepcoder-1-5b.py",  # new
         "install deepcoder:14b": "mavis-terminal\\deepcoder-14b.py",  # new
         "install mistral-small3.1": "mavis-terminal\\mistral-small-3-1.py",  # new
@@ -605,7 +607,7 @@ def is_tool_installed(tool_name):
 
 def setup_autocomplete():
     commands = ["cd", "cls", "clear", "dir", "ls", "mkdir", "rmdir", "del", "rm", "echo", "type", "cat", "exit", "lx", "m", "mp",
-                "ubuntu", "debian", "kali", "hack", "arch"]
+                "ubuntu", "debian", "kali", "hack", "arch", "etc."]
     readline.set_completer(lambda text, state: [cmd for cmd in commands if cmd.startswith(text)][state] if state < len(
         [cmd for cmd in commands if cmd.startswith(text)]) else None)
     readline.parse_and_bind("tab: complete")
