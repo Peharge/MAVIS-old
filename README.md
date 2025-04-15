@@ -1229,9 +1229,9 @@ Testing (Don't work!!!): [`Download mavis-launcher-4.sh`](https://github.com/Peh
 
 ### English [new]:
 
-[`Using MAVIS 4`](using-mavis-4)
+[`Using MAVIS 4`](using-mavis-4.md)
 
-[`Using MAVIS Terminal 5`](using-mavis-terminal-5)
+[`Using MAVIS Terminal 5`](using-mavis-terminal-5.md)
 
 ### Deutsch [soon]:
 
