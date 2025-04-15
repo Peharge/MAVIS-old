@@ -330,6 +330,7 @@ def handle_special_commands(user_input):
         "run mavis-3-3-math": "mavis-3-3-main-math.py",  # new
         "run mavis-3-3-math-mini": "mavis-3-3-main-math-pro.py",  # new
         "run mavis-4": "mavis-4-main.py",  # new
+        "run mavis-4-3": "mavis-4-main.py",  # new
         "run ollama mavis-3-main": "install\\install-ollama-mavis-3-main.py",  # new
         "run ollama mavis-3-main-mini": "install\\install-ollama-mavis-3-main-mini.py",  # new
         "run ollama mavis-3-math": "install\\install-ollama-mavis-3-math.py",  # new
@@ -525,6 +526,7 @@ def handle_special_commands(user_input):
         "m google.com": "mavis-terminal\\m-google.py",  # new
         "m ollama.com": "mavis-terminal\\m-ollama.py",  # new
         "m huggingface.com": "mavis-terminal\\m-huggingface.py",  # new
+        "m mavis": "mavis-terminal\\m-mavis-git.py",  # new
         "m mavis.com": "mavis-terminal\\m-mavis.py",  # new
         "m simon": "mavis-terminal\\m-simon.py",  # new
         "m simon.com": "mavis-terminal\\m-simon-git.py", # new
