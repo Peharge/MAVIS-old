@@ -188,7 +188,7 @@ Zu den verfügbaren wissenschaftlichen Bibliotheken gehören:
 - **[07.04.2025]** Soon MAVIS 4 EAP with Llama 4
 - **[11.04.2025]** MAVIS Terminal 5 EAP release !!!
 - **[15.04.2025]** SIMON available in MAVIS Terminal 5 with `m simon` !!!
-- **[15.04.2025]** Llama 4 Maverick\Scout available in MAVIS Terminal 5 with `run llama-maverick-4:17b` and run llama-scout-4:17b` !!!
+- **[15.04.2025]** Llama 4 Maverick\Scout available in MAVIS Terminal 5 with `run llama-maverick-4:17b` and `run llama-scout-4:17b` !!!
 
 ## Updates
 
