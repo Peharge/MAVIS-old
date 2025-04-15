@@ -1222,7 +1222,7 @@ Testing (Don't work!!!): [Download mavis-launcher-4.sh](https://github.com/Pehar
 
 ### English [new]:
 
-[Using](using-mavis-4-en.md)
+[Using](using-mavis-4)
 
 ### Deutsch [soon]:
 
