@@ -147,7 +147,7 @@ QScrollArea {
     background-color: transparent;
 }
 QScrollBar:vertical {
-    background-color: #ffffff;  /* Hintergrund (Schiene) in Weiß */
+    background-color: none;  /* Hintergrund (Schiene) in none */
     width: 10px;
     border-radius: 5px;
 }
@@ -169,7 +169,7 @@ QScrollBar::sub-page:vertical {
     background: transparent;
 }
 QScrollBar:horizontal {
-    background-color: #ffffff;  /* Auch der horizontale Balken in Weiß */
+    background-color: none;  /* Auch der horizontale Balken in none */
     height: 10px;
     border-radius: 5px;
 }
