@@ -207,7 +207,7 @@ Start of development: 10.04.2025
 > Release: 01.06.2025 - 01.07.2025
 
 <details>
-  <summary>MAVIS Terminal 4</summary>
+  <summary>MAVIS Terminal 5</summary>
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-terminal-5-banner-3.png" alt="mavis" width="1400" style="margin: 10px;">
