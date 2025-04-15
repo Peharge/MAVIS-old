@@ -166,7 +166,7 @@ Zu den verfügbaren wissenschaftlichen Bibliotheken gehören:
 - **[09.11.2024]** Start ;-)
 - **[10.11.2024]** Available with Llama3.2 + [Demo](#demo-text) with Xc++ 2
 - **[13.11.2024]** [Demo](#demo) UI
-- **[21.11.2024]** MAVIS with Python (Version 3.11/**12**/13 with the frameworks Matplotlib, NumPy, Math, SymPy and Pandas) [Demo](#demo)
+- **[21.11.2024]** MAVIS with Python (Version 3.11/**12**/(13) with the frameworks Matplotlib, NumPy, Math, SymPy and Pandas) [Demo](#demo)
 - **[28.11.2024]** Available with **Plotly** but still bugs that need to be resolved
 - **[30.11.2024]** MAVIS can write **PyTorch, TensorFlow, Keras, Scikit-Learn and Hugging Face Transformers (maybe JAX) code** and run it side-by-side without the need for an IDE. But it is only intended for experimentation.
 - **[01.12.2024]** MAVIS EAP release
@@ -188,7 +188,7 @@ Zu den verfügbaren wissenschaftlichen Bibliotheken gehören:
 - **[07.04.2025]** Soon MAVIS 4 EAP with Llama 4
 - **[11.04.2025]** MAVIS Terminal 5 EAP release !!!
 - **[15.04.2025]** SIMON available in MAVIS Terminal 5 with `m simon` !!!
-- **[15.04.2025]** Llama 4 Maverick\Scout available in MAVIS Terminal 5 with `run llama-maverick-4:17b` and `run llama-scout-4:17b` !!!
+- **[15.04.2025]** Llama 4 Maverick/Scout available in MAVIS Terminal 5 with `run llama-maverick-4:17b` and `run llama-scout-4:17b` !!!
 
 ## Updates
 
@@ -467,26 +467,30 @@ And more...
 > [!WARNING]
 > **Still in progress**
 
-| Modell             | GPQA | AIME | MATH-500 | LiveCodeBench | Codeforces | HumanEval |
-|--------------------|------|------|----------|---------------|------------|-----------|
-| Xc++ III           | ...  | ...  | ...      | ...           | ...        | ...       |      
-| Gemma 3 12b        | 40.9 | ...  | 83.8     | 24.6          | ...        | ...       |      
-| Gemma 3 27b        | 42.4 | ...  | 89.0     | 29.7          | ...        | ...       |
-| Llama 4 Maverick   | 69.8 | ...  | ...      | ...           | ...        | ...       |
-| Llama 4 Scout      | 57.2 | ...  | ...      | ...           | ...        | ...       |
-| Llama 4 Behemoth   | 73.7 | ...  | ...      | ...           | ...        | ...       |
-| DeepSeek R1 14b    | 59.1 | 69.7 | 93.9     | ...           | 90.6       | ...       |      
-| DeepSeek R1 32b    | 62.1 | 72.6 | 94.3     | ...           | ...        | ...       |      
-| DeepSeek R1 671b   | 71.5 | 79.8 | 97.3     | ...           | 96.3       | ...       |       
-| QwQ 32B Preview    | 65.2 | 50.0 | 90.6     | 50.0          | ...        | ...       |  
-| QwQ 32B            | ...  | ...  | ...      | ...           | ...        | ...       | 
-| Qwen 2.5 Coder 14B | ...  | ...  | ...      | ...           | ...        | 89.6      |      
-| Qwen 2.5 Coder 32B | ...  | ...  | ...      | 31.4          | ...        | 92.7      |      
-| Open AI o1         | 75.7 | 79.2 | 96.4     | ...           | 96.6       | ...       |      
-| Open AI o1-preview | 72.3 | 44.6 | 85.5     | 53.6          | 92.4       | ...       |      
-| Open AI o1 mini    | 60.0 | 56.7 | 90.0     | 58.0          | 92.4       | ...       |      
-| GPT-4o             | 53.6 | 59.4 | 76.6     | 33.4          | 90.2       | 92.1      |      
-| Claude3.5 Sonnet   | 49.0 | 53.6 | 82.6     | 30.4          | 92.0       | 92.1      |     
+| Modell                           | GPQA | AIME | MATH-500 | LiveCodeBench | Codeforces | HumanEval |
+|----------------------------------|------|------|----------|---------------|------------|-----------|
+| Xc++ III `*MAVIS`                | ...  | ...  | ...      | ...           | ...        | ...       |      
+| Gemma 3 12b `*MAVIS`             | 40.9 | ...  | 83.8     | 24.6          | ...        | ...       |      
+| Gemma 3 27b `*MAVIS`             | 42.4 | ...  | 89.0     | 29.7          | ...        | ...       |
+| Llama 4 Maverick `*MAVIS`        | 69.8 | ...  | ...      | ...           | ...        | ...       |
+| Llama 4 Scout `*MAVIS`           | 57.2 | ...  | ...      | ...           | ...        | ...       |
+| Llama 4 Behemoth `*MAVIS  -soon` | 73.7 | ...  | ...      | ...           | ...        | ...       |
+| DeepCoder 14B Preview `*MAVIS`   | ...  | ...  | ...      | ...           | ...        | 92.6      |
+| DeepSeek R1 14b `*MAVIS`         | 59.1 | 69.7 | 93.9     | ...           | 90.6       | ...       |      
+| DeepSeek R1 32b `*MAVIS`         | 62.1 | 72.6 | 94.3     | ...           | ...        | ...       |      
+| DeepSeek R1 671b `*MAVIS`        | 71.5 | 79.8 | 97.3     | ...           | 96.3       | 89        |       
+| QwQ 32B Preview  `*MAVIS`        | 65.2 | 50.0 | 90.6     | 50.0          | ...        | ...       |  
+| QwQ 32B `*MAVIS`                 | ...  | ...  | ...      | ...           | ...        | ...       | 
+| Qwen 2.5 Coder 14B `*MAVIS`      | ...  | ...  | ...      | ...           | ...        | 89.6      |      
+| Qwen 2.5 Coder 32B `*MAVIS`      | ...  | ...  | ...      | 31.4          | ...        | 92.7      |      
+| Open AI o1                       | 75.7 | 79.2 | 96.4     | ...           | 96.6       | 90.8      |      
+| Open AI o1 preview               | 72.3 | 44.6 | 85.5     | 53.6          | 92.4       | 92.6      |      
+| Open AI o1 mini                  | 60.0 | 56.7 | 90.0     | 58.0          | 92.4       | ...       |
+| Open AI o3 mini                  | ...  | ...  | ...      | ...           | ...        | 92.6      |
+| GPT-4o                           | 53.6 | 59.4 | 76.6     | 33.4          | 90.2       | 92.1      |      
+| Claude3.5 Sonnet                 | 49.0 | 53.6 | 82.6     | 30.4          | 92.0       | 92.1      |     
+
+`*MAVIS`: Available with MAVIS 4
 
 ## Installation
 
