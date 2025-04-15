@@ -194,7 +194,7 @@ Zu den verfügbaren wissenschaftlichen Bibliotheken gehören:
 
 ### MAVIS 4 [soon]
 
-Get ready for a massive update! With MAVIS IDE 1, MAVIS Terminal 4, MAVIS Installer 4, a completely redesigned UI, and so much more, this release is set to blow your mind. See you in a few months!
+Get ready for a massive update! With MAVIS IDE 1, MAVIS Terminal 5, MAVIS Installer 4, a completely redesigned UI, and so much more, this release is set to blow your mind. See you in a few months!
 Start of development: 10.04.2025
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
