@@ -209,6 +209,8 @@ Start of development: 10.04.2025
 <details>
   <summary>MAVIS Terminal 4</summary>
 
+Experience effortless and secure installations with the MAVIS 4 Launcher – your central solution to keep everything up to date and optimally protected in a flash!
+
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-terminal-5-banner-3.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
