@@ -526,6 +526,7 @@ def handle_special_commands(user_input):
         "m ollama.com": "mavis-terminal\\m-ollama.py",  # new
         "m huggingface.com": "mavis-terminal\\m-huggingface.py",  # new
         "m mavis.com": "mavis-terminal\\m-mavis.py",  # new
+        "m simon": "mavis-terminal\\m-simon.py",  # new
         "install 3d-slicer": "run\\simon\\3d-slicer\\install-3d-slicer.py", # new
         "run 3d-slicer": "run\\simon\\3d-slicer\\run-3d-slicer.py",  # new
         "install simon": "run\\simon\\install-simon-1.py",  # new
