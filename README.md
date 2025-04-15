@@ -215,7 +215,7 @@ Start of development: 10.04.2025
 
 <br>
 
-[MAVIS Terminal](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/learn-mavis-terminal-5.md): Harness the power of MAVIS, Python, PIP, Ollama, Git, vLLM, PowerShell, and a vast array of Linux distributions—including Ubuntu, Debian, Arch Linux, Kali Linux, openSUSE, Mint, Fedora, and Red Hat—all within a single terminal on Windows!
+[`MAVIS Terminal`](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/learn-mavis-terminal-5.md): Harness the power of MAVIS, Python, PIP, Ollama, Git, vLLM, PowerShell, and a vast array of Linux distributions—including Ubuntu, Debian, Arch Linux, Kali Linux, openSUSE, Mint, Fedora, and Red Hat—all within a single terminal on Windows!
 </details>
 
 <details>
@@ -1170,7 +1170,7 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 
 To install MAVIS 3 EAP on a Windows computer, please follow these steps:
 
-1. Download the installation file [Download mavis-launcher-4.bat](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.bat) or [Download mavis-terminal-5.bat](https://github.com/Peharge/MAVIS/raw/main/run-mavis-terminal-5.bat).
+1. Download the installation file [`Download mavis-launcher-4.bat`](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.bat) or [`Download mavis-terminal-5.bat`](https://github.com/Peharge/MAVIS/raw/main/run-mavis-terminal-5.bat).
 
 3. Navigate to the folder where you saved the file.
 
@@ -1190,13 +1190,13 @@ To install MAVIS 3 EAP on a Windows computer, please follow these steps:
 - **Issue:** Missing permissions or errors during installation.  
   **Solution:** Check your user rights and ensure that you have the necessary permissions to install programs.
 
-If you need further assistance, refer to the [Dokumentation](https://github.com/Peharge/MAVIS/blob/main/learn-mavis) - [Using MAVIS](https://github.com/Peharge/MAVIS/blob/main/using-mavis-3-en.md) or ask a question in the Issues section of the repository.
+If you need further assistance, refer to the [`Dokumentation`](https://github.com/Peharge/MAVIS/blob/main/learn-mavis) - [`Using MAVIS`](https://github.com/Peharge/MAVIS/blob/main/using-mavis-3-en.md) or ask a question in the Issues section of the repository.
 
 ### Installation MAVIS 3 und 4 EAP (Nur Windows) - Deutsch
 
 Um MAVIS 3 EAP auf einem Windows-Computer zu installieren, folge bitte diesen Schritten:
 
-1. Lade die Installationsdatei [Download mavis-launcher-4.bat](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.bat) oder [Download mavis-terminal-5.bat](https://github.com/Peharge/MAVIS/raw/main/run-mavis-terminal-5.bat) herunter.
+1. Lade die Installationsdatei [`Download mavis-launcher-4.bat`](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.bat) oder [`Download mavis-terminal-5.bat`](https://github.com/Peharge/MAVIS/raw/main/run-mavis-terminal-5.bat) herunter.
    
 2. Navigiere zu dem Ordner, in dem du die Datei gespeichert hast.
 
@@ -1216,11 +1216,11 @@ Um MAVIS 3 EAP auf einem Windows-Computer zu installieren, folge bitte diesen Sc
 - **Problem:** Fehlende Berechtigungen oder Fehler während der Installation.  
   **Lösung:** Überprüfe deine Benutzerrechte und stelle sicher, dass du über die erforderlichen Rechte zum Installieren von Programmen verfügst.
 
-Falls du weitere Hilfe benötigst, schau in die [Dokumentation](https://github.com/Peharge/MAVIS/blob/main/learn-mavis) - [Using MAVIS](https://github.com/Peharge/MAVIS/blob/main/using-mavis-3-en.md) oder stelle eine Frage im Issues-Bereich des Repositories.
+Falls du weitere Hilfe benötigst, schau in die [`Dokumentation`](https://github.com/Peharge/MAVIS/blob/main/learn-mavis) - [`Using MAVIS`](https://github.com/Peharge/MAVIS/blob/main/using-mavis-3-en.md) oder stelle eine Frage im Issues-Bereich des Repositories.
 
 ### Soon MAVIS 4 on Debina and Arch Linux
 
-Testing (Don't work!!!): [Download mavis-launcher-4.sh](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.sh).
+Testing (Don't work!!!): [`Download mavis-launcher-4.sh`](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.sh).
 
 ## Using
 
@@ -1229,7 +1229,9 @@ Testing (Don't work!!!): [Download mavis-launcher-4.sh](https://github.com/Pehar
 
 ### English [new]:
 
-[Using](using-mavis-4)
+[`Using MAVIS 4`](using-mavis-4)
+
+[`Using MAVIS Terminal 5`](using-mavis-terminal-5)
 
 ### Deutsch [soon]:
 
@@ -1238,7 +1240,7 @@ Testing (Don't work!!!): [Download mavis-launcher-4.sh](https://github.com/Pehar
 > [!WARNING]
 > **Still in progress**
 
-> got to: [Github/Xc++-II](https://github.com/Peharge/Xcpp-II)
+> got to: [`Github/Xc++-II`](https://github.com/Peharge/Xcpp-II)
 
 ## Demo
 
@@ -1428,7 +1430,7 @@ _Good luck!_
 
 ## Learn-MAVIS
 
-[Learn MAVIS](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/README.md)
+[`Learn MAVIS`](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/README.md)
 
 > Learn to install \ use MAVIS Installer; use MAVIS UI; use MAVIS Terminal; use Latex; use Matplotlib
 > Soon: Use Plotly; Seaborn; Numpy; Sympy; PyTorch; Tensorflow; Sikit-Learn;  etc.
