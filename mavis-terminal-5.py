@@ -605,7 +605,7 @@ def is_tool_installed(tool_name):
 
 def setup_autocomplete():
     commands = ["cd", "cls", "clear", "dir", "ls", "mkdir", "rmdir", "del", "rm", "echo", "type", "cat", "exit", "lx", "m", "mp",
-                "ubuntu", "debian", "kali", "hack", "arch"]
+                "ubuntu", "debian", "kali", "hack", "arch", "etc."]
     readline.set_completer(lambda text, state: [cmd for cmd in commands if cmd.startswith(text)][state] if state < len(
         [cmd for cmd in commands if cmd.startswith(text)]) else None)
     readline.parse_and_bind("tab: complete")
