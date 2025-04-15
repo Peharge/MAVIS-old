@@ -433,7 +433,7 @@ def handle_special_commands(user_input):
         "run qvq-72b": "mavis-terminal\\qvq-72b.py",  # new
         "run qwen-2-5-vl-32b": "mavis-terminal\\qwen-2-5-vl-32b.py",  # new
         "run qwen-2-5-vl-72b": "mavis-terminal\\qwen-2-5-vl-72b.py",  # new
-        "run llama-4-17b": "mavis-terminal\\llama-4-17b.py",  # new
+        "run llama-4-maverick-17b": "mavis-terminal\\llama-4-maverick-17b.py",  # new
         "install deepseek-r1:1.5b": "mavis-terminal\\deepseek-r1-1-5b.py",
         "install deepseek-r1:7b": "mavis-terminal\\deepseek-r1-7b.py",
         "install deepseek-r1:8b": "mavis-terminal\\deepseek-r1-8b.py",
@@ -480,7 +480,7 @@ def handle_special_commands(user_input):
         "install granite3.2:8b": "mavis-terminal\\granite-3-2-8b.py", # new
         "install granite3.2:2b": "mavis-terminal\\granite-3-2-2b.py", # new
         "install granite3.2-vision:2b": "mavis-terminal\\granite-3-2-2b-vision.py", # new
-        "install llama-4-17b": "mavis-terminal\\llama-4-17b.py",  # new
+        "install llama-4-maverick-17b": "mavis-terminal\\llama-4-maverick-17b.py",  # new
         "help": "mavis-terminal\\help.py",
         "image generation": "mavis-terminal\\stable-diffusion-3-5-large-turbo.py",
         "video generation": "mavis-terminal\\wan-2-1-t2v-14b.py",
