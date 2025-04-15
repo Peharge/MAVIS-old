@@ -215,7 +215,7 @@ Start of development: 10.04.2025
 
 <br>
 
-[MAVIS Terminal](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/learn-mavis-terminal-4.md): Harness the power of MAVIS, Python, PIP, Ollama, Git, vLLM, PowerShell, and a vast array of Linux distributions—including Ubuntu, Debian, Arch Linux, Kali Linux, openSUSE, Mint, Fedora, and Red Hat—all within a single terminal on Windows!
+[MAVIS Terminal](https://github.com/Peharge/MAVIS/blob/main/learn-mavis/learn-mavis-terminal-5.md): Harness the power of MAVIS, Python, PIP, Ollama, Git, vLLM, PowerShell, and a vast array of Linux distributions—including Ubuntu, Debian, Arch Linux, Kali Linux, openSUSE, Mint, Fedora, and Red Hat—all within a single terminal on Windows!
 </details>
 
 <details>
