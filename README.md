@@ -1180,7 +1180,7 @@ To install MAVIS 3 EAP on a Windows computer, please follow these steps:
 
 5. Follow the on-screen instructions provided by the installation script. This may involve confirming multiple steps, such as installing dependencies or adjusting environment variables.
 
-6. Once the installation process is complete, MAVIS 4 EAP will be installed on your system and can be launched from running [`mavis-installer-3.bat`](https://github.com/Peharge/MAVIS/blob/main/run-mavis-installer-3.bat) again.
+6. Once the installation process is complete, MAVIS 4 EAP will be installed on your system and can be launched from running [`mavis-installer-4.bat`](https://github.com/Peharge/MAVIS/blob/main/run-mavis-installer-4.bat) again.
 
 ### Troubleshooting
 
@@ -1206,7 +1206,7 @@ Um MAVIS 3 EAP auf einem Windows-Computer zu installieren, folge bitte diesen Sc
 
 5. Folge den Anweisungen im Installationsskript. Dies kann die Bestätigung mehrerer Schritte umfassen, wie z.B. die Installation von Abhängigkeiten oder das Anpassen von Umgebungsvariablen.
 
-6. Wenn der Installationsprozess abgeschlossen ist, wird MAVIS 4 EAP auf deinem System installiert und kann über das Ausführen von [`mavis-installer-3.bat`](https://github.com/Peharge/MAVIS/blob/main/run-mavis-installer-3.bat) immer gestartet werden.
+6. Wenn der Installationsprozess abgeschlossen ist, wird MAVIS 4 EAP auf deinem System installiert und kann über das Ausführen von [`mavis-installer-4.bat`](https://github.com/Peharge/MAVIS/blob/main/run-mavis-installer-4.bat) immer gestartet werden.
 
 ### Troubleshooting
 
