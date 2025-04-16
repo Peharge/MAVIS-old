@@ -65,28 +65,31 @@
 WSL Information Tool - Professional PyQt6 Application
 -------------------------------------------------------
 
-This application provides comprehensive details regarding the Windows Subsystem for Linux (WSL)
-and all installed Linux distributions. It is designed with a polished, professional user interface,
-using PyQt6 and a custom style sheet for an enhanced visual appearance. The application runs
-external shell commands in separate threads to ensure a responsive UI, with robust error handling
-and real-time refresh capabilities.
+This program provides comprehensive details regarding the Windows Subsystem for Linux (WSL)
+and displays all information in a modern, professional user interface.
+It retrieves all available data about WSL, including status, installed Linux distributions,
+and the WSL version. The application is implemented using PyQt6 and utilizes a custom stylesheet
+for a sleek appearance. External shell commands are executed asynchronously in separate threads
+to ensure a smooth and responsive UI.
 
 Features:
-    • Asynchronously displays the current WSL status obtained from "wsl --status".
-    • Asynchronously lists all installed Linux distributions with verbose details via "wsl --list --verbose".
-    • Refresh functionality to update the displayed information without blocking the UI.
-    • Structured, modular code with detailed inline documentation and robust error handling.
-    • Utilizes a tabbed interface to separate WSL status and distribution details.
-    • A status bar displaying the last refresh timestamp and error messages.
-    • Logging of key events for debugging and maintenance.
+    • Displays the current WSL status (using "wsl --status").
+    • Lists all installed Linux distributions with detailed information (via "wsl --list --verbose").
+    • Additionally shows the WSL version (via "wsl --version").
+    • Updates information asynchronously without blocking the user interface.
+    • Tabbed interface: Separate tabs for WSL status, distributions, and version.
+    • Status bar displaying the last refresh time and error messages.
+    • Comprehensive logging to support debugging and maintenance.
+    • Modern, non-terminal based appearance.
 
 Prerequisites:
     - Windows 10/11 with WSL installed.
-    - The "wsl" command available in the system's PATH.
+    - The "wsl" command must be available in the system PATH.
     - Python 3.x and PyQt6 installed.
+    - For a windowed (non-console) experience, the application can be run as a .pyw file or packaged as a Windows executable using PyInstaller (--noconsole).
 
 Usage:
-    Execute this script directly. The interface will launch, showing the comprehensive WSL information.
+    Run this script directly to launch the modern WSL information interface.
 """
 
 import sys
@@ -95,28 +98,26 @@ import logging
 import os
 from datetime import datetime
 
-from PyQt6.QtGui import QColor, QIcon
+from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QTextEdit, QPushButton, QLabel, QTabWidget, QMessageBox, QStatusBar
 )
 from PyQt6.QtCore import Qt, QRunnable, QThreadPool, pyqtSignal, QObject
 
-
 # Configure logging for debugging purposes
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-
 # Custom Qt StyleSheet for a modern, professional look
+# Using 'Segoe UI' to avoid missing glyph issues.
 STYLE_SHEET = """
 QWidget {
     background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #1b2631, stop:1 #0f1626);
     color: #FFFFFF;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     font-size: 14px;
 }
-
 QLineEdit {
     background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
     border: 1px solid #778899;
@@ -124,7 +125,6 @@ QLineEdit {
     padding: 5px;
     color: #FFFFFF;
 }
-
 QPushButton {
     background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
     border: none;
@@ -132,16 +132,13 @@ QPushButton {
     padding: 5px 10px;
     color: #FFFFFF;
 }
-
 QPushButton:hover {
     background-color: #1c2833;
 }
-
 QTabWidget::pane {
     border: 1px solid #778899;
     border-radius: 8px;
 }
-
 QTabBar::tab {
     background: transparent;
     padding: 8px;
@@ -149,12 +146,10 @@ QTabBar::tab {
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
 }
-
 QTabBar::tab:selected {
     background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #34495e, stop:1 #1c2833);
     color: #FFFFFF;
 }
-
 QTextEdit {
     background-color: transparent;
     border: 1px solid #778899;
@@ -163,28 +158,25 @@ QTextEdit {
     font-size: 12px;
     padding: 8px;
 }
-
 QLabel {
     font-size: 16px;
     padding: 4px;
 }
-
 QStatusBar {
     background-color: #1b2631;
     color: #FFFFFF;
 }
 """
 
-
 def run_command(cmd: list[str]) -> tuple[str, str]:
     """
     Executes a system command and returns the stdout and stderr outputs.
 
     Args:
-        cmd (list[str]): Command and arguments to execute.
+        cmd (list[str]): Command and arguments as a list.
 
     Returns:
-        tuple[str, str]: (stdout output, stderr output). If an error occurs, stderr contains the error message.
+        tuple[str, str]: (stdout, stderr). On error, stderr contains the error message.
     """
     try:
         logger.info("Executing command: %s", " ".join(cmd))
@@ -205,46 +197,53 @@ def run_command(cmd: list[str]) -> tuple[str, str]:
         logger.error(error_msg)
         return "", error_msg
 
-
 def get_wsl_status() -> str:
     """
-    Retrieves the current WSL status by executing 'wsl --status'.
+    Retrieves the current WSL status using 'wsl --status'.
 
     Returns:
-        str: The command output or an error message.
+        str: Command output or error message.
     """
     status, error = run_command(["wsl", "--status"])
     if error:
         return f"Error retrieving WSL status:\n{error}"
     return status
 
-
 def get_installed_distros() -> str:
     """
-    Retrieves the list of installed WSL Linux distributions by executing 'wsl --list --verbose'.
+    Retrieves the installed WSL distributions with detailed information.
 
     Returns:
-        str: The command output or an error message.
+        str: Command output or error message.
     """
     distros, error = run_command(["wsl", "--list", "--verbose"])
     if error:
         return f"Error retrieving installed distributions:\n{error}"
     return distros
 
+def get_wsl_version() -> str:
+    """
+    Retrieves the WSL version using 'wsl --version'.
+
+    Returns:
+        str: Command output or error message.
+    """
+    version, error = run_command(["wsl", "--version"])
+    if error:
+        return f"Error retrieving WSL version:\n{error}"
+    return version
 
 class WorkerSignals(QObject):
     """
-    Defines the signals available from a running worker thread.
+    Defines signals for a worker thread.
     """
-    finished = pyqtSignal(str)  # Signal for successful completion with result text
-    error = pyqtSignal(str)     # Signal for reporting error messages
-
+    finished = pyqtSignal(str)  # Emitted when execution is complete with the result
+    error = pyqtSignal(str)     # Emitted when an error occurs
 
 class Worker(QRunnable):
     """
     Worker thread for executing a function asynchronously.
     """
-
     def __init__(self, fn, *args, **kwargs):
         super().__init__()
         self.fn = fn
@@ -254,7 +253,7 @@ class Worker(QRunnable):
 
     def run(self) -> None:
         """
-        Run the function with the provided arguments.
+        Executes the function with the provided arguments.
         """
         try:
             result = self.fn(*self.args, **self.kwargs)
@@ -263,7 +262,6 @@ class Worker(QRunnable):
             err = f"Unexpected error: {str(e)}"
             logger.exception(err)
             self.signals.error.emit(err)
-
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -274,45 +272,55 @@ class MainWindow(QMainWindow):
         logger.info("Multithreading with maximum %d threads", self.threadpool.maxThreadCount())
         self.init_ui()
 
-        # Annahme: Das Repository befindet sich im MAVIS-Ordner des aktuellen Benutzers
+        # Example paths: Set application icon from a designated directory.
         user = os.getenv("USERNAME") or os.getenv("USER")
         self.repo_path = f"C:/Users/{user}/PycharmProjects/MAVIS"
         icon_path = f"C:/Users/{user}/PycharmProjects/MAVIS/icons/mavis-logo.ico"
-        self.setWindowIcon(QIcon(icon_path))
+        if os.path.exists(icon_path):
+            self.setWindowIcon(QIcon(icon_path))
 
     def init_ui(self):
-        # Set up main widget and layout
+        # Main widget and layout
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         main_layout = QVBoxLayout(central_widget)
 
         # Header label
-        header = QLabel("Comprehensive WSL and Linux Distribution Information")
+        header = QLabel("MAVIS WSL and Linux Distribution Information")
         header.setAlignment(Qt.AlignmentFlag.AlignCenter)
         main_layout.addWidget(header)
 
-        # Tab widget for separate info panels: WSL Status and Installed Distributions
+        # Tabbed interface: WSL Status, Distributions, and WSL Version
         self.tabs = QTabWidget()
         self.tab_status = QWidget()
         self.tab_distros = QWidget()
+        self.tab_version = QWidget()
 
-        # Layout for WSL status tab
+        # Layout for WSL Status tab
         status_layout = QVBoxLayout()
         self.text_status = QTextEdit()
         self.text_status.setReadOnly(True)
         status_layout.addWidget(self.text_status)
         self.tab_status.setLayout(status_layout)
 
-        # Layout for installed distributions tab
+        # Layout for Distributions tab
         distros_layout = QVBoxLayout()
         self.text_distros = QTextEdit()
         self.text_distros.setReadOnly(True)
         distros_layout.addWidget(self.text_distros)
         self.tab_distros.setLayout(distros_layout)
 
-        # Add tabs
+        # Layout for WSL Version tab
+        version_layout = QVBoxLayout()
+        self.text_version = QTextEdit()
+        self.text_version.setReadOnly(True)
+        version_layout.addWidget(self.text_version)
+        self.tab_version.setLayout(version_layout)
+
+        # Add tabs to the widget
         self.tabs.addTab(self.tab_status, "WSL Status")
-        self.tabs.addTab(self.tab_distros, "Installed Distributions")
+        self.tabs.addTab(self.tab_distros, "Distributions")
+        self.tabs.addTab(self.tab_version, "WSL Version")
         main_layout.addWidget(self.tabs)
 
         # Refresh button with centered layout
@@ -324,20 +332,20 @@ class MainWindow(QMainWindow):
         button_layout.addStretch(1)
         main_layout.addLayout(button_layout)
 
-        # Status bar for last update timestamp and errors
+        # Status bar for displaying last update time and errors
         self.statusbar = QStatusBar()
         self.setStatusBar(self.statusbar)
 
-        # Initial update call
+        # Initial update
         self.update_info()
 
     def update_info(self):
         """
-        Refreshes the displayed WSL status and installed distributions asynchronously.
-        Updates the status bar with the current timestamp.
+        Updates all displayed information (WSL Status, Distributions, WSL Version)
+        asynchronously and shows the current timestamp in the status bar.
         """
         current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        self.statusbar.showMessage(f"Updating information at {current_time}...")
+        self.statusbar.showMessage(f"Refreshing information (Timestamp: {current_time})...")
 
         # Worker for WSL status
         status_worker = Worker(get_wsl_status)
@@ -348,25 +356,35 @@ class MainWindow(QMainWindow):
         # Worker for installed distributions
         distros_worker = Worker(get_installed_distros)
         distros_worker.signals.finished.connect(self.handle_distros_result)
-        distros_worker.signals.error.connect(lambda err: self.handle_error("Installed Distributions", err))
+        distros_worker.signals.error.connect(lambda err: self.handle_error("Distributions", err))
         self.threadpool.start(distros_worker)
+
+        # Worker for WSL version
+        version_worker = Worker(get_wsl_version)
+        version_worker.signals.finished.connect(self.handle_version_result)
+        version_worker.signals.error.connect(lambda err: self.handle_error("WSL Version", err))
+        self.threadpool.start(version_worker)
 
     def handle_status_result(self, result: str):
         self.text_status.setPlainText(result)
         current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        self.statusbar.showMessage(f"Last update: {current_time}", 5000)
-        logger.info("WSL status updated successfully.")
+        self.statusbar.showMessage(f"Last updated: {current_time}", 5000)
+        logger.info("WSL Status updated successfully.")
 
     def handle_distros_result(self, result: str):
         self.text_distros.setPlainText(result)
-        logger.info("Installed distributions updated successfully.")
+        logger.info("Distributions updated successfully.")
+
+    def handle_version_result(self, result: str):
+        self.text_version.setPlainText(result)
+        logger.info("WSL Version updated successfully.")
 
     def handle_error(self, source: str, error_msg: str):
         self.statusbar.showMessage(f"Error updating {source}.", 5000)
         logger.error("Error updating %s: %s", source, error_msg)
-        QMessageBox.critical(self, f"{source} Update Error", f"An error occurred while updating {source}:\n{error_msg}",
+        QMessageBox.critical(self, f"{source} Update Error",
+                             f"An error occurred while updating {source}:\n{error_msg}",
                              QMessageBox.StandardButton.Ok)
-
 
 def main():
     """
@@ -377,7 +395,6 @@ def main():
     window = MainWindow()
     window.show()
     sys.exit(app.exec())
-
 
 if __name__ == "__main__":
     main()
