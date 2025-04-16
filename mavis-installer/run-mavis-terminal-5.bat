@@ -545,6 +545,9 @@ if errorlevel 1 (
         exit /b 1
     )
 )
+
+echo ✅ WSL is already installed.
+
 goto CheckDistroInstalled
 
 :CheckDistroInstalled
