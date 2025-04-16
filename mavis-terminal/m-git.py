@@ -320,6 +320,10 @@ class StatisticsTab(QWidget):
         # Enable grid lines with white color, dashed style, and a thinner line width
         self.ax.grid(True, color='white', linestyle='--', linewidth=0.5)
 
+        # Set axis spines (the x and y axis lines) to white
+        for spine in self.ax.spines.values():
+            spine.set_color('white')
+
         # Create a line plot (connected points) with a skyblue color
         self.ax.plot(dates, counts, marker='o', linestyle='-', color='skyblue', linewidth=2)
 
