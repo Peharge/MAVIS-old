@@ -546,6 +546,8 @@ def handle_special_commands(user_input):
         "m mavis.com": "mavis-terminal\\m-mavis.py",  # new
         "m simon": "mavis-terminal\\m-simon.py",  # new
         "m simon.com": "mavis-terminal\\m-simon-git.py", # new
+        "wsl info": "mavis-terminal\\wsl-info.py",  # new
+        "m wsl": "mavis-terminal\\m-wsl.py", # new
         "install 3d-slicer": "run\\simon\\3d-slicer\\install-3d-slicer.py", # new
         "run 3d-slicer": "run\\simon\\3d-slicer\\run-3d-slicer.py",  # new
         "install simon": "run\\simon\\install-simon-1.py",  # new
