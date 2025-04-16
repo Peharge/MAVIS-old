@@ -525,6 +525,18 @@ def handle_special_commands(user_input):
         "m ollama": "mavis-terminal\\m-ollama.py",  # new
         "m huggingface": "mavis-terminal\\m-huggingface.py",  # new
         "m github.com": "mavis-terminal\\m-github.py",  # new
+        "m kali.com": "mavis-terminal\\m-kali.py",  # new
+        "m mint.com": "mavis-terminal\\m-mint.py",  # new
+        "m monai.com": "mavis-terminal\\m-monai.py",  # new
+        "m monai-github.com": "mavis-terminal\\m-monai-git.py",  # new
+        "m python.com": "mavis-terminal\\m-python.py",  # new
+        "m pytorch.com": "mavis-terminal\\m-pytorch.py",  # new
+        "m pytorch-github.com": "mavis-terminal\\m-pytorch-git.py",  # new
+        "m ubuntu.com": "mavis-terminal\\m-ubuntu.py",  # new
+        "m 3dslicer-github.com": "mavis-terminal\\m-3dslicer-git.py",  # new
+        "m 3dslicer.com": "mavis-terminal\\m-3dslicer-web.py",  # new
+        "m arch.com": "mavis-terminal\\m-arch.py",  # new
+        "m debian.com": "mavis-terminal\\m-debian.py",  # new
         "m google.com": "mavis-terminal\\m-google.py",  # new
         "m ollama.com": "mavis-terminal\\m-ollama.py",  # new
         "m huggingface.com": "mavis-terminal\\m-huggingface.py",  # new
