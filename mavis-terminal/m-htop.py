@@ -140,9 +140,10 @@ class AdvancedSystemMonitor(QWidget):
         # Complete stylesheet with modern dark mode design
         return """
         QWidget {
-            background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #1b2631, stop:1 #0f1626);
-            color: #ecf0f1;
-            font-family: Arial;
+            background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #1b2631, stop:1 #0f1626);
+            color: #FFFFFF;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
         }
         QFrame.metricCard {
             background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
@@ -169,21 +170,21 @@ class AdvancedSystemMonitor(QWidget):
             border-radius: 10px;
         }
         QLineEdit {
-            background-color: #222;
-            border: 1px solid #566573;
+            background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
+            border: 1px solid #778899;
             border-radius: 5px;
             padding: 5px;
-            color: #ecf0f1;
+            color: #FFFFFF;
         }
         QPushButton {
-            background-color: #34495e;
-            border: 1px solid #566573;
+            background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
+            border: none;
             border-radius: 5px;
             padding: 5px 10px;
-            color: #ecf0f1;
+            color: #FFFFFF;
         }
         QPushButton:hover {
-            background-color: #3c5977;
+            background-color: #1c2833;
         }
         QTableWidget {
             background-color: #222;
@@ -194,12 +195,10 @@ class AdvancedSystemMonitor(QWidget):
             padding: 4px;
             border: 1px solid #566573;
         }
-        
         QScrollArea {
             border: none;
             background-color: transparent;
         }
-
         QScrollBar:vertical {
             background-color: transparent;
             width: 10px;
