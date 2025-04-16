@@ -699,6 +699,8 @@ if defined installed (
 
 :Continue
 
+echo ✅ All WSL processes have been successfully terminated.
+
 :: Define project path
 set "PYCHARM_PROJECTS=%USERPROFILE%\PycharmProjects"
 set "MAVIS_DIR=%PYCHARM_PROJECTS%\MAVIS"
