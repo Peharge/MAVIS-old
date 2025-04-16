@@ -142,10 +142,10 @@ QTabWidget::pane {
 
 QTabBar::tab {
     background: transparent;
-    padding: 10px;
+    padding: 8px;
     margin: 2px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 }
 
 QTabBar::tab:selected {
