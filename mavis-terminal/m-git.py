@@ -397,7 +397,7 @@ class MainWindow(QMainWindow):
                 padding: 5px 10px;
                 color: #FFFFFF;
             }
-
+            
             QPushButton:hover {
                 background-color: #1c2833;
             }
@@ -435,6 +435,19 @@ class MainWindow(QMainWindow):
                 border-radius: 8px;
                 font-family: 'Courier New', monospace;
                 font-size: 12px;
+            }
+            
+            QTabBar::tab {
+                background: transparent;
+                padding: 10px;
+                margin: 2px;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+            }
+            
+            QTabBar::tab:selected {
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #34495e, stop:1 #1c2833);
+                color: #FFFFFF;
             }
             
             QScrollArea {
