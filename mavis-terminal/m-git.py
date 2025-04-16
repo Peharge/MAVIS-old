@@ -297,7 +297,7 @@ class StatisticsTab(QWidget):
     def plot_statistics(self):
         commits = get_git_commits(self.repo_path)
         # Filter: nur Commits der letzten 30 Tage
-        cutoff_date = datetime.today() - timedelta(days=30)
+        cutoff_date = datetime.today() - timedelta(days=35)
         filtered_commits = []
         for commit in commits:
             try:
