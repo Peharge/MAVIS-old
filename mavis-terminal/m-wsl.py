@@ -114,6 +114,7 @@ QWidget {
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
 }
+
 QLineEdit {
     background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
     border: 1px solid #778899;
@@ -121,6 +122,7 @@ QLineEdit {
     padding: 5px;
     color: #FFFFFF;
 }
+
 QPushButton {
     background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
     border: none;
@@ -128,13 +130,16 @@ QPushButton {
     padding: 5px 10px;
     color: #FFFFFF;
 }
+
 QPushButton:hover {
     background-color: #1c2833;
 }
+
 QTabWidget::pane {
     border: 1px solid #778899;
     border-radius: 8px;
 }
+
 QTabBar::tab {
     background: transparent;
     padding: 10px;
@@ -142,10 +147,12 @@ QTabBar::tab {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
+
 QTabBar::tab:selected {
     background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #34495e, stop:1 #1c2833);
     color: #FFFFFF;
 }
+
 QTextEdit {
     background-color: transparent;
     border: 1px solid #778899;
@@ -154,10 +161,12 @@ QTextEdit {
     font-size: 12px;
     padding: 8px;
 }
+
 QLabel {
     font-size: 16px;
     padding: 4px;
 }
+
 QStatusBar {
     background-color: #1b2631;
     color: #FFFFFF;
