@@ -313,25 +313,32 @@ class StatisticsTab(QWidget):
         dates = sorted(date_counts.keys())
         counts = [date_counts[date] for date in dates]
 
+        # Clear existing plot and set transparent background for the plotting area
         self.ax.clear()
-        # Linienplot statt Balkendiagramm: Verbundene Punkte (keine 3D-Optik)
+        self.ax.set_facecolor("none")
+
+        # Enable grid lines with white color, dashed style, and a thinner line width
+        self.ax.grid(True, color='white', linestyle='--', linewidth=0.5)
+
+        # Create a line plot (connected points) with a skyblue color
         self.ax.plot(dates, counts, marker='o', linestyle='-', color='skyblue', linewidth=2)
 
-        # Achsenbeschriftungen & Titel
+        # Set axis labels and title with white text
         self.ax.set_xlabel("Date", color='white')
         self.ax.set_ylabel("Number of commits", color='white')
         self.ax.set_title("Commits per day (last 30 days)", color='white')
 
-        # Achsenticks auf weiß setzen
+        # Configure tick parameters: set tick colors to white and rotate x-axis labels for clarity
         self.ax.tick_params(axis='x', colors='white', rotation=45)
         self.ax.tick_params(axis='y', colors='white')
 
-        # Tick-Label-Farbe (optional, manchmal zusätzlich nötig je nach Matplotlib-Version/Themes)
+        # Enforce tick label colors (useful for some Matplotlib versions/themes)
         for label in self.ax.get_xticklabels():
             label.set_color('white')
         for label in self.ax.get_yticklabels():
             label.set_color('white')
 
+        # Redraw the canvas to reflect updates
         self.canvas.draw()
 
 class MainWindow(QMainWindow):
