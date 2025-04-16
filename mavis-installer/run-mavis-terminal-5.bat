@@ -498,215 +498,203 @@ if %errorlevel% neq 0 (
 
 set "USERNAME=%USERNAME%"
 set "PYTHON_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe"
-set "BASE_SCRIPT_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl"
 
-REM Primary Python script for WSL installation fallback
-set "SCRIPT_INSTALL_MAIN=%BASE_SCRIPT_PATH%\install-wsl.py"
+:: Main Python script for generic WSL installations (fallback)
+set "SCRIPT_install_wsl=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-wsl.py"
 
-REM Individual Python scripts for distribution installations
-set "SCRIPT_INSTALL_UBUNTU=%BASE_SCRIPT_PATH%\install-ubuntu-wsl.py"
-set "SCRIPT_INSTALL_DEBIAN=%BASE_SCRIPT_PATH%\install-debian-wsl.py"
-set "SCRIPT_INSTALL_KALI=%BASE_SCRIPT_PATH%\install-kali-wsl.py"
-set "SCRIPT_INSTALL_ARCH=%BASE_SCRIPT_PATH%\install-arch-wsl.py"
-set "SCRIPT_INSTALL_OPENSUSE=%BASE_SCRIPT_PATH%\install-opensuse-wsl.py"
-set "SCRIPT_INSTALL_MINT=%BASE_SCRIPT_PATH%\install-arch-mint.py"
-set "SCRIPT_INSTALL_FEDORA=%BASE_SCRIPT_PATH%\install-arch-fedora.py"
-set "SCRIPT_INSTALL_REDHAT=%BASE_SCRIPT_PATH%\install-arch-redhat.py"
-set "SCRIPT_INSTALL_SUSE=%BASE_SCRIPT_PATH%\install-arch-suse.py"
-set "SCRIPT_INSTALL_PENGWIN=%BASE_SCRIPT_PATH%\install-arch-pengwin.py"
-set "SCRIPT_INSTALL_ORACLE=%BASE_SCRIPT_PATH%\install-arch-oracle.py"
-set "SCRIPT_INSTALL_CLEAR=%BASE_SCRIPT_PATH%\install-arch-clear.py"
-set "SCRIPT_INSTALL_ALPHINE=%BASE_SCRIPT_PATH%\install-arch-aphine.py"
+:: Scripts for installing individual distributions:
+set "SCRIPT_install_wsl_ubuntu=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-ubuntu-wsl.py"
+set "SCRIPT_install_wsl_debian=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-debian-wsl.py"
+set "SCRIPT_install_wsl_kali=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-kali-wsl.py"
+set "SCRIPT_install_wsl_arch=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-arch-wsl.py"
+set "SCRIPT_install_wsl_opensuse=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-opensuse-wsl.py"
+set "SCRIPT_install_wsl_mint=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-arch-mint.py"
+set "SCRIPT_install_wsl_fedora=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-arch-fedora.py"
+set "SCRIPT_install_wsl_redhat=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-arch-redhat.py"
+set "SCRIPT_install_wsl_suse=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-arch-suse.py"
+set "SCRIPT_install_wsl_pengwin=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-arch-pengwin.py"
+set "SCRIPT_install_wsl_oracle=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-arch-oracle.py"
+set "SCRIPT_install_wsl_clear=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-arch-clear.py"
+set "SCRIPT_install_wsl_alpine=C:\Users\%USERNAME%\PycharmProjects\MAVIS\run\wsl\install-alpine-wsl.py"
 
-REM Function: Check if WSL is Installed
 :CheckWSLInstalled
-echo Checking if WSL is installed...
 wsl --list >nul 2>&1
-if %errorlevel% neq 0 (
-    echo WSL is NOT installed on this system.
-    set /p "install_wsl=Would you like to enable WSL? [y/n]: "
-    if /i "%install_wsl%"=="y" (
-        echo Enabling the WSL feature...
+if errorlevel 1 (
+    echo WSL is not installed.
+    set /p "install_wsl=Do you want to install WSL? [y/n]: "
+    if /i "!install_wsl!"=="y" (
+        echo Enabling WSL feature...
         dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart >nul 2>&1
-        if %errorlevel% neq 0 (
-            echo ❌ Error: The WSL feature could not be enabled.
-            echo Please enable WSL manually via Windows Features and then re-run this script.
-            pause
-            REM Fallback to Python installation if the main script is available
-            if not exist "%SCRIPT_INSTALL_MAIN%" (
-                echo ❌ Error: Python fallback script not found: %SCRIPT_INSTALL_MAIN%
-                exit /B 1
+        if errorlevel 1 (
+            echo ❌ Error: Could not enable the WSL feature.
+            if not exist "%SCRIPT_install_wsl%" (
+                echo Error: Python fallback script not found: %SCRIPT_install_wsl%
+                pause
+                exit /b 1
             )
-            "%PYTHON_PATH%" "%SCRIPT_INSTALL_MAIN%"
+            call "%PYTHON_PATH%" "%SCRIPT_install_wsl%"
+        ) else (
+            echo ✅ WSL feature enabled successfully.
+            echo Please restart your computer and run the script again.
+            pause
+            exit /b 0
         )
-        echo SUCCESS: WSL feature enabled successfully.
-        echo Please restart your computer and re-run this script.
-        pause
-        exit /B 0
     ) else (
         echo Installation aborted. Please install WSL manually.
         pause
-        exit /B 1
+        exit /b 1
     )
 )
-echo ✅ WSL is already installed.
-goto :CheckDistroInstalled
+goto CheckDistroInstalled
 
-REM Function: Check if a Linux Distribution Exists
 :CheckDistroInstalled
 set "found_distro="
 for /f "usebackq delims=" %%i in (`wsl --list --quiet 2^>nul`) do (
     set "found_distro=%%i"
-    goto :DistroFound
+    goto DistroFound
 )
 
 if not defined found_distro (
-    goto :AskInstallDistro
+    goto AskInstall
 )
 
 :DistroFound
-echo ✅ WSL is already configured with the distribution: "!found_distro!".
-goto :Continue
+echo ✅ WSL is already set up with the distribution: "!found_distro!"
+goto Continue
 
-:AskInstallDistro
-echo No Linux distribution was found on your system.
+:AskInstall
+echo No Linux distribution was found.
 set /p "install_choice=Do you want to install a Linux distribution? [y/n]: "
-if /I not "%install_choice%"=="y" (
+if /i "!install_choice!"=="y" (
+    goto SelectDistro
+) else (
     echo Installation aborted.
-    goto :Continue
+    goto Continue
 )
 
-REM Distribution Selection using CHOICE Command
+:SelectDistro
 echo.
-echo Please select a Linux distribution to install:
+echo Please select a distribution to install:
 echo   [1] Ubuntu
 echo   [2] Debian
 echo   [3] Kali Linux
 echo   [4] Arch Linux
 echo   [5] openSUSE
 echo   [6] Linux Mint
-echo   [7] Fedora Remix
+echo   [7] Fedora
 echo   [8] Red Hat Enterprise Linux
-choice /c 12345678 /n /m "Your selection: "
+echo   [9] SUSE Linux
+echo   [10] Pengwin
+echo   [11] Oracle Linux
+echo   [12] Clear Linux
+echo   [13] Alpine
+choice /c 123456789ABCD /n /m "Your choice: "
 set "choice=%errorlevel%"
 
-REM Distribution Installation Based on Selection
+:: Map the choice to the appropriate variables
 if "%choice%"=="1" (
     set "DISTRO_NAME=Ubuntu"
     set "DISTRO_PACKAGE=Ubuntu"
-    if not exist "%SCRIPT_INSTALL_UBUNTU%" (
-       echo ❌ Error: Script not found: %SCRIPT_INSTALL_UBUNTU%
-       exit /B 1
-    )
-    "%PYTHON_PATH%" "%SCRIPT_INSTALL_UBUNTU%"
+    set "SCRIPT_DISTRO=%SCRIPT_install_wsl_ubuntu%"
 ) else if "%choice%"=="2" (
     set "DISTRO_NAME=Debian"
     set "DISTRO_PACKAGE=Debian"
-    if not exist "%SCRIPT_INSTALL_DEBIAN%" (
-       echo ❌ Error: Script not found: %SCRIPT_INSTALL_DEBIAN%
-       exit /B 1
-    )
-    "%PYTHON_PATH%" "%SCRIPT_INSTALL_DEBIAN%"
+    set "SCRIPT_DISTRO=%SCRIPT_install_wsl_debian%"
 ) else if "%choice%"=="3" (
     set "DISTRO_NAME=Kali Linux"
     set "DISTRO_PACKAGE=kali-linux"
-    if not exist "%SCRIPT_INSTALL_KALI%" (
-       echo ❌ Error: Script not found: %SCRIPT_INSTALL_KALI%
-       exit /B 1
-    )
-    "%PYTHON_PATH%" "%SCRIPT_INSTALL_KALI%"
+    set "SCRIPT_DISTRO=%SCRIPT_install_wsl_kali%"
 ) else if "%choice%"=="4" (
     set "DISTRO_NAME=Arch Linux"
     set "DISTRO_PACKAGE=ArchLinux"
-    if not exist "%SCRIPT_INSTALL_ARCH%" (
-       echo ❌ Error: Script not found: %SCRIPT_INSTALL_ARCH%
-       exit /B 1
-    )
-    "%PYTHON_PATH%" "%SCRIPT_INSTALL_ARCH%"
+    set "SCRIPT_DISTRO=%SCRIPT_install_wsl_arch%"
 ) else if "%choice%"=="5" (
     set "DISTRO_NAME=openSUSE"
     set "DISTRO_PACKAGE=openSUSE-Leap-15-3"
-    if not exist "%SCRIPT_INSTALL_OPENSUSE%" (
-       echo ❌ Error: Script not found: %SCRIPT_INSTALL_OPENSUSE%
-       exit /B 1
-    )
-    "%PYTHON_PATH%" "%SCRIPT_INSTALL_OPENSUSE%"
+    set "SCRIPT_DISTRO=%SCRIPT_install_wsl_opensuse%"
 ) else if "%choice%"=="6" (
     set "DISTRO_NAME=Linux Mint"
     set "DISTRO_PACKAGE=LinuxMint"
-    if not exist "%SCRIPT_INSTALL_MINT%" (
-       echo ❌ Error: Script not found: %SCRIPT_INSTALL_MINT%
-       exit /B 1
-    )
-    "%PYTHON_PATH%" "%SCRIPT_INSTALL_MINT%"
+    set "SCRIPT_DISTRO=%SCRIPT_install_wsl_mint%"
 ) else if "%choice%"=="7" (
-    set "DISTRO_NAME=Fedora Remix"
+    set "DISTRO_NAME=Fedora"
     set "DISTRO_PACKAGE=FedoraRemix"
-    if not exist "%SCRIPT_INSTALL_FEDORA%" (
-       echo ❌ Error: Script not found: %SCRIPT_INSTALL_FEDORA%
-       exit /B 1
-    )
-    "%PYTHON_PATH%" "%SCRIPT_INSTALL_FEDORA%"
+    set "SCRIPT_DISTRO=%SCRIPT_install_wsl_fedora%"
 ) else if "%choice%"=="8" (
     set "DISTRO_NAME=Red Hat Enterprise Linux"
     set "DISTRO_PACKAGE=RHEL"
-    if not exist "%SCRIPT_INSTALL_REDHAT%" (
-       echo ❌ Error: Script not found: %SCRIPT_INSTALL_REDHAT%
-       exit /B 1
-    )
-    "%PYTHON_PATH%" "%SCRIPT_INSTALL_REDHAT%"
+    set "SCRIPT_DISTRO=%SCRIPT_install_wsl_redhat%"
+) else if "%choice%"=="9" (
+    set "DISTRO_NAME=SUSE Linux"
+    set "DISTRO_PACKAGE=SUSE"
+    set "SCRIPT_DISTRO=%SCRIPT_install_wsl_suse%"
+) else if "%choice%"=="10" (
+    set "DISTRO_NAME=Pengwin"
+    set "DISTRO_PACKAGE=Pengwin"
+    set "SCRIPT_DISTRO=%SCRIPT_install_wsl_pengwin%"
+) else if "%choice%"=="11" (
+    set "DISTRO_NAME=Oracle Linux"
+    set "DISTRO_PACKAGE=Oracle"
+    set "SCRIPT_DISTRO=%SCRIPT_install_wsl_oracle%"
+) else if "%choice%"=="12" (
+    set "DISTRO_NAME=Clear Linux"
+    set "DISTRO_PACKAGE=ClearLinux"
+    set "SCRIPT_DISTRO=%SCRIPT_install_wsl_clear%"
+) else if "%choice%"=="13" (
+    set "DISTRO_NAME=Alpine"
+    set "DISTRO_PACKAGE=Alpine"
+    set "SCRIPT_DISTRO=%SCRIPT_install_wsl_alpine%"
 ) else (
-    echo ❌ Error: Invalid selection. The program will now exit.
+    echo ❌ Invalid choice. The program will now exit.
     pause
-    exit /B 1
+    exit /b 1
+)
+
+:: Check if the corresponding Python script exists
+if not exist "!SCRIPT_DISTRO!" (
+    echo Error: Python script not found: "!SCRIPT_DISTRO!"
+    pause
+    exit /b 1
 )
 
 echo.
 echo You have selected: "!DISTRO_NAME!"
 echo.
 
-REM Final Check: Verify that WSL and the Distribution are Enabled
-wsl -l >nul 2>&1
-if errorlevel 1 (
-    echo ❌ Error: WSL is either not installed or not enabled.
-    echo Please enable WSL via "Turn Windows features on or off" and restart your computer.
-    pause
-    exit /B 1
-)
-
-REM Verify Installation with Multiple Retries (max 3 attempts)
 set /a attempts=0
 :InstallLoop
 set /a attempts+=1
-echo [Attempt !attempts!] Verifying installation of "!DISTRO_NAME!"...
-wsl --install -d "!DISTRO_PACKAGE!" >nul 2>&1
+echo [Attempt !attempts!] Starting installation of "!DISTRO_NAME!"...
+call "%PYTHON_PATH%" "!SCRIPT_DISTRO!"
+
+:: Short pause to allow the installation process to settle
 timeout /t 5 >nul
 
+:: Verify if the distribution appears in the WSL list
 set "installed="
 for /f "usebackq delims=" %%i in (`wsl --list --quiet`) do (
     echo %%i | findstr /i /c:"!DISTRO_PACKAGE!" >nul && set "installed=1"
 )
 if defined installed (
     echo.
-    echo ✅ success: "!DISTRO_NAME!" has been installed successfully!
-    goto :End
+    echo ✅ "!DISTRO_NAME!" has been successfully installed!
+    goto Continue
 ) else (
     echo.
-    echo ❌ Error: Installation of "!DISTRO_NAME!" failed on attempt !attempts!.
+    echo ❌ Installation of "!DISTRO_NAME!" failed on attempt !attempts!.
     if !attempts! lss 3 (
-        echo Retrying in 3 seconds...
+        echo Waiting 3 seconds before retrying...
         timeout /t 3 >nul
-        goto :InstallLoop
+        goto InstallLoop
     ) else (
-        echo ❌ Error: All installation attempts have failed.
-        echo Please install "!DISTRO_NAME!" manually (e.g., via the Microsoft Store or alternative methods).
+        echo ❌ All installation attempts have failed.
+        echo Please install "!DISTRO_NAME!" manually (e.g., via the Microsoft Store).
         pause
-        exit /B 1
+        exit /b 1
     )
 )
 
 :Continue
-:: Hier folgt der restliche Code
 
 :: Define project path
 set "PYCHARM_PROJECTS=%USERPROFILE%\PycharmProjects"
