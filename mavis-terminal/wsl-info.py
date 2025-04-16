@@ -61,16 +61,17 @@
 #
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
+#!/usr/bin/env python3
 """
 WSL Information Utility
 -----------------------
-Dieses professionelle Skript sammelt alle relevanten Informationen über das Windows Subsystem for Linux (WSL) und
-die installierten Linux-Distributionen. Es verwendet systemeigene WSL-Befehle, um Details über den Status und die
-verfügbaren Distributionen abzurufen, und stellt sicher, dass mögliche Fehler während der Ausführung angemessen behandelt werden.
+This professional script gathers comprehensive information about the Windows Subsystem for Linux (WSL)
+and the installed Linux distributions. It utilizes native WSL commands to retrieve details about the system
+status and available distributions, while ensuring that any errors encountered during execution are handled appropriately.
 
-Voraussetzungen:
-- Windows 10/11 mit installiertem WSL.
-- Der Befehl "wsl" muss in der PATH-Umgebung verfügbar sein.
+Prerequisites:
+    - Windows 10/11 with WSL installed.
+    - The "wsl" command must be accessible in the system's PATH.
 """
 
 import subprocess
@@ -79,13 +80,13 @@ import sys
 
 def run_command(cmd: list[str]) -> tuple[str, str]:
     """
-    Führt einen Systembefehl aus und gibt dessen Ausgabe zurück.
+    Executes a system command and returns its output.
 
     Args:
-        cmd (list[str]): Der auszuführende Befehl als Liste von Strings.
+        cmd (list[str]): The command to execute, specified as a list of strings.
 
     Returns:
-        tuple[str, str]: Ein Tupel (stdout, stderr). Im Fehlerfall enthält stderr die Fehlermeldung.
+        tuple[str, str]: A tuple (stdout, stderr). In case of an error, stderr contains the error message.
     """
     try:
         result = subprocess.run(
@@ -97,44 +98,44 @@ def run_command(cmd: list[str]) -> tuple[str, str]:
         )
         return result.stdout.strip(), ""
     except subprocess.CalledProcessError as e:
-        return "", f"Fehler bei der Ausführung von {' '.join(cmd)}: {e.stderr.strip()}"
+        return "", f"Error executing {' '.join(cmd)}: {e.stderr.strip()}"
     except FileNotFoundError:
-        return "", f"Befehl nicht gefunden: {cmd[0]}"
+        return "", f"Command not found: {cmd[0]}"
 
 
 def get_wsl_status() -> str:
     """
-    Ruft den aktuellen WSL-Status ab.
+    Retrieves the current WSL status.
 
     Returns:
-        str: Ausgabestring des Befehls "wsl --status" oder eine Fehlermeldung.
+        str: The output string from the command "wsl --status" or an error message if the command fails.
     """
     status, error = run_command(["wsl", "--status"])
     if error:
-        return f"Fehler beim Abrufen des WSL-Status:\n{error}"
+        return f"Error retrieving WSL status:\n{error}"
     return status
 
 
 def get_installed_distros() -> str:
     """
-    Ermittelt alle installierten WSL-Distributionen im detaillierten Modus.
+    Retrieves the list of installed WSL Linux distributions in detailed mode.
 
     Returns:
-        str: Ausgabestring des Befehls "wsl --list --verbose" oder eine Fehlermeldung.
+        str: The output from the command "wsl --list --verbose" or an error message if the command fails.
     """
     distros, error = run_command(["wsl", "--list", "--verbose"])
     if error:
-        return f"Fehler beim Abrufen der installierten Distributionen:\n{error}"
+        return f"Error retrieving installed distributions:\n{error}"
     return distros
 
 
 def print_section(title: str, content: str) -> None:
     """
-    Gibt einen Abschnittstitel und den dazugehörigen Inhalt formatiert aus.
+    Prints a formatted section title along with the associated content.
 
     Args:
-        title (str): Der Titel des Abschnitts.
-        content (str): Der Inhalt, der unter dem Titel ausgegeben werden soll.
+        title (str): The section title.
+        content (str): The content to display under the title.
     """
     print(f"{title}\n{'-' * len(title)}")
     print(content)
@@ -143,10 +144,10 @@ def print_section(title: str, content: str) -> None:
 
 def main() -> None:
     """
-    Hauptprogramm, das den WSL-Status und die installierten Distributionen ausgibt.
+    Main function that prints the WSL status and the installed Linux distributions.
     """
     print_section("WSL Status", get_wsl_status())
-    print_section("Installierte Linux-Distributionen", get_installed_distros())
+    print_section("Installed Linux Distributions", get_installed_distros())
 
 
 if __name__ == "__main__":
