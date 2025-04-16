@@ -92,8 +92,10 @@ Usage:
 import sys
 import subprocess
 import logging
+import os
 from datetime import datetime
 
+from PyQt6.QtGui import QColor, QIcon
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QTextEdit, QPushButton, QLabel, QTabWidget, QMessageBox, QStatusBar
