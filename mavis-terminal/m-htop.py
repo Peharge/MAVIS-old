@@ -151,30 +151,36 @@ class AdvancedSystemMonitor(QWidget):
             font-family: 'Roboto', sans-serif;
             font-size: 14px;
         }
+        
         QFrame.metricCard {
             background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
             border: 1px solid #566573;
             border-radius: 12px;
             padding: 10px;
         }
+        
         QFrame.metricCard:hover {
             background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #34495e, stop:1 #1c2833);
             border: 1px solid #778899;
         }
+        
         QLabel.title {
             font-size: 16px;
             font-weight: bold;
             background: none;
         }
+        
         QProgressBar {
             background-color: #222;
             border: none;
             height: 20px;
             border-radius: 10px;
         }
+        
         QProgressBar::chunk {
             border-radius: 10px;
         }
+        
         QLineEdit {
             background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
             border: 1px solid #778899;
@@ -182,6 +188,7 @@ class AdvancedSystemMonitor(QWidget):
             padding: 5px;
             color: #FFFFFF;
         }
+        
         QPushButton {
             background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
             border: none;
@@ -189,52 +196,64 @@ class AdvancedSystemMonitor(QWidget):
             padding: 5px 10px;
             color: #FFFFFF;
         }
+        
         QPushButton:hover {
             background-color: #1c2833;
         }
+        
         QTableWidget {
             background-color: #222;
             gridline-color: #566573;
         }
+        
         QHeaderView::section {
             background-color: #2c3e50;
             padding: 4px;
             border: 1px solid #566573;
         }
+        
         QScrollArea {
             border: none;
             background-color: transparent;
         }
+        
         QScrollBar:vertical {
             background-color: transparent;
             width: 10px;
             border-radius: 5px;
         }
+        
         QScrollBar::handle:vertical {
             background-color: #ffffff;
             min-height: 20px;
             border-radius: 5px;
         }
+        
         QScrollBar::add-line:vertical,
         QScrollBar::sub-line:vertical {
             background: transparent;
         }
+        
         QScrollBar::up-arrow:vertical,
         QScrollBar::down-arrow:vertical {
             background: transparent;
         }
+        
         QScrollBar::add-page:vertical,
         QScrollBar::sub-page:vertical {
             background: transparent;
         }
+        
         QScrollBar::add-line:horizontal,
         QScrollBar::sub-line:horizontal {
             background: transparent;
         }
+        
         QScrollBar::left-arrow:horizontal,
         QScrollBar::right-arrow:horizontal {
             background: transparent;
         }
+        
         QScrollBar::add-page:horizontal,
         QScrollBar::sub-page:horizontal {
             background: transparent;
