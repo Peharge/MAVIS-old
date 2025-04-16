@@ -3578,16 +3578,16 @@ def main():
                 continue
             elif user_input.startswith("mp "):
                 user_input = user_input[3:]
-
                 run_command_with_admin_privileges(user_input)
+
             elif user_input.startswith("mp-c "):
                 user_input = user_input[5:]
-
                 run_command_with_admin_c_privileges(user_input)
+
             elif user_input.startswith("mp-p "):
                 user_input = user_input[5:]
-
                 run_command_with_admin_python_privileges(user_input)
+
             elif user_input.startswith("powershell "):
                 run_command(user_input, shell=True)
 
