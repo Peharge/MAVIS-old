@@ -266,11 +266,17 @@ class Worker(QRunnable):
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("WSL Information Utility")
+        self.setWindowTitle("MAVIS WSL Information")
         self.resize(900, 700)
         self.threadpool = QThreadPool()
         logger.info("Multithreading with maximum %d threads", self.threadpool.maxThreadCount())
         self.init_ui()
+
+        # Annahme: Das Repository befindet sich im MAVIS-Ordner des aktuellen Benutzers
+        user = os.getenv("USERNAME") or os.getenv("USER")
+        self.repo_path = f"C:/Users/{user}/PycharmProjects/MAVIS"
+        icon_path = f"C:/Users/{user}/PycharmProjects/MAVIS/icons/mavis-logo.ico"
+        self.setWindowIcon(QIcon(icon_path))
 
     def init_ui(self):
         # Set up main widget and layout
