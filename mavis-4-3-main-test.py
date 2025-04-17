@@ -458,15 +458,15 @@ def find_vcvarsall():
         return path
     raise FileNotFoundError("vcvarsall.bat not found. Please make sure Visual Studio is installed.")
 
-"""
+
 def get_project_paths_cpp():
-    username = getpass.getuser()
-    base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
-    src_dir = os.path.join(base_dir, "mavis-terminal")
-    cpp_file = os.path.join(src_dir, "run_cpp_code.cpp")
-    exe_file = os.path.join(src_dir, "run_cpp_code.exe")
-    return src_dir, cpp_file, exe_file
-"""
+    """
+    Ermittelt das MAVIS-Projektverzeichnis und Pfade für C++-Code und zugehörige Dateien.
+    """
+    base_dir = r"C:\Users\julia\PycharmProjects\MAVIS"
+    build_script = os.path.join(base_dir, "mavis-cpp-compiler", "build_mavis_cpp.bat")
+    ready_indicator = os.path.join(base_dir, "mavis-cpp-compiler", "cpp_compiler_ready.txt")
+    return base_dir, build_script, ready_indicator
 
 def compile_cpp_with_vs(cpp_filename, exe_filename):
     """
@@ -474,7 +474,7 @@ def compile_cpp_with_vs(cpp_filename, exe_filename):
     Führt vcvarsall.bat auf (x64) und cl.exe im selben Shell-Prozess aus.
     Gibt (success: bool, error_message: str) zurück.
     """
-    logging.info(f"Kompiliere {cpp_filename} mit Visual Studio C++...")
+    logging.info(f"Compile {cpp_filename} with Visual Studio C++...")
     try:
         vcvarsall = find_vcvarsall()
     except FileNotFoundError as e:
@@ -493,11 +493,11 @@ def compile_cpp_with_vs(cpp_filename, exe_filename):
 
     if result.returncode != 0:
         err_out = result.stdout + result.stderr
-        logging.error("Compilation fehlgeschlagen.")
+        logging.error("Compilation failed.")
         logging.error(err_out)
         return False, err_out
 
-    logging.info("Compilation erfolgreich.")
+    logging.info("Compilation successful.")
     return True, None
 
 
@@ -524,7 +524,7 @@ def execute_cpp_code(md_content: str) -> str:
 
         success, compile_err = compile_cpp_with_vs(cpp_filename, exe_filename)
         if not success:
-            outputs.append(f"Kompilierung fehlgeschlagen:\n{compile_err}")
+            outputs.append(f"Compilation failed:\n{compile_err}")
             continue
 
         try:
@@ -540,7 +540,7 @@ def execute_cpp_code(md_content: str) -> str:
         except subprocess.CalledProcessError as e:
             outputs.append(e.stdout + e.stderr)
         except Exception as e:
-            outputs.append(f"Fehler bei der Ausführung: {str(e)}")
+            outputs.append(f"Execution error: {str(e)}")
 
     combined = "\n".join(outputs)
     result = f"<div class='code-output-box'>{combined}</div>"
@@ -573,7 +573,7 @@ def compile_c_with_vs(c_filename, exe_filename):
     Führt vcvarsall.bat auf (x64) und cl.exe im selben Shell-Prozess aus.
     Gibt (success: bool, error_message: str) zurück.
     """
-    logging.info(f"Kompiliere {c_filename} mit Visual Studio C...")
+    logging.info(f"Compile {c_filename} with Visual Studio C...")
     try:
         vcvarsall = find_vcvarsall_c()
     except FileNotFoundError as e:
@@ -592,11 +592,11 @@ def compile_c_with_vs(c_filename, exe_filename):
 
     if result.returncode != 0:
         err_out = result.stdout + result.stderr
-        logging.error("Compilation fehlgeschlagen.")
+        logging.error("Compilation failed.")
         logging.error(err_out)
         return False, err_out
 
-    logging.info("Compilation erfolgreich.")
+    logging.info("Compilation successful.")
     return True, None
 
 
@@ -623,7 +623,7 @@ def execute_c_code(md_content: str) -> str:
 
         success, compile_err = compile_c_with_vs(c_filename, exe_filename)
         if not success:
-            outputs.append(f"Kompilierung fehlgeschlagen:\n{compile_err}")
+            outputs.append(f"Compilation failed:\n{compile_err}")
             continue
 
         try:
@@ -639,7 +639,7 @@ def execute_c_code(md_content: str) -> str:
         except subprocess.CalledProcessError as e:
             outputs.append(e.stdout + e.stderr)
         except Exception as e:
-            outputs.append(f"Fehler bei der Ausführung: {str(e)}")
+            outputs.append(f"Execution error: {str(e)}")
 
     combined = "\n".join(outputs)
     result = f"<div class='code-output-box'>{combined}</div>"
