@@ -189,6 +189,7 @@ Zu den verfügbaren wissenschaftlichen Bibliotheken gehören:
 - **[11.04.2025]** MAVIS Terminal 5 EAP release !!!
 - **[15.04.2025]** SIMON available in MAVIS Terminal 5 with `m simon` !!!
 - **[15.04.2025]** Llama 4 Maverick/Scout available in MAVIS Terminal 5 with `run llama-4-maverick:17b` and `run llama-4-scout:17b` !!!
+- **[17.04.2025]** MAVIS 4.3 EAP 1 release !!! - MAVIS can now execute Python, C++ and C Code...
 
 ## Updates
 
