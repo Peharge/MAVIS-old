@@ -510,7 +510,7 @@ def execute_cpp_code(md_content: str) -> str:
     matches = cpp_pattern.findall(md_content)
 
     if not matches:
-        return "<div class='code-output-box'>---</div>"
+        return "<div>---</div>"
 
     outputs = []
     tmp_dir = os.getcwd()
@@ -609,7 +609,7 @@ def execute_c_code(md_content: str) -> str:
     matches = c_pattern.findall(md_content)
 
     if not matches:
-        return "<div class='code-output-box'>---</div>"
+        return "<div>---</div>"
 
     outputs = []
     tmp_dir = os.getcwd()
@@ -683,11 +683,11 @@ def send_message():
 
             response_content_code = ""
             if python_output:
-                response_content_code += f"<pre><div><p><strong>Python</strong>: {python_output} </p></div><br></pre>"
+                response_content_code += f"<div><pre><p><strong>Python</strong>: {python_output} </p></pre></div><br>"
             if cpp_output:
-                response_content_code += f"<pre><div><p><strong>C++</strong>: {cpp_output} </p></div><br></pre>"
+                response_content_code += f"<div><pre><p><strong>C++</strong>: {cpp_output} </p></pre></div><br>"
             if c_output:
-                response_content_code += f"<pre><div><p><strong>C</strong>: {c_output} </p></div></pre>"
+                response_content_code += f"<div><pre><p><strong>C</strong>: {c_output} </p></pre></div>"
 
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
@@ -723,11 +723,11 @@ def send_message():
 
             response_content_code = ""
             if python_output:
-                response_content_code += f"<pre><div><p><strong>Python</strong>: {python_output} </p></div><br></pre>"
+                response_content_code += f"<div><pre><p><strong>Python</strong>: {python_output} </p></pre></div><br>"
             if cpp_output:
-                response_content_code += f"<pre><div><p><strong>C++</strong>: {cpp_output} </p></div><br></pre>"
+                response_content_code += f"<div><pre><p><strong>C++</strong>: {cpp_output} </p></pre></div><br>"
             if c_output:
-                response_content_code += f"<pre><div><p><strong>C</strong>: {c_output} </p></div></pre>"
+                response_content_code += f"<div><pre><p><strong>C</strong>: {c_output} </p></pre></div>"
 
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
@@ -759,11 +759,11 @@ def send_message():
 
             response_content_code = ""
             if python_output:
-                response_content_code += f"<pre><div><p><strong>Python</strong>: {python_output} </p></div><br></pre>"
+                response_content_code += f"<div><pre><p><strong>Python</strong>: {python_output} </p></pre></div><br>"
             if cpp_output:
-                response_content_code += f"<pre><div><p><strong>C++</strong>: {cpp_output} </p></div><br></pre>"
+                response_content_code += f"<div><pre><p><strong>C++</strong>: {cpp_output} </p></pre></div><br>"
             if c_output:
-                response_content_code += f"<pre><div><p><strong>C</strong>: {c_output} </p></div></pre>"
+                response_content_code += f"<div><pre><p><strong>C</strong>: {c_output} </p></pre></div>"
 
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
