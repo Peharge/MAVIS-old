@@ -687,7 +687,7 @@ def send_message():
             if cpp_output:
                 response_content_code += f"\n<strong>C++</strong>: \n{cpp_output}<br>"
             if c_output:
-                response_content_code += f"\n<strong>C</strong>: \n{c_output}"
+                response_content_code += f"\n<strong>C</strong>: \n{c_output}<br>"
 
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
@@ -727,7 +727,7 @@ def send_message():
             if cpp_output:
                 response_content_code += f"\n<strong>C++</strong>: \n{cpp_output}<br>"
             if c_output:
-                response_content_code += f"\n<strong>C</strong>: \n{c_output}"
+                response_content_code += f"\n<strong>C</strong>: \n{c_output}<br>"
 
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
@@ -763,7 +763,7 @@ def send_message():
             if cpp_output:
                 response_content_code += f"\n<strong>C++</strong>: \n{cpp_output}<br>"
             if c_output:
-                response_content_code += f"\n<strong>C</strong>: \n{c_output}"
+                response_content_code += f"\n<strong>C</strong>: \n{c_output}<br>"
 
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
