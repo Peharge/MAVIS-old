@@ -283,13 +283,19 @@ def execute_python_code(md_content):
             # Ersetze plt.show() durch Speichern der Grafik
             code = code.replace("plt.show()", "# plt.show() ersetzt durch Speichern der Grafik")
 
+            # Fange input()-Aufrufe ab, um keine Eingabe zu benötigen
+            safe_builtins = __builtins__.copy() if isinstance(__builtins__, dict) else dict(__builtins__.__dict__)
+            safe_builtins["input"] = lambda prompt='': ""  # Leere Zeichenkette zurückgeben, statt Eingabe zu verlangen
+
             # Kontext für die Code-Ausführung erstellen
-            exec_globals = {}
+            exec_globals = {"__builtins__": safe_builtins}
             exec_locals = {}
+
             exec(code, exec_globals, exec_locals)
 
             # Erhalte alle Ausgaben, die während der Code-Ausführung erzeugt wurden
             output_text = sys.stdout.getvalue()
+
             # Wiederherstellen der normalen Ausgabe
             sys.stdout = old_stdout
 
