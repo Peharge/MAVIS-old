@@ -458,7 +458,6 @@ def find_vcvarsall():
         return path
     raise FileNotFoundError("vcvarsall.bat not found. Please make sure Visual Studio is installed.")
 
-
 def get_project_paths_cpp():
     """
     Ermittelt das MAVIS-Projektverzeichnis und Pfade für C++-Code und zugehörige Dateien.
@@ -500,13 +499,16 @@ def compile_cpp_with_vs(cpp_filename, exe_filename):
     logging.info("Compilation successful.")
     return True, None
 
-
 def execute_cpp_code(md_content: str) -> str:
     """
     Sucht im Markdown-Inhalt nach C++-Codeblöcken, kompiliert und führt diese aus.
+    Eingabeversuche im Programm werden ignoriert (stdin ist DEVNULL).
     Rückgabe: HTML-formatiertes Ergebnis.
     """
-    cpp_pattern = re.compile(r"```(?:cpp|c\+\+)\n(.*?)```", re.DOTALL | re.IGNORECASE)
+    cpp_pattern = re.compile(
+        r"```(?:cpp|c\+\+)\n(.*?)```",
+        re.DOTALL | re.IGNORECASE
+    )
     matches = cpp_pattern.findall(md_content)
 
     if not matches:
@@ -528,8 +530,10 @@ def execute_cpp_code(md_content: str) -> str:
             continue
 
         try:
+            # stdin auf DEVNULL, damit kein Input gewartet wird
             proc = subprocess.run(
                 [exe_filename],
+                stdin=subprocess.DEVNULL,
                 capture_output=True,
                 text=True,
                 encoding="utf-8",
@@ -545,6 +549,7 @@ def execute_cpp_code(md_content: str) -> str:
     combined = "\n".join(outputs)
     result = f"<div class='code-output-box'>{combined}</div>"
     return result
+
 
 def find_vcvarsall_c():
     """
@@ -603,6 +608,7 @@ def compile_c_with_vs(c_filename, exe_filename):
 def execute_c_code(md_content: str) -> str:
     """
     Sucht im Markdown-Inhalt nach C-Codeblöcken, kompiliert und führt diese aus.
+    Ignoriert alle Eingabeanforderungen des C-Codes, indem stdin auf DEVNULL gesetzt wird.
     Rückgabe: HTML-formatiertes Ergebnis.
     """
     c_pattern = re.compile(r"```c\n(.*?)```", re.DOTALL | re.IGNORECASE)
@@ -626,9 +632,11 @@ def execute_c_code(md_content: str) -> str:
             outputs.append(f"Compilation failed:\n{compile_err}")
             continue
 
+        # Ausführung ohne Benutzereingaben: stdin auf DEVNULL setzen
         try:
             proc = subprocess.run(
                 [exe_filename],
+                stdin=subprocess.DEVNULL,
                 capture_output=True,
                 text=True,
                 encoding="utf-8",
@@ -642,8 +650,7 @@ def execute_c_code(md_content: str) -> str:
             outputs.append(f"Execution error: {str(e)}")
 
     combined = "\n".join(outputs)
-    result = f"<div class='code-output-box'>{combined}</div>"
-    return result
+    return f"<div class='code-output-box'>{combined}</div>"
 
 
 @app.route('/')
