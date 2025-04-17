@@ -444,7 +444,7 @@ def execute_python_code(md_content):
 
 @app.route('/')
 def index():
-    return render_template('index-mavis-4.html')
+    return render_template('index-mavis-4-3.html')
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):

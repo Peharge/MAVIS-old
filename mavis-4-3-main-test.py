@@ -549,14 +549,6 @@ def execute_cpp_code(md_content: str) -> str:
     result = f"<div class='code-output-box'>{combined}</div>"
     return result
 
-import os
-import getpass
-import subprocess
-import re
-import datetime
-import logging
-
-
 def find_vcvarsall_c():
     """
     Sucht nach der Visual Studio Entwicklungsumgebung (vcvarsall.bat).
@@ -688,7 +680,18 @@ def send_message():
             )
 
             response_content = response['message']['content']
-            response_content_code = execute_python_code(response_content) and execute_cpp_code(response_content) and execute_c_code(response_content)
+            python_output = execute_python_code(response_content)
+            cpp_output = execute_cpp_code(response_content)
+            c_output = execute_c_code(response_content)
+
+            response_content_code = ""
+            if python_output:
+                response_content_code += f"\n<strong>Python</strong>: \n{python_output}"
+            if cpp_output:
+                response_content_code += f"\n<strong>C++</strong>: \n{cpp_output}"
+            if c_output:
+                response_content_code += f"\n<strong>C</strong>: \n{c_output}"
+
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
 
@@ -717,7 +720,18 @@ def send_message():
             )
 
             response_content = response['message']['content']
-            response_content_code = execute_python_code(response_content) and execute_cpp_code(response_content) and execute_c_code(response_content)
+            python_output = execute_python_code(response_content)
+            cpp_output = execute_cpp_code(response_content)
+            c_output = execute_c_code(response_content)
+
+            response_content_code = ""
+            if python_output:
+                response_content_code += f"\n<strong>Python</strong>: \n{python_output}"
+            if cpp_output:
+                response_content_code += f"\n<strong>C++</strong>: \n{cpp_output}"
+            if c_output:
+                response_content_code += f"\n<strong>C</strong>: \n{c_output}"
+
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
 
@@ -742,7 +756,18 @@ def send_message():
             )
 
             response_content = response['message']['content']
-            response_content_code = execute_python_code(response_content) and execute_cpp_code(response_content) and execute_c_code(response_content)
+            python_output = execute_python_code(response_content)
+            cpp_output = execute_cpp_code(response_content)
+            c_output = execute_c_code(response_content)
+
+            response_content_code = ""
+            if python_output:
+                response_content_code += f"\n<strong>Python</strong>: \n{python_output}"
+            if cpp_output:
+                response_content_code += f"\n<strong>C++</strong>: \n{cpp_output}"
+            if c_output:
+                response_content_code += f"\n<strong>C</strong>: \n{c_output}"
+
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
 
