@@ -685,7 +685,7 @@ def send_message():
             if python_output:
                 response_content_code += f"<strong>Python</strong>: {python_output} "
             if cpp_output:
-                response_content_code += f"<strong>C++</strong>: \n{cpp_output} "
+                response_content_code += f"<strong>C++</strong>: {cpp_output} "
             if c_output:
                 response_content_code += f"<strong>C</strong>: {c_output} "
 
@@ -725,7 +725,7 @@ def send_message():
             if python_output:
                 response_content_code += f"<strong>Python</strong>: {python_output} "
             if cpp_output:
-                response_content_code += f"<strong>C++</strong>: \n{cpp_output} "
+                response_content_code += f"<strong>C++</strong>: {cpp_output} "
             if c_output:
                 response_content_code += f"<strong>C</strong>: {c_output} "
 
@@ -761,7 +761,7 @@ def send_message():
             if python_output:
                 response_content_code += f"<strong>Python</strong>: {python_output} "
             if cpp_output:
-                response_content_code += f"<strong>C++</strong>: \n{cpp_output} "
+                response_content_code += f"<strong>C++</strong>: {cpp_output} "
             if c_output:
                 response_content_code += f"<strong>C</strong>: {c_output} "
 
