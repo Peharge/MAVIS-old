@@ -688,7 +688,7 @@ def send_message():
             )
 
             response_content = response['message']['content']
-            response_content_code = execute_python_code(response_content) and execute_cpp_code(response_content)
+            response_content_code = execute_python_code(response_content) and execute_cpp_code(response_content) and execute_c_code(response_content)
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
 
@@ -717,7 +717,7 @@ def send_message():
             )
 
             response_content = response['message']['content']
-            response_content_code = execute_python_code(response_content) and execute_cpp_code(response_content)
+            response_content_code = execute_python_code(response_content) and execute_cpp_code(response_content) and execute_c_code(response_content)
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
 
@@ -742,7 +742,7 @@ def send_message():
             )
 
             response_content = response['message']['content']
-            response_content_code = execute_python_code(response_content) and execute_cpp_code(response_content)
+            response_content_code = execute_python_code(response_content) and execute_cpp_code(response_content) and execute_c_code(response_content)
             html_content = markdown.markdown(response_content, extensions=['extra'], output_format='html5')
             wrapped_html_content = f"<div class='response-box'>{html_content}</div>"
 
