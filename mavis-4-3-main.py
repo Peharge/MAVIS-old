@@ -266,7 +266,7 @@ def execute_python_code(md_content):
 
     # Falls kein Code gefunden wird, gib einen leeren String zurück
     if not matches:
-        return "---"
+        return "<div class='code-output-box'>---</div>"
 
     # Verzeichnis für gespeicherte Bilder
     image_dir = os.path.join(os.path.expanduser("~"), "PycharmProjects", "MAVIS", "static", "image")
@@ -510,7 +510,7 @@ def execute_cpp_code(md_content: str) -> str:
     matches = cpp_pattern.findall(md_content)
 
     if not matches:
-        return "<div>---</div>"
+        return "<div class='code-output-box'>---</div>"
 
     outputs = []
     tmp_dir = os.getcwd()
@@ -609,7 +609,7 @@ def execute_c_code(md_content: str) -> str:
     matches = c_pattern.findall(md_content)
 
     if not matches:
-        return "<div>---</div>"
+        return "<div class='code-output-box'>---</div>"
 
     outputs = []
     tmp_dir = os.getcwd()
