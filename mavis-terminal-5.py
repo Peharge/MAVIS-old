@@ -71,7 +71,7 @@ import os
 
 required_packages = [
     "requests", "ollama", "transformers", "numpy", "pandas", "python-dotenv",
-    "PyQt6", "PyQt6-sip", "PyQt6-Charts", "PyQt6-WebEngine", "keyboard"
+    "PyQt6", "PyQt6-sip", "PyQt6-Charts", "PyQt6-WebEngine", "PyQt6-Charts", "keyboard"
 ]
 
 
