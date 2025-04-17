@@ -1,6 +1,6 @@
 {
     "mavis-4": {
-        "model1": "qwen2.5-coder:7b",
+        "model1": "deepcoder:14b",
         "model2": "gemma3:12b",
         "model3": "gemma3:1b",
         "model4": "gemma3:1b"
