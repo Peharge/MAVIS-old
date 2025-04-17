@@ -458,18 +458,15 @@ def find_vcvarsall():
         return path
     raise FileNotFoundError("vcvarsall.bat not found. Please make sure Visual Studio is installed.")
 
-
+"""
 def get_project_paths_cpp():
-    """
-    Ermittelt das MAVIS-Projektverzeichnis und Pfade zu Quelle und Executable.
-    """
     username = getpass.getuser()
     base_dir = os.path.join("C:\\Users", username, "PycharmProjects", "MAVIS")
     src_dir = os.path.join(base_dir, "mavis-terminal")
-    cpp_file = os.path.join(src_dir, "run_lx_command.cpp")
-    exe_file = os.path.join(src_dir, "run_lx_command.exe")
+    cpp_file = os.path.join(src_dir, "run_cpp_code.cpp")
+    exe_file = os.path.join(src_dir, "run_cpp_code.exe")
     return src_dir, cpp_file, exe_file
-
+"""
 
 def compile_cpp_with_vs(cpp_filename, exe_filename):
     """
@@ -513,7 +510,7 @@ def execute_cpp_code(md_content: str) -> str:
     matches = cpp_pattern.findall(md_content)
 
     if not matches:
-        return "<div class='code-output-box'>Keine C++-Codeblöcke gefunden.</div>"
+        return "<div class='code-output-box'>---</div>"
 
     outputs = []
     tmp_dir = os.getcwd()
@@ -612,7 +609,7 @@ def execute_c_code(md_content: str) -> str:
     matches = c_pattern.findall(md_content)
 
     if not matches:
-        return "<div class='code-output-box'>Keine C-Codeblöcke gefunden.</div>"
+        return "<div class='code-output-box'>---</div>"
 
     outputs = []
     tmp_dir = os.getcwd()
@@ -686,9 +683,9 @@ def send_message():
 
             response_content_code = ""
             if python_output:
-                response_content_code += f"\n<strong>Python</strong>: \n{python_output}"
+                response_content_code += f"\n<strong>Python</strong>: \n{python_output}<br>"
             if cpp_output:
-                response_content_code += f"\n<strong>C++</strong>: \n{cpp_output}"
+                response_content_code += f"\n<strong>C++</strong>: \n{cpp_output}<br>"
             if c_output:
                 response_content_code += f"\n<strong>C</strong>: \n{c_output}"
 
@@ -726,9 +723,9 @@ def send_message():
 
             response_content_code = ""
             if python_output:
-                response_content_code += f"\n<strong>Python</strong>: \n{python_output}"
+                response_content_code += f"\n<strong>Python</strong>: \n{python_output}<br>"
             if cpp_output:
-                response_content_code += f"\n<strong>C++</strong>: \n{cpp_output}"
+                response_content_code += f"\n<strong>C++</strong>: \n{cpp_output}<br>"
             if c_output:
                 response_content_code += f"\n<strong>C</strong>: \n{c_output}"
 
@@ -762,9 +759,9 @@ def send_message():
 
             response_content_code = ""
             if python_output:
-                response_content_code += f"\n<strong>Python</strong>: \n{python_output}"
+                response_content_code += f"\n<strong>Python</strong>: \n{python_output}<br>"
             if cpp_output:
-                response_content_code += f"\n<strong>C++</strong>: \n{cpp_output}"
+                response_content_code += f"\n<strong>C++</strong>: \n{cpp_output}<br>"
             if c_output:
                 response_content_code += f"\n<strong>C</strong>: \n{c_output}"
 
