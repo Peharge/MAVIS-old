@@ -454,44 +454,56 @@ class MainWindow(QMainWindow):
                 border: none;
                 background-color: transparent;
             }
-    
+            
             QScrollBar:vertical {
-                background-color: transparent;
+                background-color: none;  /* Hintergrund (Schiene) in none */
                 width: 10px;
                 border-radius: 5px;
             }
-    
+            
             QScrollBar::handle:vertical {
-                background-color: #ffffff;
+                background-color: #ffffff;  /* Schieber (Block) in Weiß */
                 min-height: 20px;
                 border-radius: 5px;
             }
-    
+            
             QScrollBar::add-line:vertical,
             QScrollBar::sub-line:vertical {
                 background: transparent;
             }
-    
+            
             QScrollBar::up-arrow:vertical,
             QScrollBar::down-arrow:vertical {
                 background: transparent;
             }
-    
+            
             QScrollBar::add-page:vertical,
             QScrollBar::sub-page:vertical {
                 background: transparent;
             }
-    
+            
+            QScrollBar:horizontal {
+                background-color: none;  /* Auch der horizontale Balken in none */
+                height: 10px;
+                border-radius: 5px;
+            }
+            
+            QScrollBar::handle:horizontal {
+                background-color: #ffffff;
+                min-width: 20px;
+                border-radius: 5px;
+            }
+            
             QScrollBar::add-line:horizontal,
             QScrollBar::sub-line:horizontal {
                 background: transparent;
             }
-    
+            
             QScrollBar::left-arrow:horizontal,
             QScrollBar::right-arrow:horizontal {
                 background: transparent;
             }
-    
+            
             QScrollBar::add-page:horizontal,
             QScrollBar::sub-page:horizontal {
                 background: transparent;
