@@ -71,7 +71,7 @@ from PyQt6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QScrollArea, QSi
 class FileExplorer(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("MAVIS File Explorer Deluxe")
+        self.setWindowTitle("MAVIS File Explorer")
         self.setGeometry(100, 100, 1200, 800)
 
         self.set_dark_mode()
