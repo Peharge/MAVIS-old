@@ -95,14 +95,13 @@ QLineEdit {
     color: #FFFFFF;
 }
 QPushButton {
-    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    color: #FFFFFF;
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ffffff, stop:1 #bbdefb);
+    color: #000000;
+    padding: 2px 8px;
+    border-radius: 8px;
 }
 QPushButton:hover {
-    background-color: #1c2833;
+    background-color: #bbdefb;
 }
 QTreeWidget {
     background-color: transparent;
@@ -284,16 +283,19 @@ class MainWindow(QMainWindow):
 
         install_button = QPushButton("install 3d Slicer")
         install_button.clicked.connect(self.run_install)
+        install_button.setFixedHeight(35)
         self.add_shadow_effect(install_button)
         button_layout.addWidget(install_button)
 
         run_button = QPushButton("run 3d Slicer")
         run_button.clicked.connect(self.run_run)
+        run_button.setFixedHeight(35)
         self.add_shadow_effect(run_button)
         button_layout.addWidget(run_button)
 
         simon_button = QPushButton("SIMON GitHub")
         simon_button.clicked.connect(self.simon_github)
+        simon_button.setFixedHeight(35)
         self.add_shadow_effect(simon_button)
         button_layout.addWidget(simon_button)
 
