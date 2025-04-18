@@ -66,6 +66,7 @@ import subprocess
 import logging
 from pathlib import Path
 from datetime import datetime
+import os
 
 from PyQt6.QtGui import QIcon, QFont, QFontDatabase
 from PyQt6.QtWidgets import (
@@ -253,6 +254,12 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("MAVIS WSL Information")
         self.resize(900, 650)
+
+        # Annahme: Das Repository befindet sich im MAVIS-Ordner des aktuellen Benutzers
+        user = os.getenv("USERNAME") or os.getenv("USER")
+        self.repo_path = f"C:/Users/{user}/PycharmProjects/MAVIS"
+        icon_path = f"C:/Users/{user}/PycharmProjects/MAVIS/icons/mavis-logo.ico"
+        self.setWindowIcon(QIcon(icon_path))
 
         # Thread pool for background tasks
         self.threadpool = QThreadPool.globalInstance()
