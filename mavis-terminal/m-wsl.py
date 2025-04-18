@@ -75,7 +75,7 @@ from PyQt6.QtWidgets import (
 )
 from PyQt6.QtCore import Qt, QRunnable, QThreadPool, pyqtSignal, QObject
 
-# --- Logging Configuration --------------------------------------------------
+# Logging Configuration
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
@@ -83,7 +83,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# --- Styling ----------------------------------------------------------------
+# Styling
 STYLE_SHEET = """
 QWidget {
     background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #1b2631, stop:1 #0f1626);
@@ -213,7 +213,7 @@ QStatusBar {
 }
 """
 
-# --- Worker for Asynchronous Execution ------------------------------------
+# Worker for Asynchronous Execution
 class WorkerSignals(QObject):
     """Signals for worker thread."""
     finished = pyqtSignal(str)
@@ -248,7 +248,7 @@ class CommandWorker(QRunnable):
             self.signals.error.emit(err)
 
 
-# --- Main Window ------------------------------------------------------------
+# Main Window
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
