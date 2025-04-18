@@ -512,7 +512,9 @@ def handle_special_commands(user_input):
         "m git ls": "mavis-terminal\\m-git.py", # new
         "m git": "mavis-terminal\\m-git.py",  # new
         "m ls": "mavis-terminal\\m-ls.py", # new
+        "models": "mavis-terminal\\models-ls.py",  # new
         "models ls": "mavis-terminal\\models-ls.py",  # new
+        "m models": "mavis-terminal\\m-models-ls.py",  # new
         "m models ls": "mavis-terminal\\m-models-ls.py",  # new
         "m github mavis": "mavis-terminal\\m-github-mavis.py",  # new
         "m github commits": "mavis-terminal\\m-github-commits.py",  # new
