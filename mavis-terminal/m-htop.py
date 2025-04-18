@@ -218,13 +218,13 @@ class AdvancedSystemMonitor(QWidget):
         }
         
         QScrollBar:vertical {
-            background-color: transparent;
+            background-color: transparent;  /* Hintergrund (Schiene) in transparent */
             width: 10px;
             border-radius: 5px;
         }
         
         QScrollBar::handle:vertical {
-            background-color: #ffffff;
+            background-color: #ffffff;  /* Schieber (Block) in Weiß */
             min-height: 20px;
             border-radius: 5px;
         }
@@ -242,6 +242,18 @@ class AdvancedSystemMonitor(QWidget):
         QScrollBar::add-page:vertical,
         QScrollBar::sub-page:vertical {
             background: transparent;
+        }
+        
+        QScrollBar:horizontal {
+            background-color: transparent;  /* Auch der horizontale Balken in transparent */
+            height: 10px;
+            border-radius: 5px;
+        }
+        
+        QScrollBar::handle:horizontal {
+            background-color: #ffffff;
+            min-width: 20px;
+            border-radius: 5px;
         }
         
         QScrollBar::add-line:horizontal,

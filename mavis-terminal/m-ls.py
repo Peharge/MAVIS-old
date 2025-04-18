@@ -158,7 +158,7 @@ class FileExplorer(QWidget):
             }
             
             QScrollBar:vertical {
-                background-color: none;  /* Hintergrund (Schiene) in none */
+                background-color: transparent;  /* Hintergrund (Schiene) in transparent */
                 width: 10px;
                 border-radius: 5px;
             }
@@ -185,7 +185,7 @@ class FileExplorer(QWidget):
             }
             
             QScrollBar:horizontal {
-                background-color: none;  /* Auch der horizontale Balken in none */
+                background-color: transparent;  /* Auch der horizontale Balken in transparent */
                 height: 10px;
                 border-radius: 5px;
             }

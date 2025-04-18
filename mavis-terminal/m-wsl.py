@@ -91,6 +91,7 @@ QWidget {
     font-family: 'Segoe UI', sans-serif;
     font-size: 14px;
 }
+
 QLineEdit {
     background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
     border: 1px solid #778899;
@@ -98,17 +99,20 @@ QLineEdit {
     padding: 5px;
     color: #FFFFFF;
 }
+
 QLabel#HeaderLabel {
     font-size: 18px;
     font-weight: bold;
     padding: 8px;
 }
+
 QPlainTextEdit {
     background-color: transparent;
     font-family: 'Consolas', monospace;
     color: #ffffff;
     border: none;
 }
+
 QPushButton {
     background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #1c2833);
     border: none;
@@ -116,13 +120,16 @@ QPushButton {
     padding: 5px 10px;
     color: #FFFFFF;
 }
+
 QPushButton:hover {
     background-color: #1c2833;
 }
+
 QTabWidget::pane {
     border: 1px solid #778899;
     border-radius: 8px;
 }
+
 QTabBar::tab {
     background: transparent;
     padding: 8px;
@@ -130,24 +137,28 @@ QTabBar::tab {
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
 }
+
 QTabBar::tab:selected {
     background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #34495e, stop:1 #1c2833);
     color: #FFFFFF;
 }
+
 QStatusBar {
     background: #1b2631;
     padding: 4px;
 }
+
 QScrollArea {
     border: none;
     background-color: transparent;
 }
 
 QScrollBar:vertical {
-    background-color: none;  /* Hintergrund (Schiene) in none */
+    background-color: transparent;  /* Hintergrund (Schiene) in transparent */
     width: 10px;
     border-radius: 5px;
 }
+
 QScrollBar::handle:vertical {
     background-color: #ffffff;  /* Schieber (Block) in Weiß */
     min-height: 20px;
@@ -170,7 +181,7 @@ QScrollBar::sub-page:vertical {
 }
 
 QScrollBar:horizontal {
-    background-color: none;  /* Auch der horizontale Balken in none */
+    background-color: transparent;  /* Auch der horizontale Balken in transparent */
     height: 10px;
     border-radius: 5px;
 }
@@ -195,6 +206,7 @@ QScrollBar::add-page:horizontal,
 QScrollBar::sub-page:horizontal {
     background: transparent;
 }
+
 QTextEdit {
     background-color: transparent;
     border: 1px solid #778899;
