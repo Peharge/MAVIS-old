@@ -63,21 +63,43 @@ REM pouvant découler directement ou indirectement de l'utilisation, de la modif
 REM
 REM Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
+@echo off
 setlocal enabledelayedexpansion
-chcp 65001
+chcp 65001 >nul
 
-set USERNAME=%USERNAME%
+:: Set username and project paths
+set "USERNAME=%USERNAME%"
+set "BASE_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS"
 set PYTHON_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe
 set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\mavis-terminal-5-fast.py
 
 echo Running MAVIS Terminal 5 fast...
 
-if not exist "%SCRIPT_PATH_1%" (
-    echo Error: Script not found: %SCRIPT_PATH_1%
+:: Check if Python exists
+if not exist "%PYTHON_PATH%" (
+    echo Error: Python not found at:
+    echo %PYTHON_PATH%
     exit /B 1
 )
 
+:: Check if the script exists
+if not exist "%SCRIPT_PATH_1%" (
+    echo Error: Python script not found:
+    echo %SCRIPT_PATH_1%
+    exit /B 1
+)
+
+:: Change to the MAVIS directory (so os.getcwd() is correct)
+pushd "%BASE_PATH%"
+
+:: Start the Python script
+echo.
+echo Starting Python script in working directory: %CD%
 "%PYTHON_PATH%" "%SCRIPT_PATH_1%"
 
+:: Return to the previous directory
+popd
+
 echo.
-pause
+echo Finished. Press any key to close.
+pause >nul
