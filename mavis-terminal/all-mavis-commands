@@ -291,6 +291,9 @@
         "m kali": "mavis-terminal\\m-wsl-kali.py",  # new
         "m arch": "mavis-terminal\\m-wsl-arch.py",  # new
         "m mint": "mavis-terminal\\m-wsl-mint.py",  # new
+        "m opensuse": "mavis-terminal\\m-wsl-opensuse.py",  # new
+        "m fedora": "mavis-terminal\\m-wsl-fedora.py",  # new
+        "m redhat": "mavis-terminal\\m-wsl-redhat.py",  # new
         "install 3d-slicer": "run\\simon\\3d-slicer\\install-3d-slicer.py", # new
         "run 3d-slicer": "run\\simon\\3d-slicer\\run-3d-slicer.py",  # new
         "install simon": "run\\simon\\install-simon-1.py",  # new
