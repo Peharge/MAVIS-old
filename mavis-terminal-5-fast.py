@@ -69,6 +69,12 @@ import time
 import importlib.util
 import os
 
+required_packages = [
+    "requests", "ollama", "transformers", "numpy", "pandas", "python-dotenv",
+    "PyQt6", "PyQt6-sip", "PyQt6-Charts", "PyQt6-WebEngine", "PyQt6-Charts", "keyboard"
+]
+
+
 def activate_virtualenv(venv_path):
     """Aktiviert eine bestehende virtuelle Umgebung."""
     activate_script = os.path.join(venv_path, "Scripts", "activate") if os.name == "nt" else os.path.join(venv_path,
@@ -84,9 +90,23 @@ def activate_virtualenv(venv_path):
     print(f"Virtual environment {venv_path} activated.")
 
 
+def ensure_packages_installed(packages):
+    """Installiert fehlende Pakete effizient."""
+    to_install = [pkg for pkg in packages if importlib.util.find_spec(pkg) is None]
+
+    if to_install:
+        print(f"Installing missing packages: {', '.join(to_install)}...")
+        subprocess.run([sys.executable, "-m", "pip", "install"] + to_install, check=True, stdout=subprocess.DEVNULL,
+                       stderr=subprocess.DEVNULL)
+        print("All missing packages installed.")
+    else:
+        print("All required packages are already installed.")
+
+
 # Virtuelle Umgebung aktivieren und Pakete sicherstellen
 venv_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env"
 activate_virtualenv(venv_path)
+ensure_packages_installed(required_packages)
 
 from cgitb import strong
 from dotenv import load_dotenv
@@ -126,6 +146,55 @@ black = "\033[30m"
 orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
+
+def print_banner():
+
+    print(f"""
+{blue}      ██╗     █╗      {reset}
+{blue}     ████╗   ███╗     {reset}   {white}███╗   ███╗ █████╗ ██╗   ██╗██╗███████╗{reset}
+{blue}    ██████╗  ████╗    {reset}   {white}████╗ ████║██╔══██╗██║   ██║██║██╔════╝{reset}
+{blue}   ████████╗  ████╗   {reset}   {white}██╔████╔██║███████║██║   ██║██║███████╗{reset}
+{blue}  ████╔█████╗  ████╗  {reset}   {white}██║╚██╔╝██║██╔══██║╚██╗ ██╔╝██║╚════██║{reset}
+{blue} ████╔╝ █████╗  ████╗ {reset}   {white}██║ ╚═╝ ██║██║  ██║ ╚████╔╝ ██║███████║{reset}
+{blue} ╚═══╝   ███╔╝  ╚═══╝ {reset}   {white}╚═╝     ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚══════╝{reset}
+{blue}          █╔╝         {reset}
+{blue}          ╚╝          {reset}
+
+{white} ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗         ███████╗{reset}
+{white} ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║         ██╔════╝{reset}
+{white}    ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║         ███████╗{reset}
+{white}    ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══██║██║         ╚════██║{reset}
+{white}    ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗    ███████║{reset}
+{white}    ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝    ╚══════╝{reset}
+""")
+    print(f"""A warm welcome, {blue}{user_name}{reset}, to MAVIS (MAth Visual Intelligent System) Terminal 5
+Developed by Peharge and JK (Peharge Projects 2025)
+Thank you so much for using MAVIS. We truly appreciate your support ❤️""")
+
+    print(f"""
+{blue}MAVIS Version{reset}: 4
+{blue}MAVIS Launcher Version{reset}: 4
+{blue}MAVIS Terminal Version{reset}: 5
+{blue}MAVIS License{reset}: MIT
+    """)
+
+    # Funktion zur Anzeige der 16 Farbpaletten ohne Abstände und Zahlen
+    def show_color_palette():
+        for i in range(8):
+            print(f"\033[48;5;{i}m  \033[0m", end="")  # Farben ohne Zahlen und ohne Abstände
+
+        print()  # Zeilenumbruch nach der ersten Reihe
+
+        # Anzeige der helleren Farben (8-15) ohne Abstände und Zahlen
+        for i in range(8, 16):
+            print(f"\033[48;5;{i}m  \033[0m", end="")
+
+        print()  # Noch ein Zeilenumbruch am Ende
+
+    # Aufruf der Funktion, um die Farbpalette zu zeigen
+    show_color_palette()
+
+    print("")
 
 def set_python_path():
     python_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
@@ -481,6 +550,7 @@ def handle_special_commands(user_input):
         "m simon.com": "mavis-terminal\\m-simon-git.py", # new
         "wsl info": "mavis-terminal\\wsl-info.py",  # new
         "m wsl": "mavis-terminal\\m-wsl.py", # new
+        "m pip": "mavis-terminal\\m-pip.py",  # new
         "install 3d-slicer": "run\\simon\\3d-slicer\\install-3d-slicer.py", # new
         "run 3d-slicer": "run\\simon\\3d-slicer\\run-3d-slicer.py",  # new
         "install simon": "run\\simon\\install-simon-1.py",  # new
@@ -3487,6 +3557,7 @@ def run_winget_command(command):
 
 
 def main():
+    print_banner()
     set_python_path()
     setup_autocomplete()
 
