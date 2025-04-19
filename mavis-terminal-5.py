@@ -559,6 +559,7 @@ def handle_special_commands(user_input):
         "m opensuse": "mavis-terminal\\m-wsl-opensuse.py",  # new
         "m fedora": "mavis-terminal\\m-wsl-fedora.py",  # new
         "m redhat": "mavis-terminal\\m-wsl-redhat.py",  # new
+        "m neofetch": "mavis-terminal\\m-wsl-neofetch.py",  # new
         "install 3d-slicer": "run\\simon\\3d-slicer\\install-3d-slicer.py", # new
         "run 3d-slicer": "run\\simon\\3d-slicer\\run-3d-slicer.py",  # new
         "install simon": "run\\simon\\install-simon-1.py",  # new
