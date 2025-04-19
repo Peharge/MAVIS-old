@@ -222,10 +222,23 @@ class PipManagerWidget(QtWidgets.QWidget):
         self.table.setHorizontalHeaderLabels(["Package", "Version", "Summary", "Actions"])
         self.layout.addWidget(self.table)
 
-        # Refresh Button
         refresh_button = QtWidgets.QPushButton("Refresh List")
         refresh_button.clicked.connect(self.load_packages)
-        self.layout.addWidget(refresh_button)
+
+        # Container-Layout für Zentrierung
+        button_layout = QtWidgets.QHBoxLayout()
+
+        # Stretch links (nimmt 45%)
+        button_layout.addStretch(45)
+
+        # Button (nimmt 10%)
+        button_layout.addWidget(refresh_button, stretch=10)
+
+        # Stretch rechts (nimmt 45%)
+        button_layout.addStretch(45)
+
+        # Layout hinzufügen
+        self.layout.addLayout(button_layout)
 
         # Start initial loading of packages
         self.load_packages()
