@@ -70,6 +70,8 @@ set USERNAME=%USERNAME%
 set PYTHON_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe
 set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\mavis-terminal-5-fast.py
 
+echo Running MAVIS Terminal 5 fast...
+
 if not exist "%SCRIPT_PATH_1%" (
     echo Error: Script not found: %SCRIPT_PATH_1%
     exit /B 1
