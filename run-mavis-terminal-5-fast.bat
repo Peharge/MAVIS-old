@@ -71,7 +71,7 @@ chcp 65001 >nul
 set "USERNAME=%USERNAME%"
 set "BASE_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS"
 set PYTHON_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe
-set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\mavis-terminal-5.py
+set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\mavis-terminal-5-fast.py
 
 echo Running MAVIS Terminal 5 fast...
 
