@@ -260,7 +260,7 @@ def display_versions():
 def get_user_input(versions):
     """Fragt nach einer MAVIS-Batch-Datei und führt sie aus."""
     while True:
-        user_input = input("\nEnter a MAVIS batch file (e.g. 'mavis-4', 'mavis-3-code' or 'mavis-terminal-4'):").strip()
+        user_input = input("\nEnter a MAVIS batch file (e.g. 'mavis-4', 'mavis-4-3' or 'mavis-terminal-5'):").strip()
         if user_input in versions:
             run_batch_file(user_input)
             break
