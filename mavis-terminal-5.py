@@ -551,6 +551,10 @@ def handle_special_commands(user_input):
         "wsl info": "mavis-terminal\\wsl-info.py",  # new
         "m wsl": "mavis-terminal\\m-wsl.py", # new
         "m pip": "mavis-terminal\\m-pip.py",  # new
+        "m ubuntu": "mavis-terminal\\m-wsl-ubuntu.py",  # new
+        "m debian": "mavis-terminal\\m-wsl-debian.py",  # new
+        "m kali": "mavis-terminal\\m-wsl-kali.py",  # new
+        "m arch": "mavis-terminal\\m-wsl-arch.py",  # new
         "install 3d-slicer": "run\\simon\\3d-slicer\\install-3d-slicer.py", # new
         "run 3d-slicer": "run\\simon\\3d-slicer\\run-3d-slicer.py",  # new
         "install simon": "run\\simon\\install-simon-1.py",  # new
