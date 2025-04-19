@@ -65,12 +65,13 @@ import os
 import sys
 import subprocess
 from PyQt6 import QtCore, QtWidgets
+from PyQt6.QtGui import QIcon
 
-# Pfad zur virtuellen Umgebung
+# Path to the virtual environment and pip executable
 venv_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env"
 pip_executable = os.path.join(venv_path, "Scripts", "pip.exe")
 
-# QSS-Stylesheet (Style-Sheet)
+# QSS Stylesheet
 STYLE_SHEET = """
 QWidget {
     background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #1b2631, stop:1 #0f1626);
@@ -202,78 +203,92 @@ QScrollBar::sub-page:horizontal {
 class PipManagerWidget(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setWindowTitle("PIP-Paketmanager")
-        self.resize(800, 600)
+        self.setWindowTitle("MAVIS PIP Package Manager")
+        self.resize(1000, 600)
         self.layout = QtWidgets.QVBoxLayout(self)
 
         user = os.getenv("USERNAME") or os.getenv("USER")
         icon_path = f"C:/Users/{user}/PycharmProjects/MAVIS/icons/mavis-logo.ico"
         self.setWindowIcon(QIcon(icon_path))
 
-        # Überschrift
-        header = QtWidgets.QLabel("Installierte Pakete")
+        # Header label for installed packages and framework info
+        header = QtWidgets.QLabel("Installed Packages and Framework Info")
         header.setObjectName("title")
         header.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.layout.addWidget(header)
 
-        # Table zur Anzeige der Pakete
-        self.table = QtWidgets.QTableWidget(0, 3)
-        self.table.setHorizontalHeaderLabels(["Paket", "Version", "Aktionen"])
+        # Table to display packages with additional information (Name, Version, Summary)
+        self.table = QtWidgets.QTableWidget(0, 4)
+        self.table.setHorizontalHeaderLabels(["Package", "Version", "Summary", "Actions"])
         self.layout.addWidget(self.table)
 
         # Refresh Button
-        refresh_button = QtWidgets.QPushButton("Liste aktualisieren")
+        refresh_button = QtWidgets.QPushButton("Refresh List")
         refresh_button.clicked.connect(self.load_packages)
         self.layout.addWidget(refresh_button)
 
-        # Initiale Ladung der Pakete
+        # Start initial loading of packages
         self.load_packages()
 
     def load_packages(self):
-        """Lade die installierten Pakete mit pip freeze und befülle die Tabelle."""
-        self.table.setRowCount(0)  # Tabelle leeren
+        """Load installed packages using pip freeze and execute 'pip show' sequentially for additional details."""
+        self.table.setRowCount(0)
+        self.setCursor(QtCore.Qt.CursorShape.WaitCursor)
 
-        try:
-            result = subprocess.run([pip_executable, "freeze"], capture_output=True, text=True, check=True)
-            packages = result.stdout.strip().splitlines()
-        except subprocess.CalledProcessError as e:
-            QtWidgets.QMessageBox.critical(self, "Fehler", f"Fehler beim Laden der Pakete:\n{e}")
-            return
+        # Create a worker for loading packages
+        self.loaderThread = QtCore.QThread()
+        self.loaderWorker = PackageLoaderWorker()
+        self.loaderWorker.moveToThread(self.loaderThread)
+        self.loaderWorker.packageLoaded.connect(self.add_package_row)
+        self.loaderWorker.finished.connect(self.loaderThread.quit)
+        self.loaderWorker.finished.connect(self.loaderWorker.deleteLater)
+        self.loaderThread.finished.connect(self.loaderThread.deleteLater)
+        self.loaderThread.started.connect(self.loaderWorker.run)
+        self.loaderThread.start()
 
-        # Pakete in der Tabelle anzeigen
-        for package in packages:
-            # Erwartetes Format: paket==version
-            if "==" in package:
-                name, version = package.split("==")
-            else:
-                name, version = package, "Unbekannt"
+    @QtCore.pyqtSlot(dict)
+    def add_package_row(self, package_info):
+        """Add a row to the table based on the package details."""
+        row_position = self.table.rowCount()
+        self.table.insertRow(row_position)
 
-            row_position = self.table.rowCount()
-            self.table.insertRow(row_position)
+        # Add package name
+        name_item = QtWidgets.QTableWidgetItem(package_info.get("Name", ""))
+        self.table.setItem(row_position, 0, name_item)
 
-            # Paketname
-            name_item = QtWidgets.QTableWidgetItem(name)
-            self.table.setItem(row_position, 0, name_item)
-            # Version
-            version_item = QtWidgets.QTableWidgetItem(version)
-            self.table.setItem(row_position, 1, version_item)
-            # Update Button
-            update_btn = QtWidgets.QPushButton("Update")
-            update_btn.clicked.connect(lambda _, pkg=name, row=row_position: self.update_package(pkg, row))
-            self.table.setCellWidget(row_position, 2, update_btn)
+        # Version
+        version_item = QtWidgets.QTableWidgetItem(package_info.get("Version", ""))
+        self.table.setItem(row_position, 1, version_item)
 
-        # Spalten anpassen
+        # Summary
+        summary_item = QtWidgets.QTableWidgetItem(package_info.get("Summary", ""))
+        self.table.setItem(row_position, 2, summary_item)
+
+        # Actions: Update and Info buttons
+        action_widget = QtWidgets.QWidget()
+        action_layout = QtWidgets.QHBoxLayout()
+        action_layout.setContentsMargins(0, 0, 0, 0)
+
+        update_btn = QtWidgets.QPushButton("Update")
+        update_btn.clicked.connect(lambda _, pkg=package_info.get("Name", ""): self.update_package(pkg))
+        info_btn = QtWidgets.QPushButton("Info")
+        info_btn.clicked.connect(lambda _, data=package_info: self.show_package_info(data))
+        action_layout.addWidget(update_btn)
+        action_layout.addWidget(info_btn)
+        action_widget.setLayout(action_layout)
+        self.table.setCellWidget(row_position, 3, action_widget)
+
         self.table.resizeColumnsToContents()
+        self.unsetCursor()
 
-    def update_package(self, package, row):
-        """Führe ein pip update für das angegebene Paket aus."""
-        confirm = QtWidgets.QMessageBox.question(self, "Update bestätigen",
-                                                 f"Möchtest du das Paket '{package}' aktualisieren?")
+    def update_package(self, package):
+        """Run pip update for the specified package and refresh the table afterwards."""
+        confirm = QtWidgets.QMessageBox.question(self, "Confirm Update",
+                                                 f"Do you want to update the package '{package}'?")
         if confirm != QtWidgets.QMessageBox.StandardButton.Yes:
             return
 
-        # Starte den Update-Prozess und zeige einen Fortschrittsdialog
-        progress_dialog = QtWidgets.QProgressDialog(f"Updating {package}...", "Abbrechen", 0, 0, self)
+        progress_dialog = QtWidgets.QProgressDialog(f"Updating {package}...", "Cancel", 0, 0, self)
         progress_dialog.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
         progress_dialog.setMinimumDuration(0)
         progress_dialog.show()
@@ -285,30 +300,74 @@ class PipManagerWidget(QtWidgets.QWidget):
                 output = result.stdout
             except subprocess.CalledProcessError as e:
                 output = e.stderr or str(e)
-            QtCore.QMetaObject.invokeMethod(self, "update_finished", QtCore.Qt.ConnectionType.QueuedConnection,
-                                            QtCore.Q_ARG(str, package), QtCore.Q_ARG(str, output), QtCore.Q_ARG(int, row))
+            QtCore.QMetaObject.invokeMethod(
+                self, "update_finished", QtCore.Qt.ConnectionType.QueuedConnection,
+                QtCore.Q_ARG(str, package), QtCore.Q_ARG(str, output)
+            )
 
-        # Start in einem separaten Thread
-        updater_thread = QtCore.QThread()
-        worker = Worker(run_update)
-        worker.moveToThread(updater_thread)
-        updater_thread.started.connect(worker.run)
-        # Aufräumen nach Abschluss
-        worker.finished.connect(updater_thread.quit)
-        worker.finished.connect(worker.deleteLater)
-        updater_thread.finished.connect(updater_thread.deleteLater)
-        updater_thread.start()
+        updaterThread = QtCore.QThread()
+        updaterWorker = Worker(run_update)
+        updaterWorker.moveToThread(updaterThread)
+        updaterThread.started.connect(updaterWorker.run)
+        updaterWorker.finished.connect(updaterThread.quit)
+        updaterWorker.finished.connect(updaterWorker.deleteLater)
+        updaterThread.finished.connect(updaterThread.deleteLater)
+        updaterThread.start()
 
-    @QtCore.pyqtSlot(str, str, int)
-    def update_finished(self, package, output, row):
-        QtWidgets.QMessageBox.information(self, "Update beendet", f"Update von '{package}' abgeschlossen:\n{output}")
-        # Nach Update die Version in der Tabelle neu laden
+    @QtCore.pyqtSlot(str, str)
+    def update_finished(self, package, output):
+        QtWidgets.QMessageBox.information(self, "Update Complete", f"Update of '{package}' completed:\n{output}")
         self.load_packages()
+
+    def show_package_info(self, package_info):
+        """Display detailed package information in a separate dialog."""
+        info_text = "\n".join(f"{key}: {value}" for key, value in package_info.items())
+        QtWidgets.QMessageBox.information(self, f"Info for {package_info.get('Name', '')}", info_text)
+
+
+class PackageLoaderWorker(QtCore.QObject):
+    packageLoaded = QtCore.pyqtSignal(dict)
+    finished = QtCore.pyqtSignal()
+
+    def run(self):
+        """Execute pip freeze and then run 'pip show' sequentially for each package to get detailed information."""
+        try:
+            result = subprocess.run([pip_executable, "freeze"], capture_output=True, text=True, check=True)
+            packages = result.stdout.strip().splitlines()
+        except subprocess.CalledProcessError as e:
+            self.packageLoaded.emit({"Name": "Error", "Version": "", "Summary": f"freeze error: {str(e)}"})
+            self.finished.emit()
+            return
+
+        for pkg_entry in packages:
+            if "==" in pkg_entry:
+                pkg_name, pkg_version = pkg_entry.split("==")
+            else:
+                pkg_name, pkg_version = pkg_entry, "Unknown"
+
+            # Execute pip show for the individual package sequentially
+            try:
+                show_result = subprocess.run([pip_executable, "show", pkg_name],
+                                             capture_output=True, text=True, check=True)
+                info_lines = show_result.stdout.strip().splitlines()
+                info_dict = {}
+                for line in info_lines:
+                    if ":" in line:
+                        key, value = line.split(":", 1)
+                        info_dict[key.strip()] = value.strip()
+            except subprocess.CalledProcessError as e:
+                info_dict = {"Name": pkg_name, "Version": pkg_version, "Summary": f"show error: {str(e)}"}
+
+            # Ensure that Name, Version and Summary are present
+            info_dict.setdefault("Name", pkg_name)
+            info_dict.setdefault("Version", pkg_version)
+            info_dict.setdefault("Summary", info_dict.get("Summary", "No summary available"))
+            self.packageLoaded.emit(info_dict)
+        self.finished.emit()
 
 
 class Worker(QtCore.QObject):
     finished = QtCore.pyqtSignal()
-
     def __init__(self, fn):
         super().__init__()
         self.fn = fn
@@ -320,7 +379,6 @@ class Worker(QtCore.QObject):
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
-    # Style setzen
     app.setStyleSheet(STYLE_SHEET)
     widget = PipManagerWidget()
     widget.show()
