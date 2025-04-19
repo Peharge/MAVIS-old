@@ -244,7 +244,7 @@ def get_dxcore_version():
 class NeofetchWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Neofetch in PyQt6")
+        self.setWindowTitle("MAVIS Neofetch")
         self.resize(900, 600)
         self.init_ui()
         # Use a timer to update the info every 5 seconds in the main thread,
