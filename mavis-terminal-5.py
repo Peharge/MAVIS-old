@@ -555,6 +555,7 @@ def handle_special_commands(user_input):
         "m debian": "mavis-terminal\\m-wsl-debian.py",  # new
         "m kali": "mavis-terminal\\m-wsl-kali.py",  # new
         "m arch": "mavis-terminal\\m-wsl-arch.py",  # new
+        "m mint": "mavis-terminal\\m-wsl-mint.py",  # new
         "install 3d-slicer": "run\\simon\\3d-slicer\\install-3d-slicer.py", # new
         "run 3d-slicer": "run\\simon\\3d-slicer\\run-3d-slicer.py",  # new
         "install simon": "run\\simon\\install-simon-1.py",  # new
