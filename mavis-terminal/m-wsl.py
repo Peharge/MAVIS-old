@@ -312,7 +312,7 @@ class MainWindow(QMainWindow):
         # Refresh Button
         btn_layout = QHBoxLayout()
         btn_layout.addStretch()
-        self.btn_refresh = QPushButton("Aktualisieren")
+        self.btn_refresh = QPushButton("Update")
         self.btn_refresh.clicked.connect(self.refresh_all)
         btn_layout.addWidget(self.btn_refresh)
         btn_layout.addStretch()
@@ -347,7 +347,7 @@ class MainWindow(QMainWindow):
 
     def refresh_all(self):
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        self.statusbar.showMessage(f"Aktualisiere... ({timestamp})")
+        self.statusbar.showMessage(f"Update... ({timestamp})")
 
         for idx in range(self.tabs.count()):
             command = getattr(self, f"cmd_{idx}")
@@ -360,20 +360,20 @@ class MainWindow(QMainWindow):
         editor = getattr(self, f"editor_{index}")
         editor.setPlainText(text)
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        self.statusbar.showMessage(f"Aktualisiert: {timestamp}", 5000)
+        self.statusbar.showMessage(f"Updated: {timestamp}", 5000)
         logger.info(f"Tab {index} updated successfully.")
 
     def _handle_error(self, index: int, message: str):
         titles = ["Status", "Distributions", "Version"]
-        title = titles[index] if index < len(titles) else "Unbekannt"
+        title = titles[index] if index < len(titles) else "Unknown"
         logger.error(f"Error ({title}): {message}")
         QMessageBox.critical(
             self,
-            f"Fehler bei {title}",
+            f"Error in {title}",
             message,
             QMessageBox.StandardButton.Ok
         )
-        self.statusbar.showMessage(f"Fehler beim Aktualisieren: {title}", 5000)
+        self.statusbar.showMessage(f"Error updating: {title}", 5000)
 
 
 def main():
