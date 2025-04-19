@@ -127,55 +127,6 @@ orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
-def print_banner():
-
-    print(f"""
-{blue}      ██╗     █╗      {reset}
-{blue}     ████╗   ███╗     {reset}   {white}███╗   ███╗ █████╗ ██╗   ██╗██╗███████╗{reset}
-{blue}    ██████╗  ████╗    {reset}   {white}████╗ ████║██╔══██╗██║   ██║██║██╔════╝{reset}
-{blue}   ████████╗  ████╗   {reset}   {white}██╔████╔██║███████║██║   ██║██║███████╗{reset}
-{blue}  ████╔█████╗  ████╗  {reset}   {white}██║╚██╔╝██║██╔══██║╚██╗ ██╔╝██║╚════██║{reset}
-{blue} ████╔╝ █████╗  ████╗ {reset}   {white}██║ ╚═╝ ██║██║  ██║ ╚████╔╝ ██║███████║{reset}
-{blue} ╚═══╝   ███╔╝  ╚═══╝ {reset}   {white}╚═╝     ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚══════╝{reset}
-{blue}          █╔╝         {reset}
-{blue}          ╚╝          {reset}
-
-{white} ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗         ███████╗{reset}
-{white} ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║         ██╔════╝{reset}
-{white}    ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║         ███████╗{reset}
-{white}    ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══██║██║         ╚════██║{reset}
-{white}    ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗    ███████║{reset}
-{white}    ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝    ╚══════╝{reset}
-""")
-    print(f"""A warm welcome, {blue}{user_name}{reset}, to MAVIS (MAth Visual Intelligent System) Terminal 5
-Developed by Peharge and JK (Peharge Projects 2025)
-Thank you so much for using MAVIS. We truly appreciate your support ❤️""")
-
-    print(f"""
-{blue}MAVIS Version{reset}: 4
-{blue}MAVIS Launcher Version{reset}: 4
-{blue}MAVIS Terminal Version{reset}: 5
-{blue}MAVIS License{reset}: MIT
-    """)
-
-    # Funktion zur Anzeige der 16 Farbpaletten ohne Abstände und Zahlen
-    def show_color_palette():
-        for i in range(8):
-            print(f"\033[48;5;{i}m  \033[0m", end="")  # Farben ohne Zahlen und ohne Abstände
-
-        print()  # Zeilenumbruch nach der ersten Reihe
-
-        # Anzeige der helleren Farben (8-15) ohne Abstände und Zahlen
-        for i in range(8, 16):
-            print(f"\033[48;5;{i}m  \033[0m", end="")
-
-        print()  # Noch ein Zeilenumbruch am Ende
-
-    # Aufruf der Funktion, um die Farbpalette zu zeigen
-    show_color_palette()
-
-    print("")
-
 def set_python_path():
     python_path = f"C:\\Users\\{os.getlogin()}\\PycharmProjects\\MAVIS\\.env\\Scripts\\python.exe"
     os.environ["PYTHON_PATH"] = python_path
@@ -3536,7 +3487,6 @@ def run_winget_command(command):
 
 
 def main():
-    print_banner()
     set_python_path()
     setup_autocomplete()
 

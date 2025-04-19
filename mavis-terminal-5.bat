@@ -124,6 +124,6 @@ if not exist "%SCRIPT_PATH_1%" (
 "%PYTHON_PATH%" "%SCRIPT_PATH_1%"
 
 echo.
-echo The scripts have been executed, Ollama has been started, and the browser has been opened.
+echo The scripts have been executed!
 echo Press any key to exit.
 pause
