@@ -99,9 +99,9 @@ Developed by Peharge and JK (Peharge Projects 2025)
 Thank you so much for using MAVIS. We truly appreciate your support ❤️""")
 
 print(f"""
-{blue}MAVIS Version{reset}: 4
+{blue}MAVIS Version{reset}: 4.3
 {blue}MAVIS Launcher Version{reset}: 4
-{blue}MAVIS Terminal Version{reset}: 4
+{blue}MAVIS Terminal Version{reset}: 5
 {blue}MAVIS License{reset}: MIT
 """)
 
