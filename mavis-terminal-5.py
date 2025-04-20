@@ -559,6 +559,11 @@ def handle_special_commands(user_input):
         "m opensuse": "mavis-terminal\\m-wsl-opensuse.py",  # new
         "m fedora": "mavis-terminal\\m-wsl-fedora.py",  # new
         "m redhat": "mavis-terminal\\m-wsl-redhat.py",  # new
+        "m alpine": "mavis-terminal\\m-wsl-alpine.py",  # new
+        "m clear": "mavis-terminal\\m-wsl-clearlinux.py",  # new
+        "m oracle": "mavis-terminal\\m-wsl-oracle.py",  # new
+        "m pengwin": "mavis-terminal\\m-wsl-pengwin.py",  # new
+        "m sles": "mavis-terminal\\m-wsl-sles.py",  # new
         "m neofetch": "mavis-terminal\\m-neofetch.py",  # new
         "m fastfetch": "mavis-terminal\\m-neofetch.py",  # new
         "m screenfetch": "mavis-terminal\\m-neofetch.py",  # new
