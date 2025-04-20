@@ -65,7 +65,7 @@ REM Veuillez lire l'intégralité des termes et conditions de la licence MIT pou
 
 set USERNAME=%USERNAME%
 set PYTHON_PATH=C:\Users\%USERNAME%\PycharmProjects\MAVIS\.env\Scripts\python.exe
-set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info\info-start-mavis-4.py
+set SCRIPT_PATH_1=C:\Users\%USERNAME%\PycharmProjects\MAVIS\info\info-start-mavis-4-3.py
 set SCRIPT_PATH_2=C:\Users\%USERNAME%\PycharmProjects\MAVIS\install\install-info-mavis-4.py
 set SCRIPT_PATH_update=C:\Users\%USERNAME%\PycharmProjects\MAVIS\update\update-repository-windows.py
 set SCRIPT_PATH_account=C:\Users\%USERNAME%\PycharmProjects\MAVIS\account\account.py

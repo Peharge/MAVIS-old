@@ -270,7 +270,7 @@ def print_system_info(system_info: dict):
     print(f"""
                      =                     {blue}*{reset}                        {blue}MAVIS Terminal{reset}
                     ===                   {blue}***{reset}                       --------------
-                   =====                 ++{blue}***{reset}                      {blue}MAVIS Version{reset}: 4
+                   =====                 ++{blue}***{reset}                      {blue}MAVIS Version{reset}: 4.3
                   =======               +++{blue}****{reset}                     {blue}MAVIS Installer Version{reset}: 4
                  =========             ++++{blue}*****{reset}                    {blue}MAVIS Terminal Version{reset}: 5
                 ===========           +++++{blue}******{reset}                   {blue}MAVIS License{reset}: MIT
