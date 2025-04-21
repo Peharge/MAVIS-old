@@ -19,6 +19,9 @@
     <script src="https://webdemo.myscript.com/static/myscript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/theme/eclipse.min.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="/static/images/mavis-logo.ico" />
     <style>
         body {
@@ -4074,7 +4077,219 @@
         </script>
 
         <div class="card-code" style="z-index: 10;">
+            <header class="mavis-ide-header">
+                <h1>MAVIS IDE 1 for Python, C and C++</h1>
+                <div id="toolbar">
+                    <label for="language">Language:</label>
+                    <select id="language">
+                        <option value="python">Python</option>
+                        <option value="clike-c">C</option>
+                        <option value="clike-cpp">C++</option>
+                    </select>
+                    <button id="runBtn">Run Code</button>
+                </div>
+            </header>
+            <main class="mavis-ide-main">
+                <div class="editor-container">
+                    <textarea id="code-editor"></textarea>
+                </div>
+                <div class="output-container">
+                    <div class="output-header">Output:</div>
+                    <pre id="result"></pre>
+                </div>
+            </main>
+            <footer class="mavis-ide-footer">
+                2025 MAVIS IDE 1. All rights reserved.
+            </footer>
+            <style>
+                .mavis-ide-header {
+                    box-sizing: border-box;
+                    background-color: transparent;
+                    color: #ecf0f1;
+                    padding: 15px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-wrap: wrap;
+                }
 
+                .mavis-ide-header h1 {
+                    font-size: 1.5em;
+                }
+
+                #toolbar {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+
+                #toolbar label {
+                    font-size: 1em;
+                }
+
+                #toolbar select,
+                #toolbar button {
+                    padding: 5px 10px;
+                    font-size: 1em;
+                    border: none;
+                    border-radius: 4px;
+                }
+
+                #toolbar select {
+                    background-color: #ecf0f1;
+                    color: #333;
+                }
+
+                #toolbar button {
+                    background-color: #e67e22;
+                    color: #fff;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                }
+
+                #toolbar button:hover {
+                    background-color: #d35400;
+                }
+
+                .editor-container {
+                    height: 100%;
+                }
+
+                #code-editor {
+                    height: 100%;
+                    width: 100%;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    resize: none;
+                    border: none;
+                    box-sizing: border-box;
+                    padding: 1rem;
+                    font-family: monospace;
+                    font-size: 1rem;
+                    z-index: 9999;
+                }
+
+                .mavis-ide-main {
+                    flex-grow: 1;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 10px;
+                    padding: 10px;
+                }
+
+                .editor-container {
+                    background-color: transparent;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    display: flex;
+                    flex-direction: column;
+                    min-height: 500px;
+                }
+
+                .output-container {
+                    background-color: transparent;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    display: flex;
+                    flex-direction: column;
+                    min-height: 500px;
+                }
+
+                .output-header {
+                    background-color: transparent;
+                    padding: 8px 12px;
+                    font-weight: bold;
+                    border-bottom: 1px solid #ccc;
+                }
+
+                #result {
+                    flex-grow: 1;
+                    padding: 12px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    font-family: Consolas, "Courier New", monospace;
+                    background-color: transparent;
+                }
+
+              .mavis-ide-footer {
+                    background-color: transparent;
+                    color: #ecf0f1;
+                    text-align: center;
+                    padding: 10px 0;
+                }
+            </style>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/codemirror.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/mode/python/python.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/mode/clike/clike.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/pyodide/v0.23.3/full/pyodide.js"></script>
+            <script src="main.js"></script>
+            <script>
+              let editor;
+              let pyodide = null;
+              document.addEventListener("DOMContentLoaded", async () => {
+                editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
+                  lineNumbers: true,
+                  mode: "python",
+                  theme: "eclipse",
+                  tabSize: 4,
+                  indentWithTabs: true,
+                  autofocus: true
+                });
+                const languageSelector = document.getElementById("language");
+                const runBtn = document.getElementById("runBtn");
+                const output = document.getElementById("result");
+                function updateEditorMode(lang) {
+                  if (lang === "python") {
+                    editor.setOption("mode", "python");
+                  } else if (lang === "clike-c") {
+                    editor.setOption("mode", "text/x-csrc");
+                  } else if (lang === "clike-cpp") {
+                    editor.setOption("mode", "text/x-c++src");
+                  } else {
+                    editor.setOption("mode", "text/plain");
+                  }
+                }
+                languageSelector.addEventListener("change", (e) => {
+                  updateEditorMode(e.target.value);
+                });
+                output.textContent = "Loading Pyodide, please wait...";
+                try {
+                  pyodide = await loadPyodide({ indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.3/full/" });
+                  output.textContent = "Pyodide loaded successfully!";
+                } catch (error) {
+                  output.textContent = "Error loading Pyodide: " + error;
+                }
+                async function runPythonCode(code) {
+                  try {
+                    let result = pyodide.runPython(code);
+                    return result !== undefined ? String(result) : "Python code executed successfully.";
+                  } catch (e) {
+                    return "Python Error:\n" + e;
+                  }
+                }
+                async function runCCode(code, language) {
+                  let result = `Simulated execution for ${language}:\n\n${code}\n\n[Note: Actual execution of C/C++ code in the browser requires integration with Emscripten/WebAssembly or a remote compiler service.]`;
+                  return result;
+                }
+                async function runCode() {
+                  const code = editor.getValue();
+                  const lang = languageSelector.value;
+                  output.textContent = "Executing code...";
+                  if (lang === "python") {
+                    const result = await runPythonCode(code);
+                    output.textContent = "Python Output:\n" + result;
+                  } else if (lang === "clike-c" || lang === "clike-cpp") {
+                    const languageText = lang === "clike-c" ? "C" : "C++";
+                    const result = await runCCode(code, languageText);
+                    output.textContent = result;
+                  } else {
+                    output.textContent = "Unknown language: " + lang;
+                  }
+                }
+                runBtn.addEventListener("click", runCode);
+              });
+            </script>
         </div>
 
         <div class="card-term" style="z-index: 10;">
