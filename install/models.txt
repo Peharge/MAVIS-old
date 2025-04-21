@@ -170,5 +170,13 @@
         {"name": "Moon Dream 1.8b", "av": "Free", "version": "moondream", "category": "Vision Tool", "rating": 3},
         {"name": "LlaVA Llama3 8b", "av": "Free", "version": "llava-llama3", "category": "Vision Tool", "rating": 3},
         {"name": "LlaVA Phi3 3.8b", "av": "Free", "version": "llava-phi3", "category": "Vision Tool", "rating": 3},
-        {"name": "Bak LlaVA 7b", "av": "Free", "version": "bakllava", "category": "Vision Tool", "rating": 3}
+        {"name": "Bak LlaVA 7b", "av": "Free", "version": "bakllava", "category": "Vision Tool", "rating": 3},
+        {"name": "DBRX 132b", "av": "Free", "version": "dbrx", "category": "Language Model", "rating": 4},
+        {"name": "notus 7b", "av": "Free", "version": "notus", "category": "Language Model", "rating": 4},
+        {"name": "Tulu 3 8b", "av": "Free", "version": "tulu3:8b", "category": "Language Model", "rating": 4},
+        {"name": "Tulu 3 70b", "av": "Free", "version": "tulu3:70b", "category": "Language Model", "rating": 4},
+        {"name": "Notux 8x7b", "av": "Free", "version": "notux", "category": "Language Model", "rating": 4},
+        {"name": "megadolphin 120b", "av": "Free", "version": "megadolphin", "category": "Language Model", "rating": 4},
+        {"name": "Wizard Vicuna 13b", "av": "Free", "version": "wizard-vicuna", "category": "Language Model", "rating": 4},
+        {"name": "Duckdb NSQL 7b", "av": "Free", "version": "duckdb-nsql", "category": "Language Model", "rating": 4}
     ]
