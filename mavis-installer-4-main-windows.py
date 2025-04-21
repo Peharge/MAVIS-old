@@ -237,7 +237,7 @@ def display_versions():
         "mavis-terminal-4": ("MAVIS Terminal 4 EAP", "The MAVIS Terminal is always available for you!!!", ""),
         "mavis-4": ("MAVIS 4 EAP", "NEW - Development of MAVIS 4 has begun – featuring new Vision Models, a more powerful and faster MAVIS Terminal, and access to over 200 models.", ""),
         "mavis-terminal-5": ("MAVIS Terminal 5 EAP", "The MAVIS Terminal is always available for you!!!", ""),
-        "mavis-terminal-5-fast": ("MAVIS Terminal 5 EAP fast", "The MAVIS Terminal is always available for you!!!", ""),
+        "mavis-terminal-5-fast": ("MAVIS Terminal 5 EAP", "The MAVIS Terminal is always available for you!!!", ""),
         "mavis-4-3": ("MAVIS 4 EAP", "NEW - Development of MAVIS 4 has begun – featuring new Vision Models, a more powerful and faster MAVIS Terminal, and access to over 200 models.", "")
     }
 
