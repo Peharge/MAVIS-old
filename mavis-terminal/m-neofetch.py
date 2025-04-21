@@ -366,6 +366,12 @@ class NeofetchWindow(QtWidgets.QMainWindow):
         self.worker.updated.connect(self.update_system_info)
         self.worker.start()
 
+        # Dynamically set the application icon
+        user = os.getenv("USERNAME") or os.getenv("USER")
+        icon_path = f"C:/Users/{user}/PycharmProjects/MAVIS/icons/mavis-logo.ico"
+        if os.path.exists(icon_path):
+            self.setWindowIcon(QIcon(icon_path))
+
     def init_ui(self):
         splitter = QtWidgets.QSplitter(QtCore.Qt.Orientation.Horizontal)
         self.setCentralWidget(splitter)
