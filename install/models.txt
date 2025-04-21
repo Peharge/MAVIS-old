@@ -53,6 +53,8 @@
         {"name": "Qwen 2.5 coder 3b", "av": "Free", "version": "qwen2.5-coder:3b", "category": "Language Model", "rating": 5},
         {"name": "Qwen 2.5 coder 7b", "av": "Free", "version": "qwen2.5-coder:7b", "category": "Language Model", "rating": 5},
         {"name": "Qwen 2.5 coder 14b", "av": "Free", "version": "qwen2.5-coder:14b", "category": "Language Model", "rating": 5},
+        {"name": "Granite 3.3 2b", "av": "Free", "version": "granite3.3:2b", "category": "Language Model", "rating": 4},
+        {"name": "Granite 3.3 8b", "av": "Free", "version": "granite3.3:8b", "category": "Language Model", "rating": 4},
         {"name": "Qwen 2.5 coder 32b", "av": "Free", "version": "qwen2.5-coder:32b", "category": "Language Model", "rating": 5},
         {"name": "EXAONE Deep 2.4b", "av": "Free", "version": "exaone-deep:2.4b", "category": "Language Model", "rating": 3},
         {"name": "EXAONE Deep 7.8b", "av": "Free", "version": "exaone-deep:7.8b", "category": "Language Model", "rating": 3},
