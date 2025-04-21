@@ -8,7 +8,7 @@
    <img alt="peharge" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/Peharge-icon-banner-3.svg">
 </div>
 
-At MAVIS, we take security seriously and are committed to maintaining a secure environment for our users. If you discover any vulnerabilities, we appreciate your help in responsibly reporting them to us.
+At MAVIS, we take security and are committed to maintaining a secure environment for our users. If you discover any vulnerabilities, we appreciate your help in responsibly reporting them to us.
 
 ## Reporting Security Issues
 
