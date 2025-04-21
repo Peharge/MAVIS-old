@@ -91,7 +91,7 @@ print (f"""
 {blue} ████╔╝ █████╗  ████╗ {reset}   {white}██║ ╚═╝ ██║██║  ██║ ╚████╔╝ ██║███████║         ██║██╗██████╔╝{reset}
 {blue} ╚═══╝   ███╔╝  ╚═══╝ {reset}   {white}╚═╝     ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚══════╝         ╚═╝╚═╝╚═════╝ {reset}
 {blue}          █╔╝         {reset}
-{blue}          ╚╝          {reset}    
+{blue}          ╚╝          {reset}
 """)
 
 print(f"""A warm welcome, {blue}{user_name}{reset}, to MAVIS (MAth Visual Intelligent System) - the most powerful calculator in the world!
