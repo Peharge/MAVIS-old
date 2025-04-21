@@ -310,8 +310,10 @@ def handle_special_commands(user_input):
         "run mavis-3-3-main-mini-mini": "mavis-3-3-main-main-mini-mini.py",  # new
         "run mavis-3-3-math": "mavis-3-3-main-math.py",  # new
         "run mavis-3-3-math-mini": "mavis-3-3-main-math-pro.py",  # new
-        "run mavis-4": "mavis-4-main.py",  # new
-        "run mavis-4-3": "mavis-4-3-main.py",  # new
+        "run mavis-4": "mavis-terminal\\run-mavis-4.py", # new
+        "run mavis-4-3": "mavis-terminal\\run-mavis-4-3.py", # new
+        "run mavis-4-fast": "mavis-4-main.py",  # new
+        "run mavis-4-3-fast": "mavis-4-3-main.py",  # new
         "run ollama mavis-3-main": "install\\install-ollama-mavis-3-main.py",  # new
         "run ollama mavis-3-main-mini": "install\\install-ollama-mavis-3-main-mini.py",  # new
         "run ollama mavis-3-math": "install\\install-ollama-mavis-3-math.py",  # new
