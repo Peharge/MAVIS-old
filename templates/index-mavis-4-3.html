@@ -4212,18 +4212,30 @@
                     background-color: transparent;
                 }
 
-              .mavis-ide-footer {
+                .mavis-ide-footer {
                     background-color: transparent;
                     color: #ecf0f1;
                     text-align: center;
                     padding: 10px 0;
                 }
+
+                .CodeMirror {
+                    height: 100% !important;
+                    max-height: 26vw;
+
+                }
+
+                .CodeMirror pre {
+                  padding-left: 30px !important;
+                }
+
             </style>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/codemirror.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/mode/python/python.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/mode/clike/clike.min.js"></script>
             <script src="https://cdn.jsdelivr.net/pyodide/v0.23.3/full/pyodide.js"></script>
             <script src="main.js"></script>
+
             <script>
               let editor;
               let pyodide = null;
