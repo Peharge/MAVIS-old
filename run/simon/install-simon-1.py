@@ -482,7 +482,7 @@ def process_packages(packages: List[str]):
         print(f"\n[{idx}/{len(packages)}] Checking package: {blue}{package}{reset}")
         install_or_update_package(package)
 
-print(f"\nAll frameworks for {blue}MAVIS versions 4{reset} are currently being installed and updated.")
+print(f"\nAll frameworks for {blue}SIMON 1{reset} are currently being installed and updated.")
 
 # Paketlisten
 packages = [
