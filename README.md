@@ -209,6 +209,8 @@ Start of development: 10.04.2025
 <details>
   <summary>MAVIS Terminal 5</summary>
 
+Use [P-Terminal](https://github.com/Peharge/p-terminal), it is much stronger and was developed by the same developers.
+
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
   <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-terminal-5-banner-3.png" alt="mavis" width="1400" style="margin: 10px;">
 </div>
@@ -1170,7 +1172,7 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 
 To install MAVIS 3 EAP on a Windows computer, please follow these steps:
 
-1. Download the installation file [`Download mavis-launcher-4.bat`](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.bat) or [`Download mavis-terminal-5.bat`](https://github.com/Peharge/MAVIS/raw/main/run-mavis-terminal-5.bat).
+1. Download the installation file [`Download mavis-launcher-4.bat`](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.bat) or [`Download mavis-terminal-5.bat`](https://github.com/Peharge/MAVIS/raw/main/run-mavis-terminal-5.bat) - Use [P-Terminal](https://github.com/Peharge/p-terminal), it is much stronger and was developed by the same developers..
 
 3. Navigate to the folder where you saved the file.
 
@@ -1196,7 +1198,7 @@ If you need further assistance, refer to the [`Dokumentation`](https://github.co
 
 Um MAVIS 3 EAP auf einem Windows-Computer zu installieren, folge bitte diesen Schritten:
 
-1. Lade die Installationsdatei [`Download mavis-launcher-4.bat`](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.bat) oder [`Download mavis-terminal-5.bat`](https://github.com/Peharge/MAVIS/raw/main/run-mavis-terminal-5.bat) herunter.
+1. Lade die Installationsdatei [`Download mavis-launcher-4.bat`](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.bat) oder [`Download mavis-terminal-5.bat`](https://github.com/Peharge/MAVIS/raw/main/run-mavis-terminal-5.bat) herunter - Verwenden Sie [P-Terminal](https://github.com/Peharge/p-terminal), es ist viel leistungsfähiger und wurde von denselben Entwicklern entwickelt.
    
 2. Navigiere zu dem Ordner, in dem du die Datei gespeichert hast.
 
