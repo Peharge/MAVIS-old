@@ -1172,7 +1172,7 @@ Die erforderlichen Python-Frameworks und KI-Modelle werden bei der manuellen Ins
 
 To install MAVIS 3 EAP on a Windows computer, please follow these steps:
 
-1. Download the installation file [`Download mavis-launcher-4.bat`](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.bat) or [`Download mavis-terminal-5.bat`](https://github.com/Peharge/MAVIS/raw/main/run-mavis-terminal-5.bat) - Use [P-Terminal](https://github.com/Peharge/p-terminal), it is much stronger and was developed by the same developers..
+1. Download the installation file [`Download mavis-launcher-4.bat`](https://github.com/Peharge/MAVIS/raw/main/mavis-launcher-4.bat) or [`Download mavis-terminal-5.bat`](https://github.com/Peharge/MAVIS/raw/main/run-mavis-terminal-5.bat) - Use [P-Terminal](https://github.com/Peharge/p-terminal), it is much stronger and was developed by the same developers.
 
 3. Navigate to the folder where you saved the file.
 
