@@ -112,15 +112,6 @@ if not exist "%PYTHON_SCRIPT_PATH%" (
 
 "%PYTHON_PATH%" "%PYTHON_SCRIPT_PATH%"
 
-REM Wait for 5 seconds before continuing
-timeout /t 5 /nobreak
-
-REM Wait for 5 seconds before continuing
-timeout /t 5 /nobreak
-
-REM Wait for 5 seconds before continuing
-timeout /t 5 /nobreak
-
 if not exist "%SCRIPT_PATH_5%" (
     echo Error: Script not found: %SCRIPT_PATH_5%
     exit /B 1
