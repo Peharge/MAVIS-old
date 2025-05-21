@@ -219,7 +219,7 @@ def login():
         if username_or_email in [username, data["email"]] and check_password(data["password"], password):
             greeting = f"{green}Welcome MAVIS Ultra User: {username}!{reset}" if data.get("user_type") == "MAVIS Ultra" else f"Welcome {username}!"
             print(greeting)
-            return
+            exit()
 
     print(f"{red}ERROR{reset}: Incorrect login details!")
 
