@@ -396,10 +396,10 @@ readonly MAVIS_ENV_FILE="$MAVIS_DIR/.env"
 readonly MAVIS_RUN_FILE="$MAVIS_DIR/run-mavis-4-all.sh"
 
 # Logging helpers
-log()      { printf "[%s] %s\n" "$(date +'%Y-%m-%dT%H:%M:%S%z')" "$*"; }
-log_info()    { log "INFO    $*"; }
-log_success() { log "SUCCESS $*"; }
-log_error()   { log "ERROR   $*" >&2; }
+timestamp() { date +"%Y-%m-%dT%H:%M:%S%z"; }
+log_info()    { printf "[%s] Info: %s\n" "$(timestamp)" "$*"; }
+log_success() { printf "[%s] Pass: %s\n" "$(timestamp)" "$*"; }
+log_error()   { printf "[%s] Error: %s\n" "$(timestamp)" "$*" >&2; }
 
 # Ensure MAVIS directory exists
 if [[ ! -d "$MAVIS_DIR" ]]; then
@@ -408,19 +408,21 @@ if [[ ! -d "$MAVIS_DIR" ]]; then
 fi
 log_info "MAVIS directory: $MAVIS_DIR"
 
-# Create .env file if missing
-if [[ ! -f "$MAVIS_ENV_FILE" ]]; then
-    log_info "Creating .env file..."
-    {
-        echo "# Environment variables for MAVIS"
-        echo "PYTHONPATH=$MAVIS_DIR"
-    } > "$MAVIS_ENV_FILE"
-    log_success "Created .env file at $MAVIS_ENV_FILE"
-else
-    log_info ".env file already exists at $MAVIS_ENV_FILE"
+# If .env exists, everything is fine
+if [[ -f "$MAVIS_ENV_FILE" ]]; then
+    log_success ".env file already exists at $MAVIS_ENV_FILE. All good!"
+    exit 0
 fi
 
-# Execute MAVIS run script
+# Create .env file
+log_info "Creating .env file..."
+{
+    echo "# Environment variables for MAVIS"
+    echo "PYTHONPATH=$MAVIS_DIR"
+} > "$MAVIS_ENV_FILE"
+log_success "Created .env file at $MAVIS_ENV_FILE"
+
+# Execute MAVIS run script after creating .env
 if [[ -f "$MAVIS_RUN_FILE" && -x "$MAVIS_RUN_FILE" ]]; then
     log_info "Executing MAVIS run script: $MAVIS_RUN_FILE"
     if bash "$MAVIS_RUN_FILE"; then
