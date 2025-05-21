@@ -4,7 +4,7 @@
 
 <div align="center">
 
-# **_MAVIS_**
+# **MA**_th_ **V**_isual_ **I**_ntelligent_ **S**_ystem_
 
 </div>
 
