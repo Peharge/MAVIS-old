@@ -8,6 +8,8 @@
    <img alt="peharge" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/Peharge-icon-banner-3.svg">
 </div>
 
+<br>
+
 ```bash
 sudo pacman -Syu
 ```
