@@ -391,14 +391,9 @@ set -Eeuo pipefail
 trap 'echo "[ERROR] Unexpected error at line $LINENO" >&2; exit 1' ERR
 
 # Constants
-readonly PYCHARM_PROJECTS="$HOME/PycharmProjects"
-readonly MAVIS_DIR="$PYCHARM_PROJECTS/MAVIS"
+readonly MAVIS_DIR="$HOME/PycharmProjects/MAVIS"
 readonly MAVIS_ENV_FILE="$MAVIS_DIR/.env"
 readonly MAVIS_RUN_FILE="$MAVIS_DIR/run-mavis-4-all.sh"
-readonly GIT_REPO_URL="https://github.com/Peharge/MAVIS.git"
-readonly MAX_RETRIES=3
-readonly RETRY_DELAY=5
-readonly LOCKFILE="/tmp/mavis_update.lock"
 
 # Logging helpers
 log()      { printf "[%s] %s\n" "$(date +'%Y-%m-%dT%H:%M:%S%z')" "$*"; }
@@ -406,99 +401,32 @@ log_info()    { log "INFO    $*"; }
 log_success() { log "SUCCESS $*"; }
 log_error()   { log "ERROR   $*" >&2; }
 
-# Ensure single instance
-exec 9>"$LOCKFILE"
-if ! flock -n 9; then
-    log_error "Another instance is running. Exiting."
-    exit 1
-fi
-
-# Retry wrapper for commands
-retry() {
-    local -r cmd=("$@")
-    local n=1
-    until (( n > MAX_RETRIES )); do
-        log_info "Attempt $n: ${cmd[*]}"
-        if "${cmd[@]}"; then
-            return 0
-        fi
-        ((n++))
-        log_info "Retrying in $RETRY_DELAY seconds..."
-        sleep $RETRY_DELAY
-    done
-    return 1
-}
-
-# Ensure project directory exists
-mkdir -p "$PYCHARM_PROJECTS"
-log_info "Ensured project directory: $PYCHARM_PROJECTS"
-
-# Ensure Git is installed
-if ! command -v git &>/dev/null; then
-    log_error "Git is not installed. Please install Git and retry."
-    exit 1
-fi
-
-# Check connectivity to GitHub using HTTP
-if ! curl -fsS --head --retry 2 --retry-delay 3 "$GIT_REPO_URL" &>/dev/null; then
-    log_error "Cannot reach GitHub repository URL. Check network or firewall."
-    exit 1
-fi
-
-# Clone or update repository
-if [[ ! -d "$MAVIS_DIR/.git" ]]; then
-    log_info "Cloning MAVIS repository..."
-    retry git clone --depth 1 "$GIT_REPO_URL" "$MAVIS_DIR" || \
-        { log_error "Failed to clone after $MAX_RETRIES attempts."; exit 1; }
-    log_success "Cloned into $MAVIS_DIR"
-else
-    log_info "Updating existing MAVIS repository..."
-    # Use subshell to avoid polluting cwd
-    (
-        cd "$MAVIS_DIR"
-        # Ensure clean working tree
-        if ! git diff-index --quiet HEAD --; then
-            log_error "Uncommitted changes detected. Please commit or stash them."
-            exit 1
-        fi
-        # Fetch updates
-        retry git fetch --all --prune || { log_error "Failed git fetch."; exit 1; }
-        # Determine branch and fast-forward
-        branch=$(git rev-parse --abbrev-ref HEAD)
-        log_info "On branch: $branch"
-        if git merge --ff-only "origin/$branch"; then
-            log_success "Fast-forwarded to origin/$branch"
-        else
-            log_info "No new updates to merge."
-        fi
-    )
-fi
-
-# Verify directory
+# Ensure MAVIS directory exists
 if [[ ! -d "$MAVIS_DIR" ]]; then
-    log_error "MAVIS directory missing after clone/update."
+    log_error "MAVIS directory not found: $MAVIS_DIR"
     exit 1
 fi
+log_info "MAVIS directory: $MAVIS_DIR"
 
-# Setup .env file
+# Create .env file if missing
 if [[ ! -f "$MAVIS_ENV_FILE" ]]; then
     log_info "Creating .env file..."
     {
         echo "# Environment variables for MAVIS"
         echo "PYTHONPATH=$MAVIS_DIR"
     } > "$MAVIS_ENV_FILE"
-    log_success "Created .env file"
+    log_success "Created .env file at $MAVIS_ENV_FILE"
 else
-    log_info ".env file already exists"
+    log_info ".env file already exists at $MAVIS_ENV_FILE"
 fi
 
 # Execute MAVIS run script
-if [[ -x "$MAVIS_RUN_FILE" ]]; then
-    log_info "Executing MAVIS run script"
+if [[ -f "$MAVIS_RUN_FILE" && -x "$MAVIS_RUN_FILE" ]]; then
+    log_info "Executing MAVIS run script: $MAVIS_RUN_FILE"
     if bash "$MAVIS_RUN_FILE"; then
-        log_success "MAVIS script completed successfully"
+        log_success "MAVIS run script completed successfully"
     else
-        log_error "MAVIS script failed"
+        log_error "MAVIS run script failed"
         exit 1
     fi
 else
