@@ -171,41 +171,60 @@ def check_ollama_update():
     except Exception as e:
         print(f"{red}Error checking for updates: {e}{reset}")
 
+
 def find_ollama_path():
     """
     Finds the installation path of Ollama based on the operating system.
+    Tries common paths, especially accounting for Arch Linux AUR installs.
     """
     try:
         system = platform.system()
+
         if system == "Windows":
             base_path = os.environ.get("LOCALAPPDATA", "C:\\Users\\Default\\AppData\\Local")
             return os.path.join(base_path, "Programs", "Ollama", "ollama app.exe")
+
         elif system == "Darwin":  # macOS
             return "/Applications/Ollama.app/Contents/MacOS/Ollama"
+
         elif system == "Linux":
             # Common locations for CLI tools on Linux
             possible_paths = [
-                "/usr/bin/ollama",
-                "/usr/local/bin/ollama",
-                os.path.expanduser("~/.ollama/bin/ollama")
+                "/usr/bin/ollama",  # system-wide binary
+                "/usr/local/bin/ollama",  # manual install
+                "/opt/ollama/ollama",  # Arch AUR install path
+                os.path.expanduser("~/.local/bin/ollama"),  # user-local bin
+                os.path.expanduser("~/.ollama/bin/ollama")  # custom script install
             ]
             for path in possible_paths:
                 if os.path.isfile(path) and os.access(path, os.X_OK):
                     return path
+
+            # Try using `which` as fallback
+            from shutil import which
+            ollama_path = which("ollama")
+            if ollama_path:
+                return ollama_path
+
             raise FileNotFoundError("Ollama was not found in any of the standard locations.")
+
         else:
             raise EnvironmentError("Unsupported operating system.")
+
     except Exception as e:
         raise FileNotFoundError(f"Error finding Ollama path: {e}")
 
 def start_ollama():
     """
     Startet Ollama, falls es noch nicht läuft.
+    Unter Linux wird 'ollama start' verwendet.
     """
     try:
-        # Überprüfen, ob Ollama bereits läuft
+        system = platform.system()
+
+        # Prüfen, ob Ollama bereits läuft
         result = subprocess.run(
-            ["tasklist"] if platform.system() == "Windows" else ["ps", "aux"],
+            ["tasklist"] if system == "Windows" else ["ps", "aux"],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True
@@ -214,18 +233,27 @@ def start_ollama():
         if "ollama" not in result.stdout.lower():
             print(f"{blue}Ollama is not running. Starting Ollama...{reset}")
 
-            # Pfad zu Ollama finden
-            ollama_path = find_ollama_path()
+            if system == "Linux":
+                # Verwende direkt 'ollama start', falls im PATH
+                if which("ollama") is not None:
+                    subprocess.Popen(["ollama", "start"])
+                else:
+                    raise FileNotFoundError("The 'ollama' command is not available in PATH.")
+            else:
+                # Verwende den gefundenen Pfad zum Binary (macOS, Windows)
+                ollama_path = find_ollama_path()
 
-            if not os.path.exists(ollama_path):
-                raise FileNotFoundError(f"Ollama executable not found at: {ollama_path}")
+                if not os.path.exists(ollama_path):
+                    raise FileNotFoundError(f"Ollama executable not found at: {ollama_path}")
 
-            # Ollama starten
-            subprocess.Popen([ollama_path], close_fds=True if platform.system() != "Windows" else False)
-            time.sleep(5)  # Warten, bis Ollama gestartet ist
+                subprocess.Popen([ollama_path], close_fds=(system != "Windows"))
+
+            time.sleep(5)  # Warten bis Server gestartet ist
             print(f"{green}Ollama started successfully.{reset}\n")
+
         else:
             print(f"{green}Ollama is already running.{reset}\n")
+
     except Exception as e:
         print(f"{red}Error starting Ollama: {e}{reset}")
 
