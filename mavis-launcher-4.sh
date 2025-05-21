@@ -390,6 +390,12 @@ fi
 set -Eeuo pipefail
 trap 'echo "[ERROR] Unexpected error at line $LINENO" >&2; exit 1' ERR
 
+#!/usr/bin/env bash
+
+# Exit on errors, undefined variables, and errors in pipelines
+set -Eeuo pipefail
+trap 'echo "[ERROR] Unexpected error at line $LINENO" >&2; exit 1' ERR
+
 # Constants
 readonly MAVIS_DIR="$HOME/PycharmProjects/MAVIS"
 readonly MAVIS_ENV_DIR="$MAVIS_DIR/.env"
@@ -406,16 +412,17 @@ if [[ ! -d "$MAVIS_DIR" ]]; then
     log_error "MAVIS directory not found: $MAVIS_DIR"
     exit 1
 fi
-log_info "MAVIS directory: $MAVIS_DIR"
+cd "$MAVIS_DIR"
+log_info "Working directory: $PWD"
 
 # Check for existing virtual environment (.env)
 if [[ -d "$MAVIS_ENV_DIR" && -f "$MAVIS_ENV_DIR/bin/activate" ]]; then
     log_success "Virtual environment already exists at $MAVIS_ENV_DIR"
 else
-    # Create Python virtual environment
+    # Create Python virtual environment directory
     log_info "Creating Python virtual environment in $MAVIS_ENV_DIR..."
     if python3 -m venv "$MAVIS_ENV_DIR"; then
-        log_success "Virtual environment created"
+        log_success "Virtual environment created at $MAVIS_ENV_DIR"
     else
         log_error "Failed to create virtual environment"
         exit 1
@@ -423,22 +430,39 @@ else
 fi
 
 # Activate virtual environment
-# shellcheck source=/dev/null
-source "$MAVIS_ENV_DIR/bin/activate"
-log_info "Activated virtual environment"
+if [[ -r "$MAVIS_ENV_DIR/bin/activate" ]]; then
+    # shellcheck source=/dev/null
+    source "$MAVIS_ENV_DIR/bin/activate"
+    log_info "Activated virtual environment"
+else
+    log_error "Cannot activate virtual environment: activate script missing or unreadable"
+    exit 1
+fi
 
-# Execute MAVIS run script
-if [[ -f "$MAVIS_RUN_FILE" && -x "$MAVIS_RUN_FILE" ]]; then
-    log_info "Executing MAVIS run script: $MAVIS_RUN_FILE"
-    if bash "$MAVIS_RUN_FILE"; then
-        log_success "MAVIS run script completed successfully"
+# Ensure run script exists and is executable
+if [[ ! -e "$MAVIS_RUN_FILE" ]]; then
+    log_error "Run file not found: $MAVIS_RUN_FILE"
+    deactivate 2>/dev/null || true
+    exit 1
+fi
+
+if [[ ! -x "$MAVIS_RUN_FILE" ]]; then
+    log_info "Making run file executable"
+    if chmod +x "$MAVIS_RUN_FILE"; then
+        log_success "Set executable permission on $MAVIS_RUN_FILE"
     else
-        log_error "MAVIS run script failed"
+        log_error "Failed to set executable permission on $MAVIS_RUN_FILE"
         deactivate 2>/dev/null || true
         exit 1
     fi
+fi
+
+# Execute MAVIS run script
+log_info "Executing MAVIS run script"
+if bash "$MAVIS_RUN_FILE"; then
+    log_success "MAVIS run script completed successfully"
 else
-    log_error "Run file not found or not executable: $MAVIS_RUN_FILE"
+    log_error "MAVIS run script failed"
     deactivate 2>/dev/null || true
     exit 1
 fi
