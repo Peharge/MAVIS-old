@@ -231,7 +231,7 @@ def display_versions():
 def get_user_input(versions):
     """Fragt nach einer MAVIS-Shell-Skript-Datei und führt sie aus."""
     while True:
-        user_input = input("\nEnter a MAVIS shell script (e.g. 'mavis-4', 'mavis-3-code' or 'mavis-terminal-4'):").strip()
+        user_input = input("\nEnter a MAVIS shell script (e.g. 'mavis-4', 'mavis-4-3' or 'mavis-terminal-4-arch'):").strip()
         if user_input in versions:
             run_shell_script(user_input)
             break

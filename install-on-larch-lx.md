@@ -51,48 +51,57 @@ git cloen https://github.com/Peharge/MAVIS.git
 cd MAVIS
 ```
 
-```bash
-python3 -m venv .env
-```
+Run:
 
-```bash
-source .env/bin/activate
-```
+>```bash
+>bash mavis-launcher-4.py
+>```
 
-```bash
-cd install
-```
+Or:
 
-```bash
-python3 install-mavis-4.py
-```
-
-see models
-```bash
-python3 m-help-models.py
-```
-
-```bash
-python3 install-ollama-mavis-4.py
-```
-
-```bash
-cd
-```
-
-```bash
-cd PycharmProjects
-```
-
-```bash
-cd MAVIS
-```
-
-```bash
-python3 mavis-4-3-main-lx.py
-```
-
-new window
-```bash
-ollama start
-```
+>```bash
+>python3 -m venv .env
+>```
+>
+>```bash
+>source .env/bin/activate
+>```
+>
+>```bash
+>cd install
+>```
+>
+>```bash
+>python3 install-mavis-4.py
+>```
+>
+>see models
+>```bash
+>python3 m-help-models.py
+>```
+>
+>```bash
+>python3 install-ollama-mavis-4.py
+>```
+>
+>```bash
+>cd
+>```
+>
+>```bash
+>cd PycharmProjects
+>```
+>
+>```bash
+>cd MAVIS
+>```
+>
+>```bash
+>python3 mavis-4-3-main-lx.py
+>```
+>
+>new window
+>```bash
+>ollama start
+>```
+>
