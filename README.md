@@ -1523,10 +1523,21 @@ BERT is conceptually simple and empirically powerful. It obtains new state-of-th
 
 </details>
 
-## Lizenz
-
-This project is licensed under the MIT license – see the [LICENSE](LICENSE) file for details.
-
 ## MAVIS Icons
 
 <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-icons-history.svg" alt="mavis" width="1400">
+
+<div align="center">
+
+<div align="center">
+
+[`MAVIS.com`](https://peharge.github.io/MAVIS-web/) [`Download MAVIS 4 (WINDOWS)`](https://github.com/Peharge/MAVIS/blob/main/mavis-launcher-4.bat) [`Download MAVIS 4 (Linux - Arch)`](https://github.com/Peharge/MAVIS/blob/main/install-on-larch-lx.md) [`Download MAVIS Terminal 5 (WINDOWS)`](https://github.com/Peharge/MAVIS/blob/main/run-mavis-terminal-5.bat) [`Download PP-Term 4.3 (WINDOWS)`](https://github.com/Peharge/p-terminal/blob/main/pp-term/run-pp-term.bat) [`License`](https://opensource.org/licenses/MIT)
+
+[`LICENSE`](LICENSE) [`SECURITY`](SECURITY.md) [`PULL_REQUEST_TEMPLATE`](PULL_REQUEST_TEMPLATE.md) [`CONTRIBUTING`](CONTRIBUTING.md) [`CODE_OF_CONDUCT`](CODE_OF_CONDUCT.md) [`TREE`](TREE.md) [`VERSIONS`](VERSIONS.md)
+
+</div>
+
+### **_Peharge Terminal_**
+_Peharge Projects 2025_
+
+</div>
