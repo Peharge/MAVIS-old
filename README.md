@@ -36,11 +36,7 @@ _Do you think you're better at math than an AI? Prove it! Show that there are in
     Denkst du, du bist besser in Mathe als eine KI? Beweise es! Zeig, dass es unendlich viele Primzahlpaare gibt, die genau 2 auseinander liegen. Kein Beweis? Keine Antwort? Tja – vielleicht geht’s doch nicht ohne KI! Worauf wartest du? Frag MAVIS!
 </details>
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-banner27-3.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
-
-</div>
+<br>
 
 <div align="center">
 <img alt="python" src="https://img.shields.io/badge/Python-3.11 / 3.12 / (3.13)-555555?&style=flat&logo=Python&logoColor=ffffff">
@@ -89,6 +85,12 @@ _Do you think you're better at math than an AI? Prove it! Show that there are in
 <img alt="altair" src="https://img.shields.io/badge/-Altair-555555?&logo=altair&logoColor=ffffff">
 <br>
 <br>
+
+</div>
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-banner27-3.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
 
 </div>
 
