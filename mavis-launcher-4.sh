@@ -327,16 +327,17 @@ fi
 # using the official installation method or an alternative method if necessary.
 # ----------------------------------------------------------------------------
 
-# Check if Rustup is already installed
-if ! command -v rustup &>/dev/null; then
-    echo "Rustup is not installed."
-    read -p "Would you like to install Rustup? [y/n]:" install_rustup
+# Check if rustc is already installed
+if ! command -v rustc &>/dev/null; then
+    echo "rustc (Rust compiler) is not installed."
+    read -p "Would you like to install Rustup (to get rustc)? [y/n]: " install_rustup
 
     if [[ "$install_rustup" =~ ^[Yy]$ ]]; then
         echo "Downloading Rustup installer..."
 
         # Define the Rustup installation URL
         RUSTUP_URL="https://win.rustup.rs"
+        TEMP_DIR="$(mktemp -d)"
         RUSTUP_INSTALLER="$TEMP_DIR/rustup-init.sh"
 
         # Download the Rustup installer script
@@ -347,16 +348,16 @@ if ! command -v rustup &>/dev/null; then
             bash "$RUSTUP_INSTALLER" -y
 
             # Verify installation
-            if rustup --version &>/dev/null; then
-                echo "✅ Rustup successfully installed!"
+            if command -v rustc &>/dev/null; then
+                echo "✅ rustc successfully installed via Rustup!"
             else
-                echo "❌ Error: Rustup installation failed! Retrying..."
+                echo "❌ Error: rustc installation failed! Retrying..."
                 rm -f "$RUSTUP_INSTALLER"
                 curl --proto '=https' --tlsv1.2 -sSf "$RUSTUP_URL" > "$RUSTUP_INSTALLER"
                 bash "$RUSTUP_INSTALLER" -y
 
-                if rustup --version &>/dev/null; then
-                    echo "✅ Rustup successfully installed!"
+                if command -v rustc &>/dev/null; then
+                    echo "✅ rustc successfully installed on second attempt!"
                 else
                     echo "❌ Second installation attempt failed! Trying alternative method..."
 
@@ -365,8 +366,8 @@ if ! command -v rustup &>/dev/null; then
                     curl --proto '=https' --tlsv1.2 -sSf "$RUSTUP_ALT_URL" > "$RUSTUP_INSTALLER"
                     bash "$RUSTUP_INSTALLER" -y
 
-                    if rustup --version &>/dev/null; then
-                        echo "✅ Rustup successfully installed using alternative method!"
+                    if command -v rustc &>/dev/null; then
+                        echo "✅ rustc successfully installed using alternative method!"
                     else
                         echo "❌ Alternative installation failed! Manual installation required."
                         echo "Please visit https://rustup.rs/ for manual installation."
@@ -380,133 +381,121 @@ if ! command -v rustup &>/dev/null; then
         echo "Installation aborted. Please install Rustup manually: https://rustup.rs/"
     fi
 else
-    echo "✅ Rustup is already installed."
+    echo "✅ rustc is already installed."
 fi
 
-# Define project path
-PYCHARM_PROJECTS="$HOME/PycharmProjects"
-MAVIS_DIR="$PYCHARM_PROJECTS/MAVIS"
-MAVIS_ENV_FILE="$MAVIS_DIR/.env"
-MAVIS_RUN_FILE="$MAVIS_DIR/run-mavis-4-all.sh"
+# Exit on errors, undefined variables, and errors in pipelines
+set -Eeuo pipefail
 
-# Ensure PyCharm Projects directory exists
-if [ ! -d "$PYCHARM_PROJECTS" ]; then
-    echo "Creating project directory: $PYCHARM_PROJECTS..."
-    mkdir -p "$PYCHARM_PROJECTS"
-    if [ $? -ne 0 ]; then
-        echo "❌ Error: Failed to create directory $PYCHARM_PROJECTS. Exiting..."
-        exit 1
-    fi
-fi
+# Constants
+readonly PYCHARM_PROJECTS="$HOME/PycharmProjects"
+readonly MAVIS_DIR="$PYCHARM_PROJECTS/MAVIS"
+readonly MAVIS_ENV_FILE="$MAVIS_DIR/.env"
+readonly MAVIS_RUN_FILE="$MAVIS_DIR/run-mavis-4-all.sh"
+readonly GIT_REPO_URL="https://github.com/Peharge/MAVIS.git"
+readonly MAX_RETRIES=3
+readonly RETRY_DELAY=5
 
-# Change to PyCharm Projects directory
-cd "$PYCHARM_PROJECTS" || exit 1
+# Logging helpers
+log_info()    { echo -e "[INFO]    $*"; }
+log_success() { echo -e "[SUCCESS] $*"; }
+log_error()   { echo -e "[ERROR]   $*" >&2; }
 
-# Check if the MAVIS directory exists
-if [ ! -d "$MAVIS_DIR" ]; then
-    echo "Cloning MAVIS repository from GitHub..."
-
-    # Check if Git is installed
-    if ! command -v git &>/dev/null; then
-        echo "❌ Error: Git is not installed. Please install Git first."
-        exit 1
-    fi
-
-    # Check if GitHub is reachable
-    echo "Testing connection to GitHub..."
-    if ! ping -c 1 -W 5 github.com &>/dev/null; then
-        echo "❌ Error: Cannot reach GitHub! Check your internet connection or firewall settings."
-        exit 1
-    fi
-
-    # GitHub is accessible, clone repository
-    echo "Running git clone..."
-    git clone https://github.com/Peharge/MAVIS.git "$MAVIS_DIR"
-
-    if [ $? -ne 0 ]; then
-        echo "❌ Error: Cloning MAVIS repository failed! Make sure GitHub is accessible and the URL is correct."
-        exit 1
-    else
-        echo "✅ MAVIS repository cloned successfully!"
-    fi
-else
-    echo "MAVIS repository already exists. Checking for updates..."
-
-    cd "$MAVIS_DIR" || exit 1
-
-    # Check if the repository is in the correct state (no uncommitted changes)
-    if ! git diff-index --quiet HEAD --; then
-        echo "❌ Error: There are uncommitted changes! Please commit or discard them first."
-        exit 1
-    fi
-
-    # Perform Git Fetch
-    echo "Fetching latest changes..."
-    git fetch --quiet
-    if [ $? -ne 0 ]; then
-        echo "❌ Error: Could not fetch updates from the remote repository! Check your internet connection or Git configuration."
-        exit 1
-    fi
-
-    # Check the status of the repository to see if updates are available
-    if git status | grep -q "Your branch is behind"; then
-        echo "Updates available, pulling changes..."
-
-        # Perform Git Pull
-        git pull --quiet
-        if [ $? -ne 0 ]; then
-            echo "❌ Error: Could not update MAVIS repository! Check your internet connection or Git configuration."
-            exit 1
-        else
-            echo "✅ MAVIS repository updated successfully!"
+# Retry wrapper for commands
+retry() {
+    local n=1
+    local cmd="$*"
+    until [[ $n -gt $MAX_RETRIES ]]; do
+        log_info "Attempt $n: $cmd"
+        if $cmd; then
+            return 0
         fi
-    else
-        echo "✅ MAVIS repository is already up-to-date!"
-    fi
+        n=$((n+1))
+        log_info "Retrying in $RETRY_DELAY seconds..."
+        sleep $RETRY_DELAY
+    done
+    return 1
+}
 
-    # Check Git status after pull for merge conflicts
-    if git status | grep -q "Merge conflict"; then
-        echo "❌ Error: Merge conflicts detected. Please resolve them manually."
-        exit 1
-    fi
+# Ensure project directory exists
+mkdir -p "$PYCHARM_PROJECTS"
+log_info "Ensured project directory: $PYCHARM_PROJECTS"
 
-    echo "✅ MAVIS update process completed successfully."
-fi
-
-# Ensure MAVIS directory exists
-if [ ! -d "$MAVIS_DIR" ]; then
-    echo "❌ Error: MAVIS directory does not exist!"
-    echo "Make sure the repository was cloned correctly."
+# Ensure Git is installed
+if ! command -v git &>/dev/null; then
+    log_error "Git is not installed. Please install Git first."
     exit 1
 fi
 
-# Change to MAVIS directory
-cd "$MAVIS_DIR" || exit 1
-
-# Ensure .env file exists and is correctly configured
-if [ ! -f "$MAVIS_ENV_FILE" ]; then
-    echo "Creating .env file..."
-    {
-        echo "# Environment variables for MAVIS"
-        echo "PYTHONPATH=$MAVIS_DIR"
-    } > "$MAVIS_ENV_FILE"
-
-    if [ $? -ne 0 ]; then
-        echo "❌ Error: Could not create .env file!"
-        exit 1
-    else
-        echo "✅ .env file created successfully!"
-    fi
-else
-    echo "✅ .env file already exists."
+# Check connectivity to GitHub
+if ! ping -c1 -W3 github.com &>/dev/null; then
+    log_error "Cannot reach GitHub! Check network or firewall settings."
+    exit 1
 fi
 
-# Optionally, run MAVIS
-if [ -f "$MAVIS_RUN_FILE" ]; then
-    echo "Running MAVIS..."
-    bash "$MAVIS_RUN_FILE"
+# Clone or update repository
+if [[ ! -d "$MAVIS_DIR/.git" ]]; then
+    log_info "Cloning MAVIS repository..."
+    retry git clone "$GIT_REPO_URL" "$MAVIS_DIR" || {
+        log_error "Failed to clone repository after $MAX_RETRIES attempts.";
+        exit 1;
+    }
+    log_success "Repository cloned to $MAVIS_DIR"
 else
-    echo "❌ Error: Run file not found: $MAVIS_RUN_FILE"
+    log_info "Updating existing MAVIS repository..."
+    pushd "$MAVIS_DIR" >/dev/null
+
+    # Ensure clean state
+    if ! git diff-index --quiet HEAD --; then
+        log_error "Uncommitted changes detected. Please commit or stash them before updating."
+        exit 1
+    fi
+
+    # Fetch all updates
+    retry git fetch --all --prune || {
+        log_error "Failed to fetch updates after $MAX_RETRIES attempts.";
+        exit 1;
+    }
+
+    # Determine current branch
+    current_branch=$(git rev-parse --abbrev-ref HEAD)
+    log_info "On branch: $current_branch"
+
+    # Fast-forward merge
+    if git merge --ff-only "origin/$current_branch"; then
+        log_success "Repository fast-forwarded to latest origin/$current_branch"
+    else
+        log_info "No updates or merge required."
+    fi
+
+    popd >/dev/null
+fi
+
+# Verify clone/update
+if [[ ! -d "$MAVIS_DIR" ]]; then
+    log_error "MAVIS directory missing after update.";
+    exit 1;
+fi
+
+# Setup .env file
+if [[ ! -f "$MAVIS_ENV_FILE" ]]; then
+    log_info "Creating .env file..."
+    cat > "$MAVIS_ENV_FILE" <<EOF
+# Environment variables for MAVIS
+PYTHONPATH=$MAVIS_DIR
+EOF
+    log_success ".env file created"
+else
+    log_success ".env file exists"
+fi
+
+# Run MAVIS script
+if [[ -x "$MAVIS_RUN_FILE" ]]; then
+    log_info "Executing MAVIS run script..."
+    bash "$MAVIS_RUN_FILE"
+    log_success "MAVIS script completed"
+else
+    log_error "Run file not found or not executable: $MAVIS_RUN_FILE"
     exit 1
 fi
 
