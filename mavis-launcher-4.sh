@@ -384,8 +384,11 @@ else
     echo "✅ rustc is already installed."
 fi
 
+#!/usr/bin/env bash
+
 # Exit on errors, undefined variables, and errors in pipelines
 set -Eeuo pipefail
+trap 'echo "[ERROR] Unexpected error at line $LINENO" >&2; exit 1' ERR
 
 # Constants
 readonly PYCHARM_PROJECTS="$HOME/PycharmProjects"
@@ -395,22 +398,31 @@ readonly MAVIS_RUN_FILE="$MAVIS_DIR/run-mavis-4-all.sh"
 readonly GIT_REPO_URL="https://github.com/Peharge/MAVIS.git"
 readonly MAX_RETRIES=3
 readonly RETRY_DELAY=5
+readonly LOCKFILE="/tmp/mavis_update.lock"
 
 # Logging helpers
-log_info()    { echo -e "[INFO]    $*"; }
-log_success() { echo -e "[SUCCESS] $*"; }
-log_error()   { echo -e "[ERROR]   $*" >&2; }
+log()      { printf "[%s] %s\n" "$(date +'%Y-%m-%dT%H:%M:%S%z')" "$*"; }
+log_info()    { log "INFO    $*"; }
+log_success() { log "SUCCESS $*"; }
+log_error()   { log "ERROR   $*" >&2; }
+
+# Ensure single instance
+exec 9>"$LOCKFILE"
+if ! flock -n 9; then
+    log_error "Another instance is running. Exiting."
+    exit 1
+fi
 
 # Retry wrapper for commands
-retry() {
+def retry() {
+    local -r cmd=("$@")
     local n=1
-    local cmd="$*"
-    until [[ $n -gt $MAX_RETRIES ]]; do
-        log_info "Attempt $n: $cmd"
-        if $cmd; then
+    until (( n > MAX_RETRIES )); do
+        log_info "Attempt $n: ${cmd[*]}"
+        if "${cmd[@]}"; then
             return 0
         fi
-        n=$((n+1))
+        ((n++))
         log_info "Retrying in $RETRY_DELAY seconds..."
         sleep $RETRY_DELAY
     done
@@ -423,182 +435,76 @@ log_info "Ensured project directory: $PYCHARM_PROJECTS"
 
 # Ensure Git is installed
 if ! command -v git &>/dev/null; then
-    log_error "Git is not installed. Please install Git first."
+    log_error "Git is not installed. Please install Git and retry."
     exit 1
 fi
 
-# Check connectivity to GitHub
-if ! ping -c1 -W3 github.com &>/dev/null; then
-    log_error "Cannot reach GitHub! Check network or firewall settings."
+# Check connectivity to GitHub using HTTP
+if ! curl -fsS --head --retry 2 --retry-delay 3 "$GIT_REPO_URL" &>/dev/null; then
+    log_error "Cannot reach GitHub repository URL. Check network or firewall."
     exit 1
 fi
 
 # Clone or update repository
 if [[ ! -d "$MAVIS_DIR/.git" ]]; then
     log_info "Cloning MAVIS repository..."
-    retry git clone "$GIT_REPO_URL" "$MAVIS_DIR" || {
-        log_error "Failed to clone repository after $MAX_RETRIES attempts.";
-        exit 1;
-    }
-    log_success "Repository cloned to $MAVIS_DIR"
+    retry git clone --depth 1 "$GIT_REPO_URL" "$MAVIS_DIR" || \
+        { log_error "Failed to clone after $MAX_RETRIES attempts."; exit 1; }
+    log_success "Cloned into $MAVIS_DIR"
 else
     log_info "Updating existing MAVIS repository..."
-    pushd "$MAVIS_DIR" >/dev/null
-
-    # Ensure clean state
-    if ! git diff-index --quiet HEAD --; then
-        log_error "Uncommitted changes detected. Please commit or stash them before updating."
-        exit 1
-    fi
-
-    # Fetch all updates
-    retry git fetch --all --prune || {
-        log_error "Failed to fetch updates after $MAX_RETRIES attempts.";
-        exit 1;
-    }
-
-    # Determine current branch
-    current_branch=$(git rev-parse --abbrev-ref HEAD)
-    log_info "On branch: $current_branch"
-
-    # Fast-forward merge
-    if git merge --ff-only "origin/$current_branch"; then
-        log_success "Repository fast-forwarded to latest origin/$current_branch"
-    else
-        log_info "No updates or merge required."
-    fi
-
-    popd >/dev/null
+    # Use subshell to avoid polluting cwd
+    (
+        cd "$MAVIS_DIR"
+        # Ensure clean working tree
+        if ! git diff-index --quiet HEAD --; then
+            log_error "Uncommitted changes detected. Please commit or stash them."
+            exit 1
+        fi
+        # Fetch updates
+        retry git fetch --all --prune || { log_error "Failed git fetch."; exit 1; }
+        # Determine branch and fast-forward
+        branch=$(git rev-parse --abbrev-ref HEAD)
+        log_info "On branch: $branch"
+        if git merge --ff-only "origin/$branch"; then
+            log_success "Fast-forwarded to origin/$branch"
+        else
+            log_info "No new updates to merge."
+        fi
+    )
 fi
 
-# Verify clone/update
+# Verify directory
 if [[ ! -d "$MAVIS_DIR" ]]; then
-    log_error "MAVIS directory missing after update.";
-    exit 1;
+    log_error "MAVIS directory missing after clone/update."
+    exit 1
 fi
 
 # Setup .env file
 if [[ ! -f "$MAVIS_ENV_FILE" ]]; then
     log_info "Creating .env file..."
-    cat > "$MAVIS_ENV_FILE" <<EOF
-# Environment variables for MAVIS
-PYTHONPATH=$MAVIS_DIR
-EOF
-    log_success ".env file created"
+    {
+        echo "# Environment variables for MAVIS"
+        echo "PYTHONPATH=$MAVIS_DIR"
+    } > "$MAVIS_ENV_FILE"
+    log_success "Created .env file"
 else
-    log_success ".env file exists"
+    log_info ".env file already exists"
 fi
 
-# Run MAVIS script
+# Execute MAVIS run script
 if [[ -x "$MAVIS_RUN_FILE" ]]; then
-    log_info "Executing MAVIS run script..."
-    bash "$MAVIS_RUN_FILE"
-    log_success "MAVIS script completed"
+    log_info "Executing MAVIS run script"
+    if bash "$MAVIS_RUN_FILE"; then
+        log_success "MAVIS script completed successfully"
+    else
+        log_error "MAVIS script failed"
+        exit 1
+    fi
 else
     log_error "Run file not found or not executable: $MAVIS_RUN_FILE"
     exit 1
 fi
 
-# Define the username variable dynamically
-# username="$USER"
-
-# Detect the OneDrive folder dynamically
-# onedriveFolder=""
-# onedriveFolder=$(find "$HOME" -type d -iname "OneDrive" -maxdepth 1)
-
-# If OneDrive folder is found, set the Desktop path
-# if [ -n "$onedriveFolder" ]; then
-#     # Handle paths with spaces in OneDrive folder names properly
-#     desktop=$(find "$HOME/OneDrive" -type d -name "Desktop" | head -n 1)
-# fi
-
-# If Desktop path is not found under OneDrive, fall back to default Desktop path
-# if [ -z "$desktop" ]; then
-#     desktop="$HOME/Desktop"
-# fi
-
-# Check if Desktop path is found, if not skip step and continue
-# if [ -z "$desktop" ]; then
-#     echo "❌ Could not find Desktop path. Skipping step..."
-#     desktop=""
-#     exit 0
-# fi
-
-# Print the Desktop path for verification
-# echo "Desktop Path: $desktop"
-
-# Define the paths for the shortcut, target, and icon
-# shortcut="$desktop/MAVIS Installer 4.desktop"
-# targetPath="$HOME/PycharmProjects/MAVIS/mavis-launcher-4.sh"
-# startIn="$HOME/PycharmProjects/MAVIS"
-# iconPath="$HOME/PycharmProjects/MAVIS/icons/MAVIS-3-logo-1.ico"
-
-# Check if the target files exist, if not skip
-# if [ ! -f "$targetPath" ]; then
-#     echo "❌ Target path ($targetPath) does not exist. Skipping step..."
-#     targetPath=""
-# fi
-
-# if [ ! -f "$iconPath" ]; then
-#     echo "❌ Icon path ($iconPath) does not exist. Skipping step..."
-#     iconPath=""
-# fi
-
-# Check if the shortcut already exists
-# if [ -f "$shortcut" ]; then
-#     echo "✅ Shortcut 'MAVIS Installer 4' already exists. No new shortcut will be created."
-# else
-#     if [ -n "$desktop" ] && [ -n "$targetPath" ] && [ -n "$iconPath" ]; then
-#         echo "❌ Shortcut 'MAVIS Installer 4' does not exist. Creating shortcut now..."
-
-#         # Create the shortcut using a .desktop file (Linux equivalent of a Windows shortcut)
-#         echo "[Desktop Entry]" > "$shortcut"
-#         echo "Name=MAVIS Installer 4" >> "$shortcut"
-#         echo "Exec=$targetPath" >> "$shortcut"
-#         echo "Icon=$iconPath" >> "$shortcut"
-#         echo "Terminal=true" >> "$shortcut"
-#         echo "Type=Application" >> "$shortcut"
-
-#         # Check if the shortcut was created successfully
-#         if [ ! -f "$shortcut" ]; then
-#             echo "❌ Failed to create the shortcut. Skipping step..."
-#             exit 0
-#         fi
-
-#         echo "✅ Shortcut 'MAVIS Installer 4' has been created successfully."
-#     else
-#         echo "❌ Skipping shortcut creation due to missing paths."
-#     fi
-# fi
-
-# Check if MAVIS run file exists
-if [ ! -f "$MAVIS_RUN_FILE" ]; then
-    echo "❌ Error: run-mavis-4-all.sh not found!"
-    echo "Please verify that the file exists in: $MAVIS_DIR"
-    exit 1
-fi
-
-# Execute run-mavis-4-all.sh
-echo "✅ Starting MAVIS..."
-
-# Check if the file is executable (check for executable file)
-# Test if the file is an .sh file
-if [[ ! "$MAVIS_RUN_FILE" =~ \.sh$ ]]; then
-    echo "❌ Error: The file is not an executable file!"
-    exit 1
-fi
-
-# Final report
-echo "✅ All tasks were completed successfully!"
-echo
-
-# Try to start the file and check if it is successful
-bash "$MAVIS_RUN_FILE"
-if [ $? -ne 0 ]; then
-    echo "❌ Error: MAVIS could not be started successfully!"
-    exit 1
-else
-    echo "✅ MAVIS was successfully launched!"
-fi
-
+log_success "All tasks completed successfully"
 exit 0
