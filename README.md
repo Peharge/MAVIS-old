@@ -43,59 +43,50 @@ _Do you think you're better at math than an AI? Prove it! Show that there are in
 </div>
 
 <div align="center">
-<img alt="python" src="https://img.shields.io/badge/Python-3.11 / 3.12 / (3.13)-blue?&style=flat&logo=Python&logoColor=white%5BPython">
-<img alt="c++" src="https://img.shields.io/badge/-C++-blue?style=flat&logo=cplusplus">
-<img alt="c" src="https://img.shields.io/badge/C-A8B9CC?logo=C&logoColor=white">
-<img alt="javascript++" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=black"><br>
-<img alt="batch" src="https://img.shields.io/badge/Rust-000000?logo=rust&logoColor=white">
-<img alt="batch" src="https://img.shields.io/badge/Bat-31369E?style=flat&logo=bat">
-<img alt="bash" src="https://img.shields.io/badge/Shell-4EAA25?&style=flat&logo=gnu-bash&logoColor=white">
-<img alt="html" src="https://img.shields.io/badge/HTML5-%23E34F26.svg?logo=html5&logoColor=white">
-<img alt="css" src="https://img.shields.io/badge/CSS3-%231572B6.svg?logo=css3&logoColor=white">
-<img alt="qt" src="https://img.shields.io/badge/-Qt-004400?style=flat&logo=Qt">
-<br>
-<br>
-
-<img alt="flask" src="https://img.shields.io/badge/FLask-F7DF1E?style=flat&logo=flask&logoColor=black">
-<img alt="ollama" src="https://img.shields.io/badge/Ollama-%2300A98F.svg?logoColor=white">
-<img alt="pycharm" src="https://img.shields.io/badge/PyCharm-black?style=flat&logo=PyCharm&logoColor=white">
-<img alt="rustrover" src="https://img.shields.io/badge/RustRover-black?style=flat&logo=RustRover&logoColor=white">
-<img alt="visualstudio" src="https://img.shields.io/badge/Visual%20Studio-5C2D91?style=flat&logo=visualstudio&logoColor=white"><br>
-<img alt="powershell" src="https://img.shields.io/badge/PowerShell-003B57?style=flat&logo=gnome-terminal&logoColor=white">
-<img alt="github" src="https://img.shields.io/badge/GitHub-black?style=flat&logo=github">
-<img alt="huggingface" src="https://img.shields.io/badge/HuggingFace-%23FFCC00.svg?logo=huggingface&logoColor=black">
-<img alt="llama.cpp" src="https://img.shields.io/badge/Llama.cpp-%2300A9FF.svg?logo=llama&logoColor=black">
-<br>
-<br>
-
-<img alt="wsl" src="https://img.shields.io/badge/WSL-4E9A06?style=flat&logo=linux&logoColor=white">
-<img alt="windows" src="https://img.shields.io/badge/Windows-informational?style=flat&logo=windows&logoColor=white&color=blue">
-<img alt="debian" src="https://img.shields.io/badge/Debian-red?style=flat&logo=debian&logoColor=orange&color=darkred">
-<img alt="arch" src="https://img.shields.io/badge/-Arch%20Linux-grey?logo=archlinux"><br>
-<img alt="kali" src="https://img.shields.io/badge/-Kali%20Linux-%23557C94?style=flat&logo=kalilinux&logoColor=white">
-<img alt="opensuse" src="https://img.shields.io/badge/openSUSE-73BA25?style=flat&logo=SUSE&logoColor=white">
-<img alt="mint" src="https://img.shields.io/badge/Linux_Mint-87CF3E?style=flat&logo=linux-mint&logoColor=white">
-<img alt="fedora" src="https://img.shields.io/badge/Fedora-294172?style=flat&logo=fedora&logoColor=white"><br>
-<img alt="red_hat" src="https://img.shields.io/badge/Red_Hat-EE0000?style=flat&logo=redhat&logoColor=white">
-<br>
-<br>
-
-<img alt="latex" src="https://img.shields.io/badge/-LaTeX-008080?style=flat&logo=latex&logoColor=white">
-<img alt="jupyter" src="https://img.shields.io/badge/Jupyter-%23F37626.svg?logo=jupyter&logoColor=white">
-<img alt="Grafana" src="https://img.shields.io/badge/Grafana-black?style=flat&logo=Grafana">
-<img alt="matplotlib" src="https://img.shields.io/badge/-Matplotlib-11557C?&logo=matplotlib">
-<img alt="plotly" src="https://img.shields.io/badge/-Plotly-3F4F75?&logo=plotly">
-<img alt="seaborn" src="https://img.shields.io/badge/-Seaborn-4C72B0?&logo=seaborn">
-<img alt="numpy" src="https://img.shields.io/badge/-Numpy-013243?&logo=NumPy">
-<img alt="sympy" src="https://img.shields.io/badge/-SymPy-3B5526?&logo=sympy&logoColor=white">
-<img alt="pandas" src="https://img.shields.io/badge/-Pandas-150458?&logo=pandas">
-<img alt="scipy" src="https://img.shields.io/badge/-SciPy-8CAAE6?&logo=scipy&logoColor=white"><br>
-<img alt="pytorch" src="https://img.shields.io/badge/-PyTorch-EE4C2C?&logo=pytorch&logoColor=white">
-<img alt="tensorflow" src="https://img.shields.io/badge/-TensorFlow-FF6F00?&logo=tensorflow&logoColor=white">
-<img alt="scikit-learn" src="https://img.shields.io/badge/-Scikit--Learn-F7931E?&logo=scikitlearn&logoColor=white">
-<img alt="transformers" src="https://img.shields.io/badge/-Transformers-34AADC?&logo=transformers">
-<img alt="geopandas" src="https://img.shields.io/badge/-GeoPandas-008080?&logo=geopandas&logoColor=white">
-<img alt="altair" src="https://img.shields.io/badge/-Altair-E54C2F?&logo=altair">
+<img alt="python" src="https://img.shields.io/badge/Python-3.11 / 3.12 / (3.13)-555555?&style=flat&logo=Python&logoColor=ffffff">
+<img alt="c++" src="https://img.shields.io/badge/-C++-555555?style=flat&logo=cplusplus&logoColor=ffffff">
+<img alt="c" src="https://img.shields.io/badge/C-555555?logo=C&logoColor=ffffff">
+<img alt="javascript++" src="https://img.shields.io/badge/JavaScript-555555?style=flat&logo=JavaScript&logoColor=ffffff"><br>
+<img alt="batch" src="https://img.shields.io/badge/Rust-555555?logo=rust&logoColor=ffffff">
+<img alt="batch" src="https://img.shields.io/badge/Bat-555555?style=flat&logo=bat&logoColor=ffffff">
+<img alt="bash" src="https://img.shields.io/badge/Shell-555555?&style=flat&logo=gnu-bash&logoColor=ffffff">
+<img alt="html" src="https://img.shields.io/badge/HTML5-555555?logo=html5&logoColor=ffffff">
+<img alt="css" src="https://img.shields.io/badge/CSS3-555555?logo=css3&logoColor=ffffff">
+<img alt="qt" src="https://img.shields.io/badge/-Qt-555555?style=flat&logo=Qt&logoColor=ffffff">
+<img alt="flask" src="https://img.shields.io/badge/FLask-555555?style=flat&logo=flask&logoColor=ffffff">
+<img alt="ollama" src="https://img.shields.io/badge/Ollama-555555?logoColor=white&logoColor=ffffff">
+<img alt="pycharm" src="https://img.shields.io/badge/PyCharm-555555?style=flat&logo=PyCharm&logoColor=ffffff">
+<img alt="rustrover" src="https://img.shields.io/badge/RustRover-555555?style=flat&logo=RustRover&logoColor=ffffff">
+<img alt="visualstudio" src="https://img.shields.io/badge/Visual%20Studio-555555?style=flat&logo=visualstudio&logoColor=ffffff"><br>
+<img alt="powershell" src="https://img.shields.io/badge/PowerShell-555555?style=flat&logo=gnome-terminal&logoColor=ffffff">
+<img alt="github" src="https://img.shields.io/badge/GitHub-555555?style=flat&logo=github&logoColor=ffffff">
+<img alt="huggingface" src="https://img.shields.io/badge/HuggingFace-555555?logo=huggingface&logoColor=ffffff">
+<img alt="llama.cpp" src="https://img.shields.io/badge/Llama.cpp-555555?logo=llama&logoColor=ffffff">
+<img alt="wsl" src="https://img.shields.io/badge/WSL-555555?style=flat&logo=linux&logoColor=ffffff">
+<img alt="windows" src="https://img.shields.io/badge/Windows-555555?style=flat&logo=windows&logoColor=ffffff&color=555555">
+<img alt="debian" src="https://img.shields.io/badge/Debian-555555?style=flat&logo=debian&logoColor=ffffff&color=555555">
+<img alt="arch" src="https://img.shields.io/badge/-Arch%20Linux-555555?logo=archlinux&logoColor=ffffff"><br>
+<img alt="kali" src="https://img.shields.io/badge/-Kali%20Linux-555555?style=flat&logo=kalilinux&logoColor=ffffff">
+<img alt="opensuse" src="https://img.shields.io/badge/openSUSE-555555?style=flat&logo=SUSE&logoColor=ffffff">
+<img alt="mint" src="https://img.shields.io/badge/Linux_Mint-555555?style=flat&logo=linux-mint&logoColor=white">
+<img alt="fedora" src="https://img.shields.io/badge/Fedora-555555?style=flat&logo=fedora&logoColor=ffffff"><br>
+<img alt="red_hat" src="https://img.shields.io/badge/Red_Hat-555555?style=flat&logo=redhat&logoColor=ffffff">
+<img alt="latex" src="https://img.shields.io/badge/-LaTeX-555555?style=flat&logo=latex&logoColor=ffffff">
+<img alt="jupyter" src="https://img.shields.io/badge/Jupyter-555555?logo=jupyter&logoColor=ffffff">
+<img alt="Grafana" src="https://img.shields.io/badge/Grafana-555555?style=flat&logo=Grafana&logoColor=ffffff">
+<img alt="matplotlib" src="https://img.shields.io/badge/-Matplotlib-555555?&logo=matplotlib&logoColor=ffffff">
+<img alt="plotly" src="https://img.shields.io/badge/-Plotly-555555?&logo=plotly&logoColor=ffffff">
+<img alt="seaborn" src="https://img.shields.io/badge/-Seaborn-555555?&logo=seaborn&logoColor=ffffff">
+<img alt="numpy" src="https://img.shields.io/badge/-Numpy-555555?&logo=NumPy&logoColor=ffffff">
+<img alt="sympy" src="https://img.shields.io/badge/-SymPy-555555?&logo=sympy&logoColor=white">
+<img alt="pandas" src="https://img.shields.io/badge/-Pandas-555555?&logo=pandas&logoColor=ffffff">
+<img alt="scipy" src="https://img.shields.io/badge/-SciPy-555555?&logo=scipy&logoColor=ffffff"><br>
+<img alt="pytorch" src="https://img.shields.io/badge/-PyTorch-555555?&logo=pytorch&logoColor=ffffff">
+<img alt="tensorflow" src="https://img.shields.io/badge/-TensorFlow-555555?&logo=tensorflow&logoColor=ffffff">
+<img alt="scikit-learn" src="https://img.shields.io/badge/-Scikit--Learn-555555?&logo=scikitlearn&logoColor=ffffff">
+<img alt="transformers" src="https://img.shields.io/badge/-Transformers-555555?&logo=transformers&logoColor=ffffff">
+<img alt="geopandas" src="https://img.shields.io/badge/-GeoPandas-555555?&logo=geopandas&logoColor=ffffff">
+<img alt="altair" src="https://img.shields.io/badge/-Altair-555555?&logo=altair&logoColor=ffffff">
 <br>
 <br>
 
