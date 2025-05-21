@@ -206,7 +206,10 @@ def display_versions():
     versions = {
         "mavis-4": ("MAVIS 4 EAP", "NEW - Development of MAVIS 4 has begun – featuring new Vision Models, a more powerful and faster MAVIS Terminal, and access to over 200 models.", ""),
         "mavis-terminal-4-arch": ("MAVIS Terminal 4 EAP", "The MAVIS Terminal is always available for you!!!", ""),
-        "mavis-terminal-4-debian": ("MAVIS Terminal 4 EAP", "The MAVIS Terminal is always available for you!!!", "")
+        "mavis-terminal-4-debian": ("MAVIS Terminal 4 EAP", "The MAVIS Terminal is always available for you!!!", ""),
+        "mavis-4-3": ("MAVIS 4 EAP",
+                    "NEW - Development of MAVIS 4 has begun – featuring new Vision Models, a more powerful and faster MAVIS Terminal, and access to over 200 models.",
+                    "")
     }
 
     print(f"All MAVIS versions are available here:\n\n{green}█{reset} Required LLM model for this MAVIS version is already installed\n{orange}█{reset} Required LLM model for this MAVIS version is not yet installed\n{blue}█{reset} LLM model is available for you - you have all the permissions\n{red}█{reset} LLM model is not available for you - you do not have permission to install the model")
