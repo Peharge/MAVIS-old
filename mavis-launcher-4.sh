@@ -392,14 +392,14 @@ trap 'echo "[ERROR] Unexpected error at line $LINENO" >&2; exit 1' ERR
 
 # Constants
 readonly MAVIS_DIR="$HOME/PycharmProjects/MAVIS"
-readonly MAVIS_ENV_FILE="$MAVIS_DIR/.env"
+readonly MAVIS_ENV_DIR="$MAVIS_DIR/.env"
 readonly MAVIS_RUN_FILE="$MAVIS_DIR/run-mavis-4-all.sh"
 
 # Logging helpers
 timestamp() { date +"%Y-%m-%dT%H:%M:%S%z"; }
-log_info()    { printf "[%s] Info: %s\n" "$(timestamp)" "$*"; }
-log_success() { printf "[%s] Pass: %s\n" "$(timestamp)" "$*"; }
-log_error()   { printf "[%s] Error: %s\n" "$(timestamp)" "$*" >&2; }
+log_info()    { printf "[%s] INFO    %s\n" "$(timestamp)" "$*"; }
+log_success() { printf "[%s] SUCCESS %s\n" "$(timestamp)" "$*"; }
+log_error()   { printf "[%s] ERROR   %s\n" "$(timestamp)" "$*" >&2; }
 
 # Ensure MAVIS directory exists
 if [[ ! -d "$MAVIS_DIR" ]]; then
@@ -408,33 +408,42 @@ if [[ ! -d "$MAVIS_DIR" ]]; then
 fi
 log_info "MAVIS directory: $MAVIS_DIR"
 
-# If .env exists, everything is fine
-if [[ -f "$MAVIS_ENV_FILE" ]]; then
-    log_success ".env file already exists at $MAVIS_ENV_FILE. All good!"
-    exit 0
+# Check for existing virtual environment (.env)
+if [[ -d "$MAVIS_ENV_DIR" && -f "$MAVIS_ENV_DIR/bin/activate" ]]; then
+    log_success "Virtual environment already exists at $MAVIS_ENV_DIR"
+else
+    # Create Python virtual environment
+    log_info "Creating Python virtual environment in $MAVIS_ENV_DIR..."
+    if python3 -m venv "$MAVIS_ENV_DIR"; then
+        log_success "Virtual environment created"
+    else
+        log_error "Failed to create virtual environment"
+        exit 1
+    fi
 fi
 
-# Create .env file
-log_info "Creating .env file..."
-{
-    echo "# Environment variables for MAVIS"
-    echo "PYTHONPATH=$MAVIS_DIR"
-} > "$MAVIS_ENV_FILE"
-log_success "Created .env file at $MAVIS_ENV_FILE"
+# Activate virtual environment
+# shellcheck source=/dev/null
+source "$MAVIS_ENV_DIR/bin/activate"
+log_info "Activated virtual environment"
 
-# Execute MAVIS run script after creating .env
+# Execute MAVIS run script
 if [[ -f "$MAVIS_RUN_FILE" && -x "$MAVIS_RUN_FILE" ]]; then
     log_info "Executing MAVIS run script: $MAVIS_RUN_FILE"
     if bash "$MAVIS_RUN_FILE"; then
         log_success "MAVIS run script completed successfully"
     else
         log_error "MAVIS run script failed"
+        deactivate 2>/dev/null || true
         exit 1
     fi
 else
     log_error "Run file not found or not executable: $MAVIS_RUN_FILE"
+    deactivate 2>/dev/null || true
     exit 1
 fi
 
+# Deactivate virtual environment
+deactivate 2>/dev/null || true
 log_success "All tasks completed successfully"
 exit 0
