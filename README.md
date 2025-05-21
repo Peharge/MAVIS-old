@@ -99,6 +99,8 @@ _Do you think you're better at math than an AI? Prove it! Show that there are in
 <br>
 <br>
 
+</div>
+
 > [!WARNING]  
 > Beware of fake accounts!<br>
 There is evidence that fake accounts may attempt to misrepresent this project. Please do not share personal information with anyone you do not know and only rely on content coming directly from this repository. Immediately report large activities or accounts to GitHub or the project team.
