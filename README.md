@@ -2,17 +2,47 @@
     <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-4-icon-3.png" width="350">
 </p>
 
+<div align="center">
+
+# **_MAVIS_**
+
+</div>
+
 <br>
 
 <div align="center">
 <img alt="mavis" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-icon-banner-3.svg"><br>
 <img alt="mavis-launcher" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-launcher-icon-banner-3.svg">
-<img alt="mavis-terminal" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-terminal-icon-banner-3.svg"><br>
+<img alt="mavis-terminal" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/MAVIS-terminal-icon-banner-3.svg">
+<img src="https://github.com/Peharge/p-terminal/blob/main/icons/p-term-banner-3.svg" alt="peharge"/>
+<img src="https://github.com/Peharge/p-terminal/blob/main/icons/pp-term-banner-3.svg" alt="peharge"/><br>
 <img alt="tg-loerrach" src="https://img.shields.io/badge/TG Lörrach-red?style=flat">
 <img alt="peharge" src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/Peharge-icon-banner-3.svg">
 <br>
 <br>
 
+</div>
+
+<div align="center">
+
+**MA**_th_ **V**_isual_ **I**_ntelligent_ **S**_ystem (Strongest calculator in the world).<br>
+Peharge Projects 2025<br>
+Thank you for your interest in MAVIS. We greatly appreciate that ❤️<br><br>
+[`MAVIS.com`](https://peharge.github.io/MAVIS-web/) [`Download MAVIS 4 (WINDOWS)`](https://github.com/Peharge/MAVIS/blob/main/mavis-launcher-4.bat) [`Download MAVIS 4 (Linux - Arch)`](https://github.com/Peharge/MAVIS/blob/main/install-on-larch-lx.md) [`Download MAVIS Terminal 5 (WINDOWS)`](https://github.com/Peharge/MAVIS/blob/main/run-mavis-terminal-5.bat) [`Download PP-Term (WINDOWS`](https://github.com/Peharge/p-terminal/blob/main/pp-term/run-pp-term.bat) [`License`](https://opensource.org/licenses/MIT) 
+
+_Do you think you're better at math than an AI? Prove it! Show that there are infinitely many pairs of prime numbers that are exactly 2 apart. No proof? No answer? Well – maybe it can't be done without AI after all! What are you waiting for? Ask [MAVIS - install](#installation)!_
+<details>
+  <summary>Deutsch</summary>
+    Denkst du, du bist besser in Mathe als eine KI? Beweise es! Zeig, dass es unendlich viele Primzahlpaare gibt, die genau 2 auseinander liegen. Kein Beweis? Keine Antwort? Tja – vielleicht geht’s doch nicht ohne KI! Worauf wartest du? Frag MAVIS!
+</details>
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-banner27-3.png" alt="mavis" width="1400" style="margin: 10px;">
+</div>
+
+</div>
+
+<div align="center">
 <img alt="python" src="https://img.shields.io/badge/Python-3.11 / 3.12 / (3.13)-blue?&style=flat&logo=Python&logoColor=white%5BPython">
 <img alt="c++" src="https://img.shields.io/badge/-C++-blue?style=flat&logo=cplusplus">
 <img alt="c" src="https://img.shields.io/badge/C-A8B9CC?logo=C&logoColor=white">
@@ -68,22 +98,6 @@
 <img alt="altair" src="https://img.shields.io/badge/-Altair-E54C2F?&logo=altair">
 <br>
 <br>
-
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-</div>
-
-# _MAVIS_
-**MA**_th_ **V**_isual_ **I**_ntelligent_ **S**_ystem (Strongest calculator in the world). - More: [MAVIS.com](https://peharge.github.io/MAVIS-web/)_
-
-_Do you think you're better at math than an AI? Prove it! Show that there are infinitely many pairs of prime numbers that are exactly 2 apart. No proof? No answer? Well – maybe it can't be done without AI after all! What are you waiting for? Ask [MAVIS - install](#installation)!_
-<details>
-  <summary>Deutsch</summary>
-    Denkst du, du bist besser in Mathe als eine KI? Beweise es! Zeig, dass es unendlich viele Primzahlpaare gibt, die genau 2 auseinander liegen. Kein Beweis? Keine Antwort? Tja – vielleicht geht’s doch nicht ohne KI! Worauf wartest du? Frag MAVIS!
-</details>
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-  <img src="https://github.com/Peharge/MAVIS-images/blob/main/mavis-img-main/mavis-banner27-3.png" alt="mavis" width="1400" style="margin: 10px;">
-</div>
 
 > [!WARNING]  
 > Beware of fake accounts!<br>
