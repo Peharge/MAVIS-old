@@ -77,7 +77,7 @@ def ensure_packages_installed(packages):
                 subprocess.run([sys.executable, "-m", "pip", "install", package], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
                 print(f"{package} installed successfully.")
             except subprocess.CalledProcessError:
-                print(f"WARNING: Failed to install {package}. Please install it manually.")
+                print(f"Warning: Failed to install {package}. Please install it manually.")
         else:
             print(f"{package} is already installed.")
 

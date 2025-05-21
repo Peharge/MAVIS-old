@@ -63,6 +63,29 @@
 
 import subprocess
 import sys
+import platform
+import importlib.util
+
+required_packages = ["tabulate"]
+
+def ensure_packages_installed(packages):
+    """Stellt sicher, dass alle erforderlichen Pakete installiert sind."""
+    for package in packages:
+        if importlib.util.find_spec(package) is None:
+            print(f"Installing {package}...")
+            try:
+                subprocess.run([sys.executable, "-m", "pip", "install", package], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                print(f"{package} installed successfully.")
+            except subprocess.CalledProcessError:
+                print(f"Warning: Failed to install {package}. Please install it manually.")
+        else:
+            print(f"{package} is already installed.")
+
+# Stellen Sie sicher, dass alle erforderlichen Pakete installiert sind
+ensure_packages_installed(required_packages)
+
+import subprocess
+import sys
 import subprocess
 import sys
 from tabulate import tabulate

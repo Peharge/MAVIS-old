@@ -402,10 +402,9 @@ readonly MAVIS_ENV_DIR="$MAVIS_DIR/.env"
 readonly MAVIS_RUN_FILE="$MAVIS_DIR/run-mavis-4-all.sh"
 
 # Logging helpers
-timestamp() { date +"%Y-%m-%dT%H:%M:%S%z"; }
-log_info()    { printf "[%s] INFO    %s\n" "$(timestamp)" "$*"; }
-log_success() { printf "[%s] SUCCESS %s\n" "$(timestamp)" "$*"; }
-log_error()   { printf "[%s] ERROR   %s\n" "$(timestamp)" "$*" >&2; }
+log_info()    { printf "Info:    %s\n" "$(timestamp)" "$*"; }
+log_success() { printf "Pass: %s\n" "$(timestamp)" "$*"; }
+log_error()   { printf "Error:   %s\n" "$(timestamp)" "$*" >&2; }
 
 # Ensure MAVIS directory exists
 if [[ ! -d "$MAVIS_DIR" ]]; then
