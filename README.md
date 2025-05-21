@@ -31,6 +31,7 @@ Thank you for your interest in MAVIS. We greatly appreciate that ❤️<br><br>
 [`MAVIS.com`](https://peharge.github.io/MAVIS-web/) [`Download MAVIS 4 (WINDOWS)`](https://github.com/Peharge/MAVIS/blob/main/mavis-launcher-4.bat) [`Download MAVIS 4 (Linux - Arch)`](https://github.com/Peharge/MAVIS/blob/main/install-on-larch-lx.md) [`Download MAVIS Terminal 5 (WINDOWS)`](https://github.com/Peharge/MAVIS/blob/main/run-mavis-terminal-5.bat) [`Download PP-Term (WINDOWS`](https://github.com/Peharge/p-terminal/blob/main/pp-term/run-pp-term.bat) [`License`](https://opensource.org/licenses/MIT) 
 
 _Do you think you're better at math than an AI? Prove it! Show that there are infinitely many pairs of prime numbers that are exactly 2 apart. No proof? No answer? Well – maybe it can't be done without AI after all! What are you waiting for? Ask [MAVIS - install](#installation)!_
+
 <details>
   <summary>Deutsch</summary>
     Denkst du, du bist besser in Mathe als eine KI? Beweise es! Zeig, dass es unendlich viele Primzahlpaare gibt, die genau 2 auseinander liegen. Kein Beweis? Keine Antwort? Tja – vielleicht geht’s doch nicht ohne KI! Worauf wartest du? Frag MAVIS!
