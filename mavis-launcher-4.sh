@@ -414,7 +414,7 @@ if ! flock -n 9; then
 fi
 
 # Retry wrapper for commands
-def retry() {
+retry() {
     local -r cmd=("$@")
     local n=1
     until (( n > MAX_RETRIES )); do
