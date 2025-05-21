@@ -1,6 +1,4 @@
-#!/bin/bash
-
-# Englisch Peharge: This source code is released under the MIT License.
+# Englisch | Peharge: This source code is released under the MIT License.
 #
 # Usage Rights:
 # The source code may be copied, modified, and adapted to individual requirements.
@@ -21,7 +19,7 @@
 #
 # Please read the full terms of the MIT License to familiarize yourself with your rights and obligations.
 
-# Deutsch Peharge: Dieser Quellcode wird unter der MIT-Lizenz veröffentlicht.
+# Deutsch | Peharge: Dieser Quellcode wird unter der MIT-Lizenz veröffentlicht.
 #
 # Nutzungsrechte:
 # Der Quellcode darf kopiert, bearbeitet und an individuelle Anforderungen angepasst werden.
@@ -42,7 +40,7 @@
 #
 # Bitte lesen Sie die vollständigen Lizenzbedingungen der MIT-Lizenz, um sich mit Ihren Rechten und Pflichten vertraut zu machen.
 
-# Français Peharge: Ce code source est publié sous la licence MIT.
+# Français | Peharge: Ce code source est publié sous la licence MIT.
 #
 # Droits d'utilisation:
 # Le code source peut être copié, édité et adapté aux besoins individuels.
@@ -63,62 +61,55 @@
 #
 # Veuillez lire l'intégralité des termes et conditions de la licence MIT pour vous familiariser avec vos droits et responsabilités.
 
-USERNAME=$(whoami)
-PYTHON_PATH="/home/$USERNAME/PycharmProjects/MAVIS/.env/bin/python3"
-SCRIPT_PATH_1="/home/$USERNAME/PycharmProjects/MAVIS/info/info-start-mavis-4.py"
-SCRIPT_PATH_2="/home/$USERNAME/PycharmProjects/MAVIS/install/install-info-mavis-4.py"
-SCRIPT_PATH_update="/home/$USERNAME/PycharmProjects/MAVIS/update/update-repository-windows.py"
-SCRIPT_PATH_account="/home/$USERNAME/PycharmProjects/MAVIS/account/account-lx.py"
-SCRIPT_PATH_3="/home/$USERNAME/PycharmProjects/MAVIS/install/install-ollama-mavis-4-lx.py"
-SCRIPT_PATH_security="/home/$USERNAME/PycharmProjects/MAVIS/security/security_check-mavis-4.py"
-PYTHON_SCRIPT_PATH="/home/$USERNAME/PycharmProjects/MAVIS/run-browser/run-browser-one.py"
-run_jup="/home/$USERNAME/PycharmProjects/MAVIS/run-jup/run-jup.py"
-run_grafana="/home/$USERNAME/PycharmProjects/MAVIS/run-grafana/run-grafana.py"
-run_solution="/home/$USERNAME/PycharmProjects/MAVIS/solution/run-solution-4.py"
-SCRIPT_PATH_5="/home/$USERNAME/PycharmProjects/MAVIS/mavis-4-main.py"
+import subprocess
+import sys
 
-if [ ! -f "$PYTHON_PATH" ]; then
-  echo "Error: Python interpreter not found: $PYTHON_PATH"
-  exit 1
-fi
+# Farbcodes definieren
+red = "\033[91m"
+green = "\033[92m"
+yellow = "\033[93m"
+blue = "\033[94m"
+magenta = "\033[95m"
+cyan = "\033[96m"
+white = "\033[97m"
+black = "\033[30m"
+orange = "\033[38;5;214m"
+reset = "\033[0m"
+bold = "\033[1m"
 
-for script in "$SCRIPT_PATH_1" "$SCRIPT_PATH_2" "$SCRIPT_PATH_update" \
-             "$SCRIPT_PATH_account" "$SCRIPT_PATH_3" "$SCRIPT_PATH_security" \
-             "$PYTHON_SCRIPT_PATH"; do
-  if [ ! -f "$script" ]; then
-    echo "Error: Script not found: $script"
-    exit 1
-  fi
-  "$PYTHON_PATH" "$script"
-done
+def get_user_input():
+    try:
+        print("\nSecurity check Information:")
+        print("---------------------------")
+        user_input = input(f"Do you want to perform a security check on Windows? [y/n]:").strip().lower()
+        return user_input
+    except (EOFError, KeyboardInterrupt):
+        print(f"{red}{bold}\nInput interrupted. Exiting the program.{reset}")
+        sys.exit(1)
 
-if [ ! -f "$run_jup" ]; then
-  echo "Error: Python script not found: $run_jup"
-  exit 1
-fi
-"$PYTHON_PATH" "$run_jup" &
-sleep 5
+def execute_installation():
+    try:
+        subprocess.run(["start", "cmd", "/k", f"{sys.executable} security/run-security-check-lx.py"], check=True, shell=True)
+        print(f"{blue}{bold}MAVIS Security check completed successfully.{reset}")
+    except subprocess.CalledProcessError:
+        print(f"{red}{bold}An error occurred while running the Security check script.{reset}")
+        sys.exit(1)
+    except FileNotFoundError:
+        print(f"{red}{bold}Security check skipped...{reset}")
+        sys.exit(1)
 
-if [ ! -f "$run_grafana" ]; then
-  echo "Error: Python script not found: $run_grafana"
-  exit 1
-fi
-"$PYTHON_PATH" "$run_grafana" &
-sleep 5
+def main():
+    while True:
+        user_input = get_user_input()
 
-if [ ! -f "$run_solution" ]; then
-  echo "Error: Python script not found: $run_solution"
-  exit 1
-fi
-"$PYTHON_PATH" "$run_solution" &
-sleep 5
+        if user_input in ["y", "yes"]:
+            execute_installation()
+            break
+        elif user_input in ["n", "no"]:
+            print(f"{blue}{bold}Security check was declined. Exiting the program.\n{reset}")
+            sys.exit(0)
+        else:
+            print(f"{red}{bold}Invalid input. Please enter 'y/yes' or 'n/no'.{reset}")
 
-if [ ! -f "$SCRIPT_PATH_5" ]; then
-  echo "Error: Script not found: $SCRIPT_PATH_5"
-  exit 1
-fi
-"$PYTHON_PATH" "$SCRIPT_PATH_5"
-
-echo
-echo "The scripts have been executed, Ollama has been started, and the browser has been opened."
-read -p "Press enter to exit."
+if __name__ == "__main__":
+    main()
