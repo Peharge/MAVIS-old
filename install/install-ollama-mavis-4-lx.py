@@ -299,7 +299,7 @@ def prompt_user_for_installation(model_name):
     :return: True, wenn der Benutzer zustimmt, False ansonsten.
     """
     while True:
-        user_input = input(f"Do you want to install the model {model_name}? [y/n]:").strip().lower()
+        user_input = input(f"The installation function of the AI models does not work as well on Linux as it does on Windows, please just use ollama run [model name] to install the model!\nDo you want to install the model {model_name}? [y/n]:").strip().lower()
         if user_input in ["y", "yes"]:
             return True
         elif user_input in ["n", "no"]:
@@ -392,7 +392,7 @@ if __name__ == "__main__":
     for key, value in existing_models.items():
         print(f"   {blue}{key}{reset}: {value}")
 
-    choice = input("\nDo you want to change the models? [y/n]:").strip().lower()
+    choice = input("\nLinux: If you have any problems, please write the models you want to use in ~PycharmProjects\MAVIS\model-mavis-4.json, and install the model before it with ollama run! And note that model 1 is the model you'll always use, but when you upload an image, model 2 is used, model 3 is used by the void assistant, and model 4 is used by Sollution!\nDo you want to change the models? [y/n]:").strip().lower()
 
     if choice in ["y", "yes"]:
         # Benutzer fragt nach den Modellnamen
