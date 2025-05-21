@@ -1537,7 +1537,7 @@ BERT is conceptually simple and empirically powerful. It obtains new state-of-th
 
 </div>
 
-### **_Peharge Terminal_**
+### **_MAth Visual Intelligent System_**
 _Peharge Projects 2025_
 
 </div>
