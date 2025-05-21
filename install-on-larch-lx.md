@@ -14,6 +14,11 @@ Normally Python is already installed
 sudo pacman -S python3
 ```
 
+Normally Python is already installed
+```bash
+sudo pacman -S ffmpeg
+```
+
 ```bash
 sudo pacman -S g++
 ```
