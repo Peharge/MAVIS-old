@@ -92,27 +92,6 @@ for script in "$SCRIPT_PATH_1" "$SCRIPT_PATH_2" "$SCRIPT_PATH_update" \
   "$PYTHON_PATH" "$script"
 done
 
-if [ ! -f "$run_jup" ]; then
-  echo "Error: Python script not found: $run_jup"
-  exit 1
-fi
-"$PYTHON_PATH" "$run_jup" &
-sleep 5
-
-if [ ! -f "$run_grafana" ]; then
-  echo "Error: Python script not found: $run_grafana"
-  exit 1
-fi
-"$PYTHON_PATH" "$run_grafana" &
-sleep 5
-
-if [ ! -f "$run_solution" ]; then
-  echo "Error: Python script not found: $run_solution"
-  exit 1
-fi
-"$PYTHON_PATH" "$run_solution" &
-sleep 5
-
 if [ ! -f "$SCRIPT_PATH_5" ]; then
   echo "Error: Script not found: $SCRIPT_PATH_5"
   exit 1
