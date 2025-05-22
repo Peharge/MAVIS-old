@@ -75,7 +75,7 @@ PYTHON_SCRIPT_PATH="/home/$USERNAME/PycharmProjects/MAVIS/run-browser/run-browse
 run_jup="/home/$USERNAME/PycharmProjects/MAVIS/run-jup/run-jup.py"
 run_grafana="/home/$USERNAME/PycharmProjects/MAVIS/run-grafana/run-grafana.py"
 run_solution="/home/$USERNAME/PycharmProjects/MAVIS/solution/run-solution-4.py"
-SCRIPT_PATH_5="/home/$USERNAME/PycharmProjects/MAVIS/mavis-4-3-main.py"
+SCRIPT_PATH_5="/home/$USERNAME/PycharmProjects/MAVIS/mavis-4-3-main-lx.py"
 
 if [ ! -f "$PYTHON_PATH" ]; then
   echo "Error: Python interpreter not found: $PYTHON_PATH"
