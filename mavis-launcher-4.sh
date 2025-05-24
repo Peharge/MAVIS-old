@@ -406,15 +406,15 @@ timestamp() {
 }
 
 log_info() {
-  printf "[%s] [INFO] %s\n" "$(timestamp)" "$*"
+  printf "[%s] %s\n" "$*"
 }
 
 log_success() {
-  printf "[%s] [PASS] %s\n" "$(timestamp)" "$*"
+  printf "[%s] ✅ %s\n" "$*"
 }
 
 log_error() {
-  printf "[%s] [ERROR] %s\n" "$(timestamp)" "$*" >&2
+  printf "[%s] ❌ %s\n" "$*" >&2
 }
 
 
