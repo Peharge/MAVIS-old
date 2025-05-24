@@ -401,6 +401,8 @@ readonly MAVIS_DIR="$HOME/PycharmProjects/MAVIS"
 readonly MAVIS_ENV_DIR="$MAVIS_DIR/.env"
 readonly MAVIS_RUN_FILE="$MAVIS_DIR/run-mavis-4-all.sh"
 
+timestamp() { date +"%Y-%m-%d %H:%M:%S"; }
+
 # Logging helpers
 log_info()    { printf "INFO: %s\n" "$(timestamp)" "$*"; }
 log_success() { printf "PASS: %s\n" "$(timestamp)" "$*"; }
