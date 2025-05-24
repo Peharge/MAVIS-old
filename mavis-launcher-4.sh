@@ -401,12 +401,22 @@ readonly MAVIS_DIR="$HOME/PycharmProjects/MAVIS"
 readonly MAVIS_ENV_DIR="$MAVIS_DIR/.env"
 readonly MAVIS_RUN_FILE="$MAVIS_DIR/run-mavis-4-all.sh"
 
-timestamp() { date +"%Y-%m-%d %H:%M:%S"; }
+timestamp() {
+  date +"%Y-%m-%d %H:%M:%S";
+}
 
-# Logging helpers
-log_info()    { printf "INFO: %s\n" "$(timestamp)" "$*"; }
-log_success() { printf "PASS: %s\n" "$(timestamp)" "$*"; }
-log_error()   { printf "ERROR: %s\n" "$(timestamp)" "$*" >&2; }
+log_info() {
+  printf "[%s] [INFO] %s\n" "$(timestamp)" "$*"
+}
+
+log_success() {
+  printf "[%s] [PASS] %s\n" "$(timestamp)" "$*"
+}
+
+log_error() {
+  printf "[%s] [ERROR] %s\n" "$(timestamp)" "$*" >&2
+}
+
 
 # Ensure MAVIS directory exists
 if [[ ! -d "$MAVIS_DIR" ]]; then
