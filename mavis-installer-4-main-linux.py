@@ -122,7 +122,7 @@ def check_ollama_update():
         print(f"{blue}Note: The current installed version could not be determined automatically.{reset}")
 
         while True:
-            user_input = input("Would you like to run 'ollama update' to upgrade? [y/n]: ").strip().lower()
+            user_input = input("Would you like to run 'ollama update' to upgrade? [y/n]:").strip().lower()
             if user_input in ["y", "yes"]:
                 subprocess.run([ollama_path, "update"], check=True)
                 print(f"{green}Ollama was updated successfully. Please restart the script.{reset}")
