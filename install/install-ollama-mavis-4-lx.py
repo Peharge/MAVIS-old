@@ -75,6 +75,7 @@ import importlib.util
 from dotenv import load_dotenv
 from subprocess import run
 from shutil import which
+import shutil
 
 print("")
 
