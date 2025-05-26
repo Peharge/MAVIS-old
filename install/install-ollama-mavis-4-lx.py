@@ -275,32 +275,56 @@ def check_command_installed(command):
 
 def check_model_with_ollama(model_name):
     """
-    Überprüft, ob ein bestimmtes Modell in ollama verfügbar ist.
-    :param model_name: Der Name des zu prüfenden Modells.
-    :return: True, wenn verfügbar, andernfalls False.
+    Checks whether a specific model is installed and available in Ollama.
+
+    :param model_name: Name of the model to check (e.g. "phi3", "llama3").
+    :return: True if the model is installed, False otherwise.
     """
     try:
+        ollama_path = find_ollama_executable()
+
+        # List installed models
         result = subprocess.run(
-            ["ollama", "show", model_name],
+            [ollama_path, "list"],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
-            encoding="utf-8",  # Sicherstellen, dass UTF-8 für die Ausgabe verwendet wird
-            errors="replace"  # Ersetzt ungültige Zeichen, anstatt eine Exception auszulösen
+            encoding="utf-8",
+            errors="replace"
         )
 
-        if result.returncode == 0:
-            print(f"Model information for {blue}{model_name}{reset}:\n"
-                  f"--------------------------------------\n{result.stdout}\n")
-            return True
-        else:
-            print(f"{yellow}Model {model_name} is not available{reset}:\n"
-                  f"-----------------------------------\n{result.stderr}\n")
+        if result.returncode != 0:
+            print(f"{red}Error fetching model list from Ollama:{reset} {result.stderr.strip()}")
             return False
 
+        installed_models_output = result.stdout.lower()
+
+        # Check if the model name appears in the list
+        if model_name.lower() in installed_models_output:
+            print(f"{green}Model '{model_name}' is installed.{reset}")
+            return True
+        else:
+            print(f"{yellow}Model '{model_name}' is not installed. Checking if it's known...{reset}")
+
+            # Try checking if it's a known model via `show`
+            show_result = subprocess.run(
+                [ollama_path, "show", model_name],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                encoding="utf-8",
+                errors="replace"
+            )
+
+            if show_result.returncode == 0:
+                print(f"{blue}Model '{model_name}' is available but not yet installed.{reset}")
+                return False
+            else:
+                print(f"{red}Model '{model_name}' is unknown to Ollama:{reset}\n{show_result.stderr.strip()}")
+                return False
+
     except Exception as e:
-        print(f"{red}Error checking model {model_name} with ollama{reset}:\n"
-              f"-----------------------------------\n{e}\n")
+        print(f"{red}Exception while checking model '{model_name}':{reset} {e}")
         return False
 
 def install_model_with_ollama(model_name):
