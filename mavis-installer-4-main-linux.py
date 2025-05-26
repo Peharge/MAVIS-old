@@ -107,35 +107,31 @@ def find_ollama_executable():
 
 def check_ollama_update():
     """
-    Checks if a new version of Ollama is available and offers to update.
+    Checks if an update is available for Ollama by prompting the user directly,
+    since no CLI command currently provides the local version.
     """
     try:
         ollama_path = find_ollama_executable()
 
-        result = subprocess.run([ollama_path, "version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        if result.returncode != 0:
-            raise RuntimeError(result.stderr.strip())
+        remote_version = subprocess.run(
+            ["curl", "-s", "https://api.ollama.ai/version"],
+            stdout=subprocess.PIPE, text=True
+        ).stdout.strip()
 
-        local_version = result.stdout.strip()
+        print(f"{yellow}Latest available Ollama version: {remote_version}{reset}")
+        print(f"{blue}Note: The current installed version could not be determined automatically.{reset}")
 
-        remote_version = subprocess.run(["curl", "-s", "https://api.ollama.ai/version"],
-                                        stdout=subprocess.PIPE, text=True).stdout.strip()
-
-        if local_version != remote_version:
-            print(f"{yellow}New Ollama version available: {remote_version} (Current: {local_version}){reset}")
-            while True:
-                user_input = input("Do you want to update Ollama? [y/n]: ").strip().lower()
-                if user_input in ["y", "yes"]:
-                    subprocess.run([ollama_path, "update"], check=True)
-                    print(f"{green}Ollama was updated successfully. Please restart the script.{reset}")
-                    exit()
-                elif user_input in ["n", "no"]:
-                    print("Skipping update.")
-                    break
-                else:
-                    print(f"{red}Invalid input. Please enter 'y' or 'n'.{reset}")
-        else:
-            print(f"{green}Ollama is up to date (version: {local_version}).{reset}")
+        while True:
+            user_input = input("Would you like to run 'ollama update' to upgrade? [y/n]: ").strip().lower()
+            if user_input in ["y", "yes"]:
+                subprocess.run([ollama_path, "update"], check=True)
+                print(f"{green}Ollama was updated successfully. Please restart the script.{reset}")
+                exit()
+            elif user_input in ["n", "no"]:
+                print("Skipping update.")
+                break
+            else:
+                print(f"{red}Invalid input. Please enter 'y' or 'n'.{reset}")
 
     except Exception as e:
         print(f"{red}Error checking for updates: {e}{reset}")
