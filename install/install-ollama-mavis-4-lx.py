@@ -273,6 +273,82 @@ def check_command_installed(command):
         print(f"{red}Error checking command {command}: {e}{reset}")
         return False
 
+def find_ollama_executable(start_if_not_running=True):
+    """
+    Finds the 'ollama' executable, checks if it is running,
+    and optionally starts it in the background if not running.
+
+    :param start_if_not_running: Whether to start Ollama if it's not running
+    :return: Path to the executable
+    :raises FileNotFoundError or EnvironmentError if not found or supported
+    """
+
+    # 1. Try finding it via PATH
+    ollama_path = shutil.which("ollama")
+    if ollama_path and os.path.isfile(ollama_path) and os.access(ollama_path, os.X_OK):
+        pass
+    else:
+        # 2. Try known install paths
+        possible_paths = []
+        system = platform.system()
+
+        if system == "Linux":
+            possible_paths = [
+                "/usr/local/bin/ollama",
+                "/usr/bin/ollama",
+                "/opt/ollama/ollama",
+                os.path.expanduser("~/.ollama/bin/ollama"),
+            ]
+        elif system == "Darwin":  # macOS
+            possible_paths = [
+                "/usr/local/bin/ollama",
+                "/opt/homebrew/bin/ollama",
+                "/usr/bin/ollama",
+                "/Applications/Ollama.app/Contents/MacOS/Ollama",
+                os.path.expanduser("~/.ollama/bin/ollama"),
+            ]
+        else:
+            raise EnvironmentError(f"Ollama is not supported on this operating system: {system}")
+
+        for path in possible_paths:
+            if os.path.isfile(path) and os.access(path, os.X_OK):
+                ollama_path = path
+                break
+        else:
+            # 3. Check environment variable
+            env_path = os.environ.get("OLLAMA_PATH")
+            if env_path and os.path.isfile(env_path) and os.access(env_path, os.X_OK):
+                ollama_path = env_path
+            else:
+                raise FileNotFoundError(
+                    f"{red}Could not find 'ollama' executable. Ensure it's installed and in your PATH.{reset}"
+                )
+
+    # 4. Check if Ollama is already running
+    try:
+        check_running = subprocess.run(["pgrep", "-f", "ollama"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        is_running = check_running.returncode == 0
+    except Exception:
+        is_running = False  # If pgrep fails (Windows), assume it's not running
+
+    if is_running:
+        print(f"{green}Ollama is already running.{reset}")
+    elif start_if_not_running:
+        print(f"{yellow}Ollama is not running. Attempting to start...{reset}")
+        try:
+            subprocess.Popen(
+                [ollama_path],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                close_fds=True
+            )
+            time.sleep(4)  # wait a few seconds for it to boot
+            print(f"{green}Ollama started successfully in the background.{reset}")
+        except Exception as e:
+            raise RuntimeError(f"{red}Failed to start Ollama: {e}{reset}")
+
+    return ollama_path
+
 def check_model_with_ollama(model_name):
     """
     Checks whether a specific model is installed and available in Ollama.
@@ -281,7 +357,7 @@ def check_model_with_ollama(model_name):
     :return: True if the model is installed, False otherwise.
     """
     try:
-        ollama_path = find_ollama_path()
+        ollama_path = find_ollama_executable()
 
         # List installed models
         result = subprocess.run(
