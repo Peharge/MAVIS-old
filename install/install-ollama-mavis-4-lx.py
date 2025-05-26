@@ -76,6 +76,7 @@ from dotenv import load_dotenv
 from subprocess import run
 from shutil import which
 import shutil
+import socket
 
 print("")
 
