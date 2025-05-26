@@ -66,6 +66,7 @@ import platform
 import subprocess
 import time
 import sys
+import shutil
 
 # Farbcodes definieren
 red = "\033[91m"
@@ -80,93 +81,102 @@ orange = "\033[38;5;214m"
 reset = "\033[0m"
 bold = "\033[1m"
 
+def find_ollama_executable():
+    """
+    Attempts to find the path to the Ollama executable.
+    Searches PATH first, then common directories.
+    """
+    # Check system PATH
+    ollama_path = shutil.which("ollama")
+    if ollama_path and os.path.isfile(ollama_path):
+        return ollama_path
+
+    # Try common install locations
+    possible_paths = [
+        "/usr/local/bin/ollama",
+        "/usr/bin/ollama",
+        "/opt/ollama/ollama",
+        os.path.expanduser("~/.ollama/bin/ollama"),
+    ]
+
+    for path in possible_paths:
+        if os.path.isfile(path) and os.access(path, os.X_OK):
+            return path
+
+    raise FileNotFoundError("Could not find 'ollama'. Please ensure it's installed and in your PATH.")
+
 def check_ollama_update():
     """
-    Prüft, ob eine neue Version von Ollama verfügbar ist, und bietet ein Update an.
+    Checks if a new version of Ollama is available and offers to update.
     """
     try:
-        result = subprocess.run(["ollama", "version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        if result.returncode == 0:
-            local_version = result.stdout.strip()
-            remote_version = subprocess.run(["curl", "-s", "https://api.ollama.ai/version"],
-                                            stdout=subprocess.PIPE, text=True).stdout.strip()
+        ollama_path = find_ollama_executable()
 
-            if local_version != remote_version:
-                print(f"{yellow}New Ollama version available: {remote_version} (Current: {local_version}){reset}")
-                while True:
-                    user_input = input("Do you want to update Ollama? [y/n]:").strip().lower()
-                    if user_input in ["y", "yes"]:
-                        subprocess.run(["ollama", "update"], check=True)
-                        print(f"{green}Ollama updated successfully! Please restart the script.{reset}")
-                        exit()
-                    elif user_input in ["n", "no"]:
-                        print("Skipping update.")
-                        break
-                    else:
-                        print(f"{red}Invalid input. Please enter 'y' for yes or 'n' for no.{reset}")
+        result = subprocess.run([ollama_path, "version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        if result.returncode != 0:
+            raise RuntimeError(result.stderr.strip())
+
+        local_version = result.stdout.strip()
+
+        remote_version = subprocess.run(["curl", "-s", "https://api.ollama.ai/version"],
+                                        stdout=subprocess.PIPE, text=True).stdout.strip()
+
+        if local_version != remote_version:
+            print(f"{yellow}New Ollama version available: {remote_version} (Current: {local_version}){reset}")
+            while True:
+                user_input = input("Do you want to update Ollama? [y/n]: ").strip().lower()
+                if user_input in ["y", "yes"]:
+                    subprocess.run([ollama_path, "update"], check=True)
+                    print(f"{green}Ollama was updated successfully. Please restart the script.{reset}")
+                    exit()
+                elif user_input in ["n", "no"]:
+                    print("Skipping update.")
+                    break
+                else:
+                    print(f"{red}Invalid input. Please enter 'y' or 'n'.{reset}")
+        else:
+            print(f"{green}Ollama is up to date (version: {local_version}).{reset}")
 
     except Exception as e:
         print(f"{red}Error checking for updates: {e}{reset}")
 
-def find_ollama_path():
-    """
-    Findet den Installationspfad von Ollama basierend auf dem Betriebssystem.
-    """
-    try:
-        if platform.system() == "Linux":
-            return "/usr/local/bin/ollama"
-        elif platform.system() == "Darwin":  # macOS
-            return "/Applications/Ollama.app/Contents/MacOS/Ollama"
-        else:
-            raise EnvironmentError("Unsupported Operating System. Ollama is not supported on this platform.")
-    except Exception as e:
-        raise FileNotFoundError(f"Error finding Ollama path: {e}")
-
 def check_installed_model(model_name):
     """
-    Prüft, ob ein bestimmtes Modell in Ollama installiert ist.
-    :param model_name: Name des zu prüfenden Modells (z. B. "phi4").
-    :return: True, wenn das Modell installiert ist, andernfalls False.
+    Checks if a specific model is installed in Ollama.
+    :param model_name: Name of the model to check (e.g. "phi4").
+    :return: True if installed, False otherwise.
     """
     try:
-        # Use ollama list or another Ollama command to check for installed models
-        result = subprocess.run(["ollama", "list"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        if result.returncode == 0:
-            models_list = result.stdout.lower()
-            if model_name.lower() in models_list:
-                return True
-            else:
-                return False
-        else:
-            print(f"{red}Error fetching models list from Ollama: {result.stderr}{reset}")
+        ollama_path = find_ollama_executable()
+        result = subprocess.run([ollama_path, "list"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        if result.returncode != 0:
+            print(f"{red}Error fetching model list: {result.stderr}{reset}")
             return False
+
+        return model_name.lower() in result.stdout.lower()
+
     except Exception as e:
-        print(f"{red}Error checking for installed model: {e}{reset}")
+        print(f"{red}Error checking model: {e}{reset}")
         return False
 
 def start_ollama():
     """
-    Startet Ollama, falls es noch nicht läuft.
+    Starts Ollama if it is not already running.
     """
     try:
-        # Überprüfen, ob Ollama bereits läuft
-        result = subprocess.run(["ps", "aux"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-
-        if "ollama" not in result.stdout.lower():
-            print(f"{blue}Ollama is not running. Starting Ollama...{reset}")
-
-            # Pfad zu Ollama finden
-            ollama_path = find_ollama_path()
-
-            if not os.path.exists(ollama_path):
-                raise FileNotFoundError(f"Ollama executable not found at: {ollama_path}")
-
-            # Ollama starten
-            subprocess.Popen([ollama_path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, close_fds=True)
-            time.sleep(5)  # Warten, bis Ollama gestartet ist
-            print(f"{green}Ollama started successfully.{reset}\n")
-        else:
+        # Check if Ollama is already running using pgrep
+        result = subprocess.run(["pgrep", "-f", "ollama"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        if result.returncode == 0:
             print(f"{green}Ollama is already running.{reset}\n")
+            return
+
+        print(f"{blue}Ollama is not running. Starting Ollama...{reset}")
+        ollama_path = find_ollama_executable()
+
+        subprocess.Popen([ollama_path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, close_fds=True)
+        time.sleep(5)
+        print(f"{green}Ollama started successfully.{reset}\n")
+
     except Exception as e:
         print(f"{red}Error starting Ollama: {e}{reset}")
 
