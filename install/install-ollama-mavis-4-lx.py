@@ -281,7 +281,7 @@ def check_model_with_ollama(model_name):
     :return: True if the model is installed, False otherwise.
     """
     try:
-        ollama_path = find_ollama_executable()
+        ollama_path = find_ollama_path()
 
         # List installed models
         result = subprocess.run(
