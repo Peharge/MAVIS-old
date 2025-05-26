@@ -66,11 +66,6 @@ Run:
 >```bash
 >bash mavis-launcher-4.py
 >```
->
->new window
->```bash
->ollama start
->```
 
 Or:
 
