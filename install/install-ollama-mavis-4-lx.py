@@ -274,22 +274,26 @@ def check_command_installed(command):
         print(f"{red}Error checking command {command}: {e}{reset}")
         return False
 
+def is_ollama_server_running(host="127.0.0.1", port=11434):
+    """
+    Check if the Ollama API server is listening on the expected port.
+    """
+    try:
+        with socket.create_connection((host, port), timeout=2):
+            return True
+    except (OSError, ConnectionRefusedError):
+        return False
+
 def find_ollama_executable(start_if_not_running=True):
     """
-    Finds the 'ollama' executable, checks if it is running,
-    and optionally starts it in the background if not running.
-
-    :param start_if_not_running: Whether to start Ollama if it's not running
-    :return: Path to the executable
-    :raises FileNotFoundError or EnvironmentError if not found or supported
+    Finds the 'ollama' executable and optionally ensures the Ollama server is running.
+    Starts 'ollama serve' in the background if not already running.
     """
-
-    # 1. Try finding it via PATH
+    # 1. Try PATH
     ollama_path = shutil.which("ollama")
-    if ollama_path and os.path.isfile(ollama_path) and os.access(ollama_path, os.X_OK):
-        pass
-    else:
-        # 2. Try known install paths
+
+    # 2. Fallback to known install paths
+    if not ollama_path:
         possible_paths = []
         system = platform.system()
 
@@ -302,65 +306,62 @@ def find_ollama_executable(start_if_not_running=True):
             ]
         elif system == "Darwin":  # macOS
             possible_paths = [
-                "/usr/local/bin/ollama",
                 "/opt/homebrew/bin/ollama",
+                "/usr/local/bin/ollama",
                 "/usr/bin/ollama",
                 "/Applications/Ollama.app/Contents/MacOS/Ollama",
                 os.path.expanduser("~/.ollama/bin/ollama"),
             ]
         else:
-            raise EnvironmentError(f"Ollama is not supported on this operating system: {system}")
+            raise EnvironmentError(f"Ollama is not supported on this OS: {system}")
 
         for path in possible_paths:
             if os.path.isfile(path) and os.access(path, os.X_OK):
                 ollama_path = path
                 break
+
+    # 3. Check env var
+    if not ollama_path:
+        env_path = os.environ.get("OLLAMA_PATH")
+        if env_path and os.path.isfile(env_path) and os.access(env_path, os.X_OK):
+            ollama_path = env_path
         else:
-            # 3. Check environment variable
-            env_path = os.environ.get("OLLAMA_PATH")
-            if env_path and os.path.isfile(env_path) and os.access(env_path, os.X_OK):
-                ollama_path = env_path
-            else:
-                raise FileNotFoundError(
-                    f"{red}Could not find 'ollama' executable. Ensure it's installed and in your PATH.{reset}"
-                )
+            raise FileNotFoundError(
+                f"{red}Could not find 'ollama'. Is it installed? Add to PATH or set OLLAMA_PATH.{reset}"
+            )
 
-    # 4. Check if Ollama is already running
-    try:
-        check_running = subprocess.run(["pgrep", "-f", "ollama"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        is_running = check_running.returncode == 0
-    except Exception:
-        is_running = False  # If pgrep fails (Windows), assume it's not running
-
-    if is_running:
-        print(f"{green}Ollama is already running.{reset}")
+    # 4. Check if the Ollama server is running
+    if is_ollama_server_running():
+        print(f"{green}Ollama server is already running.{reset}")
     elif start_if_not_running:
-        print(f"{yellow}Ollama is not running. Attempting to start...{reset}")
+        print(f"{yellow}Ollama server not running. Starting with 'ollama serve'...{reset}")
         try:
             subprocess.Popen(
-                [ollama_path],
+                [ollama_path, "serve"],
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
                 close_fds=True
             )
-            time.sleep(4)  # wait a few seconds for it to boot
-            print(f"{green}Ollama started successfully in the background.{reset}")
+            time.sleep(3)  # Give the server time to start
+            if is_ollama_server_running():
+                print(f"{green}Ollama server started successfully.{reset}")
+            else:
+                raise RuntimeError("Ollama did not start as expected.")
         except Exception as e:
-            raise RuntimeError(f"{red}Failed to start Ollama: {e}{reset}")
+            raise RuntimeError(f"{red}Failed to start Ollama server: {e}{reset}")
+    else:
+        print(f"{red}Ollama server is not running and auto-start is disabled.{reset}")
 
     return ollama_path
 
 def check_model_with_ollama(model_name):
     """
-    Checks whether a specific model is installed and available in Ollama.
-
-    :param model_name: Name of the model to check (e.g. "phi3", "llama3").
-    :return: True if the model is installed, False otherwise.
+    Checks whether a model is installed or known by Ollama.
     """
     try:
         ollama_path = find_ollama_executable()
 
-        # List installed models
+        # First, check installed models
         result = subprocess.run(
             [ollama_path, "list"],
             stdout=subprocess.PIPE,
@@ -374,31 +375,27 @@ def check_model_with_ollama(model_name):
             print(f"{red}Error fetching model list from Ollama:{reset} {result.stderr.strip()}")
             return False
 
-        installed_models_output = result.stdout.lower()
-
-        # Check if the model name appears in the list
-        if model_name.lower() in installed_models_output:
+        installed_models = result.stdout.lower()
+        if model_name.lower() in installed_models:
             print(f"{green}Model '{model_name}' is installed.{reset}")
             return True
+
+        # If not installed, check if the model is known
+        show_result = subprocess.run(
+            [ollama_path, "show", model_name],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",
+            errors="replace"
+        )
+
+        if show_result.returncode == 0:
+            print(f"{yellow}Model '{model_name}' is known but not installed.{reset}")
+            return False
         else:
-            print(f"{yellow}Model '{model_name}' is not installed. Checking if it's known...{reset}")
-
-            # Try checking if it's a known model via `show`
-            show_result = subprocess.run(
-                [ollama_path, "show", model_name],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True,
-                encoding="utf-8",
-                errors="replace"
-            )
-
-            if show_result.returncode == 0:
-                print(f"{blue}Model '{model_name}' is available but not yet installed.{reset}")
-                return False
-            else:
-                print(f"{red}Model '{model_name}' is unknown to Ollama:{reset}\n{show_result.stderr.strip()}")
-                return False
+            print(f"{red}Model '{model_name}' is unknown to Ollama:{reset} {show_result.stderr.strip()}")
+            return False
 
     except Exception as e:
         print(f"{red}Exception while checking model '{model_name}':{reset} {e}")
