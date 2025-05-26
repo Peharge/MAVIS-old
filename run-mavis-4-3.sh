@@ -70,7 +70,6 @@ SCRIPT_PATH_2="/home/$USERNAME/PycharmProjects/MAVIS/install/install-info-mavis-
 SCRIPT_PATH_update="/home/$USERNAME/PycharmProjects/MAVIS/update/update-repository-windows.py"
 SCRIPT_PATH_account="/home/$USERNAME/PycharmProjects/MAVIS/account/account-lx.py"
 SCRIPT_PATH_3="/home/$USERNAME/PycharmProjects/MAVIS/install/install-ollama-mavis-4-lx.py"
-SCRIPT_PATH_security="/home/$USERNAME/PycharmProjects/MAVIS/security/security_check-mavis-4.py"
 PYTHON_SCRIPT_PATH="/home/$USERNAME/PycharmProjects/MAVIS/run-browser/run-browser-one.py"
 run_jup="/home/$USERNAME/PycharmProjects/MAVIS/run-jup/run-jup.py"
 run_grafana="/home/$USERNAME/PycharmProjects/MAVIS/run-grafana/run-grafana.py"
@@ -83,7 +82,7 @@ if [ ! -f "$PYTHON_PATH" ]; then
 fi
 
 for script in "$SCRIPT_PATH_1" "$SCRIPT_PATH_2" "$SCRIPT_PATH_update" \
-             "$SCRIPT_PATH_account" "$SCRIPT_PATH_3" "$SCRIPT_PATH_security" \
+             "$SCRIPT_PATH_account" "$SCRIPT_PATH_3" \
              "$PYTHON_SCRIPT_PATH"; do
   if [ ! -f "$script" ]; then
     echo "Error: Script not found: $script"
