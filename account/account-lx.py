@@ -94,7 +94,7 @@ def save_users(users):
         with open(DATA_FILE, "w") as file:
             json.dump(users, file, indent=4)
     except Exception as e:
-        print(f"{red}ERROR{reset}: Failed to save users: {e}")
+        print(f"{red}ERROR{reset}: Failed to save users:{e}")
 
 def load_tokens():
     try:
@@ -109,7 +109,7 @@ def save_tokens(tokens):
         with open(TOKEN_FILE, "w") as file:
             json.dump({"tokens": tokens}, file, indent=4)
     except Exception as e:
-        print(f"{red}ERROR{reset}: Failed to save tokens: {e}")
+        print(f"{red}ERROR{reset}: Failed to save tokens:{e}")
 
 def hash_password(password):
     return bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
@@ -144,7 +144,7 @@ def register(user_type="Standard"):
     users = load_users()
 
     while True:
-        username = input(f"{blue}Username{reset}: ").strip()
+        username = input(f"{blue}Username{reset}:").strip()
         if not username:
             print(f"{red}ERROR{reset}: Username cannot be empty!")
             continue
@@ -154,7 +154,7 @@ def register(user_type="Standard"):
         break
 
     while True:
-        email = input(f"{blue}E-Mail{reset}: ").strip()
+        email = input(f"{blue}E-Mail{reset}:").strip()
         if "@" in email and "." in email:
             if any(user["email"] == email for user in users.values()):
                 print(f"{red}ERROR{reset}: This email is already in use.")
@@ -163,19 +163,19 @@ def register(user_type="Standard"):
         print(f"{red}ERROR{reset}: Invalid email address!")
 
     while True:
-        birthdate = input(f"{blue}Date of birth (YYYY-MM-DD){reset}: ")
+        birthdate = input(f"{blue}Date of birth (YYYY-MM-DD){reset}:")
         if validate_age(birthdate):
             break
         print(f"{red}ERROR{reset}: Invalid birthdate or age under 18.")
 
     while True:
-        password = getpass.getpass(f"{blue}Password{reset}: ")
+        password = getpass.getpass(f"{blue}Password{reset}:")
         if validate_password(password):
             break
         print(f"{red}ERROR{reset}: Password must be 8–20 chars, incl. letters, numbers & symbols.")
 
     while True:
-        confirm_password = getpass.getpass(f"{blue}Repeat password{reset}: ")
+        confirm_password = getpass.getpass(f"{blue}Repeat password{reset}:")
         if password == confirm_password:
             break
         print(f"{red}ERROR{reset}: Passwords do not match!")
@@ -198,7 +198,7 @@ def register_mavis_ultra():
         return
 
     while True:
-        token = input(f"{blue}Enter your MAVIS Ultra token{reset}: ")
+        token = input(f"{blue}Enter your MAVIS Ultra token{reset}:")
         token_valid = any(check_token(hashed_token, token) for hashed_token in tokens)
 
         if token_valid:
@@ -211,8 +211,8 @@ def register_mavis_ultra():
 
 def login():
     print("\nLogin\n-----")
-    username_or_email = input(f"{blue}Username or Email{reset}: ").strip()
-    password = getpass.getpass(f"{blue}Password{reset}: ")
+    username_or_email = input(f"{blue}Username or Email{reset}:").strip()
+    password = getpass.getpass(f"{blue}Password{reset}:")
     users = load_users()
 
     for username, data in users.items():
@@ -231,7 +231,7 @@ def main():
 
     while True:
         print("\nOptions:\n [1] Login\n [2] Register\n [3] Register as MAVIS Ultra user")
-        choice = input("Selection [1/2/3]: ").strip()
+        choice = input("Selection [1/2/3]:").strip()
 
         if choice == "1":
             login()
